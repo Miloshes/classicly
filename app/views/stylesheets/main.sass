@@ -1,0 +1,560 @@
+body
+  :margin 0
+  :padding 0
+  :background #f6f2ed
+  :min-width 1160px
+  :text-align center
+  :font-family Helvetica Neue, Helvetica, Arial, sans-serif
+.container_12
+  :margin 0 auto
+a
+  :border none
+  img
+    :border none
+#header
+  :width 100%
+  :height 87px
+  :background #c9af87
+  :float left
+  :text-align left
+  :border-bottom 1px solid #bc9e7a
+  a#logo
+    :display block
+    :width 165px
+    :height 41px
+    :background url('/images/logo.png')
+    :margin 0
+      :top 20px
+    :padding 0
+    :float left
+    &:hover
+      :cursor pointer
+  h2
+    :color #fff
+    :float left
+    :font-weight normal
+    :font-size 12px
+    :text-align right
+    :font-style italic
+    :line-height 11px
+    :margin 0
+      :top -5px
+      :left 30px
+  div.search-bg
+    :width 402px
+    :height 40px
+    :background url("/images/search.png")
+    :margin
+      :top 25px
+    input
+      :font-size 22px
+      :height 20px
+      :border none
+      :color #cbb18f
+      :background none
+      :padding
+        :left 40px
+        :top 25px
+      :font-style italic
+      &:focus
+        :border none
+        :outline-width 0
+        :font-style normal
+
+  #nav
+    a
+      :color #f5f1e9
+      :text-decoration none
+      :display block
+      :float left
+      :padding
+        :top 40px
+        :right 20px
+      &.selected
+        :color #4d2c0c
+      &:hover
+        :color #4d2c0c
+  #registration
+    :margin
+      :top 40px
+.wrapper
+  :float left
+  :width 100%
+#cover-bar
+  :background url('/images/cover-bar-bg.png')
+  :display block
+  :width 1024px
+  :height 240px
+  :margin
+    :top 25px
+  span
+    :width 100%
+    :float left
+    :font-family serif
+    :font-size 18px
+    :color #936845
+    :height 10px
+  .cover
+    :float left
+    :width 102px
+    :margin
+      :left 23px
+    a 
+      :margin 0
+        :top 30px
+      :padding 0
+      :text-align left
+      :float left
+      :height 160px
+      :width 100%
+      img.cover-art
+        :width 100px
+        :padding 0
+        :margin 0
+        :float left
+        :border 1px solid #111110
+        :display block
+    img.pic-thumbnail
+      :width 32px
+      :float left
+      :margin 1px
+#content
+  img
+    :float left
+  #collection-column
+    :margin
+      :top 40px
+    .collection-container
+      :float left
+    .author-container
+      :float left
+      :margin
+        :top 20px
+    ul
+      :width 211px
+      :float left
+      :margin 0
+      :padding 0
+      :border
+        :left 1px solid #ded0b3
+        :right 1px solid #ded0b3
+      li
+        :border none
+        :margin 0
+        :padding 0
+        :list-style none
+        a
+          :border none
+          :margin 0
+          :padding 0
+          :width 211px
+          :color #432610
+          :text-decoration none
+          :font-size 16px
+          :padding
+            :top 10px
+            :bottom 10px
+          :float left
+          :background #efe1c3
+          &:hover
+            :color #f7ebd5
+            :cursor pointer
+            :background #cab291
+
+#book-page
+  :margin
+    :top 40px
+  h1
+    :color #936845
+    :font-size 46px
+    :margin 0
+    :padding 0
+  img.read, img.download, img.social
+    :margin
+      :bottom 15px
+  img.divider
+    :float left
+    :display block
+  #cover
+    img
+      :border 1px solid black
+      
+  #book-metadata
+    :text-align left
+    p
+      :font-size 13px
+  #reviews
+    span
+      :margin
+        :top 30px
+      :float left
+      :text-align left
+  .share
+    span
+      :float left
+      :display block
+      :margin
+        :top 15px
+.add-profile-pics
+  img
+    :width 32px
+    :margin 1px
+#home-page
+  :margin
+    :top 40px
+  .featured-book
+    :margin
+      :bottom 25px
+    :text-align left
+    .metadata
+      :padding
+        :left 20px
+    img.cover-art
+      :border 1px solid black
+    p
+      a
+        :color #936845
+    h2,h3
+      :color #936845
+      :margin 0
+      :padding 0
+    a.title
+      :color #936845
+    h3
+      :font-style italic
+      :color black
+      :font-weight normal
+      em
+        :font-weight normal
+        :color #936845
+
+.expando-div
+  display: block
+  margin-bottom: 30px
+  background: #185686
+  color: white
+  text-decoration: none
+  padding: 5px
+
+#collection-page
+  :margin
+    :top 40px
+  :text-align center
+  h1
+    :margin 0
+    :padding 0
+  .highlighted-cover
+    img
+      :border 1px solid black
+      :width 100%
+      :margin
+        :left 8px
+  .highlighted-book
+    :text-align left
+  a.book-link
+    :float left
+    :width 100%
+    :display block
+    :background #f0e2c6
+    :border 1px solid #ded0b3
+    :border-radius 5px
+    :text-align center
+    :padding 10px
+    :margin
+      :top 20px
+    :text-decoration none
+    &:hover 
+      :background none
+    h3,h4
+      :margin 0
+      :padding 0
+    h3
+      :color #936845
+    h4
+      :color #43260f
+      :font-weight bold
+      i
+        :font-weight normal
+  .divider
+    img
+      :margin 0 auto
+        :top 20px
+        :left 100px
+
+.related-books
+  :background #f3eddf
+  :border 1px solid #e8decb
+  :border-radius 15px
+  :float left
+  :padding 5px
+  :margin
+    :top 20px
+    :left -5px
+  img
+    :width 100px
+    :margin
+      :left 22px
+      :bottom 10px
+  h4
+    :color #936845
+    :font-size 14px
+    :margin 0
+      :bottom 10px
+    :padding 0
+  span
+    :color #43260f
+    :width 100% 
+    :display block
+    :font-size 12px
+    :padding 0px
+    :float left
+    :margin 0px
+    &.author
+      :margin
+        :bottom 5px
+
+.download_this_book
+  :background #f0e0c2
+  :display block
+  :float left
+  :border 1px solid #dfcfb2
+  :border-radius 10px
+  :width 167px
+  :padding
+    :top 10px
+    :bottom 5px
+  form
+    :font-size 10px
+    :float left
+    :margin
+      :left 5px
+  a
+    :float left
+    :margin
+      :left 20px
+      :top 5px
+    &:hover
+      :cursor pointer
+
+ul.book-list-sort
+  :color #af8f75
+  :float left
+  :text-align left
+  li
+    :display inline 
+    :list-style-type none
+    :padding
+      :left 5px
+      :right 5px
+    a
+      :color #af8f75
+      :text-align left
+      :text-decoration none
+      &:hover
+        :opacity .9
+      &.selected
+        :color black
+
+ul.book-list
+  li
+    :list-style none
+    :margin
+      :top 5px
+      :bottom 5px
+    a
+      img
+        :border 1px solid black
+    .metadata
+      :text-align left
+      a.title
+        :color #936845
+        :font-weight bold
+        :text-decoration none
+        :font-size 20px
+        :display block
+        :margin
+          :left 20px
+          :top 10px
+          :bottom 0
+      a.author
+        :font-style italic
+        :color #936845
+        :float left
+        :display block
+        :margin
+          :left 5px
+          :top -5px
+        :text-decoration none
+      span
+        :float left
+        :display block
+        :margin
+          :left 20px
+          :top -5px
+      img.stars
+        :margin
+          :left 20px
+          :top 5px
+
+ul.featured-book-list
+  li
+    :display block
+    :background #f3ecde
+    :border 1px solid #ded0b3
+    :text-align left
+    &:first-child
+      :border-top-left-radius 15px
+      :border-top-right-radius 15px
+    &:last-child
+      :border-bottom-left-radius 15px
+      :border-bottom-right-radius 15px
+    a.cover-link
+      :padding 10px
+      :float left
+    img
+      :border 1px solid black
+    .metadata
+      :padding 10px
+        :left 20px
+      a.title
+        :color #936845
+        :font-weight bold
+        :text-decoration none
+        :font-size 18px
+        :display block
+
+      a.author
+        :font-style italic
+        :color #936845
+        :float left
+        :display block
+      span
+        :float left
+        :display block
+        :margin
+          :right 5px
+
+#footer
+  :background #c9af87
+  :width 100%
+  :float left
+  :border-top 1px solid #bc9f7a
+  :padding
+    :top 10px
+    :bottom 20px
+  :text-align center
+  :margin
+    :top 20px
+    
+  h4
+    :width 201px
+    :height 24px
+    :display block
+    :padding 0
+    :margin 0 auto
+    :color white
+    :font-weight normal
+    :text-align center
+    :background url('/images/footer-header-bg.png')
+  .about
+    .bg
+      :background url('/images/footer-about-bg.png')
+      :width 317px
+      :height 272px
+      :display block
+      p
+        :padding
+          :left 25px
+          :right 25px
+          :top 25px
+
+        :text-align left
+  .app
+    :text-align left
+    h5
+      :color #43260f
+      :font-size 18px
+      :margin 0
+        :top 20px
+      :padding 0
+    span
+      :color #43260f
+      :font-size 12px
+      :display block
+      :Width 100%
+    img.link
+      :margin
+        :top 5px
+    img.icon
+      :float left
+      :margin
+        :top 10px
+  .connect
+    a
+      img
+        &:hover
+          :opacity .8
+      
+#download-confirmation
+  :margin
+    :top 40px
+  .download-info
+    h1
+      :font-size 45px
+      :margin 0
+      :padding 0
+      :font-weight normal
+      :text-align left
+      a
+        :color #936845
+        :text-decoration none
+        :font-weight bold
+    span
+      :display block
+      :float left
+      :width 100%
+      :text-align left
+      :font-size 13px
+      :margin
+        :top 10px
+      a
+        :color #936845
+  .divider
+    :margin
+      :top 25px
+      :bottom 25px
+  .facebook
+    :float left
+    .top
+      :float left
+      :width 276px
+      :height 66px
+      :display block
+      :background url('/images/confirmation-facebook-top.png')
+      span
+        :float left
+        :display block
+        :margin
+          :top 35px
+          :left 50px
+    .bottom 
+      :float left
+      :width 276px
+      :height 11px
+      :display block
+      :background url('/images/confirmation-facebook-bottom.png')
+  .twitter
+    img
+      :display block
+      &:hover
+        :opacity .7
+        :cursor pointer
+  .sync
+    :float left
+    :margin
+      :top 30px
+    img
+      :display block
+      &:hover
+        :opacity .7
+        :cursor pointer

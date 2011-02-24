@@ -1,0 +1,228 @@
+!!!
+%head
+  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+  %title Classicly. Read books online, download free books, and explore the public domain.
+  %meta{:name => 'description', :content => "Browser+ HD. The internet rethought, reinvented, and handrafted for iPad and iPhone."}
+  %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+  = stylesheet_link_tag 'main', :media => :screen
+  = stylesheet_link_tag 'grid', :media => :screen
+  = stylesheet_link_tag 'jqueryui', :media => :screen
+  = stylesheet_link_tag 'jquery.fancybox.css', :media => :screen
+  
+  = javascript_include_tag :all
+  = csrf_meta_tag
+%body
+  %div{:style => 'display:none'}
+    #login-form      
+  #header
+    .container_12
+      .grid_2.alpha
+        %a#logo{:href => '/'}
+        %h2 free books from<br />the public domain
+      .grid_5
+        %form#search
+          %div.search-bg
+            %input{:type => 'text', :value => 'Search...'}
+      #nav.grid_3
+        %a.selected{:href => '#'} Collections
+        %a{:href => '#'} Authors
+        %a{:href => '#'} Titles
+      #registration.grid_1.omega
+        <fb:login-button registration-url="http://developers.facebook.com/docs/plugins/registration" />
+  .wrapper
+    #cover-bar.container_12
+      %span
+        Related Books
+      / - @Covers.each do |cover|
+      /   .cover
+      /     %a{:href => "/book/#{cover.id}"}
+      /       %img.cover-art{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg"}
+      /     .add-profile-pics.three
+    #content.container_12
+      #collection-column.grid_3.alpha
+        .collection-container
+          %img{:src => '/images/collections-collections.png'}
+          %ul
+            %li
+              %a{:href => '/collection/1'}
+                Best Of
+            %li
+              %a{:href => '/collection/1'}
+                Autos & Bios
+            %li
+              %a{:href => '/collection/1'}
+                Banned Books
+            %li
+              %a{:href => '/collection/1'}
+                Classic Classics
+            %li
+              %a{:href => '/collection/1'}
+                English 101
+            %li
+              %a{:href => '/collection/1'}
+                Epic Epics
+            %li
+              %a{:href => '/collection/1'}
+                Ghost Stories
+            %li
+              %a{:href => '/collection/1'}
+                Myth
+            %li
+              %a{:href => '/collection/1'}
+                Philosophy
+            %li
+              %a{:href => '/collection/1'}
+                The Presidents
+            %li
+              %a{:href => '/collection/1'}
+                The Great Poets
+            %li
+              %a{:href => '/collection/1'}
+                Travel
+            %li
+              %a{:href => '/collection/1'}
+                War
+            %li
+              %a{:href => '#'}
+                Young Readers
+          %img{:src => '/images/collections-bottom.png'}
+        .author-container
+          %img{:src => '/images/collections-authors.png'}
+          %ul
+            %li
+              %a{:href => '#'}
+                Abraham Lincoln
+            %li
+              %a{:href => '#'}
+                Alexandre Dumas
+            %li
+              %a{:href => '#'}
+                Aristotle
+            %li
+              %a{:href => '#'}
+                Arthur Conan Doyle
+            %li
+              %a{:href => '#'}
+                Bram Stoker
+            %li
+              %a{:href => '#'}
+                Charles Dickens
+            %li
+              %a{:href => '#'}
+                Dante Alighieri
+            %li
+              %a{:href => '#'}
+                Edgar Allen Poe
+            %li
+              %a{:href => '#'}
+                Edgar Rice Burroughs
+            %li
+              %a{:href => '#'}
+                Edward Gibbon
+            %li
+              %a{:href => '#'}
+                F. Scott Fitzgerald
+            %li
+              %a{:href => '#'}
+                Fyodor Dostoyevsky
+            %li
+              %a{:href => '#'}
+                H.G. Wells
+            %li
+              %a{:href => '#'}
+                H.P. Lovecraft
+            %li
+              %a{:href => '#'}
+                Henry David Thoreau
+            %li
+              %a{:href => '#'}
+                Homer
+            %li
+              %a{:href => '#'}
+                Jack London
+            %li
+              %a{:href => '#'}
+                James Joyce
+            %li
+              %a{:href => '#'}
+                Jane Austen
+            %li
+              %a{:href => '#'}
+                Jules Verne
+            %li
+              %a{:href => '#'}
+                Lewis Carrol
+            %li
+              %a{:href => '#'}
+                Mark Twain
+            %li
+              %a{:href => '#'}
+                Oscar Wilde
+            %li
+              %a{:href => '#'}
+                Plato
+            %li
+              %a{:href => '#'}
+                Shakespeare
+            %li
+              %a{:href => '#'}
+                The Bronte Sisters
+            %li
+              %a{:href => '#'}
+                Voltaire
+          %img{:src => '/images/collections-bottom.png'}
+      .grid_8.omega
+        #current-page.grid_8.alpha.omega
+          =yield
+    #footer
+      .container_12
+        .about.grid_4.alpha
+          %h4 About
+          .bg
+            %p
+              Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips. 
+            %p 
+              Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
+        .applications.grid_4
+          %h4 Apps
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              %a{:href => '#'}
+                %img.icon{:src => '/images/footer-books.png'}
+            .grid_3.omega
+              %h5 Free Books
+              %span 23,469 classics to go.
+              %a{:href => '#'}
+                %img.link{:src => '/images/footer-iphone.png'}
+              %a{:href => '#'}
+                %img.link{:src => '/images/footer-ipad.png'}
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              %a{:href => '#'}
+                %img.icon{:src => '/images/footer-audiobooks.png'}
+            .grid_3.omega
+              %h5 Free Audiobooks
+              %span 2,947 audiobooks for $1.99.
+              %a{:href => '#'}
+                %img.link{:src => '/images/footer-iphone.png'}
+              %a{:href => '#'}
+                %img.link{:src => '/images/footer-ipad.png'}
+
+        .connect.grid_4.omega
+          %h4 Connect
+          %a{:href => '#'}
+            %img{:src => '/images/footer-support.png'}
+          %a{:href => '#'}
+            %img{:src => '/images/footer-facebook.png'}
+          %a{:href => '#'}
+            %img{:src => '/images/footer-twitter.png'}
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId  : '191005167590330',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml  : true  // parse XFBML
+});
+</script>

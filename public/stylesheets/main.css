@@ -1,0 +1,502 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f6f2ed;
+  min-width: 1160px;
+  text-align: center;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; }
+
+.container_12 {
+  margin: 0 auto; }
+
+a {
+  border: none; }
+  a img {
+    border: none; }
+
+#header {
+  width: 100%;
+  height: 87px;
+  background: #c9af87;
+  float: left;
+  text-align: left;
+  border-bottom: 1px solid #bc9e7a; }
+  #header a#logo {
+    display: block;
+    width: 165px;
+    height: 41px;
+    background: url("/images/logo.png");
+    margin: 0;
+      margin-top: 20px;
+    padding: 0;
+    float: left; }
+    #header a#logo:hover {
+      cursor: pointer; }
+  #header h2 {
+    color: white;
+    float: left;
+    font-weight: normal;
+    font-size: 12px;
+    text-align: right;
+    font-style: italic;
+    line-height: 11px;
+    margin: 0;
+      margin-top: -5px;
+      margin-left: 30px; }
+  #header div.search-bg {
+    width: 402px;
+    height: 40px;
+    background: url("/images/search.png");
+    margin-top: 25px; }
+    #header div.search-bg input {
+      font-size: 22px;
+      height: 20px;
+      border: none;
+      color: #cbb18f;
+      background: none;
+      padding-left: 40px;
+      padding-top: 25px;
+      font-style: italic; }
+      #header div.search-bg input:focus {
+        border: none;
+        outline-width: 0;
+        font-style: normal; }
+  #header #nav a {
+    color: #f5f1e9;
+    text-decoration: none;
+    display: block;
+    float: left;
+    padding-top: 40px;
+    padding-right: 20px; }
+    #header #nav a.selected {
+      color: #4d2c0c; }
+    #header #nav a:hover {
+      color: #4d2c0c; }
+  #header #registration {
+    margin-top: 40px; }
+
+.wrapper {
+  float: left;
+  width: 100%; }
+
+#cover-bar {
+  background: url("/images/cover-bar-bg.png");
+  display: block;
+  width: 1024px;
+  height: 240px;
+  margin-top: 25px; }
+  #cover-bar span {
+    width: 100%;
+    float: left;
+    font-family: serif;
+    font-size: 18px;
+    color: #936845;
+    height: 10px; }
+  #cover-bar .cover {
+    float: left;
+    width: 102px;
+    margin-left: 23px; }
+    #cover-bar .cover a {
+      margin: 0;
+        margin-top: 30px;
+      padding: 0;
+      text-align: left;
+      float: left;
+      height: 160px;
+      width: 100%; }
+      #cover-bar .cover a img.cover-art {
+        width: 100px;
+        padding: 0;
+        margin: 0;
+        float: left;
+        border: 1px solid #111110;
+        display: block; }
+    #cover-bar .cover img.pic-thumbnail {
+      width: 32px;
+      float: left;
+      margin: 1px; }
+
+#content img {
+  float: left; }
+#content #collection-column {
+  margin-top: 40px; }
+  #content #collection-column .collection-container {
+    float: left; }
+  #content #collection-column .author-container {
+    float: left;
+    margin-top: 20px; }
+  #content #collection-column ul {
+    width: 211px;
+    float: left;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #ded0b3;
+    border-right: 1px solid #ded0b3; }
+    #content #collection-column ul li {
+      border: none;
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+      #content #collection-column ul li a {
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: 211px;
+        color: #432610;
+        text-decoration: none;
+        font-size: 16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        float: left;
+        background: #efe1c3; }
+        #content #collection-column ul li a:hover {
+          color: #f7ebd5;
+          cursor: pointer;
+          background: #cab291; }
+
+#book-page {
+  margin-top: 40px; }
+  #book-page h1 {
+    color: #936845;
+    font-size: 46px;
+    margin: 0;
+    padding: 0; }
+  #book-page img.read, #book-page img.download, #book-page img.social {
+    margin-bottom: 15px; }
+  #book-page img.divider {
+    float: left;
+    display: block; }
+  #book-page #cover img {
+    border: 1px solid black; }
+  #book-page #book-metadata {
+    text-align: left; }
+    #book-page #book-metadata p {
+      font-size: 13px; }
+  #book-page #reviews span {
+    margin-top: 30px;
+    float: left;
+    text-align: left; }
+  #book-page .share span {
+    float: left;
+    display: block;
+    margin-top: 15px; }
+
+.add-profile-pics img {
+  width: 32px;
+  margin: 1px; }
+
+#home-page {
+  margin-top: 40px; }
+  #home-page .featured-book {
+    margin-bottom: 25px;
+    text-align: left; }
+    #home-page .featured-book .metadata {
+      padding-left: 20px; }
+    #home-page .featured-book img.cover-art {
+      border: 1px solid black; }
+    #home-page .featured-book p a {
+      color: #936845; }
+    #home-page .featured-book h2, #home-page .featured-book h3 {
+      color: #936845;
+      margin: 0;
+      padding: 0; }
+    #home-page .featured-book a.title {
+      color: #936845; }
+    #home-page .featured-book h3 {
+      font-style: italic;
+      color: black;
+      font-weight: normal; }
+      #home-page .featured-book h3 em {
+        font-weight: normal;
+        color: #936845; }
+
+.expando-div {
+  display: block;
+  margin-bottom: 30px;
+  background: #185686;
+  color: white;
+  text-decoration: none;
+  padding: 5px; }
+
+#collection-page {
+  margin-top: 40px;
+  text-align: center; }
+  #collection-page h1 {
+    margin: 0;
+    padding: 0; }
+  #collection-page .highlighted-cover img {
+    border: 1px solid black;
+    width: 100%;
+    margin-left: 8px; }
+  #collection-page .highlighted-book {
+    text-align: left; }
+  #collection-page a.book-link {
+    float: left;
+    width: 100%;
+    display: block;
+    background: #f0e2c6;
+    border: 1px solid #ded0b3;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    text-decoration: none; }
+    #collection-page a.book-link:hover {
+      background: none; }
+    #collection-page a.book-link h3, #collection-page a.book-link h4 {
+      margin: 0;
+      padding: 0; }
+    #collection-page a.book-link h3 {
+      color: #936845; }
+    #collection-page a.book-link h4 {
+      color: #43260f;
+      font-weight: bold; }
+      #collection-page a.book-link h4 i {
+        font-weight: normal; }
+  #collection-page .divider img {
+    margin: 0 auto;
+      margin-top: 20px;
+      margin-left: 100px; }
+
+.related-books {
+  background: #f3eddf;
+  border: 1px solid #e8decb;
+  border-radius: 15px;
+  float: left;
+  padding: 5px;
+  margin-top: 20px;
+  margin-left: -5px; }
+  .related-books img {
+    width: 100px;
+    margin-left: 22px;
+    margin-bottom: 10px; }
+  .related-books h4 {
+    color: #936845;
+    font-size: 14px;
+    margin: 0;
+      margin-bottom: 10px;
+    padding: 0; }
+  .related-books span {
+    color: #43260f;
+    width: 100%;
+    display: block;
+    font-size: 12px;
+    padding: 0px;
+    float: left;
+    margin: 0px; }
+    .related-books span.author {
+      margin-bottom: 5px; }
+
+.download_this_book {
+  background: #f0e0c2;
+  display: block;
+  float: left;
+  border: 1px solid #dfcfb2;
+  border-radius: 10px;
+  width: 167px;
+  padding-top: 10px;
+  padding-bottom: 5px; }
+  .download_this_book form {
+    font-size: 10px;
+    float: left;
+    margin-left: 5px; }
+  .download_this_book a {
+    float: left;
+    margin-left: 20px;
+    margin-top: 5px; }
+    .download_this_book a:hover {
+      cursor: pointer; }
+
+ul.book-list-sort {
+  color: #af8f75;
+  float: left;
+  text-align: left; }
+  ul.book-list-sort li {
+    display: inline;
+    list-style-type: none;
+    padding-left: 5px;
+    padding-right: 5px; }
+    ul.book-list-sort li a {
+      color: #af8f75;
+      text-align: left;
+      text-decoration: none; }
+      ul.book-list-sort li a:hover {
+        opacity: 0.9; }
+      ul.book-list-sort li a.selected {
+        color: black; }
+
+ul.book-list li {
+  list-style: none;
+  margin-top: 5px;
+  margin-bottom: 5px; }
+  ul.book-list li a img {
+    border: 1px solid black; }
+  ul.book-list li .metadata {
+    text-align: left; }
+    ul.book-list li .metadata a.title {
+      color: #936845;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 20px;
+      display: block;
+      margin-left: 20px;
+      margin-top: 10px;
+      margin-bottom: 0; }
+    ul.book-list li .metadata a.author {
+      font-style: italic;
+      color: #936845;
+      float: left;
+      display: block;
+      margin-left: 5px;
+      margin-top: -5px;
+      text-decoration: none; }
+    ul.book-list li .metadata span {
+      float: left;
+      display: block;
+      margin-left: 20px;
+      margin-top: -5px; }
+    ul.book-list li .metadata img.stars {
+      margin-left: 20px;
+      margin-top: 5px; }
+
+ul.featured-book-list li {
+  display: block;
+  background: #f3ecde;
+  border: 1px solid #ded0b3;
+  text-align: left; }
+  ul.featured-book-list li:first-child {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px; }
+  ul.featured-book-list li:last-child {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px; }
+  ul.featured-book-list li a.cover-link {
+    padding: 10px;
+    float: left; }
+  ul.featured-book-list li img {
+    border: 1px solid black; }
+  ul.featured-book-list li .metadata {
+    padding: 10px;
+      padding-left: 20px; }
+    ul.featured-book-list li .metadata a.title {
+      color: #936845;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 18px;
+      display: block; }
+    ul.featured-book-list li .metadata a.author {
+      font-style: italic;
+      color: #936845;
+      float: left;
+      display: block; }
+    ul.featured-book-list li .metadata span {
+      float: left;
+      display: block;
+      margin-right: 5px; }
+
+#footer {
+  background: #c9af87;
+  width: 100%;
+  float: left;
+  border-top: 1px solid #bc9f7a;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 20px; }
+  #footer h4 {
+    width: 201px;
+    height: 24px;
+    display: block;
+    padding: 0;
+    margin: 0 auto;
+    color: white;
+    font-weight: normal;
+    text-align: center;
+    background: url("/images/footer-header-bg.png"); }
+  #footer .about .bg {
+    background: url("/images/footer-about-bg.png");
+    width: 317px;
+    height: 272px;
+    display: block; }
+    #footer .about .bg p {
+      padding-left: 25px;
+      padding-right: 25px;
+      padding-top: 25px;
+      text-align: left; }
+  #footer .app {
+    text-align: left; }
+    #footer .app h5 {
+      color: #43260f;
+      font-size: 18px;
+      margin: 0;
+        margin-top: 20px;
+      padding: 0; }
+    #footer .app span {
+      color: #43260f;
+      font-size: 12px;
+      display: block;
+      Width: 100%; }
+    #footer .app img.link {
+      margin-top: 5px; }
+    #footer .app img.icon {
+      float: left;
+      margin-top: 10px; }
+  #footer .connect a img:hover {
+    opacity: 0.8; }
+
+#download-confirmation {
+  margin-top: 40px; }
+  #download-confirmation .download-info h1 {
+    font-size: 45px;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    text-align: left; }
+    #download-confirmation .download-info h1 a {
+      color: #936845;
+      text-decoration: none;
+      font-weight: bold; }
+  #download-confirmation .download-info span {
+    display: block;
+    float: left;
+    width: 100%;
+    text-align: left;
+    font-size: 13px;
+    margin-top: 10px; }
+    #download-confirmation .download-info span a {
+      color: #936845; }
+  #download-confirmation .divider {
+    margin-top: 25px;
+    margin-bottom: 25px; }
+  #download-confirmation .facebook {
+    float: left; }
+    #download-confirmation .facebook .top {
+      float: left;
+      width: 276px;
+      height: 66px;
+      display: block;
+      background: url("/images/confirmation-facebook-top.png"); }
+      #download-confirmation .facebook .top span {
+        float: left;
+        display: block;
+        margin-top: 35px;
+        margin-left: 50px; }
+    #download-confirmation .facebook .bottom {
+      float: left;
+      width: 276px;
+      height: 11px;
+      display: block;
+      background: url("/images/confirmation-facebook-bottom.png"); }
+  #download-confirmation .twitter img {
+    display: block; }
+    #download-confirmation .twitter img:hover {
+      opacity: 0.7;
+      cursor: pointer; }
+  #download-confirmation .sync {
+    float: left;
+    margin-top: 30px; }
+    #download-confirmation .sync img {
+      display: block; }
+      #download-confirmation .sync img:hover {
+        opacity: 0.7;
+        cursor: pointer; }

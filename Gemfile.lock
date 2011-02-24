@@ -42,8 +42,6 @@ GEM
       mime-types
       xml-simple
     builder (2.1.2)
-    compass (0.10.6)
-      haml (>= 3.0.4)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     haml (3.0.25)
@@ -97,7 +95,6 @@ PLATFORMS
 
 DEPENDENCIES
   aws-s3
-  compass
   haml
   htmlentities
   jquery-rails
