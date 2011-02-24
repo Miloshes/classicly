@@ -1,0 +1,24 @@
+administrators: ["zsolt@spreadsong.com", "colin@spreadsong.com", "kenzie@spreadsong.com", "tyler@spreadsong.com"]
+amazon:
+  access_key: "0MMK343NZCJ3D1CZ8NG2"
+  secret_key: "DuArKmSc2MHk2aT976tQaD3Kvr9iyQwbX8DKMGWh"
+  
+buckets:
+  downloadables: "spreadsong-downloadables-tmp"
+  covers:
+    original_highres: "spreadsong-original-highres-covers"
+    iphone:
+      book: "spreadsong-book-covers"
+      audiobook: "spreadsong-audiobook-covers"
+    ipad:
+      book: "spreadsong-book-covers-ipad"
+      audiobook: "spreadsong-audiobook-covers-ipad"
+    # iphone:
+    #   book: "spreadsong-cover-tmp"
+    #   audiobook: "spreadsong-cover-tmp"
+    # ipad:
+    #   book: "spreadsong-cover-tmp"
+    #   audiobook: "spreadsong-cover-tmp"
+  author_portraits: "spreadsong-author-portraits"
+      
+yaml_exports_path: "db/yaml_exports"

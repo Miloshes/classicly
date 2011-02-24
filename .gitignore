@@ -1,0 +1,13 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+.DS_Store
+config/database.yml
+db/*.sqlite3
+db/*.db
+db/yaml_exports
+db/descriptions
+db/collection_plists
+ruby
+*.tmproj
