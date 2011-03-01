@@ -34,143 +34,55 @@
     #cover-bar.container_12
       %span
         Related Books
-      / - @Covers.each do |cover|
-      /   .cover
-      /     %a{:href => "/book/#{cover.id}"}
-      /       %img.cover-art{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg"}
-      /     .add-profile-pics.three
+      = render :partial => 'pages/cover', :collection => @covers
     #content.container_12
       #collection-column.grid_3.alpha
         .collection-container
           %img{:src => '/images/collections-collections.png'}
           %ul
-            %li
-              %a{:href => '/collection/1'}
-                Best Of
-            %li
-              %a{:href => '/collection/1'}
-                Autos & Bios
-            %li
-              %a{:href => '/collection/1'}
-                Banned Books
-            %li
-              %a{:href => '/collection/1'}
-                Classic Classics
-            %li
-              %a{:href => '/collection/1'}
-                English 101
-            %li
-              %a{:href => '/collection/1'}
-                Epic Epics
-            %li
-              %a{:href => '/collection/1'}
-                Ghost Stories
-            %li
-              %a{:href => '/collection/1'}
-                Myth
-            %li
-              %a{:href => '/collection/1'}
-                Philosophy
-            %li
-              %a{:href => '/collection/1'}
-                The Presidents
-            %li
-              %a{:href => '/collection/1'}
-                The Great Poets
-            %li
-              %a{:href => '/collection/1'}
-                Travel
-            %li
-              %a{:href => '/collection/1'}
-                War
-            %li
-              %a{:href => '#'}
-                Young Readers
+            = list_element_link('/collection/1', 'Best Of') 
+            = list_element_link('/collection/1', 'Banned Books')
+            = list_element_link('/collection/1', 'Autos & Bios')
+            = list_element_link('/collection/1', 'Classic Classics')
+            = list_element_link('/collection/1', 'English 101')
+            = list_element_link('/collection/1', 'Epic Epics')
+            = list_element_link('/collection/1', 'Ghost Stories')
+            = list_element_link('/collection/1', 'Myth')
+            = list_element_link('/collection/1', 'Philosophy')
+            = list_element_link('/collection/1', 'The Presidents')
+            = list_element_link('/collection/1', 'The Great Poets')
+            = list_element_link('/collection/1', 'Travel')
+            = list_element_link('/collection/1', 'War')
+            = list_element_link('/collection/1', 'Young Readers')
           %img{:src => '/images/collections-bottom.png'}
         .author-container
           %img{:src => '/images/collections-authors.png'}
           %ul
-            %li
-              %a{:href => '#'}
-                Abraham Lincoln
-            %li
-              %a{:href => '#'}
-                Alexandre Dumas
-            %li
-              %a{:href => '#'}
-                Aristotle
-            %li
-              %a{:href => '#'}
-                Arthur Conan Doyle
-            %li
-              %a{:href => '#'}
-                Bram Stoker
-            %li
-              %a{:href => '#'}
-                Charles Dickens
-            %li
-              %a{:href => '#'}
-                Dante Alighieri
-            %li
-              %a{:href => '#'}
-                Edgar Allen Poe
-            %li
-              %a{:href => '#'}
-                Edgar Rice Burroughs
-            %li
-              %a{:href => '#'}
-                Edward Gibbon
-            %li
-              %a{:href => '#'}
-                F. Scott Fitzgerald
-            %li
-              %a{:href => '#'}
-                Fyodor Dostoyevsky
-            %li
-              %a{:href => '#'}
-                H.G. Wells
-            %li
-              %a{:href => '#'}
-                H.P. Lovecraft
-            %li
-              %a{:href => '#'}
-                Henry David Thoreau
-            %li
-              %a{:href => '#'}
-                Homer
-            %li
-              %a{:href => '#'}
-                Jack London
-            %li
-              %a{:href => '#'}
-                James Joyce
-            %li
-              %a{:href => '#'}
-                Jane Austen
-            %li
-              %a{:href => '#'}
-                Jules Verne
-            %li
-              %a{:href => '#'}
-                Lewis Carrol
-            %li
-              %a{:href => '#'}
-                Mark Twain
-            %li
-              %a{:href => '#'}
-                Oscar Wilde
-            %li
-              %a{:href => '#'}
-                Plato
-            %li
-              %a{:href => '#'}
-                Shakespeare
-            %li
-              %a{:href => '#'}
-                The Bronte Sisters
-            %li
-              %a{:href => '#'}
-                Voltaire
+            = list_element_link('/collection/1', 'Abraham Lincoln')
+            = list_element_link('/collection/1', 'Alexandre Dumas')
+            = list_element_link('/collection/1', 'Aristotle')
+            = list_element_link('/collection/1', 'Arthur Conan Doyle')
+            = list_element_link('/collection/1', 'Bram Stoker')
+            = list_element_link('/collection/1', 'Charles Dickens')
+            = list_element_link('/collection/1', 'Dante Allighieri')
+            = list_element_link('/collection/1', 'Edgar Allan Poe')
+            = list_element_link('/collection/1', 'Edgar Rice Borroughs')
+            = list_element_link('/collection/1', 'Edward Gibbon')
+            = list_element_link('/collection/1', 'F. Scott Fitzgerald')
+            = list_element_link('/collection/1', 'Fyodor Dostoyevsky')
+            = list_element_link('/collection/1', 'H.G. Wells')
+            = list_element_link('/collection/1', ' H.P. Lovecraft')
+            = list_element_link('/collection/1', 'Jack London')
+            = list_element_link('/collection/1', 'James Joyce')
+            = list_element_link('/collection/1', 'Jane Austen')
+            = list_element_link('/collection/1', 'Jules Verne')
+            = list_element_link('/collection/1', 'Lewis Carroll')
+            = list_element_link('/collection/1', 'Mark Twain')
+            = list_element_link('/collection/1', 'Oscar Wilde')
+            = list_element_link('/collection/1', 'Plato')
+            = list_element_link('/collection/1', 'Shakespeare')
+            = list_element_link('/collection/1', 'The Bronte Sisters')
+            = list_element_link('/collection/1', 'Voltaire')
           %img{:src => '/images/collections-bottom.png'}
       .grid_8.omega
         #current-page.grid_8.alpha.omega
