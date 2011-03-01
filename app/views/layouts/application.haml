@@ -6,9 +6,10 @@
   %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
   = stylesheet_link_tag 'main', :media => :screen
   = stylesheet_link_tag 'grid', :media => :screen
+  = stylesheet_link_tag 'moreLess', :media => :screen
   = stylesheet_link_tag 'jqueryui', :media => :screen
   = stylesheet_link_tag 'jquery.fancybox.css', :media => :screen
-  
+  =javascript_include_tag 'jquery.min'
   = javascript_include_tag :all
   = csrf_meta_tag
 %body
