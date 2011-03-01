@@ -4,7 +4,7 @@
   :javascript
     try{
       Typekit.load();
-    }catch(e){}</script>
+    }catch(e){}
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
   %title Classicly. Read books online, download free books, and explore the public domain.
   %meta{:name => 'description', :content => "Browser+ HD. The internet rethought, reinvented, and handrafted for iPad and iPhone."}
@@ -19,7 +19,7 @@
   = csrf_meta_tag
 %body
   %div{:style => 'display:none'}
-    #login-form      
+    #login-form
   #header
     .container_12
       .grid_2.alpha
@@ -35,6 +35,8 @@
         %a{:href => '#'} Titles
       #registration.grid_1.omega
         <fb:login-button registration-url="http://developers.facebook.com/docs/plugins/registration" />
+  #apple-store-banner
+    = image_tag("app-store-banner-ipad_02.png")
   .wrapper
     #cover-bar.container_12
       %span
