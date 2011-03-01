@@ -1,26 +1,2 @@
 #home-page
-  - @featured_books.each do |book|
-    .featured-book.grid_9.alpha.omega
-      .grid_2.alpha
-        %a{:href => "/book/#{book.id}"}
-          %img.cover-art{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size2.jpg"}
-      .grid_5.metadata
-        %a.title{:href => "/book/#{book.id}"}
-          %h2=book.title
-        %h3
-          by <em>#{book.author.name}</em>
-        %p.book-description= book.description
-      .grid_1.omega
-        .download_this_book
-          %form
-            %div.radio{:id => "radio_#{book.id}"}
-              %input{:id => "radio1_#{book.id}", :type => 'radio', :name => 'radio', :checked => 'checked'}
-              %label{:for => "radio1_#{book.id}"} PDF
-              %input{:id => "radio2_#{book.id}", :type => 'radio', :name => 'radio'}
-              %label{:for => "radio2_#{book.id}"} Kindle
-              %input{:id => "radio3_#{book.id}", :type => 'radio', :name => 'radio'}
-              %label{:for => "radio3_#{book.id}"} Mobi
-
-          %a{:href => "/book/#{book.id}/download"}
-            %img{:src => '/images/download-this-book.png'}
-        .add-profile-pics
+  = render :partial => "featured_book", :collection => @featured_books
