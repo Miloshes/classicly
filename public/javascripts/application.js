@@ -7,6 +7,9 @@ $(function(){
    speed:'fast',
    truncateIndex: 150 
   });
+
+  // apply buttons to radio inputs
+  $('.radio').buttonset();
 })
 
 
