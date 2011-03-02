@@ -2,11 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function(){
-  // collapse book descriptions in home page
-  $('p.book-description').moreLess({
-   speed:'fast',
-   truncateIndex: 150 
-  });
+	$('div.book-description').truncate({max_length: 300});
 
   // apply buttons to radio inputs
   $('.radio').buttonset();
