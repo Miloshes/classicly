@@ -13,10 +13,9 @@
   = stylesheet_link_tag 'grid', :media => :screen
   = stylesheet_link_tag 'moreLess', :media => :screen
   = stylesheet_link_tag 'jqueryui', :media => :screen
-  = stylesheet_link_tag 'jquery.fancybox.css', :media => :screen
   
   = javascript_include_tag 'jquery.min'
-  = javascript_include_tag 'application', 'jquery.moreLess.1.0.min', 'jqueryui', 'rails' 
+  = javascript_include_tag 'application', 'jqueryui', 'rails', 'jquery.truncator'
   = csrf_meta_tag
   = yield :head
 %body
