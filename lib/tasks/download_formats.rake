@@ -10,7 +10,7 @@ class DownloadFormatHandler
   
     formats_to_check_for = %w(azw pdb pdf prc rtf txt.zip)
   
-    Book.all.order('id ASC').each do |book|
+    Book.order('id ASC').each do |book|
 
       formats_to_check_for.each do |format|      
         object_key = "#{book.id}.#{format}"
