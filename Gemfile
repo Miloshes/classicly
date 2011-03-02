@@ -11,6 +11,7 @@ gem 'paperclip'
 gem 'rest-client', :require => 'rest_client'
 gem 'sqlite3-ruby'
 gem 'htmlentities'
+gem 'delayed_job'
 
 group :test do
   gem 'rspec-rails', '>=2.0.0.beta'  

@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(:version => 20110224212843) do
+ActiveRecord::Schema.define(:version => 20110302000458) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -54,6 +54,28 @@ ActiveRecord::Schema.define(:version => 20110224212843) do
     t.integer   "author_portrait_file_size"
     t.timestamp "author_portrait_updated_at"
     t.integer   "genre_id"
+  end
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "download_formats", :force => true do |t|
+    t.integer "book_id"
+    t.string  "format"
+    t.boolean "legacy",          :default => true
+    t.string  "download_status", :default => "never tried"
   end
 
   create_table "genres", :force => true do |t|
