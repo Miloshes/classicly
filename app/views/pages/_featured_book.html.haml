@@ -12,12 +12,8 @@
     .download_this_book
       %form
         %div.radio{:id => "radio_#{featured_book.id}"}
-          %input{:id => "radio1_#{featured_book.id}", :type => 'radio', :name => 'radio', :checked => 'checked'}
-          %label{:for => "radio1_#{featured_book.id}"} PDF
-          %input{:id => "radio2_#{featured_book.id}", :type => 'radio', :name => 'radio'}
-          %label{:for => "radio2_#{featured_book.id}"} Kindle
-          %input{:id => "radio3_#{featured_book.id}", :type => 'radio', :name => 'radio'}
-          %label{:for => "radio3_#{featured_book.id}"} Mobi
+          - featured_book.classicly_formats.each_with_index do|format, index|
+            = radio_button_for_format(format, index, featured_book)
       %a{:href => "/book/#{featured_book.id}/download"}
         %img{:src => '/images/download-this-book.png'}
     .add-profile-pics

@@ -19,4 +19,12 @@ class Book < ActiveRecord::Base
     limit = self.description.length - 1 if limit >= self.description.length
     self.description[0..limit] 
   end
+
+  def all_downloadable_formats
+    self.download_formats.where({:download_status => 'downloaded'}).select(:format).collect(&:format)
+  end
+
+  def classicly_formats
+    ['pdf', 'rtf', 'awz'] & self.all_downloadable_formats
+  end
 end
