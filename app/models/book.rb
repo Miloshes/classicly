@@ -9,4 +9,8 @@ class Book < ActiveRecord::Base
   has_many :download_formats
   
   validates :title, :presence => true
+  
+  def available_in_format?(format)
+    ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
+  end
 end
