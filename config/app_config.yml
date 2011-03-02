@@ -20,5 +20,8 @@ buckets:
     #   book: "spreadsong-cover-tmp"
     #   audiobook: "spreadsong-cover-tmp"
   author_portraits: "spreadsong-author-portraits"
-      
+  # TODO:
+  # legacy bucket, will move to a new one
+  books: "spreadsong-kindleload-books"
+
 yaml_exports_path: "db/yaml_exports"
