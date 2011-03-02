@@ -1,4 +1,3 @@
 .cover
-  %a{:href => "/book/#{cover.id}"}
-    %img.cover-art{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg"}
+  = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg", :class =>"cover-art"), book_path(cover)
   .add-profile-pics.three
