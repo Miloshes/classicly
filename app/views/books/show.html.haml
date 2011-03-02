@@ -1,7 +1,9 @@
 - content_for :title do
   %title= "Classicly. #{@book.title}"
 - content_for :head do
-  = fb_open_graph_metadata({:url => book_url(@book), :description => @book.limited_description(100)})
+  = fb_open_graph_metadata({:url => book_url(@book), :description => @book.limited_description(100),
+      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
+      :title => @book_title, :type => 'book' })
 
 #book-page.grid_9
   #cover.grid_2.alpha
