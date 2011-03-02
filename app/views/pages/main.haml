@@ -2,15 +2,9 @@
   %title Classicly. Read books online, download free books, and explore the public domain.
 
 - content_for :head do
-  = content_tag(:meta, nil, {:property => "og:title", :content => "Classicly"})
-  = content_tag(:meta, nil, {:property => "og:type", :content => "website"})
-  = content_tag(:meta, nil, {:property => "og:url", :content => "http://classicly.heroku.com"})
-  = content_tag(:meta, nil, {:property => "og:image", :content => "http://classicly.heroku.com/images/logo.png"})
-  = content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"})
-  = content_tag(:meta, nil, {:property => "fb:app_id", :content => "191005167590330"})
-  = content_tag(:meta, nil, {:property => "og:description", :content => "Classicly gives you free books for your laptop,  Kindle, Nook, iPad, or iPhone. Just hit download! From Shakespeare to F. Scott Fitzgerald we have all the classics available with a click, browsable with beautiful covers, great descriptions, and hand-picked collections"})
+  = fb_open_graph_metadata
 
 #home-page
   = paginate @featured_books
   = render :partial => "featured_book", :collection => @featured_books
-<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="http://classicly.heroku.com" show_faces="true" width="450" font="arial"></fb:like>
+<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like href="www.classicly.com" show_faces="true" width="450" font="arial"></fb:like>
