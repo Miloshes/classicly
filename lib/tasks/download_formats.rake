@@ -10,14 +10,14 @@ class DownloadFormatHandler
   
     formats_to_check_for = %w(azw pdb pdf prc rtf txt.zip)
   
-    Book.all(:select => 'id').order('id ASC').each do |book|
+    Book.order('id ASC').each do |book|
 
       formats_to_check_for.each do |format|      
         object_key = "#{book.id}.#{format}"
         # 'txt.zip' is the base format that we'll be using to re-generate the books
         legacy_flag = format == 'txt.zip' ? false : true
       
-        download_format = book.download_formats.where(:format => format, :legacy => legacy_flag)
+        download_format = book.download_formats.where(:format => format, :legacy => legacy_flag).first()
         if download_format.blank?
           download_format = book.download_formats.create(:format => format, :legacy => legacy_flag)
         end
