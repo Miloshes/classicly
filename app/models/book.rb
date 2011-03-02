@@ -21,7 +21,7 @@ class Book < ActiveRecord::Base
   end
 
   def all_downloadable_formats
-    self.download_formats.where({:download_status => 'downloaded'}).select(:format).collect(&:format)
+    self.download_formats.where({:download_status => 'downloaded'}).map(&:format)
   end
 
   def classicly_formats
