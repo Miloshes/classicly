@@ -16,7 +16,7 @@
   = stylesheet_link_tag 'jquery.fancybox.css', :media => :screen
   
   =javascript_include_tag 'jquery.min'
-  = javascript_include_tag :all
+  = javascript_include_tag 'application', 'jquery.moreLess.1.0.min', 'jqueryui', 'rails' 
   = csrf_meta_tag
 %body
   %div{:style => 'display:none'}
