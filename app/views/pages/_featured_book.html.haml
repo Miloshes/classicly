@@ -1,10 +1,9 @@
 .featured-book.grid_9.alpha.omega
   .grid_2.alpha
-    %a{:href => "/book/#{featured_book.id}"}
-      %img.cover-art{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{featured_book.id}_size2.jpg"}
+    = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{featured_book.id}_size2.jpg",
+      :class => 'cover-art'), book_path(featured_book)
   .grid_5.metadata
-    %a.title{:href => "/book/#{featured_book.id}"}
-      %h2= featured_book.title
+    = link_to content_tag(:h2, featured_book.title), book_path(featured_book), :class => 'title'
     %h3
       by <em>#{featured_book.author.name}</em>
     %div.book-description= simple_format(featured_book.description)
@@ -12,8 +11,7 @@
     .download_this_book
       %form
         %div.radio{:id => "radio_#{featured_book.id}"}
-          - featured_book.classicly_formats.each_with_index do|format, index|
+          - ['awz', 'pdf', 'rtf'].each_with_index do|format, index|
             = radio_button_for_format(format, index, featured_book)
-      %a{:href => "/book/#{featured_book.id}/download"}
-        %img{:src => '/images/download-this-book.png'}
+      = link_to image_tag("download-this-book.png"), book_path(featured_book)
     .add-profile-pics
