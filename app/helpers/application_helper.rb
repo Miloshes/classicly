@@ -20,4 +20,10 @@ module ApplicationHelper
     content_tag(:meta, nil, {:property => "fb:app_id", :content => "191005167590330"}) +
     content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "Classicly gives you free books for your laptop,  Kindle, Nook, iPad, or iPhone. Just hit download! From Shakespeare to F. Scott Fitzgerald we have all the classics available with a click, browsable with beautiful covers, great descriptions, and hand-picked collections"})
   end
+
+  def radio_button_for_format(format, index, featured_book)
+    checked = index == 0
+    radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format.capitalize)
+  end
+  
 end

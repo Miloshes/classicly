@@ -13,6 +13,7 @@ gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
 
-group :test do
-  gem 'rspec-rails', '>=2.0.0.beta'  
+group :development do
+  gem 'rspec-rails', '>=2.0.0.beta'
+  gem 'taps'
 end 
