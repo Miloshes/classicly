@@ -1,23 +1,24 @@
-!!!
+!!! XML
+!!! strict
+%html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
+
 %head
-  %script{:type=> "text/javascript", :src=> "http://use.typekit.com/idk3svd.js"}
-  :javascript
-    try{
-      Typekit.load();
-    }catch(e){}
+  = typekit_include_helper
+  = yield :title
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
-  %title Classicly. Read books online, download free books, and explore the public domain.
-  %meta{:name => 'description', :content => "Browser+ HD. The internet rethought, reinvented, and handrafted for iPad and iPhone."}
+  %meta{:name => 'description', :content => "Browser+ HD. The internet rethought, reinvented, and handcrafted for iPad and iPhone."}
   %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+  
   = stylesheet_link_tag 'main', :media => :screen
   = stylesheet_link_tag 'grid', :media => :screen
   = stylesheet_link_tag 'moreLess', :media => :screen
   = stylesheet_link_tag 'jqueryui', :media => :screen
   = stylesheet_link_tag 'jquery.fancybox.css', :media => :screen
   
-  =javascript_include_tag 'jquery.min'
-  = javascript_include_tag :all
+  = javascript_include_tag 'jquery.min'
+  = javascript_include_tag 'application', 'jquery.moreLess.1.0.min', 'jqueryui', 'rails' 
   = csrf_meta_tag
+  = yield :head
 %body
   %div{:style => 'display:none'}
     #login-form
