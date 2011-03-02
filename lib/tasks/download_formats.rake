@@ -17,7 +17,7 @@ class DownloadFormatHandler
         # 'txt.zip' is the base format that we'll be using to re-generate the books
         legacy_flag = format == 'txt.zip' ? false : true
       
-        download_format = book.download_formats.where(:format => format, :legacy => legacy_flag)
+        download_format = book.download_formats.where(:format => format, :legacy => legacy_flag).first()
         if download_format.blank?
           download_format = book.download_formats.create(:format => format, :legacy => legacy_flag)
         end
