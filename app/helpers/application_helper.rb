@@ -13,7 +13,7 @@ module ApplicationHelper
   
   def fb_open_graph_metadata(config = {})
     content_tag(:meta, nil, {:property => "og:title", :content => config[:title] || "Classicly"}) +
-    content_tag(:meta, nil, {:property => "og:type", :content => config[:type] => "website"}) +
+    content_tag(:meta, nil, {:property => "og:type", :content => config[:type] || "website"}) +
     content_tag(:meta, nil, {:property => "og:url", :content => config[:url] || "http://www.classicly.com"}) +
     content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
     content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
