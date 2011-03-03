@@ -1,6 +1,6 @@
 Classicly::Application.routes.draw do
-  resources :download_formats
-  resources :books , :only => :show
-
+  resources :books , :only => :show do
+    post :download, :on => :member    
+  end
   root :to => 'pages#main'
 end
