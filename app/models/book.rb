@@ -52,4 +52,46 @@ class Book < ActiveRecord::Base
     return result
   end
   
+  def find_fake_related(num = 8)
+    result = []
+    
+    # Two sources for related books:
+    #  - popular books from the same genres with the same language
+    #  - other books of the author with the same language
+    
+    # == Popular books from the same genres (and same language)
+    books_from_same_genre = []
+    self.genres.each do |genre|
+      # TODO: we don't have download counts yet
+      popular_books = genre.books.where("language = ? AND id <> ?", self.language, self.id).limit(200)
+      books_from_same_genre << popular_books
+    end
+    
+    books_from_same_genre.flatten!
+    
+    # == Other books of the author, with the same language
+    books_from_same_author = self.author.books.where("language = ? AND id <> ?",  self.language, self.id)
+    
+    num_of_books_to_get_from_same_author = (num / 4.0).ceil
+    
+    1.upto num_of_books_to_get_from_same_author do
+      break if books_from_same_author.blank?
+      
+      position = rand(books_from_same_author.size)
+      result << books_from_same_author[position]
+      books_from_same_author.delete_at(position)
+    end
+    
+    1.upto num-result.size do
+      position = rand(books_from_same_genre.size)
+      result << books_from_same_genre[position]
+      books_from_same_genre.delete_at(position)
+    end
+    
+    result.compact!
+    result.sort_by { rand }
+    
+    return result
+  end
+  
 end

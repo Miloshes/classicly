@@ -19,6 +19,6 @@ class BooksController < ApplicationController
   end
 
   def find_related
-    @related = Book.all(:limit => 2)
+    @related = @book.find_fake_related(2)
   end
 end
