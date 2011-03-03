@@ -36,4 +36,20 @@ class Book < ActiveRecord::Base
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
   
+  def self.random_blessed_books(num = 8)
+    blessed_books = self.where(:blessed => true)
+    return [] if blessed_books.blank?
+    
+    result = []
+    
+    1.upto num do
+      position = rand(blessed_books.size)
+      result << blessed_books[position]
+      blessed_books.delete_at(position)
+      num = num-1 if num > 0
+    end
+      
+    return result
+  end
+  
 end

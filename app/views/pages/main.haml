@@ -3,6 +3,9 @@
 
 - content_for :head do
   = fb_open_graph_metadata
+  
+- content_for :related_books do
+  = render :partial => 'pages/cover', :collection => @related_books
 
 #home-page
   = paginate @featured_books

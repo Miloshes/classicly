@@ -42,7 +42,7 @@
     #cover-bar.container_12
       %span
         Related Books
-      = render :partial => 'pages/cover', :collection => @covers
+      = yield :related_books
     #content.container_12
       #collection-column.grid_3.alpha
         .collection-container
@@ -59,7 +59,7 @@
           = image_tag '/images/collections-bottom.png'
       .grid_8.omega
         #current-page.grid_8.alpha.omega
-          =yield
+          = yield
     #footer
       .container_12
         .about.grid_4.alpha
