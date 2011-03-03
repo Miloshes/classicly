@@ -1,4 +1,4 @@
-ActiveRecord::Schema.define(:version => 20110302000458) do
+ActiveRecord::Schema.define(:version => 20110303160251) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110302000458) do
     t.boolean "blessed",         :default => false, :null => false
     t.integer "custom_cover_id"
     t.text    "description"
+    t.string  "pretty_title"
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
@@ -57,16 +58,16 @@ ActiveRecord::Schema.define(:version => 20110302000458) do
   end
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "priority",   :default => 0
+    t.integer   "attempts",   :default => 0
+    t.text      "handler"
+    t.text      "last_error"
+    t.timestamp "run_at"
+    t.timestamp "locked_at"
+    t.timestamp "failed_at"
+    t.string    "locked_by"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -83,10 +84,10 @@ ActiveRecord::Schema.define(:version => 20110302000458) do
   end
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "session_id", :null => false
+    t.text      "data"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
