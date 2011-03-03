@@ -1,4 +1,5 @@
 class Collection < ActiveRecord::Base
+  include Descriptable
   # books
   has_many :collection_book_assignments
   has_many :books, :through => :collection_book_assignments
@@ -73,11 +74,4 @@ class Collection < ActiveRecord::Base
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
-  
-  def limited_description(limit)
-    return "" if self.description.nil?
-    limit = self.description.length - 1 if limit >= self.description.length
-    self.description[0..limit]
-  end
-
 end
