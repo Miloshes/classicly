@@ -31,7 +31,7 @@ class Book < ActiveRecord::Base
   end
 
   def classicly_formats
-    ['pdf', 'rtf', 'awz'] & self.all_downloadable_formats
+    ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
   
 end
