@@ -8,7 +8,7 @@ $(function(){
 		ellipsis: '',
 		moreText: '(…more)',
 		lessText: '(less)',
-		condensedLength: 250
+		condensedLength: 350
 	});
 
   // apply buttons to radio inputs

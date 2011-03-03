@@ -8,9 +8,10 @@ class Book < ActiveRecord::Base
   has_many :collection_book_assignments
   has_many :collecions, :through => :collection_book_assignments
   has_and_belongs_to_many :genres
-  
   has_many :download_formats
-  
+
+  scope :with_description, where('description is not null')
+
   validates :title, :presence => true
   
   def available_in_format?(format)
