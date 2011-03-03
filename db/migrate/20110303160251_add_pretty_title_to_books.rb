@@ -5,23 +5,27 @@ class AddPrettyTitleToBooks < ActiveRecord::Migration
     converter = Iconv.new('UTF-8//IGNORE', 'UTF-8')
     
     Book.all.each do |book|
-      new_title       = book.title
-      lowercase_title = book.title.downcase
+      # fixing some issues with the titles
+      fixed_title     = book.title.gsub("\n\n", " - ")
+      # setting up variables
+      pretty_title    = fixed_title
+      lowercase_title = fixed_title.downcase
       
-      if lowercase_title.include? ', the'
-        new_title = "The " + book.title[0...-5]
-      elsif lowercase_title.include? ', a'
-        new_title = "A " + book.title[0...-3]
-      elsif lowercase_title.include? ', an'
-        new_title = "An " + book.title[0...-4]
+      if lowercase_title[-5, 5] == ', the'
+        pretty_title = "The " + fixed_title[0...-5]
+      elsif lowercase_title[-3, 3] == ', a'
+        pretty_title = "A " + fixed_title[0...-3]
+      elsif lowercase_title[-4, 4] == ', an'
+        pretty_title = "An " + fixed_title[0...-4]
       end
       
       # cut it to comply PostgreSQL limit
-      new_title = new_title[0,255]
+      pretty_title = pretty_title[0,255]
       # convert to fix "incomplete multibyte character" errors on PostgreSQL
-      new_title = converter.iconv(new_title)
+      pretty_title = converter.iconv(pretty_title)
       
-      book.pretty_title = new_title
+      book.title        = fixed_title
+      book.pretty_title = pretty_title
       book.save
     end
   end
