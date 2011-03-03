@@ -13,7 +13,7 @@ class AddPrettyTitleToBooks < ActiveRecord::Migration
         new_title = "An " + book.title[0...-4]
       end
       
-      book.pretty_title = new_title
+      book.pretty_title = new_title[0,255]
       book.save
     end
   end
