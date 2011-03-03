@@ -3,6 +3,7 @@ class AddPrettyTitleToBooks < ActiveRecord::Migration
     add_column :books, :pretty_title, :string
     
     Book.all.each do |book|
+      new_title       = book.title
       lowercase_title = book.title.downcase
       
       if lowercase_title.include? ', the'
