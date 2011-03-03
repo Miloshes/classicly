@@ -31,9 +31,9 @@
           %div.search-bg
             %input{:type => 'text', :value => 'Search...'}
       #nav.grid_3
-        %a.selected{:href => '#'} Collections
-        %a{:href => '#'} Authors
-        %a{:href => '#'} Titles
+        = link_to "Collections", "#", :class => 'selected'
+        = link_to "Authors", "#"
+        = link_to "Titles", "#"
       #registration.grid_1.omega
         <fb:login-button registration-url="http://developers.facebook.com/docs/plugins/registration" />
   #apple-store-banner
@@ -46,52 +46,17 @@
     #content.container_12
       #collection-column.grid_3.alpha
         .collection-container
-          %img{:src => '/images/collections-collections.png'}
+          = image_tag '/images/collections-collections.png'
           %ul
-            = list_element_link('/collection/1', 'Best Of') 
-            = list_element_link('/collection/1', 'Banned Books')
-            = list_element_link('/collection/1', 'Autos & Bios')
-            = list_element_link('/collection/1', 'Classic Classics')
-            = list_element_link('/collection/1', 'English 101')
-            = list_element_link('/collection/1', 'Epic Epics')
-            = list_element_link('/collection/1', 'Ghost Stories')
-            = list_element_link('/collection/1', 'Myth')
-            = list_element_link('/collection/1', 'Philosophy')
-            = list_element_link('/collection/1', 'The Presidents')
-            = list_element_link('/collection/1', 'The Great Poets')
-            = list_element_link('/collection/1', 'Travel')
-            = list_element_link('/collection/1', 'War')
-            = list_element_link('/collection/1', 'Young Readers')
-          %img{:src => '/images/collections-bottom.png'}
+            - for collection in @genre_collections 
+              = list_element_link( collection_url(collection), collection.name)
+          = image_tag  '/images/collections-bottom.png'
         .author-container
-          %img{:src => '/images/collections-authors.png'}
+          = image_tag '/images/collections-authors.png'
           %ul
-            = list_element_link('/collection/1', 'Abraham Lincoln')
-            = list_element_link('/collection/1', 'Alexandre Dumas')
-            = list_element_link('/collection/1', 'Aristotle')
-            = list_element_link('/collection/1', 'Arthur Conan Doyle')
-            = list_element_link('/collection/1', 'Bram Stoker')
-            = list_element_link('/collection/1', 'Charles Dickens')
-            = list_element_link('/collection/1', 'Dante Allighieri')
-            = list_element_link('/collection/1', 'Edgar Allan Poe')
-            = list_element_link('/collection/1', 'Edgar Rice Borroughs')
-            = list_element_link('/collection/1', 'Edward Gibbon')
-            = list_element_link('/collection/1', 'F. Scott Fitzgerald')
-            = list_element_link('/collection/1', 'Fyodor Dostoyevsky')
-            = list_element_link('/collection/1', 'H.G. Wells')
-            = list_element_link('/collection/1', ' H.P. Lovecraft')
-            = list_element_link('/collection/1', 'Jack London')
-            = list_element_link('/collection/1', 'James Joyce')
-            = list_element_link('/collection/1', 'Jane Austen')
-            = list_element_link('/collection/1', 'Jules Verne')
-            = list_element_link('/collection/1', 'Lewis Carroll')
-            = list_element_link('/collection/1', 'Mark Twain')
-            = list_element_link('/collection/1', 'Oscar Wilde')
-            = list_element_link('/collection/1', 'Plato')
-            = list_element_link('/collection/1', 'Shakespeare')
-            = list_element_link('/collection/1', 'The Bronte Sisters')
-            = list_element_link('/collection/1', 'Voltaire')
-          %img{:src => '/images/collections-bottom.png'}
+            - for collection in @author_collections 
+              = list_element_link( collection_url(collection), collection.name)
+          = image_tag '/images/collections-bottom.png'
       .grid_8.omega
         #current-page.grid_8.alpha.omega
           =yield
@@ -108,35 +73,25 @@
           %h4 Apps
           .app.grid_4.alpha.omega
             .grid_1.alpha
-              %a{:href => '#'}
-                %img.icon{:src => '/images/footer-books.png'}
+              = link_to image_tag('footer-books.png', :class => "icon"), "#"
             .grid_3.omega
               %h5 Free Books
               %span 23,469 classics to go.
-              %a{:href => '#'}
-                %img.link{:src => '/images/footer-iphone.png'}
-              %a{:href => '#'}
-                %img.link{:src => '/images/footer-ipad.png'}
+              = link_to image_tag('footer-iphone.png', :class => "link"), "#"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "#"
           .app.grid_4.alpha.omega
             .grid_1.alpha
-              %a{:href => '#'}
-                %img.icon{:src => '/images/footer-audiobooks.png'}
+              = link_to image_tag('footer-audiobooks.png', :class => "icon"), "#"
             .grid_3.omega
               %h5 Free Audiobooks
               %span 2,947 audiobooks for $1.99.
-              %a{:href => '#'}
-                %img.link{:src => '/images/footer-iphone.png'}
-              %a{:href => '#'}
-                %img.link{:src => '/images/footer-ipad.png'}
-
+              = link_to image_tag('footer-iphone.png', :class => "link"), "#"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "#"
         .connect.grid_4.omega
           %h4 Connect
-          %a{:href => '#'}
-            %img{:src => '/images/footer-support.png'}
-          %a{:href => '#'}
-            %img{:src => '/images/footer-facebook.png'}
-          %a{:href => '#'}
-            %img{:src => '/images/footer-twitter.png'}
+          = link_to image_tag('footer-support.png'), "#"
+          = link_to image_tag('footer-facebook.png'), "#"
+          = link_to image_tag('footer-twitter.png'), "#"
 <div id="fb-root"></div>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <script>
