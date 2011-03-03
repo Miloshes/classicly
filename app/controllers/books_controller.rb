@@ -1,7 +1,11 @@
 class BooksController < ApplicationController
   before_filter :find_book
-  before_filter :find_related
+  before_filter :find_related, :only => :show
   def show
+  end
+
+  def download
+    #redirect_to @book.download_url_for_format(params[:download_format])
   end
 
   private 

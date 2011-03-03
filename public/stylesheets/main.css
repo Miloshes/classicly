@@ -210,6 +210,19 @@ a {
         font-weight: normal;
         color: #936845; }
 
+#book-page .download-title {
+  font-size: 21px;
+  font-weight: bold; }
+  #book-page .download-title .titleorauthor {
+    font-size: 22px;
+    color: #936845; }
+#book-page #download-now {
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 18px; }
+  #book-page #download-now a {
+    color: #936845; }
+
 .expando-div {
   display: block;
   margin-bottom: 30px;
