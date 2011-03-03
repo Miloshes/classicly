@@ -17,6 +17,11 @@ class Book < ActiveRecord::Base
   end
 
   def download_url_for_format(format)
+    AWS::S3::Base.establish_connection!(
+        :access_key_id     => APP_CONFIG['amazon']['access_key'],
+        :secret_access_key => APP_CONFIG['amazon']['secret_key']
+      )
+    
     object_key = "#{self.id}.#{format}"
     # protected URL, expires in 5 mins
     S3Object.url_for(object_key, APP_CONFIG['buckets']['books'], :expires_in => 300)
