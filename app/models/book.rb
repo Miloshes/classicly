@@ -1,3 +1,5 @@
+include AWS::S3
+
 class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
