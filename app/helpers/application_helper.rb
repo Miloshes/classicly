@@ -26,4 +26,12 @@ module ApplicationHelper
     radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format == 'azw' ? 'Kindle' : format.upcase)
   end
 
+  def search(path)
+    form_tag path do
+      content_tag(:div, nil, :id => 'search-bg') do
+        text_field_tag 'Search'
+      end
+    end
+  end
+
 end
