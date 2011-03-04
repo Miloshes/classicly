@@ -12,9 +12,10 @@
 #book-page.grid_9
   #cover.grid_2.alpha
     = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
-    .related-books
-      %h4 Books from the same collection:
-      = render :partial => "related_book", :collection => @books_from_the_same_collection, :as => :book
+    - unless @books_from_the_same_collection.empty?
+      .related-books
+        %h4 Books from the same collection:
+        = render :partial => "related_book", :collection => @books_from_the_same_collection, :as => :book
   .grid_7.omega
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title

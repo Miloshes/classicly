@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   before_filter :find_collection
+  
   def show
   end
 
