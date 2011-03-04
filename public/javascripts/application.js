@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function(){
-  docWidth = parseInt($(window).width());
+  docWidth = parseInt($('.wrapper').width());
   imgWidth = parseInt($('#apple-store-banner img').width());
   lft = docWidth - imgWidth;
   $('#apple-store-banner img').css('left', lft + 'px');
