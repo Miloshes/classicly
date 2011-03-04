@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110303160251) do
+ActiveRecord::Schema.define(:version => 20110303232130) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110303160251) do
     t.integer "custom_cover_id"
     t.text    "description"
     t.string  "pretty_title"
+    t.boolean "available",       :default => true
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
