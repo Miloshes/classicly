@@ -107,7 +107,7 @@ class Book < ActiveRecord::Base
     books_to_choose_from = []
     
     self.collections.each do |collection|
-      books_to_choose_from += collection.books
+      books_to_choose_from += collection.books.where("books.id <> ?", self.id)
     end
     
     1.upto num do
