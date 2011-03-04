@@ -277,6 +277,9 @@ a {
       line-height: 5px; }
     #collection-page #collection-featured-book p span.dark {
       color: #43260f; }
+      #collection-page #collection-featured-book p span.dark a {
+        color: #43260f;
+        text-decoration: none; }
   #collection-page a.book-link {
     float: left;
     width: 100%;

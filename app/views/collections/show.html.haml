@@ -11,14 +11,15 @@
     .description
       = raw parsed_collection_description(@collection.description)
   #collection-featured-book
-    = image_tag  "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.books.first.id}_size2.jpg"
+    = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.books.first.id}_size2.jpg"),
+      book_path(@collection.books.first)
     %div{:style => "clear:both;"}
     .box
       %p
         Featured Book:
       %p
         %span.dark
-          #{@collection.books.first.title}
+          = link_to @collection.books.first.title, book_path(@collection.books.first)
       %p
         by
         %span.dark
