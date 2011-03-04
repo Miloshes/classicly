@@ -103,15 +103,40 @@ class Book < ActiveRecord::Base
     return result
   end
   
+  # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
   def find_more_from_same_collection(num = 2)
     result = []
-    books_to_choose_from = []
     
+    # == books from the same collection
+    books_to_choose_from = []
     self.collections.each do |collection|
       books_to_choose_from += collection.books.where("books.id <> ?", self.id)
     end
     
     1.upto num do
+      break if books_to_choose_from.blank?
+      
+      position = rand(books_to_choose_from.size)
+      result << books_to_choose_from[position]
+      books_to_choose_from.delete_at(position)
+    end
+    
+    # == books from the same author as a fallback
+    
+    books_to_choose_from = self.author.books.where("id <> ?", self.id)
+    
+    1.upto num-result.size do
+      break if books_to_choose_from.blank?
+      
+      position = rand(books_to_choose_from.size)
+      result << books_to_choose_from[position]
+      books_to_choose_from.delete_at(position)
+    end
+
+    # == blessed books
+    books_to_choose_from = Book.where("id <> ? AND blessed = ?", self.id, true)
+    
+    1.upto num-result.size do
       break if books_to_choose_from.blank?
       
       position = rand(books_to_choose_from.size)
