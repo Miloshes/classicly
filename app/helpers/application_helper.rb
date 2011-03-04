@@ -34,4 +34,15 @@ module ApplicationHelper
     end
   end
 
+  def parsed_collection_description(description)
+    doc = Nokogiri::HTML(description)
+    books = doc.xpath("//book") # get all <book> tags
+    books.each do |book|
+      book_id = book.attributes["id"].value
+      book.name = "a"
+      book.set_attribute("href", book_path(book_id))
+    end
+    doc.css('body').inner_html
+  end
+
 end

@@ -146,5 +146,4 @@ class Book < ActiveRecord::Base
     
     return result
   end
-  
 end

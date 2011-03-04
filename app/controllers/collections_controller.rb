@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  layout 'collections'
   before_filter :find_collection
   
   def show

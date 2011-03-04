@@ -232,7 +232,7 @@ a {
 
 #collection-page {
   margin-top: 40px;
-  text-align: center; }
+  text-align: left; }
   #collection-page h1 {
     margin: 0;
     padding: 0; }
@@ -242,6 +242,34 @@ a {
     margin-left: 8px; }
   #collection-page .highlighted-book {
     text-align: left; }
+  #collection-page #collection-details {
+    width: 30em;
+    float: left; }
+    #collection-page #collection-details .title {
+      color: #936845;
+      font-size: 30px;
+      font-weight: bold;
+      margin-left: -20px; }
+  #collection-page #collection-featured-book {
+    float: left;
+    padding-top: 2px;
+    margin-left: 40px; }
+    #collection-page #collection-featured-book img {
+      display: block;
+      float: left;
+      width: 10em; }
+    #collection-page #collection-featured-book .box {
+      background: #f3eddf;
+      border: 1px solid #e8decb;
+      margin-top: 15px;
+      -moz-border-radius: 15px;
+      border-radius: 15px;
+      -webkit-border-radius: 15px;
+      width: 11em;
+      padding: 5px 0px 2px 10px; }
+    #collection-page #collection-featured-book span {
+      display: block;
+      color: #936845; }
   #collection-page a.book-link {
     float: left;
     width: 100%;

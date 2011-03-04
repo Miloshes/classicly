@@ -1,0 +1,96 @@
+!!! XML
+!!! strict
+%html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
+
+%head
+  = typekit_include_helper
+  = yield :title
+  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+  %meta{:name => 'description', :content => "Browser+ HD. The internet rethought, reinvented, and handcrafted for iPad and iPhone."}
+  %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+  
+  = stylesheet_link_tag 'main', :media => :screen
+  = stylesheet_link_tag 'grid', :media => :screen
+  = stylesheet_link_tag 'moreLess', :media => :screen
+  = stylesheet_link_tag 'jqueryui', :media => :screen
+  
+  = javascript_include_tag 'jquery.min'
+  = javascript_include_tag 'application', 'jqueryui', 'rails', 'jquery.condense'
+  = csrf_meta_tag
+  = yield :head
+%body
+  %div{:style => 'display:none'}
+    #login-form
+  #header
+    .container_12
+      .grid_2.alpha
+        %a#logo{:href => '/'}
+        %h2 free books from<br />the public domain
+      .grid_5
+      #nav.grid_3
+      #registration.grid_1.omega
+  #apple-store-banner
+  .wrapper
+    #cover-bar.container_12
+      %span
+        Related Books
+      = yield :related_books
+    #content.container_12
+      #collection-column.grid_3.alpha
+        .collection-container
+          = image_tag '/images/collections-collections.png'
+          %ul
+            - for collection in @genre_collections 
+              = list_element_link( collection_url(collection), collection.name)
+          = image_tag  '/images/collections-bottom.png'
+        .author-container
+          = image_tag '/images/collections-authors.png'
+          %ul
+            - for collection in @author_collections 
+              = list_element_link( collection_url(collection), collection.name)
+          = image_tag '/images/collections-bottom.png'
+      .grid_8.omega
+        #current-page.grid_9.alpha.omega
+          = yield
+    #footer
+      .container_12
+        .about.grid_4.alpha
+          %h4 About
+          .bg
+            %p
+              Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips. 
+            %p 
+              Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
+        .applications.grid_4
+          %h4 Apps
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              = link_to image_tag('footer-books.png', :class => "icon"), "#"
+            .grid_3.omega
+              %h5 Free Books
+              %span 23,469 classics to go.
+              = link_to image_tag('footer-iphone.png', :class => "link"), "#"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "#"
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              = link_to image_tag('footer-audiobooks.png', :class => "icon"), "#"
+            .grid_3.omega
+              %h5 Free Audiobooks
+              %span 2,947 audiobooks for $1.99.
+              = link_to image_tag('footer-iphone.png', :class => "link"), "#"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "#"
+        .connect.grid_4.omega
+          %h4 Connect
+          = link_to image_tag('footer-support.png'), "#"
+          = link_to image_tag('footer-facebook.png'), "#"
+          = link_to image_tag('footer-twitter.png'), "#"
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script>
+FB.init({
+appId  : '191005167590330',
+status : true, // check login status
+cookie : true, // enable cookies to allow the server to access the session
+xfbml  : true  // parse XFBML
+});
+</script>
