@@ -1,10 +1,10 @@
 - content_for :title do
-  %title= "Classicly. Downloading: #{@book.title}"
+  %title= "Classicly. Downloading: #{@book.pretty_title}"
 
 - content_for :head do
   = fb_open_graph_metadata({:url => book_url(@book), :description => @book.limited_description(100),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => @book.title, :type => 'book' })
+      :title => @book.pretty_title, :type => 'book' })
 
 #book-page.grid_9
   #cover.grid_2.alpha
@@ -14,7 +14,7 @@
     #book-metadata.grid_5.omega
       .download-title
         %span.titleorauthor
-          #{@book.title}
+          #{@book.pretty_title}
         by 
         %span.titleorauthor
           #{@book.author.name}
