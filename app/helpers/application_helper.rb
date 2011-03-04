@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def radio_button_for_format(format, index, featured_book)
     checked = (index == 0)
-    radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format.upcase)
+    radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format == 'azw' ? 'Kindle' : format.upcase)
   end
 
 end

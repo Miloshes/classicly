@@ -10,9 +10,17 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :genres
   has_many :download_formats
 
+  scope :available, where({:available => true})
   scope :with_description, where('description is not null')
 
   validates :title, :presence => true
+
+  def self.available_in_formats(formats)
+    find_each do|book|
+      available = (book.classicly_formats & formats).count > 0
+      book.update_attribute(:available, available)
+    end
+  end
   
   def available_in_format?(format)
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
