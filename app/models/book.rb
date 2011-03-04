@@ -11,6 +11,7 @@ class Book < ActiveRecord::Base
   has_many :download_formats
 
   scope :available, where({:available => true})
+  scope :blessed, where({:blessed => true})
   scope :with_description, where('description is not null')
 
   validates :title, :presence => true
@@ -21,7 +22,7 @@ class Book < ActiveRecord::Base
       book.update_attribute(:available, available)
     end
   end
-  
+
   def available_in_format?(format)
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
   end
