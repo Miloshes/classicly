@@ -517,8 +517,7 @@ ul.featured-book-list li {
 
 #apple-store-banner {
   position: absolute;
-  display: block;
-  left: 85%; }
+  display: block; }
   #apple-store-banner img {
     position: absolute;
     top: 0px;

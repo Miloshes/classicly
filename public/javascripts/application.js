@@ -2,6 +2,11 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function(){
+  docWidth = parseInt($(window).width());
+  imgWidth = parseInt($('#apple-store-banner img').width());
+  lft = docWidth - imgWidth;
+  $('#apple-store-banner img').css('left', lft + 'px');
+
 	$('div.book-description').condense({
 		moreSpeed: 'fast',
 		lessSpeed: 'fast',
