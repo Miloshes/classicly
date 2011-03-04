@@ -6,7 +6,7 @@ class Book < ActiveRecord::Base
   belongs_to :custom_cover
   
   has_many :collection_book_assignments
-  has_many :collecions, :through => :collection_book_assignments
+  has_many :collections, :through => :collection_book_assignments
   has_and_belongs_to_many :genres
   has_many :download_formats
 
@@ -16,7 +16,7 @@ class Book < ActiveRecord::Base
   validates :title, :presence => true
 
   def self.available_in_formats(formats)
-    find_each do|book|
+    find_each do |book|
       available = (book.classicly_formats & formats).count > 0
       book.update_attribute(:available, available)
     end
@@ -71,16 +71,15 @@ class Book < ActiveRecord::Base
     # == Popular books from the same genres (and same language)
     books_from_same_genre = []
     self.genres.each do |genre|
-      # TODO: we don't have download counts yet
+      # TODO: we don't have download counts yet, should sort by that when we have
       popular_books = genre.books.where("language = ? AND id <> ?", self.language, self.id).limit(200)
-      books_from_same_genre << popular_books
+      books_from_same_genre += popular_books
     end
-    
-    books_from_same_genre.flatten!
     
     # == Other books of the author, with the same language
     books_from_same_author = self.author.books.where("language = ? AND id <> ?",  self.language, self.id)
     
+    # for 8 books requested we get 2 from the same author, for 2 we get 1
     num_of_books_to_get_from_same_author = (num / 4.0).ceil
     
     1.upto num_of_books_to_get_from_same_author do
@@ -99,6 +98,25 @@ class Book < ActiveRecord::Base
     
     result.compact!
     result.sort_by { rand }
+    
+    return result
+  end
+  
+  def find_more_from_same_collection(num = 2)
+    result = []
+    books_to_choose_from = []
+    
+    self.collections.each do |collection|
+      books_to_choose_from += collection.books
+    end
+    
+    1.upto num do
+      break if books_to_choose_from.blank?
+      
+      position = rand(books_to_choose_from.size)
+      result << books_to_choose_from[position]
+      books_to_choose_from.delete_at(position)
+    end
     
     return result
   end

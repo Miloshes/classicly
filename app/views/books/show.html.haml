@@ -1,22 +1,26 @@
 - content_for :title do
-  %title= "Classicly. #{@book.title}"
+  %title= "Classicly. #{@book.pretty_title}"
+
 - content_for :head do
   = fb_open_graph_metadata({:url => book_url(@book), :description => @book.limited_description(100),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => @book.title, :type => 'book' })
+      :title => @book.pretty_title, :type => 'book' })
+      
+- content_for :related_books do
+  = render :partial => 'pages/cover', :collection => @related_books
 
 #book-page.grid_9
   #cover.grid_2.alpha
     = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
     .related-books
       %h4 Books from the same collection:
-      = render :partial => "related_book", :collection => @related, :as => :book
+      = render :partial => "related_book", :collection => @books_from_the_same_collection, :as => :book
   .grid_7.omega
     #book-metadata.grid_5.omega
-      %h1=@book.title
+      %h1= @book.pretty_title
       .share
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" colorscheme="dark"></fb:like>
-      %p=@book.description
+      %p= simple_format(@book.description)
     .grid_2.omega
       .download_this_book
         = form_tag download_book_path(@book) do
