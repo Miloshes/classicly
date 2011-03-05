@@ -1,9 +1,7 @@
 module ApplicationHelper
-  def list_element_link(path, text)
+  def list_element_link(collection)
     content_tag :li do
-      content_tag :a, :href => path do
-        text
-      end
+      link_to collection.name, collection_path(collection)
     end
   end
 

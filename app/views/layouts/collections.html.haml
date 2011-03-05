@@ -41,13 +41,13 @@
           = image_tag '/images/collections-collections.png'
           %ul
             - for collection in @genre_collections 
-              = list_element_link( collection_url(collection), collection.name)
+              = list_element_link(collection)
           = image_tag  '/images/collections-bottom.png'
         .author-container
           = image_tag '/images/collections-authors.png'
           %ul
             - for collection in @author_collections 
-              = list_element_link( collection_url(collection), collection.name)
+              = list_element_link(collection)
           = image_tag '/images/collections-bottom.png'
       .grid_8.omega
         #current-page.grid_9.alpha.omega
