@@ -15,6 +15,7 @@ class Book < ActiveRecord::Base
   scope :with_description, where('description is not null')
 
   validates :title, :presence => true
+  has_friendly_id :title, :use_slug => true
 
   def self.available_in_formats(formats)
     find_each do |book|
@@ -45,7 +46,7 @@ class Book < ActiveRecord::Base
   def classicly_formats
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
-  
+
   def self.random_blessed_books(num = 8)
     blessed_books = self.where(:blessed => true)
     return [] if blessed_books.blank?

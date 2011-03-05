@@ -28,7 +28,9 @@ class Collection < ActiveRecord::Base
   validates :collection_type, :presence => true
   validates :source_type, :presence => true
   validates :source, :presence => true
-  
+
+  has_friendly_id :name, :use_slug => true
+
   has_attached_file :author_portrait, 
     :styles => {
       :thumb => {
