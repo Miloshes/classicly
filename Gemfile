@@ -5,6 +5,7 @@ gem 'rails', '3.0.3'
 
 gem 'aws-s3', :require => 'aws/s3'
 gem 'haml'
+gem "friendly_id", "~> 3.2.1"
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'nokogiri'
