@@ -15,7 +15,7 @@ class Book < ActiveRecord::Base
   scope :with_description, where('description is not null')
 
   validates :title, :presence => true
-  has_friendly_id :title, :use_slug => true
+  has_friendly_id :pretty_title, :use_slug => true
 
   def self.available_in_formats(formats)
     find_each do |book|
