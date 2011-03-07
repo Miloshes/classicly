@@ -1,9 +1,9 @@
 .featured-book.grid_9.alpha.omega
   .grid_2.alpha
     = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{featured_book.id}_size2.jpg",
-      :class => 'cover-art'), seo_path(featured_book)
+      :class => 'cover-art'), author_book_path(featured_book.author, featured_book)
   .grid_5.metadata
-    = link_to content_tag(:h2, featured_book.pretty_title), seo_path(featured_book), :class => 'title'
+    = link_to content_tag(:h2, featured_book.pretty_title), author_book_path(featured_book.author, featured_book), :class => 'title'
     %h3
       by <em>#{featured_book.author.name}</em>
     %div.book-description= simple_format(featured_book.description)

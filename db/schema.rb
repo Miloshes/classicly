@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110303232130) do
+ActiveRecord::Schema.define(:version => 20110307160142) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(:version => 20110303232130) do
 
   create_table "authors", :force => true do |t|
     t.string "name"
+    t.string "cached_slug"
   end
+
+  add_index "authors", ["cached_slug"], :name => "index_authors_on_cached_slug", :unique => true
 
   create_table "books", :force => true do |t|
     t.text    "title"
@@ -33,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20110303232130) do
     t.text    "description"
     t.string  "pretty_title"
     t.boolean "available",       :default => true
+    t.string  "cached_slug"
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20110303232130) do
     t.integer   "author_portrait_file_size"
     t.timestamp "author_portrait_updated_at"
     t.integer   "genre_id"
+    t.string    "cached_slug"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -105,5 +110,17 @@ ActiveRecord::Schema.define(:version => 20110303232130) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "slugs", :force => true do |t|
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
+  add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
 end

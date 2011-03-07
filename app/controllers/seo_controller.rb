@@ -3,6 +3,7 @@ class SeoController < ApplicationController
   
   def show
     if @collection = Collection.find(params[:id]) rescue nil
+      @featured_book = @collection.books.first
       render :template => 'seo/show_collection' and return
     elsif @book = Book.find(params[:id])
       @related_books = @book.find_fake_related(8)
@@ -12,6 +13,7 @@ class SeoController < ApplicationController
   end
   
   private
+
   def seo_layout
     if @collection = Collection.find(params[:id]) rescue nil
       'collections'

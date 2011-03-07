@@ -1,0 +1,35 @@
+- content_for :title do
+  %title= "Classicly. #{@book.pretty_title}"
+
+- content_for :head do
+  = fb_open_graph_metadata({:url => seo_url(@book), :description => @book.limited_description(100),
+      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
+      :title => @book.pretty_title, :type => 'book' })
+      
+- content_for :related_books do
+  = render :partial => 'pages/cover', :collection => @related_books
+
+#book-page.grid_9
+  #cover.grid_2.alpha
+    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
+    - unless @books_from_the_same_collection.empty?
+      .related-books
+        %h4 Books from the same collection:
+        = render :partial => "books/related_book", :collection => @books_from_the_same_collection, :as => :book
+  .grid_7.omega
+    #book-metadata.grid_5.omega
+      %h1= @book.pretty_title
+      .share
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+      %p= simple_format(@book.description)
+    .grid_2.omega
+      .download_this_book
+        = form_tag download_book_path(@book) do
+          %div.radio{:id => "radio_#{@book.id}"}
+            - @book.classicly_formats.each_with_index do|format, index|
+              = radio_button_for_format(format, index, @book)
+          = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
+    = image_tag '/images/divider.png', :class => 'divider'
+    #reviews.grid_7
+      <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"></script><fb:comments numposts="10" width="600" publish_feed="true"></fb:comments>
+

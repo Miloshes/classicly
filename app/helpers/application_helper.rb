@@ -37,8 +37,9 @@ module ApplicationHelper
     books = doc.xpath("//book") # get all <book> tags
     books.each do |book|
       book_id = book.attributes["id"].value
+      book_object = Book.find(book_id)
       book.name = "a"
-      book.set_attribute("href", seo_path(book_id))
+      book.set_attribute("href", author_book_path(book_object.author, book_object))
     end
     doc.css('body').inner_html
   end

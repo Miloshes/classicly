@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def find_author_collections
-    @author_collections = Collection.where({:collection_type => 'author'})
+    @author_collections = Collection.where({:collection_type => 'author', :book_type => 'book'})
   end
 
   def find_genre_collections
-    @genre_collections = Collection.where({:collection_type => ['genre', 'collection']})
+    @genre_collections = Collection.where({:collection_type => ['genre', 'collection'], :book_type => 'book'})
   end
 end
