@@ -1,7 +1,7 @@
 - content_for :title do
   %title= "Classicly Collections. #{@collection.name}"
 - content_for :head do
-  = fb_open_graph_metadata({:url => collection_url(@collection), :description => @collection.limited_description(100),
+  = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.limited_description(100),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.books.first.id}_size2.jpg",
       :title => @collection.name, :type => 'album' })
 #collection-page
@@ -12,14 +12,14 @@
       = raw parsed_collection_description(@collection.description)
   #collection-featured-book
     = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.books.first.id}_size2.jpg"),
-      book_path(@collection.books.first)
+      seo_path(@collection.books.first)
     %div{:style => "clear:both;"}
     .box
       %p
         Featured Book:
       %p
         %span.dark
-          = link_to @collection.books.first.title, book_path(@collection.books.first)
+          = link_to @collection.books.first.title, seo_path(@collection.books.first)
       %p
         by
         %span.dark

@@ -16,6 +16,7 @@ gem 'htmlentities'
 gem 'delayed_job'
 
 group :development do
+  gem 'awesome_print'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'taps'
 end 

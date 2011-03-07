@@ -30,6 +30,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     arel (2.0.9)
+    awesome_print (0.3.2)
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -122,6 +123,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   aws-s3
   delayed_job
   friendly_id (~> 3.2.1)

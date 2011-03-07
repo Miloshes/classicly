@@ -2,7 +2,7 @@
   %title= "Classicly. #{@book.pretty_title}"
 
 - content_for :head do
-  = fb_open_graph_metadata({:url => book_url(@book), :description => @book.limited_description(100),
+  = fb_open_graph_metadata({:url => seo_url(@book), :description => @book.limited_description(100),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
       
@@ -15,7 +15,7 @@
     - unless @books_from_the_same_collection.empty?
       .related-books
         %h4 Books from the same collection:
-        = render :partial => "related_book", :collection => @books_from_the_same_collection, :as => :book
+        = render :partial => "books/related_book", :collection => @books_from_the_same_collection, :as => :book
   .grid_7.omega
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title

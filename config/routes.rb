@@ -1,9 +1,5 @@
 Classicly::Application.routes.draw do
-  resources :books , :only => :show do
-    post :download, :on => :member    
-  end
-
-  match "/:id" => "collections#show", :as => 'collection'
-
+  match "/books/:id/download" => "books#download", :as => 'download_book', :via => :post
+  match "/:id" => "seo#show", :as => 'seo', :via => :get
   root :to => 'pages#main'
 end

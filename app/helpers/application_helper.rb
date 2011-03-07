@@ -1,7 +1,7 @@
 module ApplicationHelper
   def list_element_link(collection)
     content_tag :li do
-      link_to collection.name, collection_path(collection)
+      link_to collection.name, seo_path(collection)
     end
   end
 
@@ -38,7 +38,7 @@ module ApplicationHelper
     books.each do |book|
       book_id = book.attributes["id"].value
       book.name = "a"
-      book.set_attribute("href", book_path(book_id))
+      book.set_attribute("href", seo_path(book_id))
     end
     doc.css('body').inner_html
   end
