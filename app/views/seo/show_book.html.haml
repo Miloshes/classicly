@@ -24,7 +24,7 @@
       %p= simple_format(@book.description)
     .grid_2.omega
       .download_this_book
-        = form_tag download_book_path(@book) do
+        = form_tag download_book_path(@book.author, @book) do
           %div.radio{:id => "radio_#{@book.id}"}
             - @book.classicly_formats.each_with_index do|format, index|
               = radio_button_for_format(format, index, @book)
