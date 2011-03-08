@@ -8,6 +8,7 @@ class BooksController < ApplicationController
   end
 
   def download
+    @related_books = @book.find_fake_related(8)
   end
 
   private 
