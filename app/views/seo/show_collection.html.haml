@@ -34,7 +34,9 @@
         |
         %li 
           = link_to 'Z-A', '#'
-
+      %div{:style =>"clear:both"}
+      .pagination
+        = paginate @blessed_books
       %ul.book-list
         = render :partial => '/books/listed_book', :collection => @blessed_books, :as => :book
     .grid_4.alpha

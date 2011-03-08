@@ -87,7 +87,7 @@ a {
   #cover-bar span {
     width: 100%;
     float: left;
-    font-family: serif;
+    font-family: "museo-slab-1", "museo-slab-2", serif;
     font-size: 18px;
     color: #936845;
     height: 10px; }
@@ -378,6 +378,11 @@ ul.book-list-sort {
         opacity: 0.9; }
       ul.book-list-sort li a.selected {
         color: black; }
+
+.pagination {
+  display: block;
+  width: 100%;
+  padding-left: 19px; }
 
 ul.book-list li {
   list-style: none;

@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(function(){
-	$('div.book-description').condense({
+	$('.book-description').condense({
 		moreSpeed: 'fast',
 		lessSpeed: 'fast',
 		ellipsis: '',
