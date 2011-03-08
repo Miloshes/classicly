@@ -6,24 +6,34 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
 
-#book-page.grid_9
-  #cover.grid_2.alpha
+#download-confirmation.grid_9
+  .grid_2.alpha
     = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
     .related-books
   .grid_7.omega
-    #book-metadata.grid_5.omega
-      .download-title
-        %span.titleorauthor
-          #{@book.pretty_title}
-        by 
-        %span.titleorauthor
-          #{@book.author.name}
-        is now downloading
-
-      #download-now
-        If it does not start automatically
+    .download-info.grid_7.alpha.omega
+      %h1
+        = link_to "#{@book.pretty_title}", author_book_path(@book.author, @book)
+        by
+        = link_to "#{@book.author.name}", seo_path(@book.author.name)
+        is now downloading...
+      %span
+        If the download does not automatically start,
         = link_to "click here", @book.download_url_for_format(@format), :class => 'download-link', :name => @format
-
-      .share
-        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+      .grid_7.alpha.omega.divider
+        = image_tag "divider.png"
+      .grid_7.alpha.omega
+        .grid_7.alpha.omega
+          .grid_3.alpha
+            .facebook
+              .top
+                <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+              .bottom
+          .grid_3.push_1.omega.twitter
+            = image_tag "confirmation-tweet.png"
+        .grid_7.alpha.omega.sync
+          .grid_3.alpha
+            = image_tag 'confirmation-iphone.png'
+          .grid_3.push_1.omega
+            = image_tag 'confirmation-ipad.png'
 = javascript_include_tag 'downloads'
