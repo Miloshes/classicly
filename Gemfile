@@ -17,6 +17,7 @@ gem 'delayed_job'
 
 group :development do
   gem 'awesome_print'
+  gem 'hirb'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'taps'
 end 

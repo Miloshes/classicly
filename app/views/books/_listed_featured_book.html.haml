@@ -1,0 +1,11 @@
+%li.grid_4.alpha.omega
+  .grid_1.alpha
+    = link_to image_tag("http://spreadsong-book-covers-ipad.s3.amazonaws.com/book_id#{featured.id}_size1.jpg"), author_book_path(featured.author, featured), :class => 'cover-link'
+  .grid_3.omega
+    .metadata
+      = link_to featured.title, author_book_path(featured.author, featured), :class => "title" 
+      %br
+      %span by
+      = link_to featured.author.name, seo_path(featured.author), :class => 'author'
+      %br
+      %p.description= limit_to_paragraph(simple_format(featured.description))

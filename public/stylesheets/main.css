@@ -235,7 +235,11 @@ a {
   text-align: left; }
   #collection-page h1 {
     margin: 0;
-    padding: 0; }
+    padding: 0;
+    color: #936845;
+    font-family: "museo-slab-1", "museo-slab-2";
+    font-size: 26px;
+    font-weight: bold; }
   #collection-page .highlighted-cover img {
     border: 1px solid black;
     width: 100%;

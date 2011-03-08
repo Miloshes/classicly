@@ -3,6 +3,7 @@ class SeoController < ApplicationController
   
   def show
     if @collection = Collection.find(params[:id]) rescue nil
+      @blessed_books = Book.blessed
       @featured_book = @collection.books.first
       render :template => 'seo/show_collection' and return
     elsif @book = Book.find(params[:id])

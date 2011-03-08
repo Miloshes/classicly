@@ -43,5 +43,10 @@ module ApplicationHelper
     end
     doc.css('body').inner_html
   end
+  
+  def limit_to_paragraph(text)
+    doc = Nokogiri::HTML(text)
+    doc.xpath("//p").first.inner_html
+  end
 
 end
