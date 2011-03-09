@@ -39,7 +39,7 @@
           = link_to 'Z-A', '#'
       %div{:style =>"clear:both"}
       .pagination
-        = paginate @blessed_books
+        = paginate @blessed_books, :params => {:controller => 'books', :action => 'ajax_paginate'} , :remote => true
       %ul.book-list
         = render :partial => '/books/listed_book', :collection => @blessed_books, :as => :book
     .grid_4.alpha

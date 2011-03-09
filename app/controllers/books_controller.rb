@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_filter :find_book
-  before_filter :find_format
+  before_filter :find_book, :only => [:download, :show]
+  before_filter :find_format, :only => :download
 
   def show
     @related_books = @book.find_fake_related(8)
@@ -9,6 +9,11 @@ class BooksController < ApplicationController
 
   def download
     @related_books = @book.find_fake_related(8)
+  end
+
+  def ajax_paginate
+    @blessed_books = Book.blessed.page(params[:page]).per(25)
+    render :layout => false
   end
 
   private 
