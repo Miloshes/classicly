@@ -545,8 +545,7 @@ ul.featured-book-list li {
       float: left;
       width: 276px;
       height: 66px;
-      display: block;
-      background: url("/images/confirmation-facebook-top.png"); }
+      display: block; }
       #download-confirmation .facebook .top span {
         float: left;
         display: block;
@@ -556,8 +555,7 @@ ul.featured-book-list li {
       float: left;
       width: 276px;
       height: 11px;
-      display: block;
-      background: url("/images/confirmation-facebook-bottom.png"); }
+      display: block; }
   #download-confirmation .twitter img {
     display: block; }
     #download-confirmation .twitter img:hover {
