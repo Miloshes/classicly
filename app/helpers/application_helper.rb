@@ -40,6 +40,7 @@ module ApplicationHelper
       book_object = Book.find(book_id)
       book.name = "a"
       book.set_attribute("href", author_book_path(book_object.author, book_object))
+      book.set_attribute("class", "description-link")
     end
     quotes = doc.xpath('//quote')
     quotes.each do|quote|

@@ -25,18 +25,6 @@
     = image_tag 'divider.png'
   .grid_9.alpha.omega
     .grid_5.alpha
-      %ul.book-list-sort
-        %li
-          = link_to 'Most Popular', '#', :class => 'selected'
-        |
-        %li
-          = link_to 'Highest Rated', '#'
-        |
-        %li 
-          = link_to 'A-Z', '#'
-        |
-        %li 
-          = link_to 'Z-A', '#'
       %div{:style =>"clear:both"}
       .pagination
         = paginate @blessed_books, :params => {:controller => 'books', :action => 'ajax_paginate'} , :remote => true
