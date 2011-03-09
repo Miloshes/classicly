@@ -41,6 +41,10 @@ module ApplicationHelper
       book.name = "a"
       book.set_attribute("href", author_book_path(book_object.author, book_object))
     end
+    quotes = doc.xpath('//quote')
+    quotes.each do|quote|
+      quote.remove
+    end
     doc.css('body').inner_html
   end
   
