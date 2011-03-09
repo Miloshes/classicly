@@ -6,8 +6,8 @@ $(function(){
 		moreSpeed: 'fast',
 		lessSpeed: 'fast',
 		ellipsis: '',
-		moreText: '(…more)',
-		lessText: '(less)',
+		moreText: '...more',
+		lessText: '...less',
 		condensedLength: 350
 	});
 

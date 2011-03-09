@@ -8,4 +8,5 @@
       %span by
       = link_to featured.author.name, seo_path(featured.author), :class => 'author'
       %br
-      %p.book-description=limit_to_paragraph(simple_format(featured.description))
+      .book-description
+        %p=limit_to_paragraph(simple_format(featured.description))
