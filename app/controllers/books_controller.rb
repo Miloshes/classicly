@@ -7,8 +7,21 @@ class BooksController < ApplicationController
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
   end
 
+  # for invoking the download page
   def download
     @related_books = @book.find_fake_related(8)
+  end
+  
+  # for actually serving the downloadable file
+  def serve_downloadable_file
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+    send_data(
+        @book.file_data_for_format(@format),
+        :disposition => 'attachment',
+        :filename => "#{@book.title}.#{@format}"
+      )
   end
 
   private 

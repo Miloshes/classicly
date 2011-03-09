@@ -22,7 +22,7 @@
         is now downloading...
       %span
         If the download does not automatically start,
-        = link_to "click here", @book.download_url_for_format(@format), :class => 'download-link', :name => @format
+        = link_to "click here", serve_downloadable_file_path(@book, @format), :class => 'download-link', :name => @format
       .grid_7.alpha.omega.divider
         = image_tag "divider.png"
       .grid_7.alpha.omega
