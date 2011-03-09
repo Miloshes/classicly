@@ -18,7 +18,7 @@
       %h1
         = link_to "#{@book.pretty_title}", author_book_path(@book.author, @book)
         by
-        = link_to "#{@book.author.name}", seo_path(@book.author.name)
+        = link_to "#{@book.author.name}", seo_path(@book.author)
         is now downloading...
       %span
         If the download does not automatically start,
