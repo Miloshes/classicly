@@ -63,7 +63,7 @@ class Book < ActiveRecord::Base
   end
   
   def web_title
-    "%s by %s - Read Online and Download Free Books - Classicly" % [self.pretty_title, self.author.name]
+    "%s by %s - Read Online and Download Free Books" % [self.pretty_title, self.author.name]
   end
 
   def self.random_blessed_books(num = 8)
