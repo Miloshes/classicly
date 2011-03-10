@@ -1,0 +1,17 @@
+- content_for :title do
+  %title= "Classicly. Searching for  \"#{@search}\""
+
+
+#collection-page.grid_9.alpha.omega
+  .divider.grid_9.alpha.omega
+    = image_tag 'divider.png'
+  .grid_9.alpha.omega
+    .grid_5.alpha
+      %div{:style =>"clear:both"}
+      .pagination
+        = paginate @books
+      %ul.book-list
+        = render :partial => '/books/listed_book', :collection => @books, :as => :book
+    .grid_4.alpha
+      %ul.featured-book-list
+        = #render :partial => '/books/listed_featured_book', :collection => @collection.books, :as => :featured

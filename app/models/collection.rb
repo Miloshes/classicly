@@ -76,4 +76,23 @@ class Collection < ActiveRecord::Base
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
+
+  def description_for_open_graph
+    case self.collection_type
+    when 'collection'
+      "%s- the ultimate literature collection. Dozens of hand-picked books for free download as PDF, Kindle, Sony Reader, iBooks, and more. You can also read online!" % self.name
+    when 'author'
+      "The world’s greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([self.name] * 2)
+    end
+  end
+
+  def web_title
+    case self.collection_type
+    when 'collection'
+      "%s- A handpicked collection of classics - Download Free Books, Read Online, and More - Classicly" % self.name
+    when 'author'
+      "%s Books - Download %s free books, read online, and more - Classicly" % ([self.name] * 2)
+    end
+  end
+
 end

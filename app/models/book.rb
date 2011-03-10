@@ -58,6 +58,14 @@ class Book < ActiveRecord::Base
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
 
+  def description_for_open_graph
+    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title 
+  end
+  
+  def web_title
+    "%s by %s - Read Online and Download Free Books - Classicly" % [self.pretty_title, self.author.name]
+  end
+
   def self.random_blessed_books(num = 8)
     blessed_books = self.where(:blessed => true)
     return [] if blessed_books.blank?

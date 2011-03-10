@@ -1,0 +1,3 @@
+$('.pagination').html("<%= escape_javascript(paginate(@blessed_books, :params => {:controller => 'books', :action => 'ajax_paginate'} , :remote => true).to_s)%>");
+
+$('ul.book-list').html("<%= escape_javascript(render :partial => '/books/listed_book', :collection => @blessed_books, :as => :book)%>");

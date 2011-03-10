@@ -1,15 +1,19 @@
 - content_for :title do
-  %title= "Classicly Collections. #{@collection.name}"
+  %title=@collection.web_title
 - content_for :head do
-  = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.limited_description(100),
+  = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
       :title => @collection.name, :type => 'album' })
+  %meta{:name => 'description', :content => @collection.description_for_open_graph}
 
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
     .collection-description.grid_6.alpha
       %h1=@collection.name
       %p=raw parsed_collection_description(@collection.description)
+      #fb-root
+      = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"
+      <fb:comments href="#{seo_url(@collection)}" num_posts="10" width="500"></fb:comments>
     .collection_media.grid_3.omega
       .highlighted-cover
         = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size3.jpg"),
@@ -22,24 +26,11 @@
     = image_tag 'divider.png'
   .grid_9.alpha.omega
     .grid_5.alpha
-      %ul.book-list-sort
-        %li
-          = link_to 'Most Popular', '#', :class => 'selected'
-        |
-        %li
-          = link_to 'Highest Rated', '#'
-        |
-        %li 
-          = link_to 'A-Z', '#'
-        |
-        %li 
-          = link_to 'Z-A', '#'
       %div{:style =>"clear:both"}
       .pagination
-        = paginate @blessed_books
+        = paginate @blessed_books, :params => {:controller => 'books', :action => 'ajax_paginate'} , :remote => true
       %ul.book-list
         = render :partial => '/books/listed_book', :collection => @blessed_books, :as => :book
     .grid_4.alpha
       %ul.featured-book-list
         = render :partial => '/books/listed_featured_book', :collection => @collection.books, :as => :featured
-          

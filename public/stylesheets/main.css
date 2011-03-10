@@ -246,6 +246,8 @@ a {
     margin-left: 8px; }
   #collection-page .highlighted-book {
     text-align: left; }
+  #collection-page a.description-link {
+    color: #936845; }
   #collection-page #collection-details {
     width: 30em;
     float: left; }
@@ -382,7 +384,16 @@ ul.book-list-sort {
 .pagination {
   display: block;
   width: 100%;
-  padding-left: 19px; }
+  padding-left: 19px;
+  margin-top: 15px; }
+  .pagination span.page a {
+    color: #936845; }
+  .pagination span.prev a {
+    color: #936845; }
+  .pagination span.next a {
+    color: #936845; }
+  .pagination span.current {
+    color: #43260f; }
 
 ul.book-list li {
   list-style: none;
@@ -534,8 +545,7 @@ ul.featured-book-list li {
       float: left;
       width: 276px;
       height: 66px;
-      display: block;
-      background: url("/images/confirmation-facebook-top.png"); }
+      display: block; }
       #download-confirmation .facebook .top span {
         float: left;
         display: block;
@@ -545,8 +555,7 @@ ul.featured-book-list li {
       float: left;
       width: 276px;
       height: 11px;
-      display: block;
-      background: url("/images/confirmation-facebook-bottom.png"); }
+      display: block; }
   #download-confirmation .twitter img {
     display: block; }
     #download-confirmation .twitter img:hover {
