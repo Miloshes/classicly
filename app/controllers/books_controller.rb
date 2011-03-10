@@ -20,7 +20,7 @@ class BooksController < ApplicationController
     send_data(
         @book.file_data_for_format(@format),
         :disposition => 'attachment',
-        :filename => "#{@book.title}.#{@format}"
+        :filename => "#{@book.pretty_title}.#{@format}"
       )
   end
 
