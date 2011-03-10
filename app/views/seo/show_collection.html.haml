@@ -30,7 +30,7 @@
     .grid_5.alpha
       %div{:style =>"clear:both"}
       .pagination
-        = paginate @books
+        = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
         = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .grid_4.alpha
