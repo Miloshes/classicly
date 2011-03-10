@@ -1,5 +1,5 @@
 - content_for :title do
-  %title= "Classicly. #{@book.pretty_title}"
+  %title=@book.web_title
 
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@book), :description => @book.description_for_open_graph,

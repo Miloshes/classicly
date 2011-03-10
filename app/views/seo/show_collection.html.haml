@@ -1,5 +1,5 @@
 - content_for :title do
-  %title= "Classicly Collections. #{@collection.name}"
+  %title=@collection.web_title
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
