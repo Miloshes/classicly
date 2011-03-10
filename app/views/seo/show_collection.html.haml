@@ -1,9 +1,10 @@
 - content_for :title do
   %title= "Classicly Collections. #{@collection.name}"
 - content_for :head do
-  = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.limited_description(100),
+  = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
       :title => @collection.name, :type => 'album' })
+  %meta{:name => 'description', :content => @collection.description_for_open_graph}
 
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
