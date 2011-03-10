@@ -54,4 +54,11 @@ module ApplicationHelper
     doc.xpath("//p").first.inner_html
   end
 
+  def search_form(path)
+    form_tag path, :method => :get do
+      content_tag(:div, nil, :class => 'search-bg') do
+        text_field_tag "term"
+      end
+    end
+  end
 end
