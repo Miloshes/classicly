@@ -1,6 +1,6 @@
 %li.grid_5.alpha.omega
   .grid_1.alpha
-    = link_to image_tag("http://spreadsong-book-covers-ipad.s3.amazonaws.com/book_id#{book.id}_size1.jpg"), author_book_path(book.author, book)
+    = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size1.jpg"), author_book_path(book.author, book)
   .grid_4.omega.metadata
     .metadata
       = link_to book.title, author_book_path(book.author, book), :class => "title"
