@@ -89,9 +89,9 @@ class Collection < ActiveRecord::Base
   def web_title
     case self.collection_type
     when 'collection'
-      "%s- A handpicked collection of classics - Download Free Books, Read Online, and More - Classicly" % self.name
+      "%s - Download Free Books, Read Online, and More " % self.name
     when 'author'
-      "%s Books - Download %s free books, read online, and more - Classicly" % ([self.name] * 2)
+      "%s Books - Download %s free books, read online, and more" % ([self.name] * 2) 
     end
   end
 
