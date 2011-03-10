@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_filter :find_book, :only => [:download, :show]
-  before_filter :find_format, :only => :download
+  before_filter :find_book
+  before_filter :find_format
 
   def show
     @related_books = @book.find_fake_related(8)
