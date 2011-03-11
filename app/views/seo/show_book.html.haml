@@ -8,6 +8,8 @@
   %meta{:name => 'description', :content => @book.description_for_open_graph}
       
 - content_for :related_books do
+  %span
+    Related Books
   = render :partial => 'pages/cover', :collection => @related_books
 
 #book-page.grid_9

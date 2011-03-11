@@ -6,6 +6,8 @@
   %meta{:name => 'description', :content => '24,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!'}
   
 - content_for :related_books do
+  %span
+    Popular Books
   = render :partial => 'pages/cover', :collection => @related_books
 
 #home-page

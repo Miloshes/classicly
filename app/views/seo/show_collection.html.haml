@@ -6,6 +6,11 @@
       :title => @collection.name, :type => 'album' })
   %meta{:name => 'description', :content => @collection.description_for_open_graph}
 
+- content_for :related_books do
+  %span
+    Related Books
+  = render :partial => 'pages/cover', :collection => @collection.random_blessed_books
+
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
     .collection-description.grid_6.alpha

@@ -95,4 +95,16 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def random_blessed_books(num = 8)
+    return [] if self.books.blessed.blank?
+    blessed_books = self.books.blessed.clone
+    num = blessed_books.count if num > blessed_books.count
+    results = []
+    1.upto num do
+      position = rand(blessed_books.size)
+      results << blessed_books[position]
+      blessed_books.delete_at(position)
+    end
+    return results
+  end
 end
