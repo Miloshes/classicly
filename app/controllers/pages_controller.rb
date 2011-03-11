@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
 
   def main
-    @related_books = Book.random_blessed_books(8)
-    @featured_books = Collection.where(:name => 'Best Of').first().books.blessed.available.with_description.limit(5)
+    @related_books = Book.blessed.random(8)
+    @featured_books = Book.blessed.available.with_description.random(8)
   end
 
 end

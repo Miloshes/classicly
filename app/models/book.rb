@@ -14,6 +14,7 @@ class Book < ActiveRecord::Base
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :with_description, where('description is not null')
+  scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
   validates :title, :presence => true
   has_friendly_id :pretty_title, :use_slug => true
@@ -67,22 +68,6 @@ class Book < ActiveRecord::Base
     "%s by %s - Read Online and Download Free Books" % [self.pretty_title, self.author.name]
   end
 
-  def self.random_blessed_books(num = 8)
-    blessed_books = self.where(:blessed => true)
-    return [] if blessed_books.blank?
-    
-    result = []
-    
-    1.upto num do
-      position = rand(blessed_books.size)
-      result << blessed_books[position]
-      blessed_books.delete_at(position)
-      num = num-1 if num > 0
-    end
-      
-    return result
-  end
-  
   def find_fake_related(num = 8)
     result = []
     
