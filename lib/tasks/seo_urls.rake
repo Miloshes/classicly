@@ -20,7 +20,7 @@ class PushDownloadURLsToLibraryAppJob
   include Rails.application.routes.url_helpers
   
   def execute
-    default_url_options[:host] = 'http://www.classicly.com'
+    default_url_options[:host] = 'www.classicly.com'
     
     errors_while_pushing = false
   
@@ -56,7 +56,7 @@ namespace :seo_urls do
     include ActionDispatch::Routing::UrlFor
     include Rails.application.routes.url_helpers
     
-    default_url_options[:host] = 'http://www.classicly.com'
+    default_url_options[:host] = 'www.classicly.com'
     url_hash = {}
     
     puts "Script running..."
