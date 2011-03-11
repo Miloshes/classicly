@@ -16,16 +16,15 @@ end
 
 # Custom class to wrap the "push_download_urls_to_library_app" task so we can run it via Delayed Job
 class PushDownloadURLsToLibraryAppJob
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
   
-  def self.execute
-    include ActionDispatch::Routing::UrlFor
-    include Rails.application.routes.url_helpers
-  
+  def execute
     default_url_options[:host] = 'http://www.classicly.com'
-  
+    
     errors_while_pushing = false
   
-    Book.all.each do |book|
+    Book.order('id ASC').includes(:author).each do |book|
       url_to_call = "http://fb-library.heroku.com/books/#{book.id}/update_classicly_download_url"    
       response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
     
@@ -96,7 +95,8 @@ namespace :seo_urls do
   # It does that by sending the update parameters to an URL with a PUT request.
   # NOTE: this task uses Delayed Job, so make sure you have a worker available  
   task :push_download_urls_to_library_app => :environment do
-    PushDownloadURLsToLibraryAppJob.delay.execute
+    job = PushDownloadURLsToLibraryAppJob.new
+    job.delay.execute
   end
   
 end
