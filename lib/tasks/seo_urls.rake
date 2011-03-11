@@ -32,6 +32,8 @@ class PushDownloadURLsToLibraryAppJob
         errors_while_pushing = true
         break
       end
+      
+      sleep 0.2
     end
   
     if errors_while_pushing
