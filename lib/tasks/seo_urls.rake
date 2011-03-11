@@ -72,12 +72,11 @@ namespace :seo_urls do
     
     errors_while_pushing = false
     
-    Book.first.to_a.each do |book|
+    Book.all.each do |book|
       url_to_call = "http://fb-library.heroku.com/books/#{book.id}/update_classicly_download_url"    
       response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
       
       if response.body != 'SUCCESS'
-        puts "Error message from the server: #{response.body}"
         errors_while_pushing = true
         break
       end
