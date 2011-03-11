@@ -25,7 +25,7 @@ namespace :seo_urls do
     include ActionDispatch::Routing::UrlFor
     include Rails.application.routes.url_helpers
     
-    default_url_options[:host] = 'www.classicly.com'
+    default_url_options[:host] = 'http://www.classicly.com'
     url_hash = {}
     
     puts "Script running..."
@@ -68,9 +68,24 @@ namespace :seo_urls do
     include ActionDispatch::Routing::UrlFor
     include Rails.application.routes.url_helpers
     
+    default_url_options[:host] = 'http://www.classicly.com'
+    
+    errors_while_pushing = false
+    
     Book.first.to_a.each do |book|
       url_to_call = "http://fb-library.heroku.com/books/#{book.id}/update_classicly_download_url"    
-      RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
+      response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
+      
+      if response.body != 'SUCCESS'
+        errors_while_pushing = true
+        break
+      end
+    end
+    
+    if errors_while_pushing
+      puts 'There were errors while pushing the download URLs to the server.'
+    else
+      puts 'Done.'
     end
   end
   
