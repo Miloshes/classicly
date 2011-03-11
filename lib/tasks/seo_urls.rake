@@ -8,10 +8,40 @@ class ImportDownloadURLsMigration < ActiveRecord::Migration
     
     url_data = YAML.load_file("db/yaml_exports/download_urls.yml")
     
-    Book.all.each do |book|
+    Book.all.order('id ASC').each do |book|
       book.update_attributes(:classicly_download_url => url_data[book.id])
     end
   end
+end
+
+# Custom class to wrap the "push_download_urls_to_library_app" task so we can run it via Delayed Job
+class PushDownloadURLsToLibraryAppJob
+  
+  def self.execute
+    include ActionDispatch::Routing::UrlFor
+    include Rails.application.routes.url_helpers
+  
+    default_url_options[:host] = 'http://www.classicly.com'
+  
+    errors_while_pushing = false
+  
+    Book.all.each do |book|
+      url_to_call = "http://fb-library.heroku.com/books/#{book.id}/update_classicly_download_url"    
+      response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
+    
+      if response.body != 'SUCCESS'
+        errors_while_pushing = true
+        break
+      end
+    end
+  
+    if errors_while_pushing
+      puts 'There were errors while pushing the download URLs to the server.'
+    else
+      puts 'Done.'
+    end
+  end
+  
 end
 
 # For storing scripts regarding SEO URLs
@@ -64,29 +94,9 @@ namespace :seo_urls do
   
   # This task will push the download URLs for the books into the fb-library server apps DB.
   # It does that by sending the update parameters to an URL with a PUT request.
+  # NOTE: this task uses Delayed Job, so make sure you have a worker available  
   task :push_download_urls_to_library_app => :environment do
-    include ActionDispatch::Routing::UrlFor
-    include Rails.application.routes.url_helpers
-    
-    default_url_options[:host] = 'http://www.classicly.com'
-    
-    errors_while_pushing = false
-    
-    Book.all.each do |book|
-      url_to_call = "http://fb-library.heroku.com/books/#{book.id}/update_classicly_download_url"    
-      response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
-      
-      if response.body != 'SUCCESS'
-        errors_while_pushing = true
-        break
-      end
-    end
-    
-    if errors_while_pushing
-      puts 'There were errors while pushing the download URLs to the server.'
-    else
-      puts 'Done.'
-    end
+    PushDownloadURLsToLibraryAppJob.delay.execute
   end
   
 end
