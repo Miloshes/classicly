@@ -77,6 +77,7 @@ namespace :seo_urls do
       response = RestClient.put url_to_call, :download_url => book_download_page_url(book.author, book, 'pdf')
       
       if response.body != 'SUCCESS'
+        puts "Error message from the server: #{response.body}"
         errors_while_pushing = true
         break
       end
