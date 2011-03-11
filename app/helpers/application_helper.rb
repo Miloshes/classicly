@@ -24,13 +24,6 @@ module ApplicationHelper
     radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format == 'azw' ? 'Kindle' : format.upcase)
   end
 
-  def search(path)
-    form_tag path do
-      content_tag(:div, nil, :id => 'search-bg') do
-        text_field_tag 'Search'
-      end
-    end
-  end
 
   def parsed_collection_description(description)
     doc = Nokogiri::HTML(description)
@@ -54,10 +47,10 @@ module ApplicationHelper
     doc.xpath("//p").first.inner_html
   end
 
-  def search_form(path)
+  def search_form(path, search_term)
     form_tag path, :method => :get do
       content_tag(:div, nil, :class => 'search-bg') do
-        text_field_tag "term"
+        text_field_tag "term", search_term
       end
     end
   end

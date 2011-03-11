@@ -16,3 +16,17 @@ $(function(){
 })
 
 
+$(document).ready(function(){
+  var _paq = _paq || [];
+    
+  FB.Event.subscribe('edge.create', function(response) {
+    _paq.push(["trackLocalConversion"])
+  });
+
+  FB.Event.subscribe('edge.delete', function(response) {
+  });
+
+  FB.Event.subscribe('comment.create', function(response) {
+  });
+})
+

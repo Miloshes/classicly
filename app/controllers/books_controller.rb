@@ -25,7 +25,7 @@ class BooksController < ApplicationController
   end
 
   def ajax_paginate
-    @blessed_books = Book.blessed.page(params[:page]).per(25)
+    @books = Collection.find(params[:id]).books.page(params[:page]).per(25)
     render :layout => false
   end
 

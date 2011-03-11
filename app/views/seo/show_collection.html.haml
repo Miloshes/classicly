@@ -6,11 +6,18 @@
       :title => @collection.name, :type => 'album' })
   %meta{:name => 'description', :content => @collection.description_for_open_graph}
 
+- content_for :related_books do
+  %span
+    Related Books
+  = render :partial => 'pages/cover', :collection => @collection.random_blessed_books
+
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
     .collection-description.grid_6.alpha
       %h1=@collection.name
       %p=raw parsed_collection_description(@collection.description)
+      = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
+      <fb:like show_faces="true" width="600" font="arial"></fb:like>
       #fb-root
       = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"
       <fb:comments href="#{seo_url(@collection)}" num_posts="10" width="500"></fb:comments>
@@ -28,9 +35,9 @@
     .grid_5.alpha
       %div{:style =>"clear:both"}
       .pagination
-        = paginate @blessed_books, :params => {:controller => 'books', :action => 'ajax_paginate'} , :remote => true
+        = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
-        = render :partial => '/books/listed_book', :collection => @blessed_books, :as => :book
+        = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .grid_4.alpha
       %ul.featured-book-list
-        = render :partial => '/books/listed_featured_book', :collection => @collection.books, :as => :featured
+        = render :partial => '/books/listed_featured_book', :collection => @blessed_books, :as => :featured

@@ -7,6 +7,8 @@
       :title => @book.pretty_title, :type => 'book' })
 
 - content_for :related_books do
+  %span
+    Related Books
   = render :partial => 'pages/cover', :collection => @related_books
 
 #download-confirmation.grid_9

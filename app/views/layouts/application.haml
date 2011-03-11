@@ -18,6 +18,7 @@
   = javascript_include_tag 'application', 'jqueryui', 'rails', 'jquery.condense'
   = csrf_meta_tag
   = yield :head
+  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 %body
   %div{:style => 'display:none'}
     #login-form
@@ -27,14 +28,12 @@
         %a#logo{:href => '/'}
         %h2 free books from<br />the public domain
       .grid_5
-        = search_form(search_path)
+        = search_form(search_path, @search)
       #nav.grid_3
       #registration.grid_1.omega
   #apple-store-banner
   .wrapper
     #cover-bar.container_12
-      %span
-        Related Books
       = yield :related_books
     #content.container_12
       #collection-column.grid_3.alpha
@@ -111,4 +110,24 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 })();
 
 </script>
+<script type="text/javascript">
+var _sf_async_config={uid:21265,domain:"classicly.com"};
+(function(){
+function loadChartbeat() {
+window._sf_endpt=(new Date()).getTime();
+var e = document.createElement('script');
+e.setAttribute('language', 'javascript');
+e.setAttribute('type', 'text/javascript');
+e.setAttribute('src',
+(("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+"js/chartbeat.js");
+document.body.appendChild(e);
+}
+var oldonload = window.onload;
+window.onload = (typeof window.onload != 'function') ?
+loadChartbeat : function() { oldonload(); loadChartbeat(); };
+})();
+
+</script>
+
 

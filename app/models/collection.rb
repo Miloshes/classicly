@@ -89,10 +89,22 @@ class Collection < ActiveRecord::Base
   def web_title
     case self.collection_type
     when 'collection'
-      "%s- A handpicked collection of classics - Download Free Books, Read Online, and More - Classicly" % self.name
+      "%s - Download Free Books, Read Online, and More " % self.name
     when 'author'
-      "%s Books - Download %s free books, read online, and more - Classicly" % ([self.name] * 2)
+      "%s Books - Download %s free books, read online, and more" % ([self.name] * 2) 
     end
   end
 
+  def random_blessed_books(num = 8)
+    return [] if self.books.blessed.blank?
+    blessed_books = self.books.blessed.clone
+    num = blessed_books.count if num > blessed_books.count
+    results = []
+    1.upto num do
+      position = rand(blessed_books.size)
+      results << blessed_books[position]
+      blessed_books.delete_at(position)
+    end
+    return results
+  end
 end
