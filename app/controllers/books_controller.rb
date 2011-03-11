@@ -14,6 +14,12 @@ class BooksController < ApplicationController
   
   # for actually serving the downloadable file
   def serve_downloadable_file
+    # The Library app tries to request PDF for book devliveries, whether we have it or not
+    # Falling back to RTF if we don't have it
+    if @format == 'pdf' && !@book.available_in_format?(@format)
+      @format = 'rtf'
+    end
+    
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
