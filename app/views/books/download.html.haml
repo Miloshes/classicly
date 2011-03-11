@@ -36,7 +36,7 @@
               .bottom
           .grid_3.push_1.omega.twitter
             = javascript_include_tag "http://platform.twitter.com/widgets.js"
-            = link_to image_tag("confirmation-tweet.png"), "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.description_for_open_graph}", :target => "_blank"
+            = link_to image_tag("confirmation-tweet.png"), "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}", :target => "_blank"
         .grid_7.alpha.omega.sync
           .grid_3.alpha
             = image_tag 'confirmation-iphone.png'
