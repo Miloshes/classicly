@@ -2,6 +2,11 @@ Classicly::Application.routes.draw do
 
   resources :books, :only => :index do
     get :ajax_paginate, :on => :member
+    resources :reviews
+  end
+
+  resources :collections, :only => :show do
+    resources :reviews
   end
 
   resource :search, :only => :show, :controller => :search do

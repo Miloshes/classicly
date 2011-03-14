@@ -9,7 +9,7 @@ class Book < ActiveRecord::Base
   has_many :collections, :through => :collection_book_assignments
   has_and_belongs_to_many :genres
   has_many :download_formats
-
+  has_many :reviews, :as => :reviewable
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
