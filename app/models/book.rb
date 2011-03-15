@@ -65,7 +65,17 @@ class Book < ActiveRecord::Base
   end
   
   def web_title
-    "%s by %s - Read Online and Download Free Books" % [self.pretty_title, self.author.name]
+    if (self.pretty_title.length  + self.author.name.length) <= 100
+      title, author = self.pretty_title, self.author.name
+    else
+      title, author = shorten_title(self.pretty_title, 49), shorten_title(self.author.name, 49)
+    end
+    "%s by %s - Read Online and Download Free Books" % [title, author]
+  end
+
+  def shorten_title(str, limit)
+    return str if str.length <= limit
+    str.slice(0, (limit - 3)).concat("...")
   end
 
   def find_fake_related(num = 8)
