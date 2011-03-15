@@ -24,6 +24,16 @@
       .share
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
       %p= simple_format(@book.description)
+      #reviews
+      - for review in @book.reviews
+        .review
+          = simple_format review.content
+          = link_to 'delete', book_review_path(@book, review), :method => :delete
+      = form_for [@book, @review] do |f|
+        = f.label :content
+        %br
+        = f.text_area :content
+        = f.submit "Submit"
     .grid_2.omega
       .download_this_book
         = form_tag download_book_path(@book.author, @book) do

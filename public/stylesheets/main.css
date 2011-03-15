@@ -171,6 +171,11 @@ a {
     text-align: left; }
     #book-page #book-metadata p {
       font-size: 13px; }
+    #book-page #book-metadata textarea {
+      width: 100%;
+      height: 75px; }
+    #book-page #book-metadata #review_submit {
+      margin-top: 10px; }
   #book-page #reviews span {
     margin-top: 30px;
     float: left;
