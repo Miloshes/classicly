@@ -14,4 +14,6 @@
           - featured_book.classicly_formats.each_with_index do|format, index|
             = radio_button_for_format(format, index, featured_book)
         = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
+    = javascript_include_tag "http://platform.twitter.com/widgets.js"
+    = link_to "", "http://twitter.com/share?url=#{author_book_url(featured_book.author, featured_book)}&text=#{featured_book.web_title}", :class =>"twitter-share-button", :target => '_blank'
     .add-profile-pics
