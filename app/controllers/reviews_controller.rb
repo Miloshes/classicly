@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
   # GET /books/:book_id/reviews
   def index
     @reviewable = find_reviewable
-    @reviews    = @reviewable.reviews.page(params[:page]).per(params[:per_page] || 25)
+    @reviews    = @reviewable.reviews.order('id DESC').page(params[:page]).per(params[:per_page] || 25)
     
     respond_to do |format|
       format.html
