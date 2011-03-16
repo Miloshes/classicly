@@ -1,4 +1,6 @@
 Classicly::Application.routes.draw do
+  match "incoming_data" => "incoming_datas#create", :method => :post
+
   resources :books, :only => :index do
     get :ajax_paginate, :on => :member
     resources :reviews
