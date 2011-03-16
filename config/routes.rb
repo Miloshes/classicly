@@ -1,4 +1,10 @@
 Classicly::Application.routes.draw do
+
+  match 'auth/:provider/callback' => 'logins#create'
+  get "logins/index"
+
+  devise_for :users
+
   resources :books, :only => :index do
     get :ajax_paginate, :on => :member
     resources :reviews
@@ -12,7 +18,7 @@ Classicly::Application.routes.draw do
   end
 
   match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get
+  match "/:author_id/:id/show" => "books#show", :as => :author_book, :via => :get
   
   # for invoking the download page and start the download
   match "/:author_id/:id/download" => "books#download", :as => 'download_book', :via => :post

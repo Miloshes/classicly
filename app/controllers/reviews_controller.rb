@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   def create
     @reviewable = find_reviewable
+    review_hash = params[:review].merge!({:reviewer => current_user})
     review = @reviewable.reviews.build(params[:review])
     if review.save
       # show something here
