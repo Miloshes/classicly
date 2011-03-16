@@ -1,4 +1,16 @@
 class ReviewsController < ApplicationController
+  
+  # GET /books/:book_id/reviews
+  def index
+    @reviewable = find_reviewable
+    @reviews    = @reviewable.reviews.order('id DESC').page(params[:page]).per(params[:per_page] || 25)
+    
+    respond_to do |format|
+      format.html
+      format.json { render :json => @reviews.to_json(:except => [:reviewable_id, :reviewable_type]) }
+    end
+  end
+  
   def create
     @reviewable = find_reviewable
     review_hash = params[:review].merge!({:reviewer => current_user})

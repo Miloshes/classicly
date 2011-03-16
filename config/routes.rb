@@ -1,5 +1,5 @@
 Classicly::Application.routes.draw do
-
+  match "incoming_data" => "incoming_datas#create", :method => :post
   match 'auth/:provider/callback' => 'logins#create'
   get "logins/index"
 
