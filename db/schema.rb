@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
     t.string "name"
   end
 
+<<<<<<< HEAD
   create_table "logins", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -109,17 +110,23 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image_url"
+=======
+  create_table "incoming_datas", :force => true do |t|
+    t.text     "json_data"
+    t.boolean  "processed",  :default => false, :null => false
+    t.datetime "created_at"
+>>>>>>> master
   end
 
   create_table "reviews", :force => true do |t|
-    t.integer  "user_id"
+    t.string   "fb_connect_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.string   "title"
+    t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "content"
   end
 
   create_table "sessions", :force => true do |t|
@@ -133,12 +140,12 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
