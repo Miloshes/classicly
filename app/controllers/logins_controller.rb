@@ -7,12 +7,14 @@ class LoginsController < ApplicationController
     if current_user
       sign_in_and_redirect(:user, current_user)
     elsif login
-      sign_in_and_redirect(:user, login.user)
+      sign_in(:user, login.user)
+      redirect_back_or_default
     else
       user = User.new
       user.apply_omniauth(omniauth)
       user.save!
-      sign_in_and_redirect(:user, user)
+      sign_in(:user, user)
+      redirect_back_or_default
     end
   end
 
