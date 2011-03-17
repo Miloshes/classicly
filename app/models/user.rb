@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def password_required?
     false
   end
+  
+  def uid_for(provider)
+    self.logins.where(:provider => provider.to_s).first.uid
+  end
 end

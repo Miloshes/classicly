@@ -16,7 +16,7 @@ class ReviewsController < ApplicationController
     #the following until the UI for rating and title is completed
     params[:review][:rating] ||= 5
     params[:review][:title] ||= "Test review"
-    review_hash = params[:review].merge!({:reviewer => current_user})
+    review_hash = params[:review].merge!({:reviewer => current_user, :fb_connect_id => current_user.uid_for(:facebook)})
     review = @reviewable.reviews.build(params[:review])
     if review.save
       # show something here
