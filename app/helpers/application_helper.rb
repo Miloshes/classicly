@@ -1,7 +1,7 @@
 module ApplicationHelper
   def list_element_link(collection)
     content_tag :li do
-      link_to collection.name, seo_path(collection)
+      link_to collection.name, seo_url(collection)
     end
   end
 
@@ -32,7 +32,7 @@ module ApplicationHelper
       book_id = book.attributes["id"].value
       book_object = Book.find(book_id)
       book.name = "a"
-      book.set_attribute("href", author_book_path(book_object.author, book_object))
+      book.set_attribute("href", author_book_url(book_object.author, book_object))
       book.set_attribute("class", "description-link")
     end
     quotes = doc.xpath('//quote')

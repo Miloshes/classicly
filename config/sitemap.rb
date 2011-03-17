@@ -18,18 +18,18 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   # 
   # Add '/articles'
   #   
-  #   sitemap.add articles_path, :priority => 0.7, :changefreq => 'daily'
+  #   sitemap.add articles_url, :priority => 0.7, :changefreq => 'daily'
   #
   # Add individual articles:
   #
   #   Article.find_each do |article|
-  #     sitemap.add article_path(article), :lastmod => article.updated_at
+  #     sitemap.add article_url(article), :lastmod => article.updated_at
   #   end
   Book.find_each do|book|
-    sitemap.add author_book_path(book.author, book) unless book.author.nil?
+    sitemap.add author_book_url(book.author, book) unless book.author.nil?
   end
 
   Collection.find_each do|collection|
-    sitemap.add seo_path(collection)
+    sitemap.add seo_url(collection)
   end
 end
