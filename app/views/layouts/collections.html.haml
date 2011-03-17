@@ -30,6 +30,10 @@
         = search_form(search_path, @search)
       #nav.grid_3
       #registration.grid_1.omega
+        - unless user_signed_in? 
+          = link_to image_tag('boton.png'), AUTHORIZE_URL
+        - else
+          = link_to "Logout", USERS_SIGNOUT_URL
   #apple-store-banner
   .wrapper
     #cover-bar.container_12
