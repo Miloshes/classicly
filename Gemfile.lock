@@ -2,7 +2,6 @@ GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
   specs:
-    aaronh-chronic (0.3.9)
     abstract (1.0.0)
     actionmailer (3.0.3)
       actionpack (= 3.0.3)
@@ -197,9 +196,6 @@ GEM
     tzinfo (0.3.25)
     warden (1.0.3)
       rack (>= 1.0.0)
-    whenever (0.6.6)
-      aaronh-chronic (>= 0.3.9)
-      activesupport (>= 2.3.4)
     xml-simple (1.0.14)
 
 PLATFORMS
@@ -228,4 +224,3 @@ DEPENDENCIES
   sitemap_generator
   sqlite3-ruby
   taps
-  whenever
