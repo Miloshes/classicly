@@ -8,4 +8,8 @@
       %span by
       = link_to book.author.name, seo_url(book.author), :class => "author"
       %br
-      = image_tag "stars.png", :class => 'stars'
+      .book-avg-rating
+        - if book.has_rating?
+          = raw(show_review_rating_stars(book.avg_rating))
+        - else
+          There are no reviews for this book yet

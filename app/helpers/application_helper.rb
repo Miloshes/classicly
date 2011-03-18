@@ -69,9 +69,9 @@ module ApplicationHelper
    html
  end
  
- def show_review_rating_stars(review)
-   stars_on = review.rating
-   stars_off = 5 - review.rating
+ def show_review_rating_stars(rating)
+   stars_on = rating || 1
+   stars_off = 5 - stars_on
    html = ''
    1.upto(stars_on) do
      html += content_tag(:div, nil ,:class => 'star-on')

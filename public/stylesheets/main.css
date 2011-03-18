@@ -249,20 +249,6 @@ a {
       #book-page #reviews ul.reviews li .review-rating {
         width: 7em;
         float: right; }
-        #book-page #reviews ul.reviews li .review-rating .star-on, #book-page #reviews ul.reviews li .review-rating .star-off {
-          float: left;
-          width: 19px;
-          height: 17px;
-          text-indent: -999em;
-          cursor: pointer;
-          display: block;
-          background: transparent;
-          overflow: hidden;
-          background: url(../images/star-sprite.png) no-repeat 0 0px; }
-        #book-page #reviews ul.reviews li .review-rating .star-on {
-          background-position: 0 0px !important; }
-        #book-page #reviews ul.reviews li .review-rating .star-off {
-          background-position: 0 -19px !important; }
       #book-page #reviews ul.reviews li .review-content {
         width: 12em;
         width: 29em; }
@@ -693,3 +679,23 @@ span.condense_control {
 
 .clear {
   clear: both; }
+
+.star-on, .star-off {
+  float: left;
+  width: 19px;
+  height: 17px;
+  text-indent: -999em;
+  cursor: pointer;
+  display: block;
+  background: transparent;
+  overflow: hidden;
+  background: url(../images/star-sprite.png) no-repeat 0 0px; }
+
+.star-on {
+  background-position: 0 0px !important; }
+
+.star-off {
+  background-position: 0 -19px !important; }
+
+.book-avg-rating {
+  margin-left: 19px; }
