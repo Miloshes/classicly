@@ -171,11 +171,83 @@ a {
     text-align: left; }
     #book-page #book-metadata p {
       font-size: 13px; }
-    #book-page #book-metadata textarea {
-      width: 100%;
-      height: 75px; }
-    #book-page #book-metadata #review_submit {
-      margin-top: 10px; }
+  #book-page #reviews #title-left {
+    float: left; }
+  #book-page #reviews #title-right {
+    float: right; }
+  #book-page #reviews #form_box {
+    background-color: white;
+    height: 150px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px; }
+    #book-page #reviews #form_box .left {
+      width: 15%;
+      float: left; }
+      #book-page #reviews #form_box .left #profile-pic {
+        margin: 12px; }
+        #book-page #reviews #form_box .left #profile-pic img {
+          border: 5px solid #f5f1e9; }
+      #book-page #reviews #form_box .left #profile-name p {
+        text-align: left;
+        line-height: 3px;
+        margin-left: 12px;
+        font-size: 12px;
+        font-weight: bold; }
+    #book-page #reviews #form_box .right {
+      width: 85%;
+      float: left; }
+      #book-page #reviews #form_box .right textarea {
+        border: 5px solid #f5f1e9;
+        height: 75px;
+        margin-top: 10px;
+        width: 36em; }
+      #book-page #reviews #form_box .right form .ratings {
+        float: left;
+        margin-left: 33px;
+        margin-top: -18px; }
+      #book-page #reviews #form_box .right form #review_submit {
+        margin-top: 6px;
+        margin-left: 200px; }
+  #book-page #reviews ul.reviews {
+    list-style: none; }
+    #book-page #reviews ul.reviews li.striped {
+      background-color: #ebe6de; }
+    #book-page #reviews ul.reviews li {
+      margin-left: -2em;
+      padding: 12px;
+      width: 100%; }
+      #book-page #reviews ul.reviews li img {
+        width: 30px;
+        height: 30px; }
+      #book-page #reviews ul.reviews li .profile-pic, #book-page #reviews ul.reviews li .profile-name, #book-page #reviews ul.reviews li .review-rating {
+        display: inline; }
+      #book-page #reviews ul.reviews li .profile-pic {
+        width: 2em; }
+      #book-page #reviews ul.reviews li .profile-name {
+        width: 20em;
+        float: left;
+        font-family: helvetica;
+        font-size: 15px;
+        font-style: italic;
+        text-align: left;
+        line-height: 2px;
+        margin-top: -8px;
+        margin-left: 12px; }
+        #book-page #reviews ul.reviews li .profile-name p.name {
+          font-weight: bold; }
+      #book-page #reviews ul.reviews li .review-rating {
+        width: 7em;
+        float: right; }
+        #book-page #reviews ul.reviews li .review-rating img {
+          width: 20px;
+          height: 20px; }
+      #book-page #reviews ul.reviews li .review-content {
+        width: 12em;
+        width: 29em; }
+        #book-page #reviews ul.reviews li .review-content p {
+          font-size: 15px;
+          text-align: left; }
   #book-page #reviews span {
     margin-top: 30px;
     float: left;
@@ -597,3 +669,6 @@ span.condense_control {
 .twitter-share-button {
   margin-top: 18px;
   margin-left: 72px; }
+
+.clear {
+  clear: both; }

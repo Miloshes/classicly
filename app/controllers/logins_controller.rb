@@ -1,7 +1,6 @@
 class LoginsController < ApplicationController
 
   def create
-    #render :text =>  request.env['omniauth.auth'].to_yaml
     omniauth = request.env['omniauth.auth']
     login = Login.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if current_user

@@ -57,4 +57,31 @@ module ApplicationHelper
 #===========================================================================================================================
 #===========================================================================================================================
 # books only helpers
+
+
+#==========================================================================================================================
+#stars helper
+ def ratings_input_for_book(book)
+   html = ""
+   1.upto(5) do|rating|
+    html += book.radio_button('rating', rating, :class => 'star')
+   end
+   html
+ end
+ 
+ def show_review_rating_stars(review)
+   stars_on = review.rating
+   stars_off = 5 - review.rating
+   html = ''
+   1.upto(stars_on) do
+     html += image_tag 'star-on.png'
+   end
+   if stars_off > 0
+     1.upto(stars_off) do
+       html += image_tag 'star-off.png'
+     end
+   end
+   html
+ end
+#==========================================================================================================================
 end

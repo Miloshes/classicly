@@ -1,0 +1,17 @@
+#form_box
+  .left
+    #profile-pic
+      = image_tag current_user.login_for(:facebook).image_url
+    .clear
+    #profile-name
+      %p
+        Colin
+      %p
+        Plamondon
+  .right
+    = form_for [book, review] do |f|
+      = f.text_area :content
+      .clear
+      .ratings
+        = raw ratings_input_for_book(f)
+      = image_submit_tag 'review-submit-button.png', :id => 'review_submit'

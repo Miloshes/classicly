@@ -13,10 +13,10 @@
   = stylesheet_link_tag 'grid', :media => :screen
   = stylesheet_link_tag 'moreLess', :media => :screen
   = stylesheet_link_tag 'jqueryui', :media => :screen
+  = stylesheet_link_tag 'jquery.rating', :media => :screen
   
   = javascript_include_tag 'jquery.min'
-  = javascript_include_tag 'jquery.metadata'
-  = javascript_include_tag 'application', 'jqueryui', 'rails', 'jquery.condense'
+  = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.condense', 'jquery.rating'
   = csrf_meta_tag
   = yield :head
   <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>

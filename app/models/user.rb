@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     false
   end
   
+  def login_for(provider)
+    self.logins.where(:provider => provider.to_s).first
+  end
+
   def uid_for(provider)
     self.logins.where(:provider => provider.to_s).first.uid
   end
