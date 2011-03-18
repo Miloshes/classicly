@@ -11,7 +11,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me
   
   def apply_omniauth(omniauth)
-    logins.build(:provider => omniauth['provider'], :uid => omniauth['uid'], :image_url => omniauth['user_info']['image'])
+    logins.build(:provider => omniauth['provider'], 
+      :uid => omniauth['uid'], 
+      :image_url => omniauth['user_info']['image'],
+      :first_name => omniauth['user_info']['first_name'],
+      :last_name => omniauth['user_info']['last_name'])
+
     self.email = omniauth['extra']['user_hash']['email']
   end
   

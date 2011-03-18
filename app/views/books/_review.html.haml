@@ -3,7 +3,7 @@
     = image_tag review.reviewer.login_for(:facebook).image_url
   .profile-name
     %p.name
-      Colin
+      = review.reviewer.login_for(:facebook).first_name
     %p
       #{review.created_at.to_s :review_format}
   .review-rating

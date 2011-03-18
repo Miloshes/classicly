@@ -5,9 +5,9 @@
     .clear
     #profile-name
       %p
-        Colin
+        = current_user.login_for(:facebook).first_name
       %p
-        Plamondon
+        = current_user.login_for(:facebook).last_name
   .right
     = form_for [book, review] do |f|
       = f.text_area :content

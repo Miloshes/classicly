@@ -74,11 +74,11 @@ module ApplicationHelper
    stars_off = 5 - review.rating
    html = ''
    1.upto(stars_on) do
-     html += image_tag 'star-on.png'
+     html += content_tag(:div, nil ,:class => 'star-on')
    end
    if stars_off > 0
      1.upto(stars_off) do
-       html += image_tag 'star-off.png'
+       html += content_tag(:div, nil, :class => 'star-off')
      end
    end
    html
