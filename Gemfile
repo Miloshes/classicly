@@ -19,7 +19,6 @@ gem 'sitemap_generator'
 gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
-gem 'whenever'
 
 group :development do
   gem 'awesome_print'
