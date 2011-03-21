@@ -673,9 +673,23 @@ span.condense_control {
   color: #936845;
   font-style: italic; }
 
-.twitter-share-button {
-  margin-top: 18px;
-  margin-left: 72px; }
+.share-widgets {
+  margin-top: 18px; }
+
+.twitter-widget {
+  display: inline; }
+
+.facebook-widget {
+  display: inline;
+  float: right;
+  margin-right: -51px;
+  width: 0; }
+
+.download-share .twitter-widget {
+  float: left; }
+.download-share .facebook-widget {
+  float: left;
+  margin-left: 61px; }
 
 .clear {
   clear: both; }
