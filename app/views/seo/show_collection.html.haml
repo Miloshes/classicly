@@ -18,9 +18,6 @@
       %p=simple_format(parsed_collection_description(@collection.description))
       = javascript_include_tag "http://connect.facebook.net/en_US/all.js#xfbml=1"
       <fb:like show_faces="true" width="600" font="arial"></fb:like>
-      #fb-root
-      = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"
-      <fb:comments href="#{seo_url(@collection)}" num_posts="10" width="500"></fb:comments>
     .collection_media.grid_3.omega
       .highlighted-cover
         = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size3.jpg"),
