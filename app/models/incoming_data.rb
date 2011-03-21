@@ -16,8 +16,9 @@ class IncomingData < ActiveRecord::Base
 
     parsed_data.each do |record|
       case record['action']
-      when 'create_book_review'
-        Review.create_from_ios_client_data(record)
+      # stands for creating and updating
+      when 'register_book_review'
+        Review.create_or_update_from_ios_client_data(record)
       end
     end
     
