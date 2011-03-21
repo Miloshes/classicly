@@ -15,7 +15,7 @@ module ApplicationHelper
     content_tag(:meta, nil, {:property => "og:url", :content => config[:url] || "http://www.classicly.com"}) +
     content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
     content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
-    content_tag(:meta, nil, {:property => "fb:app_id", :content => "191005167590330"}) +
+    content_tag(:meta, nil, {:property => "fb:app_id", :content => FACEBOOK_APP_ID}) +
     content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "23,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
 
