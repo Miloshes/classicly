@@ -18,13 +18,13 @@
   .grid_7.omega
     .download-info.grid_7.alpha.omega
       %h1
-        = link_to "#{@book.pretty_title}", author_book_path(@book.author, @book)
+        = link_to "#{@book.pretty_title}", author_book_url(@book.author, @book)
         by
-        = link_to "#{@book.author.name}", seo_path(@book.author)
+        = link_to "#{@book.author.name}", seo_url(@book.author)
         is now downloading...
       %span
         If the download does not automatically start,
-        = link_to "click here", serve_downloadable_file_path(@book, @format), :class => 'download-link', :name => @format
+        = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
       .grid_7.alpha.omega.divider
         = image_tag "divider.png"
       .grid_7.alpha.omega

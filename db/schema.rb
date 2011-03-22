@@ -103,19 +103,35 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
   end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  create_table "incoming_data", :force => true do |t|
+    t.text     "json_data"
+    t.boolean  "processed",  :default => false, :null => false
+    t.datetime "created_at"
+  end
+
+>>>>>>> ccd8deea3f684e2a172b9c3b63cd57fb231f5058
   create_table "logins", :force => true do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
     t.string   "image_url"
 =======
   create_table "incoming_datas", :force => true do |t|
     t.text     "json_data"
     t.boolean  "processed",  :default => false, :null => false
     t.datetime "created_at"
->>>>>>> d212d560ae3ec2b6d30603b4905f4b7d25017019
+>>>>>>> master
+=======
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location_city"
+    t.string   "location_country"
+    t.string   "email"
+    t.string   "fb_connect_id"
+>>>>>>> ccd8deea3f684e2a172b9c3b63cd57fb231f5058
   end
 
   create_table "reviews", :force => true do |t|
@@ -126,7 +142,7 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
     t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "login_id"
   end
 
   create_table "sessions", :force => true do |t|
@@ -152,19 +168,19 @@ ActiveRecord::Schema.define(:version => 20110316194050) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email",                               :default => "", :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -162,4 +162,13 @@ class Book < ActiveRecord::Base
     
     return result
   end
+
+  def set_average_rating
+    self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
+    self.save
+  end
+  
+  def has_rating?
+    self.avg_rating > 0
+  end
 end
