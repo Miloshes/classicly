@@ -36,15 +36,31 @@ class WebApiHandler
   end
   
   def get_reviews_for_book(params)
-    book    = Book.find(params['book_id'])
-    reviews = book.reviews.order('id DESC').page(params['page']).per(params['per_page'] || 25)
+    book    = Book.find(params['book_id'].to_i)
+    reviews = book.reviews.order('created_at DESC').includes('reviewer').page(params['page']).per(params['per_page'] || 25)
     
-    return reviews.to_json(:except => [:reviewable_id, :reviewable_type])
+    result = []
+    reviews.each do |review|
+      result << {
+        :id                  => review.id,
+        :title               => review.title,
+        :content             => review.content,
+        :rating              => review.rating,
+        :created_at          => review.created_at,
+        :fb_connect_id       => review.reviewer.uid,
+        :fb_name             => review.reviewer.first_name + ' ' + review.reviewer.last_name,
+        :fb_location_city    => review.reviewer.location_city,
+        :fb_location_country => review.reviewer.location_country,
+        :fb_location_state   => review.reviewer.location_state
+      } 
+    end
+    
+    return result.to_json
   end
   
   def get_review_for_book_by_user(params)
     book = Book.find(params['book_id'])
-    user = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first().user
+    user = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first()
     
     user.reviews.where(:reviewable => book).first()
   end
