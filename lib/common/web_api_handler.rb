@@ -49,7 +49,7 @@ class WebApiHandler
         :content             => review.content,
         :rating              => review.rating,
         :created_at          => review.created_at,
-        :fb_connect_id       => review.reviewer.uid,
+        :fb_connect_id       => review.reviewer.fb_connect_id,
         :fb_name             => review.reviewer.first_name + ' ' + review.reviewer.last_name,
         :fb_location_city    => review.reviewer.location_city,
         :fb_location_country => review.reviewer.location_country,
@@ -106,7 +106,7 @@ class WebApiHandler
   def get_user_data(params)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
-    return login.to_json
+    return login.to_json(:except => [:id, :user_id])
   end
   
 end
