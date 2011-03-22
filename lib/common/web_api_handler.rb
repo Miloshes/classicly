@@ -30,6 +30,8 @@ class WebApiHandler
       response = get_review_stats_for_book(parsed_data)
     when 'get_classicly_url_for_book'
       response = get_classicly_url_for_book(parsed_data)
+    when 'get_user_data'
+      response = get_user_data(parsed_data)
     end
     
     return response
@@ -57,13 +59,6 @@ class WebApiHandler
     return result.to_json
   end
   
-  def get_review_for_book_by_user(params)
-    book = Book.find(params['book_id'].to_i)
-    user = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
-    
-    user.reviews.where(:reviewable => book).first()
-  end
-  
   def get_list_of_books_the_user_wrote_review_for(params)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
@@ -88,6 +83,30 @@ class WebApiHandler
         :book_review_count   => book.reviews.count,
         :classicly_url       => seo_url(book)
       }.to_json
+  end
+  
+  def get_review_for_book_by_user(params)
+    book  = Book.find(params['book_id'].to_i)
+    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    
+    review = Review.where(:reviewable => book, :reviewer => login).first()
+    
+    if review
+      return {
+          :review_title      => review.title,
+          :review_content    => review.content,
+          :review_rating     => review.rating,
+          :review_created_at => review.created_at
+        }.to_json
+    else
+      return nil
+    end
+  end
+  
+  def get_user_data(params)
+    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    
+    return login.to_json
   end
   
 end
