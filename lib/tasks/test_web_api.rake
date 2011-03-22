@@ -24,7 +24,6 @@ namespace :test_web_api do
         'user_email'            => 'test@test.com',
         'user_first_name'       => 'Zsolt',
         'user_last_name'        => 'Maslanyi',
-        'user_location_state'   => 'Budapest',
         'user_location_city'    => 'Budapest',
         'user_location_country' => 'Hungary'
       }

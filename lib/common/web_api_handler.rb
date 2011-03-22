@@ -51,7 +51,6 @@ class WebApiHandler
         :fb_name             => review.reviewer.first_name + ' ' + review.reviewer.last_name,
         :fb_location_city    => review.reviewer.location_city,
         :fb_location_country => review.reviewer.location_country,
-        :fb_location_state   => review.reviewer.location_state
       } 
     end
     

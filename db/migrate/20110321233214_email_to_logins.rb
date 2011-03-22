@@ -4,6 +4,6 @@ class EmailToLogins < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :logins, :location_country
+    remove_column :logins, :email
   end
 end

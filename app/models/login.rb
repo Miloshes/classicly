@@ -12,7 +12,6 @@ class Login < ActiveRecord::Base
         :email            => params['user_email'],
         :first_name       => params['user_first_name'],
         :last_name        => params['user_last_name'],
-        :location_state   => params['user_location_state'],
         :location_city    => params['user_location_city'],
         :location_country => params['user_location_country']
       )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322115840) do
+ActiveRecord::Schema.define(:version => 20110322161002) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -117,7 +117,6 @@ ActiveRecord::Schema.define(:version => 20110322115840) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "location_city"
-    t.string   "location_state"
     t.string   "location_country"
     t.string   "email"
   end
