@@ -26,8 +26,8 @@ class WebApiHandler
       response = get_review_for_book_by_user(parsed_data)
     when 'get_list_of_books_the_user_wrote_review_for'
       response = get_list_of_books_the_user_wrote_review_for(parsed_data)
-    when 'get_book_review_stats'
-      response = get_book_review_stats(parsed_data)
+    when 'get_book_stats'
+      response = get_book_stats(parsed_data)
     when 'get_classicly_url_for_book'
       response = get_classicly_url_for_book(parsed_data)
     end
@@ -59,13 +59,13 @@ class WebApiHandler
   
   def get_review_for_book_by_user(params)
     book = Book.find(params['book_id'])
-    user = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first()
+    user = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
     user.reviews.where(:reviewable => book).first()
   end
   
   def get_list_of_books_the_user_wrote_review_for(params)
-    login = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first()
+    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
     books = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
     
@@ -74,9 +74,12 @@ class WebApiHandler
   
   def get_classicly_url_for_book(params)
     default_url_options[:host] = 'www.classicly.com'
-    book = Book.find(params[:book_id])
+    book = Book.find(params['book_id'].to_i)
     
-    return seo_url(book)
+    return seo_url(book).to_json
+  end
+  
+  def get_book_stats(params)
   end
   
 end

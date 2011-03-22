@@ -110,8 +110,6 @@ ActiveRecord::Schema.define(:version => 20110322161002) do
 
   create_table "logins", :force => true do |t|
     t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name"
@@ -119,6 +117,7 @@ ActiveRecord::Schema.define(:version => 20110322161002) do
     t.string   "location_city"
     t.string   "location_country"
     t.string   "email"
+    t.string   "fb_connect_id"
   end
 
   create_table "reviews", :force => true do |t|

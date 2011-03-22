@@ -8,7 +8,7 @@ class Review < ActiveRecord::Base
   
   def self.create_or_update_from_ios_client_data(data)
     book  = Book.find(data['book_id'].to_i)
-    login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s, :provider => 'facebook').first()
+    login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
     
     review_conditions = {
         :login_id      => login.id,
