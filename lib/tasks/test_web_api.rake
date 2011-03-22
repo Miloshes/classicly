@@ -45,7 +45,7 @@ namespace :test_web_api do
   task :get_reviews_for_book => :environment do
     data = {
         'action'   => 'get_reviews_for_book',
-        'book_id'  => 16,
+        'book_id'  => 30,
         'page'     => 1,
         'per_page' => 20
       }
@@ -57,7 +57,7 @@ namespace :test_web_api do
   task :get_classicly_url_for_book => :environment do
     data = {
         'action'  => 'get_classicly_url_for_book',
-        'book_id' => 16
+        'book_id' => 30
       }
       
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
@@ -67,7 +67,28 @@ namespace :test_web_api do
   task :get_review_stats_for_book => :environment do
     data = {
         'action'  => 'get_review_stats_for_book',
-        'book_id' => 16
+        'book_id' => 30
+      }
+      
+      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+  
+  task :get_review_for_book_by_user => :environment do
+    data = {
+        'action'  => 'get_review_for_book_by_user',
+        'book_id' => 30,
+        'user_fbconnect_id' => '1232134'
+      }
+      
+      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+  
+  task :get_user_data => :environment do
+    data = {
+        'action'  => 'get_user_data',
+        'user_fbconnect_id' => '1232134'
       }
       
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
