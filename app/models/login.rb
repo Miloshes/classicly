@@ -20,8 +20,7 @@ class Login < ActiveRecord::Base
     login = Login.find_by_fb_connect_id(params[:uid])
     unless login
       login = Login.create(:fb_connect_id => params[:uid], :first_name => params[:first_name], :last_name => params[:last_name],
-              :email => params[:email], :location_city => params[:city], :location_state => params[:state],
-              :location_country => params[:country])
+              :email => params[:email], :location_city => params[:city], :location_country => params[:country])
     end
     login
   end
