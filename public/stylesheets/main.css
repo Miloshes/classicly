@@ -72,6 +72,7 @@ a {
     #header #nav a:hover {
       color: #4d2c0c; }
   #header #registration {
+    width: 138px;
     margin-top: 40px; }
 
 .wrapper {
@@ -171,11 +172,93 @@ a {
     text-align: left; }
     #book-page #book-metadata p {
       font-size: 13px; }
-    #book-page #book-metadata textarea {
-      width: 100%;
-      height: 75px; }
-    #book-page #book-metadata #review_submit {
-      margin-top: 10px; }
+    #book-page #book-metadata h2 span.book-author a {
+      color: #936845;
+      text-decoration: none; }
+  #book-page #reviews #title-left {
+    float: left;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 12px; }
+  #book-page #reviews #title-right {
+    float: right;
+    color: #936845;
+    float: right;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 12px; }
+  #book-page #reviews #form_box {
+    background-color: white;
+    height: 215px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px; }
+    #book-page #reviews #form_box .left {
+      width: 15%;
+      float: left; }
+      #book-page #reviews #form_box .left #profile-pic {
+        margin: 12px; }
+        #book-page #reviews #form_box .left #profile-pic img {
+          border: 5px solid #f5f1e9; }
+      #book-page #reviews #form_box .left #profile-name p {
+        text-align: left;
+        line-height: 3px;
+        margin-left: 12px;
+        font-size: 12px;
+        font-weight: bold; }
+    #book-page #reviews #form_box .right {
+      width: 85%;
+      float: left; }
+      #book-page #reviews #form_box .right textarea {
+        border: 5px solid #f5f1e9;
+        height: 140px;
+        margin-top: 10px;
+        width: 36em; }
+      #book-page #reviews #form_box .right form .ratings {
+        float: left;
+        margin-left: 33px;
+        margin-top: -18px; }
+      #book-page #reviews #form_box .right form #review_submit {
+        margin-top: 6px;
+        margin-left: 200px; }
+  #book-page #reviews ul.reviews {
+    list-style: none; }
+    #book-page #reviews ul.reviews li.striped {
+      background-color: #ebe6de; }
+    #book-page #reviews ul.reviews li {
+      margin-left: -2em;
+      padding: 12px;
+      width: 100%; }
+      #book-page #reviews ul.reviews li img {
+        width: 30px;
+        height: 30px; }
+      #book-page #reviews ul.reviews li .profile-pic, #book-page #reviews ul.reviews li .profile-name, #book-page #reviews ul.reviews li .review-rating {
+        display: inline; }
+      #book-page #reviews ul.reviews li .profile-pic {
+        width: 2em; }
+      #book-page #reviews ul.reviews li .profile-name {
+        width: 20em;
+        float: left;
+        font-family: helvetica;
+        font-size: 15px;
+        font-style: italic;
+        text-align: left;
+        line-height: 2px;
+        margin-top: -8px;
+        margin-left: 12px; }
+        #book-page #reviews ul.reviews li .profile-name p.name {
+          font-weight: bold; }
+      #book-page #reviews ul.reviews li .review-rating {
+        width: 7em;
+        float: right; }
+      #book-page #reviews ul.reviews li .review-content {
+        width: 12em;
+        width: 29em; }
+        #book-page #reviews ul.reviews li .review-content p {
+          font-size: 15px;
+          text-align: left; }
   #book-page #reviews span {
     margin-top: 30px;
     float: left;
@@ -594,6 +677,43 @@ span.condense_control {
   color: #936845;
   font-style: italic; }
 
-.twitter-share-button {
-  margin-top: 18px;
-  margin-left: 72px; }
+.share-widgets {
+  margin-top: 18px; }
+
+.twitter-widget {
+  display: inline; }
+
+.facebook-widget {
+  display: inline;
+  float: right;
+  margin-right: -51px;
+  width: 0; }
+
+.download-share .twitter-widget {
+  float: left; }
+.download-share .facebook-widget {
+  float: left;
+  margin-left: 61px; }
+
+.clear {
+  clear: both; }
+
+.star-on, .star-off {
+  float: left;
+  width: 19px;
+  height: 17px;
+  text-indent: -999em;
+  cursor: pointer;
+  display: block;
+  background: transparent;
+  overflow: hidden;
+  background: url(../images/star-sprite.png) no-repeat 0 0px; }
+
+.star-on {
+  background-position: 0 0px !important; }
+
+.star-off {
+  background-position: 0 -19px !important; }
+
+.book-avg-rating {
+  margin-left: 19px; }

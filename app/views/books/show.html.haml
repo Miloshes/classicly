@@ -21,32 +21,44 @@
   .grid_7.omega
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title
+      %h2 
+        by
+        %span.book-author
+          #{link_to @book.author.name, seo_path(@book.author)}
       .share
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
       %p= simple_format(@book.description)
-      #reviews
-      - for review in @book.reviews
-        .review
-          = image_tag review.reviewer.logins.first.image_url
-          = simple_format review.content
-      - if user_signed_in?
-        = form_for [@book, @review] do |f|
-          = f.label :content
-          %br
-          = f.text_area :content
-          = f.submit "Submit"
-    .grid_2.omega
+    .grid_2.omega.download-share
       .download_this_book
-        = form_tag download_book_path(@book.author, @book) do
+        = form_tag download_book_url(@book.author, @book) do
           %div.radio{:id => "radio_#{@book.id}"}
             - @book.classicly_formats.each_with_index do|format, index|
               = radio_button_for_format(format, index, @book)
           = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
-      = javascript_include_tag "http://platform.twitter.com/widgets.js"
-      = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}", :class =>"twitter-share-button", :target => '_blank'
+      .clear
+      .share-widgets
+        .twitter-widget
+          = javascript_include_tag "http://platform.twitter.com/widgets.js"
+          = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
+        .facebook-widget
+          <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+          <fb:like href="#{author_book_url(@book.author, @book)}" layout="box_count" show_faces="true" width="200" font="arial">
+          </fb:like>
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7
-    #fb-root
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"
-    <fb:comments href="#{author_book_url(@book)}" num_posts="10" width="600"></fb:comments>
+      #title-left
+        Reviews
+      #title-right
+        Write a review
+      .clear
+      - if user_signed_in?
+        = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
+      %ul.reviews
+        = render :partial => 'review', :collection => @book.reviews
+    
+:javascript
+  $(function(){
+    $('ul.reviews li:nth-child(even)').addClass('striped');
+    $('div.rating-cancel').remove();
+  });
 

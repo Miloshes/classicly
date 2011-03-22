@@ -13,7 +13,10 @@ class ReviewsController < ApplicationController
   
   def create
     @reviewable = find_reviewable
-    review_hash = params[:review].merge!({:reviewer => current_user})
+    #the following until the UI for rating and title is completed
+    params[:review][:rating] ||= 5
+    params[:review][:title] ||= "Test review"
+    review_hash = params[:review].merge!({:reviewer => current_login, :fb_connect_id => current_login.fb_connect_id})
     review = @reviewable.reviews.build(params[:review])
     if review.save
       # show something here

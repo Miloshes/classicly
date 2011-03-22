@@ -1,3 +1,3 @@
 .cover
-  = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg", :class =>"cover-art"), author_book_path(cover.author, cover)
+  = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{cover.id}_size3.jpg", :class =>"cover-art"), author_book_url(cover.author, cover)
   .add-profile-pics.three
