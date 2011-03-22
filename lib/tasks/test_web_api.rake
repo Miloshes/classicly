@@ -63,4 +63,14 @@ namespace :test_web_api do
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
       puts "Response was: #{response.body}"
   end
+  
+  task :get_review_stats_for_book => :environment do
+    data = {
+        'action'  => 'get_review_stats_for_book',
+        'book_id' => 16
+      }
+      
+      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
 end
