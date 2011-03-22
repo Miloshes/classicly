@@ -64,8 +64,8 @@ module ApplicationHelper
     end
   end
   
-  def facebook_image(uid)
-    image_tag "http://graph.facebook.com/%s/picture?type=square" % uid
+  def facebook_image(fb_connect_id)
+    image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
   end
 #===========================================================================================================================
 #===========================================================================================================================
