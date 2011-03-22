@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def current_login
+    Login.find(session[:login_id])
+  end
+
+  def user_signed_in?
+    session[:login_id] && Login.exists?(session[:login_id])
+  end
+
   def list_element_link(collection)
     content_tag :li do
       link_to collection.name, seo_url(collection)
@@ -53,6 +62,10 @@ module ApplicationHelper
         text_field_tag "term", search_term
       end
     end
+  end
+  
+  def facebook_image(uid)
+    image_tag "http://graph.facebook.com/%s/picture?type=square" % uid
   end
 #===========================================================================================================================
 #===========================================================================================================================

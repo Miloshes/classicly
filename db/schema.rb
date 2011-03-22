@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110317152405) do
+ActiveRecord::Schema.define(:version => 20110322000436) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -114,7 +114,12 @@ ActiveRecord::Schema.define(:version => 20110317152405) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image_url"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location_city"
+    t.string   "location_state"
+    t.string   "location_country"
+    t.string   "email"
   end
 
   create_table "reviews", :force => true do |t|
@@ -125,7 +130,7 @@ ActiveRecord::Schema.define(:version => 20110317152405) do
     t.integer  "rating"
     t.datetime "created_at"
     t.string   "fb_connect_id"
-    t.string   "user_id"
+    t.integer  "login_id"
   end
 
   create_table "sessions", :force => true do |t|

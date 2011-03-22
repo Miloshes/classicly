@@ -72,6 +72,7 @@ a {
     #header #nav a:hover {
       color: #4d2c0c; }
   #header #registration {
+    width: 138px;
     margin-top: 40px; }
 
 .wrapper {

@@ -1,13 +1,13 @@
 #form_box
   .left
     #profile-pic
-      = image_tag current_user.login_for(:facebook).image_url
+      = facebook_image(current_login.uid)
     .clear
     #profile-name
       %p
-        = current_user.login_for(:facebook).first_name
+        = current_login.first_name
       %p
-        = current_user.login_for(:facebook).last_name
+        = current_login.last_name
   .right
     = form_for [book, review] do |f|
       = f.text_area :content

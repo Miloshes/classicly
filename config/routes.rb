@@ -2,14 +2,14 @@ Classicly::Application.routes.draw do
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
+
   # current version of the review API
   match "/review_api" => "review_api#create", :via => :post
   match '/review_api/query' => "review_api#process_query", :via => :post
   
-  match 'auth/:provider/callback' => 'logins#create'
-  get "logins/index"
-
-  devise_for :users
+  resources :logins, :only => [:create] do
+    delete :destroy, :on => :collection
+  end
 
   resources :books, :only => :index do
     get :ajax_paginate, :on => :member
@@ -24,7 +24,7 @@ Classicly::Application.routes.draw do
   end
 
   match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match "/:author_id/:id/show" => "books#show", :as => :author_book, :via => :get
+  match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get
   
   # for invoking the download page and start the download
   match "/:author_id/:id/download" => "books#download", :as => 'download_book', :via => :post

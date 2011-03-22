@@ -1,9 +1,9 @@
 %li
   .profile-pic
-    = image_tag review.reviewer.login_for(:facebook).image_url
+    = facebook_image(review.reviewer.uid)
   .profile-name
     %p.name
-      = review.reviewer.login_for(:facebook).first_name
+      = review.reviewer.first_name
     %p
       #{review.created_at.to_s :review_format}
   .review-rating

@@ -1,6 +1,7 @@
 class Review < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
-  belongs_to :reviewer, :class_name => 'User', :foreign_key => 'user_id'
+  belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
+
   validates :title, :presence => true
   validates :content, :presence => true
   validates :rating, :presence => true, :numericality => true

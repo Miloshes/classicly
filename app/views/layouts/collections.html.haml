@@ -30,11 +30,9 @@
         = search_form(search_url, @search)
       #nav.grid_3
       #registration.grid_1.omega
-        - unless user_signed_in? 
-          = link_to image_tag('boton.png'), AUTHORIZE_URL
-        - else
-          = link_to "Logout", USERS_SIGNOUT_URL
-  %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}          
+        <fb:login-button onlogin="Log.info('onlogin callback')" autologoutlink="true"></fb:login-button>
+
+  %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
     #apple-store-banner
   .wrapper
     #cover-bar.container_12
