@@ -1,7 +1,7 @@
 class ChangeFacebookIdToUserIdForReviews < ActiveRecord::Migration
   def self.up
     change_table :reviews do |t|
-      t.string :user_id
+      #t.string :user_id
     end
   end
 
