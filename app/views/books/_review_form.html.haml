@@ -10,7 +10,7 @@
         = current_login.last_name
   .right
     = form_for [book, review] do |f|
-      = f.text_area :detail
+      = f.text_area :content
       .clear
       .ratings
         = raw ratings_input_for_book(f)
