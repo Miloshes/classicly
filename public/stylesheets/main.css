@@ -172,6 +172,9 @@ a {
     text-align: left; }
     #book-page #book-metadata p {
       font-size: 13px; }
+    #book-page #book-metadata h2 span.book-author a {
+      color: #936845;
+      text-decoration: none; }
   #book-page #reviews #title-left {
     float: left;
     font-size: 20px;
