@@ -2,10 +2,9 @@ Classicly::Application.routes.draw do
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
-
-  # current version of the review API
-  match "/review_api" => "review_api#create", :via => :post
-  match '/review_api/query' => "review_api#process_query", :via => :post
+  # current version of the web API
+  match "/web_api" => "web_api#create", :via => :post
+  match '/web_api/query' => "web_api#query", :via => :post
   
   resources :logins, :only => [:create] do
     delete :destroy, :on => :collection

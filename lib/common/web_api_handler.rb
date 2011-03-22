@@ -1,4 +1,4 @@
-class ReviewApiHandler
+class WebApiHandler
   include ActionDispatch::Routing::UrlFor
   include Rails.application.routes.url_helpers  
   
@@ -15,20 +15,24 @@ class ReviewApiHandler
   end
   
   def process_query(params)
-    parsed_data = ActiveSupport::JSON.decode(self.json_data).stringify_keys
+    parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
 
-    case record['action']
+    response = ''
+
+    case parsed_data['action']
     when 'get_reviews_for_book'
-      get_reviews_for_book(parsed_data)
+      response = get_reviews_for_book(parsed_data)
     when 'get_review_for_book_by_user'
-      get_review_for_book_by_user(parsed_data)
+      response = get_review_for_book_by_user(parsed_data)
     when 'get_list_of_books_the_user_wrote_review_for'
-      get_list_of_books_the_user_wrote_review_for(parsed_data)
+      response = get_list_of_books_the_user_wrote_review_for(parsed_data)
     when 'get_book_review_stats'
-      get_book_review_stats(parsed_data)
+      response = get_book_review_stats(parsed_data)
     when 'get_classicly_url_for_book'
-      get_classicly_url_for_book(parsed_data)
+      response = get_classicly_url_for_book(parsed_data)
     end
+    
+    return response
   end
   
   def get_reviews_for_book(params)
@@ -40,18 +44,17 @@ class ReviewApiHandler
   
   def get_review_for_book_by_user(params)
     book = Book.find(params['book_id'])
-    user = Login.where(:uid => data['user_fbconnect_id'], :provider => 'facebook').first().user
+    user = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first().user
     
     user.reviews.where(:reviewable => book).first()
   end
   
   def get_list_of_books_the_user_wrote_review_for(params)
-    book = Book.find(params['book_id'])
-    user = Login.where(:uid => data['user_fbconnect_id'], :provider => 'facebook').first().user
+    login = Login.where(:uid => params['user_fbconnect_id'].to_s, :provider => 'facebook').first()
     
-    books = user.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable }
+    books = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
     
-    return books
+    return books.to_json
   end
   
   def get_classicly_url_for_book(params)

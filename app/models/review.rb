@@ -7,12 +7,13 @@ class Review < ActiveRecord::Base
   validates :rating, :presence => true, :numericality => true
   
   def self.create_or_update_from_ios_client_data(data)
-    book = Book.find(data['book_id'])
-    user = Login.where(:uid => data['user_fbconnect_id'], :provider => 'facebook').first().user
+    book  = Book.find(data['book_id'].to_i)
+    login = Login.where(:uid => data['user_fbconnect_id'].to_s, :provider => 'facebook').first()
     
     review_conditions = {
-        :reviewable_id => book.id,
-        :fb_connect_id => user.uid_for(:facebook)
+        :login_id      => login.id,
+        :reviewable    => book,
+        :fb_connect_id => login.uid
       }
 
     new_review_data = {

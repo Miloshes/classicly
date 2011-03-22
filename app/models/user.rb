@@ -2,8 +2,6 @@ class User < ActiveRecord::Base
   has_many :logins
   has_many :reviews
 
-
-  
   def password_required?
     false
   end

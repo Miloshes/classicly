@@ -1,4 +1,4 @@
-class ReviewApiController < ApplicationController
+class WebApiController < ApplicationController
   skip_before_filter :verify_authenticity_token
   
   before_filter :get_api_handler
@@ -13,7 +13,7 @@ class ReviewApiController < ApplicationController
   
   # POST review_api/query
   def query
-    response = @handler.process_query(params[:json_data])
+    response = @handler.process_query(params)
     
     render :text => response
   end
@@ -21,7 +21,7 @@ class ReviewApiController < ApplicationController
   private
   
   def get_api_handler
-    @handler = ReviewApiHandler.new
+    @handler = WebApiHandler.new
   end
   
 end
