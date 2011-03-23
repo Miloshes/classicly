@@ -44,7 +44,6 @@ class WebApiHandler
     result = []
     reviews.each do |review|
       result << {
-        :id                  => review.id,
         :title               => review.title,
         :content             => review.content,
         :rating              => review.rating,
