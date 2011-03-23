@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_return_to
-    session['return_to'] = (request.request_uri =~ /\/\w+/) && !(request.request_uri =~ /\/auth\/facebook/ || request.request_uri =~ /\/logins/)? request.request_uri : session['return_to']
+    session['return_to'] = (request.fullpath =~ /\/\w+/) && !(request.fullpath =~ /\/auth\/facebook/ || request.fullpath =~ /\/logins/)? request.fullpath : session['return_to']
   end
 
   protected
