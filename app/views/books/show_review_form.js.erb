@@ -1,2 +1,4 @@
 $("<%= escape_javascript(render :partial => 'books/review_form',
   :locals => {:review => @review, :book => @book}) %>").insertBefore('ul.reviews');
+$('input[type=radio].star').rating();
+$('div.rating-cancel').remove();
