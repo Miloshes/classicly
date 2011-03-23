@@ -5,7 +5,8 @@ class BooksController < ApplicationController
   def show
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @review = Review.new
+    @review = session[:review] || Review.new
+    session[:review] = nil
   end
 
   # for invoking the download page
