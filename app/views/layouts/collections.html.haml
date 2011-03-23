@@ -16,6 +16,7 @@
   
   = javascript_include_tag 'jquery.min'
   = javascript_include_tag 'jquery.metadata', 'application', 'jqueryui', 'rails', 'jquery.condense', 'jquery.rating'
+  = javascript_include_tag 'collection-page' #responds to the login  from facebook
   = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head
@@ -32,7 +33,7 @@
         = search_form(search_url, @search)
       #nav.grid_3
       #registration.grid_1.omega
-        <fb:login-button autologoutlink="true" onlogout="alert('logout')" onlogin='authFacebookLogin();' perms='user_about_me, user_hometown, user_photos'></fb:login-button>
+        <fb:login-button autologoutlink="true" perms='user_about_me, user_hometown, user_photos'></fb:login-button>
   %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
     #apple-store-banner
   .wrapper

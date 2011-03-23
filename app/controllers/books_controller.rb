@@ -36,6 +36,12 @@ class BooksController < ApplicationController
     render :layout => false
   end
 
+  def show_review_form
+    @book = Book.find_by_id(params[:id])
+    @review = Review.new
+    render :layout => false
+  end
+
   private 
 
   def find_book

@@ -1,6 +1,3 @@
-
-
-
 $(function(){
 
   var _paq = _paq || [];
@@ -9,21 +6,10 @@ $(function(){
     _paq.push(["trackLocalConversion"])
   });
 
-  FB.Event.subscribe('edge.delete', function(response) {
-  });
-
-  FB.Event.subscribe('comment.create', function(response) {
-  });
-
-  // login the user when he/she has logged out directly from facebook
-  FB.Event.subscribe('auth.login', function(response) {
-    login(response);
-  });
-  // logout the user when he/she has logged out directly from facebook
   FB.Event.subscribe('auth.logout', function(response) {
     logout();
   });
-  
+
   $(window).load(function(){
     // align small sized covers to the bottom in the related books container
     $('img.cover-art').each(function(){
@@ -50,17 +36,6 @@ $(function(){
 
 });
 
-
-  function authFacebookLogin(){
-    FB.getLoginStatus(function(response) {
-      if (response.session)
-        login(response);
-      else
-        logout();
-    });
-  }
-  
-  
   function login(response){
       var query = FB.Data.query('select first_name, last_name, hometown_location, email from user where uid={0}',response.session.uid);
 

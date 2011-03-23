@@ -55,10 +55,14 @@
         = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
       %ul.reviews
         = render :partial => 'review', :collection => @book.reviews
-    
-:javascript
-  $(function(){
-    $('ul.reviews li:nth-child(even)').addClass('striped');
-    $('div.rating-cancel').remove();
-  });
 
+= javascript_include_tag 'book-details'
+:javascript
+  $('#reviews').data('book_id', #{@book.id})
+:javascript
+  FB.init({
+    appId  : '#{FACEBOOK_APP_ID}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });

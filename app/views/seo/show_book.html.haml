@@ -23,7 +23,7 @@
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title
       .share
-        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+        <fb:like show_faces="true" width="600" font="arial"></fb:like>
       %p= simple_format(@book.description)
     .grid_2.omega
       .download_this_book
@@ -34,7 +34,17 @@
           = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7
-      #fb-root
-      = javascript_include_tag "http://connect.facebook.net/en_US/all.js#appId=127446087325348&amp;xfbml=1"
-      <fb:comments href="#{author_book_url(@book)}" num_posts="10" width="600"></fb:comments>
+      #title-left
+        Reviews
+      #title-right
+        Write a review
+      .clear
+      - if user_signed_in?
+        = render :partial => 'books/review_form', :locals => {:review => @review, :book => @book}
+      %ul.reviews
+        = render :partial => 'books/review', :collection => @book.reviews
+
+= javascript_include_tag 'book-details'
+:javascript
+  $('#reviews').data('book_id', #{@book.id})
 
