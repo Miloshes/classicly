@@ -3,6 +3,7 @@ $(function(){
   $('ul.reviews li:nth-child(even)').addClass('striped');
   $('div.rating-cancel').remove();
 
+  // validation for empty review form
   $('input#review_submit').click(function(){
     if($('textarea#review_content').val().length == 0){
       $("<div id='errorExplanation'>"
@@ -11,6 +12,16 @@ $(function(){
     }else{
       $(this).parent().submit();
     }
+    return false;
+  });
+  
+  // login to facebook from <Write a review> link
+  $('#title-right a').click(function(){
+    FB.getLoginStatus(function(response) {
+      if(!(response.session)) {
+        $('a.fb_button').click();
+      }
+    });
     return false;
   });
   

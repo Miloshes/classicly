@@ -49,7 +49,7 @@
       #title-left
         Reviews
       #title-right
-        Write a review
+        = link_to 'Write a review', '#'
       .clear
       - if user_signed_in?
         = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
