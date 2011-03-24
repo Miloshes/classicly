@@ -90,7 +90,7 @@ class WebApiHandler
     book  = Book.find(params['book_id'].to_i)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
-    return nil.to_json if login.blank? || book.blank?
+    return nil if login.blank? || book.blank?
     
     review = Review.where(:reviewable => book, :reviewer => login).first()
     
@@ -102,7 +102,7 @@ class WebApiHandler
           :review_created_at => review.created_at
         }.to_json
     else
-      return nil.to_json
+      return nil
     end
   end
   
