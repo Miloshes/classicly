@@ -61,6 +61,8 @@ class WebApiHandler
   def get_list_of_books_the_user_wrote_review_for(params)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
+    return [].to_json if login.blank?
+    
     books = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
     
     return books.to_json
@@ -88,6 +90,8 @@ class WebApiHandler
     book  = Book.find(params['book_id'].to_i)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
+    return nil.to_json if login.blank? || book.blank?
+    
     review = Review.where(:reviewable => book, :reviewer => login).first()
     
     if review
@@ -98,7 +102,7 @@ class WebApiHandler
           :review_created_at => review.created_at
         }.to_json
     else
-      return nil
+      return nil.to_json
     end
   end
   
