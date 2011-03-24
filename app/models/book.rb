@@ -171,4 +171,8 @@ class Book < ActiveRecord::Base
   def has_rating?
     self.avg_rating > 0
   end
+
+  def belongs_to_author_collection?
+    return Collection.exists?(:cached_slug => self.author.cached_slug)
+  end
 end
