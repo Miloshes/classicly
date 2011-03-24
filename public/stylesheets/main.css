@@ -183,12 +183,14 @@ a {
     margin-top: 12px; }
   #book-page #reviews #title-right {
     float: right;
-    color: #936845;
     float: right;
-    font-size: 16px;
-    font-weight: bold;
     margin-bottom: 20px;
     margin-top: 12px; }
+    #book-page #reviews #title-right a {
+      color: #936845;
+      font-size: 16px;
+      font-weight: bold;
+      text-decoration: none; }
   #book-page #reviews #form_box {
     background-color: white;
     height: auto;

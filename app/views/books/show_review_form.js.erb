@@ -2,3 +2,13 @@ $("<%= escape_javascript(render :partial => 'books/review_form',
   :locals => {:review => @review, :book => @book}) %>").insertBefore('ul.reviews');
 $('input[type=radio].star').rating();
 $('div.rating-cancel').remove();
+$('input#review_submit').click(function(){
+  if($('textarea#review_content').val().length == 0){
+    $("<div id='errorExplanation'>"
+     + "<h2>1 error prohibited this review from being saved:</h2>" 
+     + "<ul><li>Content can not be blank</li></ul></div>").insertBefore("div.ratings");
+  }else{
+    $(this).parent().submit();
+  }
+  return false;
+});
