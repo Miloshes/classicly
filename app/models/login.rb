@@ -21,8 +21,12 @@ class Login < ActiveRecord::Base
     unless login
       login = Login.create(:fb_connect_id => params[:uid], :first_name => params[:first_name], :last_name => params[:last_name],
               :email => params[:email], :location_city => params[:city], :location_country => params[:country])
+      login.report_successful_registration_to_performable
     end
     login
   end
 
+  def report_successful_registration_to_performable
+    Net::HTTP.get(URI.parse("http://analytics.performable.com/v1/event?_n=3F6mY45twfux&_a=0HuiG9&_i=#{self.fb_connect_id}"))
+  end
 end
