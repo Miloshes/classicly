@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322161002) do
+ActiveRecord::Schema.define(:version => 20110316194050) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -102,22 +102,36 @@ ActiveRecord::Schema.define(:version => 20110322161002) do
     t.string "name"
   end
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
   create_table "incoming_data", :force => true do |t|
     t.text     "json_data"
     t.boolean  "processed",  :default => false, :null => false
     t.datetime "created_at"
   end
 
+>>>>>>> ccd8deea3f684e2a172b9c3b63cd57fb231f5058
   create_table "logins", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+<<<<<<< HEAD
+    t.string   "image_url"
+=======
+  create_table "incoming_datas", :force => true do |t|
+    t.text     "json_data"
+    t.boolean  "processed",  :default => false, :null => false
+    t.datetime "created_at"
+>>>>>>> master
+=======
     t.string   "first_name"
     t.string   "last_name"
     t.string   "location_city"
     t.string   "location_country"
     t.string   "email"
     t.string   "fb_connect_id"
+>>>>>>> ccd8deea3f684e2a172b9c3b63cd57fb231f5058
   end
 
   create_table "reviews", :force => true do |t|

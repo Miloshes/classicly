@@ -5,7 +5,8 @@ class BooksController < ApplicationController
   def show
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @review = Review.new
+    @review = session[:review] || Review.new
+    session[:review] = nil
   end
 
   # for invoking the download page
@@ -33,6 +34,12 @@ class BooksController < ApplicationController
 
   def ajax_paginate
     @books = Collection.find(params[:id]).books.page(params[:page]).per(25)
+    render :layout => false
+  end
+
+  def show_review_form
+    @book = Book.find_by_id(params[:id])
+    @review = Review.new
     render :layout => false
   end
 

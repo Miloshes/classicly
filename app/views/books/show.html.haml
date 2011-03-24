@@ -1,7 +1,7 @@
 - content_for :title do
   %title=@book.web_title
 - content_for :head do
-  = fb_open_graph_metadata({:url => author_book_url(@book), :description => @book.description_for_open_graph,
+  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => @book.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
   %meta{:name => 'description', :content => @book.description_for_open_graph}
@@ -42,23 +42,27 @@
           = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
         .facebook-widget
           <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-          <fb:like href="#{author_book_url(@book.author, @book)}" layout="box_count" show_faces="true" width="200" font="arial">
+          <fb:like layout="box_count" show_faces="true" width="200" font="arial">
           </fb:like>
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7
       #title-left
         Reviews
       #title-right
-        Write a review
+        = link_to 'Write a review', '#'
       .clear
       - if user_signed_in?
         = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
       %ul.reviews
         = render :partial => 'review', :collection => @book.reviews
-    
-:javascript
-  $(function(){
-    $('ul.reviews li:nth-child(even)').addClass('striped');
-    $('div.rating-cancel').remove();
-  });
 
+= javascript_include_tag 'book-details'
+:javascript
+  $('#reviews').data('book_id', #{@book.id})
+:javascript
+  FB.init({
+    appId  : '#{FACEBOOK_APP_ID}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });

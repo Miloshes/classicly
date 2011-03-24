@@ -16,12 +16,10 @@ class ReviewsController < ApplicationController
     #the following until the UI for rating and title is completed
     params[:review][:rating] ||= 5
     params[:review][:title] ||= "Test review"
-    review_hash = params[:review].merge!({:reviewer => current_login, :fb_connect_id => current_login.fb_connect_id})
+    review_hash = params[:review].merge!({:reviewer => current_login}) # add reviewer to  attributes
     review = @reviewable.reviews.build(params[:review])
-    if review.save
-      # show something here
-    else
-      
+    unless review.save
+      session[:review] = review # save review to show errors
     end
     redirect_to author_book_url(@reviewable.author, @reviewable)  
   end
