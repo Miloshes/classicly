@@ -102,7 +102,7 @@ class WebApiHandler
           :review_created_at => review.created_at
         }.to_json
     else
-      return ''.to_json
+      return 0
     end
   end
   
