@@ -74,6 +74,7 @@ a
       &:hover
         :color #4d2c0c
   #registration
+    width: 138px
     :margin
       :top 40px
 .wrapper
@@ -182,6 +183,10 @@ a
     :text-align left
     p
       :font-size 13px
+    h2
+      span.book-author a
+        color: #936845
+        text-decoration: none
   #reviews
     #title-left
       float: left
@@ -191,15 +196,20 @@ a
       margin-top: 12px
     #title-right
       float: right
-      color: #936845
       float: right
-      font-size: 16px
-      font-weight: bold
       margin-bottom: 20px
       margin-top: 12px
+      a
+        color: #936845
+        font-size: 16px
+        font-weight: bold
+        text-decoration: none
     #form_box
       background-color: #FFF
-      height: 215px
+      height: auto
+      float: right
+      width: 37em
+      margin-bottom: 50px
       -moz-border-radius: 4px
       border-radius: 4px
       -webkit-border-radius: 4px
@@ -731,10 +741,23 @@ span.condense_control
   color: #936845
   font-style: italic
 
-.twitter-share-button
+.share-widgets
   margin-top: 18px
-  margin-left: 72px
-  
+
+.twitter-widget
+  display: inline
+.facebook-widget
+  display: inline
+  float: right
+  margin-right: -51px
+  width: 0
+
+.download-share
+  .twitter-widget
+    float: left
+  .facebook-widget
+    float: left
+    margin-left: 61px
 .clear
   clear: both
   
@@ -755,3 +778,9 @@ span.condense_control
 
 .book-avg-rating
   margin-left: 19px
+  
+#errorExplanation
+  h2
+    font-size: 14px
+  ul li
+    font-size: 12px

@@ -1,4 +1,13 @@
 module ApplicationHelper
+
+  def current_login
+    Login.find(session[:login_id])
+  end
+
+  def user_signed_in?
+    session[:login_id] && Login.exists?(session[:login_id])
+  end
+
   def list_element_link(collection)
     content_tag :li do
       link_to collection.name, seo_url(collection)
@@ -15,7 +24,7 @@ module ApplicationHelper
     content_tag(:meta, nil, {:property => "og:url", :content => config[:url] || "http://www.classicly.com"}) +
     content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
     content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
-    content_tag(:meta, nil, {:property => "fb:app_id", :content => "191005167590330"}) +
+    content_tag(:meta, nil, {:property => "fb:app_id", :content => FACEBOOK_APP_ID}) +
     content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "23,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
 
@@ -53,6 +62,10 @@ module ApplicationHelper
         text_field_tag "term", search_term
       end
     end
+  end
+  
+  def facebook_image(fb_connect_id)
+    image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
   end
 #===========================================================================================================================
 #===========================================================================================================================

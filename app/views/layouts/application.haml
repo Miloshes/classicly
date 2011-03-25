@@ -8,7 +8,8 @@
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
   <meta name="google-site-verification" content="C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI" />
   <meta name="msvalidate.01" content="15B64C4C2ACD1A23F62F20544A16C9FD" />
-  
+  <META name="y_key" content="8586e4a49b4ee727" />
+
   = stylesheet_link_tag 'main', :media => :screen
   = stylesheet_link_tag 'grid', :media => :screen
   = stylesheet_link_tag 'moreLess', :media => :screen
@@ -17,6 +18,7 @@
   
   = javascript_include_tag 'jquery.min'
   = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.condense', 'jquery.rating'
+  = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head
   <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
@@ -32,10 +34,8 @@
         = search_form(search_url, @search)
       #nav.grid_3
       #registration.grid_1.omega
-        - unless user_signed_in? 
-          = link_to image_tag('boton.png'), AUTHORIZE_URL
-        - else
-          = link_to "Logout", USERS_SIGNOUT_URL
+        <fb:login-button autologoutlink="true"  perms='user_about_me, user_hometown, user_photos'></fb:login-button>
+      #fb-root
   %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
     #apple-store-banner
   .wrapper
@@ -92,6 +92,14 @@
           = link_to image_tag('footer-support.png'), "http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"
           = link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
           = link_to image_tag('footer-twitter.png'), "http://twitter.com/classiclybooks"
+          
+:javascript
+  FB.init({
+    appId  : '#{FACEBOOK_APP_ID}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
 
 :javascript
   var is_ssl = ("https:" == document.location.protocol);
@@ -109,17 +117,7 @@
 
 <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/0HuiG9.js"
 type="text/javascript"></script>
-          
-<div id="fb-root"></div>
-<script src="http://connect.facebook.net/en_US/all.js"></script>
-<script>
-FB.init({
-appId  : '127446087325348',
-status : true, // check login status
-cookie : true, // enable cookies to allow the server to access the session
-xfbml  : true  // parse XFBML
-});
-</script>
+
 <script type="text/javascript">
 
 var _gaq = _gaq || [];
@@ -152,5 +150,19 @@ loadChartbeat : function() { oldonload(); loadChartbeat(); };
 })();
 
 </script>
+<script type="text/javascript">
+(function() {
+var t   = document.createElement('script');
+t.type  = 'text/javascript';
+t.async = true;
+t.id    = 'gauges-tracker';
+t.setAttribute('data-site-id',
+'4d88ada2a9b23d0ebd000011');
+t.src = '//secure.gaug.es/track.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(t, s);
+})();
+</script>
+
 
 

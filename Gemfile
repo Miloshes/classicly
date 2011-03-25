@@ -1,10 +1,9 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 gem 'aws-s3', :require => 'aws/s3'
-gem 'devise'
 gem 'haml'
 gem "friendly_id", "~> 3.2.1"
 gem 'jquery-rails'
@@ -12,7 +11,6 @@ gem 'kaminari'
 gem 'meta_where'
 gem 'mongrel'
 gem 'nokogiri'
-gem 'omniauth'
 gem 'paperclip'
 gem 'rest-client', :require => 'rest_client'
 gem 'sitemap_generator'
