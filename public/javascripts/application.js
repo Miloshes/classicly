@@ -1,9 +1,9 @@
 $(function(){
 
-  var _paq = _paq || [];
-  
   FB.Event.subscribe('edge.create', function(response) {
-    _paq.push(["trackLocalConversion"])
+    $.ajax({
+      type: "GET",
+      url: "/facebook/like"});
   });
 
   FB.Event.subscribe('auth.logout', function(response) {

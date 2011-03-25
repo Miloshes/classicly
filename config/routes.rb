@@ -5,7 +5,9 @@ Classicly::Application.routes.draw do
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
-  
+
+  match '/facebook/like' => 'facebook_events#like', :via => :get
+
   resources :logins, :only => [:create] do
     delete :destroy, :on => :collection
   end

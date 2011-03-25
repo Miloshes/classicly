@@ -175,4 +175,13 @@ class Book < ActiveRecord::Base
   def belongs_to_author_collection?
     return Collection.exists?(:cached_slug => self.author.cached_slug)
   end
+
+  def needs_canonical_link?
+    (self.cached_slug =~ /--[\d]+/) != nil
+  end
+
+  def canonical_slug
+    end_of_string = self.cached_slug =~ /--[\d]+/
+    self.cached_slug[0, end_of_string]
+  end
 end
