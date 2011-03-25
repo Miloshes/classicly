@@ -30,6 +30,8 @@ class BooksController < ApplicationController
         :disposition => 'attachment',
         :filename => "#{@book.pretty_title}.#{@format}"
       )
+    #log in mixpanel the download
+    @mixpanel.track_event("book-download", {:id => current_login.fb_connect_id, :book => @book.pretty_title})
   end
 
   def ajax_paginate

@@ -9,6 +9,7 @@ gem "friendly_id", "~> 3.2.1"
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'meta_where'
+gem 'mixpanel'
 gem 'mongrel'
 gem 'nokogiri'
 gem 'paperclip'
