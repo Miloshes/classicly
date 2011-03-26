@@ -22,6 +22,10 @@ class Collection < ActiveRecord::Base
 
   # genre
   belongs_to :genre
+  default_scope :order => 'downloaded_count desc'
+  scope :book_type, where(:book_type => 'book')
+  scope :by_author, where(:collection_type => 'author')
+  scope :by_collection, where(:collection_type => 'collection')
   
   validates :name, :presence => true
   validates :book_type, :presence => true
@@ -49,6 +53,7 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
   
+  
   def self.options_for_book_type
     ["book", "audiobook"].collect { |name|
         ["#{name}", name]
@@ -73,6 +78,12 @@ class Collection < ActiveRecord::Base
       }
   end
   
+  def self.update_cache_downloaded_count
+    Collection.find_each do |collection|
+      collection.update_attribute :downloaded_count, collection.books.sum(:downloaded_count)
+    end
+  end
+
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
