@@ -221,13 +221,34 @@ a {
         height: 140px;
         margin-top: 10px;
         width: 36em; }
+      #book-page #reviews #form_box .right #review_label {
+        font-size: 14px;
+        color: #c6c6c6;
+        margin-left: 31px;
+        margin-top: 20px;
+        text-align: left; }
+      #book-page #reviews #form_box .right #rating_label {
+        display: inline;
+        float: left;
+        font-size: 14px;
+        color: #c6c6c6;
+        margin-left: 38px;
+        margin-top: 10px; }
       #book-page #reviews #form_box .right form .ratings {
         float: left;
-        margin-left: 33px;
-        margin-top: -18px; }
+        margin-left: 7px;
+        margin-top: -21px; }
       #book-page #reviews #form_box .right form #review_submit {
         margin-top: 6px;
-        margin-left: 200px; }
+        margin-left: 166px; }
+      #book-page #reviews #form_box .right form #review_submit.displaced {
+        margin-left: 326px; }
+      #book-page #reviews #form_box .right #errorExplanation {
+        float: right;
+        margin-right: 12px;
+        width: 59%; }
+        #book-page #reviews #form_box .right #errorExplanation ul li {
+          text-align: left; }
   #book-page #reviews ul.reviews {
     list-style: none; }
     #book-page #reviews ul.reviews li.striped {
