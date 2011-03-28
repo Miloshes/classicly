@@ -71,6 +71,16 @@ a {
       color: #4d2c0c; }
     #header #nav a:hover {
       color: #4d2c0c; }
+  #header #nav #user_welcome {
+    font-size: 12px;
+    color: white; }
+    #header #nav #user_welcome img {
+      margin-top: 17px; }
+    #header #nav #user_welcome .name {
+      display: inline;
+      float: right;
+      margin-right: 42px;
+      margin-top: 49px; }
   #header #registration {
     width: 138px;
     margin-top: 40px; }

@@ -32,6 +32,11 @@
       .grid_5
         = search_form(search_url, @search)
       #nav.grid_3
+        - if user_signed_in?
+          #user_welcome
+            = facebook_image(current_login.fb_connect_id)
+            %span.name
+              Welcome back, #{current_login.first_name}!
       #registration.grid_1.omega
         <fb:login-button autologoutlink="true" perms='user_about_me, user_hometown, user_photos'></fb:login-button>
   %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
