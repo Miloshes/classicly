@@ -123,14 +123,17 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "fb_connect_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
+<<<<<<< Updated upstream
     t.datetime "updated_at"
     t.string   "user_id"
+=======
+    t.string   "fb_connect_id"
+>>>>>>> Stashed changes
     t.integer  "login_id"
   end
 
@@ -145,12 +148,12 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "slugs", :force => true do |t|
-    t.string    "name"
-    t.integer   "sluggable_id"
-    t.integer   "sequence",                     :default => 1, :null => false
-    t.string    "sluggable_type", :limit => 40
-    t.string    "scope"
-    t.timestamp "created_at"
+    t.string   "name"
+    t.integer  "sluggable_id"
+    t.integer  "sequence",                     :default => 1, :null => false
+    t.string   "sluggable_type", :limit => 40
+    t.string   "scope"
+    t.datetime "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
