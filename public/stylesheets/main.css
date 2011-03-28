@@ -220,7 +220,8 @@ a {
         border: 5px solid #f5f1e9;
         height: 140px;
         margin-top: 10px;
-        width: 36em; }
+        width: 36em;
+        padding: 10px 5px; }
       #book-page #reviews #form_box .right #review_label {
         font-size: 14px;
         color: #c6c6c6;
@@ -245,8 +246,8 @@ a {
         margin-left: 326px; }
       #book-page #reviews #form_box .right #errorExplanation {
         float: right;
-        margin-right: 12px;
-        width: 59%; }
+        margin-right: 18px;
+        width: 55%; }
         #book-page #reviews #form_box .right #errorExplanation ul li {
           text-align: left; }
   #book-page #reviews ul.reviews {
