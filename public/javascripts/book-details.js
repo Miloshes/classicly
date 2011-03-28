@@ -5,9 +5,9 @@ $(function(){
 
   FB.getLoginStatus(function(response) {
     if(response.session)
-      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': response.session.uid});
+      mpmetrics.track('Viewed Book', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': response.session.uid});
     else
-      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': 'anon'});
+      mpmetrics.track('Viewed Book', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': 'anon'});
   });
 
   // validation for empty review form

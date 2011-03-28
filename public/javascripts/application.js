@@ -5,7 +5,7 @@ $(function(){
     FB.getLoginStatus(function(response) {
       if (response.session) {
         id = response.session.uid
-        mpmetrics.track('fblike', {'fb_uid': id, 'url': liked_url});
+        mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
       }
     });
   });
