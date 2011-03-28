@@ -18,7 +18,7 @@ class ReviewsController < ApplicationController
     review_hash = params[:review].merge!({:reviewer => current_login}) # add reviewer to  attributes
     review = @reviewable.reviews.build(params[:review])
     if review.save
-      @mixpanel.track_event("review-left", {:id => current_login.fb_connect_id})
+      @mixpanel.track_event("Review Left", {:id => current_login.fb_connect_id})
     else
       session[:review] = review # save review to show errors
     end

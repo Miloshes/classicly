@@ -33,7 +33,7 @@ class BooksController < ApplicationController
     Book.update_counters @book.id, :downloaded_count => 1
 
     if user_signed_in?
-      @mixpanel.track_event("book-download", {:id => current_login.fb_connect_id, :book => @book.pretty_title})
+      @mixpanel.track_event("Download Book", {:id => current_login.fb_connect_id, :book => @book.pretty_title})
     else
       @mixpanel.track_event("Download Book", {:book => @book.pretty_title})
     end
