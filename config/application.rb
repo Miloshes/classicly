@@ -38,5 +38,8 @@ module Classicly
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    #configuration for the mixpanel gem
+    config.middleware.use "MixpanelMiddleware", "b6f94d510743ff0037009f3a1be605c2", :async => true
   end
 end

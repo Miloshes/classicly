@@ -2,6 +2,8 @@
   %title=@book.web_title
 
 - content_for :head do
+  - if @book.needs_canonical_link?
+    %link{:rel => "canonical", :href => "http://www.classicly.com/#{@book.author.cached_slug}/#{@book.canonical_slug}" }
   = fb_open_graph_metadata({:url => seo_url(@book), :description => @book.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })

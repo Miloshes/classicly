@@ -16,12 +16,12 @@ class Login < ActiveRecord::Base
       )
   end
   
-  def self.register_from_classicly(params)
+  def self.register_from_classicly(params, mixpanel)
     login = Login.find_by_fb_connect_id(params[:uid])
     unless login
       login = Login.create(:fb_connect_id => params[:uid], :first_name => params[:first_name], :last_name => params[:last_name],
               :email => params[:email], :location_city => params[:city], :location_country => params[:country])
-      login.report_successful_registration_to_performable
+      mixpanel.track_event("signup", {:id => login.fb_connect_id})
     end
     login
   end

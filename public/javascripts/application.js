@@ -1,9 +1,13 @@
 $(function(){
 
-  FB.Event.subscribe('edge.create', function(response) {
-    $.ajax({
-      type: "GET",
-      url: "/facebook/like"});
+  FB.Event.subscribe('edge.create', function(respuesta) {
+    liked_url = respuesta;
+    FB.getLoginStatus(function(response) {
+      if (response.session) {
+        id = response.session.uid
+        mpmetrics.track('fblike', {'fb_uid': id, 'url': liked_url});
+      }
+    });
   });
 
   FB.Event.subscribe('auth.logout', function(response) {

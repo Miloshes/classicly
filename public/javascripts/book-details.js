@@ -3,6 +3,13 @@ $(function(){
   $('ul.reviews li:nth-child(even)').addClass('striped');
   $('div.rating-cancel').remove();
 
+  FB.getLoginStatus(function(response) {
+    if(response.session)
+      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': response.session.uid});
+    else
+      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': 'anon'});
+  });
+
   // validation for empty review form
   $('input#review_submit').click(function(){
     if($('textarea#review_content').val().length == 0){

@@ -171,4 +171,13 @@ class Book < ActiveRecord::Base
   def has_rating?
     self.avg_rating > 0
   end
+
+  def needs_canonical_link?
+    (self.cached_slug =~ /--[\d]+/) != nil
+  end
+
+  def canonical_slug
+    end_of_string = self.cached_slug =~ /--[\d]+/
+    self.cached_slug[0, end_of_string]
+  end
 end
