@@ -7,7 +7,6 @@ namespace :test_web_api do
         "user_fbconnect_id" => "1232134",
         "book_id" => 30,
         "action" => "register_book_review",
-        "title" => "Awesome book",
         "content" => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
         "rating" => 5,
         "timestamp" => "Thu Feb 10 14:09:59 +0100 2011"

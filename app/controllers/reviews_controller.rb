@@ -15,7 +15,6 @@ class ReviewsController < ApplicationController
     @reviewable = find_reviewable
     #the following until the UI for rating and title is completed
     params[:review][:rating] ||= 5
-    params[:review][:title] ||= "Test review"
     review_hash = params[:review].merge!({:reviewer => current_login}) # add reviewer to  attributes
     review = @reviewable.reviews.build(params[:review])
     if review.save

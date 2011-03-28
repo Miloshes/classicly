@@ -44,7 +44,6 @@ class WebApiHandler
     result = []
     reviews.each do |review|
       result << {
-        :title               => review.title,
         :content             => review.content,
         :rating              => review.rating,
         :created_at          => review.created_at,
@@ -96,7 +95,6 @@ class WebApiHandler
     
     if review
       return {
-          :review_title      => review.title,
           :review_content    => review.content,
           :review_rating     => review.rating,
           :review_created_at => review.created_at
