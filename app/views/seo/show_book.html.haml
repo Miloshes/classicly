@@ -24,6 +24,13 @@
   .grid_7.omega
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title
+      %h2 
+        by
+        %span.book-author
+          - if @book.belongs_to_author_collection? 
+            #{link_to @book.author.name, seo_path(@book.author)}
+          -else
+            = @book.author.name
       .share
         <fb:like show_faces="true" width="600" font="arial"></fb:like>
       %p= simple_format(@book.description)
