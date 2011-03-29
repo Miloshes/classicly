@@ -52,7 +52,7 @@ $(function(){
 });
 
 function loginInBookDetails(response){
-  var query = FB.Data.query('select first_name, last_name, hometown_location, email from user where uid={0}',response.session.uid);
+  var query = FB.Data.query('select first_name, last_name, pic_small, hometown_location, email from user where uid={0}',response.session.uid);
 
       query.wait(function(rows) {
         city =  rows[0].hometown_location.city;
@@ -61,7 +61,9 @@ function loginInBookDetails(response){
         first_name = rows[0].first_name;
         last_name = rows[0].last_name;
         email = rows[0].email;
+        pic = rows[0].pic_small;
 
+        showPicInHeader(pic, first_name);
         $.ajax({
         type:"POST",
         url:"/logins",
