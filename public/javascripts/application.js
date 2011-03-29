@@ -1,9 +1,9 @@
 $(function(){
-
   FB.Event.subscribe('edge.create', function(respuesta) {
     liked_url = respuesta;
+    console.log(RAILS_ENV);
     FB.getLoginStatus(function(response) {
-      if (response.session) {
+      if (response.session && RAILS_ENV == 'production') {
         id = response.session.uid
         mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
       }

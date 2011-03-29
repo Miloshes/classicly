@@ -5,7 +5,13 @@ class BooksController < ApplicationController
   def show
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @review = session[:review] || Review.new
+    mixpanel_properties = {:title => @book.pretty_title}
+    if user_signed_in?
+      mixpanel_properties.merge!({:id => current_login.fb_connect_id})
+    end
+    @mixpanel.track_event("Viewed Book", mixpanel_properties) if Rails.env.production?
+    # if there was a failed review, it will come in the session object
+    @review = session[:review] || Review.new 
     session[:review] = nil
   end
 
@@ -31,12 +37,11 @@ class BooksController < ApplicationController
         :filename => "#{@book.pretty_title}.#{@format}"
       )
     Book.update_counters @book.id, :downloaded_count => 1
-
+    mixpanel_properties = {:book => @book.pretty_title}
     if user_signed_in?
-      @mixpanel.track_event("Download Book", {:id => current_login.fb_connect_id, :book => @book.pretty_title})
-    else
-      @mixpanel.track_event("Download Book", {:book => @book.pretty_title})
+      mixpanel_properties.merge!({:id => current_login.fb_connect_id})
     end
+    @mixpanel.track_event("Download Book", mixpanel_properties) if Rails.env.production?
   end
 
   def ajax_paginate

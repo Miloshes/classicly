@@ -99,6 +99,7 @@
           = link_to image_tag('footer-twitter.png'), "http://twitter.com/classiclybooks"
   <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/0HuiG9.js" type="text/javascript"></script>
 :javascript
+  var RAILS_ENV = "#{Rails.env}";
   FB.init({
     appId  : '#{FACEBOOK_APP_ID}',
     status : true, // check login status
