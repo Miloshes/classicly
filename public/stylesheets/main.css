@@ -49,12 +49,12 @@ a {
     margin-top: 25px; }
     #header div.search-bg input {
       font-size: 22px;
-      height: 20px;
+      height: 28px;
       border: none;
       color: #cbb18f;
       background: none;
       padding-left: 40px;
-      padding-top: 25px;
+      padding-top: 9px;
       font-style: italic; }
       #header div.search-bg input:focus {
         border: none;
