@@ -74,7 +74,7 @@ a {
   #header #nav #user_welcome img {
     border: 2px solid #bc9e7a;
     height: 37px;
-    margin-top: 28px;
+    margin-top: 26px;
     width: 37px; }
   #header #nav #user_welcome .name {
     color: #ededed;
@@ -740,14 +740,14 @@ span.condense_control {
 .facebook-widget {
   display: inline;
   float: right;
-  margin-right: -51px;
+  margin-right: -11px;
   width: 0; }
 
 .download-share .twitter-widget {
   float: left; }
 .download-share .facebook-widget {
   float: left;
-  margin-left: 61px; }
+  margin-left: 25px; }
 
 .clear {
   clear: both; }

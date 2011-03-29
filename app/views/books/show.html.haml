@@ -31,7 +31,7 @@
           -else
             = @book.author.name
       .share
-        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
     .grid_2.omega.download-share
       .download_this_book
@@ -47,7 +47,7 @@
           = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
         .facebook-widget
           <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-          <fb:like layout="box_count" show_faces="true" width="200" font="arial">
+          <fb:like layout="box_count" show_faces="true" width="200" font="arial" action='recommend'>
           </fb:like>
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7

@@ -16,7 +16,7 @@
     .collection-description.grid_6.alpha
       %h1=@collection.name
       %p=simple_format(parsed_collection_description(@collection.description))
-      <fb:like show_faces="true" width="600" font="arial"></fb:like>
+      <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
     .collection_media.grid_3.omega
       .highlighted-cover
         = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size3.jpg"),
