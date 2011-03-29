@@ -154,12 +154,14 @@ a {
         border: none;
         margin: 0;
         padding: 0;
-        width: 211px;
+        width: 197px;
         color: #432610;
         text-decoration: none;
+        text-align: left;
         font-size: 16px;
         padding-top: 10px;
         padding-bottom: 10px;
+        padding-left: 15px;
         float: left;
         background: #efe1c3; }
         #content #collection-column ul li a:hover {
@@ -209,7 +211,7 @@ a {
     height: auto;
     float: right;
     width: 37em;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     -moz-border-radius: 4px;
     border-radius: 4px;
     -webkit-border-radius: 4px; }
@@ -270,7 +272,7 @@ a {
     #book-page #reviews ul.reviews li {
       margin-left: -2em;
       padding: 12px;
-      width: 100%; }
+      width: 102%; }
       #book-page #reviews ul.reviews li img {
         width: 30px;
         height: 30px; }
@@ -375,7 +377,9 @@ a {
   #collection-page .highlighted-book {
     text-align: left; }
   #collection-page a.description-link {
-    color: #936845; }
+    color: #936845;
+    text-decoration: none;
+    font-weight: bold; }
   #collection-page #collection-details {
     width: 30em;
     float: left; }
@@ -423,6 +427,9 @@ a {
     border-radius: 5px;
     text-align: center;
     padding: 10px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     margin-top: 20px;
     text-decoration: none; }
     #collection-page a.book-link:hover {
@@ -448,6 +455,9 @@ a {
   border-radius: 15px;
   float: left;
   padding: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   margin-top: 20px;
   margin-left: -5px; }
   .related-books img {
@@ -457,9 +467,13 @@ a {
   .related-books h4 {
     color: #936845;
     font-size: 14px;
+    text-align: justify;
     margin: 0;
       margin-bottom: 10px;
-    padding: 0; }
+      margin-left: 14px;
+      margin-top: 7px;
+    padding: 0;
+    width: 116px; }
   .related-books span {
     color: #43260f;
     width: 100%;

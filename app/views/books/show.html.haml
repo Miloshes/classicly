@@ -58,6 +58,7 @@
       .clear
       - if user_signed_in?
         = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
+      .clear
       %ul.reviews
         = render :partial => 'review', :collection => @book.reviews
 

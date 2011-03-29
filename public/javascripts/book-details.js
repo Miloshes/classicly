@@ -1,6 +1,6 @@
 $(function(){
   // stripe reviews
-  $('ul.reviews li:nth-child(even)').addClass('striped');
+  $('ul.reviews li:nth-child(odd)').addClass('striped');
   $('div.rating-cancel').remove();
 
   FB.getLoginStatus(function(response) {
