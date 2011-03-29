@@ -71,22 +71,27 @@ a {
       color: #4d2c0c; }
     #header #nav a:hover {
       color: #4d2c0c; }
-  #header #nav #user_welcome img {
-    border: 2px solid #bc9e7a;
-    height: 37px;
-    margin-top: 26px;
-    width: 37px; }
-  #header #nav #user_welcome .name {
-    color: #ededed;
-    display: inline;
-    float: right;
-    font-size: 12px;
-    font-weight: bold;
-    margin-right: 74px;
-    margin-top: 53px; }
+  #header #nav #user_welcome {
+    margin-left: -25px; }
+    #header #nav #user_welcome img {
+      border: 2px solid #bc9e7a;
+      height: 37px;
+      margin-top: 26px;
+      width: 37px; }
+    #header #nav #user_welcome .name {
+      color: #ededed;
+      display: inline;
+      float: right;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 94px;
+      margin-top: 50px; }
   #header #registration {
-    width: 138px;
-    margin-top: 40px; }
+    width: 138px; }
+    #header #registration a {
+      margin-top: 41px; }
+    #header #registration a.displaced {
+      left: -36px; }
 
 .wrapper {
   float: left;

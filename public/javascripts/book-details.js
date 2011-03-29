@@ -69,6 +69,7 @@ function loginInBookDetails(response){
               '&email=' + email +'&city=' + city + '&state=' + state + '&country=' + country,
               success: function () {
                 showReviewForm();
+                $('#registration a').addClass('displaced');
               }
        });
       });

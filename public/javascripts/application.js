@@ -1,7 +1,6 @@
 $(function(){
   FB.Event.subscribe('edge.create', function(respuesta) {
     liked_url = respuesta;
-    console.log(RAILS_ENV);
     FB.getLoginStatus(function(response) {
       if (response.session && RAILS_ENV == 'production') {
         id = response.session.uid
@@ -57,6 +56,8 @@ $(function(){
         data: 'uid=' + response.session.uid + '&first_name=' + first_name  +  '&last_name=' + last_name + 
               '&email=' + email +'&city=' + city + '&state=' + state + '&country=' + country});
       });
+
+      $('#registration a').addClass('displaced');
   }
 
   function logout(){
