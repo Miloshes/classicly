@@ -9,11 +9,15 @@
       %p
         = current_login.last_name
   .right
+    #review_label
+      Review: *
     = form_for [book, review] do |f|
       
       = f.text_area :content
       .clear
       = render 'shared/error_messages', :target => review
+      #rating_label
+        Rating:
       .ratings
         = raw ratings_input_for_book(f)
       = image_submit_tag 'review-submit-button.png', :id => 'review_submit'

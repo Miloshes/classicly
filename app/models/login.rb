@@ -21,7 +21,7 @@ class Login < ActiveRecord::Base
     unless login
       login = Login.create(:fb_connect_id => params[:uid], :first_name => params[:first_name], :last_name => params[:last_name],
               :email => params[:email], :location_city => params[:city], :location_country => params[:country])
-      mixpanel.track_event("signup", {:id => login.fb_connect_id})
+      mixpanel.track_event("Facebook Register", {:id => login.fb_connect_id}) if Rails.env.production?
     end
     login
   end

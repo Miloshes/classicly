@@ -1,26 +1,33 @@
 $(function(){
   // stripe reviews
-  $('ul.reviews li:nth-child(even)').addClass('striped');
+  $('ul.reviews li:nth-child(odd)').addClass('striped');
   $('div.rating-cancel').remove();
-
-  FB.getLoginStatus(function(response) {
-    if(response.session)
-      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': response.session.uid});
-    else
-      mpmetrics.track('book-view', {'title': $("meta[property='og:title']").attr('content'), 'fb-uid': 'anon'});
-  });
 
   // validation for empty review form
   $('input#review_submit').click(function(){
-    if($('textarea#review_content').val().length == 0){
+    errorTextArea = ($('textarea#review_content').val().length == 0);
+    errorRating = ($("input[name='review[rating]']:checked").get(0) == undefined);
+    
+    $('#errorExplanation').remove();
+    if( errorTextArea || errorRating ){
       $("<div id='errorExplanation'>"
-       + "<h2>1 error prohibited this review from being saved:</h2>" 
-       + "<ul><li>Content can not be blank</li></ul></div>").insertBefore("div.ratings");
+       + "<h2>Oops! We had problems saving this review</h2>" 
+       + "<ul> "+ errorsOnReview(errorTextArea, errorRating) + "</ul></div>").insertBefore("div.ratings");
+       $('input#review_submit').addClass('displaced');
     }else{
       $(this).parent().submit();
     }
     return false;
   });
+
+  function errorsOnReview(errorTextArea, errorRating){
+    errors = ''
+    if (errorTextArea)
+      errors += "<li>Review content can't be blank</li>"
+    if (errorRating)
+      errors += "<li> Please assign a rating</li>"
+    return errors;
+  }
   
   // login to facebook from <Write a review> link
   $('#title-right a').click(function(){

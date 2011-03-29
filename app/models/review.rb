@@ -2,7 +2,6 @@ class Review < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
   belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
 
-  validates :title, :presence => true
   validates :content, :presence => true
   validates :rating, :presence => true, :numericality => true
   
@@ -17,7 +16,6 @@ class Review < ActiveRecord::Base
       }
 
     new_review_data = {
-        :title      => data['title'],
         :content    => data['content'],
         :rating     => data['rating'],
         :created_at => Time.parse(data['timestamp'])
