@@ -7,7 +7,8 @@ Classicly::Application.routes.draw do
   match '/web_api/query' => "web_api#query", :via => :post
   
   # the reader engine API
-  match '/reader_engine_api' => "reader_engine#create", :via => :post
+  match '/reader_engine_api' => "reader_engine_api#create", :via => :post
+  match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
   match '/facebook/like' => 'facebook_events#like', :via => :get
 

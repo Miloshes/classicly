@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330092901) do
+ActiveRecord::Schema.define(:version => 20110330185002) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110330092901) do
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "first_line_indent", :default => false, :null => false
   end
 
   create_table "books", :force => true do |t|

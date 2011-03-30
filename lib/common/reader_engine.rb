@@ -4,29 +4,37 @@ class ReaderEngine
   attr_accessor :current_book_id, :current_book_content
   
   def initialize(params = {})
+    params.stringify_keys!
+    
     current_book_id = nil
     current_book_content = ''
     
-    lazy_load_book_content(params[:book_id]) if params[:book_id]
+    lazy_load_book_content(params['book_id']) if params['book_id']
   end
   
-  # params should be:
-  # book_id: 1
-  # page: 15
-  # start_character: 15000
-  # end_character: 15500
+  # example params hash:
+  # {
+  #   "book_id" => 14,
+  #   "render_data" => 
+  #     [
+  #       {"page" => 1, "first_character" => 0, "last_character" => 99, "first_line_indent" => true },
+  #       {"page" => 2, "first_character" => 100, "last_character" => 199, "first_line_indent" => false }
+  #     ]
+  # }
   def handle_incoming_render_data(params)
+    lazy_load_book_content(params['book_id'])
     
-  end
-  
-  def get_book_content_for_character_ranges(book_id, start_character, end_character)
-    lazy_load_book_content(book_id)
+    params['render_data'].each do |record|
+      Rails.logger.info "Page: #{record['page']}"
+      Rails.logger.info "Characters: #{record['first_character']} - #{record['last_character']}"
+      Rails.logger.info "Indent? #{record['first_line_indent'].to_s}"
+    end
     
-    return current_book_content[start_character..end_character]
+    return true
   end
   
   # NOTE: for now it works by loading the book from a local HD
-  # Will only need support for loading
+  # Will only need support for loading books from S3 later
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
