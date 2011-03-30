@@ -3,5 +3,3 @@ require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Classicly::Application.initialize!
-
-FACEBOOK_APP_ID = '191005167590330'

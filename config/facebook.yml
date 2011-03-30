@@ -1,0 +1,11 @@
+development:
+  app_id: 142787879122425
+  secret_key: 041a7ccf9376410a21dba26cdaf715f1
+staging:
+  app_id: 142787879122425
+  secret_key: 041a7ccf9376410a21dba26cdaf715f1
+production:
+  app_id: 191005167590330
+  secret_key: af7d5d74a49f8e8236475e93215e1453
+
+

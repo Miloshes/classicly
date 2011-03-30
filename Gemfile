@@ -9,6 +9,7 @@ gem "friendly_id", "~> 3.2.1"
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'kaminari'
+gem 'koala'
 gem 'meta_where'
 gem 'mixpanel'
 gem 'mongrel'

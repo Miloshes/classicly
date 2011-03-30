@@ -11,7 +11,7 @@ class BooksController < ApplicationController
     end
     @mixpanel.track_event("Viewed Book", mixpanel_properties) if Rails.env.production?
     # if there was a failed review, it will come in the session object
-    @review = session[:review] || Review.new 
+    @review = session[:review] || Review.new
     session[:review] = nil
   end
 
