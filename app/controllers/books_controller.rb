@@ -58,7 +58,7 @@ class BooksController < ApplicationController
   private 
 
   def find_book
-    @book = Book.find(params[:id])
+    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
   end
 
   def find_format
