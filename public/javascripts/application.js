@@ -1,4 +1,11 @@
 $(function(){
+    // log all clicks in the facebook connect button
+  $('#registration a.fb_button').live('click', function(){
+    if (RAILS_ENV == 'production') {
+        mpmetrics.track('FB Login Clicked');
+    }
+  });
+
   FB.Event.subscribe('edge.create', function(respuesta) {
     liked_url = respuesta;
     FB.getLoginStatus(function(response) {
