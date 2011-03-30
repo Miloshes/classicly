@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110328145344) do
+ActiveRecord::Schema.define(:version => 20110330092901) do
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -26,6 +26,14 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
 
   add_index "authors", ["cached_slug"], :name => "index_authors_on_cached_slug", :unique => true
 
+  create_table "book_pages", :force => true do |t|
+    t.integer  "book_id"
+    t.integer  "page_number"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "books", :force => true do |t|
     t.text    "title"
     t.integer "author_id"
@@ -37,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
     t.string  "pretty_title"
     t.boolean "available",        :default => true
     t.string  "cached_slug"
-    t.integer "avg_rating"
     t.integer "downloaded_count", :default => 0
+    t.integer "avg_rating",       :default => 0,     :null => false
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
@@ -123,17 +131,14 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
   end
 
   create_table "reviews", :force => true do |t|
+    t.string   "fb_connect_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
-<<<<<<< Updated upstream
     t.datetime "updated_at"
     t.string   "user_id"
-=======
-    t.string   "fb_connect_id"
->>>>>>> Stashed changes
     t.integer  "login_id"
   end
 
@@ -148,12 +153,12 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
-    t.datetime "created_at"
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
