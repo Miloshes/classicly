@@ -71,6 +71,17 @@ module ApplicationHelper
 #===========================================================================================================================
 # books only helpers
 
+def condensed_description(book)
+  #get the first paragraph or the hole description if no paragraphs present
+  paragraph_boundary = (book.description =~ /\n/) || book.description.length
+  single_paragraph = paragraph_boundary <= 350
+  paragraph_boundary = 350 unless single_paragraph
+  # get the string that is left from chopping the first paragraph
+  chars_left = book.description.length - paragraph_boundary
+  trailing_string = book.description[paragraph_boundary, chars_left]
+  paragraph_boundary += trailing_string.index(' ') unless single_paragraph # either we have a complete paragraph or a paragraph choopped but with no broken words ( we get the last blankspace)
+  simple_format book.description[0, paragraph_boundary] + '...' +  link_to('  more', author_book_url(book.author, book))
+end
 
 #==========================================================================================================================
 #stars helper

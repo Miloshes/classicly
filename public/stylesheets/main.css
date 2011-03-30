@@ -329,7 +329,8 @@ a {
     #home-page .featured-book img.cover-art {
       border: 1px solid black; }
     #home-page .featured-book p a {
-      color: #936845; }
+      color: #936845;
+      text-decoration: none; }
     #home-page .featured-book h2, #home-page .featured-book h3 {
       color: #936845;
       margin: 0;

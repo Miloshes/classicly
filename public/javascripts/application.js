@@ -30,15 +30,6 @@ $(function(){
         $(this).offset({top: nTop, left:nLeft})
       }
     });
-    
-    $('.book-description').condense({
-		  moreSpeed: 'fast',
-		  lessSpeed: 'fast',
-		  ellipsis: '',
-		  moreText: '...more',
-		  lessText: '...less',
-		  condensedLength: 350
-	  });
   });
 
   // apply buttons to radio inputs
