@@ -13,7 +13,7 @@ Classicly::Application.routes.draw do
   end
 
   resources :books, :only => :index do
-    get :ajax_paginate, :on => :member
+    get :ajax_paginate, :on => :collection
     get :show_review_form, :on => :member
     resources :reviews
   end
