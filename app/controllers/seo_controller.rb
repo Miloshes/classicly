@@ -2,7 +2,7 @@ class SeoController < ApplicationController
   layout :seo_layout
   
   def show
-    if @collection = Collection.find(params[:id]) rescue nil
+    if @collection = Collection.book_type.where(:id => params[:id]).first rescue nil
       @books = @collection.books.page(params[:page]).per(25)
       @blessed_books = @collection.books.blessed.page(params[:page]).per(25)
       @featured_book = @collection.books.blessed.first || @collection.books.first
