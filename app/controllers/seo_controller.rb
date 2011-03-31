@@ -9,10 +9,7 @@ class SeoController < ApplicationController
       render :template => 'seo/show_collection' and return
     else
       @search = params[:id]
-      @books = Book.joins(:collections).joins(:author).where(
-      {:title.matches => "%#{@search}%"} | 
-      {:collections => {:name.matches => "%#{@search}%"}} |
-      {:author => {:name.matches => "%#{@search}%"}}).page(params[:page]).per(10)
+      @books = Book.search(@search, params[:page])
       render :template => 'search/show'
     end
   end
