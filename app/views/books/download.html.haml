@@ -32,11 +32,12 @@
           .grid_3.alpha
             .facebook
               .top
-                <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial"></fb:like>
+                - if ab_test 'facebook_like_dowload'
+                  <fb:like show_faces="true" width="600" font="arial"></fb:like>
+                - else
+                  <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
               .bottom
           .grid_3.push_1.omega.twitter
-            = javascript_include_tag "http://platform.twitter.com/widgets.js"
-            = link_to image_tag("confirmation-tweet.png"), "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}", :target => "_blank"
         .grid_7.alpha.omega.sync
           .grid_3.alpha
             = image_tag 'confirmation-iphone.png'

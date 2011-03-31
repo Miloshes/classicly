@@ -1,0 +1,87 @@
+!!! XML
+!!! strict
+%html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
+
+%head
+  = typekit_include_helper
+  = yield :title
+  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+  <meta name="google-site-verification" content="C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI" />
+  <meta name="msvalidate.01" content="15B64C4C2ACD1A23F62F20544A16C9FD" />
+  <META name="y_key" content="8586e4a49b4ee727" />
+
+  = stylesheet_link_tag 'main', :media => :screen
+  = stylesheet_link_tag 'grid', :media => :screen
+  = stylesheet_link_tag 'moreLess', :media => :screen
+  = stylesheet_link_tag 'jqueryui', :media => :screen
+  = stylesheet_link_tag 'jquery.rating', :media => :screen
+  
+  = javascript_include_tag 'jquery.min'
+  = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.rating'
+  = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+  = csrf_meta_tag
+  = yield :head
+  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+%body
+  %div{:style => 'display:none'}
+    #login-form
+  #header
+    .container_12
+      .grid_2.alpha
+        %a#logo{:href => '/'}
+        %h2 free books from<br />the public domain
+      .grid_5
+        = search_form(search_url, @search)
+      #nav.grid_3
+        - if user_signed_in?
+          #user_welcome
+            = facebook_image(current_login.fb_connect_id)
+            %span.name
+              Welcome back, #{current_login.first_name}!
+      #registration.grid_1.omega
+        <fb:login-button autologoutlink="true"  perms='user_about_me, user_hometown, user_photos'></fb:login-button>
+      #fb-root
+  %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
+    #apple-store-banner
+  .wrapper
+    #content.container_12
+      .grid_12.alpha.omega
+      #collection-column.grid_3.alpha
+      .grid_8.omega
+        #current-page.grid_8.alpha.omega
+          = yield
+    #footer
+      .container_12
+        .about.grid_4.alpha
+          %h4 About
+          .bg
+            %p
+              Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips. 
+            %p 
+              Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
+        .applications.grid_4
+          %h4 Apps
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              = link_to image_tag('footer-books.png', :class => "icon"), "#"
+            .grid_3.omega
+              %h5 Free Books
+              %span 23,469 classics to go.
+              = link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8"
+          .app.grid_4.alpha.omega
+            .grid_1.alpha
+              = link_to image_tag('footer-audiobooks.png', :class => "icon"), "#"
+            .grid_3.omega
+              %h5 Free Audiobooks
+              %span 2,947 audiobooks for $1.99.
+              = link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"
+              = link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classics/id379861611?mt=8"
+        .connect.grid_4.omega
+          %h4 Connect
+          = link_to image_tag('footer-support.png'), "http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"
+          = link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
+          = link_to image_tag('footer-twitter.png'), "http://twitter.com/classiclybooks"
+  <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/0HuiG9.js" type="text/javascript"></script>
+:javascript
+  var RAILS_ENV = "#{Rails.env}";
