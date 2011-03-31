@@ -18,16 +18,18 @@ class ReaderEngineApiController < ApplicationController
     end
   end
   
-  def query    
-    if @action != 'get_book_content'
-      render :nothing => true
+  def query
+    @engine = ReaderEngine.new(:book_id => @api_params['book_id'])    
+    
+    case @action
+    when 'get_book_content'
+      render :text => @engine.current_book_content
+      return
+    when 'get_page'
+      render :text => @engine.get_page(@api_params['book_id'], @api_params['page_number'])
       return
     end
-    
-    @engine = ReaderEngine.new(:book_id => @api_params['book_id'])
-    response = @engine.current_book_content
-    
-    render :text => response
+
   end
   
   private

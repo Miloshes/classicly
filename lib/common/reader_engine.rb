@@ -22,15 +22,49 @@ class ReaderEngine
   #     ]
   # }
   def handle_incoming_render_data(params)
+    # switch current book if necessary
     lazy_load_book_content(params['book_id'])
     
+    # fetch the book model
+    book = Book.find(params['book_id'].to_i)
+    
     params['render_data'].each do |record|
-      Rails.logger.info "Page: #{record['page']}"
-      Rails.logger.info "Characters: #{record['first_character']} - #{record['last_character']}"
-      Rails.logger.info "Indent? #{record['first_line_indent'].to_s}"
+      # fetch the book page
+      book_page = book.book_pages.where(:page_number => record['page'].to_i).first()
+      
+      # assemble new data hash
+      new_data = {
+        :first_character   => record['first_character'].to_i,
+        :last_character    => record['last_character'].to_i,
+        :first_line_indent => record['first_line_indent'],
+        :content           => self.current_book_content[record['first_character'].to_i..record['last_character'].to_i]
+      }
+      
+      # update attributes
+      if book_page
+        book_page.update_attributes(new_data)
+      else
+        # or create a new object in the DB
+        book.book_pages.create(new_data.merge(:page_number => record['page'].to_i))
+      end
     end
     
     return true
+  end
+  
+  def get_page(book_id, page_number)
+    lazy_load_book_content(book_id)
+    
+    book_page = BookPage.where(:book_id => book_id, :page_number => page_number).first()
+    
+    return nil if book_page.blank?
+    
+    return {
+        :first_character   => book_page.first_character,
+        :last_character    => book_page.last_character,
+        :first_line_indent => book_page.first_line_indent,
+        :content           => book_page.content
+      }.to_json
   end
   
   # NOTE: for now it works by loading the book from a local HD
