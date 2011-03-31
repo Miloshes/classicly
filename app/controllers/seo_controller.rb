@@ -2,7 +2,6 @@ class SeoController < ApplicationController
   layout :seo_layout
   
   def show
-    debugger
     if @collection = Collection.book_type.where(:cached_slug => params[:id]).first rescue nil
       @books = @collection.books.page(params[:page]).per(25)
       @blessed_books = @collection.books.blessed.page(params[:page]).per(25)
