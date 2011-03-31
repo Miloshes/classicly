@@ -33,9 +33,10 @@
             .facebook
               .top
                 - if ab_test 'facebook_like_dowload'
-                  <fb:like show_faces="true" width="600" font="arial"></fb:like>
+                  -# overwrite the href . Otherwise it will try to recommend the download page and not the book page
+                  <fb:like href="#{author_book_url(@book.author, @book)}" show_faces="true" width="600" font="arial"></fb:like>
                 - else
-                  <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
+                  <fb:like href="#{author_book_url(@book.author, @book)}" show_faces="true" width="600" font="arial" action='recommend'></fb:like>
               .bottom
           .grid_3.push_1.omega.twitter
         .grid_7.alpha.omega.sync
