@@ -27,12 +27,12 @@ ActiveRecord::Schema.define(:version => 20110330185002) do
   add_index "authors", ["cached_slug"], :name => "index_authors_on_cached_slug", :unique => true
 
   create_table "book_pages", :force => true do |t|
-    t.integer  "book_id"
-    t.integer  "page_number"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "first_line_indent", :default => false, :null => false
+    t.integer "book_id"
+    t.integer "page_number"
+    t.integer "first_character"
+    t.integer "last_character"
+    t.text    "content"
+    t.boolean "first_line_indent", :default => false, :null => false
   end
 
   create_table "books", :force => true do |t|
