@@ -10,8 +10,13 @@ $(function(){
     liked_url = respuesta;
     FB.getLoginStatus(function(response) {
       if (response.session && RAILS_ENV == 'production') {
+        // log to mixpanel
         id = response.session.uid
         mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+        // log to performable
+        var _paq = _paq || [];
+        _paq.push(["setAccount", "0HuiG9"]);
+        _paq.push(["trackConversion", { id: "7SXbBD9Fp588",value: null}]);
       }
     });
   });
