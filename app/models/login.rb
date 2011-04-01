@@ -18,13 +18,15 @@ class Login < ActiveRecord::Base
   
   def self.register_from_classicly(profile, location, mixpanel)
     login = Login.find_by_fb_connect_id profile['id']
+    is_new = false
     unless login
       login = Login.create(:fb_connect_id => profile['id'], :first_name => profile['first_name'],
         :last_name => profile['last_name'],:email => profile['email'], :location_city => location[:city],
         :location_country => location[:country])
       mixpanel.track_event("Facebook Register", {:id => login.fb_connect_id}) if Rails.env.production?
+      is_new = true
     end
-    login
+    is_new
   end
 
   def report_successful_registration_to_performable
