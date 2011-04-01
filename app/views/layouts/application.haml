@@ -17,7 +17,7 @@
   = stylesheet_link_tag 'jquery.rating', :media => :screen
   
   = javascript_include_tag 'jquery.min'
-  = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.condense', 'jquery.rating'
+  = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.rating'
   = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head
@@ -99,8 +99,9 @@
           = link_to image_tag('footer-twitter.png'), "http://twitter.com/classiclybooks"
   <script src="//d1nu2rn22elx8m.cloudfront.net/performable/pax/0HuiG9.js" type="text/javascript"></script>
 :javascript
+  var RAILS_ENV = "#{Rails.env}";
   FB.init({
-    appId  : '#{FACEBOOK_APP_ID}',
+    appId  : '#{Facebook::APP_ID}',
     status : true, // check login status
     cookie : true, // enable cookies to allow the server to access the session
     xfbml  : true  // parse XFBML

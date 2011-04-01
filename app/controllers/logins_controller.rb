@@ -1,13 +1,8 @@
 class LoginsController < ApplicationController
+  before_filter :get_profile_info
 
   def create
-    login = Login.register_from_classicly(params, @mixpanel)
-    session[:login_id] = login.id
-    render :text => ''
-  end
-
-  def destroy
-    session[:login_id] = nil
+    login = Login.register_from_classicly(@profile_info, {:city => params[:city], :country => params[:country]}, @mixpanel)
     render :text => ''
   end
 end

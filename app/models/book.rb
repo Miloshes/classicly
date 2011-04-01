@@ -25,6 +25,12 @@ class Book < ActiveRecord::Base
       book.update_attribute(:available, available)
     end
   end
+  
+  def self.search(search_term, page_num)
+    self.joins(:collections).joins(:author).where({:title.matches => "%#{search_term}%"} | 
+    {:collections => {:name.matches => "%#{search_term}%"}} |
+    {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(page_num).per(10)
+  end
 
   def available_in_format?(format)
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?

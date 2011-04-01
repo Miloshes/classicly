@@ -1,4 +1,8 @@
 Classicly::Application.routes.draw do
+  get "bingo_experiments/create"
+
+  match 'abingo' => "abingo_dashboard#index", :via => :get
+  match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
@@ -13,7 +17,7 @@ Classicly::Application.routes.draw do
   end
 
   resources :books, :only => :index do
-    get :ajax_paginate, :on => :member
+    get :ajax_paginate, :on => :collection
     get :show_review_form, :on => :member
     resources :reviews
   end
