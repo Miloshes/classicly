@@ -11,15 +11,16 @@ $(document).ready(function(){
 
   FB.Event.subscribe('edge.create', function(response) {
     liked_url = response;
-    // log to mixpanel
-    id = response.session.uid
-    mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
     // log to performable
     _paq.push(["trackConversion", {
       id: "6Sk7qc8EKYUF",
       value: null
     }]);
-  });
+
+    // log to mixpanel
+    id = response.session.uid
+    mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+    });
 
   FB.Event.subscribe('auth.logout', function(response) {
     $('#nav').html('');
