@@ -60,32 +60,34 @@ a {
         border: none;
         outline-width: 0;
         font-style: normal; }
-  #header #nav a {
-    color: #f5f1e9;
-    text-decoration: none;
-    display: block;
-    float: left;
-    padding-top: 40px;
-    padding-right: 20px; }
-    #header #nav a.selected {
-      color: #4d2c0c; }
-    #header #nav a:hover {
-      color: #4d2c0c; }
-  #header #nav #user_welcome {
-    margin-left: -25px; }
-    #header #nav #user_welcome img {
-      border: 2px solid #bc9e7a;
-      height: 37px;
-      margin-top: 26px;
-      width: 37px; }
-    #header #nav #user_welcome .name {
-      color: #ededed;
-      display: inline;
-      float: right;
-      font-size: 12px;
-      font-weight: bold;
-      margin-right: 94px;
-      margin-top: 50px; }
+  #header #nav {
+    width: 215px !important; }
+    #header #nav a {
+      color: #f5f1e9;
+      text-decoration: none;
+      display: block;
+      float: left;
+      padding-top: 40px;
+      padding-right: 20px; }
+      #header #nav a.selected {
+        color: #4d2c0c; }
+      #header #nav a:hover {
+        color: #4d2c0c; }
+    #header #nav #user_welcome {
+      margin-left: -25px; }
+      #header #nav #user_welcome img {
+        border: 2px solid #bc9e7a;
+        height: 37px;
+        margin-top: 26px;
+        width: 37px; }
+      #header #nav #user_welcome .name {
+        color: #ededed;
+        display: inline;
+        float: right;
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 65px;
+        margin-top: 50px; }
   #header #registration {
     width: 138px; }
     #header #registration a {

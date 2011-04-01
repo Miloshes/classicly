@@ -1,6 +1,27 @@
 var _paq = _paq || [];
 
 $(function(){
+  //----------------------------------------------------------------------------------------------------------UI CODE
+    $(window).load(function(){
+    // align small sized covers to the bottom in the related books container
+    $('img.cover-art').each(function(){
+      if ($(this).height() < 155){
+        addToTop = 155 - $(this).height();
+        nLeft = $(this).offset().left;
+        nTop = $(this).offset().top + addToTop;
+        $(this).offset({top: nTop, left:nLeft})
+      }
+    });
+  });
+
+  // apply buttons to radio inputs
+  $('.radio').buttonset();
+  // remove image and name when signed out
+  FB.Event.subscribe('auth.logout', function(response) {
+    $('#nav').html('');
+  });
+  //---------------------------------------------------------------------------------------------------------- LOG CODE
+
     // log all clicks in the facebook connect button
   $('#registration a.fb_button').live('click', function(){
     if (RAILS_ENV == "production") {
@@ -31,26 +52,12 @@ $(function(){
       });
     }
   });
-
-  FB.Event.subscribe('auth.logout', function(response) {
-    $('#nav').html('');
+  
+  $('#apple-store-banner').click(function(){
+    if(RAILS_ENV == "production"){
+      mpmetrics.track('AppleStore Banner Clicked');
+    }
   });
-
-  $(window).load(function(){
-    // align small sized covers to the bottom in the related books container
-    $('img.cover-art').each(function(){
-      if ($(this).height() < 155){
-        addToTop = 155 - $(this).height();
-        nLeft = $(this).offset().left;
-        nTop = $(this).offset().top + addToTop;
-        $(this).offset({top: nTop, left:nLeft})
-      }
-    });
-  });
-
-  // apply buttons to radio inputs
-  $('.radio').buttonset();
-
 });
 
   function login(response){
