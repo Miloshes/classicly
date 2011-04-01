@@ -12,20 +12,21 @@ $(function(){
 
   FB.Event.subscribe('edge.create', function(response) {
     liked_url = response;
-    FB.getLoginStatus(function(response) {
-      if (response.session && RAILS_ENV == 'production') {
-      alert('test')
-        _paq.push(["trackConversion", {
-          id: "6Sk7qc8EKYUF",
-          value: null
-        }]);
 
-
-        id = response.session.uid
-        mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
-
-      }
-    });
+    if(RAILS_ENV == 'production'){
+      _paq.push(["trackConversion", {
+        id: "6Sk7qc8EKYUF",
+        value: null
+      }]);
+      FB.getLoginStatus(function(response) {
+        if (response.session) {
+          id = response.session.uid
+          mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+        }else{
+          mpmetrics.track('Facebook Like Book', {'url': liked_url});
+        }
+      });
+    }
   });
 
   FB.Event.subscribe('auth.logout', function(response) {
