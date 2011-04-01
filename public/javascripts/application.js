@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
   var _paq = _paq || [];
   _paq.push(["setAccount", "0HuiG9"]);
   
@@ -29,22 +29,19 @@ $(function(){
     $('#nav').html('');
   });
 
-  $(window).load(function(){
-    // align small sized covers to the bottom in the related books container
-    $('img.cover-art').each(function(){
-      if ($(this).height() < 155){
-        addToTop = 155 - $(this).height();
-        nLeft = $(this).offset().left;
-        nTop = $(this).offset().top + addToTop;
-        $(this).offset({top: nTop, left:nLeft})
-      }
-    });
+  // align small sized covers to the bottom in the related books container
+  $('img.cover-art').each(function(){
+    if ($(this).height() < 155){
+      addToTop = 155 - $(this).height();
+      nLeft = $(this).offset().left;
+      nTop = $(this).offset().top + addToTop;
+      $(this).offset({top: nTop, left:nLeft})
+    }
   });
 
   // apply buttons to radio inputs
   $('.radio').buttonset();
 
-});
 
   function login(response){
       var query = FB.Data.query('select first_name, hometown_location, pic_small from user where uid={0}',response.session.uid);
@@ -68,3 +65,5 @@ $(function(){
   function showPicInHeader(pic, userName){
     $('#nav').html('<div id="user_welcome"><img src="' + pic + '"/><span class="name">Welcome back, '+ userName +'!</span></div>');
   }
+
+})
