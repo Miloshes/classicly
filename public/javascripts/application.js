@@ -1,5 +1,9 @@
 $(function(){
     // log all clicks in the facebook connect button
+
+  var _paq = _paq || [];
+  _paq.push(["setAccount", "0HuiG9"]);
+
   $('#registration a.fb_button').live('click', function(){
     if (RAILS_ENV == 'production') {
         mpmetrics.track('FB Login Clicked');
@@ -12,6 +16,11 @@ $(function(){
       if (response.session && RAILS_ENV == 'production') {
         id = response.session.uid
         mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+        _paq.push(["trackConversion", {
+          id: "6Sk7qc8EKYUF",
+          value: null
+        }]);
+
       }
     });
   });
