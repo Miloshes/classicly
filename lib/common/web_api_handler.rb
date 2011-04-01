@@ -95,9 +95,9 @@ class WebApiHandler
     
     if review
       return {
-          :review_content    => review.content,
-          :review_rating     => review.rating,
-          :review_created_at => review.created_at
+          :content    => review.content,
+          :rating     => review.rating,
+          :created_at => review.created_at
         }.to_json
     else
       return nil.to_json
