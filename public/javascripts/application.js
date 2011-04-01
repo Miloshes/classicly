@@ -1,9 +1,7 @@
+var _paq = _paq || [];
+
 $(function(){
     // log all clicks in the facebook connect button
-
-  var _paq = _paq || [];
-  _paq.push(["setAccount", "0HuiG9"]);
-
   $('#registration a.fb_button').live('click', function(){
     if (RAILS_ENV == 'production') {
         mpmetrics.track('FB Login Clicked');
@@ -12,7 +10,6 @@ $(function(){
 
   FB.Event.subscribe('edge.create', function(response) {
     liked_url = response;
-
     if(RAILS_ENV == 'production'){
       _paq.push(["trackConversion", {
         id: "6Sk7qc8EKYUF",
