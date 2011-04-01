@@ -3,8 +3,14 @@ var _paq = _paq || [];
 $(function(){
     // log all clicks in the facebook connect button
   $('#registration a.fb_button').live('click', function(){
-    if (RAILS_ENV == 'production') {
-        mpmetrics.track('FB Login Clicked');
+    if (RAILS_ENV == "production") {
+      //log in performable
+      _paq.push(["trackConversion", {
+        id: "7SXbBD9Fp588",
+        value: null
+      }]);
+      //log into mixpanel
+      mpmetrics.track('FB Login Clicked');
     }
   });
 
