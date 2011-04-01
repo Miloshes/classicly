@@ -1,3 +1,4 @@
+var _paq = _paq || [];
 $(function(){
   // stripe reviews
   $('ul.reviews li:nth-child(odd)').addClass('striped');
@@ -49,6 +50,14 @@ $(function(){
     if($('#form_box') != undefined )
       $('#form_box').remove();
   });
+
+  if(RAILS_ENV == "production"){
+    _paq.push(["trackConversion", {
+      id: "9i2hyK3hHAqF",
+      value: null
+    }]);  
+  }
+
 });
 
 function loginInBookDetails(response){
