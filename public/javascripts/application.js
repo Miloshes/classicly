@@ -16,6 +16,9 @@ $(function(){
       if (response.session && RAILS_ENV == 'production') {
         id = response.session.uid
         mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+
+        var _paq = _paq || [];
+        _paq.push(["setAccount", "0HuiG9"]);
         _paq.push(["trackConversion", {
           id: "6Sk7qc8EKYUF",
           value: null
