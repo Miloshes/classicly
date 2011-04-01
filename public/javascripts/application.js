@@ -20,14 +20,14 @@ $(document).ready(function(){
     // log to mixpanel
     id = response.session.uid
     mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
-    });
+  });
 
   FB.Event.subscribe('auth.logout', function(response) {
     $('#nav').html('');
   });
 
   // align small sized covers to the bottom in the related books container
-  $('img.cover-art').each(function(){
+  $('#cover-bar img.cover-art').each(function(){
     if ($(this).height() < 155){
       addToTop = 155 - $(this).height();
       nLeft = $(this).offset().left;
