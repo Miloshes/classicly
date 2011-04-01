@@ -73,8 +73,15 @@ function loginInBookDetails(response){
         $.ajax({
         type: "POST",
         url: "/logins",
+        dataType: "json",
         data: 'country=' + country +'&city=' + city,
-              success: function () {
+              success: function (data) {
+                if(data.new_login && RAILS_ENV == "production"){
+                  _paq.push(["trackConversion", {
+                    id: "3F6mY45twfux",
+                    value: null
+                  }]);
+                }
                 showReviewForm();
                 $('#registration a').addClass('displaced');
               }

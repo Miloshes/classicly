@@ -59,16 +59,31 @@ $(function(){
       query.wait(function(rows) {
         first_name = rows[0].first_name;
         pic = rows[0].pic_small;
-        city = rows[0].hometown_location.city;
-        country = rows[0].hometown_location.country;
-        showPicInHeader(pic, first_name);
-        
-        $.ajax({
-        type:"POST",
-        url:"/logins",
-        data: 'country=' + country + '&city=' + city});
-      });
+        if(rows[0].hometown_location == null){
+          city = "";
+          country = "";
+        }else{
+          city = rows[0].hometown_location.city;
+          country = rows[0].hometown_location.country;
+        }
 
+        showPicInHeader(pic, first_name);
+
+        $.ajax({
+          type:"POST",
+          url:"/logins",
+          dataType: "json",
+          data: 'country=' + country + '&city=' + city,
+          success: function(data){
+            if(data.new_login && RAILS_ENV == "production"){
+              _paq.push(["trackConversion", {
+                id: "3F6mY45twfux",
+                value: null
+              }]);
+            }
+          }
+        });
+      });
       $('#registration a').addClass('displaced');
   }
 
