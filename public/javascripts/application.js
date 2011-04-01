@@ -9,20 +9,19 @@ $(document).ready(function(){
     }
   });
 
-  FB.Event.subscribe('edge.create', function(respuesta) {
-    liked_url = respuesta;
-    FB.getLoginStatus(function(response) {
-      if (response.session && RAILS_ENV == 'production') {
-        // log to mixpanel
-        id = response.session.uid
-        mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
-        // log to performable
-        _paq.push(["trackConversion", {
-          id: "6Sk7qc8EKYUF",
-          value: null
-        }]);
-      }
-    });
+  FB.Event.subscribe('edge.create', function(response) {
+    liked_url = response;
+    alert('test')
+    if (response.session && RAILS_ENV == 'production') {
+      // log to mixpanel
+      id = response.session.uid
+      mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+      // log to performable
+      _paq.push(["trackConversion", {
+        id: "6Sk7qc8EKYUF",
+        value: null
+      }]);
+    }
   });
 
   FB.Event.subscribe('auth.logout', function(response) {
