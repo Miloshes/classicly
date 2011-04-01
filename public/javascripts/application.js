@@ -14,6 +14,7 @@ $(function(){
     liked_url = response;
     FB.getLoginStatus(function(response) {
       if (response.session && RAILS_ENV == 'production') {
+      alert('test')
         _paq.push(["trackConversion", {
           id: "6Sk7qc8EKYUF",
           value: null
