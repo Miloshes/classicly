@@ -39,7 +39,7 @@ class WebApiHandler
   
   def get_reviews_for_book(params)
     book    = Book.find(params['book_id'].to_i)
-    reviews = book.reviews.order('created_at DESC').includes('reviewer').page(params['page']).per(params['per_page'] || 25)
+    reviews = book.reviews.order('created_at, id DESC').includes('reviewer').page(params['page']).per(params['per_page'] || 25)
     
     result = []
     reviews.each do |review|
