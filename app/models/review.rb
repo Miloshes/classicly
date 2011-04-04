@@ -2,7 +2,6 @@ class Review < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
   belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
 
-  validates :content, :presence => true
   validates :rating, :presence => true, :numericality => true
   
   def self.create_or_update_from_ios_client_data(data)
