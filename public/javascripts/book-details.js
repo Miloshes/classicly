@@ -1,3 +1,4 @@
+var _paq = _paq || [];
 $(function(){
   // stripe reviews
   $('ul.reviews li:nth-child(odd)').addClass('striped');
@@ -49,6 +50,14 @@ $(function(){
     if($('#form_box') != undefined )
       $('#form_box').remove();
   });
+
+  if(RAILS_ENV == "production"){
+    _paq.push(["trackConversion", {
+      id: "9i2hyK3hHAqF",
+      value: null
+    }]);  
+  }
+
 });
 
 function loginInBookDetails(response){
@@ -64,8 +73,15 @@ function loginInBookDetails(response){
         $.ajax({
         type: "POST",
         url: "/logins",
+        dataType: "json",
         data: 'country=' + country +'&city=' + city,
-              success: function () {
+              success: function (data) {
+                if(data.new_login && RAILS_ENV == "production"){
+                  _paq.push(["trackConversion", {
+                    id: "3F6mY45twfux",
+                    value: null
+                  }]);
+                }
                 showReviewForm();
                 $('#registration a').addClass('displaced');
               }

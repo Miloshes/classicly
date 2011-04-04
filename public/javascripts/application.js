@@ -1,44 +1,64 @@
-$(document).ready(function(){
-  var _paq = _paq || [];
-  _paq.push(["setAccount", "0HuiG9"]);
-  
-  // log all clicks in the facebook connect button
+var _paq = _paq || [];
+
+$(function(){
+  //----------------------------------------------------------------------------------------------------------UI CODE
+    $(window).load(function(){
+    // align small sized covers to the bottom in the related books container
+    $('img.cover-art').each(function(){
+      if ($(this).height() < 155){
+        addToTop = 155 - $(this).height();
+        nLeft = $(this).offset().left;
+        nTop = $(this).offset().top + addToTop;
+        $(this).offset({top: nTop, left:nLeft})
+      }
+    });
+  });
+
+  // apply buttons to radio inputs
+  $('.radio').buttonset();
+  // remove image and name when signed out
+  FB.Event.subscribe('auth.logout', function(response) {
+    $('#nav').html('');
+  });
+  //---------------------------------------------------------------------------------------------------------- LOG CODE
+
+    // log all clicks in the facebook connect button
   $('#registration a.fb_button').live('click', function(){
-    if (RAILS_ENV == 'production') {
-        mpmetrics.track('FB Login Clicked');
+    if (RAILS_ENV == "production") {
+      //log in performable
+      _paq.push(["trackConversion", {
+        id: "7SXbBD9Fp588",
+        value: null
+      }]);
+      //log into mixpanel
+      mpmetrics.track('FB Login Clicked');
     }
   });
 
   FB.Event.subscribe('edge.create', function(response) {
     liked_url = response;
-    // log to performable
-    _paq.push(["trackConversion", {
-      id: "6Sk7qc8EKYUF",
-      value: null
-    }]);
-
-    // log to mixpanel
-    id = response.session.uid
-    mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
-  });
-
-  FB.Event.subscribe('auth.logout', function(response) {
-    $('#nav').html('');
-  });
-
-  // align small sized covers to the bottom in the related books container
-  $('#cover-bar img.cover-art').each(function(){
-    if ($(this).height() < 155){
-      addToTop = 155 - $(this).height();
-      nLeft = $(this).offset().left;
-      nTop = $(this).offset().top + addToTop;
-      $(this).offset({top: nTop, left:nLeft})
+    if(RAILS_ENV == 'production'){
+      _paq.push(["trackConversion", {
+        id: "6Sk7qc8EKYUF",
+        value: null
+      }]);
+      FB.getLoginStatus(function(response) {
+        if (response.session) {
+          id = response.session.uid
+          mpmetrics.track('Facebook Like Book', {'fb_uid': id, 'url': liked_url});
+        }else{
+          mpmetrics.track('Facebook Like Book', {'url': liked_url});
+        }
+      });
     }
   });
-
-  // apply buttons to radio inputs
-  $('.radio').buttonset();
-
+  
+  $('#apple-store-banner').click(function(){
+    if(RAILS_ENV == "production"){
+      mpmetrics.track('AppleStore Banner Clicked');
+    }
+  });
+});
 
   function login(response){
       var query = FB.Data.query('select first_name, hometown_location, pic_small from user where uid={0}',response.session.uid);
@@ -46,21 +66,34 @@ $(document).ready(function(){
       query.wait(function(rows) {
         first_name = rows[0].first_name;
         pic = rows[0].pic_small;
-        city = rows[0].hometown_location.city;
-        country = rows[0].hometown_location.country;
-        showPicInHeader(pic, first_name);
-        
-        $.ajax({
-        type:"POST",
-        url:"/logins",
-        data: 'country=' + country + '&city=' + city});
-      });
+        if(rows[0].hometown_location == null){
+          city = "";
+          country = "";
+        }else{
+          city = rows[0].hometown_location.city;
+          country = rows[0].hometown_location.country;
+        }
 
+        showPicInHeader(pic, first_name);
+
+        $.ajax({
+          type:"POST",
+          url:"/logins",
+          dataType: "json",
+          data: 'country=' + country + '&city=' + city,
+          success: function(data){
+            if(data.new_login && RAILS_ENV == "production"){
+              _paq.push(["trackConversion", {
+                id: "3F6mY45twfux",
+                value: null
+              }]);
+            }
+          }
+        });
+      });
       $('#registration a').addClass('displaced');
   }
 
   function showPicInHeader(pic, userName){
     $('#nav').html('<div id="user_welcome"><img src="' + pic + '"/><span class="name">Welcome back, '+ userName +'!</span></div>');
   }
-
-})
