@@ -536,6 +536,8 @@ ul.book-list-sort {
   width: 100%;
   padding-left: 19px;
   margin-top: 15px; }
+  .pagination a {
+    text-decoration: none; }
   .pagination span.page a {
     color: #936845; }
   .pagination span.prev a {

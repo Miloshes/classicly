@@ -30,11 +30,14 @@
     = image_tag 'divider.png'
   .grid_9.alpha.omega
     .grid_5.alpha
-      %div{:style =>"clear:both"}
+      .clear
       .pagination
         = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
         = render :partial => '/books/listed_book', :collection => @books, :as => :book
+      .clear
+      .pagination
+        = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
     .grid_4.alpha
       %ul.featured-book-list
         = render :partial => '/books/listed_featured_book', :collection => @blessed_books, :as => :featured
