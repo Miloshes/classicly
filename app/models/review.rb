@@ -9,6 +9,10 @@ class Review < ActiveRecord::Base
     book  = Book.find(data['book_id'].to_i)
     login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
     
+    return nil if login.blank?
+    
+    new_timestamp = Time.parse(data['timestamp'])
+    
     review_conditions = {
         :login_id      => login.id,
         :reviewable    => book,
@@ -18,13 +22,13 @@ class Review < ActiveRecord::Base
     new_review_data = {
         :content    => data['content'],
         :rating     => data['rating'],
-        :created_at => Time.parse(data['timestamp'])
+        :created_at => new_timestamp
       }
     
     review = self.where(review_conditions).first()
     
     if review
-      review.update_attributes(new_review_data)
+      review.update_attributes(new_review_data) unless new_timestamp < review.created_at
     else
       self.create(review_conditions.merge new_review_data)
     end
