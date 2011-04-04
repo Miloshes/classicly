@@ -97,5 +97,3 @@ $(function(){
   function showPicInHeader(pic, userName){
     $('#nav').html('<div id="user_welcome"><img src="' + pic + '"/><span class="name">Welcome back, '+ userName +'!</span></div>');
   }
-
-})
