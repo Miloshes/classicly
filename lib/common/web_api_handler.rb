@@ -38,8 +38,11 @@ class WebApiHandler
   end
   
   def get_reviews_for_book(params)
+    page     = params['page']
+    per_page = params['per_page'] || 25
+    
     book    = Book.find(params['book_id'].to_i)
-    reviews = book.reviews.order('created_at DESC').includes('reviewer').page(params['page']).per(params['per_page'] || 25)
+    reviews = book.reviews.order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
     
     result = []
     reviews.each do |review|
@@ -81,7 +84,7 @@ class WebApiHandler
     return {
         :book_rating_average => book.avg_rating,
         :book_review_count   => book.reviews.count,
-        :classicly_url       => seo_url(book)
+        :classicly_url       => author_book_url(book.author, book)
       }.to_json
   end
   
@@ -95,9 +98,9 @@ class WebApiHandler
     
     if review
       return {
-          :review_content    => review.content,
-          :review_rating     => review.rating,
-          :review_created_at => review.created_at
+          :content    => review.content,
+          :rating     => review.rating,
+          :created_at => review.created_at
         }.to_json
     else
       return nil.to_json
