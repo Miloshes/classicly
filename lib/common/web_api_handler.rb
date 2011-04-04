@@ -81,7 +81,7 @@ class WebApiHandler
     return {
         :book_rating_average => book.avg_rating,
         :book_review_count   => book.reviews.count,
-        :classicly_url       => seo_url(book)
+        :classicly_url       => author_book_url(book.author, book)
       }.to_json
   end
   
