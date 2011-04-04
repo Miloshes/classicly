@@ -113,6 +113,7 @@ a {
   #cover-bar .cover {
     float: left;
     width: 102px;
+    position: relative;
     margin-left: 23px; }
     #cover-bar .cover a {
       margin: 0;
@@ -717,6 +718,22 @@ ul.featured-book-list li {
       #download-confirmation .sync img:hover {
         opacity: 0.7;
         cursor: pointer; }
+  #download-confirmation .facebook-upsell {
+    float: left;
+    background: #fdf7d5;
+    border: 1px solid #e2c822;
+    display: block;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-top: 30px; }
+    #download-confirmation .facebook-upsell span.text {
+      display: block;
+      margin: 0 auto;
+      font-size: 14px;
+      width: 100%;
+      text-align: center; }
 
 #apple-store-banner {
   position: absolute;
@@ -782,3 +799,47 @@ span.condense_control {
   font-size: 14px; }
 #errorExplanation ul li {
   font-size: 12px; }
+
+a.conversion-button.kiss {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 0;
+  overflow: hidden;
+  padding: 1px;
+  text-decoration: none;
+  vertical-align: middle;
+  width: auto !important; }
+  a.conversion-button.kiss span {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    color: white;
+    display: block;
+    font-weight: bold;
+    font-size: 30px !important;
+    padding: 12px 18px;
+      padding-top: 5px;
+    line-height: normal;
+    margin: 0;
+    position: relative;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    width: auto !important; }
+  a.conversion-button.kiss:hover {
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), color-stop(1, rgba(0, 0, 0, 0.1)));
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1));
+    cursor: pointer;
+    text-decoration: none; }
+
+.conversion-button.kiss.green {
+  background-color: #69a846; }
+.conversion-button.kiss.red {
+  background-color: #ad485a; }
+.conversion-button.kiss.blue {
+  background-color: #447ba3; }
+.conversion-button.kiss.orange {
+  background-color: #b8824d; }
