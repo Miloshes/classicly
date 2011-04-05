@@ -1,4 +1,8 @@
 Classicly::Application.routes.draw do
+  get "bingo_experiments/create"
+
+  match 'abingo' => "abingo_dashboard#index", :via => :get
+  match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   

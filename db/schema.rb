@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110328145344) do
+ActiveRecord::Schema.define(:version => 20110331215442) do
+
+  create_table "alternatives", :force => true do |t|
+    t.integer "experiment_id"
+    t.string  "content"
+    t.string  "lookup",        :limit => 32
+    t.integer "weight",                      :default => 1
+    t.integer "participants",                :default => 0
+    t.integer "conversions",                 :default => 0
+  end
+
+  add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
+  add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
@@ -37,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
     t.string  "pretty_title"
     t.boolean "available",        :default => true
     t.string  "cached_slug"
-    t.integer "avg_rating"
     t.integer "downloaded_count", :default => 0
+    t.integer "avg_rating",       :default => 0,     :null => false
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
@@ -100,6 +112,15 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
     t.string  "download_status", :default => "never tried"
   end
 
+  create_table "experiments", :force => true do |t|
+    t.string   "test_name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiments", ["test_name"], :name => "index_experiments_on_test_name"
+
   create_table "genres", :force => true do |t|
     t.string "name"
   end
@@ -111,7 +132,6 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
   end
 
   create_table "logins", :force => true do |t|
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "first_name"
@@ -120,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
     t.string   "location_country"
     t.string   "email"
     t.string   "fb_connect_id"
+    t.boolean  "is_admin",         :default => false
   end
 
   create_table "reviews", :force => true do |t|
@@ -128,12 +149,7 @@ ActiveRecord::Schema.define(:version => 20110328145344) do
     t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
-<<<<<<< Updated upstream
-    t.datetime "updated_at"
-    t.string   "user_id"
-=======
     t.string   "fb_connect_id"
->>>>>>> Stashed changes
     t.integer  "login_id"
   end
 

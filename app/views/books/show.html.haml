@@ -15,7 +15,8 @@
 
 #book-page.grid_9
   #cover.grid_2.alpha
-    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
+    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
+      :alt => "#{@book.pretty_title} by #{@book.author.name}"
     - unless @books_from_the_same_collection.empty?
       .related-books
         %h4 Books from the same collection:

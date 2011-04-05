@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
-  before_filter :find_book
-  before_filter :find_format
+  before_filter :find_book, :only => [:download, :serve_downloadable_file, :show_review_form]
+  before_filter :find_book_with_specific_author, :only => :show
+  before_filter :find_format, :only => [:download, :serve_downloadable_file]
 
   def show
     @related_books = @book.find_fake_related(8)
@@ -50,12 +51,15 @@ class BooksController < ApplicationController
   end
 
   def show_review_form
-    @book = Book.find_by_id(params[:id])
     @review = Review.new
     render :layout => false
   end
 
   private 
+
+  def find_book_with_specific_author
+    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
+  end
 
   def find_book
     @book = Book.find(params[:id])

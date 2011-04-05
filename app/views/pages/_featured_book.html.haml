@@ -1,7 +1,7 @@
 .featured-book.grid_9.alpha.omega
   .grid_2.alpha
     = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{featured_book.id}_size2.jpg",
-      :class => 'cover-art'), author_book_url(featured_book.author, featured_book)
+      :class => 'cover-art', :alt => "#{featured_book.pretty_title} by #{featured_book.author.name}"), author_book_url(featured_book.author, featured_book)
   .grid_5.metadata
     = link_to content_tag(:h2, featured_book.pretty_title), author_book_url(featured_book.author, featured_book), :class => 'title'
     %h3
