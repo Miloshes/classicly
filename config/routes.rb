@@ -1,20 +1,9 @@
 Classicly::Application.routes.draw do
-  get "bingo_experiments/create"
-
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
-  # NOTE: this is for the first version of the review API, will be deprecated soon
-  match "incoming_data" => "incoming_datas#create", :method => :post
-  
-  # current version of the web API
-  match "/web_api" => "web_api#create", :via => :post
-  match '/web_api/query' => "web_api#query", :via => :post
+  match '/audiobooks' => 'audiobooks#index'
 
-  match '/facebook/like' => 'facebook_events#like', :via => :get
-
-  resources :logins, :only => [:create] do
-    delete :destroy, :on => :collection
-  end
+  get "bingo_experiments/create"
 
   resources :books, :only => :index do
     get :ajax_paginate, :on => :collection
@@ -26,10 +15,21 @@ Classicly::Application.routes.draw do
     resources :reviews
   end
 
-  resource :search, :only => :show, :controller => :search do
+  # NOTE: this is for the first version of the review API, will be deprecated soon
+  match "incoming_data" => "incoming_datas#create", :method => :post
+
+  resources :logins, :only => [:create] do
+    delete :destroy, :on => :collection
   end
 
+  match 'search' => 'search#show'
+
+  # current version of the web API
+  match "/web_api" => "web_api#create", :via => :post
+  match '/web_api/query' => "web_api#query", :via => :post
+
   match "/:id" => "seo#show", :as => 'seo', :via => :get
+  match '/:id/audiobooks' => 'audiobooks#seo', :as => 'audiobookseo', :via => :get
   match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get
   
   # for invoking the download page and start the download

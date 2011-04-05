@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_filter :find_author_collections
+  before_filter :find_genre_collections
 
   def main
     @related_books = Book.blessed.random(8)

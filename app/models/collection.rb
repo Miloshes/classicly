@@ -24,6 +24,7 @@ class Collection < ActiveRecord::Base
   belongs_to :genre
   default_scope :order => 'downloaded_count desc'
   scope :book_type, where(:book_type => 'book')
+  scope :type_audiobook, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
   
