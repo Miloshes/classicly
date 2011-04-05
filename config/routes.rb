@@ -1,7 +1,10 @@
 Classicly::Application.routes.draw do
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
-  match '/audiobooks' => 'audiobooks#index'
+
+  resources :audiobooks, :only => :index do
+    get :ajax_paginate, :on => :collection
+  end
 
   get "bingo_experiments/create"
 

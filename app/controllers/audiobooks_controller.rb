@@ -8,13 +8,18 @@ class AudiobooksController < ApplicationController
 
   def seo
     if @collection = Collection.type_audiobook.where(:cached_slug => params[:id]).first rescue nil
-      @audiobooks = @collection.audiobooks.page(params[:page]).per(25)
+      @audiobooks = @collection.audiobooks.page(params[:page]).per(8)
       @blessed_audiobooks = @collection.audiobooks.blessed.page(params[:page]).per(25)
-      @featured_audiobooks = @collection.audiobooks.blessed.first || @collection.audiobooks.first
-      render :template => 'show_audio_collection' and return
+      @featured_audiobook = @collection.audiobooks.blessed.first || @collection.audiobooks.first
+      render :show_audio_collection and return
     else
       redirect_to search_path
     end
+  end
+
+  def ajax_paginate
+    @audiobooks = Collection.find(params[:id]).audiobooks.page(params[:page]).per(8)
+    render :layout => false
   end
 
   private
