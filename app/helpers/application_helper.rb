@@ -9,9 +9,9 @@ module ApplicationHelper
   end
 
   def list_element_link(collection)
-    content_tag :li do
-      link_to collection.name, seo_url(collection)
-    end
+      content_tag :li do
+         collection.book_type == 'book' ? link_to(collection.name, seo_url(collection)) : link_to(collection.name, audiobookseo_url(collection))
+      end
   end
 
   def typekit_include_helper

@@ -1,6 +1,9 @@
 class SeoController < ApplicationController
   layout :seo_layout
-  
+  # before filters to show collections lists in left nav
+  before_filter :find_author_collections
+  before_filter :find_genre_collections
+
   def show
     if @collection = Collection.book_type.where(:cached_slug => params[:id]).first rescue nil
       @books = @collection.books.page(params[:page]).per(25)

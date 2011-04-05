@@ -1,4 +1,7 @@
 class BooksController < ApplicationController
+  before_filter :find_author_collections, :only => [:show, :download]
+  before_filter :find_genre_collections, :only => [:show, :download]
+
   before_filter :find_book, :only => [:download, :serve_downloadable_file, :show_review_form]
   before_filter :find_book_with_specific_author, :only => :show
   before_filter :find_format, :only => [:download, :serve_downloadable_file]

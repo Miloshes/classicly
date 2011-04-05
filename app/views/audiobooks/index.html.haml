@@ -1,0 +1,7 @@
+- content_for :related_books do
+  %span
+    Popular Books
+
+  = render :partial => 'pages/cover', :collection => @related_books
+#home-page
+  = render :partial => "featured_audiobook", :collection => @featured_audiobooks
