@@ -42,6 +42,6 @@
       %ul.featured-book-list
         = render :partial => '/books/listed_featured_book', :collection => @blessed_books, :as => :featured
 - if @collection.collection_type == 'author'
-  = render_performable_script(:author)
+  = raw render_performable_script(:author)
 - else
-  = render_performable_script(:collection)
+  = raw render_performable_script(:collection)
