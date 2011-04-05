@@ -108,4 +108,15 @@ end
    html
  end
 #==========================================================================================================================
+#helpers for analytics
+  def render_performable_script(type)
+    case type
+    when :author
+      "<script type='text/javascript'>var _paq = _paq || [];_paq.push(['trackConversion', {id: '7dVnMY92mgit',
+      value: null}]);</script>"
+    else
+      "<script type='text/javascript'>var _paq = _paq || [];_paq.push(['trackConversion', {id: '3D5BM25rvvhv',
+      value: null}]);</script>"
+    end
+  end
 end

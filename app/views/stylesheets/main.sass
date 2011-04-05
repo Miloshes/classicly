@@ -116,6 +116,7 @@ a
   .cover
     :float left
     :width 102px
+    :position relative
     :margin
       :left 23px
     a 
@@ -779,6 +780,24 @@ ul.featured-book-list
       &:hover
         :opacity .7
         :cursor pointer
+  .facebook-upsell
+    :float left
+    :background #fdf7d5
+    :border 1px solid #e2c822
+    :display block
+    :padding
+      :left 50px
+      :right 50px
+      :top 20px
+      :bottom 20px
+    span.text
+      :display block
+      :margin 0 auto
+      :font-size 14px
+      :width 100%
+      :text-align center 
+    :margin
+      :top 30px
         
 #apple-store-banner
   position: absolute
@@ -842,3 +861,50 @@ span.condense_control
     font-size: 14px
   ul li
     font-size: 12px
+
+
+a.conversion-button.kiss
+  -webkit-border-radius: 5px
+  -moz-border-radius: 5px
+  border-radius: 5px
+  -webkit-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1)
+  -moz-box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1)
+  box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1)
+  display: inline-block
+  margin: 0
+  overflow: hidden
+  padding: 1px
+  text-decoration: none
+  vertical-align: middle
+  width: auto !important
+  span
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+    color: #fff
+    display: block
+    font-weight: bold
+    font-size: 30px !important
+    padding: 12px 18px
+      :top 5px
+    line-height: normal
+    margin: 0
+    position: relative
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2)
+    width: auto !important
+  &:hover
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, transparent), color-stop(1, rgba(0, 0, 0, 0.1)))
+    background-image: -moz-linear-gradient(top, transparent, rgba(0, 0, 0, 0.1))
+    cursor: pointer
+    text-decoration: none
+
+.conversion-button.kiss
+  &.green
+    background-color: #69a846
+  &.red
+    background-color: #ad485a
+  &.blue
+    background-color: #447ba3
+  &.orange
+    background-color: #b8824d
+

@@ -41,3 +41,8 @@
     .grid_4.alpha
       %ul.featured-book-list
         = render :partial => '/books/listed_featured_book', :collection => @blessed_books, :as => :featured
+- if Rails.env.production?
+  - if @collection.collection_type == 'author'
+    = raw render_performable_script(:author)
+  - else
+    = raw render_performable_script(:collection)
