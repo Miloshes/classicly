@@ -1,9 +1,9 @@
 .featured-book.grid_9.alpha.omega
   .grid_2.alpha
     = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{featured_audiobook.id}_size2.jpg",
-      :class => 'cover-art', :alt => "#{featured_audiobook.title} by #{featured_audiobook.author.name}"), author_book_url(featured_audiobook.author, featured_audiobook)
+      :class => 'cover-art', :alt => "#{featured_audiobook.title} by #{featured_audiobook.author.name}"), audio_book_details_url(featured_audiobook.author, featured_audiobook)
   .grid_5.metadata
-    = link_to content_tag(:h2, featured_audiobook.title), author_book_url(featured_audiobook.author, featured_audiobook), :class => 'title'
+    = link_to content_tag(:h2, featured_audiobook.title), audio_book_details_url(featured_audiobook.author, featured_audiobook), :class => 'title'
     %h3
       by <em>#{featured_audiobook.author.name}</em>
     %div.book-description
@@ -13,9 +13,9 @@
     .share-widgets
       .twitter-widget
         = javascript_include_tag "http://platform.twitter.com/widgets.js"
-        = link_to "", "http://twitter.com/share?url=#{author_book_url(featured_audiobook.author, featured_audiobook)}&text=#{featured_audiobook.title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
+        = link_to "", "http://twitter.com/share?url=#{audio_book_details_url(featured_audiobook.author, featured_audiobook)}&text=#{featured_audiobook.title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
       .facebook-widget
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-        <fb:like href="#{author_book_url(featured_audiobook.author, featured_audiobook)}" layout="box_count" show_faces="true" width="200" font="arial" action="recommend">
+        <fb:like href="#{audio_book_details_url(featured_audiobook.author, featured_audiobook)}" layout="box_count" show_faces="true" width="200" font="arial" action="recommend">
         </fb:like>
     .add-profile-pics

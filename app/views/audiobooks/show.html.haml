@@ -1,0 +1,44 @@
+- content_for :related_books do
+  %span
+    Related Books
+  = render :partial => 'pages/cover', :collection => @related_audio_books
+
+#book-page.grid_9
+  #cover.grid_2.alpha
+    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@audio_book.id}_size2.jpg",
+      :alt => "#{@audio_book.pretty_title} by #{@audio_book.author.name}"
+    - unless @audio_books_from_the_same_collection.empty?
+      .related-books
+        %h4 Audiobooks from the same collection:
+        = render :partial => "related_audio_book", :collection => @audio_books_from_the_same_collection, :as => :audio_book
+  .grid_7.omega
+    #book-metadata.grid_5.omega
+      %h1= @audio_book.pretty_title
+      %h2
+        by
+        %span.book-author
+          = @audio_book.author.name
+      .share
+        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
+      %p=# simple_format(@audio_book.description)
+    .grid_2.omega.download-share
+      .download_this_book
+        = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
+      .clear
+      .share-widgets
+        .twitter-widget
+          = javascript_include_tag "http://platform.twitter.com/widgets.js"
+          = link_to "", "http://twitter.com/share?url=#{audio_book_details_url(@audio_book.author, @audio_book)}&text=#{@audio_book.pretty_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
+        .facebook-widget
+          <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
+          <fb:like layout="box_count" show_faces="true" width="200" font="arial" action='recommend'>
+          </fb:like>
+    = image_tag '/images/divider.png', :class => 'divider'
+    #reviews.grid_7
+:javascript
+  FB.init({
+    appId  : '#{Facebook::APP_ID}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
