@@ -35,6 +35,26 @@
           </fb:like>
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7
+      <!-- setup player container  -->
+      #audio{:style => "display:block;width:575px;height:30px;", :href => "http://www.archive.org/download/wuthering_heights_0801_librivox/wutheringheights_01_bronte_64kb.mp3"}
+      :javascript
+        // instalkl flowplayer into container
+        flowplayer("audio", "http://releases.flowplayer.org/swf/flowplayer-3.2.7.swf", {
+          // fullscreen button not needed here
+          plugins: {
+              controls: {
+                  fullscreen: false,
+                  height: 30,
+                  autoHide: false
+              }
+          },
+          clip: {
+              autoPlay: false,
+              // optional: when playback starts close the first audio playback
+              onBeforeBegin: function() {
+                  flowplayer("player").close();
+              }
+        }});
 :javascript
   FB.init({
     appId  : '#{Facebook::APP_ID}',

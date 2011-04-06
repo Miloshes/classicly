@@ -1,6 +1,6 @@
-- content_for :related_audiobooks do
+- content_for :related_books do
   %span
-    Featured audiobooks
+    Featured books
   = render :partial => 'pages/cover', :collection => @collection.random_blessed(8, :audiobook)
 
 #collection-page.grid_9.alpha.omega
@@ -26,13 +26,13 @@
       .pagination
         = paginate @audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
-        = render :partial => 'listed_audiobook', :collection => @audiobooks, :as => :audiobook
+        = render :partial => 'listed_audiobook', :collection => @audiobooks, :as => :audio_book
       .clear
       .pagination
         = paginate @audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
     .grid_4.alpha
       %ul.featured-book-list
-        = render :partial => 'blessed_audiobook', :collection => @blessed_audiobooks, :as => :audiobook
+        = render :partial => 'blessed_audiobook', :collection => @blessed_audiobooks, :as => :audio_book
 - if Rails.env.production?
   - if @collection.collection_type == 'author'
     = raw render_performable_script(:author)
