@@ -2,6 +2,6 @@
   %span
     Popular Books
 
-  = render :partial => 'pages/cover', :collection => @related_books
+  = render :partial => 'cover_audio_book', :collection => @related_books, :as => :audio_book
 #home-page
   = render :partial => "featured_audiobook", :collection => @featured_audiobooks

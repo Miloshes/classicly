@@ -9,6 +9,7 @@
     %div.book-description
   .grid_1.omega
     .download_this_book
+      = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
     .clear
     .share-widgets
       .twitter-widget

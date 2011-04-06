@@ -1,7 +1,7 @@
 - content_for :related_books do
   %span
     Related Books
-  = render :partial => 'pages/cover', :collection => @related_audio_books
+  = render :partial => 'cover_audio_book', :collection => @related_audio_books, :as => :audio_book
 
 #book-page.grid_9
   #cover.grid_2.alpha
