@@ -1,3 +1,10 @@
+- content_for :title do
+  %title Free Audio Books to Listen Online and Online Audio Books for Free - 2,947 classics - Classicly
+
+- content_for :head do
+  = fb_open_graph_metadata(:description => '2,947 of the world’s greatest free audio books, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.')
+  %meta{:name => 'description', :content => '2,947 of the world’s greatest free audio books, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.'}
+
 - content_for :related_books do
   %span
     Popular Books
