@@ -2,8 +2,8 @@ class Audiobook < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
 
-  has_many :collection_audiobook_assignments
-  has_many :collections, :through => :collection_audiobook_assignments
+  has_many :audio_collection_audio_book_assignments, :foreign_key => 'audio_book_id'
+  has_many :audio_collections, :through => :audio_collection_audiobook_assignments
 
   validates :title, :presence => true
 

@@ -32,7 +32,7 @@ Classicly::Application.routes.draw do
   match '/web_api/query' => "web_api#query", :via => :post
 
   match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match '/:id/audiobooks' => 'audiobooks#seo', :as => 'audiobookseo', :via => :get
+
   match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get
   match '/:author_id/:id/audiobooks' => 'audiobooks#show', :as => :audio_book_details, :via => :get
   

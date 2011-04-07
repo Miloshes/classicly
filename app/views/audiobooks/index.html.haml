@@ -11,6 +11,4 @@
 
   = render :partial => 'cover_audio_book', :collection => @related_books, :as => :audio_book
 #home-page
-  = render :partial => "featured_audiobook", :collection => @featured_audiobooks
-
-<fb:like show_faces="true" width="450" font="arial"></fb:like>
+  = render :partial => "featured_audio_book", :collection => @featured_audio_books, :as => :audio_book

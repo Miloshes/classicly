@@ -5,7 +5,7 @@ class AudiobooksController < ApplicationController
 
   def index
     @related_books = Audiobook.blessed.random(8)
-    @featured_audiobooks = Audiobook.blessed.random(5)
+    @featured_audio_books = Audiobook.blessed.random(5)
   end
 
   def show
@@ -31,11 +31,11 @@ class AudiobooksController < ApplicationController
 
   private
   def find_audio_author_collections
-    @audio_author_collections = Collection.type_audiobook.by_author
+    @audio_author_collections = Collection.audio_book_type.by_author
   end
 
   def find_audio_genre_collections
-    @audio_genre_collections = Collection.type_audiobook.by_collection
+    @audio_genre_collections = Collection.audio_book_type.by_collection
   end
 
   def find_audio_book_with_author

@@ -11,28 +11,28 @@
       <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
     .collection_media.grid_3.omega
       .highlighted-cover
-        = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_audiobook.id}_size3.jpg",
-          :alt => "#{@featured_audiobook.title} by #{@featured_audiobook.author.name}"),
-          author_book_url(@featured_audiobook.author, @featured_audiobook)
-      %a.book-link{:href => author_book_url(@featured_audiobook.author, @featured_audiobook)}
+        = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_audio_book.id}_size3.jpg",
+          :alt => "#{@featured_audio_book.title} by #{@featured_audio_book.author.name}"),
+          author_book_url(@featured_audio_book.author, @featured_audio_book)
+      %a.book-link{:href => author_book_url(@featured_audio_book.author, @featured_audio_book)}
         %h3 Featured Book:
-        %h4=@featured_audiobook.title
-        %h4 <i>by</i> #{@featured_audiobook.author.name}
+        %h4=@featured_audio_book.title
+        %h4 <i>by</i> #{@featured_audio_book.author.name}
   .divider.grid_9.alpha.omega
     = image_tag 'divider.png'
   .grid_9.alpha.omega
     .grid_5.alpha
       .clear
       .pagination
-        = paginate @audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
+        = paginate @audio_books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
-        = render :partial => 'listed_audiobook', :collection => @audiobooks, :as => :audio_book
+        = render :partial => 'audiobooks/listed_audio_book', :collection => @audio_books, :as => :audio_book
       .clear
       .pagination
-        = paginate @audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
+        = paginate @audio_books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
     .grid_4.alpha
       %ul.featured-book-list
-        = render :partial => 'blessed_audiobook', :collection => @blessed_audiobooks, :as => :audio_book
+        = render :partial => 'audiobooks/blessed_audio_book', :collection => @blessed_audio_books, :as => :audio_book
 - if Rails.env.production?
   - if @collection.collection_type == 'author'
     = raw render_performable_script(:author)
