@@ -190,4 +190,11 @@ class Book < ActiveRecord::Base
     end_of_string = self.cached_slug =~ /--[\d]+/
     self.cached_slug[0, end_of_string]
   end
+  
+  def self.update_description_from_web_api(data)
+    book  = Book.find(data['book_id'].to_i)
+    return if book.blank?
+    
+    book.update_attributes(:description => data['description'])
+  end
 end

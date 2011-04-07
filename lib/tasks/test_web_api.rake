@@ -9,7 +9,7 @@ namespace :test_web_api do
         "action" => "register_book_review",
         "content" => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
         "rating" => 5,
-        "timestamp" => "Thu Feb 10 14:09:59 +0100 2011"
+        "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
       }
     
       response = RestClient.post('http://localhost:3000/web_api', :json_data => data.to_json)
@@ -91,6 +91,22 @@ namespace :test_web_api do
       }
       
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+  
+  task :update_book_description_from_web_api => :environment do
+    data = {
+        "book_id"     => 3,
+        "action"      => "update_book_description",
+        "description" => %q{Upton Sinclair (1878 - 1968) was an American author who wrote over 90 books in several 
+genres, 
+including the famous novel The Jungle which exposed the horrible conditions of the U.S. meatpacking industry. With the money from this bestseller Sinclair founded a socialist colony in New Jersey, which mysteriously burned to the ground within a year. 
+
+        100%: The Story of a Patriot, is the story is a opportunistic man who gets entangled with a plot to infiltrate and spy on an enclave of Socialists during the Red Scare. The members have been wrongfully connected with a domestic bombing attempt. Sinclair was an political idealist and his Socialist bent is reflected in this book.
+        }
+      }
+    
+      response = RestClient.post('http://localhost:3000/web_api', :json_data => data.to_json)
       puts "Response was: #{response.body}"
   end
 end
