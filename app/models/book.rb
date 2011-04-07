@@ -195,7 +195,6 @@ class Book < ActiveRecord::Base
     book  = Book.find(data['book_id'].to_i)
     return if book.blank?
     
-    puts " -- updating book description: #{book.id}"
     book.update_attributes(:description => data['description'])
   end
 end
