@@ -61,7 +61,7 @@
         = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
       .clear
       %ul.reviews
-        = render :partial => 'review', :collection => @book.reviews
+        = render :partial => 'books/review', :collection => @book.reviews
 
 = javascript_include_tag 'book-details'
 :javascript

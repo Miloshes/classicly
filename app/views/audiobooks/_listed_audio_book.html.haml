@@ -1,13 +1,13 @@
 %li.grid_5.alpha.omega
   .grid_1.alpha
     = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{audio_book.id}_size1.jpg",
-      :alt => "#{audio_book.title} by #{audio_book.author.name}"), audio_book_details_url(audio_book.author, audio_book)
+      :alt => "#{audio_book.title} by #{audio_book.author.name}"), author_book_url(audio_book.author, audio_book)
   .grid_4.omega.metadata
     .metadata
-      = link_to audio_book.title, audio_book_details_url(audio_book.author, audio_book), :class => "title"
+      = link_to audio_book.title, author_book_url(audio_book.author, audio_book), :class => "title"
       %br
       %span by
-      = link_to audio_book.author.name, audio_book_details_url(audio_book.author, audio_book), :class => "author"
+      = link_to audio_book.author.name, author_book_url(audio_book.author, audio_book), :class => "author"
       %br
       .book-avg-rating
         -# if book.has_rating?
