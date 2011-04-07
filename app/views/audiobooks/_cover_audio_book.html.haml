@@ -1,5 +1,5 @@
 .cover
-  = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{audio_book.id}_size3.jpg",
+  = link_to image_tag("http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{audio_book.id}_size3.jpg",
             :class =>"cover-art", :alt => "#{audio_book.pretty_title} by #{audio_book.author.name }"),
             author_book_url(audio_book.author, audio_book)
   .add-profile-pics.three

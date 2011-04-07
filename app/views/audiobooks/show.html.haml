@@ -8,7 +8,7 @@
 
 #book-page.grid_9
   #cover.grid_2.alpha
-    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@audio_book.id}_size2.jpg",
+    = image_tag "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{@audio_book.id}_size2.jpg",
       :alt => "#{@audio_book.pretty_title} by #{@audio_book.author.name}"
     - unless @audio_books_from_the_same_collection.empty?
       .related-books
