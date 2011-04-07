@@ -67,6 +67,19 @@ class ReaderEngine
       }.to_json
   end
   
+  def get_book(book_id)
+    book = Book.find(book_id)
+    return nil if book.blank?
+    
+    lazy_load_book_content(book_id)
+    
+    return {
+        :content    => self.current_book_content,
+        :page_count => book.book_pages.count,
+        :title      => book.pretty_title
+      }.to_json
+  end
+  
   # NOTE: for now it works by loading the book from a local HD
   # Will only need support for loading books from S3 later
   def lazy_load_book_content(book_id)

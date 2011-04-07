@@ -21,10 +21,10 @@ namespace :test_reader_engine_api do
     puts "Response was: #{response.body}"
   end
   
-  task :get_book_content => :environment do
+  task :get_book => :environment do
     data = 
     {
-      "action" => "get_book_content",
+      "action" => "get_book",
       "book_id" => 14
     }
     
