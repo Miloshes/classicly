@@ -55,7 +55,6 @@ class ReaderEngine
   def get_page(book_id, page_number)
     lazy_load_book_content(book_id)
     
-
     book = Book.find(book_id)
     return nil if book.blank?
     
