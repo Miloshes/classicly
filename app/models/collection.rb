@@ -24,7 +24,7 @@ class Collection < ActiveRecord::Base
   belongs_to :genre
   default_scope :order => 'downloaded_count desc'
   scope :book_type, where(:book_type => 'book')
-  scope :type_audiobook, where(:book_type => 'audiobook')
+  scope :audio_book_type, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
   
@@ -34,7 +34,7 @@ class Collection < ActiveRecord::Base
   validates :source_type, :presence => true
   validates :source, :presence => true
 
-  has_friendly_id :name, :use_slug => true
+  has_friendly_id :collection_slug, :use_slug => true
 
   has_attached_file :author_portrait, 
     :styles => {
@@ -126,5 +126,18 @@ class Collection < ActiveRecord::Base
       blessed_books.delete_at(position)
     end
     return results
+  end
+
+  def collection_slug
+    case book_type
+      when 'book'
+        name
+      when 'audiobook'
+        if Collection.where(:name => name).count == 1
+          name
+        else
+          "#{name}-audiobooks"
+        end
+    end
   end
 end
