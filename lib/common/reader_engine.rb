@@ -55,28 +55,20 @@ class ReaderEngine
   def get_page(book_id, page_number)
     lazy_load_book_content(book_id)
     
-    book_page = BookPage.where(:book_id => book_id, :page_number => page_number).first()
+
+    book = Book.find(book_id)
+    return nil if book.blank?
     
+    book_page = book.book_pages.where(:page_number => page_number).first()
     return nil if book_page.blank?
     
     return {
         :first_character   => book_page.first_character,
         :last_character    => book_page.last_character,
         :first_line_indent => book_page.first_line_indent,
-        :content           => book_page.content
-      }.to_json
-  end
-  
-  def get_book(book_id)
-    book = Book.find(book_id)
-    return nil if book.blank?
-    
-    lazy_load_book_content(book_id)
-    
-    return {
-        :content    => self.current_book_content,
-        :page_count => book.book_pages.count,
-        :title      => book.pretty_title
+        :content           => book_page.content,
+        :total_page_count  => book.book_pages.count,
+        :book_title        => book.pretty_title
       }.to_json
   end
   

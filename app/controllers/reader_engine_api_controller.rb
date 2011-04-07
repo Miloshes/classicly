@@ -23,7 +23,7 @@ class ReaderEngineApiController < ApplicationController
     
     case @action
     when 'get_book'
-      render :text => @engine.get_book(@api_params['book_id'])
+      render :text => @engine.current_book_content
       return
     when 'get_page'
       render :text => @engine.get_page(@api_params['book_id'], @api_params['page_number'])
