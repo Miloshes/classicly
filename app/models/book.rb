@@ -192,9 +192,12 @@ class Book < ActiveRecord::Base
   end
   
   def self.update_description_from_web_api(data)
+    puts " -- method got called in the book model with data: #{data.inspect}"
     book  = Book.find(data['book_id'].to_i)
     return if book.blank?
     
+    puts " -- updating book: #{book.id}"
     book.update_attributes(:description => data['description'])
+    puts " -- new description is: #{book.description}"
   end
 end
