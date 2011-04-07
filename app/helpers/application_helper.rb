@@ -9,9 +9,9 @@ module ApplicationHelper
   end
 
   def list_element_link(collection)
-    content_tag :li do
-      link_to collection.name, seo_url(collection)
-    end
+      content_tag :li do
+         collection.book_type == 'book' ? link_to(collection.name, seo_url(collection)) : link_to(collection.name, audiobookseo_url(collection))
+      end
   end
 
   def typekit_include_helper
@@ -108,4 +108,15 @@ end
    html
  end
 #==========================================================================================================================
+#helpers for analytics
+  def render_performable_script(type)
+    case type
+    when :author
+      "<script type='text/javascript'>var _paq = _paq || [];_paq.push(['trackConversion', {id: '7dVnMY92mgit',
+      value: null}]);</script>"
+    else
+      "<script type='text/javascript'>var _paq = _paq || [];_paq.push(['trackConversion', {id: '3D5BM25rvvhv',
+      value: null}]);</script>"
+    end
+  end
 end

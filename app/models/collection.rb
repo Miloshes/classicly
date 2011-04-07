@@ -24,6 +24,7 @@ class Collection < ActiveRecord::Base
   belongs_to :genre
   default_scope :order => 'downloaded_count desc'
   scope :book_type, where(:book_type => 'book')
+  scope :type_audiobook, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
   
@@ -106,9 +107,17 @@ class Collection < ActiveRecord::Base
     end
   end
 
-  def random_blessed_books(num = 8)
-    return [] if self.books.blessed.blank?
-    blessed_books = self.books.blessed.clone
+  def random_blessed(num = 8, klass = :book)
+    #TODO : refactor this with metaprogramming
+    blessed_books = []
+    if klass == :book
+      return [] if self.books.blessed.blank?
+      blessed_books = self.books.blessed.clone
+    elsif klass == :audiobook
+      return [] if self.audiobooks.blessed.blank?
+      blessed_books = self.audiobooks.blessed.clone
+    end
+
     num = blessed_books.count if num > blessed_books.count
     results = []
     1.upto num do

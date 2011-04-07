@@ -9,7 +9,7 @@
 - content_for :related_books do
   %span
     Featured Books
-  = render :partial => 'pages/cover', :collection => @collection.random_blessed_books
+  = render :partial => 'pages/cover', :collection => @collection.random_blessed
 
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
@@ -41,3 +41,8 @@
     .grid_4.alpha
       %ul.featured-book-list
         = render :partial => '/books/listed_featured_book', :collection => @blessed_books, :as => :featured
+- if Rails.env.production?
+  - if @collection.collection_type == 'author'
+    = raw render_performable_script(:author)
+  - else
+    = raw render_performable_script(:collection)

@@ -25,27 +25,13 @@
       %span
         If the download does not automatically start,
         = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
-      .grid_7.alpha.omega.divider
-        = image_tag "divider.png"
       .grid_7.alpha.omega
-        .grid_7.alpha.omega
-          .grid_3.alpha
-            .facebook
-              .top
-                - if ab_test 'facebook_like_dowload'
-                  -# overwrite the href . Otherwise it will try to recommend the download page and not the book page
-                  <fb:like href="#{author_book_url(@book.author, @book)}" show_faces="true" width="600" font="arial"></fb:like>
-                - else
-                  <fb:like href="#{author_book_url(@book.author, @book)}" show_faces="true" width="600" font="arial" action='recommend'></fb:like>
-              .bottom
-          .grid_3.push_1.omega.twitter
-        .grid_7.alpha.omega.sync
-          .grid_3.alpha
-            = image_tag 'confirmation-iphone.png'
-          .grid_3.push_1.omega
-            = image_tag 'confirmation-ipad.png'
-
+        .facebook-upsell
+          %a#download-facebook-post.conversion-button.kiss.green.large.kiss{:href => '#'}
+            %span Gift this Book on Facebook!
+          <br />
+          <br />
+          %span.text <b>How this Helps:</b><br />Posting to Facebook gives your friends this book for free!
 = javascript_include_tag 'downloads'
 <script type="text/javascript">document.write(unescape('%3Cscript type="text/javascript" src="'+document.location.protocol+'//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/3575.js"%3E%3C%2Fscript%3E'))</script>
-
 
