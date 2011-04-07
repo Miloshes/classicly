@@ -1,3 +1,3 @@
-$('.pagination').html("<%= escape_javascript(paginate(@audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate'} , :remote => true).to_s)%>");
+$('.pagination').html("<%= escape_javascript(paginate(@audio_books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate'} , :remote => true).to_s)%>");
 
-$('ul.book-list').html("<%= escape_javascript(render :partial => 'listed_audio_book', :collection => @audiobooks, :as => :audiobook)%>");
+$('ul.book-list').html("<%= escape_javascript(render :partial => 'audiobooks/listed_audio_book', :collection => @audio_books, :as => :audio_book)%>");
