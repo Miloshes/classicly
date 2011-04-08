@@ -5,6 +5,8 @@ class Audiobook < ActiveRecord::Base
   has_many :collection_audiobook_assignments
   has_many :collections, :through => :collection_audiobook_assignments
 
+  has_many :reviews, :as => :reviewable
+
   validates :title, :presence => true
 
   scope :blessed, where({:blessed => true})
