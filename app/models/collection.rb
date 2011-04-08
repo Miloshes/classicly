@@ -133,11 +133,7 @@ class Collection < ActiveRecord::Base
       when 'book'
         name
       when 'audiobook'
-        if Collection.where(:name => name).count == 1
-          name
-        else
-          "#{name}-audiobooks"
-        end
+          "#{name}-audiobook  s"
     end
   end
 end
