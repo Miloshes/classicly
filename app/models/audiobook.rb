@@ -10,7 +10,7 @@ class Audiobook < ActiveRecord::Base
   scope :blessed, where({:blessed => true})
   scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
-  has_friendly_id :pretty_title, :use_slug => true
+  has_friendly_id :audio_book_slugs, :use_slug => true
 
   def find_fake_related(num = 8)
     result = []
@@ -38,7 +38,7 @@ class Audiobook < ActiveRecord::Base
     audio_books_to_choose_from = []
 
     self.collections.each do |collection|
-      audio_books_to_choose_from += collection.audiobooks.where("audiobooks.id <> ?", self.id)
+      audio_books_to_choose_from += collection.audiobooks.where('audiobooks.id <> ?', self.id)
     end
 
     result = choose_audio_books(num, result, audio_books_to_choose_from)
@@ -60,4 +60,13 @@ class Audiobook < ActiveRecord::Base
     end
     result
   end
+
+  def audio_book_slugs
+    if Book.exists?(:pretty_title => self.pretty_title)
+      "#{pretty_title}-audiobook"
+    else
+      pretty_title
+    end
+  end
+
 end
