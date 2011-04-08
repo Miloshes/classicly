@@ -16,6 +16,20 @@ namespace :test_web_api do
       puts "Response was: #{response.body}"
   end
   
+  task :register_audiobook_review => :environment do
+    data = {
+        "user_fbconnect_id" => "1232134",
+        "audiobook_id" => 10,
+        "action" => "register_book_review",
+        "content" => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+        "rating" => 5,
+        "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
+      }
+    
+      response = RestClient.post('http://localhost:3000/web_api', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+  
   task :register_ios_user => :environment do
     data = {
         'action'                => 'register_ios_user',

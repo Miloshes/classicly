@@ -5,16 +5,21 @@ class Review < ActiveRecord::Base
   validates :rating, :presence => true, :numericality => true
   
   def self.create_or_update_from_ios_client_data(data)
-    book  = Book.find(data['book_id'].to_i)
+    if data['book_id']
+      reviewable = Book.find(data['book_id'].to_i)
+    else
+      reviewable = Audiobook.find(data['audiobook_id'].to_i)
+    end
+    
     login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
     
-    return nil if login.blank?
+    return nil if login.blank? || reviewable.blank?
     
     new_timestamp = Time.parse(data['timestamp'])
     
     review_conditions = {
         :login_id      => login.id,
-        :reviewable    => book,
+        :reviewable    => reviewable,
         :fb_connect_id => login.fb_connect_id
       }
 
