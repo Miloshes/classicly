@@ -133,7 +133,7 @@ class Collection < ActiveRecord::Base
       when 'book'
         name
       when 'audiobook'
-          "#{name}-audiobook  s"
+          "#{name}-audiobooks"
     end
   end
 end
