@@ -48,14 +48,12 @@ class Book < ActiveRecord::Base
 
   def download_book_page_title(format)
     format = 'kindle' if format == 'azw'
-    suffix = format ? '| Download %s' % format : '| Download' 
     # 70 chars is the limit, but substract  4 characters for ' by '
-    if [self.pretty_title ,' by ' , self.author.name, suffix].map(&:length).reduce(:+) <= 70
-      "#{self.pretty_title} by #{self.author.name}#{suffix} "
-    elsif [self.pretty_title, suffix].map(&:length).reduce(:+) <= 70
-      "#{self.pretty_title}#{suffix}"
+    prefix = 'Download'
+    if [prefix, self.pretty_title , format].map(&:length).reduce(:+) <= 70
+      "#{prefix} #{self.pretty_title} #{format}"
     else
-      "#{shorten_title(self.pretty_title, 70 - suffix.length)}#{suffix}"
+      "#{prefix} #{shorten_title(self.pretty_title, 70 - prefix.length - format.length)}#{format}"
     end
   end
   

@@ -24,10 +24,4 @@
       .grid_7.alpha.omega
         .facebook-upsell
           %a#download-facebook-post.conversion-button.kiss.green.large.kiss{:href => "#{serve_downloadable_file_url(@book, @format)}"}
-            %span
-              - if @format == 'azw'
-                Click to download for Kindle
-              - else
-                Click to download as #{@format.upcase}
-
-
+            = special_format_download_book_link(@format)
