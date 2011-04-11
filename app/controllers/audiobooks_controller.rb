@@ -1,6 +1,8 @@
 class AudiobooksController < ApplicationController
   before_filter :find_audio_author_collections
   before_filter :find_audio_genre_collections
+  layout 'application'
+
   def index
     @related_books = Audiobook.blessed.random(8)
     @featured_audio_books = Audiobook.blessed.random(5)
@@ -13,10 +15,10 @@ class AudiobooksController < ApplicationController
 
   private
   def find_audio_author_collections
-    @audio_author_collections = Collection.audio_book_type.by_author
+    @author_collections = Collection.audio_book_type.by_author
   end
 
   def find_audio_genre_collections
-    @audio_genre_collections = Collection.audio_book_type.by_collection
+    @genre_collections = Collection.audio_book_type.by_collection
   end
 end
