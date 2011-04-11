@@ -1,5 +1,5 @@
 - content_for :title do
-  %title=@book.download_book_page_title(@format)
+  %title= @book.download_book_page_title(@format)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => @book.description_for_open_graph,
@@ -18,12 +18,12 @@
   .grid_7.omega
     .download-info.grid_7.alpha.omega
       %h1
+        Download #{@format == 'azw' ? 'Kindle' : @format.upcase } version of
         = link_to "#{@book.pretty_title}", author_book_url(@book.author, @book)
         by
         = link_to "#{@book.author.name}", seo_url(@book.author)
-        is now downloading...
       %span
-        If the download does not automatically start,
+        To start the download,
         = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
       .grid_7.alpha.omega
         .facebook-upsell
@@ -32,6 +32,5 @@
           <br />
           <br />
           %span.text <b>How this Helps:</b><br />Posting to Facebook gives your friends this book for free!
-= javascript_include_tag 'downloads'
-<script type="text/javascript">document.write(unescape('%3Cscript type="text/javascript" src="'+document.location.protocol+'//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/3575.js"%3E%3C%2Fscript%3E'))</script>
+
 

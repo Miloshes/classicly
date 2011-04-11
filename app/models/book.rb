@@ -36,10 +36,29 @@ class Book < ActiveRecord::Base
     {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(page_num).per(10)
   end
 
+  def self.update_description_from_web_api(data)
+    book  = Book.find(data['book_id'].to_i)
+    return if book.blank?
+    book.update_attributes(:description => data['description'])
+  end
+
   def available_in_format?(format)
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
   end
 
+  def download_book_page_title(format)
+    format = 'kindle' if format == 'azw'
+    suffix = format ? '| Download %s' % format : '| Download' 
+    # 70 chars is the limit, but substract  4 characters for ' by '
+    if [self.pretty_title ,' by ' , self.author.name, suffix].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title} by #{self.author.name}#{suffix} "
+    elsif [self.pretty_title, suffix].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title}#{suffix}"
+    else
+      "#{shorten_title(self.pretty_title, 70 - suffix.length)}#{suffix}"
+    end
+  end
+  
   def download_url_for_format(format)
     AWS::S3::Base.establish_connection!(
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
@@ -89,15 +108,6 @@ class Book < ActiveRecord::Base
       mix_panel_properties.merge!({:id => user_id})
     end
     mix_panel_object.track_event("Viewed Book", mix_panel_properties)
-  end
-
-  def web_title
-    if (self.pretty_title.length  + self.author.name.length) <= 100
-      title, author = self.pretty_title, self.author.name
-    else
-      title, author = shorten_title(self.pretty_title, 49), shorten_title(self.author.name, 49)
-    end
-    "%s by %s - Read Online and Download Free Books" % [title, author]
   end
 
   def shorten_title(str, limit)
@@ -195,6 +205,16 @@ class Book < ActiveRecord::Base
     self.save
   end
 
+  def view_book_page_title
+    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title} by #{self.author.name}"
+    elsif self.pretty_title.length <= 70
+      self.pretty_title
+    else
+      shorten_title self.pretty_title, 70
+    end
+  end
+
   def generate_seo_slugs
     ['pdf', 'kindle'].each do |format|
       slug = "download-%s-%s" % [self.cached_slug, format]
@@ -217,11 +237,5 @@ class Book < ActiveRecord::Base
   def canonical_slug
     end_of_string = self.cached_slug =~ /--[\d]+/
     self.cached_slug[0, end_of_string]
-  end
-
-  def self.update_description_from_web_api(data)
-    book  = Book.find(data['book_id'].to_i)
-    return if book.blank?
-    book.update_attributes(:description => data['description'])
   end
 end

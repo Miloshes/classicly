@@ -2,6 +2,8 @@ desc 'Generate seo slugs for collectiosn. This seo slugs will be used in the pat
 
 namespace :collections_seo_slugs do
   task :generate => :environment do
+    #drop all collection seos
+    SeoSlug.where(:seoable_type => 'Collection').delete_all
     Collection.find_each do|collection|
       collection.generate_seo_slugs
       puts "Generating seo slugs for collection (#{collection.id}): #{collection.name}"

@@ -6,6 +6,7 @@ class AudiobooksController < ApplicationController
   def index
     @related_books = Audiobook.blessed.random(8)
     @featured_audio_books = Audiobook.blessed.random(5)
+    @audibly = true
   end
 
   def ajax_paginate

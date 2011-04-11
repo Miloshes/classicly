@@ -27,8 +27,7 @@
   #header
     .container_12
       .grid_2.alpha
-        %a#logo{:href => '/'}
-        %h2 free books from<br />the public domain
+        = render 'shared/logo', :audibly => @audibly
       .grid_5
         = search_form(search_url, @search)
       = render 'shared/profile_image_in_header', :current_login => current_login

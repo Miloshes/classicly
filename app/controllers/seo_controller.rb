@@ -9,6 +9,7 @@ class SeoController < ApplicationController
       @related_books = @book.find_fake_related(8)
       @books_from_the_same_collection = @book.find_more_from_same_collection(2)
       @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
+      @audibly = @book.class == Audiobook
       @review = session[:review] || Review.new
       session[:review] = nil
       render @book.class == Book ? 'books/show' : 'audiobooks/show'
@@ -21,6 +22,7 @@ class SeoController < ApplicationController
       render_seo seo
     else
       render_search
+      @audibly = false
     end
   end
 
@@ -54,12 +56,14 @@ class SeoController < ApplicationController
   end
 
   def render_seo(seo)
+    @audibly = false
     if seo.is_for_collection?
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
       @featured_book = seo.find_featured_book_for_collection
       if seo.seoable.is_audio_collection?
+        @audibly = true
         render 'show_audio_collection' and return
       else
         render 'show_collection' and return
@@ -73,10 +77,11 @@ class SeoController < ApplicationController
     @review = session[:review] || Review.new
     session[:review] = nil
     if seo.is_for_audio_book?
+      @audibly = true
       render 'audiobooks/show'
     elsif seo.is_for_book?
       @format = seo.download_format
-      render 'books/download'
+      render 'books/download_special_format'
     end
   end
 

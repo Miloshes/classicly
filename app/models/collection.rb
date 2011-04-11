@@ -140,12 +140,12 @@ class Collection < ActiveRecord::Base
 
   def generate_seo_slugs
     #create slugs for normal collection page
-    SeoSlug.find_or_create_by_slug(self.cached_slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
+    SeoSlug.create!({:slug => self.cached_slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
     #create slugs for specific formats
-    formats = (self.book_type == 'book') ? %w(pdf kindle) : %w(mp3)
+    formats = (self.book_type == 'book') ? %w(pdfs kindle-books) : %w(mp3s)
     formats.each do |format|
       slug = "download-%s-%s" % [self.cached_slug, format]
-      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+      SeoSlug.create!({:slug => slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
 end
