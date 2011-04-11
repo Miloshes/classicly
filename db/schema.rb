@@ -10,13 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110330185002) do
+ActiveRecord::Schema.define(:version => 20110408115615) do
+
+  create_table "alternatives", :force => true do |t|
+    t.integer "experiment_id"
+    t.string  "content"
+    t.string  "lookup",        :limit => 32
+    t.integer "weight",                      :default => 1
+    t.integer "participants",                :default => 0
+    t.integer "conversions",                 :default => 0
+  end
+
+  add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
+  add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
     t.integer "author_id"
     t.boolean "blessed",         :default => false, :null => false
     t.integer "custom_cover_id"
+    t.string  "pretty_title"
+    t.string  "cached_slug"
   end
 
   create_table "authors", :force => true do |t|
@@ -33,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20110330185002) do
     t.integer "last_character"
     t.text    "content"
     t.boolean "first_line_indent", :default => false, :null => false
+    t.boolean "force_rerender",    :default => false, :null => false
   end
 
   create_table "books", :force => true do |t|

@@ -41,6 +41,10 @@ Classicly::Application.routes.draw do
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
         :as => 'serve_downloadable_file', :via => :get
+        
+  # for invoking the book reader
+  match '/:author_id/:id/read-online/page/:page_number' => "book_pages#show",
+        :as => 'html_book_page', :via => :get
   
   root :to => 'pages#main'
 end

@@ -16,11 +16,13 @@ class BookPagesController < ApplicationController
     object_name = "book_#{book.id}_page_#{params[:page_number]}.html"
     bucket_name = APP_CONFIG['buckets']['static_book_pages']
     
-    if S3Object.exists?(object_name, bucket_name) && !params[:force_rerender]
+    if S3Object.exists?(object_name, bucket_name) && !@book_page.force_rerender?
       render :text => S3Object.value(object_name, bucket_name)
     else
       book_page_html = render_to_string(:action => "show", :layout => 'layouts/static_book_pages')
       S3Object.store(object_name, book_page_html, bucket_name, :access => :public_read)
+      
+      @book_page.update_attributes(:force_rerender => false) if @book_page.force_rerender?
       
       render :text => book_page_html
     end
