@@ -4,23 +4,23 @@
 - content_for :related_books do
   %span
     Related Books
-  = render :partial => 'audiobooks/cover_audio_book', :collection => @related_audio_books, :as => :audio_book
+  = render :partial => 'audiobooks/cover_audio_book', :collection => @related_books, :as => :audio_book
 
 #book-page.grid_9
   #cover.grid_2.alpha
-    = image_tag "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{@audio_book.id}_size2.jpg",
-      :alt => "#{@audio_book.pretty_title} by #{@audio_book.author.name}"
-    - unless @audio_books_from_the_same_collection.empty?
+    = image_tag "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{@book.id}_size2.jpg",
+      :alt => "#{@book.pretty_title} by #{@book.author.name}"
+    - unless @books_from_the_same_collection.empty?
       .related-books
         %h4 Audiobooks from the same collection:
-        = render :partial => "audiobooks/related_audio_book", :collection => @audio_books_from_the_same_collection, :as => :audio_book
+        = render :partial => "audiobooks/related_audio_book", :collection => @books_from_the_same_collection, :as => :audio_book
   .grid_7.omega
     #book-metadata.grid_5.omega
-      %h1= @audio_book.pretty_title
+      %h1= @book.pretty_title
       %h2
         by
         %span.book-author
-          = @audio_book.author.name
+          = @book.author.name
       .share
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
       %p=# simple_format(@audio_book.description)
@@ -31,7 +31,7 @@
       .share-widgets
         .twitter-widget
           = javascript_include_tag "http://platform.twitter.com/widgets.js"
-          = link_to "", "http://twitter.com/share?url=#{author_book_url(@audio_book.author, @audio_book)}&text=#{@audio_book.pretty_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
+          = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.pretty_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
         .facebook-widget
           <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
           <fb:like layout="box_count" show_faces="true" width="200" font="arial" action='recommend'>
