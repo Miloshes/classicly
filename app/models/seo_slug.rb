@@ -19,6 +19,10 @@ class SeoSlug < ActiveRecord::Base
         self.seoable.books.page(params[:page]).per(25)
   end
 
+  def download_format
+    self.format == 'kindle' ? 'azw' : self.format
+  end
+
   def is_for_audio_book?
     self.seoable_type == 'Audiobook'
   end
@@ -31,4 +35,11 @@ class SeoSlug < ActiveRecord::Base
     self.seoable_type == 'Collection'
   end
 
+  def is_valid?
+    return false if seoable.nil?
+    if self.is_for_book?
+      return seoable.available_in_format?(download_format)
+    end
+    true
+  end
 end

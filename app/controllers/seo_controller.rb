@@ -17,7 +17,7 @@ class SeoController < ApplicationController
 
   def show
     seo = SeoSlug.find_by_slug(params[:id])
-    if seo && seo.seoable
+    if seo && seo.is_valid?
       render_seo seo
     else
       render_search
@@ -75,7 +75,7 @@ class SeoController < ApplicationController
     if seo.is_for_audio_book?
       render 'audiobooks/show'
     elsif seo.is_for_book?
-      @format = seo.format
+      @format = seo.download_format
       render 'books/download'
     end
   end
