@@ -17,17 +17,21 @@ a
   :float left
   :text-align left
   :border-bottom 1px solid #bc9e7a
-  a#logo
+  a#logo, a#audibly-logo
     :display block
     :width 165px
     :height 41px
-    :background url('/images/logo.png')
     :margin 0
       :top 20px
     :padding 0
     :float left
     &:hover
       :cursor pointer
+  a#logo
+    :background url('/images/logo.png')
+  a#audibly-logo
+    background: url('/images/audibly-logo_03.png')
+    width: 169px
   h2
     :color #fff
     :float left
@@ -39,6 +43,8 @@ a
     :margin 0
       :top -5px
       :left 30px
+  h2.audibly
+    margin-top: 2px
   div.search-bg
     :width 402px
     :height 40px

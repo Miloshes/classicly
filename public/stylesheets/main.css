@@ -33,7 +33,8 @@ a {
   #header a#logo {
     background: url("/images/logo.png"); }
   #header a#audibly-logo {
-    background: url("/images/audibly-logo_03.png"); }
+    background: url("/images/audibly-logo_03.png");
+    width: 169px; }
   #header h2 {
     color: white;
     float: left;

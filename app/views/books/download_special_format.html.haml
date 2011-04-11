@@ -18,19 +18,16 @@
   .grid_7.omega
     .download-info.grid_7.alpha.omega
       %h1
-        Download #{@format == 'azw' ? 'Kindle' : @format.upcase } version of
+        Download
         = link_to "#{@book.pretty_title}", author_book_url(@book.author, @book)
-        by
-        = link_to "#{@book.author.name}", seo_url(@book.author)
-      %span
-        To start the download,
-        = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
+        #{@format == 'azw' ? 'Kindle' : @format.upcase }
       .grid_7.alpha.omega
         .facebook-upsell
-          %a#download-facebook-post.conversion-button.kiss.green.large.kiss{:href => '#'}
-            %span Gift this Book on Facebook!
-          <br />
-          <br />
-          %span.text <b>How this Helps:</b><br />Posting to Facebook gives your friends this book for free!
+          %a#download-facebook-post.conversion-button.kiss.green.large.kiss{:href => "#{serve_downloadable_file_url(@book, @format)}"}
+            %span
+              - if @format == 'azw'
+                Click to download for Kindle
+              - else
+                Click to download as #{@format.upcase}
 
 
