@@ -12,10 +12,11 @@ end
 namespace :books_seo_slugs do
   task :generate => :environment do
     Book.find_each do|book|
-      book.generate_seo_slugs
+      book.generate_seo_slugs unless book.id == 4815
       puts "Generating seo slugs for book (#{book.id}): #{book.pretty_title}"
     end
   end
+  #book id 4815 overflows the string limit!
 end
 
 namespace :audio_books_seo_slugs do
