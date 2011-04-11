@@ -2,14 +2,16 @@ include AWS::S3
 
 class Book < ActiveRecord::Base
   include Descriptable
+
   belongs_to :author
   belongs_to :custom_cover
 
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
-  has_and_belongs_to_many :genres
   has_many :download_formats
+  has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
+  has_many :seo_slugs, :as => :seoable
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
@@ -70,6 +72,23 @@ class Book < ActiveRecord::Base
 
   def description_for_open_graph
     "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title
+  end
+
+  def on_download(user_id, mix_panel_object)
+    Book.update_counters self.id, :downloaded_count => 1
+    mix_panel_properties = {:book => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
+  end
+
+  def log_book_view_in_mix_panel(user_id, mix_panel_object)
+    mix_panel_properties = {:title => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
   end
 
   def web_title
@@ -176,6 +195,13 @@ class Book < ActiveRecord::Base
     self.save
   end
 
+  def generate_seo_slugs
+    ['pdf', 'kindle'].each do |format|
+      slug = "download-%s-%s" % [self.cached_slug, format]
+      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+    end
+  end
+
   def has_rating?
     self.avg_rating > 0
   end
@@ -196,7 +222,6 @@ class Book < ActiveRecord::Base
   def self.update_description_from_web_api(data)
     book  = Book.find(data['book_id'].to_i)
     return if book.blank?
-
     book.update_attributes(:description => data['description'])
   end
 end

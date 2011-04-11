@@ -50,7 +50,21 @@ class Audiobook < ActiveRecord::Base
     return result
   end
 
+  def generate_seo_slugs
+    slug = "download-%s-%s" % [self.cached_slug, 'mp3']
+    SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'mp3'})
+  end
+
+  def log_book_view_in_mix_panel(user_id, mix_panel_object)
+    mix_panel_properties = {:title => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
+  end
+  
   private
+
   def choose_audio_books(limit, result, collection_to_choose_from)
     1.upto(limit - result.size) do
       break if collection_to_choose_from.blank?
@@ -68,5 +82,4 @@ class Audiobook < ActiveRecord::Base
       pretty_title
     end
   end
-
 end

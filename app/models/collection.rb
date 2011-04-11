@@ -1,24 +1,24 @@
 class Collection < ActiveRecord::Base
   include Descriptable
   # books
-  has_many :collection_book_assignments
+  has_many :audiobooks, :through => :collection_audiobook_assignments
   has_many :books, :through => :collection_book_assignments
-  
+  has_many :collection_audiobook_assignments
+  has_many :collection_book_assignments
+  has_many :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
+
   # featured books
   has_many :featured_collection_book_assignments,
-           :class_name => 'CollectionBookAssignment',
-           :conditions => {:featured => true}
+            :class_name => 'CollectionBookAssignment',
+            :conditions => {:featured => true}
+
   has_many :featured_books, :through => :featured_collection_book_assignments, :source => :book
 
-  # audiobooks
-  has_many :collection_audiobook_assignments
-  has_many :audiobooks, :through => :collection_audiobook_assignments
-
-  # featured audiobooks
   has_many :featured_collection_audiobook_assignments,
            :class_name => 'CollectionAudiobookAssignment',
            :conditions => {:featured => true}
-  has_many :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
+
+  has_many :seo_slugs, :as => :seoable
 
   # genre
   belongs_to :genre
@@ -98,6 +98,10 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def is_audio_collection?
+    self.book_type == 'audiobook'  
+  end
+
   def web_title
     case self.collection_type
     when 'collection'
@@ -107,33 +111,41 @@ class Collection < ActiveRecord::Base
     end
   end
 
-  def random_blessed(num = 8, klass = :book)
-    #TODO : refactor this with metaprogramming
+  def random_blessed(num = 8)
     blessed_books = []
-    if klass == :book
-      return [] if self.books.blessed.blank?
+    if self.book_type == 'book'
       blessed_books = self.books.blessed.clone
-    elsif klass == :audiobook
-      return [] if self.audiobooks.blessed.blank?
+    elsif self.book_type == 'audiobook'
       blessed_books = self.audiobooks.blessed.clone
     end
 
     num = blessed_books.count if num > blessed_books.count
+
     results = []
     1.upto num do
       position = rand(blessed_books.size)
-      results << blessed_books[position]
-      blessed_books.delete_at(position)
+      results << blessed_books.delete_at(position) # delete_at returns the deleted element
     end
     return results
   end
 
   def collection_slug
-    case book_type
+    case self.book_type
       when 'book'
         name
       when 'audiobook'
-          "#{name}-audiobooks"
+        "#{name}-audiobooks"
+    end
+  end
+
+  def generate_seo_slugs
+    #create slugs for normal collection page
+    SeoSlug.find_or_create_by_slug(self.cached_slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
+    #create slugs for specific formats
+    formats = (self.book_type == 'book') ? %w(pdf kindle) : %w(mp3)
+    formats.each do |format|
+      slug = "download-%s-%s" % [self.cached_slug, format]
+      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
 end
