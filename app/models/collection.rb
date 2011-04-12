@@ -103,12 +103,12 @@ class Collection < ActiveRecord::Base
   end
 
   def web_title
-    case self.collection_type
-    when 'collection'
-      "%s - Download Free Books, Read Online, and More " % self.name
-    when 'author'
-      "%s Books - Download %s free books, read online, and more" % ([self.name] * 2) 
+    prefix = self.collection_type == 'collection' ? "#{self.name} - " : "#{self.name} Books - "
+    suffix = "Download Free Books, Read Online, and More"
+    if [prefix, suffix].map(&:length).reduce(:+) <= 70
+      return prefix + suffix
     end
+    prefix
   end
 
   def random_blessed(num = 8)
