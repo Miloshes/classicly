@@ -32,8 +32,7 @@
       .grid_5
         = search_form(search_url, @search)
       = render 'shared/profile_image_in_header', :current_login => current_login
-  %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
-    #apple-store-banner
+  = render 'shared/app_store_banner_with_map'
   .wrapper
     #cover-bar.container_12
       = yield :related_books
