@@ -8,7 +8,7 @@ class Audiobook < ActiveRecord::Base
   validates :title, :presence => true
 
   scope :blessed, where({:blessed => true})
-  scope :random, lambda { |limit| {:order => 'RAND()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
   has_friendly_id :audio_book_slugs, :use_slug => true
 

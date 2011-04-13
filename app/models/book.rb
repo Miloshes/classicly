@@ -16,7 +16,7 @@ class Book < ActiveRecord::Base
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => 'RAND()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
   validates :title, :presence => true
   has_friendly_id :optimal_friendly_id, :use_slug => true
