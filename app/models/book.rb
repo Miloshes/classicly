@@ -19,7 +19,7 @@ class Book < ActiveRecord::Base
   scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
   validates :title, :presence => true
-  has_friendly_id :optimal_friendly_id, :use_slug => true
+  has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
 
   def self.available_in_formats(formats)
     find_each do |book|
