@@ -47,7 +47,7 @@ class Book < ActiveRecord::Base
   end
 
   def download_book_page_title(format)
-    format = 'kindle' if format == 'azw'
+    format = (format == 'azw') ? 'Kindle' : format.upcase 
     # 70 chars is the limit, but substract  4 characters for ' by '
     prefix = 'Download'
     if [prefix, self.pretty_title , format].map(&:length).reduce(:+) <= 70
@@ -242,6 +242,15 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
+  def read_online_title
+    extra = "Read Online Free"
+    book_title = self.pretty_title
+    if [extra, self.pretty_title].map(&:length).reduce(:+) > 70
+      book_title = shorten_title self.pretty_title, (70 - extra.length)
+    end
+    "Read #{book_title} Online Free"
+  end
+
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
@@ -273,14 +282,5 @@ class Book < ActiveRecord::Base
     else
       shorten_title self.pretty_title, 70
     end
-  end
-
-  def read_online_title
-    extra = "Read Online Free"
-    book_title = self.pretty_title
-    if [extra, self.pretty_title].map(&:length).reduce(:+) > 70
-      book_title = shorten_title self.pretty_title, (70 - extra.length)
-    end
-    "Read #{book_title} Online Free"
   end
 end
