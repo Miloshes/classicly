@@ -1,62 +1,34 @@
 class SeoController < ApplicationController
-  # before filters to show collections lists in left nav
-  before_filter :find_collection
-  before_filter :find_book_or_audio_book, :only => :book
+  before_filter :find_book_or_audio_book, :only => :show_book
   before_filter :find_author_collections
   before_filter :find_genre_collections
   layout :seo_layout
 
-  def show
-    if @collection && @collection.book_type == 'book'
-      @books = @collection.books.page(params[:page]).per(25)
-      @blessed_books = @collection.books.blessed.page(params[:page]).per(25)
-      @featured_book = @collection.books.blessed.first || @collection.books.first
-      render :template => 'seo/show_collection' and return
-    elsif @collection && @collection.book_type == 'audiobook'
-      @audio_books = @collection.audiobooks.page(params[:page]).per(8)
-      @blessed_audio_books = @collection.audiobooks.blessed.page(params[:page]).per(25)
-      @featured_audio_book = @collection.audiobooks.blessed.first || @collection.audiobooks.first
-      render 'audiobooks/show_audio_collection' and return
-    else
-      @search = params[:id]
-      @books = Book.search(@search, params[:page])
-      render :template => 'search/show'
-    end
-  end
-
-  def book
+  def show_book
     if @book
       @related_books = @book.find_fake_related(8)
       @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      mix_panel_properties = {:title => @book.pretty_title}
-      if user_signed_in?
-        mix_panel_properties.merge!({:id => current_login.fb_connect_id})
-      end
-      @mixpanel.track_event("Viewed Book", mix_panel_properties) if Rails.env.production?
-      # if there was a failed review, it will come in the session object
+      @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
+      @audibly = @book.class == Audiobook
       @review = session[:review] || Review.new
       session[:review] = nil
-      render 'books/show'
-    elsif @audio_book
-      @related_audio_books = @audio_book.find_fake_related(8)
-      @audio_books_from_the_same_collection = @audio_book.find_more_from_same_collection(2)
-      render 'audiobooks/show'
+      render @book.class == Book ? 'books/show' : 'audiobooks/show'
+    end
+  end
+
+  def show
+    seo = SeoSlug.find_by_slug(params[:id])
+    if seo && seo.is_valid?
+      render_seo seo
+    else
+      render_search
+      @audibly = false
     end
   end
 
   private
-
-  def seo_layout
-    @collection ? 'collections': 'application'
-  end
-
-  def find_collection
-    @collection = (Collection.book_type.where(:cached_slug => params[:id]).first  ||
-        Collection.audio_book_type.where(:cached_slug => params[:id]).first) rescue nil
-  end
-
   def find_author_collections
-    if (@collection && @collection.book_type == 'audiobook') || @audio_book
+    if (@collection && @collection.book_type == 'audiobook') || @book.class == Audiobook
       @author_collections = Collection.audio_book_type.by_author
     else
       @author_collections = Collection.book_type.by_author
@@ -64,7 +36,7 @@ class SeoController < ApplicationController
   end
 
   def find_genre_collections
-    if (@collection && @collection.book_type == 'audiobook') || @audio_book
+    if (@collection && @collection.book_type == 'audiobook') || @book.class == Audiobook
       @genre_collections = Collection.audio_book_type.by_collection
     else
       @genre_collections = Collection.book_type.by_collection
@@ -73,9 +45,47 @@ class SeoController < ApplicationController
 
 
   def find_book_or_audio_book
-    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first rescue nil
-    unless @book
-      @audio_book = Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first rescue nil
+    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
+        Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
+  end
+
+  def render_search
+    @search = params[:id]
+    @books = Book.search(@search, params[:page])
+    render :template => 'search/show'
+  end
+
+  def render_seo(seo)
+    @audibly = false
+    if seo.is_for_collection?
+      @collection = seo.seoable
+      @books = seo.find_paginated_listed_books_for_collection(params)
+      @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
+      @featured_book = seo.find_featured_book_for_collection
+      if seo.seoable.is_audio_collection?
+        @audibly = true
+        render 'show_audio_collection' and return
+      else
+        render 'show_collection' and return
+      end
     end
+    # gets here if seo is for a book
+    @book = seo.seoable
+    @related_books = @book.find_fake_related(8)
+    @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+    @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
+    @review = session[:review] || Review.new
+    session[:review] = nil
+    if seo.is_for_audio_book?
+      @audibly = true
+      render 'audiobooks/show'
+    elsif seo.is_for_book?
+      @format = seo.download_format
+      render 'books/download_special_format'
+    end
+  end
+
+  def seo_layout
+    @collection ? 'collections': 'application'
   end
 end

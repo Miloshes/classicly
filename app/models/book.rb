@@ -2,14 +2,16 @@ include AWS::S3
 
 class Book < ActiveRecord::Base
   include Descriptable
+
   belongs_to :author
   belongs_to :custom_cover
 
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
-  has_and_belongs_to_many :genres
   has_many :download_formats
+  has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
+  has_many :seo_slugs, :as => :seoable
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
@@ -17,7 +19,7 @@ class Book < ActiveRecord::Base
   scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
 
   validates :title, :presence => true
-  has_friendly_id :pretty_title, :use_slug => true
+  has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
 
   def self.available_in_formats(formats)
     find_each do |book|
@@ -34,10 +36,27 @@ class Book < ActiveRecord::Base
     {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(page_num).per(10)
   end
 
+  def self.update_description_from_web_api(data)
+    book  = Book.find(data['book_id'].to_i)
+    return if book.blank?
+    book.update_attributes(:description => data['description'])
+  end
+
   def available_in_format?(format)
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
   end
 
+  def download_book_page_title(format)
+    format = 'kindle' if format == 'azw'
+    # 70 chars is the limit, but substract  4 characters for ' by '
+    prefix = 'Download'
+    if [prefix, self.pretty_title , format].map(&:length).reduce(:+) <= 70
+      "#{prefix} #{self.pretty_title} #{format}"
+    else
+      "#{prefix} #{shorten_title(self.pretty_title, 70 - prefix.length - format.length)}#{format}"
+    end
+  end
+  
   def download_url_for_format(format)
     AWS::S3::Base.establish_connection!(
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
@@ -64,26 +83,21 @@ class Book < ActiveRecord::Base
     self.download_formats.all(:conditions => ['download_status = ?', 'downloaded'], :select => ['format']).map{|format| format.format}
   end
 
+  def belongs_to_author_collection?
+    return Collection.exists?(:cached_slug => self.author.cached_slug)
+  end
+
+  def canonical_slug
+    end_of_string = self.cached_slug =~ /--[\d]+/
+    self.cached_slug[0, end_of_string]
+  end
+
   def classicly_formats
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
 
   def description_for_open_graph
     "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title
-  end
-
-  def web_title
-    if (self.pretty_title.length  + self.author.name.length) <= 100
-      title, author = self.pretty_title, self.author.name
-    else
-      title, author = shorten_title(self.pretty_title, 49), shorten_title(self.author.name, 49)
-    end
-    "%s by %s - Read Online and Download Free Books" % [title, author]
-  end
-
-  def shorten_title(str, limit)
-    return str if str.length <= limit
-    str.slice(0, (limit - 3)).concat("...")
   end
 
   def find_fake_related(num = 8)
@@ -111,14 +125,12 @@ class Book < ActiveRecord::Base
       break if books_from_same_author.blank?
 
       position = rand(books_from_same_author.size)
-      result << books_from_same_author[position]
-      books_from_same_author.delete_at(position)
+      result << books_from_same_author.delete_at(position)
     end
 
     1.upto num-result.size do
       position = rand(books_from_same_genre.size)
-      result << books_from_same_genre[position]
-      books_from_same_genre.delete_at(position)
+      result << books_from_same_genre.delete_at(position)
     end
 
     result.compact!
@@ -139,10 +151,8 @@ class Book < ActiveRecord::Base
 
     1.upto num do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     # == books from the same author as a fallback
@@ -151,10 +161,8 @@ class Book < ActiveRecord::Base
 
     1.upto num-result.size do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     # == blessed books
@@ -162,13 +170,65 @@ class Book < ActiveRecord::Base
 
     1.upto num-result.size do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     return result
+  end
+
+  def generate_seo_slugs
+    ['pdf', 'kindle'].each do |format|
+      slug = optimal_url_for_download_page(format)
+      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+    end
+  end
+
+  def has_rating?
+    self.avg_rating > 0
+  end
+
+  def log_book_view_in_mix_panel(user_id, mix_panel_object)
+    mix_panel_properties = {:title => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
+  end
+
+  def needs_canonical_link?
+    (self.cached_slug =~ /--[\d]+/) != nil
+  end
+
+  def on_download(user_id, mix_panel_object)
+    Book.update_counters self.id, :downloaded_count => 1
+    mix_panel_properties = {:book => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
+  end
+
+  def optimal_friendly_id
+    return self.pretty_title if self.pretty_title.length <= 75
+    self.pretty_title[0, 75]
+  end
+
+  def optimal_url_for_download_page(format)
+    #determine how long will be the string of the root path + the format
+    extra = 'download-' # for example http://root/download-[x]
+    extra << (format.nil? ? URL_CONFIG['root_path'] : URL_CONFIG['root_path'] + "-#{format}") #[root_path]/download-x-[format]
+    str = self.cached_slug.clone #cached_slug has the book string such as 'unbearable-lightness-of-being'
+    if [extra, self.cached_slug, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
+      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+      str = str[0, limit]
+    end
+    #posibilities
+    #[root_path]/download-the-boo-pdf
+    #[root_path]/download-the-book-pdf
+    #[root_path]/download-the-boo--2-pdf
+    format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
+    return  "download-" + str + uniqueness_indicator + format
   end
 
   def set_average_rating
@@ -176,27 +236,26 @@ class Book < ActiveRecord::Base
     self.save
   end
 
-  def has_rating?
-    self.avg_rating > 0
+  def shorten_title(str, limit)
+    return str if str.length <= limit
+    str.slice(0, (limit - 3)).concat("...")
   end
 
-  def belongs_to_author_collection?
-    return Collection.exists?(:cached_slug => self.author.cached_slug)
+
+  def uniqueness_indicator
+    if mark = self.cached_slug =~ /--\d/
+      return self.cached_slug[mark, self.cached_slug.size]
+    end
+    return ''
   end
 
-  def needs_canonical_link?
-    (self.cached_slug =~ /--[\d]+/) != nil
-  end
-
-  def canonical_slug
-    end_of_string = self.cached_slug =~ /--[\d]+/
-    self.cached_slug[0, end_of_string]
-  end
-
-  def self.update_description_from_web_api(data)
-    book  = Book.find(data['book_id'].to_i)
-    return if book.blank?
-
-    book.update_attributes(:description => data['description'])
+  def view_book_page_title
+    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title} by #{self.author.name}"
+    elsif self.pretty_title.length <= 70
+      self.pretty_title
+    else
+      shorten_title self.pretty_title, 70
+    end
   end
 end

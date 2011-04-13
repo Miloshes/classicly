@@ -20,17 +20,21 @@ a {
   float: left;
   text-align: left;
   border-bottom: 1px solid #bc9e7a; }
-  #header a#logo {
+  #header a#logo, #header a#audibly-logo {
     display: block;
     width: 165px;
     height: 41px;
-    background: url("/images/logo.png");
     margin: 0;
       margin-top: 20px;
     padding: 0;
     float: left; }
-    #header a#logo:hover {
+    #header a#logo:hover, #header a#audibly-logo:hover {
       cursor: pointer; }
+  #header a#logo {
+    background: url("/images/logo.png"); }
+  #header a#audibly-logo {
+    background: url("/images/audibly-logo_03.png");
+    width: 169px; }
   #header h2 {
     color: white;
     float: left;
@@ -42,6 +46,8 @@ a {
     margin: 0;
       margin-top: -5px;
       margin-left: 30px; }
+  #header h2.audibly {
+    margin-top: 2px; }
   #header div.search-bg {
     width: 402px;
     height: 40px;
@@ -739,17 +745,17 @@ ul.featured-book-list li {
       width: 100%;
       text-align: center; }
 
-#apple-store-banner {
+img#apple-store-banner {
   position: absolute;
   right: 0;
   top: 0;
   display: block;
   height: 214px;
   width: 212px;
-  background: url(../images/app-store-banner-ipad_02.png) no-repeat;
+  border: none;
   text-indent: -999em;
   text-decoration: none; }
-  #apple-store-banner img {
+  img#apple-store-banner img {
     position: absolute;
     top: 0px;
     left: -8px; }
