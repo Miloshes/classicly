@@ -16,7 +16,7 @@ class Book < ActiveRecord::Base
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
 
   validates :title, :presence => true
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
@@ -177,9 +177,9 @@ class Book < ActiveRecord::Base
     return result
   end
 
-  def generate_seo_slugs
-    ['pdf', 'kindle'].each do |format|
-      slug = optimal_url_for_download_page(format)
+  def generate_seo_slugs(formats)
+    formats.each do |format|
+      slug = format == 'online' ? optimal_url_for_read_online_page : optimal_url_for_download_page(format)
       SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
@@ -228,7 +228,18 @@ class Book < ActiveRecord::Base
     #[root_path]/download-the-book-pdf
     #[root_path]/download-the-boo--2-pdf
     format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
-    return  "download-" + str + uniqueness_indicator + format
+    "download-" + str + uniqueness_indicator + format
+  end
+
+  def optimal_url_for_read_online_page
+    extra = 'read-online-free'
+    str = self.cached_slug.clone
+    if [extra, str, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
+      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+      str = str[0, limit]
+    end
+    str << "-" if str[-1, 1] != '-'
+    "read-#{str}online-free"
   end
 
   def set_average_rating
@@ -249,6 +260,11 @@ class Book < ActiveRecord::Base
     return ''
   end
 
+  def url_for_specific_format(format)
+    return "/#{self.seo_slugs.where(:format => 'kindle').first.slug}" if format == 'azw'
+    "/#{self.seo_slugs.where(:format => format).first.slug}"
+  end
+
   def view_book_page_title
     if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
       "#{self.pretty_title} by #{self.author.name}"
@@ -257,5 +273,14 @@ class Book < ActiveRecord::Base
     else
       shorten_title self.pretty_title, 70
     end
+  end
+
+  def read_online_title
+    extra = "Read Online Free"
+    book_title = self.pretty_title
+    if [extra, self.pretty_title].map(&:length).reduce(:+) > 70
+      book_title = shorten_title self.pretty_title, (70 - extra.length)
+    end
+    "Read #{book_title} Online Free"
   end
 end

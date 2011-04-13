@@ -15,11 +15,17 @@ namespace :books_seo_slugs do
   task :generate => :environment do
     SeoSlug.where(:seoable_type => 'Book').delete_all
     Book.find_each do|book|
-      book.generate_seo_slugs
+      book.generate_seo_slugs(['pdf', 'kindle', 'online'])
       puts "Generating seo slugs for book (#{book.id}): #{book.pretty_title}"
     end
   end
-  #book id 4815 overflows the string limit!
+  task :generate_online_format => :environment do
+    SeoSlug.where(:format => 'online').delete_all
+    Book.find_each do|book|
+      book.generate_seo_slugs(['online'])
+      puts "read online seo slug for:  (#{book.id}): #{book.pretty_title}"
+    end
+  end
 end
 
 namespace :audio_books_seo_slugs do
