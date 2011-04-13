@@ -58,11 +58,13 @@ module ApplicationHelper
 
   def links_for_downloading_special_formats(book)
     res = "Download As"
+    already_one_found = false
     ['azw', 'pdf'].each_with_index do|format, index|
       if book.available_in_format?(format)
-        res << ' or' if index > 0
+        res << ' or' if index > 0 && already_one_found
         tag = format == 'azw' ? 'Kindle' : format.upcase
         res << " #{ link_to tag, book.url_for_specific_format(format)}"
+        already_one_found = true
       end
     end
     res
