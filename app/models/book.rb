@@ -16,10 +16,10 @@ class Book < ActiveRecord::Base
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => 'RANDOM()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => 'RAND()', :limit => limit }}
 
   validates :title, :presence => true
-  has_friendly_id :pretty_title, :use_slug => true
+  has_friendly_id :optimal_friendly_id, :use_slug => true
 
   def self.available_in_formats(formats)
     find_each do |book|
@@ -83,34 +83,21 @@ class Book < ActiveRecord::Base
     self.download_formats.all(:conditions => ['download_status = ?', 'downloaded'], :select => ['format']).map{|format| format.format}
   end
 
+  def belongs_to_author_collection?
+    return Collection.exists?(:cached_slug => self.author.cached_slug)
+  end
+
+  def canonical_slug
+    end_of_string = self.cached_slug =~ /--[\d]+/
+    self.cached_slug[0, end_of_string]
+  end
+
   def classicly_formats
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
 
   def description_for_open_graph
     "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title
-  end
-
-  def on_download(user_id, mix_panel_object)
-    Book.update_counters self.id, :downloaded_count => 1
-    mix_panel_properties = {:book => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
-  end
-
-  def log_book_view_in_mix_panel(user_id, mix_panel_object)
-    mix_panel_properties = {:title => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
-  end
-
-  def shorten_title(str, limit)
-    return str if str.length <= limit
-    str.slice(0, (limit - 3)).concat("...")
   end
 
   def find_fake_related(num = 8)
@@ -138,14 +125,12 @@ class Book < ActiveRecord::Base
       break if books_from_same_author.blank?
 
       position = rand(books_from_same_author.size)
-      result << books_from_same_author[position]
-      books_from_same_author.delete_at(position)
+      result << books_from_same_author.delete_at(position)
     end
 
     1.upto num-result.size do
       position = rand(books_from_same_genre.size)
-      result << books_from_same_genre[position]
-      books_from_same_genre.delete_at(position)
+      result << books_from_same_genre.delete_at(position)
     end
 
     result.compact!
@@ -166,10 +151,8 @@ class Book < ActiveRecord::Base
 
     1.upto num do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     # == books from the same author as a fallback
@@ -178,10 +161,8 @@ class Book < ActiveRecord::Base
 
     1.upto num-result.size do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     # == blessed books
@@ -189,18 +170,83 @@ class Book < ActiveRecord::Base
 
     1.upto num-result.size do
       break if books_to_choose_from.blank?
-
       position = rand(books_to_choose_from.size)
-      result << books_to_choose_from[position]
-      books_to_choose_from.delete_at(position)
+      result << books_to_choose_from.delete_at(position)
     end
 
     return result
   end
 
+  def generate_seo_slugs
+    ['pdf', 'kindle'].each do |format|
+      slug = optimal_url_for_download_page(format)
+      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+    end
+  end
+
+  def has_rating?
+    self.avg_rating > 0
+  end
+
+  def log_book_view_in_mix_panel(user_id, mix_panel_object)
+    mix_panel_properties = {:title => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
+  end
+
+  def needs_canonical_link?
+    (self.cached_slug =~ /--[\d]+/) != nil
+  end
+
+  def on_download(user_id, mix_panel_object)
+    Book.update_counters self.id, :downloaded_count => 1
+    mix_panel_properties = {:book => self.pretty_title}
+    if user_id
+      mix_panel_properties.merge!({:id => user_id})
+    end
+    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
+  end
+
+  def optimal_friendly_id
+    return self.pretty_title if self.pretty_title.length <= 75
+    self.pretty_title[0, 75]
+  end
+
+  def optimal_url_for_download_page(format)
+    #determine how long will be the string of the root path + the format
+    extra = 'download-' # for example http://root/download-[x]
+    extra << (format.nil? ? URL_CONFIG['root_path'] : URL_CONFIG['root_path'] + "-#{format}") #[root_path]/download-x-[format]
+    str = self.cached_slug.clone #cached_slug has the book string such as 'unbearable-lightness-of-being'
+    if [extra, self.cached_slug, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
+      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+      str = str[0, limit]
+    end
+    #posibilities
+    #[root_path]/download-the-boo-pdf
+    #[root_path]/download-the-book-pdf
+    #[root_path]/download-the-boo--2-pdf
+    format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
+    return  "download-" + str + uniqueness_indicator + format
+  end
+
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
+  end
+
+  def shorten_title(str, limit)
+    return str if str.length <= limit
+    str.slice(0, (limit - 3)).concat("...")
+  end
+
+
+  def uniqueness_indicator
+    if mark = self.cached_slug =~ /--\d/
+      return self.cached_slug[mark, self.cached_slug.size]
+    end
+    return ''
   end
 
   def view_book_page_title
@@ -211,29 +257,5 @@ class Book < ActiveRecord::Base
     else
       shorten_title self.pretty_title, 70
     end
-  end
-
-  def generate_seo_slugs
-    ['pdf', 'kindle'].each do |format|
-      slug = "download-%s-%s" % [self.cached_slug, format]
-      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
-    end
-  end
-
-  def has_rating?
-    self.avg_rating > 0
-  end
-
-  def belongs_to_author_collection?
-    return Collection.exists?(:cached_slug => self.author.cached_slug)
-  end
-
-  def needs_canonical_link?
-    (self.cached_slug =~ /--[\d]+/) != nil
-  end
-
-  def canonical_slug
-    end_of_string = self.cached_slug =~ /--[\d]+/
-    self.cached_slug[0, end_of_string]
   end
 end

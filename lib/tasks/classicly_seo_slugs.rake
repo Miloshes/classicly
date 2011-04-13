@@ -13,8 +13,9 @@ end
 
 namespace :books_seo_slugs do
   task :generate => :environment do
+    SeoSlug.where(:seoable_type => 'Book').delete_all
     Book.find_each do|book|
-      book.generate_seo_slugs unless book.id == 4815
+      book.generate_seo_slugs
       puts "Generating seo slugs for book (#{book.id}): #{book.pretty_title}"
     end
   end
