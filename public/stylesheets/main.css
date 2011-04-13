@@ -204,6 +204,30 @@ a {
     #book-page #book-metadata h2 span.book-author a {
       color: #936845;
       text-decoration: none; }
+    #book-page #book-metadata .bold {
+      font-weight: bold;
+      margin-top: 12px; }
+      #book-page #book-metadata .bold a {
+        text-decoration: none;
+        color: black; }
+  #book-page #read_online_button_container {
+    float: left;
+    background: #fdf7d5;
+    border: 1px solid #e2c822;
+    display: block;
+    width: 37em;
+    margin-top: 20px; }
+    #book-page #read_online_button_container img {
+      display: block;
+      float: none;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto; }
+    #book-page #read_online_button_container .read_online_text {
+      line-height: 6px;
+      text-align: center;
+      margin-top: -15px; }
   #book-page #reviews #title-left {
     float: left;
     font-size: 20px;

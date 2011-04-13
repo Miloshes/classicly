@@ -81,7 +81,11 @@ class SeoController < ApplicationController
       render 'audiobooks/show'
     elsif seo.is_for_book?
       @format = seo.download_format
-      render 'books/download_special_format'
+      if @format == 'online'
+        render 'books/read_online'
+      else
+        render 'books/download_special_format'
+      end
     end
   end
 

@@ -37,7 +37,7 @@ class SeoSlug < ActiveRecord::Base
 
   def is_valid?
     return false if seoable.nil?
-    if self.is_for_book?
+    if self.is_for_book? && self.format != 'online'
       return seoable.available_in_format?(download_format)
     end
     true

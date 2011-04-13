@@ -56,6 +56,18 @@ module ApplicationHelper
     doc.xpath("//p").first.inner_html
   end
 
+  def links_for_downloading_special_formats(book)
+    res = "Download As"
+    ['azw', 'pdf'].each_with_index do|format, index|
+      if book.available_in_format?(format)
+        res << ' or' if index > 0
+        tag = format == 'azw' ? 'Kindle' : format.upcase
+        res << " #{ link_to tag, book.url_for_specific_format(format)}"
+      end
+    end
+    res
+  end
+
   def search_form(path, search_term)
     form_tag path, :method => :get do
       content_tag(:div, nil, :class => 'search-bg') do
