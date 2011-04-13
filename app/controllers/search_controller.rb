@@ -5,6 +5,7 @@ class SearchController < ApplicationController
   def show
     @search = params[:term]
     @books = Book.search(@search, params[:page])
+    @popular_books = Book.blessed.random(8)
   end
 
 end
