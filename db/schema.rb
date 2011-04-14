@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331215442) do
+ActiveRecord::Schema.define(:version => 20110413192257) do
 
   create_table "alternatives", :force => true do |t|
     t.integer "experiment_id"
@@ -24,11 +24,25 @@ ActiveRecord::Schema.define(:version => 20110331215442) do
   add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
   add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
+  create_table "audiobook_chapters", :force => true do |t|
+    t.integer "audiobook_id"
+    t.string  "title"
+    t.integer "duration"
+    t.string  "download_link"
+    t.integer "audiobook_narrator_id"
+  end
+
+  create_table "audiobook_narrators", :force => true do |t|
+    t.string "name"
+  end
+
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
     t.integer "author_id"
     t.boolean "blessed",         :default => false, :null => false
     t.integer "custom_cover_id"
+    t.string  "pretty_title"
+    t.string  "cached_slug"
   end
 
   create_table "authors", :force => true do |t|
