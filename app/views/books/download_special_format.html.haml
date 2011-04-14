@@ -1,0 +1,27 @@
+- content_for :title do
+  %title= @book.download_book_page_title(@format)
+
+- content_for :head do
+  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => @book.description_for_open_graph,
+      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
+      :title => @book.pretty_title, :type => 'book' })
+
+- content_for :related_books do
+  %span
+    Related Books
+  = render :partial => 'pages/cover', :collection => @related_books
+
+#download-confirmation.grid_9
+  .grid_2.alpha
+    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
+    .related-books
+  .grid_7.omega
+    .download-info.grid_7.alpha.omega
+      %h1
+        Download
+        = link_to "#{@book.pretty_title}", author_book_url(@book.author, @book)
+        #{@format == 'azw' ? 'Kindle' : @format.upcase }
+      .grid_7.alpha.omega
+        .facebook-upsell
+          %a#download-facebook-post.conversion-button.kiss.green.large.kiss{:href => "#{serve_downloadable_file_url(@book, @format)}"}
+            = special_format_download_book_link(@format)

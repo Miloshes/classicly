@@ -1,5 +1,5 @@
 - content_for :title do
-  %title=@book.web_title
+  %title=@book.view_book_page_title
 - content_for :head do
   - if @book.needs_canonical_link?
     %link{:rel => "canonical", :href => "http://www.classicly.com/#{@book.author.cached_slug}/#{@book.canonical_slug}" }
@@ -45,7 +45,7 @@
       .share-widgets
         .twitter-widget
           = javascript_include_tag "http://platform.twitter.com/widgets.js"
-          = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.web_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
+          = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.view_book_page_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
         .facebook-widget
           <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
           <fb:like layout="box_count" show_faces="true" width="200" font="arial" action='recommend'>
@@ -58,10 +58,10 @@
         = link_to 'Write a review', '#'
       .clear
       - if user_signed_in?
-        = render :partial => 'review_form', :locals => {:review => @review, :book => @book}
+        = render :partial => 'books/review_form', :locals => {:review => @review, :book => @book}
       .clear
       %ul.reviews
-        = render :partial => 'review', :collection => @book.reviews
+        = render :partial => 'books/review', :collection => @book.reviews
 
 = javascript_include_tag 'book-details'
 :javascript

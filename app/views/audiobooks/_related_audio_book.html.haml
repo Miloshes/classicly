@@ -1,0 +1,7 @@
+= link_to image_tag("http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{audio_book.id}_size2.jpg",
+  :alt => "#{audio_book.pretty_title} by #{audio_book.author.name}"), author_book_url(audio_book.author, audio_book)
+%span= audio_book.pretty_title
+%br
+%span.author
+  %i
+    = audio_book.author.name

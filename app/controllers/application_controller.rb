@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :find_author_collections
-  before_filter :find_genre_collections
   before_filter :set_return_to
   before_filter :initialize_mixpanel
   before_filter :get_profile_id
