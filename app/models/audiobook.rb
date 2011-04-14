@@ -1,9 +1,13 @@
 class Audiobook < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
+  
+  has_many :chapters, :class_name => 'AudiobookChapter'
 
   has_many :collection_audiobook_assignments
   has_many :collections, :through => :collection_audiobook_assignments
+
+  has_many :reviews, :as => :reviewable
 
   validates :title, :presence => true
 
