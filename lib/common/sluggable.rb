@@ -1,6 +1,8 @@
+require 'iconv'
 module Sluggable
-
   def optimal_url_for_download_page(format)
+    converter = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+
     #determine how long will be the string of the root path + the format
     extra = 'download-' # for example http://root/download-[x]
     extra << (format.nil? ? URL_CONFIG['root_path'] : URL_CONFIG['root_path'] + "-#{format}") #[root_path]/download-x-[format]
@@ -14,7 +16,7 @@ module Sluggable
     #[root_path]/download-the-book-pdf
     #[root_path]/download-the-boo--2-pdf
     format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
-    "download-" + str + uniqueness_indicator + format
+    converter.iconv("download-" + str + uniqueness_indicator + format)
   end
 
   def uniqueness_indicator
