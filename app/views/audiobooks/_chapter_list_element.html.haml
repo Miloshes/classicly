@@ -1,0 +1,5 @@
+%li
+  %p.chapter_no
+    = chapter.title =~ /Chapter \d/ ?  nil : "Chapter #{chapter_counter + 1}" 
+  %p
+    = link_to chapter.title, chapter.download_link

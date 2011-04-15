@@ -30,8 +30,10 @@ end
 
 namespace :audio_books_seo_slugs do
   task :generate => :environment do
+    format = 'mp3'
+    SeoSlug.where(:format => format).delete_all
     Audiobook.find_each do|audio_book|
-      audio_book.generate_seo_slugs
+      audio_book.generate_seo_slugs([format])
       puts "Generating seo slugs for audio_book (#{audio_book.id}): #{audio_book.pretty_title}"
     end
   end

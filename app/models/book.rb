@@ -1,7 +1,7 @@
 include AWS::S3
 
 class Book < ActiveRecord::Base
-  include Descriptable
+  include Descriptable, Sluggable, SeoMethods
 
   belongs_to :author
   belongs_to :custom_cover
@@ -46,17 +46,6 @@ class Book < ActiveRecord::Base
     ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
   end
 
-  def download_book_page_title(format)
-    format = (format == 'azw') ? 'Kindle' : format.upcase 
-    # 70 chars is the limit, but substract  4 characters for ' by '
-    prefix = 'Download'
-    if [prefix, self.pretty_title , format].map(&:length).reduce(:+) <= 70
-      "#{prefix} #{self.pretty_title} #{format}"
-    else
-      "#{prefix} #{shorten_title(self.pretty_title, 70 - prefix.length - format.length)}#{format}"
-    end
-  end
-  
   def download_url_for_format(format)
     AWS::S3::Base.establish_connection!(
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
@@ -214,23 +203,6 @@ class Book < ActiveRecord::Base
     self.pretty_title[0, 75]
   end
 
-  def optimal_url_for_download_page(format)
-    #determine how long will be the string of the root path + the format
-    extra = 'download-' # for example http://root/download-[x]
-    extra << (format.nil? ? URL_CONFIG['root_path'] : URL_CONFIG['root_path'] + "-#{format}") #[root_path]/download-x-[format]
-    str = self.cached_slug.clone #cached_slug has the book string such as 'unbearable-lightness-of-being'
-    if [extra, self.cached_slug, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
-      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
-      str = str[0, limit]
-    end
-    #posibilities
-    #[root_path]/download-the-boo-pdf
-    #[root_path]/download-the-book-pdf
-    #[root_path]/download-the-boo--2-pdf
-    format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
-    "download-" + str + uniqueness_indicator + format
-  end
-
   def optimal_url_for_read_online_page
     extra = 'read-online-free'
     str = self.cached_slug.clone
@@ -259,19 +231,6 @@ class Book < ActiveRecord::Base
   def shorten_title(str, limit)
     return str if str.length <= limit
     str.slice(0, (limit - 3)).concat("...")
-  end
-
-
-  def uniqueness_indicator
-    if mark = self.cached_slug =~ /--\d/
-      return self.cached_slug[mark, self.cached_slug.size]
-    end
-    return ''
-  end
-
-  def url_for_specific_format(format)
-    return "/#{self.seo_slugs.where(:format => 'kindle').first.slug}" if format == 'azw'
-    "/#{self.seo_slugs.where(:format => format).first.slug}"
   end
 
   def view_book_page_title

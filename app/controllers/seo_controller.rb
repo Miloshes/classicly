@@ -76,11 +76,11 @@ class SeoController < ApplicationController
     @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
     @review = session[:review] || Review.new
     session[:review] = nil
+    @format = seo.download_format
     if seo.is_for_audio_book?
       @audibly = true
-      render 'audiobooks/show'
+      render 'audiobooks/download'
     elsif seo.is_for_book?
-      @format = seo.download_format
       if @format == 'online'
         render 'books/read_online'
       else

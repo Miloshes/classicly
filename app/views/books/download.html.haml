@@ -1,5 +1,5 @@
 - content_for :title do
-  %title=@book.download_book_page_title(@format)
+  %title=@book.download_format_page_title(@format)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => @book.description_for_open_graph,

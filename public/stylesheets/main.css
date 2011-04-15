@@ -719,6 +719,17 @@ ul.featured-book-list li {
     margin-top: 10px; }
     #download-confirmation .download-info span a {
       color: #936845; }
+  #download-confirmation .download-info p.download_chapters {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 28px;
+    padding-left: 7px;
+    text-align: left; }
+  #download-confirmation .download-info p.download_instructions {
+    font-size: 12px;
+    margin-left: 7px;
+    text-align: left; }
   #download-confirmation .divider {
     margin-top: 25px;
     margin-bottom: 25px; }
@@ -877,3 +888,19 @@ a.conversion-button.kiss {
   background-color: #447ba3; }
 .conversion-button.kiss.orange {
   background-color: #b8824d; }
+
+ul.audiobook_chapters {
+  list-style: none;
+  margin-left: -35px; }
+  ul.audiobook_chapters li {
+    background: none repeat scroll 0 0 #f3ecde;
+    border: 1px solid #ded0b3;
+    margin-bottom: 15px;
+    padding: 2px 10px;
+    line-height: 8px;
+    text-align: left; }
+    ul.audiobook_chapters li a {
+      color: #936845;
+      text-decoration: none; }
+    ul.audiobook_chapters li p.chapter_no {
+      color: #43260f; }

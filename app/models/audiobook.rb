@@ -1,4 +1,6 @@
 class Audiobook < ActiveRecord::Base
+  include Sluggable, SeoMethods
+
   belongs_to :author
   belongs_to :custom_cover
   
@@ -6,8 +8,8 @@ class Audiobook < ActiveRecord::Base
 
   has_many :collection_audiobook_assignments
   has_many :collections, :through => :collection_audiobook_assignments
-
   has_many :reviews, :as => :reviewable
+  has_many :seo_slugs, :as => :seoable
 
   validates :title, :presence => true
 
@@ -16,13 +18,22 @@ class Audiobook < ActiveRecord::Base
 
   has_friendly_id :audio_book_slugs, :use_slug => true
 
+  def choose_audio_books(limit, result, collection_to_choose_from)
+    1.upto(limit - result.size) do
+      break if collection_to_choose_from.blank?
+      position = rand(collection_to_choose_from.size)
+      result << collection_to_choose_from[position]
+      collection_to_choose_from.delete_at(position)
+    end
+    result
+  end
+
   def find_fake_related(num = 8)
     result = []
 
     # Two sources for related books:
     #  - popular books from the same genres with the same language [not implemented yet]
     #  - other books of the author with the same language
-
 
     # == Other books of the author, with the same language
     audio_books_from_same_author = self.author.audiobooks.where("id <> ?", self.id)
@@ -54,9 +65,11 @@ class Audiobook < ActiveRecord::Base
     return result
   end
 
-  def generate_seo_slugs
-    slug = "download-%s-%s" % [self.cached_slug, 'mp3']
-    SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'mp3'})
+  def generate_seo_slugs(formats)
+    formats.each do|format|
+      slug = optimal_url_for_download_page(format)
+      SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+    end
   end
 
   def log_book_view_in_mix_panel(user_id, mix_panel_object)
@@ -68,16 +81,6 @@ class Audiobook < ActiveRecord::Base
   end
   
   private
-
-  def choose_audio_books(limit, result, collection_to_choose_from)
-    1.upto(limit - result.size) do
-      break if collection_to_choose_from.blank?
-      position = rand(collection_to_choose_from.size)
-      result << collection_to_choose_from[position]
-      collection_to_choose_from.delete_at(position)
-    end
-    result
-  end
 
   def audio_book_slugs
     "#{pretty_title}-audiobook"
