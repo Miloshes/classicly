@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Book Render</title>
+    <style type="text/css" media="screen">
+      #render{
+        width: 600px;
+        height: 800px;
+        background-color: #aaa;
+      }
+
+      #render p{margin:0;padding:0;}
+      #render p{margin-bottom: 20px}
+      #render p.new_paragraph{text-indent:20px;}      
+      
+      
+    </style>
+    <script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.json-2.2.min.js"></script>
+    <script type="text/javascript" src="js/render.js"></script>
+    <!--[if IE]>
+    <script>
+      var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+      "figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+      "progress,section,time,video").split(',');
+      for (var i = 0; i < e.length; i++) {
+			  document.createElement(e[i]);
+			  }
+			  </script>
+    <![endif]-->
+			  </head>
+  <body>
+    <p>Rendering book_6061.txt</p>
+    <p>
+      <label for="render_book" >Render book:</label> <button id="render_book">Render book</button>
+    </p>
+    <p>pages done: <span id="pages_done">0</span></p>
+    <div id="render">
+      <div id="inner">
+      </div>
+    </div>
+  </body>
+</html>
