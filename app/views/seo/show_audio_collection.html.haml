@@ -1,0 +1,47 @@
+= javascript_include_tag 'performable'
+
+- content_for :related_books do
+  %span
+    Featured books
+  = render :partial => 'audiobooks/cover_audio_book', :collection => @collection.random_blessed, :as => :audio_book
+
+#collection-page.grid_9.alpha.omega
+  .highlighted-book.grid_9.alpha.omega
+    .collection-description.grid_6.alpha
+      %h1=@collection.name
+      %p=simple_format @collection.description
+      <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
+    .collection_media.grid_3.omega
+      .highlighted-cover
+        = link_to image_tag("http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{@featured_book.id}_size3.jpg",
+          :alt => "#{@featured_book.title} by #{@featured_book.author.name}"),
+          author_book_url(@featured_book.author, @featured_book)
+      %a.book-link{:href => author_book_url(@featured_book.author, @featured_book)}
+        %h3 Featured Book:
+        %h4=@featured_book.title
+        %h4 <i>by</i> #{@featured_book.author.name}
+  .divider.grid_9.alpha.omega
+    = image_tag 'divider.png'
+  .grid_9.alpha.omega
+    .grid_5.alpha
+      .clear
+      .pagination
+        = paginate @books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
+      %ul.book-list
+        = render :partial => 'audiobooks/listed_audio_book', :collection => @books, :as => :audio_book
+      .clear
+      .pagination
+        = paginate @books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
+    .grid_4.alpha
+      %ul.featured-book-list
+        = render :partial => 'audiobooks/blessed_audio_book', :collection => @blessed_books, :as => :audio_book
+- if Rails.env.production?
+  - if @collection.collection_type == 'author'
+    = raw render_performable_script(:author)
+  - else
+    = raw render_performable_script(:collection)
+
+:javascript
+  if(RAILS_ENV == 'production'){
+    performableAudioBookCollectionViewed();
+  }

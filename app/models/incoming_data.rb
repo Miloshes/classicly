@@ -21,13 +21,15 @@ class IncomingData < ActiveRecord::Base
         Review.create_or_update_from_ios_client_data(record)
       when 'register_ios_user'
         Login.register_from_ios_app(record)
+      when 'update_book_description'
+        Book.update_description_from_web_api(record)
       end
     end
     
     # only when archiving the incoming data is important (when the API is not stable)
-    self.update_attributes(:processed => true)
+    # self.update_attributes(:processed => true)
     # in production environment we don't want to keep an incoming data archive
-    # self.destroy
+    self.destroy
   end
   
 end

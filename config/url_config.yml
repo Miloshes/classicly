@@ -1,0 +1,6 @@
+development:
+  root_path: 'http://localhost:3000'
+staging:
+  root_path: 'http://classicly-staging.heroku.com'
+production:
+  root_path: 'http://www.classicly.com'

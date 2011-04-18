@@ -7,7 +7,7 @@
 - content_for :related_books do
   %span
     Popular Books
-
+  = render :partial => 'pages/cover', :collection => @popular_books
 #collection-page.grid_9.alpha.omega
   .divider.grid_9.alpha.omega
     = image_tag 'divider.png'

@@ -1,0 +1,8 @@
+- if audibly
+  = link_to '', '/audiobooks', :id => 'audibly-logo'
+- else
+  = link_to '', '/', :id => 'logo'
+- if audibly
+  %h2.audibly free audiobooks from<br />the public domain
+- else
+  %h2 free books from<br />the public domain

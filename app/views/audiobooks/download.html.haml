@@ -1,0 +1,33 @@
+= javascript_include_tag 'performable'
+- content_for :title do
+  %title= @book.download_format_page_title(@format)
+
+
+- content_for :related_books do
+  %span
+    Related Books
+  = render :partial => 'pages/cover', :collection => @related_books
+
+#download-confirmation.grid_9
+  .grid_2.alpha
+    = image_tag "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{@book.id}_size2.jpg"
+    .related-books
+  .grid_7.omega
+    .download-info.grid_7.alpha.omega
+      %h1
+        Download
+        = link_to "#{@book.pretty_title}", author_book_url(@book.author, @book)
+        = @format.upcase
+      %p.download_chapters
+        Download Chapters
+      %p.download_instructions
+        To download, right click on chapter's title and select 'Save Link As'
+      - unless @book.chapters.empty?
+        %ul.audiobook_chapters
+          = render :partial => 'audiobooks/chapter_list_element', :collection => @book.chapters, :as => :chapter
+      .grid_7.alpha.omega
+
+:javascript
+  if(RAILS_ENV == 'production'){
+    performableAudioBookMP3Downloaded();
+  }
