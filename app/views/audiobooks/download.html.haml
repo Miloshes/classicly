@@ -1,3 +1,4 @@
+= javascript_include_tag 'performable'
 - content_for :title do
   %title= @book.download_format_page_title(@format)
 
@@ -26,4 +27,7 @@
           = render :partial => 'audiobooks/chapter_list_element', :collection => @book.chapters, :as => :chapter
       .grid_7.alpha.omega
 
-
+:javascript
+  if(RAILS_ENV == 'production'){
+    performableAudioBookMP3Downloaded();
+  }
