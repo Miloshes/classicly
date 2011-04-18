@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'flowplayer-3.2.6.min.js'
+  = javascript_include_tag 'flowplayer-3.2.6.min.js', 'performable'
 
 - content_for :related_books do
   %span
@@ -27,7 +27,6 @@
     .grid_2.omega.download-share
       .download_this_book
         = link_to image_tag("download-this-book.png"), @book.url_for_specific_format('mp3')
-        = image_tag 'classicly-stream_03.png'
       .clear
       .share-widgets
         .twitter-widget
@@ -39,3 +38,8 @@
           </fb:like>
     = image_tag '/images/divider.png', :class => 'divider'
     #reviews.grid_7
+
+:javascript
+  if(RAILS_ENV == 'production'){
+    performableAudioBookViewed();
+  }
