@@ -29,10 +29,15 @@ class Login < ActiveRecord::Base
       end
       is_new = true
     end
+    login.performable_log_session_opened if Rails.env.production?
     is_new
   end
 
   def report_successful_registration_to_performable
     Net::HTTP.get(URI.parse("http://analytics.performable.com/v1/event?_n=3F6mY45twfux&_a=0HuiG9&_i=#{self.fb_connect_id}"))
+  end
+  
+  def performable_log_session_opened
+    Net::HTTP.get(URI.parse("http://analytics.performable.com/v1/event?_n=7DjavS9rK42m&_a=0HuiG9&_i=#{self.fb_connect_id}"))
   end
 end
