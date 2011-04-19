@@ -1,5 +1,5 @@
 class CreateAudiobookChapters < ActiveRecord::Migration
-  unless table_exists? ::audiobook_chapters
+  unless table_exists? :audiobook_chapters
     def self.up
       create_table :audiobook_chapters do |t|
         t.integer :audiobook_id
