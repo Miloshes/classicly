@@ -20,7 +20,7 @@
       %h2
         by
         %span.book-author
-          = @book.author.name
+          = audiobook_author_link(@book)
       .share
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
       %p=# simple_format(@audio_book.description)
