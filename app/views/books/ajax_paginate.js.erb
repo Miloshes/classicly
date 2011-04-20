@@ -1,3 +1,9 @@
 $('.pagination').html("<%= escape_javascript(paginate(@books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true).to_s)%>");
 
 $('ul.book-list').html("<%= escape_javascript(render :partial => '/books/listed_book', :collection => @books, :as => :book)%>");
+
+<%- if @page %>
+  $('nav.pagination span.next a').addClass('move_right');
+<%- else %>
+   $('nav.pagination span.next a').removeClass('move_right');
+<%- end %>

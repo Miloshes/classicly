@@ -5,5 +5,5 @@ en:
   hello: "Hello world"
   views:
     pagination:
-      previous: "<< Previous Page  "
-      next: "   More Results >>"
+      previous: "Previous Page  "
+      next: "More Results"

@@ -575,6 +575,8 @@ ul.book-list-sort {
     color: #936845; }
   .pagination span.next a {
     color: #936845; }
+  .pagination span.next a.move_right {
+    margin-left: 155px; }
   .pagination span.current {
     color: #43260f; }
 
