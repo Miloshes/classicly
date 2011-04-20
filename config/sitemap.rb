@@ -25,11 +25,16 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   #   Article.find_each do |article|
   #     sitemap.add article_url(article), :lastmod => article.updated_at
   #   end
+  Audiobook.find_each do|book|
+    sitemap.add author_book_path(book.author, book) unless book.author.nil?
+  end
+
   Book.find_each do|book|
-    sitemap.add author_book_url(book.author, book) unless book.author.nil?
+    sitemap.add author_book_path(book.author, book) unless book.author.nil?
   end
 
   Collection.find_each do|collection|
-    sitemap.add seo_url(collection)
+    sitemap.add seo_path(collection)
   end
+  
 end
