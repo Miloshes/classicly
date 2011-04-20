@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def audiobook_author_link(book)
+    if book.author.has_audio_collection? 
+      link_to book.author.name, seo_path(book.author.audio_collection.cached_slug)
+    else
+     link_to book.author.name, search_path(:term => book.author.name, :type => 'audiobook')
+    end
+  end
+
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end

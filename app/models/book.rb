@@ -28,12 +28,12 @@ class Book < ActiveRecord::Base
     end
   end
 
-  def self.search(search_term, page_num)
+  def self.search(search_term, current_page)
     self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
         joins('LEFT OUTER JOIN collections ON collections.id = collection_book_assignments.collection_id').
         joins(:author).where({:title.matches => "%#{search_term}%"} |
     {:collections => {:name.matches => "%#{search_term}%"}} |
-    {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(page_num).per(10)
+    {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(current_page).per(10)
   end
 
   def self.update_description_from_web_api(data)
