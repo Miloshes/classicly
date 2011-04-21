@@ -10,7 +10,8 @@ class AudiobooksController < ApplicationController
   end
 
   def ajax_paginate
-    @audio_books = Collection.find(params[:id]).audiobooks.page(params[:page]).per(8)
+    @collection = Collection.find(params[:id])
+    @audio_books = @collection.ajax_paginated_audiobooks params
     render :layout => false
   end
 

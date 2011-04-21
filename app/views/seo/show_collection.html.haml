@@ -31,6 +31,17 @@
   .grid_9.alpha.omega
     .grid_5.alpha
       .clear
+      %ul.book-list-sort
+        %li
+          = link_to 'Most Downloaded', { :controller => 'books', :action => 'ajax_paginate', :id => @collection.id, :sort_by => 'downloaded_count'}, :class => 'selected', :name => 'sort_by_downloaded_count',  :remote => true
+        %li
+          |
+          = link_to 'Title', { :controller => 'books', :action => 'ajax_paginate', :id => @collection.id, :sort_by => 'title'}, :name => 'sort_by_title', :remote => true
+        %li
+          - unless @collection.is_author_collection? 
+            |  
+            = link_to 'Author', { :controller => 'books', :action => 'ajax_paginate', :id => @collection.id, 
+              :sort_by => 'author'}, :name => 'sort_by_author', :remote => true
       .pagination
         = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
       %ul.book-list
