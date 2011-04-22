@@ -1,7 +1,9 @@
 class CreateAudiobookNarrators < ActiveRecord::Migration
-  def self.up
-    create_table :audiobook_narrators do |t|
-      t.string :name
+  unless table_exists? :audiobook_narrators
+    def self.up
+      create_table :audiobook_narrators do |t|
+        t.string :name
+      end
     end
   end
 

@@ -7,7 +7,9 @@ class BooksController < ApplicationController
   before_filter :find_format, :only => [:download, :serve_downloadable_file]
 
   def ajax_paginate
-    @books = Collection.find(params[:id]).books.page(params[:page]).per(25)
+    @collection = Collection.find(params[:id])
+    @books = @collection.books.page(params[:page]).per(25)
+    @page = params[:page]
     render :layout => false
   end
 

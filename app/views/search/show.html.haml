@@ -17,7 +17,10 @@
       .pagination
         = paginate @books
       %ul.book-list
-        = render :partial => '/books/listed_book', :collection => @books, :as => :book
+        - if @book.class == Book
+          = render :partial => '/books/listed_book', :collection => @books, :as => :book
+        - else
+          = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audio_book
     .grid_4.alpha
       %ul.featured-book-list
         = #render :partial => '/books/listed_featured_book', :collection => @collection.books, :as => :featured
