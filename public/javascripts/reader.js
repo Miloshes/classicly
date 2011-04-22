@@ -1,8 +1,7 @@
 /*
- todo: add spin on page load
  todo: two pages on large screens?
  todo: endless scrolling variation?
- todo: check if page counts always updates on next page
+ todo: use enchansed justify?
  */
 
 function Book(id){
@@ -23,31 +22,31 @@ Book.prototype = {
     }else{
       var self = this;
       var data = {
-	action : 'get_page',
-	book_id : this.id,
-	page_number : page_num
+        action : 'get_page',
+        book_id : this.id,
+        page_number : page_num
       };
       $.post('/reader_engine_api/query',
-		{json_data : $.toJSON(data)},
-		function(data){
-		  if(!self._total_pages || !self._title){
-		    self._total_pages = data.total_page_count;
-		    self._title = data.book_title;
-		  }
-		  self.page_cache[page_num] = data.content.split("\n");
-		  cb(self.page_cache[page_num]);
-		}, 'json');
+                {json_data : $.toJSON(data)},
+                function(data){
+                  if(!self._total_pages || !self._title){
+                    self._total_pages = data.total_page_count;
+                    self._title = data.book_title;
+                  }
+                  self.page_cache[page_num] = data.content.split("\n");
+                  cb(self.page_cache[page_num]);
+                }, 'json');
    }
-    
+
   },
-  
+
   get_total_pages : function(){
     if(!this._total_pages){
       throw "Cannot get page total: load any page first.";
     }
     return this._total_pages;
   },
-  
+
   get_title : function(){
     if(!this._title){
       throw "Cannot get page title: load any page first.";
@@ -79,24 +78,34 @@ Reader.prototype = {
     }    
   },
 
+  show_loading : function(){
+    $('#reader_box .loading_box').show();
+  },
+
+  hide_loading : function(){
+    $('#reader_box .loading_box').hide();
+  },
+
   draw_page : function(num){
     var self = this;
     var book = this.book;
     this.current_page = num;
+    this.show_loading();
     book.get_page(num,
-		  function(page_content){
-		    var text_box = $('#reader_box .text_box');
-		    text_box.empty();
-		    $.each(page_content,
-			   function(i,string){
-			     var p = $('<p>').text(string);
-			     text_box.append(p);
-			   });
+                  function(page_content){
+                    self.hide_loading();
+                    var text_box = $('#reader_box .text_box');
+                    text_box.empty();
+                    $.each(page_content,
+                           function(i,string){
+                             var p = $('<p>').text(string);
+                             text_box.append(p);
+                           });
 
-		    self._set_title(book.get_title());
-		    self._slider_move_to_page(num);
-		    self._prefetch(num + 1);
-		  });
+                    self._set_title(book.get_title());
+                    self._slider_move_to_page(num);
+                    self._prefetch(num + 1);
+                  });
   },
   
   init : function(){
@@ -109,12 +118,17 @@ Reader.prototype = {
     var self = this;
     this.slider = $('#reader_box .navigation .slider');
     this.slider.slider({
-		onChange : function(e){self._slider_on_change(e);},
-		live_change : true
-	      });
+                onChange : function(e){self._slider_on_change(e);},
+                live_change : true
+              });
     this.slider_cursor = $('#reader_box .navigation .slider_cursor');
+    var before_scroller_num = $('<div/>').addClass('before_scroller_num');
     this.page_num = $('<div/>').addClass('page_num');
-    this.slider_cursor.append(this.page_num);
+    var after_scroller_num = $('<div/>').addClass('after_scroller_num');
+    this.slider_cursor
+      .append(before_scroller_num)
+      .append(this.page_num)
+      .append(after_scroller_num);
   },
 
   _init_navigation : function(){
@@ -122,69 +136,69 @@ Reader.prototype = {
 
     /* bottom navigation */
     $('#reader_box .next_page').click(function(){
-					self.turn_page_right();
-					return false;
-				      });
+                                        self.turn_page_right();
+                                        return false;
+                                      });
     $('#reader_box .next_page').mousedown(function(){
-					    return false;
-					  });
+                                            return false;
+                                          });
     $('#reader_box .prev_page').click(function(){
-					self.turn_page_left();
-					return false;
-				      });
+                                        self.turn_page_left();
+                                        return false;
+                                      });
     $('#reader_box .prev_page').mousedown(function(){
-					    return false;
-					  });        
+                                            return false;
+                                          });        
 
     /* side navigation */
     $('#reader_box .big_navigation')
       .hover(function(){
-	       /* in */
-	       $(this).children('.box').fadeIn('fast');
-	     },
-	     function(){
-	       /* out */	       
-	       $(this).children('.box').fadeOut('fast');
-	     }
-	    );
+               /* in */
+               $(this).children('.box').fadeIn('fast');
+             },
+             function(){
+               /* out */               
+               $(this).children('.box').fadeOut('fast');
+             }
+            );
     $('#reader_box .big_navigation.left .box')
       .click(function(){
-	       self.turn_page_left();
-	       return false;
-	     })
+               self.turn_page_left();
+               return false;
+             })
       .mousedown(function(){
-		   return false;
-		 });
+                   return false;
+                 });
     $('#reader_box .big_navigation.right .box')
       .click(function(){
-	       self.turn_page_right();
-	       return false;	       
-	     })
+               self.turn_page_right();
+               return false;           
+             })
       .mousedown(function(){
-		   return false;
-		 });
+                   return false;
+                 });
   },
   
   _init_shorcuts : function(){
     var self = this;
     $.each(['right', 'space', 'l'], function(){
-	     shortcut.add(this,function() { self.turn_page_right(); });	     
-	   });
+             shortcut.add(this,function() { self.turn_page_right(); });              
+           });
     $.each(['left', 'h'], function(){
-	     shortcut.add(this,function() { self.turn_page_left(); });	     
-	   });        
+             shortcut.add(this,function() { self.turn_page_left(); });       
+           });        
   },
 
   _prefetch : function(page){
     var self = this;
     setTimeout(function(){
-		 self.book.get_page(page, $.noop);
-	       }, 0);
+                 self.book.get_page(page, $.noop);
+               }, 0);
   },
 
   _slider_move_to_page : function(page){
     var page_length = 1 / this.book.get_total_pages();
-    this.slider.slider('move', page_length * page, true, false);
+    this.slider.slider('move', page_length * (page-1), true, false);
     this._slider_set_page_num(page);
   },
   
