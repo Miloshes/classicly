@@ -1,0 +1,36 @@
+<!doctype html>
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title Book Render
+    %style{:media => "screen", :type => "text/css"}
+      \#render{
+      width: 600px;
+      height: 800px;
+      background-color: #aaa;
+      }
+      
+      \#render p{margin:0;padding:0;}
+      \#render p{margin-bottom: 20px}
+      \#render p.new_paragraph{text-indent:20px;}
+    = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
+    = javascript_include_tag 'render.js'
+    /[if IE]
+      <script>
+      var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+      "figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+      "progress,section,time,video").split(',');
+      for (var i = 0; i < e.length; i++) {
+      document.createElement(e[i]);
+      }
+      </script>
+  %body
+    %p
+      %label{:for => "render_book"} Render book:
+      %button#render_book Render book
+    %p
+      pages done:
+      %span#pages_done 0
+    #render
+      #inner
+    = yield

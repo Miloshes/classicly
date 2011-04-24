@@ -53,7 +53,7 @@ Render.prototype = {
     this.unshift_last_word();
       
     while(this.size_test()){
-      page_end = this.current_postion;
+      page_end = this.current_postion -1;
       result = this.get_word();
       this.append_word(result.word+' ', result.line_break);
     }
@@ -117,8 +117,8 @@ function push_data(book_id, page_data){
     render_data : [{
                      page : page_data.page_num,
                      first_line_indent : page_data.first_line_indent,
-                     start_character : page_data.page_start,
-                     end_character : page_data.page_end
+                     first_character : page_data.page_start,
+                     last_character : page_data.page_end
                    }]
   };
   $.post('/reader_engine_api',
@@ -129,21 +129,39 @@ function push_data(book_id, page_data){
          });
 }
 
+function get_book_data(book_id, cb){
+  var data = {
+    book_id : book_id,
+    action : 'get_book'
+  };
+  $.post('/reader_engine_api/query',
+         {json_data : $.toJSON(data)},
+         function(data){
+           cb(data);
+         });  
+
+}
+
 $(function(){
-    var book_link = '/book/book_6061.txt';
-    $.get(book_link, function(data){
-            var r = new Render(data);
-            var page = 1;
-            var book_id = 6061;
-            $("#render_book").click(
-              function(){
-                r.render_book(
-                  function(page_data){
-                    push_data(book_id,
-                              page_data);
-                    $('#pages_done').text(page);
-                    page++;
-                  });
-              });
-          });
+    $("#render_book").click(
+      function(){
+        $.each(ids,
+               function(){
+                 var book_id = this;
+                 get_book_data(book_id, function(data){
+                         var r = new Render(data);
+                         var page = 1;
+                         r.render_book(
+                           function(page_data){
+                             push_data(book_id,
+                                       page_data);
+                             $('#pages_done').text(page);
+                             page++;
+                             if(page > 10){
+                               throw 'SHOSHOSHOS';
+                             }
+                           });
+                       });
+               });
+      });
   });

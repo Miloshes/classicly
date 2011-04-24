@@ -35,7 +35,19 @@ class BookPagesController < ApplicationController
         render :text => book_page_html
       end    
     end
-    
+
   end
+
+  #todo authenticate before doing this
+  def render_books
+    unless params[:ids]
+      render :text => "400: missing 'ids' in request params.", :status => 400
+      return
+    end
+    @book_ids = params[:ids].split(',')
+    render :action => 'render', :layout => 'layouts/render'    
+  end
+
+  
   
 end

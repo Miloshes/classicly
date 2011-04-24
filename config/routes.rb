@@ -29,6 +29,8 @@ Classicly::Application.routes.draw do
   resource :search, :only => :show, :controller => :search do
   end
 
+  match '/render_books_to_reader' => "book_pages#render_books", :via => :get
+  
   match "/:id" => "seo#show", :as => 'seo', :via => :get
   match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get
   
@@ -44,7 +46,7 @@ Classicly::Application.routes.draw do
         
   # for invoking the book reader
   match '/:author_id/:id/read-online/page/:page_number' => "book_pages#show",
-        :as => 'html_book_page', :via => :get
-  
+  :as => 'html_book_page', :via => :get
+
   root :to => 'pages#main'
 end

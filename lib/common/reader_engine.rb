@@ -1,15 +1,22 @@
+require 'zip/zip'
+require 'tempfile'
+
 class ReaderEngine
   BASE_BOOK_DIR = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
   
-  attr_accessor :current_book_id, :current_book_content
+  attr_accessor :current_book_id
+  attr_writer :current_book_content
   
   def initialize(params = {})
     params.stringify_keys!
-    
-    current_book_id = nil
-    current_book_content = ''
-    
-    lazy_load_book_content(params['book_id']) if params['book_id']
+    self.current_book_id = nil
+    self.current_book_content = ''
+    lazy_load_book_content params['book_id'] if params['book_id']
+  end
+
+  def current_book_content
+    return @promise_to_get_content.call if @promise_to_get_content
+    @current_book_content
   end
   
   # example params hash:
@@ -39,7 +46,7 @@ class ReaderEngine
         :first_line_indent => record['first_line_indent'],
         :content           => self.current_book_content[record['first_character'].to_i..record['last_character'].to_i]
       }
-      
+
       # update attributes
       if book_page
         book_page.update_attributes(new_data)
@@ -53,7 +60,6 @@ class ReaderEngine
   end
   
   def get_page(book_id, page_number)
-    lazy_load_book_content(book_id)
     
     book = Book.find(book_id)
     return nil if book.blank?
@@ -70,13 +76,35 @@ class ReaderEngine
         :book_title        => book.pretty_title
       }.to_json
   end
+
+  private
   
-  # NOTE: for now it works by loading the book from a local HD
-  # Will only need support for loading books from S3 later
+
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
-      self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
+      @promise_to_get_content = lambda { 
+        self.current_book_content = get_book_content(book_id)
+      }
+    end
+  end
+
+  def get_book_content(book_id)
+    book = Book.find book_id
+    raise 'Book not found in txt' unless book.available_in_format?('txt.zip')
+    zip_file_data = book.file_data_for_format('txt.zip')
+    # rubyzip cannot unzip strings in memory, so we have to create a temp file for it
+    file = Tempfile.new('book_content.zip')
+    file.write zip_file_data
+    file.flush
+    file.rewind
+    data = ''
+    Zip::ZipFile.foreach(file.path){ |f| data = f.get_input_stream.read}
+    data
+  ensure
+    if file
+      file.close
+      file.unlink
     end
   end
   
