@@ -1,0 +1,11 @@
+embed_assets: on
+javascript_compressor: yui
+
+javascripts:
+  main: 
+    - public/javascripts/jquery.js
+    - public/javascripts/jquery.metadata.js
+    - public/javascripts/application.js
+    - public/javascripts/jqueryui.js
+    - public/javascripts/rails.js
+    - public/javascripts/jquery.rating.js
