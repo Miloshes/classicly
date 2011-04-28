@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_filter :find_genre_collections
 
   def main
+    response.headers['Cache-Control'] = 'public, max-age=60'
     @related_books = Book.blessed.random(8)
     @featured_books = Book.blessed.available.with_description.random(5)
     mixpanel_properties = {}
