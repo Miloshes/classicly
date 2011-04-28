@@ -5,6 +5,10 @@ task :cron => :environment do
     Book.find_each do |book|
       book.set_average_rating
     end
+    
+    Audiobook.find_each do |audiobook|
+      audiobook.set_average_rating
+    end
   end
   
 end

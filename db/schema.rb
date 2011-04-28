@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110413192257) do
+ActiveRecord::Schema.define(:version => 20110428121330) do
 
   create_table "alternatives", :force => true do |t|
     t.integer "experiment_id"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20110413192257) do
     t.integer "custom_cover_id"
     t.string  "pretty_title"
     t.string  "cached_slug"
+    t.text    "description"
+    t.integer "avg_rating",      :default => 0,     :null => false
   end
 
   create_table "authors", :force => true do |t|
@@ -51,6 +53,17 @@ ActiveRecord::Schema.define(:version => 20110413192257) do
   end
 
   add_index "authors", ["cached_slug"], :name => "index_authors_on_cached_slug", :unique => true
+
+  create_table "book_pages", :force => true do |t|
+    t.integer "book_id"
+    t.integer "page_number"
+    t.integer "first_character"
+    t.integer "last_character"
+    t.text    "content"
+    t.boolean "first_line_indent", :default => false, :null => false
+    t.boolean "re_render_flag",    :default => false, :null => false
+    t.boolean "force_rerender",    :default => false, :null => false
+  end
 
   create_table "books", :force => true do |t|
     t.text    "title"
@@ -158,14 +171,25 @@ ActiveRecord::Schema.define(:version => 20110413192257) do
   end
 
   create_table "reviews", :force => true do |t|
+    t.string   "fb_connect_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
     t.integer  "rating"
     t.datetime "created_at"
-    t.string   "fb_connect_id"
+    t.datetime "updated_at"
+    t.string   "user_id"
     t.integer  "login_id"
   end
+
+  create_table "seo_slugs", :force => true do |t|
+    t.integer "seoable_id"
+    t.string  "seoable_type"
+    t.string  "slug"
+    t.string  "format"
+  end
+
+  add_index "seo_slugs", ["slug"], :name => "index_seo_slugs_on_slug"
 
   create_table "sessions", :force => true do |t|
     t.string    "session_id", :null => false
@@ -177,13 +201,20 @@ ActiveRecord::Schema.define(:version => 20110413192257) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
+  create_table "shortened_urls", :force => true do |t|
+    t.text     "url"
     t.datetime "created_at"
+    t.datetime "last_hit"
+    t.integer  "hit_count",  :default => 0
+  end
+
+  create_table "slugs", :force => true do |t|
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
