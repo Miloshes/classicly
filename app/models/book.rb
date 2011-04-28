@@ -15,6 +15,7 @@ class Book < ActiveRecord::Base
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
+  scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
 

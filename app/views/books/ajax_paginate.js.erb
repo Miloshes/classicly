@@ -1,3 +1,10 @@
-$('.pagination').html("<%= escape_javascript(paginate(@books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true).to_s)%>");
+// set pagination
+$('.pagination').html("<%= escape_javascript(paginate(@books, :params => {:controller => 'books', :action => 'ajax_paginate',
+  :id => @collection.id} , :remote => true).to_s)%>");
 
+// fill up the collection of books
 $('ul.book-list').html("<%= escape_javascript(render :partial => '/books/listed_book', :collection => @books, :as => :book)%>");
+
+// change selected sort by
+$('ul.book-list-sort li a').removeClass('selected');
+$("a[name='sort_by_<%= params[:sort_by]%>']").addClass('selected');

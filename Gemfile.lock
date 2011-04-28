@@ -39,6 +39,8 @@ GEM
     builder (2.1.2)
     cgi_multipart_eof_fix (2.5.0)
     columnize (0.3.2)
+    compass (0.10.6)
+      haml (>= 3.0.4)
     daemons (1.1.0)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -156,6 +158,7 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   aws-s3
+  compass (>= 0.10.5)
   delayed_job
   friendly_id (~> 3.2.1)
   haml
