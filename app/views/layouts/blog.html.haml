@@ -1,32 +1,38 @@
-!!! XML
-!!! strict
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
 %head
   = yield :title
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
   %meta{:name => "google-site-verification", :content => "C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI"}
-
   = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
   = stylesheet_link_tag 'compiled/print.css', :media => 'print'
   /[if lt IE 8]
   = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-  
+
   = stylesheet_link_tag 'main', :media => :screen
+  = stylesheet_link_tag 'blog', :media => :screen
+  = stylesheet_link_tag 'grid', :media => :screen
 
   = javascript_include_tag 'jquery.min'
   = csrf_meta_tag
 
   = yield :head
 
-%body.bp.blog_design
-  .container
-    #blog_header
-      #intro
-        This is Signal vs. Noise, a weblog by 37signals about design, business, experience, simplicity, the web, culture, and more. Established 1999 in Chicago. Visit the Product Blog for more information on our products.
-      #logo
-        = image_tag 'logo.png'
-    #blog_top_divider
-      %p Jobs: The IP Collective LLC is looking for a Seeking a Creative Web Developer. See more on our Job Board. 
-    .posts
-      = yield
+%body
+  %div{:style => 'display:none'}
+    #login-form
+  #header
+    .container_12
+      .grid_2.alpha
+        = render 'shared/logo', :audibly => @audibly
+      .grid_5
+        = search_form(search_url, @search)
+      = render 'shared/profile_image_in_header', :current_login => current_login
+  = render 'shared/app_store_banner_with_map'
+  .wrapper
+    #content.container_12
+      .grid_12.alpha.omega
+      .grid_8.omega
+        #current-page.blog.grid_8
+          = yield
+    = render 'shared/footer'
