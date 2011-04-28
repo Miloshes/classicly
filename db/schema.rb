@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110422094249) do
+ActiveRecord::Schema.define(:version => 20110428121330) do
 
   create_table "alternatives", :force => true do |t|
     t.integer "experiment_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110422094249) do
     t.string  "pretty_title"
     t.string  "cached_slug"
     t.text    "description"
+    t.integer "avg_rating",      :default => 0,     :null => false
   end
 
   create_table "authors", :force => true do |t|

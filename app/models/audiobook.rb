@@ -88,6 +88,15 @@ class Audiobook < ActiveRecord::Base
     mix_panel_object.track_event("Viewed Book", mix_panel_properties)
   end
   
+  def has_rating?
+    self.avg_rating > 0
+  end
+  
+  def set_average_rating
+    self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
+    self.save
+  end
+  
   private
 
   def audio_book_slugs
