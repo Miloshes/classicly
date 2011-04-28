@@ -5,19 +5,14 @@
 %head
   = typekit_include_helper
   = yield :title
-  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
-  <meta name="google-site-verification" content="C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI" />
-  <meta name="msvalidate.01" content="15B64C4C2ACD1A23F62F20544A16C9FD" />
-  <META name="y_key" content="8586e4a49b4ee727" />
+  %meta{"http-equiv" => 'content-type', :content =>'text/html;charset=utf-8'}
+  %meta{:name => "google-site-verification", :content=>"C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI"}
+  %meta{:name => "msvalidate.01", :content => "15B64C4C2ACD1A23F62F20544A16C9FD"}
+  %meta{:name=>"y_key", :content=>"8586e4a49b4ee727"}
 
-  = stylesheet_link_tag 'main', :media => :screen
-  = stylesheet_link_tag 'grid', :media => :screen
-  = stylesheet_link_tag 'moreLess', :media => :screen
-  = stylesheet_link_tag 'jqueryui', :media => :screen
-  = stylesheet_link_tag 'jquery.rating', :media => :screen
-
-  = javascript_include_tag 'jquery.min'
-  = javascript_include_tag 'jquery.metadata','application', 'jqueryui', 'rails', 'jquery.rating'
+  = include_stylesheets :common, :media => 'all'
+  = include_stylesheets :jqueryui, :rating
+  = include_javascripts :main
   = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head

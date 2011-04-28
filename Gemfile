@@ -7,6 +7,7 @@ gem "compass", ">= 0.10.5"
 gem 'haml'
 gem "friendly_id", "~> 3.2.1"
 gem 'hoptoad_notifier'
+gem 'jammit'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'koala'

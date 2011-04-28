@@ -1,5 +1,6 @@
 embed_assets: on
 javascript_compressor: yui
+package_assets: always
 
 javascripts:
   main: 
@@ -9,3 +10,12 @@ javascripts:
     - public/javascripts/jqueryui.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
+
+stylesheets:
+  common:
+    - public/stylesheets/main.css
+    - public/stylesheets/grid.css
+  jqueryui:
+    - public/stylesheets/jqueryui.css
+  rating:
+    - public/stylesheets/jquery.rating.css
