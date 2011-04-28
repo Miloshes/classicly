@@ -14,7 +14,7 @@
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
     .collection-description.grid_6.alpha
-      - cache(:action => 'show_collection', :action_suffix => 'collection_details') do
+      - cache(:action => 'show', :action_suffix => 'collection_details') do
         %h1=@collection.name
         %p=simple_format(parsed_collection_description(@collection.description))
       <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
