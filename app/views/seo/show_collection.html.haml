@@ -20,7 +20,7 @@
       <fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
     .collection_media.grid_3.omega
       .highlighted-cover
-        - cache(:action => 'show_collection', :action_suffix => 'collection_image') do
+        - cache :action => 'show', :action_suffix => 'collection_image' do
           = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size3.jpg",
             :alt => "#{@featured_book.pretty_title} by #{@featured_book.author.name}"),
             author_book_url(@featured_book.author, @featured_book)
