@@ -4,16 +4,11 @@
   = yield :title
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
   %meta{:name => "google-site-verification", :content => "C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI"}
-  = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
-  = stylesheet_link_tag 'compiled/print.css', :media => 'print'
-  /[if lt IE 8]
-  = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 
-  = stylesheet_link_tag 'main', :media => :screen
-  = stylesheet_link_tag 'blog', :media => :screen
-  = stylesheet_link_tag 'grid', :media => :screen
 
-  = javascript_include_tag 'jquery.min'
+  = include_stylesheets :common, :blog,  :media => 'all'
+  = include_javascripts :jquery
+
   = csrf_meta_tag
 
   = yield :head

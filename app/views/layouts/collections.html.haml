@@ -7,16 +7,10 @@
   = yield :title
   %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
   %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
-  
-  = stylesheet_link_tag 'main', :media => :screen
-  = stylesheet_link_tag 'grid', :media => :screen
-  = stylesheet_link_tag 'moreLess', :media => :screen
-  = stylesheet_link_tag 'jqueryui', :media => :screen
-  = stylesheet_link_tag 'jquery.rating', :media => :screen
-  
-  = javascript_include_tag 'jquery.min'
-  = javascript_include_tag 'jquery.metadata', 'application', 'jqueryui', 'rails', 'jquery.condense', 'jquery.rating'
-  = javascript_include_tag 'collection-page' #responds to the login  from facebook
+
+  = include_stylesheets :common, :media => 'all'
+  = include_stylesheets :jqueryui, :rating
+  = include_javascripts :main, :collections
   = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head

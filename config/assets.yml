@@ -3,6 +3,8 @@ javascript_compressor: yui
 package_assets: always
 
 javascripts:
+  jquery:
+    - public/javascripts/jquery.js
   main: 
     - public/javascripts/jquery.js
     - public/javascripts/jquery.metadata.js
@@ -10,11 +12,15 @@ javascripts:
     - public/javascripts/jqueryui.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
+  collections:
+    - public/javascripts/collection-page.js
 
 stylesheets:
   common:
     - public/stylesheets/main.css
     - public/stylesheets/grid.css
+  blog:
+    - public/stylesheets/blog.css
   jqueryui:
     - public/stylesheets/jqueryui.css
   rating:
