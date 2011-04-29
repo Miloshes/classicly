@@ -8,8 +8,16 @@ class Author < ActiveRecord::Base
   def audio_collection
     Collection.where(:name.matches => "%#{self.name}%", :book_type => 'audiobook').first
   end
-  
+
+  def collection
+    Collection.where(:name.matches => "%#{self.name}%", :book_type => 'book').first
+  end
+
   def has_audio_collection?
     Collection.exists?(['name LIKE ? AND book_type = ? ', "%#{self.name}%", 'audiobook'])
+  end
+
+  def has_collection?
+    Collection.exists?(['name LIKE ? AND book_type = ? ', "%#{self.name}%", 'book'])
   end
 end

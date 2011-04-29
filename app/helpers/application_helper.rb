@@ -1,5 +1,13 @@
 module ApplicationHelper
 
+  def book_author_link(book)
+    if book.author.has_collection?
+      link_to book.author.name, seo_path(book.author.collection.cached_slug)
+    else
+      link_to book.author.name, search_path(:term => book.author.name, :type => 'book')
+    end
+  end
+
   def audiobook_author_link(book)
     if book.author.has_audio_collection? 
       link_to book.author.name, seo_path(book.author.audio_collection.cached_slug)
