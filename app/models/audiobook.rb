@@ -80,6 +80,17 @@ class Audiobook < ActiveRecord::Base
     end
   end
 
+  def html_title
+    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title} by #{self.author.name}"
+    elsif self.pretty_title.length <= 70
+      self.pretty_title
+    else
+      shorten_title self.pretty_title, 70
+    end
+  end
+
+
   def log_book_view_in_mix_panel(user_id, mix_panel_object)
     mix_panel_properties = {:title => self.pretty_title}
     if user_id
@@ -97,6 +108,11 @@ class Audiobook < ActiveRecord::Base
     self.save
   end
   
+  def shorten_title(str, limit)
+    return str if str.length <= limit
+    str.slice(0, (limit - 3)).concat("...")
+  end
+
   private
 
   def audio_book_slugs
