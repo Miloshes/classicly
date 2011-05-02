@@ -30,3 +30,7 @@ group :development do
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
 end 
+
+group :test do
+  gem 'machinist', '>= 2.0.0.beta1'
+end
