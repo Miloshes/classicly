@@ -27,31 +27,33 @@ class Audiobook < ActiveRecord::Base
     {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
   end
 
-  def choose_audio_books(limit, result, collection_to_choose_from)
-    1.upto(limit - result.size) do
+  
+  def choose_audio_books(limit, already_chosen_books, collection_to_choose_from)
+    1.upto(limit - already_chosen_books.size) do
       break if collection_to_choose_from.blank?
       position = rand(collection_to_choose_from.size)
-      result << collection_to_choose_from[position]
-      collection_to_choose_from.delete_at(position)
+      already_chosen_books << collection_to_choose_from.delete_at(position)
     end
-    result
+    already_chosen_books
   end
 
-  def find_fake_related(num = 8)
-    result = []
+  def find_fake_related(number = 8)
+    chosen_books = []
 
     # Two sources for related books:
-    #  - popular books from the same genres with the same language [not implemented yet]
+    #  - other books associated to similar collections
     #  - other books of the author with the same language
 
     # == Other books of the author, with the same language
     audio_books_from_same_author = self.author.audiobooks.where("id <> ?", self.id)
+    chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_author)
 
-    result = choose_audio_books(num, result, audio_books_from_same_author)
+    audio_books_from_same_collections = []
+    self.collections.each { |collection| audio_books_from_same_collections+= collection.audiobooks }
+    chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_collections)
 
-    result.compact!
-    result.sort_by { rand }
-    result
+    chosen_books.compact!
+    chosen_books.sort_by {rand} 
   end
 
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
