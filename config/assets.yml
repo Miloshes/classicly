@@ -1,6 +1,5 @@
 embed_assets: on
 javascript_compressor: yui
-package_assets: always
 
 javascripts:
   jquery:

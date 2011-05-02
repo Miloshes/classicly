@@ -5,7 +5,7 @@
   .grid_5.metadata
     = link_to content_tag(:h2, audio_book.title), author_book_url(audio_book.author, audio_book), :class => 'title'
     %h3
-      by <em>#{audio_book.author.name}</em>
+      by <em>#{audiobook_author_link(audio_book, 'author')}</em>
     %div.book-description
   .grid_1.omega
     .download_this_book
