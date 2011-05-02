@@ -377,6 +377,9 @@ a {
       #home-page .featured-book h3 em {
         font-weight: normal;
         color: #936845; }
+        #home-page .featured-book h3 em a.author {
+          text-decoration: none;
+          color: #936845; }
 
 #book-page .download-title {
   font-size: 21px;

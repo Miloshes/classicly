@@ -8,8 +8,12 @@ class BooksController < ApplicationController
 
   def ajax_paginate
     @collection = Collection.find(params[:id])
-    @books = @collection.books.page(params[:page]).per(25)
-    @page = params[:page]
+    @books = if params[:sort_by].nil?
+      @collection.books.page(params[:page]).per(25)
+    else
+      params[:sort_by] == 'author' ? @collection.books.order_by_author.page(params[:page]).per(25) : 
+        @collection.books.order(params[:sort_by]).page(params[:page]).per(25)
+    end
     render :layout => false
   end
 

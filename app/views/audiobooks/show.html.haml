@@ -1,6 +1,9 @@
 - content_for :head do
   = javascript_include_tag 'flowplayer-3.2.6.min.js', 'performable'
 
+- content_for :title do
+  %title=@book.html_title
+
 - content_for :related_books do
   %span
     Related Books

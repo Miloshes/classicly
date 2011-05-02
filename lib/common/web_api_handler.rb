@@ -41,7 +41,12 @@ class WebApiHandler
     page     = params['page']
     per_page = params['per_page'] || 25
     
-    book    = Book.find(params['book_id'].to_i)
+    if params['book_id']
+      book = Book.find(params['book_id'].to_i)
+    else
+      book = Audiobook.find(params['audiobook_id'].to_i)
+    end
+    
     reviews = book.reviews.order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
     
     result = []
@@ -65,21 +70,43 @@ class WebApiHandler
     
     return [].to_json if login.blank?
     
-    books = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
+    result = []
     
-    return books.to_json
+    if params['structure_version'] && params['structure_version'] == '1.1'
+      book_ids = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
+      audiobook_ids = login.reviews.where(:reviewable_type => 'Audiobook').collect { |review| review.reviewable.id }
+      
+      result = {
+        :book_ids => book_ids,
+        :audiobook_ids => audiobook_ids
+      }
+    else
+      result = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
+    end
+    
+    return result.to_json
   end
   
   def get_classicly_url_for_book(params)
     default_url_options[:host] = 'www.classicly.com'
-    book = Book.find(params['book_id'].to_i)
     
-    return seo_url(book).to_json
+    if params['book_id']
+      book = Book.find(params['book_id'].to_i)
+    else
+      book = Audiobook.find(params['audiobook_id'].to_i)
+    end
+    
+    return author_book_url(book.author, book).to_json
   end
   
   def get_review_stats_for_book(params)
     default_url_options[:host] = 'www.classicly.com'
-    book = Book.find(params['book_id'].to_i)
+
+    if params['book_id']
+      book = Book.find(params['book_id'].to_i)
+    else
+      book = Audiobook.find(params['audiobook_id'].to_i)
+    end
     
     return {
         :book_rating_average => book.avg_rating,
@@ -89,7 +116,12 @@ class WebApiHandler
   end
   
   def get_review_for_book_by_user(params)
-    book  = Book.find(params['book_id'].to_i)
+    if params['book_id']
+      book = Book.find(params['book_id'].to_i)
+    else
+      book = Audiobook.find(params['audiobook_id'].to_i)
+    end
+    
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
     return nil.to_json if login.blank? || book.blank?
