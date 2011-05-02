@@ -102,6 +102,7 @@ module ApplicationHelper
 # books only helpers
 
 def condensed_description(book)
+  return '' if book.description.nil?
   #get the first paragraph or the hole description if no paragraphs present
   paragraph_boundary = (book.description =~ /\n/) || book.description.length
   single_paragraph = paragraph_boundary <= 350

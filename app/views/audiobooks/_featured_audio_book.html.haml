@@ -7,6 +7,7 @@
     %h3
       by <em>#{audiobook_author_link(audio_book, 'author')}</em>
     %div.book-description
+      = condensed_description audio_book 
   .grid_1.omega
     .download_this_book
       = link_to image_tag("download-this-book.png"), audio_book.url_for_specific_format('mp3')
