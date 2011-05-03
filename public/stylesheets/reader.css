@@ -43,6 +43,24 @@ body{
     right: 25px;
 }
 
+#reader_box .error_box{
+    display: none;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 10px 10px 10px 10px;
+    width: 400px;
+    margin: 4px;
+    font-size: 20px;
+    position: absolute;
+    left: 150px;
+    top: 400px;;
+    z-index: 1;
+}
+
 #reader_box .loading_box{
     display: none;
     background-color: rgba(0, 0, 0, 0.6);
@@ -73,7 +91,7 @@ body{
 #reader_box .big_navigation{
     position: absolute;
     top: 0;
-    bottom: 100px;
+    bottom: 0;
     width: 100px;
 }
 
@@ -84,7 +102,7 @@ body{
     right: 0;
     top: 0;
     bottom: 0;
-    padding-top: 300px;
+    padding-top: 450px;
     text-align: center;
     display: none;
     cursor: pointer;
@@ -93,7 +111,7 @@ body{
 }
 
 #reader_box .big_navigation.right .box{
-    border-radius: 0 10px 0 0;
+    border-radius: 0 10px 10px 0;
 }
 
 #reader_box .big_navigation.right{
@@ -101,7 +119,7 @@ body{
 }
 
 #reader_box .big_navigation.left .box{
-   border-radius: 10px 0 0 0;    
+   border-radius: 10px 0 0 10px;    
 }
 
 #reader_box .big_navigation.left{
@@ -110,43 +128,11 @@ body{
 
 #reader_box .navigation{
     position: absolute;
-    bottom: 30px;
+    bottom: 10px;
     left: 25px;
     right: 25px;
     height: 40px;
     cursor: pointer;
-}
-
-#reader_box .navigation .prev_page{
-    left: 0;
-    background-color: #8A4122;
-    border: 3px solid #FFFFFF;
-    border-radius: 100px 100px 100px 100px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    color: #FFFFFF;
-    font-size: 14px;
-    height: 19px;
-    padding-left: 4px;
-    padding-top: 3px;
-    position: absolute;
-    width: 18px;
-    z-index: 1;
-}
-
-#reader_box .navigation .next_page{
-    right: 0;
-    background-color: #8A4122;
-    border: 3px solid #FFFFFF;
-    border-radius: 100px 100px 100px 100px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    color: #FFFFFF;
-    font-size: 14px;
-    height: 19px;
-    padding-left: 7px;
-    padding-top: 3px;
-    position: absolute;
-    width: 15px;
-    z-index: 1;    
 }
 
 #reader_box .navigation .slider_wrap{
@@ -160,20 +146,20 @@ body{
 }
 
 #reader_box .navigation .slider{
-    position: absolute;
+    position: display-block;
     top: 0;
     bottom: 0;
-    left: 26px;
-    right: 26px;
+    left: 0;
+    right: 0;
 }
 
 #reader_box .navigation .slider_cursor{
     background: url('../images/html-reader/scroller-mid.png');
     position: absolute;
-    top: -11px;
+    top: -10px;
     height: 25px;
-    width: 34px;
     z-index: 10;
+    display: inline-block;
     
 }
 
@@ -197,12 +183,12 @@ body{
 
 
 .slider_cursor .page_num{
-    position: absolute;
-    text-align: center;
     color: #fff;
-    top: 3px;
-    left: 0;
-    right: 0;
-    z-index: 12;
     font-size: 11px;
+    padding: 0 10px;
+    position: relative;
+    text-align: center;
+    top: 4px;
+    z-index: 12;
+
 }
