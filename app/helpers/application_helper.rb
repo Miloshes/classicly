@@ -4,7 +4,7 @@ module ApplicationHelper
     if book.author.has_collection?
       link_to book.author.name, seo_path(book.author.collection.cached_slug), :class => klass
     else
-      link_to book.author.name, search_path(:term => book.author.name, :type => 'book'), :class => klass
+      link_to book.author.name, seo_path(book.author), :class => klass
     end
   end
 
