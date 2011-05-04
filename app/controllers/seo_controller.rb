@@ -18,6 +18,10 @@ class SeoController < ApplicationController
     @seo = SeoSlug.find_by_slug(params[:id])
     if @seo && @seo.is_valid?
       render_seo @seo
+    elsif @author = Author.find(params[:id]) rescue nil
+      @genre_collections = find_genre_collections :book
+      @author_collections = find_author_collections :book
+      render 'authors/show'
     else
       render_search
       @audibly = false
@@ -44,6 +48,9 @@ class SeoController < ApplicationController
   def render_search
     @search = params[:id]
     @books = Book.search(@search, params[:page])
+    @genre_collections = find_genre_collections :book
+    @author_collections = find_author_collections :book
+    @popular_books = Book.blessed.random(8)
     render :template => 'search/show'
   end
 

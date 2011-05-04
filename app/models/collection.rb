@@ -81,7 +81,12 @@ class Collection < ActiveRecord::Base
   
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
-      collection.update_attribute :downloaded_count, collection.books.sum(:downloaded_count)
+      case collection.book_type
+        when 'book'
+          collection.update_attribute :downloaded_count, collection.books.sum(:downloaded_count)
+        when 'audiobook'
+          collection.update_attribute :downloaded_count, collection.audiobooks.sum(:downloaded_count)
+      end
     end
   end
 
@@ -98,8 +103,21 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def ajax_paginated_audiobooks(params)
+    if params[:sort_by].nil?
+      self.audiobooks.page(params[:page]).per(8)
+    else
+      params[:sort_by] == 'author' ? self.audiobooks.order_by_author.page(params[:page]).per(8) : 
+        self.audiobooks.order(params[:sort_by]).page(params[:page]).per(8)
+    end
+  end
+
   def is_audio_collection?
     self.book_type == 'audiobook'  
+  end
+  
+  def is_author_collection?
+    self.collection_type == 'author'
   end
 
   def web_title

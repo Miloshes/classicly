@@ -2,11 +2,12 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.0.5'
-
 gem 'aws-s3', :require => 'aws/s3'
+gem "compass", ">= 0.10.5"
 gem 'haml'
 gem "friendly_id", "~> 3.2.1"
 gem 'hoptoad_notifier'
+gem 'jammit'
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'koala'
@@ -29,3 +30,7 @@ group :development do
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
 end 
+
+group :test do
+  gem 'machinist', '>= 2.0.0.beta1'
+end

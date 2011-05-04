@@ -15,6 +15,7 @@ class Book < ActiveRecord::Base
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
+  scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
 
@@ -228,9 +229,9 @@ class Book < ActiveRecord::Base
     self.save
   end
 
-  def shorten_title(str, limit)
-    return str if str.length <= limit
-    str.slice(0, (limit - 3)).concat("...")
+  def shorten_title(limit)
+    return self.pretty_title if self.pretty_title.length <= limit
+    self.pretty_title.slice(0, (limit - 3)).concat("...")
   end
 
   def view_book_page_title
@@ -239,7 +240,7 @@ class Book < ActiveRecord::Base
     elsif self.pretty_title.length <= 70
       self.pretty_title
     else
-      shorten_title self.pretty_title, 70
+      shorten_title 70
     end
   end
 end

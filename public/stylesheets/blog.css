@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #f6f2ed;
+  text-align: center;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; }
+
+.container_12 {
+  margin: 0 auto; }
+
+a {
+  border: none; }
+  a img {
+    border: none; }
+
+.blog {
+  text-align: left;
+  padding-top: 25px; }
+  .blog .show-post {
+    margin-bottom: 20px; }
+    .blog .show-post .title {
+      color: #936845;
+      font-size: 28px; }
+      .blog .show-post .title span.classicly {
+        color: #43260f;
+        font-weight: bold; }
+    .blog .show-post .content {
+      font-size: 14px;
+      margin-top: 15px; }
+      .blog .show-post .content ol, .blog .show-post .content ul {
+        margin-top: 8px; }

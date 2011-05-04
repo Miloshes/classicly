@@ -1,10 +1,18 @@
 module ApplicationHelper
 
-  def audiobook_author_link(book)
-    if book.author.has_audio_collection? 
-      link_to book.author.name, seo_path(book.author.audio_collection.cached_slug)
+  def book_author_link(book, klass='')
+    if book.author.has_collection?
+      link_to book.author.name, seo_path(book.author.collection.cached_slug), :class => klass
     else
-     link_to book.author.name, search_path(:term => book.author.name, :type => 'audiobook')
+      link_to book.author.name, seo_path(book.author), :class => klass
+    end
+  end
+
+  def audiobook_author_link(book, klass='')
+    if book.author.has_audio_collection? 
+      link_to book.author.name, seo_path(book.author.audio_collection.cached_slug), :class => klass
+    else
+     link_to book.author.name, search_url(:term => book.author.name, :type => 'audiobook'), :class => klass
     end
   end
 
@@ -94,6 +102,7 @@ module ApplicationHelper
 # books only helpers
 
 def condensed_description(book)
+  return '' if book.description.nil?
   #get the first paragraph or the hole description if no paragraphs present
   paragraph_boundary = (book.description =~ /\n/) || book.description.length
   single_paragraph = paragraph_boundary <= 350
@@ -142,5 +151,13 @@ end
       "<script type='text/javascript'>var _paq = _paq || [];_paq.push(['trackConversion', {id: '3D5BM25rvvhv',
       value: null}]);</script>"
     end
+  end
+end
+
+def render_listed_book_partial(books)
+  if books.first.class == Book
+    render :partial => '/books/listed_book', :collection => @books, :as => :book
+  else
+    render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audio_book
   end
 end
