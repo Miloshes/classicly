@@ -7,7 +7,6 @@
       = link_to audio_book.title, author_book_url(audio_book.author, audio_book), :class => "title"
       %br
       %span by
-      = link_to audio_book.author.name, author_book_url(audio_book.author, audio_book), :class => 'author'
+      = link_to audio_book.author.name, seo_path(audio_book.author, :type => 'audiobook'), :class => 'author'
       %br
       .book-description
-        %p=#limit_to_paragraph(simple_format(featured.description))

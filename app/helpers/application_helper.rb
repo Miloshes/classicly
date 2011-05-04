@@ -12,8 +12,23 @@ module ApplicationHelper
     if book.author.has_audio_collection? 
       link_to book.author.name, seo_path(book.author.audio_collection.cached_slug), :class => klass
     else
-     link_to book.author.name, search_url(:term => book.author.name, :type => 'audiobook'), :class => klass
+     link_to book.author.name, seo_path(book.author, :type => 'audiobook'), :class => klass
     end
+  end
+  
+  def author_featured_book_image_link(author, type, html_class=nil)
+    book = author.featured_book(type)
+    bucket = "#{type}_id"
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{book.id}_size3.jpg",
+                      :alt => "#{book.pretty_title} by #{author.name}", :class => html_class),
+                      author_book_url(author,book)
+  end
+  
+  def cover_image_link(cover, type, html_class)
+    bucket = "#{type}_id"
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size3.jpg",
+                      :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => html_class),
+                      author_book_url(cover.author, cover)
   end
 
   def current_login

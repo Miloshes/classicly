@@ -19,8 +19,10 @@ class SeoController < ApplicationController
     if @seo && @seo.is_valid?
       render_seo @seo
     elsif @author = Author.find(params[:id]) rescue nil
-      @genre_collections = find_genre_collections :book
-      @author_collections = find_author_collections :book
+      @type = params[:type] || 'book'
+      @genre_collections = find_genre_collections @type.to_sym
+      @author_collections = find_author_collections @type.to_sym
+      @audibly = (@type == 'audiobook')
       render 'authors/show'
     else
       render_search

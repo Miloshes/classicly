@@ -5,7 +5,7 @@
 - content_for :related_books do
   %span
     Related Books
-  = render :partial => 'pages/cover', :collection => @author.related_books(8)
+  = render :partial => 'pages/cover', :collection => @author.related_books(8, @type)
 
 #collection-page.grid_9.alpha.omega
   .highlighted-book.grid_9.alpha.omega
@@ -14,12 +14,9 @@
 
     .collection_media.grid_3.omega
       .highlighted-cover
-        -#featured book!
-        = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@author.featured_book.id}_size3.jpg",
-          :alt => "#{@author.featured_book.pretty_title} by #{@author.name}"),
-          author_book_url(@author, @author.featured_book)
-        %a.book-link{:href => author_book_url(@author, @author.featured_book)}
+        = author_featured_book_image_link(@author, @type)
+        %a.book-link{:href => author_book_url(@author, @author.featured_book(@type))}
           %h3 Featured Book:
-          %h4=@author.featured_book.pretty_title
+          %h4=@author.featured_book(@type).pretty_title
           %h4 <i>by</i> #{@author.name}
   .divider.grid_9.alpha.omega
