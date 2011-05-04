@@ -26,6 +26,7 @@ class AudiobooksController < ApplicationController
     send_data audiochapter.data_file,
         :disposition => 'attachment',
         :filename => "#{audiobook.pretty_title} - #{audiochapter.title}.mp3"
+    audiobook.increment!(:downloaded_count)
   end
 
   private

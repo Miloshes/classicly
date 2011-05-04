@@ -10,6 +10,15 @@ lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu 
 #     body  { "Lorem ipsum..." }
 #   end
 
+Audiobook.blueprint do
+  author
+  avg_rating {5}
+  blessed {false}
+  description {lorem_ipsum}
+  pretty_title{"the audiobook_#{sn}"}
+  title {"audiobook_#{sn}, the"}
+end
+
 Author.blueprint do
   name {"author_#{sn}"}
 end
@@ -25,12 +34,19 @@ Book.blueprint do
   title {"book_#{sn}, the"}
 end
 
-Collection.blueprint(:books) do
-  book_type {'book'}
+Collection.blueprint do
   collection_type {'author'}
   description {lorem_ipsum}
   downloaded_count {0}
   name {"Collection-#{sn}"}
   source {"SELECT * FROM 'books' WHERE (author like '%#{name}%')"}
   source_type {'SQL'}
+end
+
+Collection.blueprint(:audiobooks) do
+  book_type {'audiobook'}
+end
+
+Collection.blueprint(:books) do
+  book_type {'book'}
 end

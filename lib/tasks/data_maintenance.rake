@@ -19,4 +19,9 @@ namespace :data_maintenance do
       end
     end
   end
+
+  task :update_collections_download_counts => :environment do
+    Collection.update_cache_downloaded_count
+  end
+
 end
