@@ -1,9 +1,0 @@
-- for post in @posts
-  .show-post
-    .title
-      = post.title
-      %span.classicly
-        Classicly
-      = post.created_at.to_s :post_title_format
-    .content
-      = raw post.content
