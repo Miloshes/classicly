@@ -1,6 +1,7 @@
 class AudiobooksController < ApplicationController
-  before_filter :find_audio_author_collections
-  before_filter :find_audio_genre_collections
+  before_filter :find_audio_author_collections, :only => :index
+  before_filter :find_audio_genre_collections, :only => :index
+
   layout 'application'
 
   def ajax_paginate
