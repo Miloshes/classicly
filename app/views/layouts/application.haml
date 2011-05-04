@@ -35,16 +35,15 @@
       .grid_12.alpha.omega
       #collection-column.grid_3.alpha
         .collection-container
-          - cache('all_categories_nav') do
-            = image_tag '/images/collections-collections.png'
-            %ul
-              = render :partial => 'shared/collection_list_element', :collection => @genre_collections, :as => :collection
-            = image_tag  '/images/collections-bottom.png'
-          .author-container
-            = image_tag '/images/collections-authors.png'
-            %ul
-              = render :partial => 'shared/collection_list_element', :collection => @author_collections, :as => :collection
-            = image_tag '/images/collections-bottom.png'
+          = image_tag '/images/collections-collections.png'
+          %ul
+            = render :partial => 'shared/collection_list_element', :collection => @genre_collections, :as => :collection
+          = image_tag  '/images/collections-bottom.png'
+        .author-container
+          = image_tag '/images/collections-authors.png'
+          %ul
+            = render :partial => 'shared/collection_list_element', :collection => @author_collections, :as => :collection
+          = image_tag '/images/collections-bottom.png'
       .grid_8.omega
         #current-page.grid_8.alpha.omega
           = yield
