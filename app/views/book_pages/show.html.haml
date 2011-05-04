@@ -1,0 +1,10 @@
+#reader
+  = simple_format(@book_page.content.gsub("\n", "\n\n"), :class => 'new_paragraph')
+  
+- content_for :scripts do
+  :javascript
+    $(function() {
+      var book, reader;
+      book = new Book(#{@book_page.book.id});
+      reader = new Reader(book);
+    });
