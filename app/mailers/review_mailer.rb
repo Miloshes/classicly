@@ -2,9 +2,9 @@ class ReviewMailer < ActionMailer::Base
 
   def notification_on_flowdock(review)
     @review = review
-    mail  :to => "spreadsong <main@spreadsong.flowdock.com>",
-          :from => "Classicly.com",
+    mail  :to => "main@spreadsong.flowdock.com",
+          :from => "colin@spreadsong.com",
           :subject => "A new review has been posted",
-          :sent_on => Time.now
+          :date => Time.now
   end
 end
