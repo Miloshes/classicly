@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
   validates_presence_of :content
   validates :rating, :presence => true, :numericality => true
 
-  #after_create :deliver_review_created_notification_to_flowdock
+  after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_or_update_from_ios_client_data(data)
     if data['book_id']
