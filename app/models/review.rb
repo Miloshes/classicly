@@ -3,7 +3,9 @@ class Review < ActiveRecord::Base
   belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
 
   validates :rating, :presence => true, :numericality => true
-  
+
+  after_create :deliver_review_created_notification_to_flowdock
+
   def self.create_or_update_from_ios_client_data(data)
     if data['book_id']
       reviewable = Book.find(data['book_id'].to_i)
@@ -37,4 +39,9 @@ class Review < ActiveRecord::Base
       self.create(review_conditions.merge new_review_data)
     end
   end
+
+  def deliver_review_created_notification_to_flowdock
+    ReviewMailer.deliver_notification_on_flowdock self
+  end
+
 end
