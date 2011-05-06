@@ -1,4 +1,9 @@
 Classicly::Application.routes.draw do
+
+  namespace 'admin' do
+    resources :reviews, :only => [:index, :destroy]
+  end
+
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
 

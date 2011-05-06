@@ -1,0 +1,12 @@
+%tr
+  %td
+    = review.reviewable.pretty_title
+  %td
+    = "#{review.reviewer.first_name} #{review.reviewer.last_name}"
+  %td.content
+    = review.content
+  %td.rating
+    = review.rating
+  %td
+    = link_to 'Delete', admin_review_path(review), :confirm => 'Are you sure?', :method => :delete
+
