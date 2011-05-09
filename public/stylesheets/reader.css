@@ -5,7 +5,7 @@ body{
 
 #reader_box{
     background: #f8f5f0;
-    width: 690px;
+    width: 650px;
     height: 1000px;
     position: relative;
     margin: auto;
@@ -45,7 +45,9 @@ body{
 
 #reader_box .error_box{
     display: none;
+    background-color: #000;    
     background-color: rgba(0, 0, 0, 0.8);
+    filter: alpha(opacity = 80);    
     color: white;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -63,7 +65,10 @@ body{
 
 #reader_box .loading_box{
     display: none;
+    background-color: #000;    
     background-color: rgba(0, 0, 0, 0.6);
+    filter: alpha(opacity = 60);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";        
     background-image: url("../images/html-reader/loader.gif");
     background-position: center center;
     background-repeat: no-repeat;
@@ -96,7 +101,10 @@ body{
 }
 
 #reader_box .big_navigation .box{
-    background-color: rgba(0,0,0,0.6);
+    background-color: #000;    
+    background-color: rgba(0, 0, 0, 0.6);
+    filter: alpha(opacity = 60);
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";    
     position: absolute;
     left: 0;
     right: 0;

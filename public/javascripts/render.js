@@ -13,7 +13,7 @@ function Render(book_content){
   /* where page started */
   this.page_start = 0;
   /* current position in text chunk */
-  this.current_postion = 0;
+  this.current_position = 0;
   /* current line in lines array */
   this.current_line = -1;
   /* remaining words in current line */
@@ -46,15 +46,18 @@ Render.prototype = {
   
   render_page: function(){
     this.page_container.empty();
-    this.page_start = this.current_postion;
+    this.page_start = this.current_position;
     var page_end, result, word, first_line_indent;
 
     first_line_indent = this.get_word().line_break;
     this.unshift_last_word();
       
     while(this.size_test()){
-      page_end = this.current_postion -1;
+      page_end = this.current_position -1;
       result = this.get_word();
+      if(result === null){
+        break;
+      }
       this.append_word(result.word+' ', result.line_break);
     }
     this.unshift_last_word();
@@ -80,26 +83,32 @@ Render.prototype = {
   
   /* get next word in text chunk */
   get_word: function(){
-    var line_break;
+    var line_break = false;
 
     if(this.last_word.pushed){
       this.last_word.pushed = false;
+      this.current_position += this.last_word.word.length + 1;      
       return this.last_word;
     }
     
     if(this.line_words.length < 1){
       this.current_line += 1;
+      if(this.current_line >= this.lines_array.length){
+        console.log('yoooo');
+        return null;
+      }
       this.line_words = this.lines_array[this.current_line].split(/\s/);
       line_break = true;
     }
     var word = this.line_words.shift();
-    this.current_postion += word.length + 1;
+    this.current_position += word.length + 1;
     this.last_word.word = word;
     this.last_word.line_break = line_break;
     return {word: word, line_break: line_break};
   },
 
   unshift_last_word: function(){
+    this.current_position -= this.last_word.word.length + 1;
     this.last_word.pushed = true;
   },
   
@@ -157,9 +166,6 @@ $(function(){
                                        page_data);
                              $('#pages_done').text(page);
                              page++;
-                             if(page > 10){
-                               throw 'SHOSHOSHOS';
-                             }
                            });
                        });
                });
