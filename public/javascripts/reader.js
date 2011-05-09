@@ -40,7 +40,10 @@ Book.prototype = {
                      self._total_pages = data.total_page_count;
                      self._title = data.book_title;
                    }
-                   self.page_cache[page_num] = data.content.split("\n");
+                   self.page_cache[page_num] = {
+                     content : data.content.split("\n"),
+                     first_line_indent : data.first_line_indent
+                   };
                    cb(self.page_cache[page_num]);
                  })
         .error(function(){
@@ -118,7 +121,9 @@ Reader.prototype = {
     this.current_page = num;
     this.show_loading();
     book.get_page(num,
-                  function(page_content){
+                  function(page_data){
+                    var page_content = page_data.content;
+                    var first_line_indent = page_data.first_line_indent;
                     self.hide_loading();
                     if(page_content == null){
                       self.show_error();
@@ -131,7 +136,9 @@ Reader.prototype = {
                              var p = $('<p>').text(string);
                              text_box.append(p);
                            });
-
+                    if(!first_line_indent){
+                      text_box.find('p:first').addClass('no_indent');
+                    }
                     self._set_title(book.get_title());
                     self._slider_move_to_page(num);
                     self._set_page_id_to_url(num);

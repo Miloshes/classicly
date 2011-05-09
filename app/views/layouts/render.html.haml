@@ -5,14 +5,21 @@
     %title Book Render
     %style{:media => "screen", :type => "text/css"}
       \#render{
-      width: 600px;
-      height: 800px;
+      width: 860px;
+      height: 600px;
       background-color: #aaa;
+      font-family: georgia, serif;
+      font-size: 15px;
       }
       
-      \#render p{margin:0;padding:0;}
-      \#render p{margin-bottom: 20px}
-      \#render p.new_paragraph{text-indent:20px;}
+      \#render p{
+      margin:0;
+      padding:0;
+      margin-bottom: 20px;
+      line-height: 1.3;
+      text-align: justify;
+      }
+      \#render p.new_paragraph{text-indent:15px;}
     = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
     = javascript_include_tag 'render.js'
     /[if IE]

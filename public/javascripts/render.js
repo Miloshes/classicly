@@ -94,7 +94,6 @@ Render.prototype = {
     if(this.line_words.length < 1){
       this.current_line += 1;
       if(this.current_line >= this.lines_array.length){
-        console.log('yoooo');
         return null;
       }
       this.line_words = this.lines_array[this.current_line].split(/\s/);
