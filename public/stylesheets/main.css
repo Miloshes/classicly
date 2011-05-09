@@ -914,3 +914,26 @@ ul.audiobook_chapters {
       text-decoration: none; }
     ul.audiobook_chapters li p.chapter_no {
       color: #43260f; }
+
+#reviews_admin .pagination .prev {
+  text-align: left; }
+  #reviews_admin .pagination .prev a {
+    margin-left: -16px; }
+#reviews_admin .pagination .next {
+  text-align: right; }
+  #reviews_admin .pagination .next a {
+    margin-right: 22px; }
+#reviews_admin table {
+  margin-top: 25px; }
+  #reviews_admin table thead tr th {
+    text-align: left; }
+  #reviews_admin table thead tr th.name {
+    width: 220px; }
+  #reviews_admin table tbody tr td {
+    padding: 12px 0; }
+  #reviews_admin table tbody tr td.content {
+    text-align: justify; }
+  #reviews_admin table tbody tr td.rating {
+    text-align: right; }
+  #reviews_admin table tbody tr.alternate {
+    background-color: #ebe6de; }

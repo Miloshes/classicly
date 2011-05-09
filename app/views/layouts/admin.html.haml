@@ -1,5 +1,3 @@
-!!! XML
-!!! strict
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
 %head
@@ -11,11 +9,10 @@
   %META{:name => "y_key", :content => "8586e4a49b4ee727"}
 
   = include_stylesheets :common, :media => 'all'
-
+  = include_javascripts :main
   = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
   = csrf_meta_tag
   = yield :head
-  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
 %body
   %div{:style => 'display:none'}
     #login-form
@@ -39,11 +36,14 @@
     #apple-store-banner
   .wrapper
     #content.container_12
-      .grid_12.alpha.omega
-      #collection-column.grid_3.alpha
-      .grid_8.omega
-        #current-page.grid_8.alpha.omega
-          = yield
+      = yield
+
     = render 'shared/footer'
 :javascript
   var RAILS_ENV = "#{Rails.env}";
+  FB.init({
+    appId  : '#{Facebook::APP_ID}',
+    status : true, // check login status
+    cookie : true, // enable cookies to allow the server to access the session
+    xfbml  : true  // parse XFBML
+  });
