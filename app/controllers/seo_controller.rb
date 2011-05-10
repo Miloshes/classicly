@@ -1,7 +1,6 @@
 class SeoController < ApplicationController
   before_filter :find_book_or_audio_book, :only => :show_book
   layout :seo_layout
-
   def show_book
     if @book
       @related_books = @book.find_fake_related(8)

@@ -1,0 +1,42 @@
+$green: #69A846;
+$red: #AD485A;
+
+.green {
+    background-color: $green;
+}
+.red{
+	background-color: $red;
+}
+
+.large {
+    font-size: 1.2em;
+    line-height: 2.5em;
+    margin-bottom: 1.25em;
+}
+
+a.button.kiss {
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    margin: 0;
+    overflow: hidden;
+    padding: 1px;
+    text-decoration: none;
+    vertical-align: middle;
+    width: auto !important;
+}
+
+a.button.kiss span {
+    border-radius: 5px 5px 5px 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: normal;
+    margin: 0;
+    padding: 12px 18px;
+    position: relative;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    width: auto !important;
+}

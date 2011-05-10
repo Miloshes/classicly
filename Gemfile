@@ -26,11 +26,13 @@ gem 'delayed_job'
 group :development do
   gem 'awesome_print'
   gem 'hirb'
+  gem 'jasmine'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
 end 
 
 group :test do
+  gem 'jasmine'
   gem 'machinist', '>= 2.0.0.beta1'
 end

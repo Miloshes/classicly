@@ -1,0 +1,96 @@
+#home-page-content
+	#classicly-welcome-text
+		%h1
+			Welcome to Classicly
+		.info
+			%span.emphasize
+				Browse around.
+			Our books are in the public domain
+		.info
+			%span.emphasize
+				Read online.
+			We have an HTML5 reader that let's you read in your web browser and saves your place!
+		.info
+			%span.emphasize
+				Download for free.
+			Download our apps to read your online collection on the go!
+		.info
+			%span.emphasize
+				Sync to iPhone and iPad.
+			Drag and drop any PDF, or even ZIP of PDFs, to the "Drop Zone" and we'll get into your iPhone/iPad in seconds.
+		.info
+			Try it! It's super slick.
+	#classicly-featured-book
+		.cover-frame
+			= cover_tag(@featured_book, 2)
+	#links
+		= link_to content_tag(:span, 'Browse our hand-picked book collections'), '#', :class => 'button kiss large green'
+		= link_to content_tag(:span, 'Browse by author'), '#', :class => 'button kiss large red bouge'
+		= link_to content_tag(:span, 'Browse by most popular'), '#', :class => 'button kiss large red bouge'
+	.books
+		.column.column-1
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 2, 'big')
+		.column.column-2
+			.all
+				- for cover in @collection_covers
+					.cover-frame
+						= cover_tag(cover, 1, "mini")
+			.two-little-books.row-2.left
+				.cover-frame
+					= cover_tag(@random_book, 2, 'medium')
+			.one-little-book.row-2.right
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+		.column.column-3
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 2, 'medium')
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small')
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small')
+
+	.books-2
+		.column.column-1
+			.two-little-books.row-2
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+				.cover-frame
+					= cover_tag(@random_book, 2, 'medium')
+			.one-little-book.row-2.right
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+				.cover-frame
+					= cover_tag(@random_book, 2, 'small')
+		.column.column-2
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 2, 'big')
+		.column.column-3
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+			.all
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+				.cover-frame
+					= cover_tag(@random_book, 1, 'small-2')
+#home-page-browse
+	Browse
+	
+:javascript
+	$('div.cover-frame img').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />');

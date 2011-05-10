@@ -1,0 +1,110 @@
+#home-page-content{
+	@include column(20);
+	text-align: left;
+	#classicly-welcome-text{
+		@include column(14);
+		padding-top: 10px;
+		h1, .info{
+			margin-left: 12px;
+		}
+		h1{
+			font-family: 'Cousine', arial, serif;
+		}
+		.info{
+			.emphasize{
+				font-size: 14px;
+				font-weight: bold;
+			}
+		}
+	}
+	#classicly-featured-book{
+		@include column(6, true);
+		.cover-frame{
+			margin: 10px 0;
+		}
+	}
+	#links{
+		a.bouge{
+			margin-left: 12px;
+		}
+	}
+	
+	.books, .books-2{
+		@include column(20, true);
+		img.mini{
+			width: 28px;
+			height: 48px;
+		}
+		img.small{
+		  width: 62px;
+		  height: 110px;
+		}
+		img.small-2{
+			width: 60px;
+			height: 95px;
+		}
+		img.big{
+			width: 218px;
+			height: 312px;
+		}
+		img.medium{
+			width: 132px;
+			height: 216px;
+		}
+		.column{
+			@include column(6, true);
+		}
+		.column-2{
+			@include column(7);
+			margin-left: 25px;
+			.all{
+				@include column(7);
+			}
+		}
+		.column-3{
+			margin-left: 25px;
+		}
+		.all{
+			@include column(6, true);
+		}
+		.two-little-books{
+			@include column(4);
+		}
+		.one-little-book{
+			@include column(2, true);
+		}
+	}
+	.books{
+		margin-bottom: 50px;
+		.column-1{
+			margin-top: 28px;
+		}
+		.column-2{
+			margin-top: 45px;
+			.row-2.left{
+				margin-top: 17px;
+			}
+			.row-2.right{
+				margin-left: -10px;
+			}
+		}
+	}
+	.books-2{
+		.column-1{
+			.row-2.right{
+				margin-left: -16px;
+				margin-top: 106px;
+			}
+		}
+		.column-2{
+			margin-top: 27px	;
+		}
+		.column-3{
+			margin-top: 27px	;
+		}
+	}
+}
+
+#home-page-browse{
+	@include column(4, true);
+}

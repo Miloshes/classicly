@@ -31,6 +31,11 @@ module ApplicationHelper
                       author_book_url(cover.author, cover)
   end
 
+  def cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
+  end
+
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end

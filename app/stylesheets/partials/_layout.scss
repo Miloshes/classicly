@@ -1,0 +1,36 @@
+$top-nav-bg: #C9AF87;
+
+.top_nav{
+	padding-top: 12px;
+  @include column(24, true);
+	background: $top-nav-bg;
+	border-radius: 0px 0px 5px 5px;
+	-moz-border-radius: 0px 0px 5px 5px;
+	-webkit-border-radius: 0px 0px 5px 5px;
+	#logo{
+		@include column(5);
+	}
+	#searchbox{
+		@include column(6);
+		input{
+			margin-top: 2px;
+			height: 24px;
+			width: 225px;
+		}
+	}
+	#navigator{
+		@include column(13, true);
+		text-align: left;
+		ul{
+			list-style: none;
+			color: white;
+			font-size: 18px;
+			margin-top: 9px;
+			font-family: "museo-slab-1", "museo-slab-2", serif;
+			li{
+				display:inline;
+				margin-left: 14px;
+			}
+		}
+	}
+}
