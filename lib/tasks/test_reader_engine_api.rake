@@ -5,6 +5,17 @@ namespace :test_reader_engine_api do
   task :book_rendering => :environment do
     data = 
     {
+      "action" => "render_book",
+      "book_id" => 6061
+    }
+    
+    response = RestClient.post('http://localhost:3000/reader_engine_api', :json_data => data.to_json)
+    puts "Response was: #{response.body}"
+  end
+
+  task :render_data_processing => :environment do
+    data = 
+    {
       "action" => "process_render_data",
       "book_id" => 6061,
       "render_data" => 

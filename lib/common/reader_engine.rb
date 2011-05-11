@@ -15,7 +15,6 @@ class ReaderEngine
   end
 
   def current_book_content
-    return @promise_to_get_content.call if @promise_to_get_content
     @current_book_content
   end
   
@@ -83,15 +82,13 @@ class ReaderEngine
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
-      @promise_to_get_content = lambda { 
-        self.current_book_content = get_book_content(book_id)
-      }
+      self.current_book_content = get_book_content_from_s3(book_id)
     end
   end
 
-  def get_book_content(book_id)
+  def get_book_content_from_s3(book_id)
     book = Book.find book_id
-    raise 'Book not found in txt' unless book.available_in_format?('txt.zip')
+
     zip_file_data = book.file_data_for_format('txt.zip')
     # rubyzip cannot unzip strings in memory, so we have to create a temp file for it
     file = Tempfile.new('book_content.zip')

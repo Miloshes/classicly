@@ -27,4 +27,5 @@ group :development do
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps'
+  gem 'firewatir'
 end 
