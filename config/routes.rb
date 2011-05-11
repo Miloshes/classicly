@@ -4,6 +4,8 @@ Classicly::Application.routes.draw do
     resources :reviews, :only => [:index, :destroy]
   end
 
+  match 'home_page_books_for_author' => 'pages#home_page_author_books_on_json'
+  match 'home_page_random_books' => 'pages#home_page_random_books'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
 
@@ -31,6 +33,7 @@ Classicly::Application.routes.draw do
   resources :logins, :only => [:create] do
     delete :destroy, :on => :collection
   end
+  
 
   match 'search' => 'search#show'
 

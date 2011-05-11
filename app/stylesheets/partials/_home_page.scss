@@ -2,55 +2,44 @@
 	@include column(20);
 	text-align: left;
 	#classicly-welcome-text{
-		@include column(14);
+		@include column(13);
 		padding-top: 10px;
 		h1, .info{
 			margin-left: 12px;
 		}
 		h1{
-			font-family: 'Cousine', arial, serif;
+			margin-top: 20px;
+			font-family: 'chennai-slab-1','chennai-slab-2', arial, serif;
+			font-size: 40px;
+			color: #333333;
 		}
 		.info{
+			font-family: "Helvetica", arial, serif;
+			font-size: 16px;
+			color: #999999;
+			width: 462px;
+			margin-bottom: 12px;
 			.emphasize{
-				font-size: 14px;
+				font-size: 20px;
+				color: #333333;
 				font-weight: bold;
 			}
 		}
 	}
 	#classicly-featured-book{
-		@include column(6, true);
+		@include column(7, true);
 		.cover-frame{
-			margin: 10px 0;
+			margin: 20px 0;
 		}
 	}
 	#links{
 		a.bouge{
-			margin-left: 12px;
+			margin-left: 34px;
 		}
 	}
 	
 	.books, .books-2{
 		@include column(20, true);
-		img.mini{
-			width: 28px;
-			height: 48px;
-		}
-		img.small{
-		  width: 62px;
-		  height: 110px;
-		}
-		img.small-2{
-			width: 60px;
-			height: 95px;
-		}
-		img.big{
-			width: 218px;
-			height: 312px;
-		}
-		img.medium{
-			width: 132px;
-			height: 216px;
-		}
 		.column{
 			@include column(6, true);
 		}
@@ -107,4 +96,25 @@
 
 #home-page-browse{
 	@include column(4, true);
+}
+
+img.mini{
+	width: 28px;
+	height: 48px;
+}
+img.small{
+  width: 62px;
+  height: 110px;
+}
+img.small-2{
+	width: 60px;
+	height: 95px;
+}
+img.big{
+	width: 218px;
+	height: 312px;
+}
+img.medium{
+	width: 132px;
+	height: 216px;
 }
