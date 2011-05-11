@@ -6,6 +6,8 @@ class PagesController < ApplicationController
   def main
     @featured_book = Book.blessed.random(1).first
     @collection_covers = Collection.where(:name => 'Best Of', :book_type => 'book').first.books.limit(6)
+    @books = Book.blessed.random(2)
+    @author_collection = Collection.book_type.by_author.first
     # @featured_books = Book.blessed.available.with_description.random(5)
     #     mixpanel_properties = {}
     #     if user_signed_in?

@@ -1,5 +1,5 @@
 #home-page-content{
-	@include column(20);
+	@include column(19);
 	text-align: left;
 	#classicly-welcome-text{
 		@include column(13);
@@ -27,31 +27,27 @@
 		}
 	}
 	#classicly-featured-book{
-		@include column(7, true);
+		@include column(6, true);
 		.cover-frame{
 			margin: 20px 0;
 		}
 	}
 	#links{
 		a.bouge{
-			margin-left: 34px;
+			margin-left: 10px;
 		}
 	}
 	
 	.books, .books-2{
-		@include column(20, true);
+		@include column(19, true);
 		.column{
 			@include column(6, true);
 		}
 		.column-2{
 			@include column(7);
-			margin-left: 25px;
 			.all{
 				@include column(7);
 			}
-		}
-		.column-3{
-			margin-left: 25px;
 		}
 		.all{
 			@include column(6, true);
@@ -95,7 +91,31 @@
 }
 
 #home-page-browse{
-	@include column(4, true);
+	@include column(5, true);
+	padding-top: 200px;
+	.row{
+		@include column(5, true);
+		text-align: left;
+		margin-bottom: 12px;
+		color: #333;
+		font-size: 14px;
+		font-family: Helvetica;
+		img{
+			margin-bottom: 0px;
+		}
+		span.kind{
+			font-size: 10px;
+			color: #999;
+		}
+		.row.links{
+			margin-bottom: 6px;
+			color: #936845;
+		}
+	}
+	p.popular{
+		font-size: 14px;
+		font-weight: bold;
+	}
 }
 
 img.mini{

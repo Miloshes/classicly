@@ -92,7 +92,36 @@
 				.cover-frame
 					%img.small-2.homepage_author
 #home-page-browse
-	Browse
+	.row
+		%p.popular
+			Popular
+		.row.book
+			= cover_tag(@books.first, 1, 'small')
+			.label
+				= @books.first.pretty_title
+				= content_tag :span, 'Book', :class => 'kind'
+		.row.author
+			= cover_tag(@author_collection.books.first, 1, 'small')
+			.label
+				= @author_collection.name
+				= content_tag :span, 'Author', :class => 'kind'
+		.row.book
+			= cover_tag(@books.last, 1, 'small')
+			.label
+				= @books.last.pretty_title
+				= content_tag :span, 'Book', :class => 'kind'
+		.row.collection
+			- for cover in @collection_covers
+				= cover_tag(cover, 1, "mini")
+			.label
+				Best Of
+				= content_tag :span, 'Collection', :class => 'kind'
+		.row.links
+			See more related books
+		.row.links
+			Browse collections
+		.row.links
+			Browse authors
 = javascript_include_tag 'randomCoverPicker'
 :javascript
 	$(function(){
