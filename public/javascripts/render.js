@@ -118,23 +118,46 @@ Render.prototype = {
   
 };
 
-function push_data(book_id, page_data){
-  var data = {
-    book_id : book_id,
-    action : 'process_render_data',
-    render_data : [{
-                     page : page_data.page_num,
-                     first_line_indent : page_data.first_line_indent,
-                     first_character : page_data.page_start,
-                     last_character : page_data.page_end
-                   }]
-  };
+
+
+var book_data = {
+  action : 'process_render_data',
+  render_data : []
+};
+var timer_id;
+
+function send_request(){
+  console.log('request sent');
   $.post('/reader_engine_api',
-         {json_data : $.toJSON(data)},
+         {json_data : $.toJSON(book_data)},
          function(data){
            console.log('returned from server:');
            console.log(data);
          });
+  book_data.render_data = [];
+}
+
+function push_data(book_id, page_data){
+  clearTimeout(timer_id);
+  
+  var page = {
+    page : page_data.page_num,
+    first_line_indent : page_data.first_line_indent,
+    first_character : page_data.page_start,
+    last_character : page_data.page_end
+  };
+  
+  if(book_data.book_id === undefined){
+    book_data.book_id = book_id;
+  }
+
+  if(book_data.book_id !== book_id ||
+     book_data.render_data.length > 99 ){
+       send_request();
+     }
+
+  book_data.render_data.push(page);
+  timer_id = setTimeout(send_request, 500);
 }
 
 function get_book_data(book_id, cb){
