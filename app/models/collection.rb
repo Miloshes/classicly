@@ -146,7 +146,7 @@ class Collection < ActiveRecord::Base
     end
     return results
   end
-
+  
   def collection_slug
     case self.book_type
       when 'book'

@@ -35,7 +35,13 @@ module ApplicationHelper
     type = book.class.to_s.downcase
     image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
   end
-
+  
+  def link_cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg",
+                      :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
+  end
+  
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end

@@ -4,10 +4,10 @@ class PagesController < ApplicationController
   layout "new_design"
 
   def main
-    @featured_book = Book.blessed.random(1).first
+    @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.random(1).first
     @collection_covers = Collection.where(:name => 'Best Of', :book_type => 'book').first.books.limit(6)
-    @books = Book.blessed.random(2)
-    @author_collection = Collection.book_type.by_author.first
+    @books = Book.blessed.random(2).select([:id, :pretty_title, :author_id, :cached_slug])
+    @author_collection, @author_collection_books = Book.books_from_random_collection('author', 1, ['books.id', 'author_id', 'cached_slug', 'pretty_title']) 
     # @featured_books = Book.blessed.available.with_description.random(5)
     #     mixpanel_properties = {}
     #     if user_signed_in?
@@ -20,12 +20,7 @@ class PagesController < ApplicationController
 
   def home_page_author_books_on_json
     #select author collections having 7 or more books to show
-    collections = Collection.book_type.select{|collection| collection.books.count >= 7}
-    index = rand(collections.count)
-    collection = collections[index]
-    #send only the ids
-    books = Book.joins("INNER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id WHERE 
-      ((collection_book_assignments.collection_id = #{collection.id}))").select('books.id').limit(7)
+    collection, books = Book.books_from_random_collection('all', 7, ['books.id'])
     render :json => books
   end
   
