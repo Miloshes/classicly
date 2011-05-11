@@ -12,7 +12,7 @@
   #inner
 
 :javascript
-  var ids = #{@book_ids.to_json};
+  var id = #{@book_id};
   var inserter = function() {
     $('#rendering_status').html('Rendering status: finished with the book.');
   }

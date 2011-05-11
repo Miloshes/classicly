@@ -10,6 +10,7 @@ function Render(book_content){
   this.lines_array = book_content.split("\n");
   this.page_boundary = $("#render");
   this.page_container = $("#inner");
+  this.book_done_hook = $.noop;
   /* where page started */
   this.page_start = 0;
   /* current position in text chunk */
@@ -41,6 +42,8 @@ Render.prototype = {
       setTimeout(function(){
                    self.render_book(cb);
                  }, 0);
+    }else{
+      this.book_done_hook();
     };
   },
   
@@ -118,23 +121,46 @@ Render.prototype = {
   
 };
 
-function push_data(book_id, page_data){
-  var data = {
-    book_id : book_id,
-    action : 'process_render_data',
-    render_data : [{
-                     page : page_data.page_num,
-                     first_line_indent : page_data.first_line_indent,
-                     first_character : page_data.page_start,
-                     last_character : page_data.page_end
-                   }]
-  };
+var book_data = {
+  action : 'process_render_data',
+  render_data : []
+};
+var timer_id, requests_in_process = 0, book_done = false;
+
+function send_request(){
+  requests_in_process++;
   $.post('/reader_engine_api',
-         {json_data : $.toJSON(data)},
+         {json_data : $.toJSON(book_data)},
          function(data){
-           console.log('returned from server:');
-           console.log(data);
+           requests_in_process--;
+           if(book_done && requests_in_process < 1){
+             $('#rendering_status').text('Rendering status: finished with the book.');
+           }
          });
+  book_data.render_data = [];
+}
+
+function push_data(book_id, page_data){
+  clearTimeout(timer_id);
+  
+  var page = {
+    page : page_data.page_num,
+    first_line_indent : page_data.first_line_indent,
+    first_character : page_data.page_start,
+    last_character : page_data.page_end
+  };
+  
+  if(book_data.book_id === undefined){
+    book_data.book_id = book_id;
+  }
+
+  if(book_data.book_id !== book_id ||
+     book_data.render_data.length > 99 ){
+       send_request();
+     }
+
+  book_data.render_data.push(page);
+  timer_id = setTimeout(send_request, 500);
 }
 
 function get_book_data(book_id, cb){
@@ -151,22 +177,22 @@ function get_book_data(book_id, cb){
 }
 
 $(function(){
+    var page = 0;
     $("#render_book").click(
       function(){
-        $.each(ids,
-               function(){
-                 var book_id = this;
-                 get_book_data(book_id, function(data){
-                         var r = new Render(data);
-                         var page = 1;
-                         r.render_book(
-                           function(page_data){
-                             push_data(book_id,
-                                       page_data);
-                             $('#pages_done').text(page);
-                             page++;
-                           });
-                       });
-               });
+        get_book_data(id, function(data){
+                        var r = new Render(data);
+                        r.book_done_hook = function(){
+                          book_done = true;
+                        };
+                        r.render_book(
+                          function(page_data){
+                            page++;
+                            console.log(page);
+                            push_data(id,
+                                      page_data);
+                          });
+                      });
+        
       });
   });

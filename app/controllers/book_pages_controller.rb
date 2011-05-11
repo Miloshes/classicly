@@ -43,7 +43,7 @@ class BookPagesController < ApplicationController
       render :text => "400: missing 'id' in request params.", :status => 400
       return
     end
-    @book_ids = params[:id].split(',')
+    @book_id = params[:id]
     render :action => 'render', :layout => 'layouts/render'    
   end
   
