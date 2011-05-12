@@ -11,7 +11,6 @@ class ReaderEngine
     params.stringify_keys!
     self.current_book_id = nil
     self.current_book_content = ''
-    lazy_load_book_content params['book_id'] if params['book_id']
   end
 
   def current_book_content
