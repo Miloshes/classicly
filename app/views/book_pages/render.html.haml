@@ -1,2 +1,15 @@
+%p
+  %label{:for => "render_book"} Render book:
+  %button#render_book Render book
+
+#rendering_status
+  Not yet.
+
+%p
+  pages done:
+  %span#pages_done 0
+#render
+  #inner
+
 :javascript
-  var ids = #{@book_ids.to_json};
+  var id = #{@book_id};

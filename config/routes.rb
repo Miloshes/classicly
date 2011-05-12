@@ -1,6 +1,9 @@
 Classicly::Application.routes.draw do
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
+
+  # TODO: remove, this is only here for testing
+  match '/reader/:id/:page_number' => "book_pages#show", :via => :get
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
@@ -39,6 +42,7 @@ Classicly::Application.routes.draw do
     delete :destroy, :on => :collection
   end
 
+<<<<<<< HEAD
   match 'search' => 'search#show'
 
   # current version of the web API
@@ -46,6 +50,9 @@ Classicly::Application.routes.draw do
   match '/web_api/query' => "web_api#query", :via => :post
 
   match '/render_books_to_reader' => "book_pages#render_books", :via => :get
+=======
+  match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
+>>>>>>> reader_engine
   
   match "/:id" => "seo#show", :as => 'seo', :via => :get
 

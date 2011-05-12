@@ -2,6 +2,7 @@
  todo: two pages on large screens?
  todo: endless scrolling variation?
  todo: use enchansed justify?
+ todo: add more error handling. (when page is not loaded)
  */
 
 function Book(id){
@@ -18,7 +19,7 @@ Book.prototype = {
   get_page : function(page_num, cb){
     /* check page cache for page */
     if(this.page_cache[page_num]){
-     cb(this.page_cache[page_num]);
+      cb(this.page_cache[page_num]);
     }else{
       var self = this;
       var data = {
@@ -27,16 +28,28 @@ Book.prototype = {
         page_number : page_num
       };
       $.post('/reader_engine_api/query',
-                {json_data : $.toJSON(data)},
-                function(data){
-                  if(!self._total_pages || !self._title){
-                    self._total_pages = data.total_page_count;
-                    self._title = data.book_title;
-                  }
-                  self.page_cache[page_num] = data.content.split("\n");
-                  cb(self.page_cache[page_num]);
-                }, 'json');
-   }
+             {json_data : $.toJSON(data)},
+             'json')
+        .success(function(data){
+                   if(data.match(/^\s*$/)){
+                     cb(null);
+                     return;
+                   }
+                   data = $.parseJSON(data);
+                   if(!self._total_pages || !self._title){
+                     self._total_pages = data.total_page_count;
+                     self._title = data.book_title;
+                   }
+                   self.page_cache[page_num] = {
+                     content : data.content.split("\n"),
+                     first_line_indent : data.first_line_indent
+                   };
+                   cb(self.page_cache[page_num]);
+                 })
+        .error(function(){
+                 cb(null);
+               });
+    }
 
   },
 
@@ -58,7 +71,7 @@ Book.prototype = {
 
 function Reader(book){
   this.book = book;
-  this.current_page = 1;
+  this.current_page = this._get_page_id_from_url();
   this.init();
   this.draw_page(this.current_page);
   return this;
@@ -86,25 +99,50 @@ Reader.prototype = {
     $('#reader_box .loading_box').hide();
   },
 
+  show_error : function(){
+    $('#reader_box .error_box').show();
+  },
+  clear_content : function(){
+    $('#reader_box .text_box').empty();
+  },
+
+  _set_page_id_to_url : function(num){
+    window.location.hash = num;
+  },
+
+  _get_page_id_from_url : function(){
+    var hash = window.location.hash;
+    return hash === "" ? 1 : Number(hash.slice(1));
+  },
+
   draw_page : function(num){
     var self = this;
     var book = this.book;
     this.current_page = num;
     this.show_loading();
     book.get_page(num,
-                  function(page_content){
+                  function(page_data){
+                    var page_content = page_data.content;
+                    var first_line_indent = page_data.first_line_indent;
                     self.hide_loading();
+                    if(page_content == null){
+                      self.show_error();
+                      return;
+                    }
                     var text_box = $('#reader_box .text_box');
-                    text_box.empty();
+                    self.clear_content();
                     $.each(page_content,
                            function(i,string){
                              var p = $('<p>').text(string);
                              text_box.append(p);
                            });
-
+                    if(!first_line_indent){
+                      text_box.find('p:first').addClass('no_indent');
+                    }
                     self._set_title(book.get_title());
                     self._slider_move_to_page(num);
-                    self._prefetch(num + 1);
+                    self._set_page_id_to_url(num);
+                    self._prefetch(Number(num) + 1);
                   });
   },
   
@@ -118,9 +156,9 @@ Reader.prototype = {
     var self = this;
     this.slider = $('#reader_box .navigation .slider');
     this.slider.slider({
-                onChange : function(e){self._slider_on_change(e);},
-                live_change : true
-              });
+                         onChange : function(e){self._slider_on_change(e);},
+                         live_change : true
+                       });
     this.slider_cursor = $('#reader_box .navigation .slider_cursor');
     var before_scroller_num = $('<div/>').addClass('before_scroller_num');
     this.page_num = $('<div/>').addClass('page_num');
@@ -133,22 +171,6 @@ Reader.prototype = {
 
   _init_navigation : function(){
     var self = this;
-
-    /* bottom navigation */
-    $('#reader_box .next_page').click(function(){
-                                        self.turn_page_right();
-                                        return false;
-                                      });
-    $('#reader_box .next_page').mousedown(function(){
-                                            return false;
-                                          });
-    $('#reader_box .prev_page').click(function(){
-                                        self.turn_page_left();
-                                        return false;
-                                      });
-    $('#reader_box .prev_page').mousedown(function(){
-                                            return false;
-                                          });        
 
     /* side navigation */
     $('#reader_box .big_navigation')

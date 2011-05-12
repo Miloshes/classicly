@@ -11,11 +11,9 @@ class ReaderEngine
     params.stringify_keys!
     self.current_book_id = nil
     self.current_book_content = ''
-    lazy_load_book_content params['book_id'] if params['book_id']
   end
 
   def current_book_content
-    return @promise_to_get_content.call if @promise_to_get_content
     @current_book_content
   end
   
@@ -83,15 +81,16 @@ class ReaderEngine
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
-      @promise_to_get_content = lambda { 
-        self.current_book_content = get_book_content(book_id)
-      }
+      # for reading the book from S3, takes like 8 seconds so not advised
+      self.current_book_content = get_book_content_from_s3(book_id)
+      # this is the quick solution, read it from the local disk
+      # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
     end
   end
 
-  def get_book_content(book_id)
+  def get_book_content_from_s3(book_id)
     book = Book.find book_id
-    raise 'Book not found in txt' unless book.available_in_format?('txt.zip')
+
     zip_file_data = book.file_data_for_format('txt.zip')
     # rubyzip cannot unzip strings in memory, so we have to create a temp file for it
     file = Tempfile.new('book_content.zip')

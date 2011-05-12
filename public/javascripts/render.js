@@ -10,10 +10,11 @@ function Render(book_content){
   this.lines_array = book_content.split("\n");
   this.page_boundary = $("#render");
   this.page_container = $("#inner");
+  this.book_done_hook = $.noop;
   /* where page started */
   this.page_start = 0;
   /* current position in text chunk */
-  this.current_postion = 0;
+  this.current_position = 0;
   /* current line in lines array */
   this.current_line = -1;
   /* remaining words in current line */
@@ -41,20 +42,25 @@ Render.prototype = {
       setTimeout(function(){
                    self.render_book(cb);
                  }, 0);
+    }else{
+      this.book_done_hook();
     };
   },
   
   render_page: function(){
     this.page_container.empty();
-    this.page_start = this.current_postion;
+    this.page_start = this.current_position;
     var page_end, result, word, first_line_indent;
 
     first_line_indent = this.get_word().line_break;
     this.unshift_last_word();
       
     while(this.size_test()){
-      page_end = this.current_postion -1;
+      page_end = this.current_position -1;
       result = this.get_word();
+      if(result === null){
+        break;
+      }
       this.append_word(result.word+' ', result.line_break);
     }
     this.unshift_last_word();
@@ -80,26 +86,31 @@ Render.prototype = {
   
   /* get next word in text chunk */
   get_word: function(){
-    var line_break;
+    var line_break = false;
 
     if(this.last_word.pushed){
       this.last_word.pushed = false;
+      this.current_position += this.last_word.word.length + 1;      
       return this.last_word;
     }
     
     if(this.line_words.length < 1){
       this.current_line += 1;
+      if(this.current_line >= this.lines_array.length){
+        return null;
+      }
       this.line_words = this.lines_array[this.current_line].split(/\s/);
       line_break = true;
     }
     var word = this.line_words.shift();
-    this.current_postion += word.length + 1;
+    this.current_position += word.length + 1;
     this.last_word.word = word;
     this.last_word.line_break = line_break;
     return {word: word, line_break: line_break};
   },
 
   unshift_last_word: function(){
+    this.current_position -= this.last_word.word.length + 1;
     this.last_word.pushed = true;
   },
   
@@ -110,23 +121,46 @@ Render.prototype = {
   
 };
 
-function push_data(book_id, page_data){
-  var data = {
-    book_id : book_id,
-    action : 'process_render_data',
-    render_data : [{
-                     page : page_data.page_num,
-                     first_line_indent : page_data.first_line_indent,
-                     first_character : page_data.page_start,
-                     last_character : page_data.page_end
-                   }]
-  };
+var book_data = {
+  action : 'process_render_data',
+  render_data : []
+};
+var timer_id, requests_in_process = 0, book_done = false;
+
+function send_request(){
+  requests_in_process++;
   $.post('/reader_engine_api',
-         {json_data : $.toJSON(data)},
+         {json_data : $.toJSON(book_data)},
          function(data){
-           console.log('returned from server:');
-           console.log(data);
+           requests_in_process--;
+           if(book_done && requests_in_process < 1){
+             $('#rendering_status').text('Rendering status: finished with the book.');
+           }
          });
+  book_data.render_data = [];
+}
+
+function push_data(book_id, page_data){
+  clearTimeout(timer_id);
+  
+  var page = {
+    page : page_data.page_num,
+    first_line_indent : page_data.first_line_indent,
+    first_character : page_data.page_start,
+    last_character : page_data.page_end
+  };
+  
+  if(book_data.book_id === undefined){
+    book_data.book_id = book_id;
+  }
+
+  if(book_data.book_id !== book_id ||
+     book_data.render_data.length > 99 ){
+       send_request();
+     }
+
+  book_data.render_data.push(page);
+  timer_id = setTimeout(send_request, 500);
 }
 
 function get_book_data(book_id, cb){
@@ -143,25 +177,21 @@ function get_book_data(book_id, cb){
 }
 
 $(function(){
+    var page = 0;
     $("#render_book").click(
       function(){
-        $.each(ids,
-               function(){
-                 var book_id = this;
-                 get_book_data(book_id, function(data){
-                         var r = new Render(data);
-                         var page = 1;
-                         r.render_book(
-                           function(page_data){
-                             push_data(book_id,
-                                       page_data);
-                             $('#pages_done').text(page);
-                             page++;
-                             if(page > 10){
-                               throw 'SHOSHOSHOS';
-                             }
-                           });
-                       });
-               });
+        get_book_data(id, function(data){
+                        var r = new Render(data);
+                        r.book_done_hook = function(){
+                          book_done = true;
+                        };
+                        r.render_book(
+                          function(page_data){
+                            page++;
+                            push_data(id,
+                                      page_data);
+                          });
+                      });
+        
       });
   });
