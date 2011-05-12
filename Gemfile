@@ -22,6 +22,7 @@ gem 'sitemap_generator'
 gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
+gem 'rubyzip'
 
 group :development do
   gem 'awesome_print'
@@ -30,6 +31,7 @@ group :development do
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
+  gem 'firewatir'
 end 
 
 group :test do

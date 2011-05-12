@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
   has_many :seo_slugs, :as => :seoable
+  has_many :book_pages
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})

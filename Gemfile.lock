@@ -48,6 +48,8 @@ GEM
     columnize (0.3.2)
     compass (0.10.6)
       haml (>= 3.0.4)
+    commonwatir (1.8.1)
+      user-choices
     daemons (1.1.0)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -57,6 +59,8 @@ GEM
       abstract (>= 1.0.0)
     escape (0.0.4)
     fastthread (1.0.7)
+    firewatir (1.8.1)
+      commonwatir (= 1.8.1)
     ffi (1.0.7)
       rake (>= 0.8.7)
     friendly_id (3.2.1)
@@ -64,6 +68,8 @@ GEM
     gem_plugin (0.2.3)
     haml (3.0.25)
     hirb (0.4.0)
+    hoe (2.9.4)
+      rake (>= 0.8.7)
     hoptoad_notifier (2.4.8)
       activesupport
       builder
@@ -154,6 +160,8 @@ GEM
     ruby-debug-base (0.10.4)
       linecache (>= 0.3)
     rubyzip (0.9.4)
+    s4t-utils (1.0.4)
+      hoe (>= 1.3.0)
     selenium-webdriver (0.2.0)
       childprocess (>= 0.1.7)
       ffi (>= 1.0.7)
@@ -176,6 +184,10 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.25)
+    user-choices (1.1.6.1)
+      builder (>= 2.1.2)
+      s4t-utils (>= 1.0.3)
+      xml-simple (>= 1.0.11)
     xml-simple (1.0.14)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
@@ -188,6 +200,7 @@ DEPENDENCIES
   aws-s3
   compass (>= 0.10.5)
   delayed_job
+  firewatir
   friendly_id (~> 3.2.1)
   haml
   hirb
@@ -209,6 +222,7 @@ DEPENDENCIES
   rest-client
   rspec-rails (>= 2.0.0.beta)
   ruby-debug
+  rubyzip
   sitemap_generator
   sqlite3-ruby
   taps (> 0.3.22)
