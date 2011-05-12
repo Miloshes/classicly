@@ -1,0 +1,57 @@
+/*
+Syntax error: Invalid CSS after "  :display none ": expected "{", was "!important"
+        on line 10 of /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/main.scss
+
+Backtrace:
+/Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/main.scss:10
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:838:in `expected'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:813:in `expected'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:809:in `tok!'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:338:in `block'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:333:in `ruleset'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:356:in `block_child'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:347:in `block_contents'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:57:in `stylesheet'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/scss/parser.rb:26:in `parse'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/engine.rb:213:in `_to_tree'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/engine.rb:197:in `_render'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/engine.rb:169:in `render'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/haml/util.rb:294:in `silence_haml_warnings'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/lib/sass/engine.rb:169:in `render'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:103:in `compile'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/logger.rb:43:in `red'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:102:in `compile'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:93:in `compile_if_required'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:84:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:82:in `each'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/compiler.rb:82:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/commands/watch_project.rb:92:in `recompile'
+/Users/ignaciodelamadrid/.rvm/rubies/ruby-1.8.7-p334/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:36:in `to_proc'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/path.rb:71:in `call'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/path.rb:71:in `run_callback'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/path.rb:54:in `callback_action'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/path.rb:30:in `create'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/state/directory.rb:23:in `created'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/state/directory.rb:23:in `each'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/state/directory.rb:23:in `created'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/state/directory.rb:15:in `refresh'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/backends/polling.rb:17:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/backends/polling.rb:17:in `each'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/backends/polling.rb:17:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/backends/polling.rb:15:in `loop'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/backends/polling.rb:15:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm/monitor.rb:24:in `run'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/haml-3.0.25/vendor/fssm/lib/fssm.rb:17:in `monitor'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/commands/watch_project.rb:61:in `perform'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/commands/base.rb:18:in `execute'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/commands/project_base.rb:19:in `execute'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/exec/sub_command_ui.rb:38:in `perform!'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/bin/compass:26
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/bin/compass:19:in `load'
+/Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@classicly-st/bin/compass:19
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"  :display none \": expected \"{\", was \"!important\"\A         on line 10 of /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/main.scss"; }

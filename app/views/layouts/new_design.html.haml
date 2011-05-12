@@ -11,8 +11,16 @@
 	%meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
 	%meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}	
 	
-	= include_javascripts :main, :collections
+	= javascript_include_tag 'http://www.google.com/jsapi'
+	= javascript_tag do
+		var theme = "flick";
+		google.load("jquery", "1.4.4");
+		google.load("jqueryui", "1.8.7");
+		google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+
+	= include_javascripts :main_without_jquery_nor_jquery_ui, :collections
 	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+
 	= csrf_meta_tag
 	= typekit_include_helper
 	= yield :head
@@ -29,11 +37,42 @@
 					%li
 						collections
 					%li
-						authors
+						Authors
 					%li
-						my library
-					%li.blog
-						blog
-		#main-content
-			= yield
-  
+						My Library
+					%li
+						Blog
+		= yield
+
+:javascript
+	var publicApiUrl = "http://6wfx.api.indextank.com";
+	var indexName = "classicly_staging";
+	var elementId = "#term";
+	var remoteSource = publicApiUrl + "/v1/indexes/" + indexName + "/autocomplete";
+	
+	google.setOnLoadCallback(function() {
+	$(function() {
+
+	var sourceCallback = function( request, responseCallback ) {
+	  $.ajax( {
+	    url: remoteSource,
+	    dataType: "jsonp",
+	    data: { query: request.term },
+	    success: function( data ) { responseCallback( data.suggestions ); }
+	  } );
+	};
+
+	var selectCallback = function( event, ui ) { 
+	  event.target.value = ui.item.value;
+	  event.target.form.submit();
+	};
+
+	$( elementId ).autocomplete( {
+	  source: sourceCallback,
+	  minLength: 2,
+	  delay: 100,
+	  select: selectCallback
+	} );
+
+	}); // $ fun
+	}); // g callback
