@@ -11,6 +11,7 @@ javascripts:
     - public/javascripts/jqueryui.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
+    - public/javascripts/masonry.js
   collections:
     - public/javascripts/collection-page.js
 

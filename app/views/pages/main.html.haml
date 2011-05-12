@@ -1,7 +1,7 @@
 #home-page-content
 	#classicly-welcome-text
 		%h1
-			Welcome to Classicly
+			Welcome to Classicly!
 		.info
 			%span.emphasize
 				Browse around.
@@ -13,84 +13,33 @@
 		.info
 			%span.emphasize
 				Download for free.
-			Download our apps to read your online collection on the go!
+			We have both Kindle and PDF formats- and there's no limits on downloading.
 		.info
 			%span.emphasize
-				Sync to iPhone and iPad.
-			Download our apps to read your online collection on the go!
-		.info
-			Drag and drop any PDF, or even ZIP of PDFs, to the "Drop Zone" and we'll get into your iPhone/iPad in seconds.
-		.info
-			Try it! It's super slick.
-	#classicly-featured-book
-		.cover-frame
-			= link_cover_tag(@featured_book, 2, 'big')
-	#links
-		= link_to content_tag(:span, 'Browse our hand-picked book collections'), '/best-of', :class => 'button kiss large green'
-		= link_to content_tag(:span, 'Browse by author'), '/bram-stoker', :class => 'button kiss large brown bouge'
-		= link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge'
-	.books
-		.column.column-1
-			.all
-				.cover-frame
-					%img.big.random_book
-		.column.column-2
-			.all
-				- for cover in @collection_covers
-					.cover-frame
-						= cover_tag(cover, 1, "mini")
-			.two-little-books.row-2.left
-				.cover-frame.random_book
-					%img.medium.random_book
-			.one-little-book.row-2.right
-				.cover-frame
-					%img.small.random_book
-				.cover-frame
-					%img.small.random_book
-		.column.column-3
-			.all
-				.cover-frame
-					%img.medium.random_book
-			.all
-				.cover-frame
-					%img.small.random_book
-				.cover-frame
-					%img.small.random_book
+				Sync to iPhone & iPad
+			Register to keep your reading collection in sync whether on the web or on the go.<br /></br >
 
-	.books-2
-		.column.column-1
-			.two-little-books.row-2
-				.cover-frame
-					%img.small.random_book
-				.cover-frame
-					%img.small.random_book
-				.cover-frame
-					%img.medium.random_book
-			.one-little-book.row-2.right
-				.cover-frame
-					%img.small.random_book
-				.cover-frame
-					%img.small.random_book
-		.column.column-2
-			.all
-				.cover-frame
-					%img.big.homepage_author
-		.column.column-3
-			.all
-				.cover-frame
-					%img.small-2.homepage_author
-				.cover-frame
-					%img.small-2.homepage_author
-			.all
-				.cover-frame
-					%img.small-2.homepage_author
-				.cover-frame
-					%img.small-2.homepage_author
-			.all
-				.cover-frame
-					%img.small-2.homepage_author
-				.cover-frame
-					%img.small-2.homepage_author
+	#classicly-featured-book
+		%img.cover.huge{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id18847_size3.jpg'}
+	#links
+		%a.button.kiss.large.green{:href => '/best-of'}
+			%span
+				Browse our hand-picked book<br />collections
+		= link_to content_tag(:span, 'Browse by author'), '/bram-stoker', :class => 'button kiss large brown bouge small'
+		= link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge small'
+
+
+	#book-tiles
+		%img.cover.small.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id2133_size3.jpg'}
+		%img.cover.small.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id4281_size2.jpg'}
+		%img.cover.small.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id14328_size2.jpg'}
+		%img.cover.medium.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id87_size2.jpg'}
+		%img.cover.small.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id17776_size2.jpg'}
+		%img.cover.medium.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id7186_size3.jpg'}
+		%img.cover.medium.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id264_size3.jpg'}
+		%img.cover.medium.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id12841_size3.jpg'}
+		%img.cover.small.box{:src => 'http://spreadsong-book-covers.s3.amazonaws.com/book_id9148_size3.jpg'}
+
 #home-page-browse
 	.row
 		%p.popular
@@ -142,5 +91,4 @@
 				});
 		});
 
-		$('div.cover-frame img').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />');
 	});

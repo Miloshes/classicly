@@ -1,0 +1,51 @@
+#main-content
+  padding-left: 15px
+
+$top-nav-bg: #c9af87
+
+body
+  background-color: white
+
+.top_nav
+  height: 40px
+  +column(24, true)
+  background: $top-nav-bg
+  border-radius: 0px 0px 10px 10px
+  -moz-border-radius: 0px 0px 10px 10px
+  -webkit-border-radius: 0px 0px 10px 10px
+  #logo
+    :float left
+    +column(3)
+    :margin
+      :top 4px
+    img
+      :margin
+        :left 30px
+  #searchbox
+    +column(6)
+    :margin
+      :top 4px
+      :left 30px
+    input
+      margin-top: 2px
+      height: 22px
+      width: 225px
+      color: #d2d2d3
+      font-size: 12px
+      font-family: 'helvetica'
+      border: 1px solid #ab9573
+  #navigator
+    +column(13, true)
+    text-align: left
+    ul
+      list-style: none
+      color: white
+      font-size: 17px
+      font-weight: regular
+      margin-top: 9px
+      font-family: 'helvetica'
+      li
+        display: inline
+        margin-left: 14px
+        &.blog
+          :float right

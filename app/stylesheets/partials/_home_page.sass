@@ -1,0 +1,188 @@
+#home-page-content
+  +column(18)
+  text-align: left
+  #classicly-welcome-text
+    +column(11)
+    padding-top: 30px
+    h1, .info
+      margin-left: 12px
+    h1
+      margin-top: 20px
+      font-family: 'museo-slab-1', 'museo-slab-2', arial, serif
+      :font-weight normal
+      font-size: 40px
+      color: #333333
+      background: #ffff66
+      padding: 0px
+        :top 8px
+        :bottom 8px
+      margin: 0px
+      float: left
+    .info
+      font-family: "Helvetica", arial, serif
+      font-size: 16px
+      color: #999999
+      width: 100%
+      float: left
+      padding: 0
+        :top 15px
+      margin: 0
+      margin-bottom: 12px
+      .emphasize
+        font-size: 20px
+        color: #333333
+  #classicly-featured-book
+    +column(7, true)
+    img
+      :border 1px solid #333333
+      :margin
+        :top 30px
+#links
+  +column(18, true)
+  :float left
+  :margin
+    :top 30px
+  .small
+    :margin
+      :top 17px
+      :left  15px
+
+#home-page-browse
+  :width 190px
+  :float left
+  padding-top: 20px
+  :margin
+    :left 20px
+  .row
+    :Width 100%
+    text-align: left
+    margin-bottom: 12px
+    color: #333
+    font-size: 14px
+    font-family: Helvetica
+    &:hover
+      :cursor pointer
+    img
+      margin-bottom: 0px
+    span.kind
+      font-size: 10px
+      color: #999
+    .row.links
+      margin-bottom: 6px
+      color: #936845
+  p.popular
+    font-size: 16px
+    font-weight: bold
+    :margin 0
+    :padding 0
+      :bottom 10px
+
+#book-tiles
+  +column(18, true)
+  :margin
+    :top 25px
+  img.box
+    :border 1px solid #333333
+    :padding 0
+    :margin 2px
+    &.tiny
+      :width 48px
+      :height 74px
+    &.small
+      :width 98px
+      :height 151px
+    &.medium
+      :width 148px
+      :height 229px
+    &.large
+      :width 198px
+      :height 306px
+    &.huge
+      :width 248px
+      :height 383px
+// ----------------- //
+// -- COVERS HERE -- //
+// ----------------- //
+
+.cover-frame
+  border: 1px solid #fcfcfc
+  float: left
+  padding: 0px
+  div.loader
+    :width 100%
+    :height 100%
+    :display block
+    :float left
+    div
+      width: 24px
+      height: 24px
+      display: block
+      background: url("/images/ajax-loader.gif")
+  img
+    margin-bottom: 0px !important
+    margin-top: 0px !important
+    vertical-align: sub !important
+    display: none
+  div
+    float: left
+    border: 1px solid #f6f6f6
+    padding: 0px
+    div
+      float: left
+      border: 1px solid #ededed
+      padding: 0px
+      div
+        float: left
+        border: 1px solid #e0e0e0
+        padding: 0px
+        div
+          border: 1px solid #fcfcfc
+          float: left
+          padding: 0px
+          div
+            float: left
+            border: 1px solid #f6f6f6
+            padding: 0px
+
+.fade-me
+.mini-cover
+  width: 28px
+  :height 43px
+  :display block
+  img
+    width: 28px
+    :height 43px
+
+img.mini
+  width: 28px
+  :height 43px
+
+.small-cover
+  width: 62px
+  :height 96px
+  :display block
+  img
+    width: 62px
+    :height 96px
+    :display none
+
+img.small-2
+  width: 60px
+  :height 93px
+
+.big-cover
+  :display block
+  :width 218px
+  :height 337px
+  :float left
+  :display none
+
+img.big
+  width: 218px
+  :height 337px
+
+img.medium
+  width: 132px
+  :height 204px
+
+
