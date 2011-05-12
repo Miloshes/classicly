@@ -1,0 +1,22 @@
+#reviews_admin
+  = paginate @reviews
+  .clear
+  %table
+    %thead
+      %tr
+        %th.name
+          Name
+        %th
+          Reviewer
+        %th
+          Content
+        %th
+          Rating
+        %th
+    %tbody
+      = render @reviews
+:javascript
+  $(function(){
+    $('table tr:nth-child(odd)').addClass('alternate');
+  });
+

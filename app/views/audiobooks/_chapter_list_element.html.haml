@@ -2,4 +2,4 @@
   %p.chapter_no
     = chapter.title =~ /Chapter \d/ ?  nil : "Chapter #{chapter_counter + 1}" 
   %p
-    = link_to chapter.title, chapter.download_link, :target => 'blank'
+    = link_to chapter.title, serve_audiofile_url(@book, chapter), :class => 'download-link'

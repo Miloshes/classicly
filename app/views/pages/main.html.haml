@@ -1,0 +1,146 @@
+#home-page-content
+	#classicly-welcome-text
+		%h1
+			Welcome to Classicly
+		.info
+			%span.emphasize
+				Browse around.
+			Our books are in the public domain
+		.info
+			%span.emphasize
+				Read online.
+			We have an HTML5 reader that let's you read in your web browser and saves your place!
+		.info
+			%span.emphasize
+				Download for free.
+			Download our apps to read your online collection on the go!
+		.info
+			%span.emphasize
+				Sync to iPhone and iPad.
+			Download our apps to read your online collection on the go!
+		.info
+			Drag and drop any PDF, or even ZIP of PDFs, to the "Drop Zone" and we'll get into your iPhone/iPad in seconds.
+		.info
+			Try it! It's super slick.
+	#classicly-featured-book
+		.cover-frame
+			= link_cover_tag(@featured_book, 2, 'big')
+	#links
+		= link_to content_tag(:span, 'Browse our hand-picked book collections'), '/best-of', :class => 'button kiss large green'
+		= link_to content_tag(:span, 'Browse by author'), '/bram-stoker', :class => 'button kiss large brown bouge'
+		= link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge'
+	.books
+		.column.column-1
+			.all
+				.cover-frame
+					%img.big.random_book
+		.column.column-2
+			.all
+				- for cover in @collection_covers
+					.cover-frame
+						= cover_tag(cover, 1, "mini")
+			.two-little-books.row-2.left
+				.cover-frame.random_book
+					%img.medium.random_book
+			.one-little-book.row-2.right
+				.cover-frame
+					%img.small.random_book
+				.cover-frame
+					%img.small.random_book
+		.column.column-3
+			.all
+				.cover-frame
+					%img.medium.random_book
+			.all
+				.cover-frame
+					%img.small.random_book
+				.cover-frame
+					%img.small.random_book
+
+	.books-2
+		.column.column-1
+			.two-little-books.row-2
+				.cover-frame
+					%img.small.random_book
+				.cover-frame
+					%img.small.random_book
+				.cover-frame
+					%img.medium.random_book
+			.one-little-book.row-2.right
+				.cover-frame
+					%img.small.random_book
+				.cover-frame
+					%img.small.random_book
+		.column.column-2
+			.all
+				.cover-frame
+					%img.big.homepage_author
+		.column.column-3
+			.all
+				.cover-frame
+					%img.small-2.homepage_author
+				.cover-frame
+					%img.small-2.homepage_author
+			.all
+				.cover-frame
+					%img.small-2.homepage_author
+				.cover-frame
+					%img.small-2.homepage_author
+			.all
+				.cover-frame
+					%img.small-2.homepage_author
+				.cover-frame
+					%img.small-2.homepage_author
+#home-page-browse
+	.row
+		%p.popular
+			Popular
+		.row.book
+			= link_cover_tag(@books.first, 1, 'small')
+			.label
+				= @books.first.pretty_title
+				= content_tag :span, 'Book', :class => 'kind'
+		.row.author
+			= link_cover_tag(@author_collection_books.first, 1, 'small')
+			.label
+				= @author_collection.name
+				= content_tag :span, 'Author', :class => 'kind'
+		.row.book
+			= link_cover_tag(@books.last, 1, 'small')
+			.label
+				= @books.last.pretty_title
+				= content_tag :span, 'Book', :class => 'kind'
+		.row.collection
+			- for cover in @collection_covers
+				= link_cover_tag(cover, 1, "mini")
+			.label
+				Best Of
+				= content_tag :span, 'Collection', :class => 'kind'
+		.row.links
+			See more related books
+		.row.links
+			Browse collections
+		.row.links
+			Browse authors
+= javascript_include_tag 'randomCoverPicker'
+:javascript
+	$(function(){
+
+		$.getJSON("home_page_books_for_author",
+			function(data){
+			  images = $('img.homepage_author');
+			  $.each(images, function(index, image) {
+					assignImageSource($(image), data);
+				});
+		});
+		
+		$.getJSON("home_page_random_books",
+			function(data){
+			  images = $('img.random_book');
+			  $.each(images, function(index, image) {
+					assignImageSource($(image), data);
+				});
+		});
+
+		$('div.cover-frame img').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />').wrap('<div />');
+	});

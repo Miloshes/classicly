@@ -81,7 +81,12 @@ class Collection < ActiveRecord::Base
   
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
-      collection.update_attribute :downloaded_count, collection.books.sum(:downloaded_count)
+      case collection.book_type
+        when 'book'
+          collection.update_attribute :downloaded_count, collection.books.sum(:downloaded_count)
+        when 'audiobook'
+          collection.update_attribute :downloaded_count, collection.audiobooks.sum(:downloaded_count)
+      end
     end
   end
 
@@ -141,7 +146,7 @@ class Collection < ActiveRecord::Base
     end
     return results
   end
-
+  
   def collection_slug
     case self.book_type
       when 'book'

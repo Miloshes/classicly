@@ -1,0 +1,140 @@
+#home-page-content{
+	@include column(19);
+	text-align: left;
+	#classicly-welcome-text{
+		@include column(13);
+		padding-top: 10px;
+		h1, .info{
+			margin-left: 12px;
+		}
+		h1{
+			margin-top: 20px;
+			font-family: 'chennai-slab-1','chennai-slab-2', arial, serif;
+			font-size: 40px;
+			color: #333333;
+		}
+		.info{
+			font-family: "Helvetica", arial, serif;
+			font-size: 16px;
+			color: #999999;
+			width: 462px;
+			margin-bottom: 12px;
+			.emphasize{
+				font-size: 20px;
+				color: #333333;
+				font-weight: bold;
+			}
+		}
+	}
+	#classicly-featured-book{
+		@include column(6, true);
+		.cover-frame{
+			margin: 20px 0;
+		}
+	}
+	#links{
+		a.bouge{
+			margin-left: 10px;
+		}
+	}
+	
+	.books, .books-2{
+		@include column(19, true);
+		.column{
+			@include column(6, true);
+		}
+		.column-2{
+			@include column(7);
+			.all{
+				@include column(7);
+			}
+		}
+		.all{
+			@include column(6, true);
+		}
+		.two-little-books{
+			@include column(4);
+		}
+		.one-little-book{
+			@include column(2, true);
+		}
+	}
+	.books{
+		margin-bottom: 50px;
+		.column-1{
+			margin-top: 28px;
+		}
+		.column-2{
+			margin-top: 45px;
+			.row-2.left{
+				margin-top: 17px;
+			}
+			.row-2.right{
+				margin-left: -10px;
+			}
+		}
+	}
+	.books-2{
+		.column-1{
+			.row-2.right{
+				margin-left: -16px;
+				margin-top: 106px;
+			}
+		}
+		.column-2{
+			margin-top: 27px	;
+		}
+		.column-3{
+			margin-top: 27px	;
+		}
+	}
+}
+
+#home-page-browse{
+	@include column(5, true);
+	padding-top: 200px;
+	.row{
+		@include column(5, true);
+		text-align: left;
+		margin-bottom: 12px;
+		color: #333;
+		font-size: 14px;
+		font-family: Helvetica;
+		img{
+			margin-bottom: 0px;
+		}
+		span.kind{
+			font-size: 10px;
+			color: #999;
+		}
+		.row.links{
+			margin-bottom: 6px;
+			color: #936845;
+		}
+	}
+	p.popular{
+		font-size: 14px;
+		font-weight: bold;
+	}
+}
+
+img.mini{
+	width: 28px;
+	height: 48px;
+}
+img.small{
+  width: 62px;
+  height: 110px;
+}
+img.small-2{
+	width: 60px;
+	height: 95px;
+}
+img.big{
+	width: 218px;
+	height: 312px;
+}
+img.medium{
+	width: 132px;
+	height: 216px;
+}

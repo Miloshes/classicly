@@ -1,0 +1,35 @@
+.cover-frame{
+	border: 1px solid #fcfcfc;
+	float: left;
+	padding: 0px;
+	img{
+	margin-bottom: 0px !important;
+	margin-top: 0px !important;
+	vertical-align: sub !important;
+	}
+		div{
+		float: left;
+		border: 1px solid #f6f6f6;
+		padding: 0px;
+		div{
+			float: left;
+			border: 1px solid #ededed;
+			padding: 0px;
+			div{
+				float: left;
+				border: 1px solid #e0e0e0;
+				padding: 0px;
+				div{
+					border: 1px solid #fcfcfc;
+					float: left;
+					padding: 0px;
+					div{
+						float: left;
+						border: 1px solid #f6f6f6;
+						padding: 0px;
+					}
+				}
+			}    
+		}
+	}
+}

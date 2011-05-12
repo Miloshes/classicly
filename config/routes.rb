@@ -1,4 +1,11 @@
 Classicly::Application.routes.draw do
+
+  namespace 'admin' do
+    resources :reviews, :only => [:index, :destroy]
+  end
+
+  match 'home_page_books_for_author' => 'pages#home_page_author_books_on_json'
+  match 'home_page_random_books' => 'pages#home_page_random_books'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
 
@@ -22,7 +29,7 @@ Classicly::Application.routes.draw do
   end
 
   get "bingo_experiments/create"
-  
+
   match 'blog' => 'blog#index', :as => :blog
 
   resources :books, :only => :index do
@@ -41,6 +48,7 @@ Classicly::Application.routes.draw do
   resources :logins, :only => [:create] do
     delete :destroy, :on => :collection
   end
+  
 
 <<<<<<< HEAD
   match 'search' => 'search#show'
@@ -64,6 +72,9 @@ Classicly::Application.routes.draw do
   
   # for invoking the download page from outside classicly.com
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'book_download_page', :via => :get
+
+  # for delivering audiobook file
+  match '/download_audiobook/:id/:chapter_id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
   
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",

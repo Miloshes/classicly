@@ -4,7 +4,7 @@ module ApplicationHelper
     if book.author.has_collection?
       link_to book.author.name, seo_path(book.author.collection.cached_slug), :class => klass
     else
-      link_to book.author.name, search_path(:term => book.author.name, :type => 'book'), :class => klass
+      link_to book.author.name, seo_path(book.author), :class => klass
     end
   end
 
@@ -12,10 +12,36 @@ module ApplicationHelper
     if book.author.has_audio_collection? 
       link_to book.author.name, seo_path(book.author.audio_collection.cached_slug), :class => klass
     else
-     link_to book.author.name, search_url(:term => book.author.name, :type => 'audiobook'), :class => klass
+     link_to book.author.name, seo_path(book.author, :type => 'audiobook'), :class => klass
     end
   end
+  
+  def author_featured_book_image_link(author, type, html_class=nil)
+    book = author.featured_book(type)
+    bucket = "#{type}_id"
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{book.id}_size3.jpg",
+                      :alt => "#{book.pretty_title} by #{author.name}", :class => html_class),
+                      author_book_url(author,book)
+  end
+  
+  def cover_image_link(cover, type, html_class)
+    bucket = "#{type}_id"
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size3.jpg",
+                      :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => html_class),
+                      author_book_url(cover.author, cover)
+  end
 
+  def cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
+  end
+  
+  def link_cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg",
+                      :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
+  end
+  
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end
@@ -102,6 +128,7 @@ module ApplicationHelper
 # books only helpers
 
 def condensed_description(book)
+  return '' if book.description.nil?
   #get the first paragraph or the hole description if no paragraphs present
   paragraph_boundary = (book.description =~ /\n/) || book.description.length
   single_paragraph = paragraph_boundary <= 350

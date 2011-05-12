@@ -1,7 +1,6 @@
 class SeoController < ApplicationController
   before_filter :find_book_or_audio_book, :only => :show_book
   layout :seo_layout
-
   def show_book
     if @book
       @related_books = @book.find_fake_related(8)
@@ -18,6 +17,12 @@ class SeoController < ApplicationController
     @seo = SeoSlug.find_by_slug(params[:id])
     if @seo && @seo.is_valid?
       render_seo @seo
+    elsif @author = Author.find(params[:id]) rescue nil
+      @type = params[:type] || 'book'
+      @genre_collections = find_genre_collections @type.to_sym
+      @author_collections = find_author_collections @type.to_sym
+      @audibly = (@type == 'audiobook')
+      render 'authors/show'
     else
       render_search
       @audibly = false
@@ -44,6 +49,9 @@ class SeoController < ApplicationController
   def render_search
     @search = params[:id]
     @books = Book.search(@search, params[:page])
+    @genre_collections = find_genre_collections :book
+    @author_collections = find_author_collections :book
+    @popular_books = Book.blessed.random(8)
     render :template => 'search/show'
   end
 

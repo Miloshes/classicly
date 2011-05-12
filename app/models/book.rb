@@ -29,6 +29,23 @@ class Book < ActiveRecord::Base
       book.update_attribute(:available, available)
     end
   end
+  
+  def self.books_from_random_collection(type, minimum_existing_books = 7, select_fields = ['books.id'])
+    collections = case type
+    when 'all'
+      Collection.book_type.select{|collection| collection.books.count >= minimum_existing_books}
+    when 'author'
+      Collection.book_type.by_author.select{|collection| collection.books.count >= minimum_existing_books}
+    when 'collection'
+      Collection.book_type.by_collection.select{|collection| collection.books.count >= minimum_existing_books}
+    end
+    index = rand(collections.count)
+    collection = collections[index]
+    # return collection and books
+    fields = select_fields.join(',')
+    [collection, self.joins("INNER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id WHERE 
+      ((collection_book_assignments.collection_id = #{collection.id}))").select(fields).limit(minimum_existing_books)]
+  end
 
   def self.search(search_term, current_page)
     self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
@@ -230,9 +247,9 @@ class Book < ActiveRecord::Base
     self.save
   end
 
-  def shorten_title(str, limit)
-    return str if str.length <= limit
-    str.slice(0, (limit - 3)).concat("...")
+  def shorten_title(limit)
+    return self.pretty_title if self.pretty_title.length <= limit
+    self.pretty_title.slice(0, (limit - 3)).concat("...")
   end
 
   def view_book_page_title
@@ -241,7 +258,7 @@ class Book < ActiveRecord::Base
     elsif self.pretty_title.length <= 70
       self.pretty_title
     else
-      shorten_title self.pretty_title, 70
+      shorten_title 70
     end
   end
 end
