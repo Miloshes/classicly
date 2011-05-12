@@ -1,4 +1,4 @@
-require 'firewatir'
+require 'firewatir' if Rails.env.development?
 
 class ReaderScriptUtils
   
