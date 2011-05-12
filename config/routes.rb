@@ -50,17 +50,13 @@ Classicly::Application.routes.draw do
   end
   
 
-<<<<<<< HEAD
   match 'search' => 'search#show'
 
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
 
-  match '/render_books_to_reader' => "book_pages#render_books", :via => :get
-=======
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
->>>>>>> reader_engine
   
   match "/:id" => "seo#show", :as => 'seo', :via => :get
 
