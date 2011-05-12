@@ -188,7 +188,6 @@ $(function(){
                         r.render_book(
                           function(page_data){
                             page++;
-                            console.log(page);
                             push_data(id,
                                       page_data);
                           });

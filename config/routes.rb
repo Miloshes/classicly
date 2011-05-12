@@ -1,4 +1,8 @@
 Classicly::Application.routes.draw do
+
+  # TODO: remove, this is only here for testing
+  match '/reader/:id/:page_number' => "book_pages#show", :via => :get
+
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
@@ -29,7 +33,7 @@ Classicly::Application.routes.draw do
   resource :search, :only => :show, :controller => :search do
   end
 
-  match '/render_books_to_reader' => "book_pages#render_books", :via => :get
+  match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
   
   match "/:id" => "seo#show", :as => 'seo', :via => :get
   match "/:author_id/:id" => "books#show", :as => :author_book, :via => :get

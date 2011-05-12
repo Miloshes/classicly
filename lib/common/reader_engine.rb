@@ -82,7 +82,10 @@ class ReaderEngine
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
+      # for reading the book from S3, takes like 8 seconds so not advised
       self.current_book_content = get_book_content_from_s3(book_id)
+      # this is the quick solution, read it from the local disk
+      # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
     end
   end
 

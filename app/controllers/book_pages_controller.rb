@@ -38,12 +38,12 @@ class BookPagesController < ApplicationController
   end
 
   #todo authenticate before doing this
-  def render_books
-    unless params[:id]
+  def render_book
+    unless params[:book_id]
       render :text => "400: missing 'id' in request params.", :status => 400
       return
     end
-    @book_id = params[:id]
+    @book_id = params[:book_id]
     render :action => 'render', :layout => 'layouts/render'    
   end
   
