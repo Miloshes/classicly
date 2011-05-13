@@ -14,9 +14,6 @@ Classicly::Application.routes.draw do
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
   
-  # current version of the web API
-  match "/web_api" => "web_api#create", :via => :post
-  match '/web_api/query' => "web_api#query", :via => :post
   
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post
@@ -49,9 +46,9 @@ Classicly::Application.routes.draw do
     delete :destroy, :on => :collection
   end
   
-
   match 'search' => 'search#show'
-
+  match 'search/autocomplete' => 'search#autocomplete'
+  
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post

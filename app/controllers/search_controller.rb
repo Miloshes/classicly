@@ -14,6 +14,14 @@ class SearchController < ApplicationController
     end
   end
   
+  def autocomplete
+    data = @indextank.search params[:query]
+    match_count = data['matches']
+    docids = data['results'].collect {|datum| datum['docid']}
+    results = Search.json_for_autocomplete(docids)
+    render :json => results.to_json
+  end
+  
   private
   def find_author_collections
     @author_collections = params[:type] == 'audiobook' ? Collection.audio_book_type.by_author : Collection.book_type.by_author
