@@ -3,7 +3,7 @@
   window.Covers = {
     init: function() {
       Covers.initCovers();
-      return $('img.cover-art').each()(function() {
+      return $('img.cover-art').each(function() {
         var addToTop, nLeft, nTop;
         if ($(this).height() < 155) {
           addToTop = 155 - $(this).height();
@@ -25,7 +25,7 @@
       return $.each($('.cover-here img'), function(index, value) {
         var toTake;
         toTake = Math.floor(Math.random() * totalCovers);
-        return $(this).attr('src', coverURLs.splice(toTake, 1));
+        return $(this).append('<img src="' + coverURLs.splice(toTake + '" />'));
       });
     },
     initAuthors: function() {},

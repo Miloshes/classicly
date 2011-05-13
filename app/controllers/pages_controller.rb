@@ -4,9 +4,9 @@ class PagesController < ApplicationController
   layout "new_design"
 
   def main
-    @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.random(1).first
+    @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.first
     @collection_covers = Collection.where(:name => 'Best Of', :book_type => 'book').first.books.limit(6)
-    @books = Book.blessed.random(2).select([:id, :pretty_title, :author_id, :cached_slug])
+    @books = Book.blessed.select([:id, :pretty_title, :author_id, :cached_slug])
     @author_collection, @author_collection_books = Book.books_from_random_collection('author', 1, ['books.id', 'author_id', 'cached_slug', 'pretty_title']) 
     # @featured_books = Book.blessed.available.with_description.random(5)
     #     mixpanel_properties = {}

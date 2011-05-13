@@ -1,27 +1,27 @@
 window.Covers =
-  init: () ->
+  init: ->
     Covers.initCovers()
 
     # align small sized covers to the bottom in the related books container
-    $('img.cover-art').each() -> 
+    $('img.cover-art').each -> 
       if $(this).height() < 155
         addToTop = 155 - $(this).height()
         nLeft = $(this).offset().left
         nTop = $(this).offset().top + addToTop
         $(this).offset top: nTop, left: nLeft
 
-  initCovers: () ->
+  initCovers: ->
     totalCovers = coverURLs.length
     $('.cover-here img').bind 'load', ->
       $(this).fadeIn 1100
 
     $.each $('.cover-here img'), (index, value) ->
       toTake = Math.floor(Math.random() * totalCovers)
-      $(this).attr 'src', coverURLs.splice toTake, 1
+      $(this).append '<img src="'+coverURLs.splice toTake+'" />'
 
-  initAuthors: () ->
+  initAuthors: ->
 
-  initCollections: () ->
+  initCollections: ->
 
 coverURLs = [
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18847_size3.jpg'

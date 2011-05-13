@@ -2,7 +2,6 @@ function Global(){
   this.init = function(){
     Global.installObservers();
     Covers.init()
-    $('#book-tiles').masonry({ columnWidth: 54, itemSelector: '.box'})
 
     // apply buttons to radio inputs
     $('.radio').buttonset();
