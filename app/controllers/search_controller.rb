@@ -15,7 +15,7 @@ class SearchController < ApplicationController
   end
   
   def autocomplete
-    data = @indextank.search params[:query]
+    data = @indextank.search "#{params[:query]} type:book"
     match_count = data['matches']
     docids = data['results'].collect {|datum| datum['docid']}
     results = Search.json_for_autocomplete(docids)

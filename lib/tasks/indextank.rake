@@ -19,7 +19,7 @@ namespace :indextank do
           end
           puts "book content: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => 'book' } }
         end
       end
       response = index.batch_insert(documents)
@@ -43,7 +43,7 @@ namespace :indextank do
           end
           puts "abook content: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => 'audiobook' } }
         end
       end
       response = index.batch_insert(documents)
