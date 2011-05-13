@@ -16,11 +16,11 @@ javascripts:
     - public/javascripts/masonry.js
   main_without_jquery_nor_jquery_ui:
     - public/javascripts/jquery.metadata.js
-    - public/javascripts/covers.js
     - public/javascripts/global.js
     - public/javascripts/application.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
+    - public/javascripts/covers.js
   collections:
     - public/javascripts/collection-page.js
 

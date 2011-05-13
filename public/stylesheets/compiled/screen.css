@@ -301,7 +301,7 @@ body {
   overflow-x: hidden;
 }
 /* line 36, ../../../app/stylesheets/partials/_home_page.sass */
-#home-page-content #classicly-featured-book div {
+#home-page-content #classicly-featured-book .cover-here {
   margin-top: 30px;
 }
 
@@ -394,88 +394,81 @@ body {
   float: left;
 }
 /* line 96, ../../../app/stylesheets/partials/_home_page.sass */
-.cover-frame div.loader div {
-  width: 24px;
-  height: 24px;
-  display: block;
-  background: url("/images/ajax-loader.gif");
-}
-/* line 101, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame img {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
   vertical-align: sub !important;
   display: none;
 }
-/* line 106, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 101, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
-/* line 110, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 105, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame div div {
   float: left;
   border: 1px solid #ededed;
   padding: 0px;
 }
-/* line 114, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 109, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div {
   float: left;
   border: 1px solid #e0e0e0;
   padding: 0px;
 }
-/* line 118, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 113, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div div {
   border: 1px solid #fcfcfc;
   float: left;
   padding: 0px;
 }
-/* line 122, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 117, ../../../app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div div div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
 
-/* line 128, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 123, ../../../app/stylesheets/partials/_home_page.sass */
 .mini-cover {
   width: 28px;
   height: 43px;
   display: block;
 }
-/* line 132, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 127, ../../../app/stylesheets/partials/_home_page.sass */
 .mini-cover img {
   width: 28px;
   height: 43px;
 }
 
-/* line 136, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 131, ../../../app/stylesheets/partials/_home_page.sass */
 img.mini {
   width: 28px;
   height: 43px;
 }
 
-/* line 140, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 135, ../../../app/stylesheets/partials/_home_page.sass */
 .small-cover {
   width: 62px;
   height: 96px;
   display: block;
 }
-/* line 144, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 139, ../../../app/stylesheets/partials/_home_page.sass */
 .small-cover img {
   width: 62px;
   height: 96px;
   display: none;
 }
 
-/* line 149, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 144, ../../../app/stylesheets/partials/_home_page.sass */
 img.small-2 {
   width: 60px;
   height: 93px;
 }
 
-/* line 153, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 148, ../../../app/stylesheets/partials/_home_page.sass */
 .big-cover {
   display: block;
   width: 218px;
@@ -484,13 +477,13 @@ img.small-2 {
   display: none;
 }
 
-/* line 160, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 155, ../../../app/stylesheets/partials/_home_page.sass */
 img.big {
   width: 218px;
   height: 337px;
 }
 
-/* line 164, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 159, ../../../app/stylesheets/partials/_home_page.sass */
 img.medium {
   width: 132px;
   height: 204px;
@@ -609,49 +602,81 @@ a.button.kiss span {
   height: 74px;
 }
 /* line 15, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here.tiny .loader {
+  margin-left: 12px;
+  margin-top: 25px;
+}
+/* line 19, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.small {
   width: 98px;
   height: 151px;
 }
-/* line 18, ../../../app/stylesheets/partials/_covers.sass */
+/* line 22, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.small img {
   width: 98px;
   height: 151px;
 }
-/* line 21, ../../../app/stylesheets/partials/_covers.sass */
+/* line 25, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here.small .loader {
+  margin-left: 40px;
+  margin-top: 63px;
+}
+/* line 29, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.medium {
   width: 148px;
   height: 229px;
 }
-/* line 24, ../../../app/stylesheets/partials/_covers.sass */
+/* line 32, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.medium img {
   width: 148px;
   height: 229px;
 }
-/* line 27, ../../../app/stylesheets/partials/_covers.sass */
+/* line 35, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here.medium .loader {
+  margin-left: 60px;
+  margin-top: 105px;
+}
+/* line 39, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.large {
   width: 198px;
   height: 306px;
 }
-/* line 30, ../../../app/stylesheets/partials/_covers.sass */
+/* line 42, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.large img {
   width: 198px;
   height: 306px;
 }
-/* line 33, ../../../app/stylesheets/partials/_covers.sass */
+/* line 45, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here.large .loader {
+  margin-top: 140px;
+  margin-left: 90px;
+}
+/* line 49, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.huge {
   width: 248px;
   height: 383px;
 }
-/* line 36, ../../../app/stylesheets/partials/_covers.sass */
+/* line 52, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.huge img {
   width: 248px;
   height: 383px;
 }
-/* line 39, ../../../app/stylesheets/partials/_covers.sass */
+/* line 55, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here.huge .loader {
+  margin-top: 180px;
+  margin-left: 112px;
+}
+/* line 59, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here img {
   display: none;
   float: left;
+}
+/* line 62, ../../../app/stylesheets/partials/_covers.sass */
+.cover-here .loader {
+  width: 24px;
+  height: 24px;
+  display: block;
+  background: url("/images/ajax-loader.gif");
 }
 
 /* line 27, ../../../app/stylesheets/screen.scss */

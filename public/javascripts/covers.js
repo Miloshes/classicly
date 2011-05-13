@@ -26,7 +26,9 @@
         totalCovers = coverURLs.length;
         $(this).append('<img src="' + toTake + '"/>');
         return $('.cover-here img').bind('load', function() {
-          return $(this).fadeIn(750);
+          return $(this).siblings('.loader').fadeOut(250, function() {
+            return $(this).siblings('img').fadeIn(1000);
+          });
         });
       });
     },

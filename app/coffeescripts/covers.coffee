@@ -21,7 +21,8 @@ window.Covers =
       $(this).append('<img src="'+toTake+'"/>')
 
       $('.cover-here img').bind 'load', ->
-        $(this).fadeIn 750
+        $(this).siblings('.loader').fadeOut 250, ->
+          $(this).siblings('img').fadeIn 1000
 
   initAuthors: ->
 
