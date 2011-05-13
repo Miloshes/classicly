@@ -1,6 +1,6 @@
-window.Covers =
+class Cover
   init: ->
-    Covers.initCovers()
+    Cover::initCovers()
 
     # align small sized covers to the bottom in the related books container
     $('img.cover-art').each -> 
@@ -21,12 +21,14 @@ window.Covers =
       $(this).append('<img src="'+toTake+'"/>')
 
       $('.cover-here img').bind 'load', ->
-        $(this).siblings('.loader').fadeOut 250, ->
+        $(this).siblings('.loader').fadeOut 200, ->
           $(this).siblings('img').fadeIn 1000
 
   initAuthors: ->
 
   initCollections: ->
+
+window.Cover = new Cover()
 
 coverURLs = [
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18847_size3.jpg'
