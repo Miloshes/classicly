@@ -29,7 +29,7 @@ google.setOnLoadCallback(function() {
     var selectCallback = function( event, ui ) { 
     	event.target.value = ui.item.label;
     	$( slugField ).val( ui.item.value )
-    	window.location = 'http://localhost:3000/' + ui.item.value;
+    	window.location = 'http://classicly-staging.heroku.com/' + ui.item.value;
     };
 
     $( elementId ).autocomplete( {
