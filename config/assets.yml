@@ -7,6 +7,8 @@ javascripts:
   main: 
     - public/javascripts/jquery.js
     - public/javascripts/jquery.metadata.js
+    - public/javascripts/covers.js
+    - public/javascripts/global.js
     - public/javascripts/application.js
     - public/javascripts/jqueryui.js
     - public/javascripts/rails.js
@@ -14,6 +16,8 @@ javascripts:
     - public/javascripts/masonry.js
   main_without_jquery_nor_jquery_ui:
     - public/javascripts/jquery.metadata.js
+    - public/javascripts/covers.js
+    - public/javascripts/global.js
     - public/javascripts/application.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js

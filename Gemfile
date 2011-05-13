@@ -24,6 +24,8 @@ gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
 gem 'rubyzip'
+gem 'json'
+gem 'barista'
 
 group :development do
   gem 'awesome_print'
