@@ -11,13 +11,17 @@ window.Covers =
         $(this).offset top: nTop, left: nLeft
 
   initCovers: ->
-    totalCovers = coverURLs.length
-    $('.cover-here img').bind 'load', ->
-      $(this).fadeIn 1100
 
-    $.each $('.cover-here img'), (index, value) ->
-      toTake = Math.floor(Math.random() * totalCovers)
-      $(this).append '<img src="'+coverURLs.splice toTake+'" />'
+    totalCovers = coverURLs.length
+    $.each $('.cover-here'), (index, value) ->
+      randCover = Math.floor(Math.random() * totalCovers)
+      toTake = coverURLs.splice randCover, 1
+      totalCovers = coverURLs.length
+
+      $(this).append('<img src="'+toTake+'"/>')
+
+      $('.cover-here img').bind 'load', ->
+        $(this).fadeIn 750
 
   initAuthors: ->
 

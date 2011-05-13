@@ -19,13 +19,15 @@
     initCovers: function() {
       var totalCovers;
       totalCovers = coverURLs.length;
-      $('.cover-here img').bind('load', function() {
-        return $(this).fadeIn(1100);
-      });
-      return $.each($('.cover-here img'), function(index, value) {
-        var toTake;
-        toTake = Math.floor(Math.random() * totalCovers);
-        return $(this).append('<img src="' + coverURLs.splice(toTake + '" />'));
+      return $.each($('.cover-here'), function(index, value) {
+        var randCover, toTake;
+        randCover = Math.floor(Math.random() * totalCovers);
+        toTake = coverURLs.splice(randCover, 1);
+        totalCovers = coverURLs.length;
+        $(this).append('<img src="' + toTake + '"/>');
+        return $('.cover-here img').bind('load', function() {
+          return $(this).fadeIn(750);
+        });
       });
     },
     initAuthors: function() {},
