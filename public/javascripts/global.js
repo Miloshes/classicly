@@ -1,7 +1,7 @@
 function Global(){
   this.init = function(){
     Global.installObservers();
-    Covers.init()
+    Cover.init()
 
     // apply buttons to radio inputs
     $('.radio').buttonset();
