@@ -230,6 +230,109 @@ body {
   float: right;
 }
 
+/* line 52, ../../../app/stylesheets/partials/_layout.sass */
+#footer {
+  background: #c9af87;
+  width: 100%;
+  float: left;
+  border-top: 1px solid #bc9f7a;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+/* line 63, ../../../app/stylesheets/partials/_layout.sass */
+#footer .centering {
+  margin: 0 auto;
+  width: 980px;
+  height: 320px;
+  padding: 10px;
+  border: 1px solid #bb9d79;
+  background: #cab08b;
+}
+/* line 71, ../../../app/stylesheets/partials/_layout.sass */
+#footer h4 {
+  width: 201px;
+  height: 24px;
+  display: block;
+  padding: 0;
+  margin: 0 auto;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: url("/images/footer-header-bg.png");
+  font-family: "museo-slab-1", "museo-slab-2";
+}
+/* line 82, ../../../app/stylesheets/partials/_layout.sass */
+#footer .about {
+  width: 340px;
+  float: left;
+  height: 100%;
+}
+/* line 86, ../../../app/stylesheets/partials/_layout.sass */
+#footer .about .bg {
+  background: url("/images/footer-about-bg.png");
+  width: 317px;
+  height: 272px;
+  display: block;
+}
+/* line 91, ../../../app/stylesheets/partials/_layout.sass */
+#footer .about .bg p {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 25px;
+  text-align: left;
+}
+/* line 98, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications {
+  width: 300px;
+  height: 100%;
+  float: left;
+}
+/* line 102, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications .app {
+  text-align: left;
+  float: left;
+  width: 300px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* line 109, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications .app h5 {
+  color: #43260f;
+  font-size: 18px;
+  margin: 0;
+  margin-top: 20px;
+  padding: 0;
+}
+/* line 115, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications .app span {
+  color: #43260f;
+  font-size: 12px;
+  display: block;
+  Width: 100%;
+}
+/* line 120, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications .app img.link {
+  margin-top: 5px;
+}
+/* line 123, ../../../app/stylesheets/partials/_layout.sass */
+#footer .applications .app img.icon {
+  float: left;
+  margin-top: 10px;
+}
+/* line 127, ../../../app/stylesheets/partials/_layout.sass */
+#footer .connect {
+  width: 320px;
+  margin: 0;
+  padding: 0;
+  float: left;
+}
+/* line 134, ../../../app/stylesheets/partials/_layout.sass */
+#footer .connect a img:hover {
+  opacity: 0.8;
+}
+
 /* line 1, ../../../app/stylesheets/partials/_home_page.sass */
 #home-page-content {
   display: inline;
@@ -616,82 +719,84 @@ a.button.kiss span {
   float: left;
   padding: 0;
   margin: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-/* line 35, ../../../app/stylesheets/partials/_covers.sass */
+/* line 37, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.tiny, .cover-with-title-here.tiny {
   height: 94px;
 }
-/* line 37, ../../../app/stylesheets/partials/_covers.sass */
+/* line 39, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.tiny img, .cover-here.tiny .stable, .cover-with-title-here.tiny img, .cover-with-title-here.tiny .stable {
   width: 48px;
   height: 74px;
 }
-/* line 39, ../../../app/stylesheets/partials/_covers.sass */
+/* line 41, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.tiny .spinner, .cover-with-title-here.tiny .spinner {
   margin-left: 12px;
   margin-top: 25px;
 }
-/* line 43, ../../../app/stylesheets/partials/_covers.sass */
+/* line 45, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.small, .cover-with-title-here.small {
   height: 171px;
 }
-/* line 45, ../../../app/stylesheets/partials/_covers.sass */
+/* line 47, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.small img, .cover-here.small .stable, .cover-with-title-here.small img, .cover-with-title-here.small .stable {
   width: 98px;
   height: 151px;
 }
-/* line 47, ../../../app/stylesheets/partials/_covers.sass */
+/* line 49, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.small .spinner, .cover-with-title-here.small .spinner {
   margin-left: 40px;
   margin-top: 63px;
 }
-/* line 51, ../../../app/stylesheets/partials/_covers.sass */
+/* line 53, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.medium, .cover-with-title-here.medium {
   height: 246px;
 }
-/* line 53, ../../../app/stylesheets/partials/_covers.sass */
+/* line 55, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.medium img, .cover-here.medium .stable, .cover-with-title-here.medium img, .cover-with-title-here.medium .stable {
   width: 148px;
   height: 229px;
 }
-/* line 55, ../../../app/stylesheets/partials/_covers.sass */
+/* line 57, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.medium .spinner, .cover-with-title-here.medium .spinner {
   margin-left: 60px;
   margin-top: 105px;
 }
-/* line 59, ../../../app/stylesheets/partials/_covers.sass */
+/* line 61, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.large, .cover-with-title-here.large {
   height: 326px;
 }
-/* line 61, ../../../app/stylesheets/partials/_covers.sass */
+/* line 63, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.large img, .cover-here.large .stable, .cover-with-title-here.large img, .cover-with-title-here.large .stable {
   width: 198px;
   height: 306px;
 }
-/* line 63, ../../../app/stylesheets/partials/_covers.sass */
+/* line 65, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.large .spinner, .cover-with-title-here.large .spinner {
   margin-top: 140px;
   margin-left: 90px;
 }
-/* line 67, ../../../app/stylesheets/partials/_covers.sass */
+/* line 69, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.huge, .cover-with-title-here.huge {
   height: 403px;
 }
-/* line 69, ../../../app/stylesheets/partials/_covers.sass */
+/* line 71, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.huge img, .cover-here.huge .stable, .cover-with-title-here.huge img, .cover-with-title-here.huge .stable {
   width: 248px;
   height: 383px;
 }
-/* line 71, ../../../app/stylesheets/partials/_covers.sass */
+/* line 73, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here.huge .spinner, .cover-with-title-here.huge .spinner {
   margin-top: 180px;
   margin-left: 112px;
 }
-/* line 75, ../../../app/stylesheets/partials/_covers.sass */
+/* line 77, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here .stable, .cover-with-title-here .stable {
   border: 1px solid #333333;
 }
-/* line 77, ../../../app/stylesheets/partials/_covers.sass */
+/* line 79, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here .text, .cover-with-title-here .text {
   float: left;
   width: 100%;
@@ -699,33 +804,33 @@ a.button.kiss span {
   padding: 0;
   display: none;
 }
-/* line 83, ../../../app/stylesheets/partials/_covers.sass */
+/* line 85, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here .text span.title, .cover-with-title-here .text span.title {
   font-size: 14px;
   color: #333333;
   padding: 0;
 }
-/* line 87, ../../../app/stylesheets/partials/_covers.sass */
+/* line 89, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here .text span.type, .cover-with-title-here .text span.type {
   font-size: 10px;
   color: #999999;
   padding: 0;
   margin-left: 5px;
 }
-/* line 94, ../../../app/stylesheets/partials/_covers.sass */
+/* line 96, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here .spinner, .cover-with-title-here .spinner {
   width: 24px;
   height: 24px;
   display: block;
   background: url("/images/ajax-loader.gif");
 }
-/* line 99, ../../../app/stylesheets/partials/_covers.sass */
+/* line 101, ../../../app/stylesheets/partials/_covers.sass */
 .cover-here img, .cover-with-title-here img {
   float: left;
   display: none;
 }
 
-/* line 103, ../../../app/stylesheets/partials/_covers.sass */
+/* line 105, ../../../app/stylesheets/partials/_covers.sass */
 .cover-with-title-here {
   padding: 10px;
   padding-bottom: 3px;
@@ -733,11 +838,11 @@ a.button.kiss span {
   margin-left: -10px;
   width: 100%;
 }
-/* line 110, ../../../app/stylesheets/partials/_covers.sass */
+/* line 112, ../../../app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover {
   cursor: pointer;
 }
-/* line 112, ../../../app/stylesheets/partials/_covers.sass */
+/* line 114, ../../../app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover span.title {
   background: #ffff66;
 }
