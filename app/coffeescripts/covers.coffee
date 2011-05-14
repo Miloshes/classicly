@@ -49,7 +49,6 @@ coverURLs = [
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id23229_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18744_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18735_size3.jpg'
-  'http://spreadsong-book-covers.s3.amazonaws.com/book_id17542_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id13887_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18195_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id9265_size3.jpg'
