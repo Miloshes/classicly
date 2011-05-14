@@ -62,7 +62,7 @@ namespace :indextank do
           text = title
           puts "collection text: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => collection.book_type, :collection_type => collection.collection_type } }
         end
       end
       response = index.batch_insert(documents)
