@@ -69,6 +69,17 @@ namespace :indextank do
       puts "sending to indextank: #{response}"
     end
   end
+  
+  task :delete_collections => :environment do
+    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    Collection.find_in_batches :batch_size => 200 do|collections|
+      collections.each do|collection|
+        docid = "c_#{collection.id}"
+        index.document(docid).delete()
+        puts "deleting collection : #{docid}"
+      end
+    end
+  end
 
   def encode_utf(str)
     $ic.iconv(str + ' ')[0..-2]
