@@ -13,15 +13,19 @@ class Cover
   initCovers: ->
 
     totalCovers = coverURLs.length
-    $.each $('.cover-here'), (index, value) ->
+    $.each $('.cover-here, .cover-with-title-here'), (index, value) ->
       randCover = Math.floor(Math.random() * totalCovers)
       toTake = coverURLs.splice randCover, 1
       totalCovers = coverURLs.length
 
-      $(this).append('<img src="'+toTake+'"/>')
+      $(this).children('.stable').append '<img src="'+toTake+'"/>'
 
-      $('.cover-here img').bind 'load', ->
-        $(this).siblings('.loader').fadeOut 200, ->
+      if $(this).hasClass 'cover-with-title-here'
+        $(this).append '<div class="text" style="display:none"><span class="title">Dracula</span><span class="type">Book</span></div>'
+        
+      $('.cover-here img, .cover-with-title-here img').bind 'load', ->
+        $(this).siblings('.spinner').fadeOut 200, ->
+          $(this).parents().siblings('.text').fadeIn 1000
           $(this).siblings('img').fadeIn 1000
 
   initAuthors: ->
@@ -52,5 +56,14 @@ coverURLs = [
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id20858_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id15791_size3.jpg'
   'http://spreadsong-book-covers.s3.amazonaws.com/book_id15167_size3.jpg'
-  'http://spreadsong-book-covers.s3.amazonaws.com/book_id15167_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id1743_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id21336_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id16671_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id119_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id9779_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id18813_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id2930_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id9661_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id1107_size3.jpg'
+  'http://spreadsong-book-covers.s3.amazonaws.com/book_id22360_size3.jpg'
 ]

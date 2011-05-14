@@ -21,7 +21,8 @@
 
 	#classicly-featured-book
 		.cover-here.huge
-			.loader
+			.stable
+				.spinner
 	#links
 		%a.button.kiss.large.green{:href => '/best-of'}
 			%span
@@ -31,48 +32,77 @@
 
 
 	#book-tiles
-		.cover-here.tiny
-			.loader
-		.cover-here.large
-			.loader
-		.cover-here.small
-			.loader
-		.cover-here.small
-			.loader
-		.cover-here.small
-			.loader
-		.cover-here.medium
-			.loader
-		.cover-here.small
-			.loader
-		.cover-here.medium
-			.loader
-		.cover-here.medium
-			.loader
-		.cover-here.medium
-			.loader
-		.cover-here.small
-			.loader
+		.column
+			.cover-with-title-here.tiny
+				.stable
+					.spinner
+			.cover-with-title-here.large
+				.stable
+					.spinner
+			.cover-with-title-here.small
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+				.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+		.column
+			.cover-with-title-here.small
+				.stable
+					.spinner
+			.cover-with-title-here.medium
+				.stable
+					.spinner
+			.cover-with-title-here.small
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+				.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+			.cover-here.tiny
+				.stable
+					.spinner
+
+		.column.last
+			.cover-here.medium
+				.stable
+					.spinner
+			.cover-here.medium
+				.stable
+					.spinner
+			.cover-here.medium
+				.stable
+					.spinner
 
 #home-page-browse
 	.row
 		%p.popular
 			Popular
-		.row.book
-			= link_cover_tag(@books.first, 1, 'small')
-			.label
-				= @books.first.pretty_title
-				= content_tag :span, 'Book', :class => 'kind'
-		.row.author
-			= link_cover_tag(@author_collection_books.first, 1, 'small')
-			.label
-				= @author_collection.name
-				= content_tag :span, 'Author', :class => 'kind'
-		.row.book
-			= link_cover_tag(@books.last, 1, 'small')
-			.label
-				= @books.last.pretty_title
-				= content_tag :span, 'Book', :class => 'kind'
+		.cover-with-title-here.small
+			.stable
+				.spinner
+		.cover-with-title-here.tiny
+			.stable
+				.spinner
+		.cover-with-title-here.tiny
+			.stable
+				.spinner
 		.row.collection
 			- for cover in @collection_covers
 				= link_cover_tag(cover, 1, "mini")

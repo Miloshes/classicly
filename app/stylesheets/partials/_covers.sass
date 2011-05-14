@@ -1,67 +1,114 @@
+@mixin tiny
+  :width 48px
+  :height 74px
+$tinyH: 74
+
+@mixin small
+  :width 98px
+  :height 151px
+
+$smallH: 151
+
+@mixin medium
+  :width 148px
+  :height 229px
+$mediumH: 226
+
+@mixin large
+  :width 198px
+  :height 306px
+$largeH: 306
+
+@mixin huge
+  :width 248px
+  :height 383px
+$hugeH: 383
+
+
 div.collection
 div.author
-.cover-here
-  :border 1px solid #333333
+.cover-here, .cover-with-title-here
   :display block
   :float left
   :padding 0
   :margin 0
   &.tiny
-    :width 48px
-    :height 74px
-    img
-      :width 48px
-      :height 74px
-    .loader
+    :height $tinyH+20px
+    img, .stable
+      @include tiny
+    .spinner
       :margin
         :left 12px
         :top 25px
   &.small
-    :width 98px
-    :height 151px
-    img
-      :width 98px
-      :height 151px
-    .loader
+    :height $smallH+20px
+    img, .stable
+      @include small
+    .spinner
       :margin
         :left 40px
         :top 63px
   &.medium
-    :width 148px
-    :height 229px
-    img
-      :width 148px
-      :height 229px
-    .loader
+    :height $mediumH+20px
+    img, .stable
+      @include medium
+    .spinner
       :margin
         :left 60px
         :top 105px
   &.large
-    :width 198px
-    :height 306px
-    img
-      :width 198px
-      :height 306px
-    .loader
+    :height $largeH+20px
+    img, .stable
+      @include large
+    .spinner
       :margin
         :top 140px
         :left 90px
   &.huge
-    :width 248px
-    :height 383px
-    img
-      :width 248px
-      :height 383px
-    .loader
+    :height $hugeH+20px
+    img, .stable
+      @include huge
+    .spinner
       :margin
         :top 180px
         :left 112px
-  img
-    :display none
+  .stable
+    :border 1px solid #333333
+  .text
     :float left
-  .loader
+    :width 100%
+    :margin 0
+    :padding 0
+    :display none
+    span.title
+      :font-size 14px
+      :color #333333
+      :padding 0
+    span.type
+      :font-size 10px
+      :color #999999
+      :padding 0
+      :margin
+        :left 5px
+    
+  .spinner
     width: 24px
     height: 24px
     display: block
     background: url("/images/ajax-loader.gif")
+  img
+    :float left
+    :display none
+
+.cover-with-title-here
+  :padding 10px
+    :bottom 3px
+    :top 3px
+  :margin
+    :left -10px
+  :width 100%
+  &:hover
+    :cursor pointer
+    span.title
+      :background #ffff66
 
