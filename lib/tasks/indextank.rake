@@ -19,7 +19,7 @@ namespace :indextank do
           end
           puts "book content: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => 'book' } }
         end
       end
       response = index.batch_insert(documents)
@@ -43,7 +43,7 @@ namespace :indextank do
           end
           puts "abook content: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => 'audiobook' } }
         end
       end
       response = index.batch_insert(documents)
@@ -62,11 +62,22 @@ namespace :indextank do
           text = title
           puts "collection text: #{text}"
           puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text } }
+          documents << { :docid => docid, :fields => { :text => text, :type => collection.book_type, :collection_type => collection.collection_type } }
         end
       end
       response = index.batch_insert(documents)
       puts "sending to indextank: #{response}"
+    end
+  end
+  
+  task :delete_collections => :environment do
+    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    Collection.find_in_batches :batch_size => 200 do|collections|
+      collections.each do|collection|
+        docid = "c_#{collection.id}"
+        index.document(docid).delete()
+        puts "deleting collection : #{docid}"
+      end
     end
   end
 

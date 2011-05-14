@@ -1,5 +1,10 @@
 require 'iconv'
 module Sluggable
+
+  def author_book_slug
+    "#{self.author.cached_slug}/#{self.cached_slug}"
+  end
+
   def optimal_url_for_download_page(format)
     converter = Iconv.new('UTF-8//IGNORE', 'UTF-8')
 
