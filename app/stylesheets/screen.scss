@@ -21,9 +21,13 @@
 
 @import "partials/layout";
 @import "partials/home_page";
+@import "partials/book_page";
+@import "partials/collection_page";
 @import "partials/buttons";
 @import "partials/decos";
 @import "partials/covers";
+
+
 body.bp {
   @include blueprint-typography(true);
   @include blueprint-utilities;
@@ -62,3 +66,4 @@ body.two-col {
     $content-columns: ceil(2 * $blueprint-grid-columns / 3);
     // true means it's the last column in the row
     @include column($content-columns, true); } }
+

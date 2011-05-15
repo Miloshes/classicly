@@ -1,8 +1,6 @@
 include AWS::S3
 
 class BookPagesController < ApplicationController
-  layout nil
-  
   # GET /bram-stoker/dracula/page/15
   # test url: http://localhost:3000/john-galsworthy/entire-pg-galsworthy-files/read-online/page/1
   # http://localhost:3000/john-galsworthy/entire-pg-galsworthy-files/read-online/page/1?html_reader=1

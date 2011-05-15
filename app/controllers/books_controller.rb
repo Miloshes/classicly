@@ -48,6 +48,7 @@ class BooksController < ApplicationController
     # if there was a failed review, it will come in the session object
     @review = session[:review] || Review.new
     session[:review] = nil
+    layout 'new_design'
   end
 
 

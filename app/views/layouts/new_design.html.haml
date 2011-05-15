@@ -30,7 +30,8 @@
 	#content
 		.top_nav
 			#logo
-				= image_tag 'logo-new.png'
+				%a{:href => '/'}
+					= image_tag 'logo-new.png'
 			#searchbox
 				= form_tag search_url, :method => :get do
 					= content_tag(:div, nil, :class => 'search-bg') do
@@ -39,14 +40,36 @@
 			#navigator
 				%ul
 					%li
-						collections
+						%a{:href => '/collections'}
+							collections
 					%li
-						Authors
+						%a{:href => '/authors'}
+							authors
 					%li
-						My Library
-					%li
-						Blog
-		= yield
+						%a.blog{:href => '/blog'}
+							blog
+		#left-column
+			= yield
+		#right-column
+			.row
+				%p.popular
+					Popular
+				.cover-with-title-here.small
+					.stable
+						.spinner
+				.cover-with-title-here.tiny
+					.stable
+						.spinner
+				.cover-with-title-here.tiny
+					.stable
+						.spinner
+				.row.links
+					See more related books
+				.row.links
+					Browse collections
+				.row.links
+					Browse authors
+
 	#footer
 		.centering
 			.about

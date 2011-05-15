@@ -26,6 +26,7 @@
         toTake = coverURLs.splice(randCover, 1);
         totalCovers = coverURLs.length;
         $(this).children('.stable').append('<img src="' + toTake + '"/>');
+        $(this).wrap('<a href="/bram-stoker/dracula" class="no-underline">');
         if ($(this).hasClass('cover-with-title-here')) {
           $(this).append('<div class="text" style="display:none"><span class="title">Dracula</span><span class="type">Book</span></div>');
         }

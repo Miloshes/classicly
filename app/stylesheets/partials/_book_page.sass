@@ -1,0 +1,45 @@
+#book-page
+  +column(18, true)
+  :margin
+    :top 30px
+  :text-align left
+  .cover-column
+    +column(5)
+    h4
+      :font-size 16px
+      :font-weight bold
+      :margin 0
+      :padding 0
+      :float left
+      :width 100%
+
+  .book-column
+    +column(12, true)
+    h1
+      :font-size 22px
+      :margin 0
+      :padding 0
+    h2
+      :font-size 14px
+      :color #333333
+      a  
+        :text-decoration none
+        :color #333333
+        :background #ffffd7
+        &:hover
+          :background #ffff66
+    p
+      +column(10)
+      :font-size #333333
+      :font-size 14px
+    .download
+    .read
+      :margin
+        :top 5px
+    p.explanation
+      +column(7, true)
+      :color #999999
+      :font-size 14px
+      &.first
+        :margin
+          :top 10px

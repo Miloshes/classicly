@@ -90,31 +90,6 @@
 				.stable
 					.spinner
 
-#home-page-browse
-	.row
-		%p.popular
-			Popular
-		.cover-with-title-here.small
-			.stable
-				.spinner
-		.cover-with-title-here.tiny
-			.stable
-				.spinner
-		.cover-with-title-here.tiny
-			.stable
-				.spinner
-		.row.collection
-			- for cover in @collection_covers
-				= link_cover_tag(cover, 1, "mini")
-			.label
-				Best Of
-				= content_tag :span, 'Collection', :class => 'kind'
-		.row.links
-			See more related books
-		.row.links
-			Browse collections
-		.row.links
-			Browse authors
 = javascript_include_tag 'randomCoverPicker'
 :javascript
 	$(function(){
