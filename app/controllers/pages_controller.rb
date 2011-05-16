@@ -26,8 +26,12 @@ class PagesController < ApplicationController
 
   def home_page_author_books_on_json
     #select author collections having 7 or more books to show
-    collection, books = Book.books_from_random_collection('all', 7, ['books.id'])
-    render :json => books
+    collection, books = Book.books_from_random_collection('all', 30, ['books.id', 'author_id', 'cached_slug', 'pretty_title'])
+    results = []
+    books.each do|book|
+      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
+    end
+    render :json => results
   end
   
   def home_page_random_books
