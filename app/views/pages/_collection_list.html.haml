@@ -1,0 +1,7 @@
+%ul.collection
+  - for collection in collections
+    %li
+      = collection.name
+      =# you can change the following link:
+      = link_to 'Go to collection page', collection.cached_slug
+      = shorten_text simple_format(remove_book_tags(collection.description, 'span')), 300

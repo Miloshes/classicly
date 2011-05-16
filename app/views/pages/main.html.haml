@@ -89,25 +89,3 @@
 			.cover-here.medium
 				.stable
 					.spinner
-
-= javascript_include_tag 'randomCoverPicker'
-:javascript
-	$(function(){
-
-		$.getJSON("home_page_books_for_author",
-			function(data){
-			  images = $('img.homepage_author');
-			  $.each(images, function(index, image) {
-					assignImageSource($(image), data);
-				});
-		});
-		
-		$.getJSON("home_page_random_books",
-			function(data){
-			  images = $('img.random_book');
-			  $.each(images, function(index, image) {
-					assignImageSource($(image), data);
-				});
-		});
-
-	});

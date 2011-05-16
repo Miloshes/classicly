@@ -1,4 +1,7 @@
 Classicly::Application.routes.draw do
+  # put here all the matches , except for the more general ones.
+  match 'collections' => 'pages#collections'
+  match 'authors' => 'pages#authors'
 
   namespace 'admin' do
     resources :reviews, :only => [:index, :destroy]

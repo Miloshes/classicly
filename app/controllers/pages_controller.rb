@@ -1,7 +1,13 @@
 class PagesController < ApplicationController
-  before_filter :find_author_collections
-  before_filter :find_genre_collections
   layout "new_design"
+
+  def authors
+    @collections = Collection.book_type.by_author
+  end
+
+  def collections
+    @collections = Collection.book_type.by_collection
+  end
 
   def main
     @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.first
