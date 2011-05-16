@@ -11,7 +11,7 @@ class Cover
         $(this).offset top: nTop, left: nLeft
 
   initCovers: ->
-    $.getJSON 'home_page_books_for_author', (data) ->
+    $.getJSON '/home_page_books_for_author', (data) ->
       $.each $('.cover-here, .cover-with-title-here'), (index, value) ->
         randCover = Math.floor(Math.random() * totalCovers)
         toTake = data.splice randCover, 1

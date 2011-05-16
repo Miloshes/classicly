@@ -15,7 +15,7 @@
     });
   };
   Cover.prototype.initCovers = function initCovers() {
-    return $.getJSON('home_page_books_for_author', function(data) {
+    return $.getJSON('/home_page_books_for_author', function(data) {
       return $.each($('.cover-here, .cover-with-title-here'), function(index, value) {
         var randCover, toTake, totalCovers;
         randCover = Math.floor(Math.random() * totalCovers);
@@ -34,36 +34,4 @@
     });
   };
   window.Cover = new Cover();
-  // coverURLs = [
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18847_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id87_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id2133_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id4281_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id14328_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id17776_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id7186_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id264_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id12841_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id9148_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id10_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id23229_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18744_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18735_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id13887_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18195_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id9265_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id20858_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id15791_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id15167_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id1743_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id21336_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id16671_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id119_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id9779_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id18813_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id2930_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id9661_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id1107_size3.jpg'
-  //   'http://spreadsong-book-covers.s3.amazonaws.com/book_id22360_size3.jpg'
-  // ]
 })();
