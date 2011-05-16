@@ -1195,6 +1195,42 @@ ul.ui-autocomplete {
   overflow-x: hidden;
 }
 /* line 6, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .about-the-blog {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #blog-page .about-the-blog {
+  overflow-x: hidden;
+}
+/* line 8, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .about-the-blog p {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 310px;
+  font-size: 12px;
+  padding-top: 10px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #blog-page .about-the-blog p {
+  overflow-x: hidden;
+}
+/* line 13, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page h1 {
+  font-family: "museo-slab-1", "museo-slab-2", arial, serif;
+  font-weight: normal;
+  font-size: 40px;
+  color: #333333;
+  background: #ffff66;
+  padding: 0;
+  margin: 0;
+  display: block;
+  float: left;
+}
+/* line 24, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post {
   margin-bottom: 50px;
   display: inline;
@@ -1207,53 +1243,52 @@ ul.ui-autocomplete {
 * html #blog-page .show-post {
   overflow-x: hidden;
 }
-/* line 11, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title {
+/* line 29, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title {
   display: inline;
   float: left;
   margin-right: 0;
   width: 550px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #blog-page .show-post .title {
+* html #blog-page .show-post .blog-title {
   overflow-x: hidden;
 }
-/* line 13, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 {
+/* line 31, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 {
   font-weight: bold;
   padding: 0;
   margin: 0;
   font-size: 28px;
 }
-/* line 18, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 a {
+/* line 36, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 a {
   float: left;
   display: block;
   text-decoration: none;
   color: #333333;
   width: 100%;
   background: #ffffe8;
-  border-bottom: 1px solid #ffff66;
   padding: 5px;
 }
-/* line 27, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 a:hover {
+/* line 44, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 a:hover {
   background: #ffff66;
 }
-/* line 29, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 span {
+/* line 46, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 span {
   float: left;
 }
-/* line 31, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 span.date {
+/* line 48, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 span.date {
   color: #444444;
 }
-/* line 33, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .title h2 span.author {
+/* line 50, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .blog-title h2 span.author {
   color: #999999;
   margin-left: 20px;
 }
-/* line 37, ../../../app/stylesheets/partials/_blog.sass */
+/* line 54, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content {
   display: inline;
   float: left;
@@ -1265,25 +1300,40 @@ ul.ui-autocomplete {
 * html #blog-page .show-post .content {
   overflow-x: hidden;
 }
-/* line 41, ../../../app/stylesheets/partials/_blog.sass */
+/* line 58, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content h1 {
   display: none;
 }
-/* line 43, ../../../app/stylesheets/partials/_blog.sass */
+/* line 60, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .content h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+/* line 63, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content p {
   font-size: 14px;
 }
-/* line 45, ../../../app/stylesheets/partials/_blog.sass */
-#blog-page .show-post .comments {
-  float: left;
+/* line 65, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .related {
   display: inline;
   float: left;
   margin-right: 0;
   width: 550px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #blog-page .show-post .comments {
+* html #blog-page .show-post .related {
   overflow-x: hidden;
+}
+/* line 67, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .related h5 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+/* line 71, ../../../app/stylesheets/partials/_blog.sass */
+#blog-page .show-post .related a {
+  float: left;
+  margin-right: 10px;
 }
 
 /* line 5, ../../../app/stylesheets/partials/_buttons.scss */
