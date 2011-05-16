@@ -1213,12 +1213,13 @@ ul.ui-autocomplete {
   width: 310px;
   font-size: 12px;
   padding-top: 10px;
+  padding-bottom: 30px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .about-the-blog p {
   overflow-x: hidden;
 }
-/* line 13, ../../../app/stylesheets/partials/_blog.sass */
+/* line 14, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page h1 {
   font-family: "museo-slab-1", "museo-slab-2", arial, serif;
   font-weight: normal;
@@ -1230,38 +1231,38 @@ ul.ui-autocomplete {
   display: block;
   float: left;
 }
-/* line 24, ../../../app/stylesheets/partials/_blog.sass */
+/* line 25, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post {
   margin-bottom: 50px;
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
-  padding-right: 160px;
+  width: 590px;
+  padding-right: 120px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .show-post {
   overflow-x: hidden;
 }
-/* line 29, ../../../app/stylesheets/partials/_blog.sass */
+/* line 30, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
+  width: 590px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .show-post .blog-title {
   overflow-x: hidden;
 }
-/* line 31, ../../../app/stylesheets/partials/_blog.sass */
+/* line 32, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 {
   font-weight: bold;
   padding: 0;
   margin: 0;
   font-size: 28px;
 }
-/* line 36, ../../../app/stylesheets/partials/_blog.sass */
+/* line 37, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 a {
   float: left;
   display: block;
@@ -1271,49 +1272,49 @@ ul.ui-autocomplete {
   background: #ffffe8;
   padding: 5px;
 }
-/* line 44, ../../../app/stylesheets/partials/_blog.sass */
+/* line 45, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 a:hover {
   background: #ffff66;
 }
-/* line 46, ../../../app/stylesheets/partials/_blog.sass */
+/* line 47, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 span {
   float: left;
 }
-/* line 48, ../../../app/stylesheets/partials/_blog.sass */
+/* line 49, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 span.date {
   color: #444444;
 }
-/* line 50, ../../../app/stylesheets/partials/_blog.sass */
+/* line 51, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .blog-title h2 span.author {
   color: #999999;
   margin-left: 20px;
 }
-/* line 54, ../../../app/stylesheets/partials/_blog.sass */
+/* line 55, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
+  width: 590px;
   margin-top: 20px;
 }
 /* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .show-post .content {
   overflow-x: hidden;
 }
-/* line 58, ../../../app/stylesheets/partials/_blog.sass */
+/* line 59, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content h1 {
   display: none;
 }
-/* line 60, ../../../app/stylesheets/partials/_blog.sass */
+/* line 61, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content h2 {
   font-size: 20px;
   font-weight: bold;
 }
-/* line 63, ../../../app/stylesheets/partials/_blog.sass */
+/* line 64, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .content p {
-  font-size: 14px;
+  font-size: 16px;
 }
-/* line 65, ../../../app/stylesheets/partials/_blog.sass */
+/* line 66, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .related {
   display: inline;
   float: left;
@@ -1324,13 +1325,13 @@ ul.ui-autocomplete {
 * html #blog-page .show-post .related {
   overflow-x: hidden;
 }
-/* line 67, ../../../app/stylesheets/partials/_blog.sass */
+/* line 68, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .related h5 {
   font-size: 16px;
   margin: 0;
   padding: 0;
 }
-/* line 71, ../../../app/stylesheets/partials/_blog.sass */
+/* line 72, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .show-post .related a {
   float: left;
   margin-right: 10px;
