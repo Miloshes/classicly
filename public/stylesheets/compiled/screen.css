@@ -983,6 +983,203 @@ ul.ui-autocomplete {
   margin-top: 125px;
 }
 
+/* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page, #author-list-page {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+  margin-top: 30px;
+  text-align: left;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page, * html #author-list-page {
+  overflow-x: hidden;
+}
+/* line 6, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection, #author-list-page #featured-collection {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection, * html #author-list-page #featured-collection {
+  overflow-x: hidden;
+}
+/* line 8, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .cover-column, #author-list-page #featured-collection .cover-column {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .cover-column, * html #author-list-page #featured-collection .cover-column {
+  overflow-x: hidden;
+}
+/* line 10, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column, #author-list-page #featured-collection .detail-column {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 510px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .detail-column, * html #author-list-page #featured-collection .detail-column {
+  overflow-x: hidden;
+}
+/* line 12, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h1, #author-list-page #featured-collection .detail-column h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+/* line 15, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h1 strong, #author-list-page #featured-collection .detail-column h1 strong {
+  font-weight: normal;
+}
+/* line 17, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h3, #author-list-page #featured-collection .detail-column h3 {
+  font-size: 16px;
+  font-weight: bold;
+}
+/* line 20, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p, #author-list-page #featured-collection .detail-column p {
+  color: #333333;
+  font-size: 14px;
+}
+/* line 23, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p a, #author-list-page #featured-collection .detail-column p a {
+  text-decoration: none;
+  color: #333333;
+  background: #ffffd7;
+}
+/* line 27, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p a:hover, #author-list-page #featured-collection .detail-column p a:hover {
+  background: #ffff66;
+  cursor: pointer;
+}
+/* line 30, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link, #author-list-page #featured-collection .books-and-link {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 630px;
+  padding-right: 80px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .books-and-link, * html #author-list-page #featured-collection .books-and-link {
+  overflow-x: hidden;
+}
+/* line 33, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link a, #author-list-page #featured-collection .books-and-link a {
+  float: left;
+  margin-right: 10px;
+}
+/* line 37, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link a.browse-collection, #author-list-page #featured-collection .books-and-link a.browse-collection {
+  float: right;
+  margin-top: 30px;
+  margin-right: 0;
+}
+/* line 44, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list, #author-list-page #collection-list {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list, * html #author-list-page #collection-list {
+  overflow-x: hidden;
+}
+/* line 46, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list h2, #author-list-page #collection-list h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+/* line 49, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection, #author-list-page #collection-list ul.collection {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection, * html #author-list-page #collection-list ul.collection {
+  overflow-x: hidden;
+}
+/* line 51, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li, #author-list-page #collection-list ul.collection li {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li, * html #author-list-page #collection-list ul.collection li {
+  overflow-x: hidden;
+}
+/* line 53, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info, #author-list-page #collection-list ul.collection li .info {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .info, * html #author-list-page #collection-list ul.collection li .info {
+  overflow-x: hidden;
+}
+/* line 55, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info h5, #author-list-page #collection-list ul.collection li .info h5 {
+  font-weight: bold;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+/* line 60, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p {
+  font-size: 12px;
+  font-style: italic;
+  color: #999999;
+  padding: 0;
+  margin: 0;
+}
+/* line 66, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .covers, #author-list-page #collection-list ul.collection li .covers {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 350px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .covers, * html #author-list-page #collection-list ul.collection li .covers {
+  overflow-x: hidden;
+}
+/* line 68, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .covers a, #author-list-page #collection-list ul.collection li .covers a {
+  float: left;
+  margin-right: 5px;
+}
+/* line 72, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .browse-this-collection, #author-list-page #collection-list ul.collection li .browse-this-collection {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 270px;
+  padding-right: 80px;
+}
+/* line 138, ../../../ruby/1.8/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .browse-this-collection, * html #author-list-page #collection-list ul.collection li .browse-this-collection {
+  overflow-x: hidden;
+}
+/* line 75, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .browse-this-collection a, #author-list-page #collection-list ul.collection li .browse-this-collection a {
+  float: right;
+  margin-top: 40px;
+}
+
 /* line 5, ../../../app/stylesheets/partials/_buttons.scss */
 .green {
   background-color: #69a846;
@@ -1217,7 +1414,7 @@ a.no-underline {
   background: #ffff66;
 }
 
-/* line 31, ../../../app/stylesheets/screen.scss */
+/* line 32, ../../../app/stylesheets/screen.scss */
 body.bp {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -1524,12 +1721,12 @@ body.bp .removed {
   background: #990000;
   color: white;
 }
-/* line 39, ../../../app/stylesheets/screen.scss */
+/* line 40, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 43, ../../../app/stylesheets/screen.scss */
+/* line 44, ../../../app/stylesheets/screen.scss */
 body.bp #content {
   width: 950px;
   margin: 0 auto;
@@ -1599,14 +1796,14 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 55, ../../../app/stylesheets/screen.scss */
+/* line 56, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 57, ../../../app/stylesheets/screen.scss */
+/* line 58, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
@@ -1617,7 +1814,7 @@ body.two-col #header, body.two-col #footer {
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 59, ../../../app/stylesheets/screen.scss */
+/* line 60, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
@@ -1628,7 +1825,7 @@ body.two-col #sidebar {
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 63, ../../../app/stylesheets/screen.scss */
+/* line 64, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;
