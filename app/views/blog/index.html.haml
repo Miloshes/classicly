@@ -1,9 +1,28 @@
-- for post in @posts
-  .show-post
-    .title
-      = post.title
-      %span.classicly
-        Classicly
-      = post.created_at.to_s :post_title_format
-    .content
-      = raw post.content
+#blog-page
+  - for post in @posts
+    .show-post
+      .title
+        %h2 
+          %a{:href =>'#'} #{post.title}
+          %span.date= post.created_at.to_s :post_title_format
+          %span.author Tyler
+      .content
+        = raw post.content
+      .comments
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'classicly'; // required: replace example with your forum shortname
+
+        // The following are highly recommended additional parameters. Remove the slashes in front to use.
+        var disqus_identifier = 'classicly-1';
+        var disqus_url = 'http://www.classicly.com/blog';
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+        </script>
+
