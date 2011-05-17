@@ -46,6 +46,14 @@ class Book < ActiveRecord::Base
     [collection, self.joins("INNER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id WHERE 
       ((collection_book_assignments.collection_id = #{collection.id}))").select(fields).limit(minimum_existing_books)]
   end
+  
+  def self.hashes_for_JSON(books)
+    results = []
+    books.each do|book|
+      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
+    end
+    results
+  end
 
   def self.search(search_term, current_page)
     self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
@@ -105,7 +113,7 @@ class Book < ActiveRecord::Base
   end
 
   def description_for_open_graph
-    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title
+    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % self.pretty_title
   end
 
   def find_fake_related(num = 8)
