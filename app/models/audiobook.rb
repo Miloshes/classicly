@@ -1,5 +1,5 @@
 class Audiobook < ActiveRecord::Base
-  include Sluggable, SeoMethods
+  include Sluggable, SeoMethods, CommonBookMethods
 
   belongs_to :author
   belongs_to :custom_cover

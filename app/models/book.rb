@@ -1,7 +1,7 @@
 include AWS::S3
 
 class Book < ActiveRecord::Base
-  include Descriptable, Sluggable, SeoMethods
+  include Sluggable, SeoMethods, CommonBookMethods
 
   belongs_to :author
   belongs_to :custom_cover

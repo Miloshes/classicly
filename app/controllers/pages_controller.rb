@@ -26,7 +26,7 @@ class PagesController < ApplicationController
 
   def home_page_author_books_on_json
     #select author collections having 7 or more books to show
-    collection, books = Book.books_from_random_collection('all', 30, ['books.id', 'author_id', 'cached_slug', 'pretty_title'])
+    books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').limit(30)
     results = []
     books.each do|book|
       results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
