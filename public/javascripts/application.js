@@ -1,4 +1,4 @@
-$(document).ready( function() {
-  var _paq = _paq || [];
-  Global.init();
-})
+(function(){
+  var _paq;
+  _paq = _paq || [];
+})();

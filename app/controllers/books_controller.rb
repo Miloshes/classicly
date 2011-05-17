@@ -22,6 +22,14 @@ class BooksController < ApplicationController
     @related_books = @book.find_fake_related(8)
   end
 
+  def related_books_JSON
+    books = [ ]
+    @book = Book.find params[:id]
+    books << @book
+    books << @book.find_fake_related(params[:total_related].to_i)
+    render :json => Book.hashes_for_JSON(books.flatten)
+  end
+
   # for actually serving the downloadable file
   def serve_downloadable_file
     # The Library app tries to request PDF for book devliveries, whether we have it or not

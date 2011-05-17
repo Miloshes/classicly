@@ -24,14 +24,9 @@ class PagesController < ApplicationController
     #     session[:return_to] = nil
   end
 
-  def home_page_author_books_on_json
-    #select author collections having 7 or more books to show
-    books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').limit(30)
-    results = []
-    books.each do|book|
-      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
-    end
-    render :json => results
+  def random_json_books
+    books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').random(params[:total_books].to_i)
+    render :json => Book.hashes_for_JSON(books)
   end
   
   def home_page_random_books

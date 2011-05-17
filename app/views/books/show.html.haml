@@ -8,19 +8,19 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
   %meta{:name => 'description', :content => @book.description_for_open_graph}
       
-#book-page
+#book-page{:name => @book.id }
   .cover-column
-    .cover-here.medium
+    #current-book.cover-here.medium
       .stable
         .spinner
     %h4 Related
-    .cover-with-title-here.small
+    .cover-with-title-here.small.related
       .stable
         .spinner
-    .cover-with-title-here.tiny
+    .cover-with-title-here.tiny.related
       .stable
         .spinner
-    .cover-with-title-here.tiny
+    .cover-with-title-here.tiny.related
       .stable
         .spinner
   .book-column
@@ -43,13 +43,8 @@
       %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
 
-    = javascript_include_tag 'book-details'
+= javascript_include_tag 'book-details'
+= javascript_include_tag 'covers-book-detail'
+
 :javascript
   $('#reviews').data('book_id', #{@book.id})
-:javascript
-  FB.init({
-    appId  : '#{Facebook::APP_ID}',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
-  });

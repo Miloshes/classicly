@@ -15,14 +15,29 @@
     });
   };
   Cover.prototype.initCovers = function initCovers() {
-    var totalBooks;
-    totalBooks = $('.cover-here, .cover-with-title-here').size() + 3;
-    return $.getJSON('/random_json_books/' + totalBooks, function(data) {
-      return $.each($('.cover-here, .cover-with-title-here'), function(index, value) {
-        var randCover, toTake, totalCovers;
+    var bookId, totalRelatedCovers;
+    bookId = $("#book-page").attr('name');
+    totalRelatedCovers = $(".related").size();
+    $.getJSON('/related_books/' + bookId + '/' + totalRelatedCovers, function(data) {
+      var toTake;
+      // get the cover for the current book:
+      toTake = data.splice(0, 1);
+      setElementCover($("#current-book"), toTake);
+      // assign other covers randomly to related books
+      return $.each($('.related'), function(index, value) {
+        var randCover, totalCovers;
+        totalCovers = data.length;
         randCover = Math.floor(Math.random() * totalCovers);
         toTake = data.splice(randCover, 1);
+        return setElementCover($(this), toTake);
+      });
+    });
+    return $.getJSON('/random_json_books/3', function(data) {
+      return $.each($('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), function(index, value) {
+        var randCover, toTake, totalCovers;
         totalCovers = data.length;
+        randCover = Math.floor(Math.random() * totalCovers);
+        toTake = data.splice(randCover, 1);
         return setElementCover($(this), toTake);
       });
     });

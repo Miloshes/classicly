@@ -14,11 +14,10 @@
 		google.load("jquery", "1.4.4");
 		google.load("jqueryui", "1.8.7");
 		google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
-	= javascript_include_tag 'masonry.js'
-	= include_javascripts :main_without_jquery_nor_jquery_ui, :collections
-	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+	= javascript_include_tag 'masonry.'
+	= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating', 'collection-page'
 	= javascript_include_tag 'classicly-autocomplete'
-
+	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
 	= csrf_meta_tag
 	= typekit_include_helper
 
@@ -27,6 +26,7 @@
 	= yield :head
 
 %body.bp.showgrid
+	#fb-root
 	#content
 		.top_nav
 			#logo
@@ -104,3 +104,14 @@
 				= link_to image_tag('footer-support.png'), "#"
 				= link_to image_tag('footer-facebook.png'), "#"
 				= link_to image_tag('footer-twitter.png'), "#"
+
+:javascript
+	// initialize the environment for JS
+	RAILS_ENV = "#{Rails.env}";
+	// initialize Facebook
+	FB.init({
+		appId  : '#{Facebook::APP_ID}',
+		status : true, // check login status
+		cookie : true, // enable cookies to allow the server to access the session
+		xfbml  : true  // parse XFBML
+	});
