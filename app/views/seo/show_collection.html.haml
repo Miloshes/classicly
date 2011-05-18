@@ -13,7 +13,8 @@
         =@collection.name
         Books
       %p=simple_format(parsed_collection_description(@collection.description))
-  .featured-books
+  -# Warning. Don't change name attribute below , please ask Nacho:
+  .featured-books{:name => "collection_#{@collection.id}"}
     .cover-here.medium
       .stable
         .spinner
@@ -49,3 +50,5 @@
     = raw render_performable_script(:author)
   - else
     = raw render_performable_script(:collection)
+
+= javascript_include_tag 'covers-collection-detail-page'
