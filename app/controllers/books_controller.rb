@@ -26,7 +26,7 @@ class BooksController < ApplicationController
     books = [ ]
     @book = Book.find params[:id]
     books << @book
-    books << @book.find_fake_related(params[:total_related].to_i)
+    books << @book.find_fake_related(params[:total_related].to_i,  ['books.id', 'author_id', 'cached_slug', 'pretty_title'] )
     render :json => Book.hashes_for_JSON(books.flatten)
   end
 
