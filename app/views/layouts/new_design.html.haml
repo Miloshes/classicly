@@ -103,7 +103,9 @@
 				= link_to image_tag('footer-support.png'), "#"
 				= link_to image_tag('footer-facebook.png'), "#"
 				= link_to image_tag('footer-twitter.png'), "#"
-
+		.collection-names-list
+			- for collection in @collections_for_footer
+				= content_tag :span, link_to(collection.name, seo_path(collection))
 :javascript
 	// initialize the environment for JS
 	RAILS_ENV = "#{Rails.env}";

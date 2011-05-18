@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :collections_for_footer
   before_filter :set_return_to
   before_filter :initialize_mixpanel
   before_filter :initialize_indextank
@@ -23,7 +24,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
+  def collections_for_footer
+    @collections_for_footer = Collection.by_author.limit(20)
+    @collections_for_footer += Collection.by_collection.limit(20)
+  end
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end
@@ -37,13 +41,6 @@ class ApplicationController < ActionController::Base
     login.is_admin
   end
 
-  def find_author_collections
-    @author_collections = Collection.book_type.by_author
-  end
-
-  def find_genre_collections
-    @genre_collections = Collection.book_type.by_collection
-  end
 
   def get_profile_id
     @profile_id = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_from_cookies(cookies)
