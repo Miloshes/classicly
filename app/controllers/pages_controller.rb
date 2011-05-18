@@ -2,11 +2,11 @@ class PagesController < ApplicationController
   layout "new_design"
 
   def authors
-    @collections = Collection.book_type.by_author
+    @collections = Collection.book_type.by_author.limit(10)
   end
 
   def collections
-    @collections = Collection.book_type.by_collection
+    @collections = Collection.book_type.by_collection.limit(10)
   end
 
   def main

@@ -127,7 +127,7 @@ class Book < ActiveRecord::Base
       self.author.books.where( :language => self.language, :id.not_eq => self.id )
     
     # for 8 books requested we get 2 from the same author, for 2 we get 1:
-    num_of_books_to_get_from_same_author = ( num < 4 ) ? 1 : ( num / 4.0 ).ceil 
+    num_of_books_to_get_from_same_author = ( num < 4 ) ? 1 :  ( num / 4.0 ).ceil 
 
     1.upto num_of_books_to_get_from_same_author do
       break if books_from_same_author.blank? #  break if the array has been emptied

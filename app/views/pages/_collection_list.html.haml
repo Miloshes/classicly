@@ -1,25 +1,3 @@
 %ul.collection
-  - for collection in collections
-    %li
-      .info
-        %h5= collection.name
-        %p= shorten_text simple_format(remove_book_tags(collection.description, 'span')), 300
-      .covers
-        .cover-here.tiny
-          .stable
-            .spinner
-        .cover-here.tiny
-          .stable
-            .spinner
-        .cover-here.tiny
-          .stable
-            .spinner
-        .cover-here.tiny
-          .stable
-            .spinner
-        .cover-here.tiny
-          .stable
-            .spinner
-      .browse-this-collection
-        %a{:href =>"#{collection.cached_slug}"}
-          =image_tag 'browse-this-collection.png'
+  = render :partial => 'collection', :collection => collections
+= javascript_include_tag 'covers-collection-page'
