@@ -963,11 +963,10 @@ ul.ui-autocomplete {
 #collection-page ul.book-list li .book-info a.title {
   font-size: 25px;
   text-decoration: none;
-  margin-top: 100px;
   float: left;
   display: block;
 }
-/* line 87, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 85, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info span {
   font-style: italic;
   font-size: 16px;
@@ -976,13 +975,13 @@ ul.ui-autocomplete {
   display: block;
   width: 100%;
 }
-/* line 95, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 93, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info span a.author {
   font-style: italic;
   font-size: 16px;
   text-decoration: none;
 }
-/* line 99, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 97, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link {
   display: inline;
   float: left;
@@ -993,7 +992,7 @@ ul.ui-autocomplete {
 * html #collection-page ul.book-list li .download-link {
   overflow-x: hidden;
 }
-/* line 101, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 99, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link img {
   margin-top: 125px;
 }

@@ -5,10 +5,12 @@
         .spinner
   .book-info
     = link_to book.title, author_book_url(book.author, book), :class => "title"
-    %br
-    %span
-      by
-      = link_to book.author.name, seo_url(book.author), :class => "author"
+    %p
+      %span
+        by
+        = link_to book.author.name, seo_url(book.author), :class => "author"
+    .clear
+    = shorten_text simple_format(book.description), 300
 
   .download-link
     =image_tag 'view-this-book.png'
