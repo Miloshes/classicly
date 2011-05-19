@@ -74,10 +74,11 @@ Render.prototype = {
 
   /* appends words to the text */
   append_word: function(word, line_break){
-    if(!this.page_container.children().is('p') || line_break){
+    var first_paragraph = !this.page_container.children().is('p');
+    if( first_paragraph || line_break){
       var p = $('<p/>');
-      if(line_break){
-        p.addClass('new_paragraph');
+      if(first_paragraph && !line_break){
+        p.addClass('no_indent');
       }
       this.page_container.append(p);
     }

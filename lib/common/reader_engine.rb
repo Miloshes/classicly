@@ -2,19 +2,19 @@ require 'zip/zip'
 require 'tempfile'
 
 class ReaderEngine
-  BASE_BOOK_DIR = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
+  # BASE_BOOK_DIR = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
   
   attr_accessor :current_book_id
   attr_writer :current_book_content
   
   def initialize(params = {})
     params.stringify_keys!
-    self.current_book_id = nil
-    self.current_book_content = ''
+    self.current_book_id = params['book_id']
+    self.current_book_content = nil
   end
 
   def current_book_content
-    @current_book_content
+    @current_book_content ||= load_book_content(self.current_book_id)
   end
   
   # example params hash:
@@ -79,13 +79,15 @@ class ReaderEngine
   
 
   def lazy_load_book_content(book_id)
-    if book_id != self.current_book_id
-      self.current_book_id = book_id
-      # for reading the book from S3, takes like 8 seconds so not advised
-      self.current_book_content = get_book_content_from_s3(book_id)
-      # this is the quick solution, read it from the local disk
-      # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
-    end
+    load_book_content book_id if book_id != self.current_book_id
+  end
+
+  def load_book_content(book_id)
+    self.current_book_id = book_id
+    # for reading the book from S3, takes like 8 seconds so not advised
+    self.current_book_content = get_book_content_from_s3(book_id)
+    # this is the quick solution, read it from the local disk
+    # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read    
   end
 
   def get_book_content_from_s3(book_id)
