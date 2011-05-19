@@ -26,6 +26,7 @@ class Collection < ActiveRecord::Base
   scope :audio_book_type, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
   
   validates :name, :presence => true
   validates :book_type, :presence => true
@@ -54,6 +55,24 @@ class Collection < ActiveRecord::Base
     :path => ":id_:style.:extension"
   
   
+  def self.get_collection_books_in_json(collection_ids)
+    data = []
+    collection_ids.each do |id|
+      # find the collection:
+      current = Collection.find id
+      # get 5 books to show:
+      books = current.books.limit(5)
+      # create the books data to be converted in json: 
+      books_hash_array = books.map do |book|
+        author_slug = Author.where(:id => book.author_id).select('cached_slug').first.cached_slug
+        { :id => book.id, :cached_slug => book.cached_slug, :author_slug => author_slug }
+      end
+      # add the collection id to the data to be sent:
+      data << {:collection_id => id, :books => books_hash_array} 
+    end
+    data
+  end
+
   def self.options_for_book_type
     ["book", "audiobook"].collect { |name|
         ["#{name}", name]

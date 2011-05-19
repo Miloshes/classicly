@@ -11,7 +11,6 @@ Classicly::Application.routes.draw do
   end
 
   match 'random_json_books/:total_books' => 'pages#random_json_books'
-  match 'home_page_random_books' => 'pages#home_page_random_books'
   match 'related_books/:id/:total_related' => 'books#related_books_JSON'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post

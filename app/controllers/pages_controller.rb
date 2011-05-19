@@ -2,11 +2,11 @@ class PagesController < ApplicationController
   layout "new_design"
 
   def authors
-    @collections = Collection.book_type.by_author.limit(10)
+    @collections = Collection.book_type.by_author.random(10)
   end
 
   def collections
-    @collections = Collection.book_type.by_collection.limit(10)
+    @collections = Collection.book_type.by_collection.random(10)
   end
 
   def main
@@ -27,10 +27,5 @@ class PagesController < ApplicationController
   def random_json_books
     books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').random(params[:total_books].to_i)
     render :json => Book.hashes_for_JSON(books)
-  end
-  
-  def home_page_random_books
-    books = Book.blessed.random(12).select('id')
-    render :json => books
   end
 end
