@@ -4,7 +4,7 @@ Classicly::Application.routes.draw do
   match 'collections' => 'pages#collections'
   match 'authors' => 'pages#authors'
   match 'json_books' => 'books#json_books'
-  match 'json_books_for_authors_collection' => 'collections#json_books_for_authors_collection'
+  match 'collection_json_books' => 'collections#collection_json_books'
 
   namespace 'admin' do
     resources :reviews, :only => [:index, :destroy]

@@ -3,7 +3,7 @@ $ ->
   # let's get covers for the current collection:
   currentCollectionId = $('.featured-books').attr('name').split('_')[1]
   console.log currentCollectionId
-  $.getJSON 'json_books_for_authors_collection', {id : currentCollectionId },  ( data ) ->
+  $.getJSON 'collection_json_books', {id : currentCollectionId },  ( data ) ->
     $.each data, (index, value) ->
       # find current collection element:
       selector = '.featured-books'

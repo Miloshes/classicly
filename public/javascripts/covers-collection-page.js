@@ -9,7 +9,7 @@
     // create a single string:
     data = $(allIds).get().join(',');
     // request AJAX sending all collection ids
-    $.getJSON('json_books_for_authors_collection', {
+    $.getJSON('collection_json_books', {
       id: data
     }, function(data) {
       return $.each(data, function(index, value) {
@@ -30,7 +30,7 @@
     });
     //now lets get the featured collection:
     featuredCollectionId = $('#featured-collection').attr('name').split('_')[1];
-    return $.getJSON('json_books_for_authors_collection', {
+    return $.getJSON('collection_json_books', {
       id: featuredCollectionId
     }, function(data) {
       return $.each(data, function(index, value) {

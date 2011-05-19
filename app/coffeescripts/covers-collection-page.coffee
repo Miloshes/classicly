@@ -7,7 +7,7 @@ $ ->
   data = $(allIds).get().join(',')
   
   # request AJAX sending all collection ids
-  $.getJSON 'json_books_for_authors_collection', {id : data },  ( data ) ->
+  $.getJSON 'collection_json_books', {id : data },  ( data ) ->
     $.each data, (index, value) ->
       # find collection element:
       selector = 'li.collection#collection_' + value.collection_id
@@ -24,7 +24,7 @@ $ ->
 
   #now lets get the featured collection:
   featuredCollectionId = $('#featured-collection').attr('name').split('_')[1]
-  $.getJSON 'json_books_for_authors_collection', {id : featuredCollectionId },  ( data ) ->
+  $.getJSON 'collection_json_books', {id : featuredCollectionId },  ( data ) ->
     $.each data, (index, value) ->
       # find featured collection element:
       selector = '#featured-collection'
