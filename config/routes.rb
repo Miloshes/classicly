@@ -35,7 +35,7 @@ Classicly::Application.routes.draw do
   get "bingo_experiments/create"
 
   match 'blog' => 'blog#index', :as => :blog
-  match 'post/:title' => 'blog#show', :as => :post
+  match 'post/:id' => 'blog#show', :as => :post
   
   resources :books, :only => :index do
     get :ajax_paginate, :on => :collection

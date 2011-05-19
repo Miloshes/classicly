@@ -6,6 +6,6 @@ class BlogController < ApplicationController
   end
   
   def show
-    @post = BlogPost.where(:title => params[:title]).first
+    @post = BlogPost.find params[:id]
   end
 end
