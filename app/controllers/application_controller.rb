@@ -25,8 +25,8 @@ class ApplicationController < ActionController::Base
 
   protected
   def collections_for_footer
-    @collections_for_footer = Collection.by_author.limit(20)
-    @collections_for_footer += Collection.by_collection.limit(20)
+    @collections_for_footer = Collection.by_author.limit(14)
+    @collections_for_footer += Collection.by_collection.limit(14)
   end
   def current_login
     Login.where(:fb_connect_id => @profile_id).first

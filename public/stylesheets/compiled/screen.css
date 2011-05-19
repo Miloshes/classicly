@@ -296,6 +296,11 @@ a.highlight:hover {
   text-decoration: none;
 }
 /* line 101, ../../../app/stylesheets/partials/_layout.sass */
+#footer .collection-names-list span.linky {
+  width: 110px;
+  padding: 5px;
+}
+/* line 104, ../../../app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -308,33 +313,33 @@ a.highlight:hover {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 112, ../../../app/stylesheets/partials/_layout.sass */
+/* line 115, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 116, ../../../app/stylesheets/partials/_layout.sass */
+/* line 119, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 121, ../../../app/stylesheets/partials/_layout.sass */
+/* line 124, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 128, ../../../app/stylesheets/partials/_layout.sass */
+/* line 131, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 132, ../../../app/stylesheets/partials/_layout.sass */
+/* line 135, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app {
   text-align: left;
   float: left;
@@ -342,7 +347,7 @@ a.highlight:hover {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 139, ../../../app/stylesheets/partials/_layout.sass */
+/* line 142, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app h5 {
   color: #43260f;
   font-size: 18px;
@@ -350,42 +355,42 @@ a.highlight:hover {
   margin-top: 20px;
   padding: 0;
 }
-/* line 145, ../../../app/stylesheets/partials/_layout.sass */
+/* line 148, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app span {
   color: #43260f;
   font-size: 12px;
   display: block;
   Width: 100%;
 }
-/* line 150, ../../../app/stylesheets/partials/_layout.sass */
+/* line 153, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.link {
   margin-top: 5px;
 }
-/* line 153, ../../../app/stylesheets/partials/_layout.sass */
+/* line 156, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.icon {
   float: left;
   margin-top: 10px;
 }
-/* line 157, ../../../app/stylesheets/partials/_layout.sass */
+/* line 160, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 164, ../../../app/stylesheets/partials/_layout.sass */
+/* line 167, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect a img:hover {
   opacity: 0.8;
 }
 
-/* line 170, ../../../app/stylesheets/partials/_layout.sass */
+/* line 173, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 176, ../../../app/stylesheets/partials/_layout.sass */
+/* line 179, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -394,20 +399,20 @@ a.highlight:hover {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 183, ../../../app/stylesheets/partials/_layout.sass */
+/* line 186, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 185, ../../../app/stylesheets/partials/_layout.sass */
+/* line 188, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 187, ../../../app/stylesheets/partials/_layout.sass */
+/* line 190, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 191, ../../../app/stylesheets/partials/_layout.sass */
+/* line 194, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -415,12 +420,12 @@ a.highlight:hover {
   text-decoration: none;
   float: left;
 }
-/* line 197, ../../../app/stylesheets/partials/_layout.sass */
+/* line 200, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 200, ../../../app/stylesheets/partials/_layout.sass */
+/* line 203, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
