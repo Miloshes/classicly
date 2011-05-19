@@ -1,13 +1,12 @@
 $ ->
   # =============================== FILL COLLECTION COVERS
-  # let's get covers for the current collection
-  # now lets get the featured collection:
+  # let's get covers for the current collection:
   currentCollectionId = $('.featured-books').attr('name').split('_')[1]
   console.log currentCollectionId
   $.getJSON 'json_books_for_authors_collection', {id : currentCollectionId },  ( data ) ->
     $.each data, (index, value) ->
       # find current collection element:
-      selector = '. featured-books'
+      selector = '.featured-books'
       bookData = value.books
       # find every cover holder and fill it with the cover:
       $.each $( selector + ' .cover-here'), ( index, value ) -> # ATTENTION! don't remove the blank space before .cover-here

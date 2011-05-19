@@ -2,8 +2,7 @@
   $(function() {
     var allIds, currentCollectionId, data;
     // =============================== FILL COLLECTION COVERS
-    // let's get covers for the current collection
-    // now lets get the featured collection:
+    // let's get covers for the current collection:
     currentCollectionId = $('.featured-books').attr('name').split('_')[1];
     console.log(currentCollectionId);
     $.getJSON('json_books_for_authors_collection', {
@@ -12,7 +11,7 @@
       return $.each(data, function(index, value) {
         var bookData, selector;
         // find current collection element:
-        selector = '. featured-books';
+        selector = '.featured-books';
         bookData = value.books;
         // find every cover holder and fill it with the cover:
         return $.each($(selector + ' .cover-here'), function(index, value) {
