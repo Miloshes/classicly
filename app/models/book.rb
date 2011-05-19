@@ -47,6 +47,10 @@ class Book < ActiveRecord::Base
       ((collection_book_assignments.collection_id = #{collection.id}))").select(fields).limit(minimum_existing_books)]
   end
   
+  def self.cover_url(book_id, size)
+    "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
+  end
+
   def self.hashes_for_JSON(books)
     results = []
     books.each do|book|

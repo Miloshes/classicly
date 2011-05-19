@@ -6,11 +6,6 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
 
-- content_for :related_books do
-  %span
-    Related Books
-  = render :partial => 'pages/cover', :collection => @related_books
-
 #download-confirmation.grid_9
   .grid_2.alpha
     = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"

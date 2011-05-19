@@ -33,8 +33,8 @@
             = book_author_link(@book)
         %p= simple_format(@book.description)
       .download
-        = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), @book.url_for_specific_format('pdf')) : image_tag('download_pdf.png')
-        = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), @book.url_for_specific_format('azw')) : image_tag('download_kindle.png') 
+        = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), download_book_url(@book.author, @book, :download_format => 'pdf')) : image_tag('download_pdf.png')
+        = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), download_book_url(@book.author, @book, :download_format => 'azw')) : image_tag('download_kindle.png') 
       .read
         %a{:href => '#'}
           =image_tag 'read_online_big.png'

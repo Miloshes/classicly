@@ -68,7 +68,7 @@ Classicly::Application.routes.draw do
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # for invoking the download page and start the download
-  match "/:author_id/:id/download" => "books#download", :as => 'download_book', :via => :post
+  match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
 
   
   # for invoking the download page from outside classicly.com
