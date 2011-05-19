@@ -3,17 +3,7 @@
     var Cover;
     Cover = function Cover() {    };
     Cover.prototype.init = function init() {
-      Cover.prototype.initCovers();
-      // align small sized covers to the bottom in the related books container
-      return $('img.cover-art').each(function() {
-        var addToTop, left, nLeft, nTop, top;
-        if ($(this).height() < 155) {
-          addToTop = 155 - $(this).height();
-          nLeft = $(this).offset().left;
-          nTop = $(this).offset().top + addToTop;
-          return $(this).offset((top = nTop), (left = nLeft));
-        }
-      });
+      return Cover.prototype.initCovers();
     };
     Cover.prototype.initCovers = function initCovers() {
       var totalBooks;

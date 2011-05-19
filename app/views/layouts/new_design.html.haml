@@ -57,13 +57,13 @@
 			.row
 				%p.popular
 					Popular
-				.cover-with-title-here.small.random-book
+				.cover-with-title-here.small
 					.stable
 						.spinner
-				.cover-with-title-here.tiny.random-book
+				.cover-with-title-here.tiny
 					.stable
 						.spinner
-				.cover-with-title-here.tiny.random-book
+				.cover-with-title-here.tiny
 					.stable
 						.spinner
 				.links
@@ -106,6 +106,7 @@
 		.collection-names-list
 			- for collection in @collections_for_footer
 				= content_tag :span, link_to(collection.name, seo_path(collection))
+= javascript_include_tag 'covers-global'
 :javascript
 	// initialize the environment for JS
 	RAILS_ENV = "#{Rails.env}";
