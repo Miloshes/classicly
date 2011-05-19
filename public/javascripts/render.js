@@ -8,7 +8,7 @@ function Render(book_content){
    */
   this.book_content = book_content;
   this.lines_array = book_content.split("\n");
-  this.page_boundary = $("#render");
+  this.page_boundary = $("#reader_box .text_box");
   this.page_container = $("#inner");
   this.book_done_hook = $.noop;
   /* where page started */
@@ -190,6 +190,9 @@ $(function(){
                             page++;
                             push_data(id,
                                       page_data);
+                            if(page > 3){
+                              throw 'FAIL';
+                            }
                           });
                       });
         
