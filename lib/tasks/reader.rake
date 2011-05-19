@@ -24,6 +24,7 @@ namespace :reader do
   
   # renders the whole book collection
   task :render_collection => :environment do
+    puts "WARNING: remember to nuke all the book pages from the DB before running this!"
     # books that are done 0..444
     start_id = 444
     # end_id = Book.order('id DESC').limit(1).first().id
@@ -65,8 +66,12 @@ namespace :reader do
   end
   
   task :test => :environment do
-    top1000_books = YAML.load_file(APP_CONFIG['yaml_exports_path'] + '/top1000_books.yml').sort
-    puts top1000_books
+    book_id = 6
+    
+    base_dir = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
+    str = open(base_dir + "/book_#{book_id}.txt").read
+    
+    puts str.inspect
   end
   
 end

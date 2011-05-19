@@ -50,7 +50,6 @@ class BooksController < ApplicationController
     session[:review] = nil
   end
 
-
   def show_review_form
     @review = Review.new
     render :layout => false

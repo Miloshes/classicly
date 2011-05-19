@@ -6,9 +6,9 @@ function Render(book_content){
    Stores pages information as indexes of starting and ending
    symbols.
    */
-  this.book_content = book_content;
-  this.lines_array = book_content.split("\n");
-  this.page_boundary = $("#render");
+  this.book_content   = book_content;
+  this.lines_array    = split_text_into_lines(book_content);
+  this.page_boundary  = $("#render");
   this.page_container = $("#inner");
   this.book_done_hook = $.noop;
   /* where page started */
@@ -174,6 +174,21 @@ function get_book_data(book_id, cb){
            cb(data);
          });  
 
+}
+
+function split_text_into_lines(text) {
+	var line_ending = '';
+	
+	if (text.indexOf("\r") != -1)
+	{
+		line_ending = "\r";
+	} 
+	else
+	{
+		line_ending = "\n";
+	}
+	
+	return text.split(line_ending);
 }
 
 $(function(){

@@ -36,11 +36,11 @@ namespace :test_reader_engine_api do
     data = 
     {
       "action" => "get_book",
-      "book_id" => 14
+      "book_id" => 15
     }
     
     response = RestClient.post('http://localhost:3000/reader_engine_api/query', :json_data => data.to_json)
-    puts "Response was: #{response.body}"
+    puts "Response was: #{response.body.inspect}"
   end
   
   task :get_page => :environment do
