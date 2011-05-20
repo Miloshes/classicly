@@ -1,0 +1,105 @@
+/*
+Syntax error: Invalid CSS after "..., a#audibly-log": expected selector, was ""
+        on line 24 of /Users/copla201/dev/classicly-staging/app/stylesheets/main.sass
+
+19:   :height 87px
+20:   :background #c9af87
+21:   :float left
+22:   :text-align left
+23:   :border-bottom 1px solid #bc9e7a
+24:   a#logo, a#audibly-log
+25:     :display block
+26:     :width 165px
+27:     :height 41px
+28:     :margin 0
+29:       :top 20px
+
+Backtrace:
+/Users/copla201/dev/classicly-staging/app/stylesheets/main.sass:24
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/scss/parser.rb:838:in `expected'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/scss/parser.rb:813:in `expected'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/scss/static_parser.rb:19:in `parse_selector'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/rule_node.rb:189:in `perform!'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `map'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:317:in `perform!'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/rule_node.rb:191:in `perform!'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `map'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:327:in `perform_children'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:317:in `perform!'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/root_node.rb:59:in `perform!'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:305:in `_perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/node.rb:213:in `perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/root_node.rb:37:in `perform'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/tree/root_node.rb:29:in `render'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:223:in `update_stylesheet'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:88:in `update_stylesheets'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `each'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `update_stylesheets'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `each'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `update_stylesheets'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin.rb:50:in `check_for_updates'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/haml-3.0.25/lib/sass/plugin/rack.rb:40:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mixpanel-0.8.1/lib/mixpanel/mixpanel_middleware.rb:15:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/methodoverride.rb:24:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/cookies.rb:302:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:32:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:12:in `cache'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activerecord-3.0.5/lib/active_record/query_cache.rb:31:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activerecord-3.0.5/lib/active_record/connection_adapters/abstract/connection_pool.rb:354:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:46:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activesupport-3.0.5/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/sendfile.rb:107:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/show_exceptions.rb:47:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/rack/logger.rb:13:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/runtime.rb:17:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/activesupport-3.0.5/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `synchronize'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/lock.rb:11:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/actionpack-3.0.5/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/hoptoad_notifier-2.4.8/lib/hoptoad_notifier/user_informer.rb:12:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/application.rb:168:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/application.rb:77:in `send'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/application.rb:77:in `method_missing'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/content_length.rb:13:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/chunked.rb:15:in `call'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/handler/mongrel.rb:67:in `process'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/handler/mongrel.rb:38:in `run'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/rack-1.2.2/lib/rack/server.rb:213:in `start'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/commands/server.rb:65:in `start'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/commands.rb:30
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/commands.rb:27:in `tap'
+/Users/copla201/dev/classicly-staging/ruby/1.8/gems/railties-3.0.5/lib/rails/commands.rb:27
+script/rails:6:in `require'
+script/rails:6
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"..., a#audibly-log\": expected selector, was \"\"\A         on line 24 of /Users/copla201/dev/classicly-staging/app/stylesheets/main.sass\A \A 19:   :height 87px\A 20:   :background #c9af87\A 21:   :float left\A 22:   :text-align left\A 23:   :border-bottom 1px solid #bc9e7a\A 24:   a#logo, a#audibly-log\A 25:     :display block\A 26:     :width 165px\A 27:     :height 41px\A 28:     :margin 0\A 29:       :top 20px"; }

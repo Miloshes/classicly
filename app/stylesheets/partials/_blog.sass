@@ -1,0 +1,75 @@
+#blog-page
+  +column(18, true)
+  :margin
+    :top 30px
+  :text-align left
+  .about-the-blog
+    +column(18, true)
+    p
+      +column(8, true)
+      :font-size 12px
+      :padding
+        :top 10px
+        :bottom 30px
+  h1
+    font-family: 'museo-slab-1', 'museo-slab-2', arial, serif
+    :font-weight normal
+    font-size: 40px
+    color: #333333
+    background: #ffff66
+    :padding 0
+    :margin 0
+    :display block
+    :float left
+
+  .show-post
+    :margin
+      :bottom 50px
+    +column(15, true)
+    +append(3)
+    .blog-title
+      +column(15, true)
+      h2
+        :font-weight bold
+        :padding 0
+        :margin 0
+        :font-size 28px
+        a
+          :float left
+          :display block
+          :text-decoration none
+          :color #333333
+          :width 100%
+          :background #ffffe8
+          :padding 5px
+          &:hover 
+            :background #ffff66
+        span
+          :float left
+          &.date
+            :color #444444
+          &.author
+            :color #999999
+            :margin
+              :left 20px
+    .content
+      +column(15, true)
+      :margin
+        :top 20px
+      h1
+        :display none
+      h2
+        :font-size 20px
+        :font-weight bold
+      p
+        :font-size 16px
+    .related
+      +column(14, true)
+      h5
+        :font-size 16px
+        :margin 0
+        :padding 0
+      a
+        :float left
+        :margin
+          :right 10px

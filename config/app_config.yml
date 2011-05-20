@@ -28,5 +28,7 @@ buckets:
   books: "spreadsong-kindleload-books"
   static_book_pages: "spreadsong-classicly-static-book-pages"
   downloadables: "spreadsong-downloadables-tmp"
-
+index_tank:
+  private_api_url: http://:Kzub86diHBrEBf@6wfx.api.indextank.com
+  public_api_url: http://6wfx.api.indextank.com
 yaml_exports_path: "db/yaml_exports"

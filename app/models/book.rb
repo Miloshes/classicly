@@ -1,7 +1,7 @@
 include AWS::S3
 
 class Book < ActiveRecord::Base
-  include Descriptable, Sluggable, SeoMethods
+  include Sluggable, SeoMethods, CommonBookMethods
 
   belongs_to :author
   belongs_to :custom_cover
@@ -45,6 +45,18 @@ class Book < ActiveRecord::Base
     fields = select_fields.join(',')
     [collection, self.joins("INNER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id WHERE 
       ((collection_book_assignments.collection_id = #{collection.id}))").select(fields).limit(minimum_existing_books)]
+  end
+  
+  def self.cover_url(book_id, size)
+    "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
+  end
+
+  def self.hashes_for_JSON(books)
+    results = []
+    books.each do|book|
+      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
+    end
+    results
   end
 
   def self.search(search_term, current_page)
@@ -108,42 +120,39 @@ class Book < ActiveRecord::Base
     "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % self.pretty_title
   end
 
-  def find_fake_related(num = 8)
+  def find_fake_related(num = 8, select = nil)
+    # determine if we need to select certain fields from book's table and convert to string
+    select_fields = select.join(',') if select
     result = []
-
     # Two sources for related books:
-    #  - popular books from the same genres with the same language
-    #  - other books of the author with the same language
 
-    # == Popular books from the same genres (and same language)
-    books_from_same_genre = []
-    self.genres.each do |genre|
-      # TODO: we don't have download counts yet, should sort by that when we have
-      popular_books = genre.books.where("language = ? AND id <> ?", self.language, self.id).limit(200)
-      books_from_same_genre += popular_books
-    end
-
-    # == Other books of the author, with the same language
-    books_from_same_author = self.author.books.where("language = ? AND id <> ?",  self.language, self.id)
-
-    # for 8 books requested we get 2 from the same author, for 2 we get 1
-    num_of_books_to_get_from_same_author = (num / 4.0).ceil
+    # Other books of the author, with the same language:
+    books_from_same_author = select ? self.author.books.where( :language => self.language, :id.not_eq => self.id ).select( select_fields ) :
+      self.author.books.where( :language => self.language, :id.not_eq => self.id )
+    
+    # for 8 books requested we get 2 from the same author, for 2 we get 1:
+    num_of_books_to_get_from_same_author = ( num < 4 ) ? 1 :  ( num / 4.0 ).ceil 
 
     1.upto num_of_books_to_get_from_same_author do
-      break if books_from_same_author.blank?
-
-      position = rand(books_from_same_author.size)
-      result << books_from_same_author.delete_at(position)
+      break if books_from_same_author.blank? #  break if the array has been emptied
+      position = rand( books_from_same_author.size )
+      result << books_from_same_author.delete_at( position )
     end
 
-    1.upto num-result.size do
+    # Popular books from the same genres (and same language):
+    books_from_same_genre = []
+    self.genres.each do |genre|
+      books_from_same_genre += select ? genre.books.where( :language => self.language, :id.not_eq =>  self.id ).select( select_fields ).limit( 25 ) : 
+        genre.books.where(:language => self.language, :id.not_eq => self.id).limit( 25 )
+    end
+
+
+    1.upto( num - result.size ) do
       position = rand(books_from_same_genre.size)
       result << books_from_same_genre.delete_at(position)
     end
 
-    result.compact!
-    result.sort_by { rand }
-
+    result.compact! # gets rid of nil elements
     return result
   end
 

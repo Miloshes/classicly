@@ -1,9 +1,24 @@
-- for post in @posts
-  .show-post
-    .title
-      = post.title
-      %span.classicly
-        Classicly
-      = post.created_at.to_s :post_title_format
-    .content
-      = raw post.content
+#blog-page
+  .about-the-blog
+    %h1 Welcome to the Book Blog
+    %p This is <strong>Book Blog</strong>, a weblog by Spreadsong about literature, classic authors, ereading, and our mobile apps, Free Books for iPhone and iPad.
+  - for post in @posts
+    .show-post
+      .blog-title
+        %h2 
+          = link_to post.title, post_path(post)
+          %span.date= post.created_at.to_s :post_title_format
+          %span.author Tyler
+      .content
+        = raw post.content
+      .related
+        %h5 Related Books:
+        .cover-with-title-here.medium
+          .stable
+            .spinner
+        .cover-with-title-here.medium
+          .stable
+            .spinner
+        .cover-with-title-here.medium
+          .stable
+            .spinner

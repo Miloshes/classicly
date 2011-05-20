@@ -1,10 +1,11 @@
 class BlogController < ApplicationController
-  layout 'blog'
-
-  before_filter :find_author_collections
-  before_filter :find_genre_collections
+  layout 'new_design'
 
   def index
     @posts = BlogPost.all
+  end
+  
+  def show
+    @post = BlogPost.find params[:id]
   end
 end

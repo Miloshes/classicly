@@ -1,0 +1,101 @@
+#collection-page
+  +column(18, true)
+  :margin
+    :top 30px
+  :text-align left
+  .collection-info
+    +column(13)
+    h1
+      :font-size 22px
+      :font-weight bold
+    p
+      :font-size 14px
+      a
+        :color #333333
+        :text-decoration none
+        :background #ffffd7
+        &:hover
+          :background #ffff66
+          :cursor pointer
+  .featured-books
+    +column(4, true)
+    +prepend(1)
+  .book-list
+    +column(18, true)
+    h3
+      :font-size 22px
+      :color #333333
+      :font-weight bold
+      :margin 0
+        :bottom 3px
+      :padding 0
+    p.explanation
+      +column(7, true)
+      :color #999999
+      :font-size 14px
+      &.first
+        :margin
+          :right 200px
+  .sorting
+    +column(18, true)
+    :margin
+      :bottom 25px
+    span
+      :display block
+      :font-size 14px
+      :font-weight bold
+      :float left
+    a
+      :text-decoration none
+      :color #333333
+      :background #ffffd7
+      :text-decoration none
+      :font-size 14px
+      :float left
+      :display block
+      :margin
+        :left 20px
+      &:hover 
+        :background #ffff66
+        :cursor pointer
+      &.selected
+        :color #333333
+        :background none
+        :text-decoration underline
+        &:hover
+          :cursor normal
+  ul.book-list
+    li
+      +column(16, true)
+      &:hover
+        :cursor pointer
+        a.title
+          :background #ffff66
+      .cover
+        +column(3)
+      .book-info
+        +column(9)
+        a
+          :color #333333
+        a.title
+          :font-size 25px
+          :text-decoration none
+          :float left
+          :display block
+        span
+          :font-style italic
+          :font-size 16px
+          :text-decoration none
+          :float left
+          :display block
+          :width 100%
+          span
+          a.author
+            :font-style italic
+            :font-size 16px
+            :text-decoration none
+      .download-link
+        +column(4, true)
+        img
+          :margin
+            :top 125px

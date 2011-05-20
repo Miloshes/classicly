@@ -1,0 +1,35 @@
+#collection-list-page
+  #featured-collection{:name => "collection_36"}
+    .cover-column
+      .cover-here.medium
+        .stable
+          .spinner
+    .detail-column
+      %h1 Featured Collection: <strong>Best Of</strong>
+      %p 
+        Whether you're looking for the best of classic literature, immortal works of theater, influential speeches, or science fiction gold, our Best Of collection has a lifetime's worth of great reading. From Shakespeare's <a href="http://www.classicly.com/william-shakespeare/romeo-and-juliet" class="description-link">Romeo and Juliet</a> to Dante's <a href="http://www.classicly.com/dante-alighieri/divine-comedy-inferno" class="description-link">Divine Comedy</a>. There's Edith Warton&rsquo;s <a href="http://www.classicly.com/edith-wharton/the-age-of-innocence" class="description-link">Age of Innocence</a>, which won her a Pulitzer Prize in 1920, or Dostoyevsky&rsquo;s last book, <a href="http://www.classicly.com/fyodor-dostoyevsky/the-brothers-karamazov" class="description-link">The Brother&rsquo;s Karamazov</a>. We have <a href="http://www.classicly.com/gustave-flaubert/madame-bovary" class="description-link">Madam Bovary</a> by Flaubert and <a href="http://www.classicly.com/agatha-christie/the-mysterious-affair-at-styles" class="description-link">The Mysterious Affair at Styles</a> by Agatha Christie. You'll also find D.H.Lawrence&rsquo;s <a href="http://www.classicly.com/dh-lawrence/sons-and-lovers" class="description-link">Sons and Lovers</a>, <a href="http://www.classicly.com/arthur-conan-doyle/the-adventures-of-sherlock-holmes" class="description-link">The Adventures of Sherlock Holmes</a>, F. Scott Fitzgerald&rsquo;s <a href="http://www.classicly.com/f-scott-fitzgerald/the-beautiful-and-the-damned" class="description-link">Beautiful and the Damned</a>, and Hermann Hesse&rsquo;s <a href="http://www.classicly.com/herman-hesse/siddhartha" class="description-link">Siddhartha</a>.
+
+    .books-and-link
+      .cover-here.tiny
+        .stable
+          .spinner
+      .cover-here.tiny
+        .stable
+          .spinner
+      .cover-here.tiny
+        .stable
+          .spinner
+      .cover-here.tiny
+        .stable
+          .spinner
+      .cover-here.tiny
+        .stable
+          .spinner
+      .cover-here.tiny
+        .stable
+          .spinner
+      %a.browse-collection{:href => '/best-of'}
+        =image_tag 'browse-this-collection-big.png'
+  #collection-list
+    %h2 Collections:
+    = render 'collection_list', :collections => @collections

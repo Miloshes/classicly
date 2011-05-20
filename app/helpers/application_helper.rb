@@ -93,6 +93,14 @@ module ApplicationHelper
     doc.css('body').inner_html
   end
   
+  # replaces <book> tag for a new html tag:
+  def remove_book_tags(text, html_tag)
+    doc = Nokogiri::HTML( text )
+    doc.xpath("//book").each {|book| book.name = html_tag}
+    doc.xpath('//quote').each {|quote| quote.remove }
+    doc.css('body').inner_html
+  end
+
   def limit_to_paragraph(text)
     doc = Nokogiri::HTML(text)
     doc.xpath("//p").first.inner_html
@@ -120,6 +128,11 @@ module ApplicationHelper
     end
   end
   
+  def shorten_text(text, limit)
+    return text if text.length <= limit
+    text.slice(0, (limit - 3)).concat("...")
+  end
+
   def facebook_image(fb_connect_id)
     image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
   end

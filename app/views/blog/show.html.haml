@@ -1,0 +1,5 @@
+= simple_format @post.content
+%span.date= @post.created_at.to_s :post_title_format
+%span.author Tyler
+
+= link_to 'Back to the blog', blog_path

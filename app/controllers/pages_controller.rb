@@ -1,12 +1,18 @@
 class PagesController < ApplicationController
-  before_filter :find_author_collections
-  before_filter :find_genre_collections
   layout "new_design"
 
+  def authors
+    @collections = Collection.book_type.by_author.random(10)
+  end
+
+  def collections
+    @collections = Collection.book_type.by_collection.random(10)
+  end
+
   def main
-    @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.random(1).first
+    @featured_book = Book.select([:id, :pretty_title, :author_id, :cached_slug]).blessed.first
     @collection_covers = Collection.where(:name => 'Best Of', :book_type => 'book').first.books.limit(6)
-    @books = Book.blessed.random(2).select([:id, :pretty_title, :author_id, :cached_slug])
+    @books = Book.blessed.select([:id, :pretty_title, :author_id, :cached_slug])
     @author_collection, @author_collection_books = Book.books_from_random_collection('author', 1, ['books.id', 'author_id', 'cached_slug', 'pretty_title']) 
     # @featured_books = Book.blessed.available.with_description.random(5)
     #     mixpanel_properties = {}
@@ -18,14 +24,8 @@ class PagesController < ApplicationController
     #     session[:return_to] = nil
   end
 
-  def home_page_author_books_on_json
-    #select author collections having 7 or more books to show
-    collection, books = Book.books_from_random_collection('all', 7, ['books.id'])
-    render :json => books
-  end
-  
-  def home_page_random_books
-    books = Book.blessed.random(12).select('id')
-    render :json => books
+  def random_json_books
+    books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').random(params[:total_books].to_i)
+    render :json => Book.hashes_for_JSON(books)
   end
 end

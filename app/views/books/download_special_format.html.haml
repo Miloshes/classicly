@@ -6,15 +6,9 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
 
-- content_for :related_books do
-  %span
-    Related Books
-  = render :partial => 'pages/cover', :collection => @related_books
-
-#download-confirmation.grid_9
+#download-confirmation
   .grid_2.alpha
-    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
-    .related-books
+    = image_tag Book.cover_url(@book.id, 2)
   .grid_7.omega
     .download-info.grid_7.alpha.omega
       %h1
@@ -23,4 +17,4 @@
         #{@format == 'azw' ? 'Kindle' : @format.upcase }
       .grid_7.alpha.omega
         .facebook-upsell
-          = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, :download_format => @format), :id => 'download-facebook-post', :class => 'conversion-button kiss green large kiss', :method => 'post'
+          = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, :format => @format), :id => 'download-facebook-post', :class => 'conversion-button kiss green large kiss', :method => 'post'
