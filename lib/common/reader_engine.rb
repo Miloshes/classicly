@@ -10,7 +10,7 @@ class ReaderEngine
   def initialize(params = {})
     params.stringify_keys!
     self.current_book_id = nil
-    self.current_book_content = ''
+    self.current_book_content = nil
   end
 
   def current_book_content
@@ -33,16 +33,23 @@ class ReaderEngine
     # fetch the book model
     book = Book.find(params['book_id'].to_i)
     
+    converter = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+    
     params['render_data'].each do |record|
       # fetch the book page
       book_page = book.book_pages.where(:page_number => record['page'].to_i).first()
+      
+      # get the page content
+      page_content = self.current_book_content[record['first_character'].to_i..record['last_character'].to_i]
       
       # assemble new data hash
       new_data = {
         :first_character   => record['first_character'].to_i,
         :last_character    => record['last_character'].to_i,
         :first_line_indent => record['first_line_indent'],
-        :content           => self.current_book_content[record['first_character'].to_i..record['last_character'].to_i]
+        # fixing invalid UTF8 bytes in the meantime.
+        # The extra space knocks out invalid bytes that are at the end of the string and can't be handled by iconv
+        :content           => converter.iconv(page_content + ' ')[0..-2]
       }
 
       # update attributes
@@ -57,8 +64,7 @@ class ReaderEngine
     return true
   end
   
-  def get_page(book_id, page_number)
-    
+  def get_page(book_id, page_number)    
     book = Book.find(book_id)
     return nil if book.blank?
     
@@ -74,17 +80,21 @@ class ReaderEngine
         :book_title        => book.pretty_title
       }.to_json
   end
+  
+  def get_book(book_id)
+    lazy_load_book_content(book_id)
+    current_book_content
+  end
 
   private
-  
 
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
       # for reading the book from S3, takes like 8 seconds so not advised
-      self.current_book_content = get_book_content_from_s3(book_id)
+      # self.current_book_content = get_book_content_from_s3(book_id)
       # this is the quick solution, read it from the local disk
-      # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
+      self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
     end
   end
 

@@ -7,8 +7,8 @@ function Render(book_content){
    symbols.
    */
   this.book_content = book_content;
-  this.lines_array = book_content.split("\n");
-  this.page_boundary = $("#render");
+  this.lines_array = split_text_into_lines(book_content);
+  this.page_boundary = $("#reader_box .text_box");
   this.page_container = $("#inner");
   this.book_done_hook = $.noop;
   /* where page started */
@@ -74,10 +74,11 @@ Render.prototype = {
 
   /* appends words to the text */
   append_word: function(word, line_break){
-    if(!this.page_container.children().is('p') || line_break){
+    var first_paragraph = !this.page_container.children().is('p');
+    if( first_paragraph || line_break){
       var p = $('<p/>');
-      if(line_break){
-        p.addClass('new_paragraph');
+      if(first_paragraph && !line_break){
+        p.addClass('no_indent');
       }
       this.page_container.append(p);
     }
@@ -176,6 +177,21 @@ function get_book_data(book_id, cb){
 
 }
 
+function split_text_into_lines(text) {
+	var line_ending = '';
+
+	if (text.indexOf("\r") != -1)
+	{
+		line_ending = "\r";
+	} 
+	else
+	{
+		line_ending = "\n";
+	}
+	
+	return text.split(line_ending);
+}
+
 $(function(){
     var page = 0;
     $("#render_book").click(
@@ -188,8 +204,7 @@ $(function(){
                         r.render_book(
                           function(page_data){
                             page++;
-                            push_data(id,
-                                      page_data);
+                            push_data(id, page_data);
                           });
                       });
         

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20110520153721) do
+=======
 ActiveRecord::Schema.define(:version => 20110519154525) do
+>>>>>>> 4445ba4d1f8123a11b6699b1e53e60d10bedee0f
 
   create_table "alternatives", :force => true do |t|
     t.integer "experiment_id"
@@ -73,6 +77,8 @@ ActiveRecord::Schema.define(:version => 20110519154525) do
     t.boolean "first_line_indent", :default => false, :null => false
     t.boolean "force_rerender",    :default => false, :null => false
   end
+
+  add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
 
   create_table "books", :force => true do |t|
     t.text    "title"
@@ -149,10 +155,10 @@ ActiveRecord::Schema.define(:version => 20110519154525) do
   end
 
   create_table "experiments", :force => true do |t|
-    t.string   "test_name"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "test_name"
+    t.string    "status"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "experiments", ["test_name"], :name => "index_experiments_on_test_name"
@@ -162,31 +168,31 @@ ActiveRecord::Schema.define(:version => 20110519154525) do
   end
 
   create_table "incoming_data", :force => true do |t|
-    t.text     "json_data"
-    t.boolean  "processed",  :default => false, :null => false
-    t.datetime "created_at"
+    t.text      "json_data"
+    t.boolean   "processed",  :default => false, :null => false
+    t.timestamp "created_at"
   end
 
   create_table "logins", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "location_city"
-    t.string   "location_country"
-    t.string   "email"
-    t.string   "fb_connect_id"
-    t.boolean  "is_admin",         :default => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "location_city"
+    t.string    "location_country"
+    t.string    "email"
+    t.string    "fb_connect_id"
+    t.boolean   "is_admin",         :default => false
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "fb_connect_id"
-    t.integer  "reviewable_id"
-    t.string   "reviewable_type"
-    t.text     "content"
-    t.integer  "rating"
-    t.datetime "created_at"
-    t.integer  "login_id"
+    t.string    "fb_connect_id"
+    t.integer   "reviewable_id"
+    t.string    "reviewable_type"
+    t.text      "content"
+    t.integer   "rating"
+    t.timestamp "created_at"
+    t.integer   "login_id"
   end
 
   create_table "seo_slugs", :force => true do |t|
@@ -220,19 +226,19 @@ ActiveRecord::Schema.define(:version => 20110519154525) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email",                               :default => "", :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

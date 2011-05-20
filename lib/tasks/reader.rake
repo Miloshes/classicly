@@ -2,7 +2,7 @@ require 'firewatir' if Rails.env.development?
 
 class ReaderScriptUtils
   
-  def self.start_rendering_and_wait_untiL_its_done(browser, timeout = 1200)
+  def self.start_rendering_and_wait_untiL_its_done(browser, timeout = 6000)
     # start the rendering
     browser.button(:id => 'render_book').click
     
@@ -24,15 +24,15 @@ namespace :reader do
   
   # renders the whole book collection
   task :render_collection => :environment do
-    # books that are done 0..444
-    start_id = 444
+    puts "WARNING: remember to nuke all the book pages from the DB before running this!"
+    # start_id = 0
     # end_id = Book.order('id DESC').limit(1).first().id
 
     top1000_books = YAML.load_file(APP_CONFIG['yaml_exports_path'] + '/top1000_books.yml').sort
     
     # start_id.upto(end_id) do |book_id|
     top1000_books.each do |book_id|
-      next if book_id <= 444
+      next if book_id < 3993
       
       browser = Watir::Browser.new
       browser.goto("http://localhost:3000/render_book_for_the_reader/#{book_id}")
@@ -50,7 +50,7 @@ namespace :reader do
   end
   
   # renders a single book
-  task :render_book => :environment do    
+  task :render_book => :environment do
     book_id = ENV['book_id'] ? ENV['book_id'].to_i : nil
     
     if book_id.blank?
@@ -59,14 +59,20 @@ namespace :reader do
       exit
     end
     
+    Book.find(book_id).book_pages.destroy_all
+    
     browser = Watir::Browser.new
     browser.goto("http://localhost:3000/render_book_for_the_reader/#{book_id}")
     ReaderScriptUtils.start_rendering_and_wait_untiL_its_done(browser)
   end
   
   task :test => :environment do
-    top1000_books = YAML.load_file(APP_CONFIG['yaml_exports_path'] + '/top1000_books.yml').sort
-    puts top1000_books
+    book_id = 13
+    
+    base_dir = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
+    str = open(base_dir + "/book_#{book_id}.txt").read
+    
+    puts str.inspect
   end
   
 end
