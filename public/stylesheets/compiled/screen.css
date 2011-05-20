@@ -143,18 +143,6 @@ body {
   background-color: white;
 }
 
-/* line 9, ../../../app/stylesheets/partials/_layout.sass */
-a.highlight {
-  text-decoration: none;
-  color: #333333;
-  background: #ffffd7;
-}
-/* line 13, ../../../app/stylesheets/partials/_layout.sass */
-a.highlight:hover {
-  background: #ffff66;
-  cursor: pointer;
-}
-
 /* line 16, ../../../app/stylesheets/partials/_layout.sass */
 .top_nav {
   height: 40px;
@@ -706,7 +694,7 @@ ul.ui-autocomplete {
   overflow-x: hidden;
 }
 /* line 8, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column h4 {
+#book-page .cover-column h1 {
   font-size: 16px;
   font-weight: bold;
   margin: 0;
@@ -1199,6 +1187,94 @@ ul.ui-autocomplete {
   margin-top: 40px;
 }
 
+/* line 1, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+  margin-top: 30px;
+  text-align: left;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page {
+  overflow-x: hidden;
+}
+/* line 6, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .cover-column {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page .cover-column {
+  overflow-x: hidden;
+}
+/* line 8, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .cover-column h4 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+  float: left;
+  width: 100%;
+}
+/* line 16, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 470px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page .download-info {
+  overflow-x: hidden;
+}
+/* line 18, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info a {
+  text-decoration: none;
+  color: #333333;
+  background: #ffffd7;
+}
+/* line 13, ../../../app/stylesheets/partials/_layout.sass */
+#download-confirmation-page .download-info a:hover {
+  background: #ffff66;
+  cursor: pointer;
+}
+/* line 20, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info h1 {
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+}
+/* line 24, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info h2 {
+  font-size: 22px;
+  color: #333333;
+}
+/* line 27, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info h2 strong {
+  font-size: 28px;
+}
+/* line 29, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info p {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 390px;
+  font-size: #333333;
+  font-size: 14px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page .download-info p {
+  overflow-x: hidden;
+}
+/* line 34, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .download-info .read {
+  margin-top: 5px;
+}
+
 /* line 1, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page {
   display: inline;
@@ -1589,7 +1665,7 @@ a.no-underline {
   background: #ffff66;
 }
 
-/* line 33, ../../../app/stylesheets/screen.scss */
+/* line 34, ../../../app/stylesheets/screen.scss */
 body.bp {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -1837,7 +1913,7 @@ body.bp .bottom {
 }
 /* line 8, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 body.bp .showgrid {
-  background: url('/images/grid.png?1305662384');
+  background: url('/images/grid.png?1305911064');
 }
 /* line 4, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
 body.bp .error {
@@ -1884,7 +1960,14 @@ body.bp .hide {
 }
 /* line 12, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
 body.bp .highlight {
-  background: yellow;
+  text-decoration: none;
+  color: #333333;
+  background: #ffffd7;
+}
+/* line 13, ../../../app/stylesheets/partials/_layout.sass */
+body.bp .highlight:hover {
+  background: #ffff66;
+  cursor: pointer;
 }
 /* line 14, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
 body.bp .added {
@@ -1896,12 +1979,12 @@ body.bp .removed {
   background: #990000;
   color: white;
 }
-/* line 41, ../../../app/stylesheets/screen.scss */
+/* line 42, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 45, ../../../app/stylesheets/screen.scss */
+/* line 46, ../../../app/stylesheets/screen.scss */
 body.bp #content {
   width: 950px;
   margin: 0 auto;
@@ -1971,14 +2054,14 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 57, ../../../app/stylesheets/screen.scss */
+/* line 58, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 59, ../../../app/stylesheets/screen.scss */
+/* line 60, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
@@ -1989,7 +2072,7 @@ body.two-col #header, body.two-col #footer {
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 61, ../../../app/stylesheets/screen.scss */
+/* line 62, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
@@ -2000,7 +2083,7 @@ body.two-col #sidebar {
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 65, ../../../app/stylesheets/screen.scss */
+/* line 66, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;
