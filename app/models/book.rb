@@ -147,7 +147,7 @@ class Book < ActiveRecord::Base
     end
 
 
-    1.upto ( num - result.size ) do
+    1.upto( num - result.size ) do
       position = rand(books_from_same_genre.size)
       result << books_from_same_genre.delete_at(position)
     end
