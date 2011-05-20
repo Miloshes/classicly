@@ -41,7 +41,7 @@ Book.prototype = {
                      self._title = data.book_title;
                    }
                    self.page_cache[page_num] = {
-                     content : data.content.split("\n"),
+                     content : self.split_text_into_lines(data.content),
                      first_line_indent : data.first_line_indent
                    };
                    cb(self.page_cache[page_num]);
@@ -65,7 +65,22 @@ Book.prototype = {
       throw "Cannot get page title: load any page first.";
     }
     return this._title;    
-  }
+  },
+
+	split_text_into_lines : function(text) {
+		var line_ending = '';
+
+		if (text.indexOf("\r") != -1)
+		{
+			line_ending = "\r";
+		} 
+		else
+		{
+			line_ending = "\n";
+		}
+
+		return text.split(line_ending);
+	}
   
 };
 
@@ -242,4 +257,5 @@ Reader.prototype = {
   _set_title : function(title){
     $('#reader_box .header').text(title);
   }
+
 };

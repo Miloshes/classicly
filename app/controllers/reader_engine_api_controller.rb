@@ -9,7 +9,7 @@ class ReaderEngineApiController < ApplicationController
       return
     end
     
-    @engine = ReaderEngine.new(:book_id => @api_params['book_id'])
+    @engine = ReaderEngine.new
     
     if @engine.handle_incoming_render_data(@api_params)
       render :text => 'SUCCESS' and return
@@ -19,7 +19,7 @@ class ReaderEngineApiController < ApplicationController
   end
   
   def query
-    @engine = ReaderEngine.new(:book_id => @api_params['book_id'])    
+    @engine = ReaderEngine.new
     
     case @action
     when 'get_book'
