@@ -5,7 +5,6 @@
   %meta{:name => 'description', :content => "Search across 23,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"}
   %link{:rel => "canonical", :href => "http://www.classicly.com/search" }
 #collection-page.grid_9.alpha.omega
-  TEST
   .divider.grid_9.alpha.omega
     = image_tag 'divider.png'
   .grid_9.alpha.omega
@@ -14,7 +13,8 @@
       .pagination
         = paginate @books
       %ul.book-list
-        = render_listed_book_partial(@books)
+        = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .grid_4.alpha
       %ul.featured-book-list
-= javascript_include_tag 'signIn'
+= javascript_include_tag 'covers-search-page'
+
