@@ -4,14 +4,15 @@ class SearchController < ApplicationController
 
   def show
     @search = params[:term]
-    if params[:type] && params[:type] == 'audiobook'
-      @books = Audiobook.search @search, params[:page]
-      @popular_books = Audiobook.blessed.random(8)
-      @audibly = true
-    else
-      @books = Book.search(@search, params[:page])
-      @popular_books = Book.blessed.random(8)
+    documents = @indextank.search "#{@search} type:book"
+    match_count = documents['matches']
+    docids = documents['results'].collect{|doc| doc['docid']}
+    bookids = docids.collect do |docid|
+      arr = docid.split('_')
+      arr.first == "b" ? arr.last.to_i : nil
     end
+    bookids.compact!
+    @books = Book.where(:id.in => bookids).page(params[:page]).per(10)
   end
   
   def autocomplete

@@ -23,21 +23,13 @@ class SeoSlug < ActiveRecord::Base
     self.format == 'kindle' ? 'azw' : self.format
   end
 
-  def is_for_audio_book?
-    self.seoable_type == 'Audiobook'
+  def is_for_type?(type)
+    self.seoable_type.downcase == type
   end
-
-  def is_for_book?
-    self.seoable_type == 'Book'  
-  end
-
-  def is_for_collection?
-    self.seoable_type == 'Collection'
-  end
-
+  
   def is_valid?
     return false if seoable.nil?
-    if self.is_for_book? && self.format != 'online'
+    if self.is_for_type?('book') && self.format != 'online'
       return seoable.available_in_format?(download_format)
     end
     true

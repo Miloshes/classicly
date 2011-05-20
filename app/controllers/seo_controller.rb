@@ -56,7 +56,7 @@ class SeoController < ApplicationController
   end
 
   def render_seo(seo)
-    if seo.is_for_collection?
+    if seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
@@ -77,9 +77,9 @@ class SeoController < ApplicationController
     @review = session[:review] || Review.new
     session[:review] = nil
     @format = seo.download_format
-    if seo.is_for_audio_book?
+    if seo.is_for_type?('audiobook')
       render 'audiobooks/download'
-    elsif seo.is_for_book?
+    elsif seo.is_for_type?('book')
       if @format == 'online'
         render 'books/read_online'
       else
