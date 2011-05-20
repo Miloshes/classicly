@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :collections_for_footer
   before_filter :set_return_to
   before_filter :initialize_mixpanel
+  before_filter :initialize_indextank
   before_filter :get_profile_id
   before_filter :set_abingo_identity
 
   def initialize_mixpanel
     @mixpanel = Mixpanel.new("b6f94d510743ff0037009f3a1be605c2", request.env, true)
+  end
+
+  def initialize_indextank
+    @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
   end
 
   def redirect_back_or_default
@@ -18,7 +24,10 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
+  def collections_for_footer
+    @collections_for_footer = Collection.by_author.limit(14)
+    @collections_for_footer += Collection.by_collection.limit(14)
+  end
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end
@@ -32,13 +41,6 @@ class ApplicationController < ActionController::Base
     login.is_admin
   end
 
-  def find_author_collections
-    @author_collections = Collection.book_type.by_author
-  end
-
-  def find_genre_collections
-    @genre_collections = Collection.book_type.by_collection
-  end
 
   def get_profile_id
     @profile_id = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_from_cookies(cookies)

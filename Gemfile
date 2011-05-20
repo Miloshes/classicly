@@ -7,6 +7,7 @@ gem "compass", ">= 0.10.5"
 gem 'haml'
 gem "friendly_id", "~> 3.2.1"
 gem 'hoptoad_notifier'
+gem 'indextank'
 gem 'jammit'
 gem 'jquery-rails'
 gem 'kaminari'
@@ -22,15 +23,19 @@ gem 'sitemap_generator'
 gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
+gem 'rubyzip'
 
 group :development do
   gem 'awesome_print'
   gem 'hirb'
+  gem 'jasmine'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
+  gem 'firewatir'
 end 
 
 group :test do
+  gem 'jasmine'
   gem 'machinist', '>= 2.0.0.beta1'
 end

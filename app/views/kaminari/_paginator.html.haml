@@ -8,6 +8,8 @@
 = paginator.render do
   %nav.pagination
     = current_page > 1 ? prev_link_tag : prev_span_tag
+    %span.pagination-text
+      = "Page #{current_page} of #{num_pages}"
     -#comment all the pagination 
     -# each_page do |page|
       -# if page.current?

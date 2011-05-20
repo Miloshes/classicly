@@ -1,7 +1,4 @@
 class BooksController < ApplicationController
-  before_filter :find_author_collections, :only => [:show, :download, :kindle_format, :pdf_format]
-  before_filter :find_genre_collections, :only => [:show, :download, :kindle_format, :pdf_format]
-
   before_filter :find_book, :only => [:download, :serve_downloadable_file, :show_review_form]
   before_filter :find_book_with_specific_author, :only => [:show, :kindle_format, :pdf_format]
   before_filter :find_format, :only => [:download, :serve_downloadable_file]
@@ -9,10 +6,10 @@ class BooksController < ApplicationController
   def ajax_paginate
     @collection = Collection.find(params[:id])
     @books = if params[:sort_by].nil?
-      @collection.books.page(params[:page]).per(25)
+      @collection.books.page(params[:page]).per(10)
     else
-      params[:sort_by] == 'author' ? @collection.books.order_by_author.page(params[:page]).per(25) : 
-        @collection.books.order(params[:sort_by]).page(params[:page]).per(25)
+      params[:sort_by] == 'author' ? @collection.books.order_by_author.page(params[:page]).per(10) : 
+        @collection.books.order(params[:sort_by]).page(params[:page]).per(10)
     end
     render :layout => false
   end
@@ -20,6 +17,30 @@ class BooksController < ApplicationController
   # for invoking the download page
   def download
     @related_books = @book.find_fake_related(8)
+    render :layout => 'new_design'
+  end
+
+  def json_books
+    data = []
+    book_ids = params[:id].split( ',' )
+    book_ids.each do |id|
+      # find the book:
+      current = Book.where(:id => id).select('id, cached_slug, author_id').first
+      # create the books data to be converted in json:
+      author_slug = Author.where(:id => current.author_id).select('cached_slug').first.cached_slug
+      attrs = current.attributes.merge(:author_slug => author_slug)
+      # add the book id to the data to be sent:
+      data << {:attrs => attrs} 
+    end
+    render :json => data.to_json
+  end
+
+  def related_books_JSON
+    books = [ ]
+    @book = Book.find params[:id]
+    books << @book
+    books << @book.find_fake_related(params[:total_related].to_i,  ['books.id', 'author_id', 'cached_slug', 'pretty_title'] )
+    render :json => Book.hashes_for_JSON(books.flatten)
   end
 
   # for actually serving the downloadable file
@@ -48,8 +69,8 @@ class BooksController < ApplicationController
     # if there was a failed review, it will come in the session object
     @review = session[:review] || Review.new
     session[:review] = nil
+    layout 'new_design'
   end
-
 
   def show_review_form
     @review = Review.new

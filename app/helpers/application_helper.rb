@@ -31,6 +31,17 @@ module ApplicationHelper
                       author_book_url(cover.author, cover)
   end
 
+  def cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
+  end
+  
+  def link_cover_tag(book, size='2', klass='')
+    type = book.class.to_s.downcase
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg",
+                      :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
+  end
+  
   def current_login
     Login.where(:fb_connect_id => @profile_id).first
   end
@@ -56,7 +67,7 @@ module ApplicationHelper
     content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
     content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
     content_tag(:meta, nil, {:property => "fb:app_id", :content => Facebook::APP_ID}) +
-    content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "23,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
+    content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
 
   def radio_button_for_format(format, index, featured_book)
@@ -82,6 +93,14 @@ module ApplicationHelper
     doc.css('body').inner_html
   end
   
+  # replaces <book> tag for a new html tag:
+  def remove_book_tags(text, html_tag)
+    doc = Nokogiri::HTML( text )
+    doc.xpath("//book").each {|book| book.name = html_tag}
+    doc.xpath('//quote').each {|quote| quote.remove }
+    doc.css('body').inner_html
+  end
+
   def limit_to_paragraph(text)
     doc = Nokogiri::HTML(text)
     doc.xpath("//p").first.inner_html
@@ -109,6 +128,16 @@ module ApplicationHelper
     end
   end
   
+  def sort_books_ajax_link(id, text, sort_by)
+    link_to text, { :controller => 'books', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
+      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
+  end
+
+  def shorten_text(text, limit)
+    return text if text.length <= limit
+    text.slice(0, (limit - 3)).concat("...")
+  end
+
   def facebook_image(fb_connect_id)
     image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
   end

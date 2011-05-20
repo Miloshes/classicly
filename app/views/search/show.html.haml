@@ -4,11 +4,8 @@
 - content_for :head do
   %meta{:name => 'description', :content => "Search across 23,469 of the world’s greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"}
   %link{:rel => "canonical", :href => "http://www.classicly.com/search" }
-- content_for :related_books do
-  %span
-    Popular Books
-  = render :partial => 'pages/cover', :collection => @popular_books
 #collection-page.grid_9.alpha.omega
+  TEST
   .divider.grid_9.alpha.omega
     = image_tag 'divider.png'
   .grid_9.alpha.omega

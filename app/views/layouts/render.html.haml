@@ -1,0 +1,21 @@
+!!! 5
+%html{:lang => "en"}
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title Book Render
+    = stylesheet_link_tag 'reset.css', :media => :screen
+    = stylesheet_link_tag 'sliders.css', :media => :screen
+    = stylesheet_link_tag 'reader.css', :media => :screen
+    = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
+    = javascript_include_tag 'render.js'
+    /[if IE]
+      <script>
+      var e = ("abbr,article,aside,audio,canvas,datalist,details," +
+      "figure,footer,header,hgroup,mark,menu,meter,nav,output," +
+      "progress,section,time,video").split(',');
+      for (var i = 0; i < e.length; i++) {
+      document.createElement(e[i]);
+      }
+      </script>
+  %body
+    = yield

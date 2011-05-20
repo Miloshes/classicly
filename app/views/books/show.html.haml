@@ -8,20 +8,22 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
   %meta{:name => 'description', :content => @book.description_for_open_graph}
       
-- content_for :related_books do
-  %span
-    Related Books
-  = render :partial => 'pages/cover', :collection => @related_books
-
-#book-page.grid_9
-  #cover.grid_2.alpha
-    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :alt => "#{@book.pretty_title} by #{@book.author.name}"
-    - unless @books_from_the_same_collection.empty?
-      .related-books
-        %h4 Books from the same collection:
-        = render :partial => "books/related_book", :collection => @books_from_the_same_collection, :as => :book
-  .grid_7.omega
+#book-page{:name => @book.id }
+  .cover-column
+    #current-book.cover-here.medium
+      .stable
+        .spinner
+    %h4 Related
+    .cover-with-title-here.small.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+  .book-column
     #book-metadata.grid_5.omega
       - cache :action => 'show', :action_suffix => 'book_details' do
         %h1= @book.pretty_title
@@ -29,45 +31,18 @@
           by
           %span.book-author
             = book_author_link(@book)
-        .share
-          <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
         %p= simple_format(@book.description)
-    .grid_2.omega.download-share
-      .download_this_book
-        = form_tag download_book_url(@book.author, @book) do
-          %div.radio{:id => "radio_#{@book.id}"}
-            - @book.classicly_formats.each_with_index do|format, index|
-              = radio_button_for_format(format, index, @book)
-          = link_to_function image_tag("download-this-book.png"), '$(this).parents("form").submit()'
-      .clear
-      .share-widgets
-        .twitter-widget
-          = javascript_include_tag "http://platform.twitter.com/widgets.js"
-          = link_to "", "http://twitter.com/share?url=#{author_book_url(@book.author, @book)}&text=#{@book.view_book_page_title}&count=vertical", :class =>"twitter-share-button", :target => '_blank'
-        .facebook-widget
-          <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>
-          <fb:like layout="box_count" show_faces="true" width="200" font="arial" action='recommend'>
-          </fb:like>
-    = image_tag '/images/divider.png', :class => 'divider'
-    #reviews.grid_7
-      #title-left
-        Reviews
-      #title-right
-        = link_to 'Write a review', '#'
-      .clear
-      - if user_signed_in?
-        = render :partial => 'books/review_form', :locals => {:review => @review, :book => @book}
-      .clear
-      %ul.reviews
-        = render :partial => 'books/review', :collection => @book.reviews
+      .download
+        = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), download_book_url(@book.author, @book, :download_format => 'pdf')) : image_tag('download_pdf.png')
+        = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), download_book_url(@book.author, @book, :download_format => 'azw')) : image_tag('download_kindle.png') 
+      .read
+        %a{:href => '#'}
+          =image_tag 'read_online_big.png'
+      %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
+      %p.explanation We don’t pay a cent, so neither do you.
 
 = javascript_include_tag 'book-details'
+= javascript_include_tag 'covers-book-detail'
+
 :javascript
   $('#reviews').data('book_id', #{@book.id})
-:javascript
-  FB.init({
-    appId  : '#{Facebook::APP_ID}',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
-  });

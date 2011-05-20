@@ -1,0 +1,13 @@
+.slider_active{
+  height: 100%;
+  width: 100%;
+  position: relative;
+  float: left;
+}
+
+.slider_disabled{
+  height: 100%;
+  position: relative;
+  width: 0%;
+  float: left;
+}

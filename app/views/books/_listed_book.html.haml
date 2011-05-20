@@ -1,15 +1,16 @@
-%li.grid_5.alpha.omega
-  .grid_1.alpha
-    = link_to image_tag("http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size1.jpg",
-      :alt => "#{book.pretty_title} by #{book.author.name}"),
-      author_book_url(book.author, book)
-  .grid_4.omega.metadata
-    .metadata
-      = link_to book.title, author_book_url(book.author, book), :class => "title"
-      %br
-      %span by
-      = link_to book.author.name, seo_url(book.author), :class => "author"
-      %br
-      .book-avg-rating
-        - if book.has_rating?
-          = raw(show_review_rating_stars(book.avg_rating))
+%li{:id => "book_#{book.id}"}
+  .cover
+    .cover-here.small
+      .stable
+        .spinner
+  .book-info
+    = link_to book.title, author_book_url(book.author, book), :class => "title"
+    %p
+      %span
+        by
+        = link_to book.author.name, seo_url(book.author), :class => "author"
+    .clear
+    = shorten_text simple_format(book.description), 300
+
+  .download-link
+    =image_tag 'view-this-book.png'

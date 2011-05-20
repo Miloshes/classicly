@@ -1,5 +1,5 @@
 class Audiobook < ActiveRecord::Base
-  include Sluggable, SeoMethods
+  include Sluggable, SeoMethods, CommonBookMethods
 
   belongs_to :author
   belongs_to :custom_cover
@@ -27,7 +27,6 @@ class Audiobook < ActiveRecord::Base
     {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
   end
 
-  
   def choose_audio_books(limit, already_chosen_books, collection_to_choose_from)
     1.upto(limit - already_chosen_books.size) do
       break if collection_to_choose_from.blank?
