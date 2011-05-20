@@ -1,7 +1,5 @@
 class SearchController < ApplicationController
-  before_filter :find_author_collections, :only => :show
-  before_filter :find_genre_collections, :only => :show
-
+  layout 'new_design'
   def show
     @search = params[:term]
     documents = @indextank.search "#{@search} type:book"
