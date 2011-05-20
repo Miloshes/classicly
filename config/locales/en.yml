@@ -6,4 +6,4 @@ en:
   views:
     pagination:
       previous: "Previous Page  "
-      next: "More Results"
+      next: "Next Page of Books"
