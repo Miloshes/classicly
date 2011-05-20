@@ -3,7 +3,6 @@ require 'tempfile'
 
 class ReaderEngine
   BASE_BOOK_DIR = '/Users/zsoltmaslanyi/money/storage/latest_from_s3'
-  # BASE_BOOK_DIR = '/Users/zsoltmaslanyi/money/storage/test_books'
   
   attr_accessor :current_book_id
   attr_writer :current_book_content
@@ -11,7 +10,7 @@ class ReaderEngine
   def initialize(params = {})
     params.stringify_keys!
     self.current_book_id = nil
-    self.current_book_content = ''
+    self.current_book_content = nil
   end
 
   def current_book_content
@@ -65,8 +64,7 @@ class ReaderEngine
     return true
   end
   
-  def get_page(book_id, page_number)
-    
+  def get_page(book_id, page_number)    
     book = Book.find(book_id)
     return nil if book.blank?
     

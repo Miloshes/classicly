@@ -1,0 +1,214 @@
+$background-color: #f6f3ee;
+$reader-box-color: #f8f5f0;
+$reader-border-color: #e3e0da;
+$text-color: #34261c;
+
+$reader-width: 640px;
+$base-font: georgia, serif;
+
+/*
+  todo: make sprites out of images.
+ */
+
+@import "compass/css3";
+
+@mixin reader-box-margins {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+body{
+    background: $background-color;
+}
+
+
+#reader_box{
+    @include reader-box-margins;
+    background: $reader-box-color;
+    width: $reader-width+50;
+    height: 750px;
+    position: relative;
+    font-family: $base-font;
+    border: 1px solid $reader-border-color;
+    @include border-radius(10px);    
+
+    .header{
+        color: $text-color;
+        text-transform: uppercase;
+        position: absolute;
+        left: 50px;
+        right: 50px;
+        top: 25px;
+        font-size: 17px;
+        text-align: center;
+    }
+
+    .text_box{
+        position: absolute;
+        top: 75px;
+        left: 25px;
+        right: 25px;
+        bottom: 100px;
+    }
+
+    .error_box{
+        display: none;
+        background-color: #000;
+        @include opacity(0.8);
+        color: white;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        font-weight: bold;
+        text-align: center;
+        @include border-radius(10px);            
+        width: 400px;
+        margin: 4px;
+        font-size: 20px;
+        position: absolute;
+        left: 150px;
+        top: 400px;;
+        z-index: 1;
+    }
+
+    .loading_box{
+        display: none;
+        background-color: #000;
+        @include opacity(0.6);
+        background-image: url("../images/html-reader/loader.gif");
+        background-position: center center;
+        background-repeat: no-repeat;
+        border: 1px solid #666666;
+        @include border-radius(10px);            
+        bottom: 0;
+        left: 0;
+        margin: 4px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+
+    .text_box p{
+        text-align: justify;
+        font-size: 15px;
+        line-height: 1.3;
+        font-family: $base-font;    
+        color: $text-color ;
+        margin-bottom: 20px;
+        text-indent: 15px;
+    }
+
+    .text_box p.no_indent{
+        text-indent: 0 !important;
+    }
+
+
+    .big_navigation{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+    }
+
+    .big_navigation .box{
+        background-color: #000;
+        @include opacity(0.6);
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        padding-top: 350px;
+        text-align: center;
+        display: none;
+        cursor: pointer;
+        color: #fff;
+        font-size: 40px;    
+    }
+
+    .big_navigation.right .box{
+        @include border-radius(0 10px 10px 0);    
+    }
+
+    .big_navigation.right{
+        right:0;
+    }
+
+    .big_navigation.left .box{
+        @include border-radius(10px 0 0 10px);            
+    }
+
+    .big_navigation.left{
+        left:0;
+    }
+
+    .navigation{
+        position: absolute;
+        bottom: 10px;
+        left: 25px;
+        right: 25px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    .navigation .slider_wrap{
+        
+        background: url('../images/html-reader/scroller-dots.png') repeat-x;
+        position: absolute;
+        top: 14px;
+        bottom: 13px;    
+        left: 25px;
+        right: 25px;
+    }
+
+    .navigation .slider{
+        position: display-block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+}
+
+.slider_cursor{
+    background: url('../images/html-reader/scroller-mid.png');
+    position: absolute;
+    top: -10px;
+    height: 25px;
+    z-index: 10;
+    display: inline-block;
+    
+
+
+    .before_scroller_num{
+        position: absolute;
+        left: 0;
+        width: 5px;
+        top: 0;
+        bottom: 0;
+        background: url('../images/html-reader/scroller-left.png');
+    }
+
+    .after_scroller_num{
+        position: absolute;
+        right: 0;
+        width: 5px;
+        top: 0;
+        bottom: 0;
+        background: url('../images/html-reader/scroller-right.png');
+    }
+
+
+    .page_num{
+        color: #fff;
+        font-size: 11px;
+        padding: 0 10px;
+        position: relative;
+        text-align: center;
+        top: 4px;
+        z-index: 12;
+
+    }
+}

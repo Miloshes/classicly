@@ -11,3 +11,4 @@ db/descriptions
 db/collection_plists
 ruby
 *.tmproj
+.#*

@@ -105,7 +105,7 @@ class Book < ActiveRecord::Base
   end
 
   def description_for_open_graph
-    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart’s content." % self.pretty_title
+    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % self.pretty_title
   end
 
   def find_fake_related(num = 8)
