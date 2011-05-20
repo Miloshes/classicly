@@ -17,6 +17,7 @@ class BooksController < ApplicationController
   # for invoking the download page
   def download
     @related_books = @book.find_fake_related(8)
+    render :layout => 'new_design'
   end
 
   def json_books
