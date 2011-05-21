@@ -295,7 +295,7 @@ body {
 /* line 115, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list {
   margin: 0 auto;
-  width: 980px;
+  width: 800px;
   padding: 10px;
   background: 1px solid #bb9d79;
   font-family: "helvetica";
@@ -305,13 +305,26 @@ body {
 #footer .collection-names-list a {
   color: white;
   text-decoration: none;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+  text-shadow: 0px 1px #555555;
 }
-/* line 125, ../../../app/stylesheets/partials/_layout.sass */
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #footer .collection-names-list a {
+  overflow-x: hidden;
+}
+/* line 127, ../../../app/stylesheets/partials/_layout.sass */
+#footer .collection-names-list a:hover {
+  text-shadow: 0 0 15px white;
+}
+/* line 130, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list span.linky {
   width: 110px;
   padding: 5px;
 }
-/* line 128, ../../../app/stylesheets/partials/_layout.sass */
+/* line 133, ../../../app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -324,33 +337,33 @@ body {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 139, ../../../app/stylesheets/partials/_layout.sass */
+/* line 144, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 143, ../../../app/stylesheets/partials/_layout.sass */
+/* line 148, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 148, ../../../app/stylesheets/partials/_layout.sass */
+/* line 153, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 155, ../../../app/stylesheets/partials/_layout.sass */
+/* line 160, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 159, ../../../app/stylesheets/partials/_layout.sass */
+/* line 164, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app {
   text-align: left;
   float: left;
@@ -358,7 +371,7 @@ body {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 166, ../../../app/stylesheets/partials/_layout.sass */
+/* line 171, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app h5 {
   color: #43260f;
   font-size: 18px;
@@ -366,42 +379,42 @@ body {
   margin-top: 20px;
   padding: 0;
 }
-/* line 172, ../../../app/stylesheets/partials/_layout.sass */
+/* line 177, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app span {
   color: #43260f;
   font-size: 12px;
   display: block;
   Width: 100%;
 }
-/* line 177, ../../../app/stylesheets/partials/_layout.sass */
+/* line 182, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.link {
   margin-top: 5px;
 }
-/* line 180, ../../../app/stylesheets/partials/_layout.sass */
+/* line 185, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.icon {
   float: left;
   margin-top: 10px;
 }
-/* line 184, ../../../app/stylesheets/partials/_layout.sass */
+/* line 189, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 191, ../../../app/stylesheets/partials/_layout.sass */
+/* line 196, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect a img:hover {
   opacity: 0.8;
 }
 
-/* line 197, ../../../app/stylesheets/partials/_layout.sass */
+/* line 202, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 203, ../../../app/stylesheets/partials/_layout.sass */
+/* line 208, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -410,20 +423,20 @@ body {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 210, ../../../app/stylesheets/partials/_layout.sass */
+/* line 215, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 212, ../../../app/stylesheets/partials/_layout.sass */
+/* line 217, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 214, ../../../app/stylesheets/partials/_layout.sass */
+/* line 219, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 218, ../../../app/stylesheets/partials/_layout.sass */
+/* line 223, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -431,12 +444,12 @@ body {
   text-decoration: none;
   float: left;
 }
-/* line 224, ../../../app/stylesheets/partials/_layout.sass */
+/* line 229, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 227, ../../../app/stylesheets/partials/_layout.sass */
+/* line 232, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
