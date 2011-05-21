@@ -998,6 +998,11 @@ ul.ui-autocomplete {
   text-decoration: none;
 }
 /* line 97, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page ul.book-list li .book-info p {
+  color: #999999;
+  font-style: italic;
+}
+/* line 100, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link {
   display: inline;
   float: left;
@@ -1008,7 +1013,7 @@ ul.ui-autocomplete {
 * html #collection-page ul.book-list li .download-link {
   overflow-x: hidden;
 }
-/* line 99, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 102, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link img {
   margin-top: 125px;
 }
@@ -1698,15 +1703,73 @@ a.no-underline {
   background: #ffff66;
 }
 
-/* line 2, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination span.pagination-text {
-  font-size: 16px;
-  margin: 0 10px;
+/* line 1, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
 }
-/* line 6, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination span.prev a, nav.pagination span.next a {
-  color: white;
-  padding: 5px;
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html nav.pagination {
+  overflow-x: hidden;
+}
+/* line 3, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span {
+  display: block;
+  float: left;
+  height: 60px;
+}
+/* line 7, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.prev {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html nav.pagination span.prev {
+  overflow-x: hidden;
+}
+/* line 9, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.prev a {
+  width: 160px;
+  height: 53px;
+  display: block;
+  background: url(/images/pagination-previous.png);
+}
+/* line 15, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.pagination-text {
+  font-size: 23px;
+  margin-top: 5px;
+  text-align: center;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html nav.pagination span.pagination-text {
+  overflow-x: hidden;
+}
+/* line 21, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.next {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html nav.pagination span.next {
+  overflow-x: hidden;
+}
+/* line 23, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.next a {
+  width: 203px;
+  height: 53px;
+  display: block;
+  background: url(/images/pagination-next.png);
+  float: right;
 }
 
 /* line 37, ../../../app/stylesheets/screen.scss */

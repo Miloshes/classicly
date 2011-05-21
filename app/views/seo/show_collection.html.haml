@@ -39,9 +39,6 @@
       -# sorting by author an author collection is pointless
       - unless @collection.is_author_collection?
         = sort_books_ajax_link @collection.id, 'Author', 'author' 
-    .clear
-    .pagination
-      = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
     %ul.book-list
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .pagination
