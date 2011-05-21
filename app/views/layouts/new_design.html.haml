@@ -34,8 +34,8 @@
 					= image_tag 'logo-new.png'
 			#searchbox
 				= form_tag search_url, :method => :get do
-					= content_tag(:div, nil, :class => 'search-bg') do
-						= text_field_tag "term", @search
+					= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+					%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
 			#navigator
 				%ul
 					%li

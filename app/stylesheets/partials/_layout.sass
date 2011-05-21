@@ -31,18 +31,42 @@ body
   #searchbox
     +column(6)
     :margin
-      :top 4px
+      :top 8px
       :left 30px
+    height: 22px
+    width: 225px
+    border: 1px solid #ab9573
+    :background white
+
     input
       margin-top: 2px
-      height: 22px
-      width: 225px
       color: #d2d2d3
       font-size: 12px
       font-family: 'helvetica'
-      border: 1px solid #ab9573
+      :border 0
+      :width 180px
+      :height 12px
+      :outline none
+      :float left
+      :margin
+        :top 5px
+      :padding
+        :left 3px
+        :top 3px
       &:focus
         :color #333333
+    button
+      :width 25px
+      :height 16px
+      :display block
+      :background url(/images/search-button.png)
+      :border 0
+      :float right
+      :margin
+        :top 1px
+      &:hover
+        :cursor pointer
+        
   #navigator
     +column(13, true)
     text-align: left
