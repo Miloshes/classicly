@@ -22,3 +22,4 @@ ruby
 /app/views/blog/.index.html.haml.swp
 /app/views/layouts/.new_design.html.haml.swp
 /public/javascripts/.global.js.swp
+/app/controllers/.seo_controller.rb.swp

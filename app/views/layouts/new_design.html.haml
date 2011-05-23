@@ -48,7 +48,7 @@
 							%a.blog{:href => '/blog'}
 								=image_tag 'header-blog-button.png'
 
-				#searchbox
+				#search
 					= form_tag search_url, :method => :get do
 						= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
 						%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
@@ -76,6 +76,7 @@
 						Browse collections
 					%a{:href => '/authors'}
 						Browse authors
+	#bottom-shadow
 	#footer
 		.centering
 			.about
@@ -107,8 +108,11 @@
 				= link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
 				= link_to image_tag('footer-twitter.png'), "http://twitter.com/#!/classiclybooks"
 		.collection-names-list
-			- for collection in @collections_for_footer
-				= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
+			=image_tag 'footer-collections-top.png'
+			.collections
+				- for collection in @collections_for_footer
+					= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
+			=image_tag 'footer-collections-bottom.png'
 				
 = javascript_include_tag 'covers-global'
 :javascript

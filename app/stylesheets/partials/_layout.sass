@@ -41,23 +41,22 @@ body
         img
           :margin
             :top 5px
-      #searchbox
-        +column(6, true)
+      #search
+        +column(5, true)
         :margin
           :top 17px
-          :left 30px
-        height: 22px
-        width: 225px
-        border: 1px solid #ab9573
-        :background white
-
+          :left 65px
+        form
+          :background white
+          height: 22px
+          border: 1px solid #ab9573
         input
           margin-top: 2px
           color: #d2d2d3
           font-size: 12px
           font-family: 'helvetica'
           :border 0
-          :width 180px
+          :width 150px
           :height 12px
           :outline none
           :float left
@@ -109,17 +108,24 @@ body
       :margin 0
         :top -5px
       :padding 0
+#bottom-shadow
+  :float left
+  :display block
+  :width 100%
+  :height 9px
+  :background url(/images/shadow-bottom.png) repeat-x
+  :margin
+    :top 20px
+  :padding 0
+
 #footer
   :background #c9af87
   :width 100%
   :float left
-  :border-top 1px solid #bc9f7a
   :padding
     :top 10px
     :bottom 20px
   :text-align center
-  :margin
-    :top 20px
   .centering
     :margin 0 auto
     :width 980px
@@ -134,6 +140,17 @@ body
     :background 1px solid #bb9d79
     :font-family 'helvetica'
     :font-size 17px
+    img
+      :float left
+    .collections
+      :width 830px
+      :display block
+      :float left
+      :padding
+        :left 50px
+      :border
+        :left 1px solid #866a47
+        :right 1px solid #866a47
     a
       :color #FFF
       :text-decoration none
