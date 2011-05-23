@@ -78,6 +78,12 @@ class Audiobook < ActiveRecord::Base
   def generate_seo_slugs(formats)
     formats.each do|format|
       slug = optimal_url_for_download_page(format)
+      # if you find a similar slug due to shortening of the cached slug such as in
+      # "the-first-epistle-of-paul-the-apostle-to-the-corinthians-audiobook"
+      # "the-first-epistle-of-paul-the-apostle-to-timothy-audiobook"
+      # make sure you create a diferent slug:
+      other_slug = SeoSlug.where :slug.matches => "%#{slug}%"
+      slug << "[#{other_slug.size + 1 }]" unless other_slug.empty?
       SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
