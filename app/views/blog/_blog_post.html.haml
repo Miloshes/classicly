@@ -7,13 +7,9 @@
   .content
     = raw post.content
   .related
-    %h5 Related Books:
-    .cover-here-with-title.medium
-      .stable
-        .spinner
-    .cover-with-title-here.medium.popular
-      .stable
-        .spinner
-    .cover-with-title-here.medium.popular
-      .stable
-        .spinner
+    %h5 Related Books
+    - for book in post.related_books
+      .book-cover{:id => "book_#{book.id}"}
+        .cover-here.medium.popular
+          .stable
+            .spinner
