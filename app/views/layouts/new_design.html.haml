@@ -27,29 +27,33 @@
 
 %body.bp.showgrid
 	#fb-root
+	#header
+		.wrap
+			.top
+				#logo
+					%a{:href => '/'}
+						= image_tag 'logo.png'
+				#nav
+					%ul
+						%li
+							%a{:href => '/collections'}
+								=image_tag 'header-collections-button.png'
+						%li
+							%a{:href => '/authors'}
+								=image_tag 'header-authors-button.png'
+						%li
+							%a{:href => '/audiobooks'}
+								=image_tag 'header-audiobooks-button.png'
+						%li
+							%a.blog{:href => '/blog'}
+								=image_tag 'header-blog-button.png'
+
+				#searchbox
+					= form_tag search_url, :method => :get do
+						= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+						%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+			.bottom
 	#content
-		.top_nav
-			#logo
-				%a{:href => '/'}
-					= image_tag 'logo-new.png'
-			#searchbox
-				= form_tag search_url, :method => :get do
-					= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-					%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-			#navigator
-				%ul
-					%li
-						%a{:href => '/collections'}
-							collections
-					%li
-						%a{:href => '/authors'}
-							authors
-					%li
-						%a{:href => '/audiobooks'}
-							audiobooks
-					%li
-						%a.blog{:href => '/blog'}
-							blog
 		#left-column
 			= yield
 		#right-column

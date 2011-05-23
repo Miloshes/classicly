@@ -2,11 +2,11 @@
   %title=@author.name
 -# put here the head content
 
-#collection-page
-  WEFJEWIFOEWJ
+#author-page
   %h1=@author.name
   = author_featured_book_image_link(@author, @type)
   %a.book-link{:href => author_book_url(@author, @author.featured_book(@type))}
+  %span=@author_collections
   %h3 Featured Book:
   %h4=@author.featured_book(@type).pretty_title
   %h4 <i>by</i> #{@author.name}
