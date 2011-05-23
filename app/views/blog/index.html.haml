@@ -2,5 +2,5 @@
   .about-the-blog
     %h1 Welcome to the Book Blog
     %p This is <strong>Book Blog</strong>, a weblog by Spreadsong about literature, classic authors, ereading, and our mobile apps, Free Books for iPhone and iPad.
-  = render :partial => 'blog_post', :collection => @posts
+  = render :partial => 'blog_post', :collection => @posts, :as => :post
     
