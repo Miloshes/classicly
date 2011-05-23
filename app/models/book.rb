@@ -52,14 +52,6 @@ class Book < ActiveRecord::Base
     "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
   end
 
-  def self.hashes_for_JSON(books)
-    results = []
-    books.each do|book|
-      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
-    end
-    results
-  end
-
   def self.search(search_term, current_page)
     self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
         joins('LEFT OUTER JOIN collections ON collections.id = collection_book_assignments.collection_id').

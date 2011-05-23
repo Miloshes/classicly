@@ -9,7 +9,8 @@ Classicly::Application.routes.draw do
   namespace 'admin' do
     resources :reviews, :only => [:index, :destroy]
   end
-
+  
+  match 'random_json_audiobooks/:total_audiobooks' => 'audiobooks#random_json'
   match 'random_json_books/:total_books' => 'pages#random_json_books'
   match 'related_books/:id/:total_related' => 'books#related_books_JSON'
   match 'abingo' => "abingo_dashboard#index", :via => :get

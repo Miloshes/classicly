@@ -1,8 +1,5 @@
 class AudiobooksController < ApplicationController
-  before_filter :find_audio_author_collections, :only => :index
-  before_filter :find_audio_genre_collections, :only => :index
-
-  layout 'application'
+  layout 'new_design'
 
   def ajax_paginate
     @collection = Collection.find(params[:id])
@@ -16,6 +13,11 @@ class AudiobooksController < ApplicationController
     @audibly = true
   end
 
+  def random_json
+    audiobooks = Audiobook.blessed.no_squat_image.select('audiobooks.id, author_id, cached_slug, pretty_title').random(params[:total_audiobooks].to_i)
+    render :json => Audiobook.hashes_for_JSON(audiobooks)
+  end
+
   def serve_audiofile
     audiobook = Audiobook.find params[:id]
     audiochapter = AudiobookChapter.find params[:chapter_id]
@@ -27,14 +29,5 @@ class AudiobooksController < ApplicationController
         :disposition => 'attachment',
         :filename => "#{audiobook.pretty_title} - #{audiochapter.title}.mp3"
     audiobook.increment!(:downloaded_count)
-  end
-
-  private
-  def find_audio_author_collections
-    @author_collections = Collection.audio_book_type.by_author
-  end
-
-  def find_audio_genre_collections
-    @genre_collections = Collection.audio_book_type.by_collection
   end
 end
