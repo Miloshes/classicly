@@ -31,18 +31,42 @@ body
   #searchbox
     +column(6)
     :margin
-      :top 4px
+      :top 8px
       :left 30px
+    height: 22px
+    width: 225px
+    border: 1px solid #ab9573
+    :background white
+
     input
       margin-top: 2px
-      height: 22px
-      width: 225px
       color: #d2d2d3
       font-size: 12px
       font-family: 'helvetica'
-      border: 1px solid #ab9573
+      :border 0
+      :width 180px
+      :height 12px
+      :outline none
+      :float left
+      :margin
+        :top 5px
+      :padding
+        :left 3px
+        :top 3px
       &:focus
         :color #333333
+    button
+      :width 25px
+      :height 16px
+      :display block
+      :background url(/images/search-button.png)
+      :border 0
+      :float right
+      :margin
+        :top 1px
+      &:hover
+        :cursor pointer
+        
   #navigator
     +column(13, true)
     text-align: left
@@ -90,7 +114,7 @@ body
     :background #cab08b
   .collection-names-list
     :margin 0 auto
-    :width 980px
+    :width 800px
     :padding 10px
     :background 1px solid #bb9d79
     :font-family 'helvetica'
@@ -98,6 +122,11 @@ body
     a
       :color #FFF
       :text-decoration none
+      +column(5)
+      :text-shadow 0px 1px #555
+      &:hover
+        :text-shadow 0 0 15px #ffffff
+
     span.linky
       :width 110px
       :padding 5px
