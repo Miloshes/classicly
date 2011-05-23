@@ -33,7 +33,6 @@ GEM
       activemodel (= 3.0.5)
       activesupport (= 3.0.5)
     activesupport (3.0.5)
-    addressable (2.2.5)
     arel (2.0.9)
     awesome_print (0.3.2)
     aws-s3 (0.6.2)
@@ -47,10 +46,10 @@ GEM
       ffi (~> 1.0.6)
     closure-compiler (1.1.1)
     columnize (0.3.2)
-    commonwatir (1.8.1)
-      user-choices
     compass (0.10.6)
       haml (>= 3.0.4)
+    commonwatir (1.8.1)
+      user-choices
     daemons (1.1.0)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
@@ -59,17 +58,11 @@ GEM
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
-    faraday (0.7.0)
-      addressable (~> 2.2.4)
-      multipart-post (~> 1.1.0)
-      rack (>= 1.1.0, < 2)
-    faraday-stack (0.1.0)
-      faraday (~> 0.6)
     fastthread (1.0.7)
-    ffi (1.0.7)
-      rake (>= 0.8.7)
     firewatir (1.8.1)
       commonwatir (= 1.8.1)
+    ffi (1.0.7)
+      rake (>= 0.8.7)
     friendly_id (3.2.1)
       babosa (~> 0.2.1)
     gem_plugin (0.2.3)
@@ -82,9 +75,6 @@ GEM
       builder
     htmlentities (4.2.4)
     i18n (0.5.0)
-    indextank (1.0.9.1)
-      faraday-stack
-      yajl-ruby (>= 0.7.7)
     jammit (0.6.0)
       closure-compiler (>= 0.1.0)
       yui-compressor (>= 0.9.1)
@@ -123,7 +113,6 @@ GEM
       daemons (>= 1.0.3)
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
-    multipart-post (1.1.0)
     mysql (2.8.1)
     nokogiri (1.4.4)
     open4 (1.0.1)
@@ -200,7 +189,6 @@ GEM
       s4t-utils (>= 1.0.3)
       xml-simple (>= 1.0.11)
     xml-simple (1.0.14)
-    yajl-ruby (0.8.2)
     yui-compressor (0.9.6)
       POpen4 (>= 0.1.4)
 
@@ -218,7 +206,6 @@ DEPENDENCIES
   hirb
   hoptoad_notifier
   htmlentities
-  indextank
   jammit
   jasmine
   jquery-rails

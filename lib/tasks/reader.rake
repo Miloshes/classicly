@@ -25,14 +25,15 @@ namespace :reader do
   # renders the whole book collection
   task :render_collection => :environment do
     puts "WARNING: remember to nuke all the book pages from the DB before running this!"
-    # start_id = 0
-    # end_id = Book.order('id DESC').limit(1).first().id
+    
+    # NOTE: books rendered so far. id:1-344 and all the books in the top1000_books.yml
+    start_id = 344
+    end_id = Book.last.id
 
     top1000_books = YAML.load_file(APP_CONFIG['yaml_exports_path'] + '/top1000_books.yml').sort
     
-    # start_id.upto(end_id) do |book_id|
-    top1000_books.each do |book_id|
-      next if book_id < 3993
+    start_id.upto(end_id) do |book_id|
+      next if top1000_books.include? book_id
       
       browser = Watir::Browser.new
       browser.goto("http://localhost:3000/render_book_for_the_reader/#{book_id}")
