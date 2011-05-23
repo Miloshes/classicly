@@ -5,7 +5,6 @@ $ ->
   allIds = allIds.get()
   # create a single string:
   data = $(allIds).get().join(',')
-  
   # request AJAX sending all collection ids
   $.getJSON 'collection_json_books', {id : data },  ( data ) ->
     $.each data, (index, value) ->

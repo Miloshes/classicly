@@ -5,10 +5,9 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
 
-#download-confirmation-page
+#download-confirmation-page{:name => "#{@book.id}"}
   .cover-column
     = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg"
-
     .cover-with-title-here.small.related
       .stable
         .spinner
@@ -23,6 +22,7 @@
     %span
       If the download does not automatically start,
       = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
-= javascript_include_tag 'downloads'
+=# javascript_include_tag 'downloads'
+= javascript_include_tag 'covers-book-download-page'
 <script type="text/javascript">document.write(unescape('%3Cscript type="text/javascript" src="'+document.location.protocol+'//dnn506yrbagrg.cloudfront.net/pages/scripts/0010/3575.js"%3E%3C%2Fscript%3E'))</script>
 

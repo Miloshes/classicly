@@ -1,6 +1,6 @@
 (function(){
   $(function() {
-    var totalPopularCovers;
+    var randomBooks, totalBooks, totalPopularCovers;
     // align small sized covers to the bottom in the related books container
     $('img.cover-art').each(function() {
       var addToTop, left, nLeft, nTop, top;
@@ -9,19 +9,33 @@
         nLeft = $(this).offset().left;
         nTop = $(this).offset().top + addToTop;
         return $(this).offset((top = nTop), (left = nLeft));
-        // =============================== FILL POPULAR BOOKS COVERS
+        // =============================== FILL POPULAR BOOKS COVERS:
         // fill up the popular book covers
       }
     });
     totalPopularCovers = $('#right-column .row .cover-here, #right-column .row .cover-with-title-here').size();
-    return $.getJSON('/random_json_books/' + totalPopularCovers, function(data) {
+    $.getJSON('/random_json_books/' + totalPopularCovers, function(data) {
       return $.each($('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), function(index, value) {
         var randCover, toTake, totalCovers;
         totalCovers = data.length;
         randCover = Math.floor(Math.random() * totalCovers);
         toTake = data.splice(randCover, 1);
         return setElementCover($(this), toTake);
+        //=============================== FILL RANDOM BOOK COVERS (Main Page) IF EXIST:
       });
     });
+    randomBooks = $('.random-book');
+    if (randomBooks.get(0)) {
+      totalBooks = randomBooks.size();
+    }
+    return randomBooks.get(0) ? $.getJSON('/random_json_books/' + totalBooks, function(data) {
+      return $.each($('.random-book'), function(index, value) {
+        var randCover, toTake, totalCovers;
+        randCover = Math.floor(Math.random() * totalCovers);
+        toTake = data.splice(randCover, 1);
+        totalCovers = data.length;
+        return setElementCover($(this), toTake);
+      });
+    }) : null;
   });
 })();

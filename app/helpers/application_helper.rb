@@ -128,6 +128,11 @@ module ApplicationHelper
     end
   end
   
+  def sort_books_ajax_link(id, text, sort_by)
+    link_to text, { :controller => 'books', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
+      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
+  end
+
   def shorten_text(text, limit)
     return text if text.length <= limit
     text.slice(0, (limit - 3)).concat("...")

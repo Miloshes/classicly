@@ -1,6 +1,6 @@
 (function(){
   $(function() {
-    var allIds, currentCollectionId, data;
+    var currentCollectionId;
     // =============================== FILL COLLECTION COVERS
     // let's get covers for the current collection:
     currentCollectionId = $('.featured-books').attr('name').split('_')[1];
@@ -25,29 +25,10 @@
           } else {
             return $(this).remove();
             // =============================== FILL COLLECTION'S BOOKS COVERS
-            // get all books's ids:
           }
         });
       });
     });
-    allIds = $('ul.book-list li').map(function() {
-      return $(this).attr('id').split('_')[1];
-    });
-    allIds = allIds.get();
-    // create a single string:
-    data = $(allIds).get().join(',');
-    // request AJAX sending all collection ids
-    return $.getJSON('json_books', {
-      id: data
-    }, function(data) {
-      return $.each(data, function(index, value) {
-        var bookData, selector;
-        // find book element:
-        selector = 'ul.book-list li#book_' + value.attrs.id;
-        bookData = [value.attrs];
-        // set the cover for this book
-        return setElementCover($(selector + ' .cover-here'), bookData);
-      });
-    });
+    return coversForRelatedBooks();
   });
 })();
