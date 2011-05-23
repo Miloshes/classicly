@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
 
+  has_and_belongs_to_many :blog_posts, :join_table => 'blog_posts_books'
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
   has_many :download_formats

@@ -1,0 +1,19 @@
+.show-post
+  .blog-title
+    %h2 
+      = link_to post.title, post_path(post)
+      %span.date= post.created_at.to_s :post_title_format
+      %span.author Tyler
+  .content
+    = raw post.content
+  .related
+    %h5 Related Books:
+    .cover-here-with-title.medium
+      .stable
+        .spinner
+    .cover-with-title-here.medium.popular
+      .stable
+        .spinner
+    .cover-with-title-here.medium.popular
+      .stable
+        .spinner
