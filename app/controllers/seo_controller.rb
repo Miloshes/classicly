@@ -60,7 +60,7 @@ class SeoController < ApplicationController
       @featured_book = seo.find_featured_book_for_collection
       set_collections_and_audibly_for_collection(seo.seoable)
       if seo.seoable.is_audio_collection?
-        render 'show_audio_collection' and return
+        render 'show_audio_collection', :layout => 'audibly' and return
       else
         render 'show_collection' and return
       end

@@ -26,8 +26,7 @@
       .cover-here.tiny
         .stable
           .spinner
-      %a.browse-collection{:href => '/best-of'}
-        =image_tag 'browse-this-collection-big.png'
+      = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured), :class => 'browse-collection'
   #collection-list
     %h2 Collections:
     = render 'collection_list', :collections => @collections
