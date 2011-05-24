@@ -1,5 +1,6 @@
 class SeoSlug < ActiveRecord::Base
   belongs_to :seoable, :polymorphic => true
+  named_scope :mp3, where(:format => 'mp3')
   named_scope :read_online, where(:format => 'online')
 
   def find_featured_book_for_collection

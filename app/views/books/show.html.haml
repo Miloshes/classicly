@@ -37,8 +37,7 @@
         = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), download_book_url(@book.author, @book, :download_format => 'azw')) : image_tag('download_kindle.png') 
       .read
         - if @book.book_pages.size != 0
-          - link_to read_online_url(@book.author, @book, 1) do
-            = image_tag 'read_online_big.png'
+          = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
       %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
 

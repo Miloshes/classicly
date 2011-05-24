@@ -4,9 +4,14 @@ class SeoController < ApplicationController
   def show_book
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
-    
-    slug = @book.seo_slugs.where(:format => 'online').first.slug
-    redirect_to "/#{slug}"
+    if @book
+      @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+      @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
+      set_collections_and_audibly_for_book(@book)
+      @review = session[:review] || Review.new
+      session[:review] = nil
+      render @book.class == Book ? 'books/show' : 'audiobooks/show'
+    end
   end
 
   def show
