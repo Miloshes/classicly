@@ -10,7 +10,11 @@ class SeoController < ApplicationController
       set_collections_and_audibly_for_book(@book)
       @review = session[:review] || Review.new
       session[:review] = nil
-      render @book.class == Book ? 'books/show' : 'audiobooks/show'
+      if @book.is_a?(Book)
+        render 'books/show'
+      else
+        render 'audiobooks/show', :layout => 'audibly'
+      end
     end
   end
 

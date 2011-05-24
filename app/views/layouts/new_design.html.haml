@@ -66,12 +66,9 @@
 					.stable
 						.spinner
 				.links
-					%a{:href => '/best-of'}
-						See more popular books
-					%a{:href => '/collections'}
-						Browse collections
-					%a{:href => '/authors'}
-						Browse authors
+					= link_to 'See more popular books', '/best-of'
+					= link_to "Browse collections", '/collections'
+					= link_to "Browse authors", '/authors'
 	#bottom-shadow
 	#footer
 		.centering

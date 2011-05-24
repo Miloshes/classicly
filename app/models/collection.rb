@@ -22,6 +22,8 @@ class Collection < ActiveRecord::Base
   # genre
   belongs_to :genre
   default_scope :order => 'downloaded_count desc'
+  scope :of_type, lambda {|type| where (:book_type => type)}
+  scope :collection_type, lambda {|type| where (:collection_type => type)}
   scope :book_type, where(:book_type => 'book')
   scope :audio_book_type, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
@@ -54,14 +56,13 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
   
-  
-  def self.get_collection_books_in_json(collection_ids)
+  def self.get_collection_books_in_json(collection_ids, type = 'book')
     data = []
     collection_ids.each do |id|
       # find the collection:
       current = Collection.find id
-      # get 5 books to show:
-      books = current.books.limit(5)
+      # get 5 books (or audiobooks) to show:
+      books = ( type == 'book' ) ? current.books.limit(5) : current.audiobooks.limit(5)
       # create the books data to be converted in json: 
       books_hash_array = books.map do |book|
         author_slug = Author.where(:id => book.author_id).select('cached_slug').first.cached_slug
@@ -72,7 +73,7 @@ class Collection < ActiveRecord::Base
     end
     data
   end
-
+  
   def self.options_for_book_type
     ["book", "audiobook"].collect { |name|
         ["#{name}", name]

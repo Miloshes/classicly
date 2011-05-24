@@ -124,7 +124,7 @@ GEM
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
     multipart-post (1.1.0)
-    mysql (2.8.1)
+    mysql2 (0.2.7)
     nokogiri (1.4.4)
     open4 (1.0.1)
     paperclip (2.3.8)
@@ -228,7 +228,7 @@ DEPENDENCIES
   meta_where
   mixpanel
   mongrel
-  mysql
+  mysql2 (~> 0.2.3)
   nokogiri
   paperclip
   rails (= 3.0.5)

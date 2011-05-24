@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_indextank
-    @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    #@indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
   end
 
   def redirect_back_or_default

@@ -1,6 +1,8 @@
 Classicly::Application.routes.draw do
 
   # put here all the matches , except for the more general ones.
+  match 'audiobook-collections' => 'pages#audio_collections'
+  match 'audiobook-authors' => 'pages#audiobook_authors' 
   match 'collections' => 'pages#collections'
   match 'authors' => 'pages#authors'
   match 'json_books' => 'books#json_books'
