@@ -19,7 +19,6 @@
       audiobook = true;
     } else {
       url = '/random_json_books/';
-      audiobook = true;
     }
     $.getJSON(url + totalPopularCovers, function(data) {
       return $.each($('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), function(index, value) {

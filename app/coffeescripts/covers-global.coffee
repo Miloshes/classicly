@@ -14,7 +14,6 @@ $ ->
     audiobook = true
   else
     url = '/random_json_books/'
-    audiobook = true
   $.getJSON url + totalPopularCovers, (data) ->
     $.each $('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), (index, value) ->
       totalCovers = data.length
