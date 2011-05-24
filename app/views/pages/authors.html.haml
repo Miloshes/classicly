@@ -1,16 +1,12 @@
 #author-list-page
-  #featured-collection{:name => "collection_10"}
+  #featured-collection{:name => "collection_#{@featured.id}"}
     .cover-column
       .cover-here.medium
         .stable
           .spinner
     .detail-column
-      %h1 Featured Author: <strong>Edgar Rice Burroughs</strong>
-      %p 
-        Edgar Rice Burroughs (1875 – 1950) was an American author, famous for his creation of the character Tarzan and the Carter series. Burroughs embraced the pulp fiction of the day, and his writing was first and foremost about making money. Burroughs, who was married with two children, held a series of low paid jobs until the publication of his first story, Under the Moons of Mars, which fetched him close to 9 grand in today’s money. He thought: "...if people were paid for writing rot such as I read in some of those magazines, that I could write stories just as rotten. As a matter of fact, although I had never written a story, I knew absolutely that I could write stories just as entertaining and probably a whole lot more so...”
-
-
-
+      %h1 Featured Author: <strong>#{@featured.name}</strong>
+      %p= raw parsed_collection_description(@featured.description )
     .books-and-link
       .cover-here.tiny
         .stable

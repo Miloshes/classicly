@@ -3,22 +3,26 @@ class PagesController < ApplicationController
 
   def audiobook_authors
     @collections = Collection.of_type('audiobook').collection_type('author').random(10)
+    @featured = @collections[rand(@collections.size)]
     @viewing_audibly = true
     render 'authors', :layout => 'audibly'
   end
   
   def audio_collections
     @collections = Collection.of_type('audiobook').collection_type('collection').random(10)
+    @featured = @collections[rand(@collections.size)]
     @viewing_audibly = true
     render 'collections', :layout => 'audibly'
   end
     
   def authors
     @collections = Collection.book_type.by_author.random(10)
+    @featured = @collections[rand(@collections.size)]
   end
 
   def collections
     @collections = Collection.book_type.by_collection.random(10)
+    @featured = @collections.first
   end
   
 

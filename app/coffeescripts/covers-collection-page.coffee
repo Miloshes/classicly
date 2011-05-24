@@ -32,7 +32,7 @@ $ ->
 
   #now lets get the featured collection:
   featuredCollectionId = $('#featured-collection').attr('name').split('_')[1]
-  $.getJSON 'collection_json_books', {id : featuredCollectionId },  ( data ) ->
+  $.getJSON 'collection_json_books', {id : featuredCollectionId, type: bookType },  ( data ) ->
     $.each data, (index, value) ->
       # find featured collection element:
       selector = '#featured-collection'
@@ -43,6 +43,9 @@ $ ->
         randCover = Math.floor(Math.random() * totalCovers)
         toTake = bookData.splice randCover, 1
         if totalCovers > 0
-          setElementCover( $( this ), toTake )
+          if audiobooks
+            setCoverForAudiobook $(this), toTake
+          else
+            setElementCover $( this ), toTake
         else
           $(this).remove();

@@ -35,7 +35,8 @@
     //now lets get the featured collection:
     featuredCollectionId = $('#featured-collection').attr('name').split('_')[1];
     return $.getJSON('collection_json_books', {
-      id: featuredCollectionId
+      id: featuredCollectionId,
+      type: bookType
     }, function(data) {
       return $.each(data, function(index, value) {
         var bookData, selector;
@@ -49,7 +50,7 @@
           totalCovers = bookData.length;
           randCover = Math.floor(Math.random() * totalCovers);
           toTake = bookData.splice(randCover, 1);
-          return totalCovers > 0 ? setElementCover($(this), toTake) : $(this).remove();
+          return totalCovers > 0 ? audiobooks ? setCoverForAudiobook($(this), toTake) : setElementCover($(this), toTake) : $(this).remove();
         });
       });
     });
