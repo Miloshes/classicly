@@ -7,10 +7,6 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
   %meta{:name => 'description', :content => @book.description_for_open_graph}
 
-- content_for :related_books do
-  %span
-    Related Books
-  = render :partial => 'pages/cover', :collection => @related_books
 
 #book-page.grid_9
   #cover.grid_2.alpha
@@ -30,7 +26,7 @@
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
       #read_online_button_container
-        = image_tag 'classicly-read-online_03.png'
+        = link_to image_tag('classicly-read-online_03.png'), '/read-dracula-online-free/page/1'
         .clear
         .read_online_text
           %p
