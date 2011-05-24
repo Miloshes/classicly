@@ -36,17 +36,13 @@
 				#nav
 					%ul
 						%li
-							%a{:href => '/collections'}
-								=image_tag 'header-collections-button.png'
+							%a{:href => '/collections'} Collections
 						%li
-							%a{:href => '/authors'}
-								=image_tag 'header-authors-button.png'
+							%a{:href => '/authors'} Authors
 						%li
-							%a{:href => '/audiobooks'}
-								=image_tag 'header-audiobooks-button.png'
+							%a{:href => '/audiobooks'} Audiobooks
 						%li
-							%a.blog{:href => '/blog'}
-								=image_tag 'header-blog-button.png'
+							%a.blog{:href => '/blog'} Blog
 
 				#search
 					= form_tag search_url, :method => :get do
