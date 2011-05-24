@@ -244,6 +244,10 @@ class Book < ActiveRecord::Base
     "Read #{book_title} Online Free"
   end
 
+  def read_online_slug
+    "/#{self.seo_slugs.read_online.first.slug}/page/1"
+  end
+  
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
