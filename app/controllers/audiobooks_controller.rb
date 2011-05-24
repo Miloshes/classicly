@@ -1,5 +1,5 @@
 class AudiobooksController < ApplicationController
-  layout 'new_design'
+  layout 'audibly'
 
   def ajax_paginate
     @collection = Collection.find(params[:id])

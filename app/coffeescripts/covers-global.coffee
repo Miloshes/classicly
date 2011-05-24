@@ -9,12 +9,21 @@ $ ->
   # =============================== FILL POPULAR BOOKS COVERS:
   # fill up the popular book covers
   totalPopularCovers = $('#right-column .row .cover-here, #right-column .row .cover-with-title-here').size()
-  $.getJSON '/random_json_books/' + totalPopularCovers, (data) ->
+  if $('#right-column .row').hasClass 'audiobooks'
+    url = '/random_json_audiobooks/'
+    audiobook = true
+  else
+    url = '/random_json_books/'
+    audiobook = true
+  $.getJSON url + totalPopularCovers, (data) ->
     $.each $('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), (index, value) ->
       totalCovers = data.length
       randCover = Math.floor(Math.random() * totalCovers)
-      toTake = data.splice randCover, 1      
-      setElementCover( $( this ), toTake )
+      toTake = data.splice randCover, 1
+      if audiobook
+        setCoverForAudiobook( $( this ),  toTake )
+      else
+        setElementCover( $( this ), toTake )
   #=============================== FILL RANDOM BOOK COVERS (Main Page) IF EXIST:
   randomBooks = $('.random-book')
   totalBooks = randomBooks.size() if randomBooks.get(0)
