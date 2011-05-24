@@ -26,7 +26,8 @@
         <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
       #read_online_button_container
-        = link_to image_tag('classicly-read-online_03.png'), @book.read_online_slug
+        - if @book.book_pages.size != 0
+          = link_to image_tag('classicly-read-online_03.png'), @book.read_online_slug
         .clear
         .read_online_text
           %p
