@@ -36,6 +36,10 @@ class Audiobook < ActiveRecord::Base
     already_chosen_books
   end
 
+  def download_mp3_slug
+    self.seo_slugs.mp3.first.slug
+  end
+
   def find_fake_related(number = 8, select = nil)
     # determine if we have a SELECT whitelist on the table. Rails uses a string.
     select_fields = select.join(',') if select
