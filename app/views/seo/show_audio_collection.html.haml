@@ -31,11 +31,11 @@
 
     .sorting
       %span Sort By:
-      = sort_books_ajax_link @collection.id, 'Most Downloaded', 'downloaded_count'
-      = sort_books_ajax_link @collection.id, 'Title', 'title'
+      = sort_audiobooks_ajax_link @collection.id, 'Most Downloaded', 'downloaded_count'
+      = sort_audiobooks_ajax_link @collection.id, 'Title', 'title'
       -# sorting by author an author collection is pointless
       - unless @collection.is_author_collection?
-        = sort_books_ajax_link @collection.id, 'Author', 'author' 
+        = sort_audiobooks_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list.audiobooks
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
     .pagination

@@ -125,10 +125,10 @@ class Collection < ActiveRecord::Base
 
   def ajax_paginated_audiobooks(params)
     if params[:sort_by].nil?
-      self.audiobooks.page(params[:page]).per(8)
+      self.audiobooks.page(params[:page]).per(10)
     else
-      params[:sort_by] == 'author' ? self.audiobooks.order_by_author.page(params[:page]).per(8) : 
-        self.audiobooks.order(params[:sort_by]).page(params[:page]).per(8)
+      params[:sort_by] == 'author' ? self.audiobooks.order_by_author.page(params[:page]).per(10) : 
+        self.audiobooks.order(params[:sort_by]).page(params[:page]).per(10)
     end
   end
 
