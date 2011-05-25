@@ -39,6 +39,6 @@
     %ul.book-list.audiobooks
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
     .pagination
-      = paginate @books, :params => {:controller => 'books', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
+      = paginate @books, :params => {:controller => 'audiobooks', :action => 'ajax_paginate', :id => @collection.id} , :remote => true
 
 = javascript_include_tag 'covers-collection-detail-page'
