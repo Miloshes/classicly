@@ -56,7 +56,8 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
   
-  def self.get_collection_books_in_json(collection_ids, type = 'book')
+  def self.get_collection_books_in_json(collection_ids, type)
+    type = type || 'book'
     data = []
     collection_ids.each do |id|
       # find the collection:
