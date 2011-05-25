@@ -8,11 +8,10 @@
 
 #collection-page
   .collection-info
-    - cache :action => 'show', :action_suffix => 'collection_details' do
-      %h1
-        =@collection.name
-        Books
-      %p=simple_format(parsed_collection_description(@collection.description))
+    %h1
+      =@collection.name
+      Books
+    %p=simple_format(parsed_collection_description(@collection.description))
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books{:name => "collection_#{@collection.id}"}
     .cover-here.medium

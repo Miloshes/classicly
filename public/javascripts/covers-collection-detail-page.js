@@ -4,7 +4,6 @@
     // =============================== FILL COLLECTION COVERS
     // let's get covers for the current collection:
     currentCollectionId = $('.featured-books').attr('name').split('_')[1];
-    console.log(currentCollectionId);
     $.getJSON('collection_json_books', {
       id: currentCollectionId
     }, function(data) {

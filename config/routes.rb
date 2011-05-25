@@ -6,6 +6,7 @@ Classicly::Application.routes.draw do
   match 'collections' => 'pages#collections'
   match 'authors' => 'pages#authors'
   match 'json_books' => 'books#json_books'
+  match 'json_audiobooks' => 'audiobooks#json_audiobooks'
   match 'collection_json_books' => 'collections#collection_json_books'
 
   namespace 'admin' do

@@ -4,25 +4,30 @@ $(function(){
 
 
 function coversForRelatedBooks() {
-  var allIds, data;
+  var allIds, data, audiobooks, url;
   // get all books's ids:
   allIds = $('ul.book-list li').map(function() {
     return $(this).attr('id').split('_')[1];
   });
   allIds = allIds.get();
+  // determine if we are going to fetch audiobooks or books
+  audiobooks = $('ul.book-list').hasClass('audiobooks');
+  audiobooks ? ( url = 'json_audiobooks') : ( url = 'json_books' );
   // create a single string:
   data = $(allIds).get().join(',');
   // request AJAX sending all collection ids
-  return $.getJSON('json_books', {
+  return $.getJSON( url, {
     id: data
   }, function(data) {
     return $.each(data, function(index, value) {
-      var bookData, selector;
+      var bookData, selector, str;
       // find book element:
-      selector = 'ul.book-list li#book_' + value.attrs.id;
       bookData = [value.attrs];
+      str = audiobooks ? 'ul.book-list li#audiobook_' : 'ul.book-list li#book_';
+      selector = str + value.attrs.id + ' .cover-here';
+      console.log(selector);
       // set the cover for this book
-      return setElementCover($(selector + ' .cover-here'), bookData);
+      audiobooks ? setCoverForAudiobook( $( selector ), bookData ) : setElementCover( $( selector ), bookData );
     });
   });
 };
