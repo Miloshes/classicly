@@ -25,7 +25,7 @@
           randCover = Math.floor(Math.random() * totalCovers);
           toTake = bookData.splice(randCover, 1);
           if (totalCovers > 0) {
-            return audiobooks ? setElementCover($(this), toTake) : setCoverForAudiobook($(this), toTake);
+            return audiobooks ? setCoverForAudiobook($(this), toTake) : setElementCover($(this), toTake);
           } else {
             return $(this).remove();
             // =============================== FILL COLLECTION'S BOOKS COVERS

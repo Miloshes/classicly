@@ -18,7 +18,7 @@ $ ->
         randCover = Math.floor(Math.random() * totalCovers)
         toTake = bookData.splice randCover, 1
         if totalCovers > 0
-          if audiobooks then setElementCover( $( this ), toTake ) else setCoverForAudiobook( $( this ), toTake )
+          if audiobooks then setCoverForAudiobook( $( this ), toTake ) else setElementCover( $( this ), toTake )
         else
           $(this).remove();
   # =============================== FILL COLLECTION'S BOOKS COVERS
