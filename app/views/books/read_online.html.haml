@@ -8,13 +8,25 @@
   %meta{:name => 'description', :content => @book.description_for_open_graph}
 
 
-#book-page.grid_9
-  #cover.grid_2.alpha
-    = image_tag "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :alt => "#{@book.pretty_title} by #{@book.author.name}"
-  .grid_7.omega
-    #book-metadata.grid_5.omega
-      %h1= @book.pretty_title
+#book-page
+  .cover-column
+    #current-book.cover-here.medium
+      .stable
+        .spinner
+    %h4 Related
+    .cover-with-title-here.small.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+
+  .book-column
+    #book-metadata
+      %h1 Read #{@book.pretty_title} Online Free
       %h2
         by
         %span.book-author
@@ -23,28 +35,19 @@
           -else
             = @book.author.name
       .share
-        <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like show_faces="true" width="600" font="arial" action='recommend'></fb:like>
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
       #read_online_button_container
+        =image_tag 'read-online-arrow.png'
         - if @book.book_pages.size != 0
-          = link_to image_tag('classicly-read-online_03.png'), @book.read_online_slug
+          = link_to image_tag('read-online-focus.png'), @book.read_online_slug
         .clear
         .read_online_text
-          %p
-            Click here to read with our online ereader.
-          %p
-            We even save your bookmarks!
-      .clear
-      %div{:style => 'margin-top:20px; font-weight:bold; font-size: 25px;' }
-        Or...
-      .bold
-        = raw links_for_downloading_special_formats(@book)
-      .bold
-        Browse Chapters
-        
-    .grid_2.omega.download-share
-      .clear
-      .share-widgets
+          %p.explanation.first Reading on Classicly is completely free- these books are public domain. 
+
+          %p.explanation We don’t pay a  cent, so neither do you.
+
+       
 = javascript_include_tag 'book-details'
 :javascript
   $('#reviews').data('book_id', #{@book.id})
