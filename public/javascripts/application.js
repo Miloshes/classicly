@@ -25,7 +25,6 @@ function coversForRelatedBooks() {
       bookData = [value.attrs];
       str = audiobooks ? 'ul.book-list li#audiobook_' : 'ul.book-list li#book_';
       selector = str + value.attrs.id + ' .cover-here';
-      console.log(selector);
       // set the cover for this book
       audiobooks ? setCoverForAudiobook( $( selector ), bookData ) : setElementCover( $( selector ), bookData );
     });

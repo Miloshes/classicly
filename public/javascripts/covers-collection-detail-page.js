@@ -1,12 +1,17 @@
 (function(){
   $(function() {
-    var currentCollectionId;
+    var audiobooks, currentCollectionId, params;
     // =============================== FILL COLLECTION COVERS
     // let's get covers for the current collection:
     currentCollectionId = $('.featured-books').attr('name').split('_')[1];
-    $.getJSON('collection_json_books', {
+    audiobooks = $('.featured-books').hasClass('audiobooks');
+    audiobooks ? (params = {
+      id: currentCollectionId,
+      type: 'audiobook'
+    }) : (params = {
       id: currentCollectionId
-    }, function(data) {
+    });
+    $.getJSON('collection_json_books', params, function(data) {
       return $.each(data, function(index, value) {
         var bookData, selector;
         // find current collection element:
@@ -20,7 +25,7 @@
           randCover = Math.floor(Math.random() * totalCovers);
           toTake = bookData.splice(randCover, 1);
           if (totalCovers > 0) {
-            return setElementCover($(this), toTake);
+            return audiobooks ? setElementCover($(this), toTake) : setCoverForAudiobook($(this), toTake);
           } else {
             return $(this).remove();
             // =============================== FILL COLLECTION'S BOOKS COVERS

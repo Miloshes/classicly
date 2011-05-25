@@ -11,7 +11,7 @@
     %h1="#{@collection.name} Audiobooks"
     %p=simple_format(parsed_collection_description(@collection.description))
   -# Warning. Don't change name attribute below , please ask Nacho:
-  .featured-books{:name => "collection_#{@collection.id}"}
+  .featured-books.audiobooks{:name => "collection_#{@collection.id}"}
     .cover-here.medium
       .stable
         .spinner
