@@ -13,5 +13,5 @@
     = shorten_text simple_format(audiobook.description), 300
 
   .download-link
-    = image_tag 'view-this-book.png'
+    = link_to image_tag('view-this-book.png'), author_book_url(audiobook.author, audiobook)
         
