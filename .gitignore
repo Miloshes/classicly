@@ -24,3 +24,8 @@ ruby
 /public/javascripts/.global.js.swp
 /app/controllers/.seo_controller.rb.swp
 /app/views/authors/.show.html.haml.swp
+/app/controllers/.pages_controller.rb.swp
+/app/stylesheets/partials/._book_page.sass.swp
+/app/views/audiobooks/.index.html.haml.swp
+/app/views/books/.read_online.html.haml.swp
+/app/views/books/.show.html.haml.swp
