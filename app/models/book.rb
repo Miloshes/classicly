@@ -252,19 +252,4 @@ class Book < ActiveRecord::Base
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
   end
-
-  def shorten_title(limit)
-    return self.pretty_title if self.pretty_title.length <= limit
-    self.pretty_title.slice(0, (limit - 3)).concat("...")
-  end
-
-  def view_book_page_title
-    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
-      "#{self.pretty_title} by #{self.author.name}"
-    elsif self.pretty_title.length <= 70
-      self.pretty_title
-    else
-      shorten_title 70
-    end
-  end
 end

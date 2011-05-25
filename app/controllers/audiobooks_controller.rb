@@ -32,6 +32,14 @@ class AudiobooksController < ApplicationController
     audiobooks = Audiobook.blessed.no_squat_image.select('audiobooks.id, author_id, cached_slug, pretty_title').random(params[:total_audiobooks].to_i)
     render :json => Audiobook.hashes_for_JSON(audiobooks)
   end
+  
+  def related_audiobooks_in_json
+    audiobooks = [ ]
+    audiobook = Audiobook.find params[:id]
+    audiobooks << audiobook
+    audiobooks += audiobook.find_fake_related(params[:total_related].to_i,  ['audiobooks.id', 'author_id', 'cached_slug', 'pretty_title'])
+    render :json => Audiobook.hashes_for_JSON(audiobooks)
+  end
 
   def serve_audiofile
     audiobook = Audiobook.find params[:id]

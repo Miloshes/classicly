@@ -12,6 +12,21 @@ module CommonBookMethods
     self.description[0..limit]
   end
   
+  def view_book_page_title
+    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
+      "#{self.pretty_title} by #{self.author.name}"
+    elsif self.pretty_title.length <= 70
+      self.pretty_title
+    else
+      shorten_title 70
+    end
+  end
+
+  def shorten_title(limit)
+    return self.pretty_title if self.pretty_title.length <= limit
+    self.pretty_title.slice(0, (limit - 3)).concat("...")
+  end
+
   module CommonClassMethods
     def hashes_for_JSON(books)
       results = []

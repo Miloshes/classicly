@@ -36,23 +36,22 @@ class Audiobook < ActiveRecord::Base
     already_chosen_books
   end
 
-  def find_fake_related(number = 8)
+  def find_fake_related(number = 8, select = nil)
+    # determine if we have a SELECT whitelist on the table. Rails uses a string.
+    select_fields = select.join(',') if select
+    
     chosen_books = []
-
-    # Two sources for related books:
-    #  - other books associated to similar collections
-    #  - other books of the author with the same language
-
-    # == Other books of the author, with the same language
-    audio_books_from_same_author = self.author.audiobooks.where("id <> ?", self.id)
+    audio_books_from_same_author = select ? self.author.audiobooks.where("id <> ?", self.id).select(select_fields) : 
+      self.author.audiobooks.where("id <> ?", self.id)
     chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_author)
 
     audio_books_from_same_collections = []
-    self.collections.each { |collection| audio_books_from_same_collections+= collection.audiobooks }
+    self.collections.each { |collection| audio_books_from_same_collections+= select ? collection.audiobooks.select(select_fields) :
+        collection.audiobooks }
     chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_collections)
 
     chosen_books.compact!
-    chosen_books.sort_by {rand} 
+    chosen_books.sort_by { rand } 
   end
 
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
@@ -114,11 +113,6 @@ class Audiobook < ActiveRecord::Base
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
-  end
-  
-  def shorten_title(limit)
-    return self.pretty_title if self.pretty_title.length <= limit
-    self.pretty_title.slice(0, (limit - 3)).concat("...")
   end
 
   private
