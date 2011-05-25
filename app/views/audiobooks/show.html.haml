@@ -25,10 +25,7 @@
           = book_author_link(@book)
       %p= simple_format(@book.description)
     .download
-      = image_tag('download_pdf.png')
-      = image_tag('download_kindle.png') 
-    .read
-      = link_to image_tag( 'read_online_big.png' ), seo_url(@book.download_mp3_slug)
+      = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
     %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
 
