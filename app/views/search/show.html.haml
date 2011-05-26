@@ -8,7 +8,7 @@
   %h1 Search results for <strong>'#{@search}'</strong>
   .pagination
     = paginate @books
-  %ul.book-list
+  %ul{:class => "#{ @audibly ? 'book-list audiobooks' : 'book-list' }"}
     = render :partial => '/books/listed_book', :collection => @books, :as => :book
   %ul.featured-book-list
 = javascript_include_tag 'covers-search-page'

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  layout 'new_design'
+
   protect_from_forgery
   before_filter :collections_for_footer
   before_filter :set_return_to

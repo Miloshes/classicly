@@ -1,6 +1,4 @@
 class BlogController < ApplicationController
-  layout 'new_design'
-
   def index
     @posts = BlogPost.all
   end

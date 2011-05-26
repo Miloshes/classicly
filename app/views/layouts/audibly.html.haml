@@ -46,6 +46,7 @@
 				#search
 					= form_tag search_url, :method => :get do
 						= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+						= hidden_field_tag 'type', 'audiobook'
 						%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
 			.bottom
 	#content

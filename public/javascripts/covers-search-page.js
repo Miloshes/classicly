@@ -1,8 +1,10 @@
 (function(){
   $(function() {
-    var allIds, data, domElements, totalCovers;
+    var allIds, audiobooks, data, domElements, totalCovers, url;
     // fetch covers for found books
     domElements = $('ul.book-list li');
+    audiobooks = $('ul.book-list').hasClass('audiobooks');
+    url = audiobooks ? '/json_audiobooks' : '/json_books';
     // get all collection's ids:
     allIds = domElements.map(function() {
       return $(this).attr('id').split('_')[1];
@@ -11,7 +13,7 @@
     // create a single string:
     data = $(allIds).get().join(',');
     totalCovers = domElements.size();
-    return $.getJSON('/json_books/', {
+    return $.getJSON(url, {
       id: data
     }, function(data) {
       return $.each(data, function(index, value) {
@@ -19,7 +21,7 @@
         id = value.attrs.id;
         selector = 'ul.book-list li#book_' + id + ' .cover-here';
         toTake = [value.attrs];
-        return setElementCover($(selector), toTake);
+        return audiobooks ? setCoverForAudiobook($(selector), toTake) : setElementCover($(selector), toTake);
       });
     });
   });
