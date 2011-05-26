@@ -1,6 +1,4 @@
 class PagesController < ApplicationController
-  layout "new_design"
-
   def audiobook_authors
     @collections = Collection.of_type('audiobook').collection_type('author').random(10)
     @featured = @collections.first
@@ -16,7 +14,7 @@ class PagesController < ApplicationController
   end
     
   def authors
-    @collections = Collection.book_type.by_author.random(10)
+    @collections = Collection.book_type.by_author.random(10).select('id, description, name, cached_slug')
     @featured = @collections.first
   end
 

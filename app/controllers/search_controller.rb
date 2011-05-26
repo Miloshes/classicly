@@ -1,16 +1,11 @@
 class SearchController < ApplicationController
-  layout 'new_design'
   def show
     @search = params[:term]
-    documents = @indextank.search "#{@search} type:book"
-    match_count = documents['matches']
-    docids = documents['results'].collect{|doc| doc['docid']}
-    bookids = docids.collect do |docid|
-      arr = docid.split('_')
-      arr.first == "b" ? arr.last.to_i : nil
+    @books =  Search.search_books @search, @indextank, params[:type], params[:page]
+    if params[:type]
+      @audibly = true
+      render :layout => 'audibly'
     end
-    bookids.compact!
-    @books = Book.where(:id.in => bookids).page(params[:page]).per(10)
   end
   
   def autocomplete
@@ -19,15 +14,5 @@ class SearchController < ApplicationController
     docids = data['results'].collect {|datum| datum['docid']}
     results = Search.json_for_autocomplete(docids)
     render :json => results.to_json
-  end
-  
-  private
-  def find_author_collections
-    @author_collections = params[:type] == 'audiobook' ? Collection.audio_book_type.by_author : Collection.book_type.by_author
-  end
-
-  def find_genre_collections
-    @genre_collections = params[:type] == 'audiobook' ? Collection.audio_book_type.by_collection : 
-      Collection.book_type.by_collection
   end
 end

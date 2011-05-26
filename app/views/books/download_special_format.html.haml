@@ -17,4 +17,4 @@
         #{@format == 'azw' ? 'Kindle' : @format.upcase }
       .grid_7.alpha.omega
         .facebook-upsell
-          = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, :format => @format), :id => 'download-facebook-post', :class => 'conversion-button kiss green large kiss', :method => 'post'
+          = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, @format), :id => 'download-facebook-post', :class => 'conversion-button kiss green large kiss', :method => 'post'
