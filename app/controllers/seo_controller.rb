@@ -73,7 +73,7 @@ class SeoController < ApplicationController
     session[:review] = nil
     @format = seo.download_format
     if seo.is_for_type?('audiobook')
-      render 'audiobooks/download'
+      render 'audiobooks/download', :layout => 'audibly'
     elsif seo.is_for_type?('book')
       if @format == 'online'
         render 'books/read_online'
