@@ -6,7 +6,7 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => @book.pretty_title, :type => 'book' })
 
-#book-page
+#book-page{:name => "#{@book.id}"}
   .cover-column
     #current-book.cover-here.medium
       .stable
@@ -47,3 +47,4 @@
       - else
         = image_or_link_to_download_format @book, 'azw'
       = image_tag 'read-online-small.png'
+= javascript_include_tag 'covers-book-detail'
