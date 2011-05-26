@@ -42,6 +42,8 @@
 
       %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
-
-      =image_tag 'download_kindle.png'
-      =image_tag 'read-online-small.png'
+      - if @format == 'azw'
+        = image_or_link_to_download_format @book, 'pdf'
+      - else
+        = image_or_link_to_download_format @book, 'azw'
+      = image_tag 'read-online-small.png'
