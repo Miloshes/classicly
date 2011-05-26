@@ -860,6 +860,25 @@ ul.ui-autocomplete {
 #book-page .book-column p.explanation.first {
   margin-top: 10px;
 }
+/* line 56, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column .download-highlight {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 310px;
+  background: #ffffd7;
+  border: 1px solid #e2c822;
+  text-align: center;
+  padding: 10px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #book-page .book-column .download-highlight {
+  overflow-x: hidden;
+}
+/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column .download-highlight img, #book-page .book-column .download-highlight a {
+  margin: 0 auto;
+}
 
 /* line 1, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page {
