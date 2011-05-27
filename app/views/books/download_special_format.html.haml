@@ -46,5 +46,6 @@
         = image_or_link_to_download_format @book, 'pdf'
       - else
         = image_or_link_to_download_format @book, 'azw'
-      = image_tag 'read-online-small.png'
+      - if @book.book_pages.size != 0
+        = link_to image_tag( 'read_online_small.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
 = javascript_include_tag 'covers-book-detail'
