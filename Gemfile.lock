@@ -216,6 +216,7 @@ DEPENDENCIES
   friendly_id (~> 3.2.1)
   haml
   hirb
+  hoe
   hoptoad_notifier
   htmlentities
   indextank
