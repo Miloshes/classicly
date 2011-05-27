@@ -1,9 +1,9 @@
 class SeoSlug < ActiveRecord::Base
   belongs_to :seoable, :polymorphic => true
-  named_scope :kindle, where(:format => 'kindle')
-  named_scope :mp3, where(:format => 'mp3')
-  named_scope :pdf, where(:format => 'pdf')
-  named_scope :read_online, where(:format => 'online')
+  scope :kindle, where(:format => 'kindle')
+  scope :mp3, where(:format => 'mp3')
+  scope :pdf, where(:format => 'pdf')
+  scope :read_online, where(:format => 'online')
 
   def find_featured_book_for_collection
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'

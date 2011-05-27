@@ -9,6 +9,9 @@ Classicly::Application.routes.draw do
   match 'json_audiobooks' => 'audiobooks#json_audiobooks'
   match 'collection_json_books' => 'collections#collection_json_books'
 
+  # for delivering audiobook file
+  match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
+
   namespace 'admin' do
     resources :reviews, :only => [:index, :destroy]
   end
@@ -76,9 +79,6 @@ Classicly::Application.routes.draw do
 
   # for invoking the download page from outside classicly.com
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'book_download_page', :via => :get
-
-  # for delivering audiobook file
-  match '/download_audiobook/:id/:chapter_id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
   
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
