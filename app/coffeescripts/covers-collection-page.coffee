@@ -5,8 +5,14 @@ $ ->
   allIds = allIds.get()
   # create a single string:
   data = $(allIds).get().join(',')
+  # determine whether we will fetch audiobooks or books
+  audiobooks = $('ul.collection').hasClass 'audiobooks'
   # request AJAX sending all collection ids
-  $.getJSON 'collection_json_books', {id : data },  ( data ) ->
+  if audiobooks
+    bookType = 'audiobook'
+  else
+    bookType = 'book'
+  $.getJSON 'collection_json_books', {id : data, type: bookType },  ( data ) ->
     $.each data, (index, value) ->
       # find collection element:
       selector = 'li.collection#collection_' + value.collection_id
@@ -17,13 +23,16 @@ $ ->
         randCover = Math.floor(Math.random() * totalCovers)
         toTake = bookData.splice randCover, 1
         if totalCovers > 0
-          setElementCover( $( this ), toTake )
+          if audiobooks
+            setCoverForAudiobook $(this), toTake
+          else
+            setElementCover( $( this ), toTake )
         else
           $(this).remove();
 
   #now lets get the featured collection:
   featuredCollectionId = $('#featured-collection').attr('name').split('_')[1]
-  $.getJSON 'collection_json_books', {id : featuredCollectionId },  ( data ) ->
+  $.getJSON 'collection_json_books', {id : featuredCollectionId, type: bookType },  ( data ) ->
     $.each data, (index, value) ->
       # find featured collection element:
       selector = '#featured-collection'
@@ -34,6 +43,9 @@ $ ->
         randCover = Math.floor(Math.random() * totalCovers)
         toTake = bookData.splice randCover, 1
         if totalCovers > 0
-          setElementCover( $( this ), toTake )
+          if audiobooks
+            setCoverForAudiobook $(this), toTake
+          else
+            setElementCover $( this ), toTake
         else
           $(this).remove();

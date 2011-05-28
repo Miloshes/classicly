@@ -62,7 +62,7 @@ GEM
     faraday (0.7.0)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
-      rack (>= 1.1.0, < 2)
+      rack (< 2, >= 1.1.0)
     faraday-stack (0.1.0)
       faraday (~> 0.6)
     fastthread (1.0.7)
@@ -124,7 +124,7 @@ GEM
       fastthread (>= 1.0.1)
       gem_plugin (>= 0.2.3)
     multipart-post (1.1.0)
-    mysql (2.8.1)
+    mysql2 (0.2.7)
     nokogiri (1.4.4)
     open4 (1.0.1)
     paperclip (2.3.8)
@@ -216,6 +216,7 @@ DEPENDENCIES
   friendly_id (~> 3.2.1)
   haml
   hirb
+  hoe
   hoptoad_notifier
   htmlentities
   indextank
@@ -228,7 +229,7 @@ DEPENDENCIES
   meta_where
   mixpanel
   mongrel
-  mysql
+  mysql2 (~> 0.2.3)
   nokogiri
   paperclip
   rails (= 3.0.5)

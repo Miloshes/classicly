@@ -1,5 +1,11 @@
-= simple_format @post.content
-%span.date= @post.created_at.to_s :post_title_format
-%span.author Tyler
+#blog-single.blog-shared
+  .show-post
+    .blog-title
+      %h1.show
+        = link_to @post.title, post_path(@post)
+        %span.date=@post.created_at.to_s :post_title_format
+        %span.author Tyler
+    .content
+      = simple_format @post.content
 
-= link_to 'Back to the blog', blog_path
+    //= link_to 'Back to the blog', blog_path

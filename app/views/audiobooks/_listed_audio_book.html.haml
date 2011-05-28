@@ -1,13 +1,17 @@
-%li.grid_5.alpha.omega
-  .grid_1.alpha
-    = link_to image_tag("http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{audio_book.id}_size1.jpg",
-      :alt => "#{audio_book.title} by #{audio_book.author.name}"), author_book_url(audio_book.author, audio_book)
-  .grid_4.omega.metadata
-    .metadata
-      = link_to audio_book.title, author_book_url(audio_book.author, audio_book), :class => "title"
-      %br
-      %span by
-      = audiobook_author_link audio_book, klass='author'
-      %br
-      .book-avg-rating
+%li{:id => "audiobook_#{audiobook.id}"}
+  .cover
+    .cover-here.small
+      .stable
+        .spinner
+  .book-info
+    = link_to audiobook.title, author_book_url(audiobook.author, audiobook), :class => "title"
+    %p
+      %span
+        by
+        = link_to audiobook.author.name, seo_url(audiobook.author), :class => "author"
+    .clear
+    = shorten_text simple_format(audiobook.description), 300
+
+  .download-link
+    = link_to image_tag('view-this-book.png'), author_book_url(audiobook.author, audiobook)
         

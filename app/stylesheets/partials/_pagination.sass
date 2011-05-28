@@ -1,8 +1,28 @@
 nav.pagination
-  span.pagination-text
-    :font-size 16px
-    :margin 0 10px
-  span.prev, span.next
+  +column(18, true)
+  span
+    :display block
+    :float left
+    :height 60px
+  span.prev
+    +column(5)
     a
-      :color #FFF
-      :padding 5px
+      :width 160px
+      :height 53px
+      :display block
+      :background url(/images/pagination-previous.png)
+
+  span.pagination-text
+    :font-size 23px
+    :margin
+      :top 5px
+    :text-align center
+    +column(5)
+  span.next
+    +column(6, true)
+    a
+      :width 203px
+      :height 53px
+      :display block
+      :background url(/images/pagination-next.png)
+      :float right

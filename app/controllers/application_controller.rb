@@ -1,15 +1,12 @@
 class ApplicationController < ActionController::Base
+  layout 'new_design'
+
   protect_from_forgery
   before_filter :collections_for_footer
   before_filter :set_return_to
-  before_filter :initialize_mixpanel
   before_filter :initialize_indextank
   before_filter :get_profile_id
   before_filter :set_abingo_identity
-
-  def initialize_mixpanel
-    @mixpanel = Mixpanel.new("b6f94d510743ff0037009f3a1be605c2", request.env, true)
-  end
 
   def initialize_indextank
     @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')

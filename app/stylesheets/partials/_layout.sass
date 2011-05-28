@@ -6,6 +6,12 @@ $top-nav-bg: #c9af87
 body
   background-color: white
 
+@mixin content-container
+  +column(18, true)
+  :margin
+    :top 30px
+  :text-align left
+
 @mixin highlight
   :text-decoration none
   :color #333333
@@ -13,74 +19,122 @@ body
   &:hover 
     :background #ffff66
     :cursor pointer
-.top_nav
-  height: 40px
-  +column(24, true)
-  background: $top-nav-bg
-  border-radius: 0px 0px 10px 10px
-  -moz-border-radius: 0px 0px 10px 10px
-  -webkit-border-radius: 0px 0px 10px 10px
-  #logo
-    :float left
-    +column(3)
-    :margin
-      :top 4px
-    img
-      :margin
-        :left 30px
-  #searchbox
-    +column(6)
-    :margin
-      :top 4px
-      :left 30px
-    input
-      margin-top: 2px
-      height: 22px
-      width: 225px
-      color: #d2d2d3
-      font-size: 12px
-      font-family: 'helvetica'
-      border: 1px solid #ab9573
-      &:focus
-        :color #333333
-  #navigator
-    +column(13, true)
-    text-align: left
-    ul
-      list-style: none
-      li
-        display: inline
-        margin-left: 14px
-        a
-          color: white
-          font-size: 17px
-          font-weight: regular
-          :padding
-            :left 10px
-            :right 10px
-            :top 13px
-            :bottom 2px
+#header
+  :float left
+  :width 100%
+  :text-align center
+  :margin 0
+  :padding 0
+  .wrap
+    :width 100%
+    :display block
+    :height 49px
+    :text-align center
+    background: $top-nav-bg
+    .top
+      :width 960px
+      :margin 0 auto
+      :height 30px
+      #logo
+        :float left
+        +column(5)
+        img
+          :margin
+            :top 5px
+      #search
+        +column(5, true)
+        :margin
+          :top 17px
+          :left 65px
+        form
+          :background white
+          height: 22px
+          border: 1px solid #ab9573
+        input
+          margin-top: 2px
+          color: #d2d2d3
+          font-size: 12px
           font-family: 'helvetica'
-          :display block
+          :border 0
+          :width 150px
+          :height 12px
+          :outline none
           :float left
-          :text-decoration none
-          &.blog
-            :float right
+          :margin
+            :top 5px
+          :padding
+            :left 3px
+            :top 3px
+          &:focus
+            :color #333333
+        button
+          :width 25px
+          :height 16px
+          :display block
+          :background url(/images/search-button.png)
+          :border 0
+          :float right
+          :margin
+            :top 1px
           &:hover
-            :background #ae9875
-            :color #e0d8cb
             :cursor pointer
+            
+      #nav
+        +column(12)
+        text-align: left
+        :margin
+          :top 14px
+        ul
+          list-style: none
+          li
+            display: inline
+            :float left
+            a
+              :color #442507
+              font-size: 14px
+              font-weight: bold
+              font-family: 'helvetica'
+              :display block
+              :width 106px
+              :height 26px
+              :float left
+              :text-decoration none
+              :background url(/images/nav-bg.png)
+              :text-align center
+              :margin
+                :right 6px
+              :padding
+                :top 5px
+              &:hover
+                :cursor pointer
+                :opacity .8
+    .bottom
+      :float left
+      :display block
+      :width 100%
+      :height 6px
+      :background url(/images/shadow-top.png) repeat-x
+      :margin 0
+        :top -5px
+      :padding 0
+#bottom-shadow
+  :float left
+  :display block
+  :width 100%
+  :height 9px
+  :background url(/images/shadow-bottom.png) repeat-x
+  :margin
+    :top 20px
+  :padding 0
+
 #footer
   :background #c9af87
   :width 100%
   :float left
-  :border-top 1px solid #bc9f7a
   :padding
     :top 10px
     :bottom 20px
   :text-align center
-  :margin
-    :top 20px
   .centering
     :margin 0 auto
     :width 980px
@@ -90,14 +144,30 @@ body
     :background #cab08b
   .collection-names-list
     :margin 0 auto
-    :width 980px
+    :width 800px
     :padding 10px
     :background 1px solid #bb9d79
     :font-family 'helvetica'
     :font-size 17px
+    img
+      :float left
+    .collections
+      :width 830px
+      :display block
+      :float left
+      :padding
+        :left 50px
+      :border
+        :left 1px solid #866a47
+        :right 1px solid #866a47
     a
       :color #FFF
       :text-decoration none
+      +column(5)
+      :text-shadow 0px 1px #555
+      &:hover
+        :text-shadow 0 0 15px #ffffff
+
     span.linky
       :width 110px
       :padding 5px

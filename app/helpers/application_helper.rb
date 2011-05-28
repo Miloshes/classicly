@@ -36,6 +36,15 @@ module ApplicationHelper
     image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
   end
   
+  def image_or_link_to_download_format(book, format)
+    image = (format == 'azw') ? 'download_kindle.png' : 'download_pdf.png' 
+    if book.available_in_format?(format)
+      link_to image_tag(image), download_book_url(book.author, book, :download_format => format)
+    else
+      image_tag image
+    end
+  end
+
   def link_cover_tag(book, size='2', klass='')
     type = book.class.to_s.downcase
     link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg",
@@ -128,11 +137,15 @@ module ApplicationHelper
     end
   end
   
+  def sort_audiobooks_ajax_link(id, text, sort_by)
+    link_to text, { :controller => 'audiobooks', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
+      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
+  end
+
   def sort_books_ajax_link(id, text, sort_by)
     link_to text, { :controller => 'books', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
       :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
   end
-
   def shorten_text(text, limit)
     return text if text.length <= limit
     text.slice(0, (limit - 3)).concat("...")

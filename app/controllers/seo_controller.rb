@@ -1,15 +1,17 @@
 class SeoController < ApplicationController
-  before_filter :find_book_or_audio_book, :only => :show_book
-  layout 'new_design'
   def show_book
+    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
+        Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
     if @book
-      @related_books = @book.find_fake_related(8)
       @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
       set_collections_and_audibly_for_book(@book)
       @review = session[:review] || Review.new
       session[:review] = nil
-      render @book.class == Book ? 'books/show' : 'audiobooks/show'
+      if @book.is_a?(Book)
+        render 'books/show'
+      else
+        render 'audiobooks/show', :layout => 'audibly'
+      end
     end
   end
 
@@ -19,9 +21,7 @@ class SeoController < ApplicationController
       render_seo @seo
     elsif @author = Author.find(params[:id]) rescue nil
       @type = params[:type] || 'book'
-      @genre_collections = find_genre_collections @type.to_sym
-      @author_collections = find_author_collections @type.to_sym
-      @audibly = (@type == 'audiobook')
+      @books = Book.for_author(@author).page(params["page"]).per(8)
       render 'authors/show'
     else
       render_search
@@ -40,12 +40,6 @@ class SeoController < ApplicationController
     Collection.book_type.by_collection
   end
 
-
-  def find_book_or_audio_book
-    @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
-        Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
-  end
-
   def render_search
     @search = params[:id]
     @books = Book.search(@search, params[:page])
@@ -56,14 +50,14 @@ class SeoController < ApplicationController
   end
 
   def render_seo(seo)
-    if seo.is_for_collection?
+    if seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
       @featured_book = seo.find_featured_book_for_collection
       set_collections_and_audibly_for_collection(seo.seoable)
       if seo.seoable.is_audio_collection?
-        render 'show_audio_collection' and return
+        render 'show_audio_collection', :layout => 'audibly' and return
       else
         render 'show_collection' and return
       end
@@ -72,14 +66,13 @@ class SeoController < ApplicationController
     @book = seo.seoable
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
     set_collections_and_audibly_for_book(@book)
     @review = session[:review] || Review.new
     session[:review] = nil
     @format = seo.download_format
-    if seo.is_for_audio_book?
-      render 'audiobooks/download'
-    elsif seo.is_for_book?
+    if seo.is_for_type?('audiobook')
+      render 'audiobooks/download', :layout => 'audibly'
+    elsif seo.is_for_type?('book')
       if @format == 'online'
         render 'books/read_online'
       else

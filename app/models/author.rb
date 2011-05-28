@@ -24,13 +24,4 @@ class Author < ActiveRecord::Base
   def has_collection?
     Collection.exists?(['name LIKE ? AND book_type = ? ', "%#{self.name}%", 'book'])
   end
-
-  def related_books(limit, type = 'book' )
-    klass = type.classify.constantize
-    books = klass.where(:author_id => self.id, :blessed => true).limit(8)
-    unless books.count >= limit
-      new_limit = limit -books.count
-      books+= klass.where(:author_id => self.id, :blessed => false).limit(new_limit)
-    end
-  end
 end

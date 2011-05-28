@@ -1,14 +1,96 @@
 - content_for :title do
-  %title Free Audiobooks to Listen Online and Online Audiobooks for Free - 2,947 classics - Classicly
+	%title Free Audiobooks to Listen Online and Online Audiobooks for Free - 2,947 classics - Classicly
 
 - content_for :head do
-  = fb_open_graph_metadata(:description => '2,947 of the world’s greatest free audiobooks, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.')
-  %meta{:name => 'description', :content => '2,947 of the world’s greatest free audiobooks, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.'}
+	= fb_open_graph_metadata(:description => '2,947 of the world’s greatest free audiobooks, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.')
+	%meta{:name => 'description', :content => '2,947 of the world’s greatest free audiobooks, available for free. You can also listen online! From the creators of Free Books for iPad, a Top 100 app.'}
 
-- content_for :related_books do
-  %span
-    Popular Books
+#home-page-content
+	#classicly-welcome-text
+		%h1
+			Welcome to Audibly!
+		.info
+			%span.emphasize
+				Browse around.
+			Our books are in the public domain
+		.info
+			%span.emphasize
+				Read online.
+			We have an HTML5 reader that let's you read in your web browser and saves your place!
+		.info
+			%span.emphasize
+				Download for free.
+			We have both Kindle and PDF formats- and there's no limits on downloading.
+		.info
+			%span.emphasize
+				Sync to iPhone & iPad
+			Register to keep your reading collection in sync whether on the web or on the go.<br /></br >
 
-  = render :partial => 'cover_audio_book', :collection => @related_books, :as => :audio_book
-#home-page
-  = render :partial => "featured_audio_book", :collection => @featured_audio_books, :as => :audio_book
+	#classicly-featured-book
+		.cover-here.huge.random-audiobook
+			.stable
+				.spinner
+	#links
+		%a.button.kiss.large.green{:href => '/collections'}
+			%span
+				Browse our hand-picked book<br />collections
+		= link_to content_tag(:span, 'Browse by author'), '/authors', :class => 'button kiss large brown bouge small'
+		= link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge small'
+
+
+	#book-tiles
+		.column
+			.cover-with-title-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-with-title-here.large.random-audiobook
+				.stable
+					.spinner
+			.cover-with-title-here.small.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+		.column
+			.cover-with-title-here.small.random-audiobook
+				.stable
+					.spinner
+			.cover-with-title-here.medium.random-audiobook
+				.stable
+					.spinner
+			.cover-with-title-here.small.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+			.cover-here.tiny.random-audiobook
+				.stable
+					.spinner
+
+		.column.last
+			.cover-here.medium.random-audiobook
+				.stable
+					.spinner
+			.cover-here.medium.random-audiobook
+				.stable
+					.spinner
+			.cover-here.medium.random-audiobook
+				.stable
+					.spinner

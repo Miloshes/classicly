@@ -1,3 +1,4 @@
+include AWS::S3
 class Audiobook < ActiveRecord::Base
   include Sluggable, SeoMethods, CommonBookMethods
 
@@ -36,23 +37,26 @@ class Audiobook < ActiveRecord::Base
     already_chosen_books
   end
 
-  def find_fake_related(number = 8)
+  def download_mp3_slug
+    self.seo_slugs.mp3.first.slug
+  end
+
+  def find_fake_related(number = 8, select = nil)
+    # determine if we have a SELECT whitelist on the table. Rails uses a string.
+    select_fields = select.join(',') if select
+    
     chosen_books = []
-
-    # Two sources for related books:
-    #  - other books associated to similar collections
-    #  - other books of the author with the same language
-
-    # == Other books of the author, with the same language
-    audio_books_from_same_author = self.author.audiobooks.where("id <> ?", self.id)
+    audio_books_from_same_author = select ? self.author.audiobooks.where("id <> ?", self.id).select(select_fields) : 
+      self.author.audiobooks.where("id <> ?", self.id)
     chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_author)
 
     audio_books_from_same_collections = []
-    self.collections.each { |collection| audio_books_from_same_collections+= collection.audiobooks }
+    self.collections.each { |collection| audio_books_from_same_collections+= select ? collection.audiobooks.select(select_fields) :
+        collection.audiobooks }
     chosen_books = choose_audio_books(number, chosen_books, audio_books_from_same_collections)
 
     chosen_books.compact!
-    chosen_books.sort_by {rand} 
+    chosen_books.sort_by { rand } 
   end
 
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
@@ -91,30 +95,30 @@ class Audiobook < ActiveRecord::Base
       shorten_title 70
     end
   end
-
-
-  def log_book_view_in_mix_panel(user_id, mix_panel_object)
-    mix_panel_properties = {:title => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
-  end
   
   def has_rating?
     self.avg_rating > 0
   end
   
+  def has_zip_file?
+    AWS::S3::Base.establish_connection! :access_key_id     => APP_CONFIG['amazon']['access_key'],
+                                        :secret_access_key => APP_CONFIG['amazon']['secret_key']
+
+    S3Object.exists? "audiobook_#{self.id}_chapters.zip", APP_CONFIG['buckets']['audiobook_chapters']
+  end
+
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
   end
   
-  def shorten_title(limit)
-    return self.pretty_title if self.pretty_title.length <= limit
-    self.pretty_title.slice(0, (limit - 3)).concat("...")
+  def zip_file
+    AWS::S3::Base.establish_connection! :access_key_id     => APP_CONFIG['amazon']['access_key'],
+                                        :secret_access_key => APP_CONFIG['amazon']['secret_key']
+    s3_key = "audiobook_#{self.id}_chapters.zip"
+    S3Object.value s3_key,  APP_CONFIG['buckets']['audiobook_chapters']
   end
-
+  
   private
 
   def audio_book_slugs

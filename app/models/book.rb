@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
 
+  has_and_belongs_to_many :blog_posts, :join_table => 'blog_posts_books'
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
   has_many :download_formats
@@ -16,10 +17,10 @@ class Book < ActiveRecord::Base
 
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
+  scope :for_author, lambda {|author| where(:author_id => author.id)}
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
-
   validates :title, :presence => true
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
 
@@ -49,14 +50,6 @@ class Book < ActiveRecord::Base
   
   def self.cover_url(book_id, size)
     "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
-  end
-
-  def self.hashes_for_JSON(books)
-    results = []
-    books.each do|book|
-      results << book.attributes.merge( {:author_slug => book.author.cached_slug } )
-    end
-    results
   end
 
   def self.search(search_term, current_page)
@@ -195,8 +188,9 @@ class Book < ActiveRecord::Base
   end
 
   def generate_seo_slugs(formats)
+    # formats can be -> pdf, kindle or online:
     formats.each do |format|
-      slug = format == 'online' ? optimal_url_for_read_online_page : optimal_url_for_download_page(format)
+      slug = (format == 'online') ? optimal_url_for_read_online_page : optimal_url_for_download_page(format)
       SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
@@ -232,10 +226,10 @@ class Book < ActiveRecord::Base
   end
 
   def optimal_url_for_read_online_page
-    extra = 'read-online-free'
+    url_parts = URL_CONFIG['root_path'] + 'read-online-free'
     str = self.cached_slug.clone
-    if [extra, str, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
-      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+    if [url_parts, str, uniqueness_indicator].map(&:length).reduce(:+) > 115 # sums every part of the url lengths.
+      limit = 115 - url_parts.length - uniqueness_indicator.length #limit the str length
       str = str[0, limit]
     end
     str << "-" if str[-1, 1] != '-'
@@ -251,23 +245,12 @@ class Book < ActiveRecord::Base
     "Read #{book_title} Online Free"
   end
 
+  def read_online_slug
+    "/#{self.seo_slugs.read_online.first.slug}/page/1"
+  end
+  
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
-  end
-
-  def shorten_title(limit)
-    return self.pretty_title if self.pretty_title.length <= limit
-    self.pretty_title.slice(0, (limit - 3)).concat("...")
-  end
-
-  def view_book_page_title
-    if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
-      "#{self.pretty_title} by #{self.author.name}"
-    elsif self.pretty_title.length <= 70
-      self.pretty_title
-    else
-      shorten_title 70
-    end
   end
 end

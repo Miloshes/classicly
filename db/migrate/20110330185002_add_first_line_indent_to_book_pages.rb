@@ -1,6 +1,8 @@
 class AddFirstLineIndentToBookPages < ActiveRecord::Migration
   def self.up
-    add_column :book_pages, :first_line_indent, :boolean, :default => false, :null => false
+    unless column_exists? :book_pages, :first_line_indent
+      add_column :book_pages, :first_line_indent, :boolean, :default => false, :null => false
+    end
   end
 
   def self.down

@@ -1,16 +1,24 @@
 Classicly::Application.routes.draw do
 
   # put here all the matches , except for the more general ones.
+  match 'audiobook-collections' => 'pages#audio_collections'
+  match 'audiobook-authors' => 'pages#audiobook_authors' 
   match 'collections' => 'pages#collections'
   match 'authors' => 'pages#authors'
   match 'json_books' => 'books#json_books'
+  match 'json_audiobooks' => 'audiobooks#json_audiobooks'
   match 'collection_json_books' => 'collections#collection_json_books'
+
+  # for delivering audiobook file
+  match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
 
   namespace 'admin' do
     resources :reviews, :only => [:index, :destroy]
   end
-
+  
+  match 'random_json_audiobooks/:total_audiobooks' => 'audiobooks#random_json'
   match 'random_json_books/:total_books' => 'pages#random_json_books'
+  match 'related_audiobooks/:id/:total_related' => 'audiobooks#related_audiobooks_in_json'
   match 'related_books/:id/:total_related' => 'books#related_books_JSON'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
@@ -69,20 +77,16 @@ Classicly::Application.routes.draw do
   # for invoking the download page and start the download
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
 
-  
   # for invoking the download page from outside classicly.com
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'book_download_page', :via => :get
-
-  # for delivering audiobook file
-  match '/download_audiobook/:id/:chapter_id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
   
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
         :as => 'serve_downloadable_file', :via => :get
         
   # for invoking the book reader
-  match '/:author_id/:id/read-online/page/:page_number' => "book_pages#show",
-  :as => 'html_book_page', :via => :get
+  match '/:id/page/:page_number' => "book_pages#show",
+  :as => 'read_online', :via => :get
 
   root :to => 'pages#main'
 end

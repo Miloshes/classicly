@@ -12,6 +12,12 @@
       :padding 0
       :float left
       :width 100%
+    h4
+      :font-size 14px
+      :color #333333
+      font-size: 16px
+      font-weight: bold
+
 
   .book-column
     +column(12, true)
@@ -29,9 +35,13 @@
         &:hover
           :background #ffff66
     p
-      +column(10)
+      +column(11)
       :font-size #333333
       :font-size 14px
+    .share
+      :height 50px
+      +column(18, true)
+
     .download
     .read
       :margin
@@ -43,3 +53,12 @@
       &.first
         :margin
           :top 10px
+    .download-highlight
+      +column(8, true)
+      :background #ffffd7
+      :border 1px solid #e2c822
+      :text-align center
+      :padding 10px
+      img, a
+        :margin 0 auto
+

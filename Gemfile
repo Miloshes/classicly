@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 source 'http://gems.github.com'
 
 gem 'rails', '3.0.5'
@@ -15,7 +15,6 @@ gem 'koala'
 gem 'meta_where'
 gem 'mixpanel'
 gem 'mongrel'
-gem 'mysql'
 gem 'nokogiri'
 gem 'paperclip'
 gem 'rest-client', :require => 'rest_client'
@@ -29,10 +28,12 @@ group :development do
   gem 'awesome_print'
   gem 'hirb'
   gem 'jasmine'
+  gem 'mysql2', '~> 0.2.3'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
   gem 'firewatir'
+  gem 'hoe'
 end 
 
 group :test do
