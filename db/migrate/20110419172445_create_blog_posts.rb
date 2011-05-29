@@ -1,11 +1,13 @@
 class CreateBlogPosts < ActiveRecord::Migration
   def self.up
-    create_table :blog_posts do |t|
-      t.string :title
-      t.text :content
-      t.string :keywords
+    unless table_exists? :blog_posts 
+      create_table :blog_posts do |t|
+        t.string :title
+        t.text :content
+        t.string :keywords
 
-      t.timestamps
+        t.timestamps
+      end
     end
   end
 

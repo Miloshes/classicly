@@ -59,13 +59,11 @@ class BooksController < ApplicationController
         :disposition => 'attachment',
         :filename => "#{@book.pretty_title}.#{@format}"
       )
-    @book.on_download(current_login.try(:fb_connect_id), @mixpanel)
   end
 
   def show
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @book.on_each_view(current_login.try(:fb_connect_id), @mixpanel) if Rails.env.production?
     # if there was a failed review, it will come in the session object
     @review = session[:review] || Review.new
     session[:review] = nil

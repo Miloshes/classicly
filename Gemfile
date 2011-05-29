@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source :rubygems
 source 'http://gems.github.com'
 
 gem 'rails', '3.0.5'
@@ -33,6 +33,7 @@ group :development do
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
   gem 'firewatir'
+  gem 'hoe'
 end 
 
 group :test do

@@ -177,14 +177,14 @@ class Collection < ActiveRecord::Base
   end
 
   def generate_seo_slugs
-    #create slugs for normal collection page
     SeoSlug.create!({:slug => self.cached_slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
-    #create slugs for specific formats
-    formats = (self.book_type == 'book') ? %w(pdfs kindle-books) : %w(mp3s)
-    formats.each do |format|
-      slug = "download-%s-%s" % [self.cached_slug, format]
-      SeoSlug.create!({:slug => slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
-    end
+    # for the moment we don't have these pages:
+    # formats -> pdfs, kindle-books(books), mp3s for audiobooks
+    # formats = (self.book_type == 'book') ? %w(pdfs kindle-books) : %w(mp3s)
+    #     formats.each do |format|
+    #       slug = "download-%s-%s" % [self.cached_slug, format]
+    #       SeoSlug.create!({:slug => slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
+    #     end
   end
 
   def limited_description(limit)

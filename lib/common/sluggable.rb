@@ -11,14 +11,14 @@ module Sluggable
     extra = URL_CONFIG['root_path'] + 'download-' # for example http://root/download-[x].
     extra <<  "-#{format}" unless format.nil?
     str = self.cached_slug.clone #cached_slug has the book string such as 'unbearable-lightness-of-being'
-    if [extra, self.cached_slug, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
-      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+    if [extra, self.cached_slug, uniqueness_indicator].map(&:length).reduce(:+) > 115 # sums every part of the url lengths
+      limit = 115 - extra.length - uniqueness_indicator.length # limit the str length.
       str = str[0, limit]
     end
-    #posibilities
-    #[root_path]/download-the-boo-pdf
-    #[root_path]/download-the-book-pdf
-    #[root_path]/download-the-boo--2-pdf
+    # posibilities
+    # [root_path]/download-the-boo-pdf
+    # [root_path]/download-the-book-pdf
+    # [root_path]/download-the-boo--2-pdf
     format = "-#{format}" if uniqueness_indicator.length > 0 ||  str[-1, 1] != '-' #add a hyphen unless the last char is already one,
     converter.iconv "download-" + str + uniqueness_indicator + format
   end

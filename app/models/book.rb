@@ -188,8 +188,9 @@ class Book < ActiveRecord::Base
   end
 
   def generate_seo_slugs(formats)
+    # formats can be -> pdf, kindle or online:
     formats.each do |format|
-      slug = format == 'online' ? optimal_url_for_read_online_page : optimal_url_for_download_page(format)
+      slug = (format == 'online') ? optimal_url_for_read_online_page : optimal_url_for_download_page(format)
       SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
@@ -225,10 +226,10 @@ class Book < ActiveRecord::Base
   end
 
   def optimal_url_for_read_online_page
-    extra = 'read-online-free'
+    url_parts = URL_CONFIG['root_path'] + 'read-online-free'
     str = self.cached_slug.clone
-    if [extra, str, uniqueness_indicator].map(&:length).reduce(:+) > 75 # sums every part of the url lengths
-      limit = 75 - extra.length - uniqueness_indicator.length #limit the str length
+    if [url_parts, str, uniqueness_indicator].map(&:length).reduce(:+) > 115 # sums every part of the url lengths.
+      limit = 115 - url_parts.length - uniqueness_indicator.length #limit the str length
       str = str[0, limit]
     end
     str << "-" if str[-1, 1] != '-'

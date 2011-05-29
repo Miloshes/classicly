@@ -2,7 +2,7 @@ desc 'Generate seo slugs for collectiosn. This seo slugs will be used in the pat
 
 namespace :collections_seo_slugs do
   task :generate => :environment do
-    #drop all collection seos
+    # first things first, drop all collection's slugs:
     SeoSlug.where(:seoable_type => 'Collection').delete_all
     Collection.find_each do|collection|
       collection.generate_seo_slugs
@@ -13,14 +13,16 @@ end
 
 namespace :books_seo_slugs do
   task :generate => :environment do
+    # drop all book's slugs:
     SeoSlug.where(:seoable_type => 'Book').delete_all
+    # create slugs:
     Book.find_each do|book|
-      book.generate_seo_slugs(['pdf', 'kindle', 'online'])
+      book.generate_seo_slugs(['pdf', 'kindle'])
       puts "Generating seo slugs for book (#{book.id}): #{book.pretty_title}"
     end
   end
   task :generate_online_format => :environment do
-    SeoSlug.where(:format => 'online').delete_all
+    SeoSlug.where(:seoable_type => 'Book', :format => 'online').delete_all
     Book.find_each do|book|
       book.generate_seo_slugs(['online'])
       puts "read online seo slug for:  (#{book.id}): #{book.pretty_title}"
@@ -28,7 +30,7 @@ namespace :books_seo_slugs do
   end
 end
 
-namespace :audio_books_seo_slugs do
+namespace :audiobooks_seo_slugs do
   task :generate => :environment do
     format = 'mp3'
     SeoSlug.where(:format => format).delete_all

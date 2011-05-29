@@ -4,7 +4,6 @@ class SeoController < ApplicationController
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
     if @book
       @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
       set_collections_and_audibly_for_book(@book)
       @review = session[:review] || Review.new
       session[:review] = nil
@@ -67,13 +66,12 @@ class SeoController < ApplicationController
     @book = seo.seoable
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    @book.log_book_view_in_mix_panel(current_login.try(:fb_connect_id), @mixpanel)
     set_collections_and_audibly_for_book(@book)
     @review = session[:review] || Review.new
     session[:review] = nil
     @format = seo.download_format
     if seo.is_for_type?('audiobook')
-      render 'audiobooks/download'
+      render 'audiobooks/download', :layout => 'audibly'
     elsif seo.is_for_type?('book')
       if @format == 'online'
         render 'books/read_online'

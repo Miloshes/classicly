@@ -25,7 +25,6 @@ class PagesController < ApplicationController
   
 
   def main
-    @mixpanel.track_event("Homepage View") if Rails.env.production?
   end
 
   def random_json_books

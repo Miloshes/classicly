@@ -49,6 +49,7 @@ body.bp {
   }
   #content{
     @include container;
+    overflow: visible !important;
   }
 }
 

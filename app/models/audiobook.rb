@@ -1,3 +1,4 @@
+include AWS::S3
 class Audiobook < ActiveRecord::Base
   include Sluggable, SeoMethods, CommonBookMethods
 
@@ -81,12 +82,6 @@ class Audiobook < ActiveRecord::Base
   def generate_seo_slugs(formats)
     formats.each do|format|
       slug = optimal_url_for_download_page(format)
-      # if you find a similar slug due to shortening of the cached slug such as in
-      # "the-first-epistle-of-paul-the-apostle-to-the-corinthians-audiobook"
-      # "the-first-epistle-of-paul-the-apostle-to-timothy-audiobook"
-      # make sure you create a diferent slug:
-      other_slug = SeoSlug.where :slug.matches => "%#{slug}%"
-      slug << "[#{other_slug.size + 1 }]" unless other_slug.empty?
       SeoSlug.find_or_create_by_slug(slug, {:seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
     end
   end
@@ -100,25 +95,30 @@ class Audiobook < ActiveRecord::Base
       shorten_title 70
     end
   end
-
-
-  def log_book_view_in_mix_panel(user_id, mix_panel_object)
-    mix_panel_properties = {:title => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
-  end
   
   def has_rating?
     self.avg_rating > 0
   end
   
+  def has_zip_file?
+    AWS::S3::Base.establish_connection! :access_key_id     => APP_CONFIG['amazon']['access_key'],
+                                        :secret_access_key => APP_CONFIG['amazon']['secret_key']
+
+    S3Object.exists? "audiobook_#{self.id}_chapters.zip", APP_CONFIG['buckets']['audiobook_chapters']
+  end
+
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
   end
-
+  
+  def zip_file
+    AWS::S3::Base.establish_connection! :access_key_id     => APP_CONFIG['amazon']['access_key'],
+                                        :secret_access_key => APP_CONFIG['amazon']['secret_key']
+    s3_key = "audiobook_#{self.id}_chapters.zip"
+    S3Object.value s3_key,  APP_CONFIG['buckets']['audiobook_chapters']
+  end
+  
   private
 
   def audio_book_slugs
