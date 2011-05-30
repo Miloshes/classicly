@@ -29,3 +29,5 @@ ruby
 /app/views/audiobooks/.index.html.haml.swp
 /app/views/books/.read_online.html.haml.swp
 /app/views/books/.show.html.haml.swp
+/app/stylesheets/partials/._download_confirmation.sass.swp
+/app/views/books/.download.html.haml.swp
