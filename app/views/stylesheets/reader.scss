@@ -35,6 +35,7 @@ body{
     @include border-radius(10px);    
 
     .header{
+        display: none;
         color: $text-color;
         text-transform: uppercase;
         position: absolute;
@@ -118,14 +119,15 @@ body{
         position: absolute;
         left: 0;
         right: 0;
-        top: 0;
-        bottom: 0;
-        padding-top: 350px;
+        top: 300px;
+        bottom: 300px;
+        padding-top: 50px;
         text-align: center;
         display: none;
         cursor: pointer;
         color: #fff;
-        font-size: 40px;    
+        font-size: 40px;
+        z-index: 13;
     }
 
     .big_navigation.right .box{
@@ -154,7 +156,7 @@ body{
     }
 
     .navigation .slider_wrap{
-        
+        display: none;
         background: url('../images/html-reader/scroller-dots.png') repeat-x;
         position: absolute;
         top: 14px;
@@ -164,11 +166,12 @@ body{
     }
 
     .navigation .slider{
-        position: display-block;
+        position: absolute;
         top: 0;
         bottom: 0;
         left: 0;
         right: 0;
+        
     }
 }
 
