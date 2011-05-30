@@ -22,6 +22,11 @@
     %span
       If the download does not automatically start,
       = link_to "click here", serve_downloadable_file_url(@book, @format), :class => 'download-link', :name => @format
+  .more-column
+    .highlight
+      .like-send
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        
 =# javascript_include_tag 'downloads'
 = javascript_include_tag 'covers-book-detail'
 = javascript_include_tag 'covers-book-download-page'

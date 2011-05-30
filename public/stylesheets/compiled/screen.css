@@ -569,6 +569,20 @@ body {
   margin-top: 10px;
 }
 
+/* line 320, ../../../app/stylesheets/partials/_layout.sass */
+.like-send {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 550px;
+  height: 30px;
+  display: block;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .like-send {
+  overflow-x: hidden;
+}
+
 /* line 1, ../../../app/stylesheets/partials/_home_page.sass */
 #left-column {
   display: inline;
@@ -1479,6 +1493,29 @@ ul.ui-autocomplete {
 /* line 34, ../../../app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info .read {
   margin-top: 5px;
+}
+/* line 37, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 470px;
+  margin-top: 30px;
+}
+/* line 138, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page .more-column {
+  overflow-x: hidden;
+}
+/* line 41, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column .highlight {
+  background: #feffd8;
+  border: 1px solid #e2c822;
+  padding: 10px;
+  height: 30px;
+}
+/* line 46, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column .highlight iframe {
+  margin-top: 3px;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_blog_shared.sass */
