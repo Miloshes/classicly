@@ -12,6 +12,8 @@
       =@collection.name
       Books
     %p=simple_format(parsed_collection_description(@collection.description))
+    .share
+      <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books{:name => "collection_#{@collection.id}"}
     .cover-here.medium

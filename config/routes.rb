@@ -74,6 +74,8 @@ Classicly::Application.routes.draw do
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
+  match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
+  
   # for invoking the download page and start the download
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
 

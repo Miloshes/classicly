@@ -16,8 +16,9 @@ class BooksController < ApplicationController
 
   # for invoking the download page
   def download
-    @related_books = @book.find_fake_related(8)
-    render :layout => 'new_design'
+    @popular_books = Book.blessed.random 3
+    @related_book = @book.find_fake_related(1).first
+    render :layout => 'download'
   end
 
   def json_books
