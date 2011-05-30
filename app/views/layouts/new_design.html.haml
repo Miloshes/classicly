@@ -17,7 +17,6 @@
 	= javascript_include_tag 'masonry'
 	= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating', 'collection-page'
 	=# javascript_include_tag 'classicly-autocomplete'
-	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
 	= csrf_meta_tag
 	= typekit_include_helper
 
@@ -26,7 +25,6 @@
 	= yield :head
 
 %body.bp.showgrid
-	#fb-root
 	#header
 		.wrap
 			.top
@@ -106,19 +104,18 @@
 				- for collection in @collections_for_footer
 					= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
 			=image_tag 'footer-collections-bottom.png'
-				
+
+#fb-root
+<script>
+window.fbAsyncInit = function() {FB.init({appId: '#{Facebook::APP_ID}', status: true, cookie: true, xfbml: true});};
+(function() {var e = document.createElement('script'); e.async = true;e.src = document.location.protocol + 	'//connect.facebook.net/en_US/all.js';document.getElementById('fb-root').appendChild(e);}());
+</script>
+
 = javascript_include_tag 'covers-global'
 
 :javascript
 	// initialize the environment for JS
 	RAILS_ENV = "#{Rails.env}";
-	// initialize Facebook
-	FB.init({
-	appId  : '#{Facebook::APP_ID}',
-	status : true, // check login status
-	cookie : true, // enable cookies to allow the server to access the session
-	xfbml  : true  // parse XFBML
-	});
 
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-21890797-1']);

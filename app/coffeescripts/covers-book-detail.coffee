@@ -11,7 +11,6 @@ $ ->
     toTake = data.splice 0, 1
     if audiobook then setCoverForAudiobook( $("#current-book"), toTake ) else setElementCover( $("#current-book"), toTake )
     # assign other covers randomly to related books
-    console.log data
     $.each $('.related'), ( index, value ) ->
       totalCovers = data.length
       randCover = Math.floor( Math.random() * totalCovers )
