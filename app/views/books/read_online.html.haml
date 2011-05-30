@@ -8,7 +8,7 @@
   %meta{:name => 'description', :content => @book.description_for_open_graph}
 
 
-#book-page
+#book-page{:name => @book.id}
   .cover-column
     #current-book.cover-here.medium
       .stable
@@ -47,8 +47,8 @@
 
           %p.explanation We don’t pay a  cent, so neither do you.
 
-       
-= javascript_include_tag 'book-details'
+
+= javascript_include_tag 'covers-book-detail','book-details'
 :javascript
   $('#reviews').data('book_id', #{@book.id})
 :javascript
