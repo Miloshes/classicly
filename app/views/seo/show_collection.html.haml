@@ -12,6 +12,9 @@
     %h1
       =@collection.name
       Books
+
+    .like-send
+      <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
     %p=simple_format(parsed_collection_description(@collection.description))
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books{:name => "collection_#{@collection.id}"}

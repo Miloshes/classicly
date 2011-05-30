@@ -32,7 +32,8 @@
           %span.book-author
             = book_author_link(@book)
 
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
         %p= simple_format(@book.description)
         .share
       .download
