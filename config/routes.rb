@@ -3,6 +3,7 @@ Classicly::Application.routes.draw do
   namespace 'admin' do
     root :to => "base#home"
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
+    match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     resource :admin_user_session
     resources :blog_posts
     resources :reviews, :only => [:index, :destroy]

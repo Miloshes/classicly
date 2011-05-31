@@ -1,7 +1,7 @@
 = stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/default/style.css"
 
 - form_for [:admin, blog_post] do |f|
-  =# render "shared/error_messages", :target => post
+  = render "shared/error_messages", :target => blog_post
   %p
     = f.label :title
     = f.text_field :title
