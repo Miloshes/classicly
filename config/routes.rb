@@ -1,9 +1,10 @@
 Classicly::Application.routes.draw do
 
   namespace 'admin' do
-    root :to => "reviews#index"
+    root :to => "base#home"
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
     resource :admin_user_session
+    resources :blog_posts
     resources :reviews, :only => [:index, :destroy]
   end
   
