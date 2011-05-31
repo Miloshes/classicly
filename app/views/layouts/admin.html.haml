@@ -24,4 +24,5 @@
       #left-column
         = yield
       #right-column
+        = link_to 'Logout', admin_logout_path if current_admin_user
     

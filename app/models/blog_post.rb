@@ -8,6 +8,14 @@ class BlogPost < ActiveRecord::Base
                                           'FROM books INNER JOIN blog_posts_books ' +
                                           'ON books.id = blog_posts_books.book_id ' + 
                                           'WHERE blog_posts_books.blog_post_id = #{id}'
+  
+  def self.persist(blog_post, params)
+    if params[:title].blank?
+      blog_post.errors.merge!(:title => 'must be present for realsies!')
+      return false
+    end
+    blog_post.update_attributes(params)
+  end
                               
   def blog_post_slug
     self.title.downcase.rstrip.gsub(' ', '-')

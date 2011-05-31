@@ -21,7 +21,7 @@ class Admin::BlogPostsController < Admin::BaseController
   end
 
   def update
-    if @blog_post.update_attributes(params[:blog_post])
+    if BlogPost.persist(@blog_post, params[:blog_post])
       redirect_to admin_blog_posts_path
     else
       render :action => :edit
