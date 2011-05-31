@@ -24,9 +24,10 @@ module ApplicationHelper
                       author_book_url(author,book)
   end
   
-  def cover_image_link(cover, type, html_class)
+  def cover_image_link(cover, size, html_class=nil)
+    type = cover.class.to_s.downcase
     bucket = "#{type}_id"
-    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size3.jpg",
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg",
                       :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => html_class),
                       author_book_url(cover.author, cover)
   end

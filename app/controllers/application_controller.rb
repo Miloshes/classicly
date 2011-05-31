@@ -2,65 +2,57 @@ class ApplicationController < ActionController::Base
   layout 'new_design'
 
   protect_from_forgery
+  helper_method :current_user_session, :current_user
   before_filter :collections_for_footer
-  before_filter :set_return_to
   before_filter :initialize_indextank
-  before_filter :get_profile_id
   before_filter :set_abingo_identity
 
   def initialize_indextank
     @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
   end
 
-  def redirect_back_or_default
-    redirect_to session[:return_to] || root_path
-  end
 
-  def set_return_to
-    session['return_to'] = (request.fullpath =~ /\/\w+/) && !(request.fullpath =~ /\/auth\/facebook/ || request.fullpath =~ /\/logins/)? request.fullpath : session['return_to']
-  end
-
-  protected
   def collections_for_footer
     @collections_for_footer = Collection.by_author.limit(14)
     @collections_for_footer += Collection.by_collection.limit(14)
   end
-  def current_login
-    Login.where(:fb_connect_id => @profile_id).first
-  end
-
-  def user_signed_in?
-    @profile_id != nil && Login.exists?(:fb_connect_id => @profile_id)
-  end
   
-  def admin_user?
-    login = current_login
-    login.is_admin
+  private
+  def current_admin_user_session
+    return @current_admin_user_session if defined?(@current_admin_user_session)
+    @current_admin_user_session = AdminUserSession.find
   end
 
-
-  def get_profile_id
-    @profile_id = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_from_cookies(cookies)
+  def current_admin_user
+    return @current_admin_user if defined?(@current_admin_user)
+    @current_admin_user = current_admin_user_session && current_admin_user_session.admin_user
   end
-  
-  def get_profile_info
-    @facebook_cookies = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
-    unless @facebook_cookies.nil?
-      graph = Koala::Facebook::GraphAPI.new(@facebook_cookies['access_token'])
-      @profile_info =  graph.get_object('me')
+
+  def require_admin_user
+    unless current_admin_user
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to admin_sign_in_path
+      return false
+    end
+    true
+  end
+
+  def require_no_admin_user
+    if current_admin_user
+      flash[:notice] = "You must be logged out to access this page"
+      redirect_to root_path
+      return false
     end
   end
-  private 
-
+ 
   def set_abingo_identity
     if request.user_agent =~ /\b(Baidu|Gigabot|Googlebot|libwww-perl|lwp-trivial|msnbot|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)\b/i
       Abingo.identity = "robot"
-    elsif user_signed_in?
+    elsif current_admin_user
       Abingo.identity = @profile_id
     else
       session[:abingo_identity] ||= rand(10 ** 10)
       Abingo.identity = session[:abingo_identity]
     end
   end
-
 end

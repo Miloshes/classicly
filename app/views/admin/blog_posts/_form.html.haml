@@ -1,0 +1,24 @@
+= stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/default/style.css"
+
+- form_for [:admin, blog_post] do |f|
+  =# render "shared/error_messages", :target => post
+  %p
+    = f.label :title
+    = f.text_field :title
+  %p
+    = f.label :content
+    = f.text_area :content
+  %p
+    = f.label :keywords
+    = f.text_field :keywords
+  %p
+    = f.submit blog_post.new_record? ? 'Save' : 'Update'
+
+=# button_to "Preview", preview_blog_post_path(post), :method => :get unless post.new_record?
+= link_to 'Back to Blog Posts', admin_blog_posts_path
+
+= javascript_include_tag 'jquery.markitup.set', 'jquery.markitup'
+:javascript
+  $(document).ready(function()    {
+    $('#blog_post_content').markItUp(mySettings);
+  });
