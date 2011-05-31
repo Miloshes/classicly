@@ -35,6 +35,8 @@ GEM
     activesupport (3.0.5)
     addressable (2.2.5)
     arel (2.0.9)
+    authlogic (2.1.6)
+      activesupport
     awesome_print (0.3.2)
     aws-s3 (0.6.2)
       builder
@@ -208,6 +210,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authlogic
   awesome_print
   aws-s3
   compass (>= 0.10.5)

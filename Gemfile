@@ -2,6 +2,7 @@ source :rubygems
 source 'http://gems.github.com'
 
 gem 'rails', '3.0.5'
+gem 'authlogic'
 gem 'aws-s3', :require => 'aws/s3'
 gem "compass", ">= 0.10.5"
 gem 'haml'
