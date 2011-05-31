@@ -31,3 +31,5 @@ ruby
 /app/views/books/.show.html.haml.swp
 /app/stylesheets/partials/._download_confirmation.sass.swp
 /app/views/books/.download.html.haml.swp
+/app/views/books/.download_special_format.html.haml.swp
+/app/views/pages/.main.html.haml.swp
