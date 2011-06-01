@@ -2,6 +2,7 @@ Classicly::Application.routes.draw do
 
   namespace 'admin' do
     root :to => "base#home"
+    match 'blog_posts/associate_book' => 'blog_posts#associate_book'
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     resource :admin_user_session
@@ -9,14 +10,15 @@ Classicly::Application.routes.draw do
     resources :reviews, :only => [:index, :destroy]
   end
   
-  # put here all the matches , except for the more general ones.
+
   match 'audiobook-collections' => 'pages#audio_collections'
-  match 'audiobook-authors' => 'pages#audiobook_authors' 
-  match 'collections' => 'pages#collections'
+  match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors' => 'pages#authors'
-  match 'json_books' => 'books#json_books'
-  match 'json_audiobooks' => 'audiobooks#json_audiobooks'
+  match 'autocomplete_books_json' => 'books#autocomplete_json'
+  match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
+  match 'json_audiobooks' => 'audiobooks#json_audiobooks'
+  match 'json_books' => 'books#json_books'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :ge
@@ -39,14 +41,28 @@ Classicly::Application.routes.draw do
 
   match '/facebook/like' => 'facebook_events#like', :via => :get
 
-  resources :audiobooks, :only => :index do
-    get :ajax_paginate, :on => :collection
-  end
 
   get "bingo_experiments/create"
 
   match 'blog' => 'blog#index', :as => :blog
   match 'post/:id' => 'blog#show', :as => :post
+  
+  
+
+  # NOTE: this is for the first version of the review API, will be deprecated soon
+  match "incoming_data" => "incoming_datas#create", :method => :post  
+  match 'search' => 'search#show'
+  match 'search/autocomplete' => 'search#autocomplete'
+  
+  # current version of the web API
+  match "/web_api" => "web_api#create", :via => :post
+  match '/web_api/query' => "web_api#query", :via => :post
+
+  match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
+  
+  resources :audiobooks, :only => :index do
+    get :ajax_paginate, :on => :collection
+  end
   
   resources :books, :only => :index do
     get :ajax_paginate, :on => :collection
@@ -57,22 +73,6 @@ Classicly::Application.routes.draw do
   resources :collections, :only => :show do
     resources :reviews
   end
-
-  # NOTE: this is for the first version of the review API, will be deprecated soon
-  match "incoming_data" => "incoming_datas#create", :method => :post
-
-  resources :logins, :only => [:create] do
-    delete :destroy, :on => :collection
-  end
-  
-  match 'search' => 'search#show'
-  match 'search/autocomplete' => 'search#autocomplete'
-  
-  # current version of the web API
-  match "/web_api" => "web_api#create", :via => :post
-  match '/web_api/query' => "web_api#query", :via => :post
-
-  match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
   
   match "/:id" => "seo#show", :as => 'seo', :via => :get
 

@@ -1,5 +1,8 @@
 = stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/default/style.css"
 
+%h2
+  General
+
 - form_for [:admin, blog_post] do |f|
   = render "shared/error_messages", :target => blog_post
   %p
@@ -17,11 +20,76 @@
   %p
     = f.submit blog_post.new_record? ? 'Save' : 'Update'
 
-=# button_to "Preview", preview_blog_post_path(post), :method => :get unless post.new_record?
+%h2
+  Associate Images
+
+%h3
+  Cover Images
+%p
+  = label_tag 'Pick a book'
+  = text_field_tag 'covers-autocomplete'
+- unless blog_post.new_record?
+  %ul.related-books{:id => "#{blog_post.id}"}
+    - for book in blog_post.related_books
+      %li.related
+        = cover_tag book, 1
+        %span.title
+          = book.pretty_title
+        
+
+
+  
+
+
+  
 = link_to 'Back to Blog Posts', admin_blog_posts_path
 
 = javascript_include_tag 'jquery.markitup.set', 'jquery.markitup'
+
 :javascript
-  $(document).ready(function()    {
-    $('#blog_post_content').markItUp(mySettings);
+  // load jQueryUI:
+  var theme = "flick";
+  google.load("jqueryui", "1.8.7");
+  google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+
+  $(document).ready(function(){
+    // set Markitup plugin for the editor:
+    $( '#blog_post_content' ).markItUp( mySettings );
+    // autocomplete to pickup covers
+    var sourceCallback = function( request, responseCallback ) {
+      $.ajax( {
+        url: '/autocomplete_books_json',
+        dataType: "json",
+        data: { term: request.term },
+        success: function( data ) {
+          responseCallback( $.map( data, function( item ) {
+              return {
+                label: item.pretty_title,
+                value: item.id,
+              }
+          }));
+        }
+      });
+    };
+    
+    var selectCallback = function( event, ui ) {
+      // send the ajax call to save the book as related to the blog post
+      blogPostId = $( 'ul.related-books' ).attr( 'id' );
+      $.ajax( {
+        url: '/admin/blog_posts/associate_book/',
+        data: { id : ui.item.value, blog_post_id: blogPostId }
+      });
+
+      $( 'ul.related-books' ).append( '<liclass="related">' + 
+      '<img src="http://spreadsong-book-covers.s3.amazonaws.com/book_id' + ui.item.value + '_size1.jpg">'+
+      '<span class="title">' + ui.item.label + '</span><li>' );
+      ui.item.value = ''; // clear the value!
+      
+    };
+    
+    $( "#covers-autocomplete" ).autocomplete({
+      source: sourceCallback,
+      minLength: 2,
+      select: selectCallback
+    });
   });
