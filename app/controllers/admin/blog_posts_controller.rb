@@ -1,5 +1,14 @@
 class Admin::BlogPostsController < Admin::BaseController
   before_filter :set_blog_post, :only => [:destroy, :edit, :update, :show]
+  
+  def associate_book
+    book = Book.find(params[:id])
+    blog_post = BlogPost.find(params[:blog_post_id])
+    blog_post.related_books << book
+    blog_post.save
+    render :text => '' 
+  end
+  
   def index
     @blog_posts = BlogPost.all
   end
