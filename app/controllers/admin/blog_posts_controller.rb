@@ -4,7 +4,7 @@ class Admin::BlogPostsController < Admin::BaseController
   def associate_book
     book = Book.find(params[:id])
     blog_post = BlogPost.find(params[:blog_post_id])
-    blog_post.related_books << book
+    params[:delete] ? blog_post.related_books.delete(book) : blog_post.related_books << book
     blog_post.save
     render :text => '' 
   end
