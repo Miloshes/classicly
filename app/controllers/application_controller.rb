@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
 
   def collections_for_footer
-    @collections_for_footer = Collection.by_author.limit(14)
-    @collections_for_footer += Collection.by_collection.limit(14)
+    @collections_for_footer = Collection.book_type.by_author.limit(14).order('name asc')
+    @collections_for_footer += Collection.book_type.by_collection.limit(14).order('name asc')
   end
   
   def current_admin_user_session

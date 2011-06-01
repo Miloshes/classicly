@@ -14,13 +14,19 @@ class PagesController < ApplicationController
   end
     
   def authors
-    @collections = Collection.book_type.by_author.random(10).select('id, description, name, cached_slug')
-    @featured = @collections.first
+    @featured = Collection.of_type('book').collection_type('author').random(1).first
+    @featured_collections = Collection.where(:id.not_eq => @featured.id).book_type.by_author.random(3)
+    featured_ids = [@featured.id]
+    featured_ids += @featured_collections.map(&:id)
+    @other_collections = Collection.where(:id.not_in => featured_ids).book_type.by_author
   end
 
   def collections
-    @collections = Collection.book_type.by_collection.random(10)
-    @featured = @collections.first
+    @featured = Collection.of_type('book').collection_type('collection').random(1).first
+    @featured_collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('collection').random(3)
+    featured_ids = [@featured.id]
+    featured_ids += @featured_collections.map(&:id)
+    @other_collections = Collection.where(:id.not_in => featured_ids).of_type('book').collection_type('collection')
   end
   
 

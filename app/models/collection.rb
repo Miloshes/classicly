@@ -21,7 +21,6 @@ class Collection < ActiveRecord::Base
 
   # genre
   belongs_to :genre
-  default_scope :order => 'downloaded_count desc'
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| where(:collection_type => type)}
   scope :book_type, where(:book_type => 'book')
