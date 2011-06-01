@@ -1,5 +1,14 @@
 class Admin::BlogPostsController < Admin::BaseController
   before_filter :set_blog_post, :only => [:destroy, :edit, :update, :show]
+  
+  def associate_book
+    book = Book.find(params[:id])
+    blog_post = BlogPost.find(params[:blog_post_id])
+    params[:delete] ? blog_post.related_books.delete(book) : blog_post.related_books << book
+    blog_post.save
+    render :text => '' 
+  end
+  
   def index
     @blog_posts = BlogPost.all
   end
@@ -21,7 +30,7 @@ class Admin::BlogPostsController < Admin::BaseController
   end
 
   def update
-    if @blog_post.update_attributes(params[:blog_post])
+    if BlogPost.persist(@blog_post, params[:blog_post])
       redirect_to admin_blog_posts_path
     else
       render :action => :edit

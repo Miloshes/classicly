@@ -4,6 +4,6 @@ class BlogController < ApplicationController
   end
   
   def show
-    @post = BlogPost.find params[:id]
+    @blog_post = BlogPost.find(params[:id])
   end
 end

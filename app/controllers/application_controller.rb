@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   layout 'new_design'
 
   protect_from_forgery
-  helper_method :current_user_session, :current_user
+  helper_method :current_admin_user_session, :current_admin_user
   before_filter :collections_for_footer
   before_filter :initialize_indextank
   before_filter :set_abingo_identity
@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
     @collections_for_footer += Collection.by_collection.limit(14)
   end
   
-  private
   def current_admin_user_session
     return @current_admin_user_session if defined?(@current_admin_user_session)
     @current_admin_user_session = AdminUserSession.find
