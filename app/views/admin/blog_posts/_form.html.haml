@@ -1,37 +1,53 @@
 = stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/default/style.css"
 
-%h2
-  General
-#blog-form
-  - form_for [:admin, blog_post], :html => { :multipart => true } do |f|
-    = render "shared/error_messages", :target => blog_post
-    %p
-      = f.label :title
-      = f.text_field :title
-    %p
-      = f.label :content
-      = f.text_area :content
-    %p
-      = f.label :meta_description, 'Meta Description (SEO)'
-      = f.text_field :meta_description
-    %p
-      = f.label :keywords
-      = f.text_field :keywords
-    %fieldset
-      %legend
-        %h2
-          Custom images
-      = f.fields_for :custom_resources do |builder|
+%fieldset
+  %legend
+    %h2
+      General data
+  #blog-form
+    - form_for [:admin, blog_post], :html => { :multipart => true } do |f|
+      = render "shared/error_messages", :target => blog_post
+      %p
+        = f.label :title
+        = f.text_field :title
+      %p
+        = f.label :content
+        = f.text_area :content
+      %p
+        = f.label :meta_description, 'Meta Description (SEO)'
+        = f.text_field :meta_description
+      %p
+        = f.label :keywords
+        = f.text_field :keywords
+      %fieldset
+        %legend
+          %h2
+            Custom images
+        %table
+          %tr
+            %th
+              Location URL
+            %th
+              Image thumb
+            %th
+            %th
+          = f.fields_for :custom_resources do |builder|  
+            %tr
+              %td
+                = builder.object.image.url.to_s unless builder.object.new_record?
+              %td
+                = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
+              %td
+                = builder.label 'Pick an image'
+                = builder.file_field :image
+              - unless builder.object.new_record?
+                %td
+                  = builder.check_box '_destroy'
+                  = builder.label '_destroy', 'Remove'
         %p
-          = builder.object.image.url.to_s unless builder.object.new_record?
-          = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
-          = builder.label 'Pick an image'
-          = builder.file_field :image
-          - unless builder.object.new_record?
-            = builder.check_box '_destroy'
-            = builder.label '_delete', 'Remove'
-    %p
-      = f.submit blog_post.new_record? ? 'Save' : 'Update'
+          To add a custom image to the blog, just use the Location URl inside an image tag as &lt;img='[Location URL]'/&gt;
+        %p
+          = f.submit blog_post.new_record? ? 'Save' : 'Update'
 
   %h2
     Associated Images
