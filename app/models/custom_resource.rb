@@ -8,7 +8,7 @@ class CustomResource < ActiveRecord::Base
                                         :secret_access_key => APP_CONFIG['amazon']['secret_key']
                                         },
                     :s3_permissions => 'public-read',
-                    :bucket => APP_CONFIG['buckets']['classicly-blog-images'],
+                    :bucket => APP_CONFIG['buckets']['blog_images'],
                     :path => ":rails_root/public:url"
                     
 end
