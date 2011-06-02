@@ -1,4 +1,5 @@
 class BlogPost < ActiveRecord::Base
+  has_many :custom_resources
   # we defined a finder sql because we don't need every field in the book model
   has_and_belongs_to_many :related_books,
                           :class_name =>  'Book',
@@ -8,6 +9,7 @@ class BlogPost < ActiveRecord::Base
                                           'ON books.id = blog_posts_books.book_id ' + 
                                           'WHERE blog_posts_books.blog_post_id = #{id}'
   validates_presence_of :meta_description
+  accepts_nested_attributes_for :custom_resources
   has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
   
   def self.persist(blog_post, params)
