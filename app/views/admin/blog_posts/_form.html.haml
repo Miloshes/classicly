@@ -3,7 +3,7 @@
 %h2
   General
 #blog-form
-  - form_for [:admin, blog_post] do |f|
+  - form_for [:admin, blog_post], :html => { :multipart => true } do |f|
     = render "shared/error_messages", :target => blog_post
     %p
       = f.label :title
@@ -17,14 +17,24 @@
     %p
       = f.label :keywords
       = f.text_field :keywords
+    %fieldset
+      %legend
+        %h2
+          Custom images
+      = f.fields_for :custom_resources do |builder|
+        %p
+          = builder.object.image_file_name unless builder.object.new_record?
+          = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
+          = builder.label 'Pick an image'
+          = builder.file_field :image
+          - unless builder.object.new_record?
+            = builder.check_box '_destroy'
+            = builder.label '_delete', 'Remove'
     %p
       = f.submit blog_post.new_record? ? 'Save' : 'Update'
 
   %h2
-    Associate Images
-
-  %h3
-    Cover Images
+    Associated Images
   %p
     = label_tag 'Pick a book'
     = text_field_tag 'covers-autocomplete'
@@ -39,6 +49,7 @@
             = book.pretty_title
 
   = link_to 'Back to Blog Posts', admin_blog_posts_path
+    
 
 = javascript_include_tag 'jquery.markitup.set', 'jquery.markitup'
 -# This Google javascript must be loaded before the blogPostForm file since it loads the jQuery autocomplete:

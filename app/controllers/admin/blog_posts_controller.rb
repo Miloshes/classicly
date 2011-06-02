@@ -15,6 +15,7 @@ class Admin::BlogPostsController < Admin::BaseController
 
   def new
     @blog_post = BlogPost.new
+    @blog_post.custom_resources.build
   end
 
   def create
@@ -27,6 +28,7 @@ class Admin::BlogPostsController < Admin::BaseController
   end
 
   def edit
+    @blog_post.custom_resources.build
   end
 
   def update
