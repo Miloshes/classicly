@@ -37,4 +37,8 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
     sitemap.add seo_path(collection)
   end
   
+  # now check the seo slugs
+  SeoSlug.find_each do|slug|
+    sitemap.add seo_path(slug.slug)
+  end
 end
