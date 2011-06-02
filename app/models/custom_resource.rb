@@ -3,7 +3,7 @@ class CustomResource < ActiveRecord::Base
   
   has_attached_file :image,
                     :styles => { :medium => "300x300>", :thumb => "100x100>" },
-                    :storage => :s3,
+                    :storage => Rails.env.development? ? :filesystem : :s3,
                     :s3_credentials => {:access_key_id => APP_CONFIG['amazon']['access_key'],
                                         :secret_access_key => APP_CONFIG['amazon']['secret_key']
                                         },

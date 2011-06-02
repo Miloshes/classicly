@@ -23,7 +23,7 @@
           Custom images
       = f.fields_for :custom_resources do |builder|
         %p
-          = builder.object.image_file_name unless builder.object.new_record?
+          = builder.object.image.url.to_s unless builder.object.new_record?
           = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
           = builder.label 'Pick an image'
           = builder.file_field :image
