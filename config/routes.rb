@@ -11,10 +11,13 @@ Classicly::Application.routes.draw do
   end
   
 
+  match 'abingo' => "abingo_dashboard#index", :via => :get
+  match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors' => 'pages#authors'
   match 'autocomplete_books_json' => 'books#autocomplete_json'
+  match 'blog' => 'blog#index', :as => :blog
   match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
   match 'json_audiobooks' => 'audiobooks#json_audiobooks'
@@ -26,8 +29,6 @@ Classicly::Application.routes.draw do
   match 'random_json_books/:total_books' => 'pages#random_json_books'
   match 'related_audiobooks/:id/:total_related' => 'audiobooks#related_audiobooks_in_json'
   match 'related_books/:id/:total_related' => 'books#related_books_JSON'
-  match 'abingo' => "abingo_dashboard#index", :via => :get
-  match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
 
   # TODO: remove, this is only here for testing
   match '/reader/:id/:page_number' => "book_pages#show", :via => :get
@@ -35,17 +36,15 @@ Classicly::Application.routes.draw do
   match "incoming_data" => "incoming_datas#create", :method => :post
   
   
+  match 'post/:id' => 'blog#show', :as => :post
+  match 'privacy' => 'pages#privacy'
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
-  match '/facebook/like' => 'facebook_events#like', :via => :get
-
-
   get "bingo_experiments/create"
 
-  match 'blog' => 'blog#index', :as => :blog
-  match 'post/:id' => 'blog#show', :as => :post
+  
   
   
 

@@ -32,6 +32,10 @@ class PagesController < ApplicationController
 
   def main
   end
+  
+  def privacy
+    
+  end
 
   def random_json_books
     books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').random(params[:total_books].to_i)
