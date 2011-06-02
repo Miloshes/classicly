@@ -8,6 +8,7 @@ buckets:
   audiobook_chapters: "spreadsong-ifab-chapters"
   author_portraits: "spreadsong-author-portraits"
   books: "spreadsong-kindleload-books"
+  blog_images: "classicly-blog-images"
   covers:
     original_highres: "spreadsong-original-highres-covers"
     iphone:
