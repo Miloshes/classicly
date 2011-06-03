@@ -18,7 +18,7 @@ class Collection < ActiveRecord::Base
            :conditions => {:featured => true}
 
   has_many :seo_slugs, :as => :seoable
-
+  has_one :seo_info, :as => :infoable
   # genre
   belongs_to :genre
   scope :of_type, lambda {|type| where(:book_type => type)}
@@ -137,15 +137,6 @@ class Collection < ActiveRecord::Base
   
   def is_author_collection?
     self.collection_type == 'author'
-  end
-
-  def web_title
-    prefix = self.collection_type == 'collection' ? "#{self.name} - " : "#{self.name} Books - "
-    suffix = "Download Free Books, Read Online, and More"
-    if [prefix, suffix].map(&:length).reduce(:+) <= 70
-      return prefix + suffix
-    end
-    prefix
   end
 
   def random_blessed(num = 8)

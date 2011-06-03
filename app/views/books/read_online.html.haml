@@ -39,8 +39,8 @@
       %p= simple_format(@book.description)
       #read_online_button_container
         =image_tag 'read-online-arrow.png'
-        - if @book.book_pages.size != 0
-          = link_to image_tag('read-online-focus.png'), @book.read_online_slug
+        -# if @book.book_pages.size != 0
+        = read_online_link @book
         .clear
         .read_online_text
           %p.explanation.first Reading on Classicly is completely free- these books are public domain. 

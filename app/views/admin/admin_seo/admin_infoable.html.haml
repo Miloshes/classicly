@@ -1,0 +1,18 @@
+= paginate @elements
+%table
+  %thead
+    %tr
+      - if @elements.first.is_a?(SeoSlug)
+        %th
+          Object Type
+      %th
+        Title or name
+      %th
+        Slug
+      %th
+        
+  %tbody
+    = render :partial =>'element', :collection => @elements
+      
+%p
+  = link_to 'Back to Seo Admin', admin_admin_seo_path

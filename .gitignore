@@ -9,6 +9,7 @@ db/*.db
 db/yaml_exports
 db/descriptions
 db/collection_plists
+public/system
 ruby
 *.tmproj
 .#*

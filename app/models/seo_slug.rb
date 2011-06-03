@@ -1,5 +1,7 @@
 class SeoSlug < ActiveRecord::Base
   belongs_to :seoable, :polymorphic => true
+  has_one :seo_info, :as => :infoable
+
   scope :kindle, where(:format => 'kindle')
   scope :mp3, where(:format => 'mp3')
   scope :pdf, where(:format => 'pdf')

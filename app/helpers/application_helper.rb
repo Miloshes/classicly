@@ -171,6 +171,12 @@ def condensed_description(book)
   paragraph_boundary += trailing_string.index(' ') unless single_paragraph # either we have a complete paragraph or a paragraph choopped but with no broken words ( we get the last blankspace)
   simple_format book.description[0, paragraph_boundary] + '...' +  link_to('  more', author_book_url(book.author, book))
 end
+
+def shorten_title(limit)
+  return self.pretty_title if self.pretty_title.length <= limit
+  self.pretty_title.slice(0, (limit - 3)).concat("...")
+end
+
 def special_format_download_book_link(format)
   content_tag(:span, @format == 'azw' ? "Click to download for Kindle" : "Click to download as #{format.upcase}")
 end

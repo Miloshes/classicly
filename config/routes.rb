@@ -2,9 +2,13 @@ Classicly::Application.routes.draw do
 
   namespace 'admin' do
     root :to => "base#home"
+    match 'admin_seo' => 'admin_seo#main'
+    match 'admin_seo/:type' => 'admin_seo#admin_infoable', :as => 'admin_infoable'
+    match 'admin_seo/:type/:id' => 'admin_seo#edit_seo', :as => 'edit_seo'
+    match 'admin_seo/:type/:id/update_seo_info' => 'admin_seo#update_seo_info', :as => 'update_seo_info'
     match 'blog_posts/associate_book' => 'blog_posts#associate_book'
-    match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
+    match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
     resource :admin_user_session
     resources :blog_posts
     resources :reviews, :only => [:index, :destroy]

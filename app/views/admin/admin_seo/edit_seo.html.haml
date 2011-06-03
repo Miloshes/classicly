@@ -1,0 +1,71 @@
+#element-details
+  %p
+    %span.label
+      Name:
+    = seo_admin_element_name(@element)
+  %p
+    %span.label
+      Slug:
+    = seo_admin_element_slug(@element)
+  %p
+    %span.label
+      Title:
+    = @element.seo_info.try(:title)
+  %p
+    %span.label
+      Meta Description:
+    = @element.seo_info.try(:meta_description)
+  %p
+    %span.label
+      Open Graph Title:
+    = @element.seo_info.try(:og_title)
+  %p
+    %span.label
+      Open Graph Type:
+    = seo_admin_open_graph_type(@element)
+  %p
+    %span.label
+      Open Graph Url:
+    = seo_admin_element_slug(@element)
+  %p
+    %span.label
+      Open Graph Image:
+    = @element.seo_info.try(:og_image)
+  %p
+    %span.label
+      Open Graph Sitename:
+    Classicly.com
+  %p
+    %span.label
+      Open Graph Description:
+    = @element.seo_info.try(:og_description)
+#element-form
+  %fieldset
+    %legend
+      %h2
+        Edit this Seo
+    = form_for @seo_info , :url => admin_update_seo_info_path(@element.class.to_s, @element.id) do |f|
+      = render 'shared/error_messages', :target => @seo_info
+      - unless @element.is_a?(SeoSlug)
+        %p
+          = f.label :infoable_title, @element.is_a?(Collection) ? 'Collection name' : "#{@element.class.to_s} title"
+          = f.text_field :infoable_title
+      %p
+        = f.label :title, "Title"
+        = f.text_field :title
+      %p
+        = f.label :meta_description, "Meta Description"
+        = f.text_field :meta_description
+      %p
+        = f.label :og_title, "Open Graph Title"
+        = f.text_field :og_title
+      %p
+        = f.label :og_image, "Open Graph Image"
+        = f.text_field :og_image
+      %p
+        = f.label :og_description, "Open Graph Description"
+        = f.text_field :og_description
+      %p
+        = f.submit "Save", :disable_with => 'Saveing...'
+
+= link_to "Back to Seo admin for #{@element.class.to_s.pluralize}", admin_admin_infoable_path(@element.class.to_s)
