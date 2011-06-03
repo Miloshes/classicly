@@ -1,5 +1,19 @@
 module SeoHelper # Please don't put into application helper
   
+  def meta_description_for_element(element)
+    case element.class.to_s
+    when 'Collection'
+      case self.collection_type
+      when 'collection'
+        "%s- the ultimate literature collection. Dozens of hand-picked books for free download as PDF, Kindle, Sony Reader, iBooks, and more. You can also read online!" % element.name
+      when 'author'
+        "The world's greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([element.name] * 2)
+      end
+    when 'Book', 'Audiobook'
+      "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % element.pretty_title
+    end
+  end
+  
   def seo_admin_element_name(element)
     case element.class.to_s
     when 'Book', 'Audiobook'
@@ -29,6 +43,16 @@ module SeoHelper # Please don't put into application helper
     return "#{element.book_type.capitalize} Collection" if element.is_a?(Collection)
     element.class.to_s
   end
+  
+  def seo_front_end_meta_description_text(element)
+    if element.seo_info
+      description = element.seo_info.meta_description
+    else
+      element = element.seoable if element.is_a?(seo_slug)
+      meta_description_for_element(element)
+    end
+  end
+  
   
   def seo_front_end_title_for_collection(collection)
     prefix = collection.collection_type == 'collection' ? "#{collection.name} - " : "#{collection.name} Books - "
