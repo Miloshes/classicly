@@ -51,7 +51,7 @@
           = f.label :infoable_title, @element.is_a?(Collection) ? 'Collection name' : "#{@element.class.to_s} title"
           = f.text_field :infoable_title
       %p
-        = f.label :title, "Title"
+        = f.label :title, "Text to show in web title"
         = f.text_field :title
       %p
         = f.label :meta_description, "Meta Description"

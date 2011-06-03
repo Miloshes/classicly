@@ -10,7 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110523163434) do
+ActiveRecord::Schema.define(:version => 20110602182536) do
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "name",                              :null => false
+    t.string   "email",                             :null => false
+    t.string   "crypted_password",                  :null => false
+    t.string   "password_salt",                     :null => false
+    t.string   "persistence_token",                 :null => false
+    t.integer  "login_count",        :default => 0, :null => false
+    t.integer  "failed_login_count", :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email"
 
   create_table "alternatives", :force => true do |t|
     t.integer "experiment_id"
@@ -39,12 +58,13 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
     t.integer "author_id"
-    t.boolean "blessed",         :default => false, :null => false
+    t.boolean "blessed",          :default => false, :null => false
     t.integer "custom_cover_id"
     t.string  "pretty_title"
     t.string  "cached_slug"
     t.text    "description"
-    t.integer "avg_rating",      :default => 0,     :null => false
+    t.integer "avg_rating",       :default => 0,     :null => false
+    t.integer "downloaded_count", :default => 0
   end
 
   create_table "authors", :force => true do |t|
@@ -60,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
     t.string   "keywords"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug"
+    t.string   "meta_description"
   end
 
   create_table "blog_posts_books", :id => false, :force => true do |t|
@@ -75,6 +95,7 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
     t.integer "last_character"
     t.text    "content"
     t.boolean "first_line_indent", :default => false, :null => false
+    t.boolean "re_render_flag",    :default => false, :null => false
     t.boolean "force_rerender",    :default => false, :null => false
   end
 
@@ -130,6 +151,16 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
     t.integer  "genre_id"
     t.string   "cached_slug"
     t.integer  "downloaded_count",             :default => 0
+  end
+
+  create_table "custom_resources", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blog_post_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -195,6 +226,18 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
     t.integer  "login_id"
   end
 
+  create_table "seo_infos", :force => true do |t|
+    t.integer  "infoable_id"
+    t.string   "meta_description"
+    t.string   "title"
+    t.string   "og_title"
+    t.string   "og_image"
+    t.string   "og_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "infoable_type"
+  end
+
   create_table "seo_slugs", :force => true do |t|
     t.integer "seoable_id"
     t.string  "seoable_type"
@@ -223,7 +266,30 @@ ActiveRecord::Schema.define(:version => 20110523163434) do
     t.datetime "created_at"
   end
 
-  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
+
+  create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "reset_password_token"
+    t.string   "remember_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

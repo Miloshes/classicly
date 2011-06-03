@@ -3,7 +3,7 @@
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => seo_front_end_meta_description_text(@collection),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
-      :title => @collection.name, :type => 'album' })
+      :title => @collection.name, :type => 'album' }, @collection.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
 #collection-page
