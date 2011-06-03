@@ -6,6 +6,10 @@ module CommonBookMethods
     end
   end
   
+  def description_for_open_graph
+    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % self.pretty_title
+  end
+
   def limited_description(limit)
     return "" if self.description.nil?
     limit = self.description.length - 1 if limit >= self.description.length

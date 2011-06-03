@@ -7,6 +7,13 @@ class AudiobooksController < ApplicationController
     render :layout => false
   end
 
+  def download
+    @book = Audiobook.find params[:id]
+    @popular_books = Audiobook.blessed.random 3
+    @related_book = @book.find_fake_related(1).first
+    render :layout => 'download'
+  end
+
   def index
     @related_books = Audiobook.blessed.random(8)
     @featured_audio_books = Audiobook.blessed.random(5)

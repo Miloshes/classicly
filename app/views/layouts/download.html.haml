@@ -1,0 +1,157 @@
+!!! XML
+!!! strict
+%html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
+
+	%head
+		= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+		= stylesheet_link_tag 'compiled/print.css', :media => 'print'
+		/[if lt IE 8]
+		= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+		= yield :title
+		= javascript_include_tag 'http://www.google.com/jsapi'
+		= javascript_tag do
+			var theme = "flick";
+			google.load("jquery", "1.4.4");
+			google.load("jqueryui", "1.8.7");
+			google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+		= javascript_include_tag 'masonry'
+		= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating'
+		=# javascript_include_tag 'classicly-autocomplete'
+		= csrf_meta_tag
+		= typekit_include_helper
+		%meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+		%meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+		= yield :head
+
+	%body.bp
+		#header
+			.wrap
+				.top
+					#logo
+						%a{:href => '/'}
+							= image_tag 'logo.png'
+					#nav
+						%ul
+							%li
+								%a{:href => '/collections'} Collections
+							%li
+								%a{:href => '/authors'} Authors
+							%li
+								%a{:href => '/audiobooks'} Audiobooks
+							%li
+								%a.blog{:href => '/blog'} Blog
+
+					#search
+						= form_tag search_url, :method => :get do
+							= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+							%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+				.bottom
+		#content
+			#left-column
+				= yield
+			#right-column
+				.row
+					%p.popular
+						Popular
+						.cover-with-title-here.small
+							.stable
+								= cover_image_link @popular_books[0], 2
+							.text
+								%span.title
+									= @popular_books[0].pretty_title
+								%span.type
+									Book
+						.cover-with-title-here.tiny
+							.stable
+								= cover_image_link @popular_books[1], 2
+							.text
+								%span.title
+									= @popular_books[1].pretty_title
+								%span.type
+									Book
+						.cover-with-title-here.tiny
+							.stable
+								= cover_image_link @popular_books[2], 2
+							.text
+								%span.title
+									= @popular_books[2].pretty_title
+								%span.type
+									Book
+					.links
+						= link_to 'See more popular books', '/best-of'
+						= link_to "Browse collections", '/collections'
+						= link_to "Browse authors", '/authors'
+		#bottom-shadow
+		#footer
+			.centering
+				.about
+					%h4 About
+					.bg
+						%p
+							Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips. 
+						%p 
+							Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
+				.applications
+					%h4 Apps
+					.app
+						= link_to image_tag('footer-books.png', :class => "icon"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"
+						%h5 Free Books
+						%span 23,469 classics to go.
+						= link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"
+						= link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8"
+					.app.grid_4.alpha.omega
+						.grid_1.alpha
+							= link_to image_tag('footer-audiobooks.png', :class => "icon"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"
+						.grid_3.omega
+							%h5 Free Audiobooks
+							%span 2,947 audiobooks for $1.99.
+							= link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"
+							= link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classics/id379861611?mt=8"
+				.connect.grid_4.omega
+					%h4 Connect
+					= link_to image_tag('footer-support.png'), "http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"
+					= link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
+					= link_to image_tag('footer-twitter.png'), "http://twitter.com/#!/classiclybooks"
+			.collection-names-list
+				=image_tag 'footer-collections-top.png'
+				.collections
+					- for collection in @collections_for_footer
+						= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
+				=image_tag 'footer-collections-bottom.png'
+
+#fb-root
+<script>
+window.fbAsyncInit = function() {FB.init({appId: '#{Facebook::APP_ID}', status: true, cookie: true, xfbml: true});};
+(function() {var e = document.createElement('script'); e.async = true;e.src = document.location.protocol + 	'//connect.facebook.net/en_US/all.js';document.getElementById('fb-root').appendChild(e);}());
+</script>
+
+
+:javascript
+	$(function(){
+		$('.cover-with-title-here').children('.stable').children('a').children('img').fadeIn(1000);
+		$('.cover-with-title-here').children('.text').fadeIn(1000);
+		$(window).load(function(){
+			window.location = $('.download-link').attr('href');
+		});
+	});
+:javascript
+	// initialize the environment for JS
+	RAILS_ENV = "#{Rails.env}";
+
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-21890797-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+
+	(function() {
+	var p = document.createElement('script');
+	p.type = 'text/javascript'; p.async = true;
+	p.src = '//d2f7h8c8hc0u7y.cloudfront.net/performable/pax/0HuiG9.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(p, s);
+	})();
