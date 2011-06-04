@@ -1,4 +1,8 @@
 class Collection < ActiveRecord::Base
+  # we have to be able to handle URLs in the model
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+
   # books
   has_many :audiobooks, :through => :collection_audiobook_assignments
   has_many :books, :through => :collection_book_assignments
@@ -19,15 +23,18 @@ class Collection < ActiveRecord::Base
 
   has_many :seo_slugs, :as => :seoable
   has_one :seo_info, :as => :infoable
-  # genre
+
   belongs_to :genre
+  
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| where(:collection_type => type)}
   scope :book_type, where(:book_type => 'book')
   scope :audio_book_type, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
-  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RANDOM()', :limit => limit }}
+  
+  before_save :set_parsed_description
   
   validates :name, :presence => true
   validates :book_type, :presence => true
@@ -172,5 +179,28 @@ class Collection < ActiveRecord::Base
     return "" if self.description.nil?
     limit = self.description.length - 1 if limit >= self.description.length
     self.description[0..limit]
+  end
+  
+  # turns the collection's description into HTML
+  def set_parsed_description
+    default_url_options[:host] = 'www.classicly.com'
+    
+    doc = Nokogiri::HTML(self.description)
+    books_tags = doc.xpath("//book") # get all <book> tags
+    
+    books_tags.each do |book_tag|
+      book_id = book_tag.attributes["id"].value.to_i
+      book_object = Book.find(book_id)
+      book_tag.name = "a"
+      book_tag.set_attribute("href", author_book_url(book_object.author, book_object))
+      book_tag.set_attribute("class", "description-link")
+    end
+    
+    quotes = doc.xpath('//quote')
+    quotes.each do|quote|
+      quote.remove
+    end
+    
+    self.parsed_description = doc.css('body').inner_html
   end
 end
