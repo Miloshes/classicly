@@ -25,6 +25,7 @@ gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
 gem 'rubyzip'
+gem 'dalli' # that's for memcache
 
 group :development do
   gem 'awesome_print'

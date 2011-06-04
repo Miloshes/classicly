@@ -60,6 +60,7 @@ GEM
     compass (0.10.6)
       haml (>= 3.0.4)
     daemons (1.1.0)
+    dalli (1.0.5)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -221,6 +222,7 @@ DEPENDENCIES
   awesome_print
   aws-s3
   compass (>= 0.10.5)
+  dalli
   delayed_job
   firewatir
   friendly_id (~> 3.2.1)
