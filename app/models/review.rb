@@ -8,13 +8,36 @@ class Review < ActiveRecord::Base
   after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_or_update_from_ios_client_data(data)
+    # == fetch the reviewable
     if data['book_id']
       reviewable = Book.find(data['book_id'].to_i)
     else
       reviewable = Audiobook.find(data['audiobook_id'].to_i)
     end
+
+    # == fetch the user
     
-    login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
+    # API version 1.1: user registration API call with facebook connect ID is required before submitting a review    
+    # API version 1.2: users can send reviews without registration, they'll be identified by device ID
+    
+    if data['structure_version'] == '1.1'
+      logger.info(" -- API 1.1: fetching login via facebook connect ID")
+
+      login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
+    elsif data['structure_version'] == '1.2'
+      logger.info(" -- API 1.2")
+      
+      # 1. we get fb_connect_id: it's an existing user
+      if data['user_fbconnect_id']
+        logger.info(" -- got facebook connect ID")
+        login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()        
+      else
+      # 2. no fb_connect_id: we setup a temporary login that holds the device_id
+      # later we connect it to the facebook ID when the user registers
+        logger.info(" -- no facebook connect ID")
+        login = Login.where(:ios_device_id => data['device_id'].to_s).first()
+      end
+    end
     
     return nil if login.blank? || reviewable.blank?
     

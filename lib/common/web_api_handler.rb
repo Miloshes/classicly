@@ -47,7 +47,7 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
-    reviews = book.reviews.order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
+    reviews = book.reviews.where('fb_connect_id IS NOT NULL').order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
     
     result = []
     reviews.each do |review|

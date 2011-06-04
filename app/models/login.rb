@@ -1,12 +1,30 @@
 class Login < ActiveRecord::Base
   has_many :reviews
   
+  # code paths:
+  # API v 1.1
+  #  - login exists with fb_connect_id, exit
+  #  - login doesn't exists with fb_connect_id, register with all the params
+  # API v 1.2
+  #  - no fb_connect_id in params, just device_id
+  #    - already exists, exit
+  #    - doesn't exists, create it
+  #  - fb_connect_id and device_id
+  #    - already exists, exit
+  #    - doesn't exists, update the login and the associated reviews with the FB info
   def self.register_from_ios_app(params)
     params.stringify_keys!
-        
-    return true if Login.where(:fb_connect_id => params['user_fbconnect_id']).exists?
     
-    Login.create(
+    # avoid double registration - works for API version 1.1 and 1.2
+    if params['user_fbconnect_id']
+      return true if Login.where(:fb_connect_id => params['user_fbconnect_id']).exists?
+    else
+      return true if Login.where(:ios_device_id => params['device_id']).exists?
+    end
+    
+    if params['structure_version'] == '1.1'
+      
+      new_login = Login.create(
         :fb_connect_id    => params['user_fbconnect_id'],
         :email            => params['user_email'],
         :first_name       => params['user_first_name'],
@@ -14,8 +32,31 @@ class Login < ActiveRecord::Base
         :location_city    => params['user_location_city'],
         :location_country => params['user_location_country']
       )
+    
+    elsif params['structure_version'] == '1.2'
+      
+      if params['user_fbconnect_id'].blank?
+        new_login = Login.create(:ios_device_id => params['device_id'])
+      else
+        login_to_update = Login.where(:ios_device_id => params['device_id']).first()
+        login_to_update.update_attributes(
+          :fb_connect_id    => params['user_fbconnect_id'],
+          :email            => params['user_email'],
+          :first_name       => params['user_first_name'],
+          :last_name        => params['user_last_name'],
+          :location_city    => params['user_location_city'],
+          :location_country => params['user_location_country']
+        )
+        
+        login_to_update.reviews.find_each do |review|
+          review.update_attributes(:fb_connect_id => login_to_update.fb_connect_id)
+        end
+      end
+    
+    end
+    
   end
-  
+    
   def self.register_from_classicly(profile, location, mix_panel)
     login = Login.find_by_fb_connect_id profile['id']
     is_new = false
@@ -31,6 +72,10 @@ class Login < ActiveRecord::Base
     end
     login.performable_log_session_opened if Rails.env.production?
     is_new
+  end
+  
+  def not_registered_with_facebook?
+    return self.fb_connect_id.null?
   end
 
   def report_successful_registration_to_performable
