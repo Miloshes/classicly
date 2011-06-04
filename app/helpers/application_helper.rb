@@ -75,24 +75,6 @@ module ApplicationHelper
     radio_button_tag("download_format", format, checked, :id => "radio%s_%s" % [index, featured_book.id]) + label_tag("radio%s_%s" % [index, featured_book.id], format == 'azw' ? 'Kindle' : format.upcase)
   end
 
-
-  def parsed_collection_description(description)
-    doc = Nokogiri::HTML(description)
-    books = doc.xpath("//book") # get all <book> tags
-    books.each do |book|
-      book_id = book.attributes["id"].value
-      book_object = Book.find(book_id)
-      book.name = "a"
-      book.set_attribute("href", author_book_url(book_object.author, book_object))
-      book.set_attribute("class", "description-link")
-    end
-    quotes = doc.xpath('//quote')
-    quotes.each do|quote|
-      quote.remove
-    end
-    doc.css('body').inner_html
-  end
-  
   # replaces <book> tag for a new html tag:
   def remove_book_tags(text, html_tag)
     doc = Nokogiri::HTML( text )

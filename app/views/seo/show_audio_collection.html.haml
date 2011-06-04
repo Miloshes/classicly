@@ -9,7 +9,7 @@
 #collection-page
   .collection-info
     %h1="#{@collection.name} Audiobooks"
-    %p=simple_format(parsed_collection_description(@collection.description))
+    %p=simple_format(@collection.parsed_description)
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books.audiobooks{:name => "collection_#{@collection.id}"}
     .cover-here.medium
@@ -26,7 +26,7 @@
         .spinner
   .book-list
     %h3 All #{@collection.name} Audiobooks
-    %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
+    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
 
     .sorting

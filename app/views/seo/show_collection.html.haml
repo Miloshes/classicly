@@ -15,7 +15,7 @@
 
     .like-send
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-    %p=simple_format(parsed_collection_description(@collection.description))
+    %p=simple_format(@collection.parsed_description)
     .share
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
   -# Warning. Don't change name attribute below , please ask Nacho:
@@ -34,7 +34,7 @@
         .spinner
   .book-list
     %h3 All #{@collection.name} Books
-    %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
+    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
 
     .sorting

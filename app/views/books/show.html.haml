@@ -42,7 +42,7 @@
       .read
         - if @book.book_pages.size != 0
           = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
-      %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
+      %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
 = javascript_include_tag 'covers-book-detail'
 
