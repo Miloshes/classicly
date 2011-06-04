@@ -1,0 +1,35 @@
+- content_for :title do
+  %title= @book.download_format_page_title(@format)
+
+#book-page.audiobook{:name => @book.id }
+  .cover-column
+    #current-book.cover-here.medium
+      .stable
+        .spinner
+    %h4 Related
+    .cover-with-title-here.small.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+    .cover-with-title-here.tiny.related
+      .stable
+        .spinner
+  .book-column
+    #book-metadata
+      %h1
+        Download #{@book.pretty_title} MP3
+      %h2
+        by
+        %span.book-author
+          = @book.author.name
+      %p= simple_format(@book.description)
+
+      - if @book.has_zip_file?
+        .download-highlight
+          = link_to content_tag(:span, 'Download as MP3'), download_audiobook_url(@book.author, @book), :id => 'download-facebook-post', :class => 'button kiss green large kiss'
+
+      %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
+      %p.explanation We don’t pay a cent, so neither do you
+= javascript_include_tag 'covers-book-detail'

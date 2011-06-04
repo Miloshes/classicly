@@ -2,13 +2,14 @@
   %title=@book.read_online_title
 
 - content_for :head do
-  = fb_open_graph_metadata({:url => @book.url_for_specific_format('online'), :description => @book.description_for_open_graph,
+  = fb_open_graph_metadata({:url => @book.url_for_specific_format('online'),
+      :description => seo_front_end_meta_description_text(@book),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
-  %meta{:name => 'description', :content => @book.description_for_open_graph}
+      :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
 
-#book-page
+#book-page{:name => @book.id}
   .cover-column
     #current-book.cover-here.medium
       .stable
@@ -39,16 +40,16 @@
       %p= simple_format(@book.description)
       #read_online_button_container
         =image_tag 'read-online-arrow.png'
-        - if @book.book_pages.size != 0
-          = link_to image_tag('read-online-focus.png'), @book.read_online_slug
+        -# if @book.book_pages.size != 0
+        = read_online_link @book
         .clear
         .read_online_text
           %p.explanation.first Reading on Classicly is completely free- these books are public domain. 
 
           %p.explanation We don’t pay a  cent, so neither do you.
 
-       
-= javascript_include_tag 'book-details'
+
+= javascript_include_tag 'covers-book-detail','book-details'
 :javascript
   $('#reviews').data('book_id', #{@book.id})
 :javascript

@@ -24,9 +24,10 @@ module ApplicationHelper
                       author_book_url(author,book)
   end
   
-  def cover_image_link(cover, type, html_class)
+  def cover_image_link(cover, size, html_class=nil)
+    type = cover.class.to_s.downcase
     bucket = "#{type}_id"
-    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size3.jpg",
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg",
                       :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => html_class),
                       author_book_url(cover.author, cover)
   end
@@ -67,16 +68,6 @@ module ApplicationHelper
 
   def typekit_include_helper
     javascript_include_tag('http://use.typekit.com/idk3svd.js').concat(javascript_tag "try{ Typekit.load();}catch(e){}")
-  end
-  
-  def fb_open_graph_metadata(config = {})
-    content_tag(:meta, nil, {:property => "og:title", :content => config[:title] || "Classicly"}) +
-    content_tag(:meta, nil, {:property => "og:type", :content => config[:type] || "website"}) +
-    content_tag(:meta, nil, {:property => "og:url", :content => config[:url] || "http://www.classicly.com"}) +
-    content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
-    content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
-    content_tag(:meta, nil, {:property => "fb:app_id", :content => Facebook::APP_ID}) +
-    content_tag(:meta, nil, {:property => "og:description", :content => config[:description] || "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
 
   def radio_button_for_format(format, index, featured_book)
@@ -170,6 +161,12 @@ def condensed_description(book)
   paragraph_boundary += trailing_string.index(' ') unless single_paragraph # either we have a complete paragraph or a paragraph choopped but with no broken words ( we get the last blankspace)
   simple_format book.description[0, paragraph_boundary] + '...' +  link_to('  more', author_book_url(book.author, book))
 end
+
+def shorten_title(limit)
+  return self.pretty_title if self.pretty_title.length <= limit
+  self.pretty_title.slice(0, (limit - 3)).concat("...")
+end
+
 def special_format_download_book_link(format)
   content_tag(:span, @format == 'azw' ? "Click to download for Kindle" : "Click to download as #{format.upcase}")
 end

@@ -1,12 +1,12 @@
 - content_for :title do
-  %title=@book.view_book_page_title
+  %title= seo_front_end_title_helper(@book)
 - content_for :head do
   - if @book.needs_canonical_link?
     %link{:rel => "canonical", :href => "http://www.classicly.com/#{@book.author.cached_slug}/#{@book.canonical_slug}" }
-  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => @book.description_for_open_graph,
+  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => seo_front_end_meta_description_text(@book),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' })
-  %meta{:name => 'description', :content => @book.description_for_open_graph}
+      :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
       
 #book-page{:name => @book.id }
   .cover-column
@@ -14,7 +14,7 @@
       .stable
         .spinner
     %h4 Related
-    .cover-with-title-here.small.related
+    .cover-with-title-here.tiny.related
       .stable
         .spinner
     .cover-with-title-here.tiny.related
@@ -31,7 +31,11 @@
           by
           %span.book-author
             = book_author_link(@book)
+
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
         %p= simple_format(@book.description)
+        .share
       .download
         = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug)) : image_tag('download_pdf.png')
         = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)) : image_tag('download_kindle.png') 
@@ -40,8 +44,6 @@
           = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
       %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
-
-= javascript_include_tag 'book-details'
 = javascript_include_tag 'covers-book-detail'
 
 :javascript

@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   has_many :download_formats
   has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
+  has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
   has_many :book_pages
 
@@ -109,10 +110,6 @@ class Book < ActiveRecord::Base
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
 
-  def description_for_open_graph
-    "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % self.pretty_title
-  end
-
   def find_fake_related(num = 8, select = nil)
     # determine if we need to select certain fields from book's table and convert to string
     select_fields = select.join(',') if select
@@ -199,14 +196,6 @@ class Book < ActiveRecord::Base
     self.avg_rating > 0
   end
 
-  def log_book_view_in_mix_panel(user_id, mix_panel_object)
-    mix_panel_properties = {:title => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
-  end
-
   def needs_canonical_link?
     (self.cached_slug =~ /--[\d]+/) != nil
   end
@@ -244,13 +233,14 @@ class Book < ActiveRecord::Base
     end
     "Read #{book_title} Online Free"
   end
-
-  def read_online_slug
-    "/#{self.seo_slugs.read_online.first.slug}/page/1"
-  end
   
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
+  end
+  
+  def update_seo_slugs
+    SeoSlug.where(:seoable_id => self.id).delete_all
+    generate_seo_slugs(['pdf', 'kindle', 'online'])
   end
 end

@@ -1,0 +1,10 @@
+%tr
+  - if element.is_a?(SeoSlug)
+    %td
+      = element.seoable_type
+  %td
+    = seo_admin_element_name(element)
+  %td
+    = seo_admin_element_slug(element)
+  %td
+    = link_to 'Edit', admin_edit_seo_path(element.class.to_s, element.id)

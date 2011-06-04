@@ -1,35 +1,28 @@
 - content_for :title do
-  %title= @book.download_format_page_title(@format)
-
-#book-page.audiobook{:name => @book.id }
+  %title="Download #{@book.pretty_title} mp3"
+- content_for :head do
+  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => seo_front_end_meta_description_text(@book),
+      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
+      :title => @book.pretty_title, :type => 'book' }, @book.seo_info)
+#download-confirmation-page{:name => "#{@book.id}"}
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
+    = cover_image_link @book, 2
     .cover-with-title-here.small.related
       .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-  .book-column
-    #book-metadata
-      %h1
-        Download #{@book.pretty_title} MP3
-      %h2
-        by
-        %span.book-author
-          = @book.author.name
-      %p= simple_format(@book.description)
-
-      - if @book.has_zip_file?
-        .download-highlight
-          = link_to content_tag(:span, 'Download as MP3'), serve_audiofile_url(@book), :id => 'download-facebook-post', :class => 'button kiss green large kiss'
-
-      %p.explanation.first Downloads on Classicly are completely free- these books public domain. 
-      %p.explanation We don’t pay a cent, so neither do you
-= javascript_include_tag 'covers-book-detail'
+        = cover_image_link @related_book, 2
+      .text
+        %span.title
+          = @related_book.pretty_title
+        %span.type
+          Book
+  .download-info
+    %h2
+      <strong>
+      = @book.pretty_title
+      </strong>
+      by
+      = link_to "#{@book.author.name}", seo_url(@book.author)
+      is now downloading...
+    %span
+      If the download does not automatically start,
+      = link_to "click here", serve_audiofile_url(@book), :class => 'download-link', :name => @format

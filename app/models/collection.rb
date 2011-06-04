@@ -18,10 +18,9 @@ class Collection < ActiveRecord::Base
            :conditions => {:featured => true}
 
   has_many :seo_slugs, :as => :seoable
-
+  has_one :seo_info, :as => :infoable
   # genre
   belongs_to :genre
-  default_scope :order => 'downloaded_count desc'
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| where(:collection_type => type)}
   scope :book_type, where(:book_type => 'book')
@@ -114,15 +113,6 @@ class Collection < ActiveRecord::Base
     !self.author_portrait_updated_at.blank?
   end
 
-  def description_for_open_graph
-    case self.collection_type
-    when 'collection'
-      "%s- the ultimate literature collection. Dozens of hand-picked books for free download as PDF, Kindle, Sony Reader, iBooks, and more. You can also read online!" % self.name
-    when 'author'
-      "The world's greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([self.name] * 2)
-    end
-  end
-
   def ajax_paginated_audiobooks(params)
     if params[:sort_by].nil?
       self.audiobooks.page(params[:page]).per(10)
@@ -138,15 +128,6 @@ class Collection < ActiveRecord::Base
   
   def is_author_collection?
     self.collection_type == 'author'
-  end
-
-  def web_title
-    prefix = self.collection_type == 'collection' ? "#{self.name} - " : "#{self.name} Books - "
-    suffix = "Download Free Books, Read Online, and More"
-    if [prefix, suffix].map(&:length).reduce(:+) <= 70
-      return prefix + suffix
-    end
-    prefix
   end
 
   def random_blessed(num = 8)
