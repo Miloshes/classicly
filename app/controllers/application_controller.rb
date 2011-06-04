@@ -8,12 +8,7 @@ class ApplicationController < ActionController::Base
   # NOTE: web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
-  before_filter :initialize_indextank
   before_filter :set_abingo_identity
-
-  def initialize_indextank
-    @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
-  end
 
   def collections_for_footer
     @collections_for_footer = Collection.book_type.by_author.limit(14).order('name asc')
