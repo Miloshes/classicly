@@ -11,9 +11,13 @@ class ApplicationController < ActionController::Base
   before_filter :set_abingo_identity
 
   def collections_for_footer
-    @collections_for_footer = Collection.book_type.by_author.limit(14).order('name asc')
-    @collections_for_footer += Collection.book_type.by_collection.limit(14).order('name asc')
-  end
+    @collections_for_footer = Rails.cache.fetch('collections_for_footer') {
+      result = Collection.book_type.by_author.limit(14).order('name asc')
+      result += Collection.book_type.by_collection.limit(14).order('name asc')
+      
+      result
+    }
+ end
   
   def current_admin_user_session
     return @current_admin_user_session if defined?(@current_admin_user_session)
