@@ -13,7 +13,7 @@ module SeoHelper # Please don't put into application helper
   def meta_description_for_element(element)
     case element.class.to_s
     when 'Collection'
-      case self.collection_type
+      case element.collection_type
       when 'collection'
         "%s- the ultimate literature collection. Dozens of hand-picked books for free download as PDF, Kindle, Sony Reader, iBooks, and more. You can also read online!" % element.name
       when 'author'
