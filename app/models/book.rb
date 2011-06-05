@@ -147,6 +147,7 @@ class Book < ActiveRecord::Base
   end
 
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
+  # NOTE: Due to lazy loading of associations the return result statements doesn't speed up the app, but they show the fallback structure
   def find_more_from_same_collection(num = 2)
     result = []
 
@@ -161,6 +162,8 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
+    
+    return result if result.size == num
 
     # == books from the same author as a fallback
 
@@ -171,6 +174,8 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
+    
+    return result if result.size == num
 
     # == blessed books
     books_to_choose_from = Book.where("id <> ? AND blessed = ?", self.id, true)
@@ -180,7 +185,7 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
-
+    
     return result
   end
 
