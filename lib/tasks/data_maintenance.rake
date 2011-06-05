@@ -1,4 +1,5 @@
 require 'iconv'
+
 namespace :data_maintenance do
 
   task :encode_audio_book_chapter_titles => :environment do
@@ -30,6 +31,12 @@ namespace :data_maintenance do
       collection.set_parsed_description
       collection.save
       puts " - done with collection ##{collection.id}"
+    end
+  end
+  
+  task :set_is_rendered_for_online_reading_flag_for_books => :environment do
+    Book.find_each do |book|
+      book.update_attributes(:is_rendered_for_online_reading => book.book_pages.size > 0)
     end
   end
 

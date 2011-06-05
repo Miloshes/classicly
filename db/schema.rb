@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110604213447) do
+ActiveRecord::Schema.define(:version => 20110605182520) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -107,14 +107,15 @@ ActiveRecord::Schema.define(:version => 20110604213447) do
     t.integer "author_id"
     t.string  "language"
     t.integer "published"
-    t.boolean "blessed",          :default => false, :null => false
+    t.boolean "blessed",                        :default => false, :null => false
     t.integer "custom_cover_id"
     t.text    "description"
     t.string  "pretty_title"
-    t.boolean "available",        :default => true
+    t.boolean "available",                      :default => true
     t.string  "cached_slug"
     t.integer "avg_rating"
-    t.integer "downloaded_count", :default => 0
+    t.integer "downloaded_count",               :default => 0
+    t.boolean "is_rendered_for_online_reading", :default => false, :null => false
   end
 
   create_table "books_genres", :id => false, :force => true do |t|
@@ -249,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20110604213447) do
     t.string  "format"
   end
 
+  add_index "seo_slugs", ["seoable_id", "seoable_type"], :name => "seoable_id_seoable_type_index_for_seo_slugs"
   add_index "seo_slugs", ["slug"], :name => "index_seo_slugs_on_slug"
 
   create_table "sessions", :force => true do |t|
