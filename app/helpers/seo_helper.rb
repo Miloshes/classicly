@@ -58,11 +58,10 @@ module SeoHelper # Please don't put into application helper
     if element.seo_info
       description = element.seo_info.meta_description
     else
-      element = element.seoable if element.is_a?(seo_slug)
+      element = element.seoable if element.is_a? SeoSlug
       meta_description_for_element(element)
     end
   end
-  
   
   def seo_front_end_title_for_collection(collection)
     prefix = collection.collection_type == 'collection' ? "#{collection.name} - " : "#{collection.name} Books - "
@@ -76,7 +75,7 @@ module SeoHelper # Please don't put into application helper
   def seo_front_end_title_helper(element)
     if element.seo_info
       element.seo_info.title
-    elsif element.is_a?(SeoSlug)
+    elsif element.is_a? SeoSlug
       element.slug
     else
       element.respond_to?(:pretty_title) ? element.pretty_title : seo_front_end_title_for_collection(element)
