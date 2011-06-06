@@ -105,6 +105,10 @@ class Collection < ActiveRecord::Base
       }
   end
   
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:name.matches => "%#{search_term}%").page(current_page).per(per_page)
+  end
+  
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
       case collection.book_type

@@ -1,6 +1,12 @@
 class Admin::AdminSeoController < Admin::BaseController
   def admin_infoable
-    @elements = params[:type].classify.constantize.page(params[:page]).per(25)
+    @type = params[:type]
+    klass = @type.classify.constantize
+    if params[:search]
+      @elements = klass.search(params[:search], params[:page], 25)
+    else
+      @elements = klass.page(params[:page]).per(25)
+    end
   end
 
   def edit_seo

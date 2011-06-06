@@ -1,3 +1,8 @@
+%p
+  Search
+  = form_tag "/admin/admin_seo/#{@type}" do
+    = text_field_tag 'search'
+    = submit_tag 'Go'
 = paginate @elements
 %table
   %thead

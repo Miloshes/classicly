@@ -7,6 +7,10 @@ class SeoSlug < ActiveRecord::Base
   scope :pdf, where(:format => 'pdf')
   scope :read_online, where(:format => 'online')
 
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:slug.matches => "%#{search_term}%").page(current_page).per(per_page)
+  end
+
   def find_featured_book_for_collection
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
     self.seoable.book_type == 'audiobook' ? (self.seoable.audiobooks.blessed.first || self.seoable.audiobooks.first) :
