@@ -1,6 +1,6 @@
 class SeoInfo < ActiveRecord::Base
   belongs_to :infoable, :polymorphic => true
-  
+  validates_length_of :meta_description, :within => 10..255, :on => :save, :message => "must have between 10 to 255 characters"
   def infoable_title
     return 'Not applicable' if self.infoable.is_a?(SeoSlug)
     if ['Book', 'Audiobook', 'Collection'].include?(self.infoable_type)
