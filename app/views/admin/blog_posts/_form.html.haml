@@ -48,6 +48,8 @@
           To add a custom image to the blog, just use the Location URl inside an image tag as &lt;img='[Location URL]'/&gt;
         %p
           = f.submit blog_post.new_record? ? 'Save' : 'Update'
+  %p
+    = button_to('Preview', preview_admin_blog_post_path(blog_post), :method => :get) unless blog_post.new_record?
 
   %h2
     Associated Images

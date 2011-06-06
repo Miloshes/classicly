@@ -10,7 +10,11 @@ Classicly::Application.routes.draw do
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
     resource :admin_user_session
-    resources :blog_posts
+    resources :blog_posts do
+      member do
+        get 'preview'
+      end
+    end
     resources :reviews, :only => [:index, :destroy]
   end
   
