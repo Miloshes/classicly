@@ -1,10 +1,11 @@
 - content_for :title do
-  %title= @book.download_format_page_title(@format)
+  %title= seo_front_end_title_helper(@seo)
 
 - content_for :head do
-  = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => seo_front_end_meta_description_text(@book),
+  = fb_open_graph_metadata({:url => "http://www.classicly.com/#{@seo.slug}", :description => seo_front_end_meta_description_text(@seo),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => @book.pretty_title, :type => 'book' }, @book.seo_info)
+      :title => @seo.seo_info.title, :type => 'book' }, @seo.seo_info)
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
 #book-page{:name => "#{@book.id}"}
   .cover-column
