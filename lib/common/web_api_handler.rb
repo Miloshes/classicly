@@ -122,7 +122,11 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
-    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    if params['user_fbconnect_id']
+      login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    else
+      login = Login.where(:ios_device_id => params['device_id'].to_s).first()
+    end
     
     return nil.to_json if login.blank? || book.blank?
     
