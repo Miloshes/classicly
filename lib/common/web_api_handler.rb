@@ -72,7 +72,7 @@ class WebApiHandler
     
     result = []
     
-    if params['structure_version'] && ['1.1', '1.2'].include? params['structure_version']
+    if params['structure_version'] && ['1.1', '1.2'].include?(params['structure_version'])
       book_ids = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
       audiobook_ids = login.reviews.where(:reviewable_type => 'Audiobook').collect { |review| review.reviewable.id }
       
