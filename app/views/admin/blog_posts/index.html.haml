@@ -20,7 +20,7 @@
         %td
           = post.keywords
         %td
-          = link_to 'Edit',edit_admin_blog_post_path(post)
+          = link_to 'Edit',edit_admin_blog_post_path(post.id)
           = link_to 'Delete', admin_blog_post_path(post), :method => :delete
 
 :javascript
