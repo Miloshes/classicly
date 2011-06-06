@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110605184027) do
+ActiveRecord::Schema.define(:version => 20110606153105) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -219,6 +219,7 @@ ActiveRecord::Schema.define(:version => 20110605184027) do
     t.string    "email"
     t.string    "fb_connect_id"
     t.boolean   "is_admin",         :default => false
+    t.string    "ios_device_id"
   end
 
   create_table "reviews", :force => true do |t|

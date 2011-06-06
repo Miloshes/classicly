@@ -22,7 +22,8 @@ class Login < ActiveRecord::Base
       return true if Login.where(:ios_device_id => params['device_id']).exists?
     end
     
-    if params['structure_version'] == '1.1'
+    # API 1.1 and older
+    if params['structure_version'] != '1.2'
       
       new_login = Login.create(
         :fb_connect_id    => params['user_fbconnect_id'],
@@ -32,11 +33,16 @@ class Login < ActiveRecord::Base
         :location_city    => params['user_location_city'],
         :location_country => params['user_location_country']
       )
+      
+      Rails.logger.info(" API 1.1 (or older): created new login with FBConnect data")
     
-    elsif params['structure_version'] == '1.2'
+    else
+      # API 1.2
       
       if params['user_fbconnect_id'].blank?
         new_login = Login.create(:ios_device_id => params['device_id'])
+        
+        Rails.logger.info(" API 1.2: created new login with device ID")
       else
         login_to_update = Login.where(:ios_device_id => params['device_id']).first()
         login_to_update.update_attributes(
@@ -51,6 +57,8 @@ class Login < ActiveRecord::Base
         login_to_update.reviews.find_each do |review|
           review.update_attributes(:fb_connect_id => login_to_update.fb_connect_id)
         end
+        
+        Rails.logger.info(" API 1.2: existing login, updating with FBConnect data and migrating reviews")
       end
     
     end
