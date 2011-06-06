@@ -1,0 +1,18 @@
+.show-post
+  .blog-title
+    %h2 
+      = link_to @blog_post.title, "#"
+      %span.date= @blog_post.created_at.to_s :post_title_format
+      %span.author Tyler
+  .content
+    = raw @blog_post.content
+  .related
+    %h5 Related Books
+    - for book in @blog_post.related_books
+      .book-cover{:id => "book_#{book.id}"}
+        .cover-here.medium.popular
+          .stable
+            .spinner
+.clear
+= link_to 'Back to edit', edit_admin_blog_post_path(@blog_post.id)
+= link_to 'Back to blog posts', admin_blog_posts_path
