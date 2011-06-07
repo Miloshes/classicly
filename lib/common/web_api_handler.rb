@@ -114,7 +114,7 @@ class WebApiHandler
     
     return {
         :book_rating_average => book.avg_rating,
-        :book_review_count   => book.reviews.count,
+        :book_review_count   => book.reviews.where('fb_connect_id IS NOT NULL').count,
         :classicly_url       => author_book_url(book.author, book)
       }.to_json
   end
