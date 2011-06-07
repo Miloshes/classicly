@@ -1,13 +1,13 @@
 module SeoHelper # Please don't put into application helper
   
-  def download_format_page_title(format)
+  def download_format_page_title(book, format)
     format = (format == 'azw') ? 'Kindle' : format.upcase
     # 70 chars is the limit, but substract  4 characters for ' by '
     prefix = 'Download'
-    if [prefix, self.pretty_title, format].map(&:length).reduce(:+) <= 70
-      "#{prefix} #{self.pretty_title} #{format}"
+    if [prefix, book.pretty_title, format].map(&:length).reduce(:+) <= 70
+      "#{prefix} #{book.pretty_title} #{format}"
     else
-      "#{prefix} #{shorten_title(self.pretty_title, 70 - prefix.length - format.length)}#{format}"
+      "#{prefix} #{shorten_title(book.pretty_title, 70 - prefix.length - format.length)}#{format}"
     end
   end
   
@@ -87,7 +87,7 @@ module SeoHelper # Please don't put into application helper
     if element.seo_info
       element.seo_info.title
     elsif element.is_a? SeoSlug
-      download_format_page_title(element.format)
+      download_format_page_title(element.seoable, element.format)
     else
       element.respond_to?(:pretty_title) ? element.pretty_title : seo_front_end_title_for_collection(element)
     end
