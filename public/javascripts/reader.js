@@ -122,12 +122,25 @@ Reader.prototype = {
   },
 
   _set_page_id_to_url : function(num){
-    window.location.hash = num;
+    if(typeof history.replaceState === 'function'){
+      var new_location =
+        window.location.pathname.replace(/\/[0-9]+$/, '/'+num);
+      history.replaceState(null, '', new_location);
+    }else{
+      window.location.hash = num;      
+    }
+
   },
 
   _get_page_id_from_url : function(){
     var hash = window.location.hash;
-    return hash === "" ? 1 : Number(hash.slice(1));
+    var result;
+    if(hash === ""){
+      result = location.pathname.match(/\/([0-9]+)$/)[1];
+    }else{
+      result = hash.slice(1);
+    }
+    return Number(result);
   },
 
   draw_page : function(num){
@@ -162,8 +175,10 @@ Reader.prototype = {
   },
   
   init : function(){
-    this._init_slider();
+    this.controls = $('.big_navigation .box, .slider_wrap, .header');
+    this._controls_on_hover();
     this._init_navigation();
+    this._init_slider();
     this._init_shorcuts();
   },
 
@@ -187,17 +202,6 @@ Reader.prototype = {
   _init_navigation : function(){
     var self = this;
 
-    /* side navigation */
-    $('#reader_box .big_navigation')
-      .hover(function(){
-               /* in */
-               $(this).children('.box').fadeIn('fast');
-             },
-             function(){
-               /* out */               
-               $(this).children('.box').fadeOut('fast');
-             }
-            );
     $('#reader_box .big_navigation.left .box')
       .click(function(){
                self.turn_page_left();
@@ -256,6 +260,36 @@ Reader.prototype = {
 
   _set_title : function(title){
     $('#reader_box .header').text(title);
+  },
+
+  _controls_on_hover : function(){
+    var self = this;
+    $('body')
+      .mousemove(function(){
+                   self._flash_controls();
+                   return true;
+             });
+  },
+
+
+  _flash_controls : function(){
+    var self = this;
+    this._show_controls();
+    if(typeof arguments.callee.timeout_id !== 'undefined'){
+      clearTimeout(arguments.callee.timeout_id);
+    }
+    arguments.callee.timeout_id = 
+      setTimeout(function(){
+                   self._hide_controls();
+                 },2000);
+  },
+
+  _hide_controls : function(){
+    this.controls.fadeOut();
+  },
+
+  _show_controls : function(){
+    this.controls.fadeIn();
   }
 
 };

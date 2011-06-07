@@ -1,5 +1,8 @@
 -# controlled in pages_controller => authors
 -# collections here should only fetch fields -> id, description, cached_slug and name
+- content_for :title do
+  %title Classic Authors | Read Online | Sync to iPhone/iPad | Classicly
+
 #author-list-page
   #featured-collection{:name => "collection_#{@featured.id}"}
     .cover-column
@@ -31,4 +34,9 @@
       = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured), :class => 'browse-collection'
   #collection-list
     %h2 Authors:
-    = render 'collection_list', :collections => @collections
+    = render 'collection_list', :collections => @featured_collections
+  #other-collections
+    %ul
+      - for collection in @other_collections
+        %li
+          = link_to collection.name, seo_url(collection)

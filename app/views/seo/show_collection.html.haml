@@ -1,5 +1,6 @@
 - content_for :title do
   %title=@collection.web_title
+
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => @collection.description_for_open_graph,
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
@@ -11,6 +12,9 @@
     %h1
       =@collection.name
       Books
+
+    .like-send
+      <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
     %p=simple_format(parsed_collection_description(@collection.description))
     .share
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>

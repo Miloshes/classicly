@@ -14,6 +14,11 @@ class BooksController < ApplicationController
     render :layout => false
   end
 
+  def autocomplete_json
+    @books = Book.where(:pretty_title.matches =>"#{params[:term]}%").select('id, pretty_title').limit(25)
+    render :json => @books.to_json
+  end
+  
   # for invoking the download page
   def download
     @popular_books = Book.blessed.random 3

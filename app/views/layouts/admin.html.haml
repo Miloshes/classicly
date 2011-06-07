@@ -1,49 +1,28 @@
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
-%head
-  = typekit_include_helper
-  = yield :title
-  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
-  %meta{:name => "google-site-verification", :content => "C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI"}
-  %meta{:name =>"msvalidate.01", :content => "15B64C4C2ACD1A23F62F20544A16C9FD"}
-  %META{:name => "y_key", :content => "8586e4a49b4ee727"}
+  %head
+    = typekit_include_helper
+    = yield :title
+    %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+    = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+    = javascript_include_tag 'http://www.google.com/jsapi'
+    = javascript_tag do
+      google.load("jquery", "1.4.4");
+    = csrf_meta_tag
+    = yield :head
 
-  = include_stylesheets :common, :media => 'all'
-  = include_javascripts :main
-  = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
-  = csrf_meta_tag
-  = yield :head
-%body
-  %div{:style => 'display:none'}
-    #login-form
-  #header
-    .container_12
-      .grid_2.alpha
-        %a#logo{:href => '/'}
-        %h2 free books from<br />the public domain
-      .grid_5
-        = search_form(search_url, @search)
-      #nav.grid_3
-        - if user_signed_in?
-          #user_welcome
-            = facebook_image(current_login.fb_connect_id)
-            %span.name
-              Welcome back, #{current_login.first_name}!
-      #registration.grid_1.omega
-        <fb:login-button autologoutlink="true"  perms='user_about_me, user_hometown, user_photos'></fb:login-button>
-      #fb-root
-  %a{:href => "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8", :target => "_blank"}
-    #apple-store-banner
-  .wrapper
-    #content.container_12
-      = yield
-
-    = render 'shared/footer'
-:javascript
-  var RAILS_ENV = "#{Rails.env}";
-  FB.init({
-    appId  : '#{Facebook::APP_ID}',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
-  });
+  %body.bp
+    #header
+      .wrap
+        .top
+          #logo
+            = link_to image_tag('logo.png'), '/'
+    #content
+      #left-column
+        = yield
+      #right-column
+        = link_to 'Logout', admin_logout_path if current_admin_user
+    

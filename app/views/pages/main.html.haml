@@ -8,7 +8,7 @@
     .info
       %span.emphasize
         Browse around.
-      Our books are in the public domain
+      Our books are public domain classics- generally from before 1923.
     .info
       %span.emphasize
         Read online.
@@ -36,57 +36,43 @@
 
   #book-tiles
     .column
-      .cover-with-title-here.tiny.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.large.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.small.random-book
-        .stable
-          .spinner
-      .cover-here.tiny.random-book
-        .stable
-          .spinner
-      .cover-here.tiny.random-book
-        .stable
-          .spinner
-      .cover-here.tiny.random-book
-        .stable
-          .spinner
-      .cover-here.tiny.random-book
-        .stable
-          .spinner
-    .column
-      .cover-with-title-here.small.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
       .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-with-title-here.small.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-here.tiny.random-book
+    .column
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-here.tiny.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-here.tiny.random-book
-        .stable
-          .spinner
-      .cover-here.tiny.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
 
     .column.last
-      .cover-here.medium.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-here.medium.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
-      .cover-here.medium.random-book
+      .cover-with-title-here.medium.random-book
         .stable
           .spinner
+  #links
+    %a.button.kiss.large.green{:href => '/collections'}
+      %span
+        Browse our hand-picked book<br />collections
+    = link_to content_tag(:span, 'Browse by author'), '/authors', :class => 'button kiss large brown bouge small'
+    = link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge small'
+
+
+
+
