@@ -10,6 +10,7 @@ class Audiobook < ActiveRecord::Base
   has_many :collection_audiobook_assignments
   has_many :collections, :through => :collection_audiobook_assignments
   has_many :reviews, :as => :reviewable
+  has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
 
   validates :title, :presence => true
@@ -20,12 +21,13 @@ class Audiobook < ActiveRecord::Base
 
   has_friendly_id :audio_book_slugs, :use_slug => true
 
-  def self.search(term, current_page)
-    self.joins('LEFT OUTER JOIN collection_audiobook_assignments ON audiobooks.id = collection_audiobook_assignments.audiobook_id').
-        joins('LEFT OUTER JOIN collections ON collections.id = collection_audiobook_assignments.collection_id').
-        joins(:author).where({:title.matches => "%#{term}%"} |
-    {:collections => {:name.matches => "%#{term}%"}} |
-    {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:pretty_title.matches => "%#{search_term}%").page(current_page).per(per_page)
+    # self.joins('LEFT OUTER JOIN collection_audiobook_assignments ON audiobooks.id = collection_audiobook_assignments.audiobook_id').
+    #         joins('LEFT OUTER JOIN collections ON collections.id = collection_audiobook_assignments.collection_id').
+    #         joins(:author).where({:title.matches => "%#{term}%"} |
+    #     {:collections => {:name.matches => "%#{term}%"}} |
+    #     {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
   end
 
   def choose_audio_books(limit, already_chosen_books, collection_to_choose_from)
@@ -112,13 +114,17 @@ class Audiobook < ActiveRecord::Base
     self.save
   end
   
+  def update_seo_slugs
+    SeoSlug.where(:seoable_id => self.id).delete_all
+    generate_seo_slugs(['mp3'])
+  end
+  
   def zip_file
     AWS::S3::Base.establish_connection! :access_key_id     => APP_CONFIG['amazon']['access_key'],
                                         :secret_access_key => APP_CONFIG['amazon']['secret_key']
     s3_key = "audiobook_#{self.id}_chapters.zip"
     S3Object.value s3_key,  APP_CONFIG['buckets']['audiobook_chapters']
   end
-  
   private
 
   def audio_book_slugs

@@ -47,7 +47,7 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
-    reviews = book.reviews.order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
+    reviews = book.reviews.where('fb_connect_id IS NOT NULL').order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
     
     result = []
     reviews.each do |review|
@@ -66,13 +66,17 @@ class WebApiHandler
   end
   
   def get_list_of_books_the_user_wrote_review_for(params)
-    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    if params['user_fbconnect_id']
+      login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    else
+      login = Login.where(:ios_device_id => params['device_id'].to_s).first()
+    end
     
     return [].to_json if login.blank?
     
     result = []
     
-    if params['structure_version'] && params['structure_version'] == '1.1'
+    if params['structure_version'] && ['1.1', '1.2'].include?(params['structure_version'])
       book_ids = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
       audiobook_ids = login.reviews.where(:reviewable_type => 'Audiobook').collect { |review| review.reviewable.id }
       
@@ -110,7 +114,7 @@ class WebApiHandler
     
     return {
         :book_rating_average => book.avg_rating,
-        :book_review_count   => book.reviews.count,
+        :book_review_count   => book.reviews.where('fb_connect_id IS NOT NULL').count,
         :classicly_url       => author_book_url(book.author, book)
       }.to_json
   end
@@ -122,18 +126,29 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
-    login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    if params['user_fbconnect_id']
+      login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    else
+      login = Login.where(:ios_device_id => params['device_id'].to_s).first()
+    end
     
     return nil.to_json if login.blank? || book.blank?
     
     review = Review.where(:reviewable => book, :reviewer => login).first()
     
     if review
-      return {
-          :content    => review.content,
-          :rating     => review.rating,
-          :created_at => review.created_at
-        }.to_json
+      
+      if params['user_fbconnect_id']
+        return {
+            :content    => review.content,
+            :rating     => review.rating,
+            :created_at => review.created_at
+          }.to_json
+      else
+        # for device_id only reviews, they don't have content so we're not sending it back
+        return {:rating => review.rating, :created_at => review.created_at}.to_json
+      end
+      
     else
       return nil.to_json
     end

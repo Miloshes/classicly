@@ -5,11 +5,15 @@
   %link{:rel => "canonical", :href => "http://www.classicly.com/search" }
 
 #collection-page.grid_9.alpha.omega
-  %h1 Search results for <strong>'#{@search}'</strong>
-  .pagination
-    = paginate @books
-  %ul{:class => "#{ @audibly ? 'book-list audiobooks' : 'book-list' }"}
-    = render :partial => '/books/listed_book', :collection => @books, :as => :book
-  %ul.featured-book-list
+  - if @books.empty?
+    %h1
+      Sorry. We have not found any result searching for <strong>'#{@search}'</strong>
+    -# put here more markup if needed in the case for no results
+  - else
+    %h1 Search results for <strong>'#{@search}'</strong>
+    .pagination
+      = paginate @books
+    %ul{:class => "#{ @audibly ? 'book-list audiobooks' : 'book-list' }"}
+      = render :partial => '/books/listed_book', :collection => @books, :as => :book
 = javascript_include_tag 'covers-search-page'
 

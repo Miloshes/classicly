@@ -19,11 +19,13 @@ gem 'mongrel'
 gem 'nokogiri'
 gem 'paperclip'
 gem 'rest-client', :require => 'rest_client'
+gem 'rmagick'
 gem 'sitemap_generator'
 gem 'sqlite3-ruby'
 gem 'htmlentities'
 gem 'delayed_job'
 gem 'rubyzip'
+gem 'dalli' # that's for memcache
 
 group :development do
   gem 'awesome_print'

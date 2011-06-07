@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+  
   def audiobook_authors
     @collections = Collection.of_type('audiobook').collection_type('author').random(10)
     @featured = @collections.first
@@ -29,8 +30,10 @@ class PagesController < ApplicationController
     @other_collections = Collection.where(:id.not_in => featured_ids).of_type('book').collection_type('collection')
   end
   
-
   def main
+  end
+  
+  def privacy
   end
 
   def random_json_books

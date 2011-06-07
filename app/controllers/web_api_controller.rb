@@ -1,5 +1,8 @@
 class WebApiController < ApplicationController
+  
   skip_before_filter :verify_authenticity_token
+  skip_before_filter :collections_for_footer
+  skip_before_filter :set_abingo_identity
   
   before_filter :get_api_handler
   

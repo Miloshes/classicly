@@ -2,8 +2,7 @@ include AWS::S3
 
 class BookPagesController < ApplicationController
   # GET /bram-stoker/dracula/page/15
-  # test url: http://localhost:3000/john-galsworthy/entire-pg-galsworthy-files/read-online/page/1
-  # http://localhost:3000/john-galsworthy/entire-pg-galsworthy-files/read-online/page/1?html_reader=1
+  # test url: http://localhost:3000/read-dracula-online-free/page/1
   def show
     slug = SeoSlug.where(:slug => params[:id]).first
     book = slug.seoable

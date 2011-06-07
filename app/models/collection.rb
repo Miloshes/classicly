@@ -1,4 +1,8 @@
 class Collection < ActiveRecord::Base
+  # we have to be able to handle URLs in the model
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+
   # books
   has_many :audiobooks, :through => :collection_audiobook_assignments
   has_many :books, :through => :collection_book_assignments
@@ -18,9 +22,10 @@ class Collection < ActiveRecord::Base
            :conditions => {:featured => true}
 
   has_many :seo_slugs, :as => :seoable
+  has_one :seo_info, :as => :infoable
 
-  # genre
   belongs_to :genre
+  
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| where(:collection_type => type)}
   scope :book_type, where(:book_type => 'book')
@@ -28,6 +33,8 @@ class Collection < ActiveRecord::Base
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  
+  before_save :set_parsed_description
   
   validates :name, :presence => true
   validates :book_type, :presence => true
@@ -98,6 +105,10 @@ class Collection < ActiveRecord::Base
       }
   end
   
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:name.matches => "%#{search_term}%").page(current_page).per(per_page)
+  end
+  
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
       case collection.book_type
@@ -111,15 +122,6 @@ class Collection < ActiveRecord::Base
 
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
-  end
-
-  def description_for_open_graph
-    case self.collection_type
-    when 'collection'
-      "%s- the ultimate literature collection. Dozens of hand-picked books for free download as PDF, Kindle, Sony Reader, iBooks, and more. You can also read online!" % self.name
-    when 'author'
-      "The world's greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([self.name] * 2)
-    end
   end
 
   def ajax_paginated_audiobooks(params)
@@ -137,15 +139,6 @@ class Collection < ActiveRecord::Base
   
   def is_author_collection?
     self.collection_type == 'author'
-  end
-
-  def web_title
-    prefix = self.collection_type == 'collection' ? "#{self.name} - " : "#{self.name} Books - "
-    suffix = "Download Free Books, Read Online, and More"
-    if [prefix, suffix].map(&:length).reduce(:+) <= 70
-      return prefix + suffix
-    end
-    prefix
   end
 
   def random_blessed(num = 8)
@@ -190,5 +183,28 @@ class Collection < ActiveRecord::Base
     return "" if self.description.nil?
     limit = self.description.length - 1 if limit >= self.description.length
     self.description[0..limit]
+  end
+  
+  # turns the collection's description into HTML
+  def set_parsed_description
+    default_url_options[:host] = 'www.classicly.com'
+    
+    doc = Nokogiri::HTML(self.description)
+    books_tags = doc.xpath("//book") # get all <book> tags
+    
+    books_tags.each do |book_tag|
+      book_id = book_tag.attributes["id"].value.to_i
+      book_object = Book.find(book_id)
+      book_tag.name = "a"
+      book_tag.set_attribute("href", author_book_url(book_object.author, book_object))
+      book_tag.set_attribute("class", "description-link")
+    end
+    
+    quotes = doc.xpath('//quote')
+    quotes.each do|quote|
+      quote.remove
+    end
+    
+    self.parsed_description = doc.css('body').inner_html
   end
 end

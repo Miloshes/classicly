@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   has_many :download_formats
   has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
+  has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
   has_many :book_pages
 
@@ -52,12 +53,13 @@ class Book < ActiveRecord::Base
     "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
   end
 
-  def self.search(search_term, current_page)
-    self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
-        joins('LEFT OUTER JOIN collections ON collections.id = collection_book_assignments.collection_id').
-        joins(:author).where({:title.matches => "%#{search_term}%"} |
-    {:collections => {:name.matches => "%#{search_term}%"}} |
-    {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(current_page).per(10)
+  def self.search(search_term, current_page, per_page= 25)
+    self.where(:pretty_title.matches => "%#{search_term}%").page(current_page).per(per_page)
+    # self.joins('LEFT OUTER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id').
+    #         joins('LEFT OUTER JOIN collections ON collections.id = collection_book_assignments.collection_id').
+    #         joins(:author).where({:title.matches => "%#{search_term}%"} |
+    #     {:collections => {:name.matches => "%#{search_term}%"}} |
+    #     {:author => {:name.matches => "%#{search_term}%"}}).select('DISTINCT books.*').page(current_page).per(10)
   end
 
   def self.update_description_from_web_api(data)
@@ -146,6 +148,7 @@ class Book < ActiveRecord::Base
   end
 
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
+  # NOTE: Due to lazy loading of associations the return result statements doesn't speed up the app, but they show the fallback structure
   def find_more_from_same_collection(num = 2)
     result = []
 
@@ -160,6 +163,8 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
+    
+    return result if result.size == num
 
     # == books from the same author as a fallback
 
@@ -170,6 +175,8 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
+    
+    return result if result.size == num
 
     # == blessed books
     books_to_choose_from = Book.where("id <> ? AND blessed = ?", self.id, true)
@@ -179,7 +186,7 @@ class Book < ActiveRecord::Base
       position = rand(books_to_choose_from.size)
       result << books_to_choose_from.delete_at(position)
     end
-
+    
     return result
   end
 
@@ -193,14 +200,6 @@ class Book < ActiveRecord::Base
 
   def has_rating?
     self.avg_rating > 0
-  end
-
-  def log_book_view_in_mix_panel(user_id, mix_panel_object)
-    mix_panel_properties = {:title => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Viewed Book", mix_panel_properties)
   end
 
   def needs_canonical_link?
@@ -240,13 +239,14 @@ class Book < ActiveRecord::Base
     end
     "Read #{book_title} Online Free"
   end
-
-  def read_online_slug
-    "/#{self.seo_slugs.read_online.first.slug}/page/1"
-  end
   
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
+  end
+  
+  def update_seo_slugs
+    SeoSlug.where(:seoable_id => self.id).delete_all
+    generate_seo_slugs(['pdf', 'kindle', 'online'])
   end
 end
