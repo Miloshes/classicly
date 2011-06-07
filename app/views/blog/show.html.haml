@@ -9,5 +9,15 @@
         %span.author Tyler
     .content
       = simple_format @blog_post.content
-
+    - unless @blog_post.related_books.empty?
+      .related
+        %h5 Related Books
+        - for book in @blog_post.related_books
+          .book-cover{:id => "book_#{book.id}"}
+            .cover-here.medium.popular
+              .stable
+                .spinner
+    .clear
     = link_to 'Back to the blog', blog_path
+
+= javascript_include_tag 'covers-blog-page'

@@ -1,19 +1,26 @@
 class Admin::AdminSeoController < Admin::BaseController
+  before_filter :find_seo_infoable, :only => [:edit_seo, :update_seo_info]
+
   def admin_infoable
-    @elements = params[:type].classify.constantize.page(params[:page]).per(25)
+    @type = params[:type]
+    klass = @type.classify.constantize
+    
+    @elements = if params[:search]
+      (@type == 'seo_slug') ? klass.search(params[:search], params[:page], 25, params[:book_type]) : 
+        klass.search(params[:search], params[:page], 25)
+    else
+      klass.page(params[:page]).per(25)
+    end
   end
 
   def edit_seo
-    @element = params[:type].constantize.find(params[:id])
     @seo_info = @element.seo_info || SeoInfo.new
   end
 
   def main
-    
   end
   
   def update_seo_info
-    @element = params[:type].constantize.find(params[:id])
     @seo_info = @element.seo_info || @element.build_seo_info(params[:seo_info])
     res = @seo_info.new_record? ? @seo_info.save :  @seo_info.update_attributes(params[:seo_info])
     if res
@@ -21,5 +28,10 @@ class Admin::AdminSeoController < Admin::BaseController
     else
       render :action => :edit_seo
     end
+  end
+  
+  private
+  def find_seo_infoable
+    @element = params[:type].constantize.find(params[:id])    
   end
 end

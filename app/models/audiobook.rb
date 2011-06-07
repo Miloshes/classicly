@@ -21,12 +21,13 @@ class Audiobook < ActiveRecord::Base
 
   has_friendly_id :audio_book_slugs, :use_slug => true
 
-  def self.search(term, current_page)
-    self.joins('LEFT OUTER JOIN collection_audiobook_assignments ON audiobooks.id = collection_audiobook_assignments.audiobook_id').
-        joins('LEFT OUTER JOIN collections ON collections.id = collection_audiobook_assignments.collection_id').
-        joins(:author).where({:title.matches => "%#{term}%"} |
-    {:collections => {:name.matches => "%#{term}%"}} |
-    {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:pretty_title.matches => "%#{search_term}%").page(current_page).per(per_page)
+    # self.joins('LEFT OUTER JOIN collection_audiobook_assignments ON audiobooks.id = collection_audiobook_assignments.audiobook_id').
+    #         joins('LEFT OUTER JOIN collections ON collections.id = collection_audiobook_assignments.collection_id').
+    #         joins(:author).where({:title.matches => "%#{term}%"} |
+    #     {:collections => {:name.matches => "%#{term}%"}} |
+    #     {:author => {:name.matches => "%#{term}%"}}).select('DISTINCT audiobooks.*').page(current_page).per(10)
   end
 
   def choose_audio_books(limit, already_chosen_books, collection_to_choose_from)

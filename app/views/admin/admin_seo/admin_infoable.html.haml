@@ -1,3 +1,13 @@
+%p
+  Search
+  = form_tag "/admin/admin_seo/#{@type}" do
+    = text_field_tag 'search'
+    - if @elements.first.is_a?(SeoSlug)
+      = label_tag 'Book'
+      = radio_button_tag 'book_type', 'book', true
+      = label_tag 'Audiobook'
+      = radio_button_tag 'book_type', 'audiobook'
+    = submit_tag 'Go'
 = paginate @elements
 %table
   %thead

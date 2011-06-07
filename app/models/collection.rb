@@ -32,7 +32,7 @@ class Collection < ActiveRecord::Base
   scope :audio_book_type, where(:book_type => 'audiobook')
   scope :by_author, where(:collection_type => 'author')
   scope :by_collection, where(:collection_type => 'collection')
-  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RANDOM()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
   
   before_save :set_parsed_description
   
@@ -103,6 +103,10 @@ class Collection < ActiveRecord::Base
     ["SQL", "DBCategory", "IDList"].collect { |name|
         ["#{name}", name]
       }
+  end
+  
+  def self.search(search_term, current_page, per_page = 25)
+    self.where(:name.matches => "%#{search_term}%").page(current_page).per(per_page)
   end
   
   def self.update_cache_downloaded_count
