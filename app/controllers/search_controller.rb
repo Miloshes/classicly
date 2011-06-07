@@ -17,9 +17,8 @@ class SearchController < ApplicationController
     results = Search.json_for_autocomplete(docids)
     render :json => results.to_json
   end
-  
+
   private
-  
   def initialize_indextank
     @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
   end

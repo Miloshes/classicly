@@ -7,8 +7,13 @@ class SeoSlug < ActiveRecord::Base
   scope :pdf, where(:format => 'pdf')
   scope :read_online, where(:format => 'online')
 
-  def self.search(search_term, current_page, per_page = 25)
-    self.where(:slug.matches => "%#{search_term}%").page(current_page).per(per_page)
+  def self.search(search_term, current_page, per_page = 25, type='book')
+    indextank = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    documents = indextank.search "#{search_term} type:#{type}"
+    docids = documents['results'].collect{|doc| doc['docid']}
+    bookids = docids.collect {|docid| docid.split('_').last.to_i}
+    bookids.compact!
+    self.where(:seoable_id.in => bookids, :seoable_type => type.capitalize).page(current_page).per(per_page)
   end
 
   def find_featured_book_for_collection
