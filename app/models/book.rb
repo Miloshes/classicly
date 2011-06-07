@@ -32,23 +32,6 @@ class Book < ActiveRecord::Base
     end
   end
   
-  def self.books_from_random_collection(type, minimum_existing_books = 7, select_fields = ['books.id'])
-    collections = case type
-    when 'all'
-      Collection.book_type.select{|collection| collection.books.count >= minimum_existing_books}
-    when 'author'
-      Collection.book_type.by_author.select{|collection| collection.books.count >= minimum_existing_books}
-    when 'collection'
-      Collection.book_type.by_collection.select{|collection| collection.books.count >= minimum_existing_books}
-    end
-    index = rand(collections.count)
-    collection = collections[index]
-    # return collection and books
-    fields = select_fields.join(',')
-    [collection, self.joins("INNER JOIN collection_book_assignments ON books.id = collection_book_assignments.book_id WHERE 
-      ((collection_book_assignments.collection_id = #{collection.id}))").select(fields).limit(minimum_existing_books)]
-  end
-  
   def self.cover_url(book_id, size)
     "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book_id}_size#{size}.jpg"
   end

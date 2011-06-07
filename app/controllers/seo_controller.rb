@@ -31,13 +31,11 @@ class SeoController < ApplicationController
 
   private
   def find_author_collections(type)
-    return  Collection.audio_book_type.by_author if type == :audiobook
-    Collection.book_type.by_author
+    Collection.of_type(type.to_s).collection_type('author')
   end
 
   def find_genre_collections(type)
-    return  Collection.audio_book_type.by_collection if type == :audiobook
-    Collection.book_type.by_collection
+    Collection.of_type(type.to_s).collection_type('collection')
   end
 
   def render_search

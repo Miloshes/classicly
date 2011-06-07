@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
 
   def collections_for_footer
     @collections_for_footer = Rails.cache.fetch('collections_for_footer') {
-      result = Collection.book_type.by_author.limit(14).order('name asc')
-      result += Collection.book_type.by_collection.limit(14).order('name asc')
+      result = Collection.of_type('book').collection_type('author').limit(14).order('name asc')
+      result += Collection.of_type('book').collection_type('collection').limit(14).order('name asc')
       
       result
     }

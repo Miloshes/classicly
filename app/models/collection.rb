@@ -28,10 +28,6 @@ class Collection < ActiveRecord::Base
   
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| where(:collection_type => type)}
-  scope :book_type, where(:book_type => 'book')
-  scope :audio_book_type, where(:book_type => 'audiobook')
-  scope :by_author, where(:collection_type => 'author')
-  scope :by_collection, where(:collection_type => 'collection')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
   
   before_save :set_parsed_description
