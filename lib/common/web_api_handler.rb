@@ -137,11 +137,18 @@ class WebApiHandler
     review = Review.where(:reviewable => book, :reviewer => login).first()
     
     if review
-      return {
-          :content    => review.content,
-          :rating     => review.rating,
-          :created_at => review.created_at
-        }.to_json
+      
+      if params['user_fbconnect_id']
+        return {
+            :content    => review.content,
+            :rating     => review.rating,
+            :created_at => review.created_at
+          }.to_json
+      else
+        # for device_id only reviews, they don't have content so we're not sending it back
+        return {:rating => review.rating, :created_at => review.created_at}.to_json
+      end
+      
     else
       return nil.to_json
     end
