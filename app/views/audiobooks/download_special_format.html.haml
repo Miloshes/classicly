@@ -4,7 +4,7 @@
 - content_for :head do
   = fb_open_graph_metadata({:url => "http://www.classicly.com/#{@seo.slug}", :description => seo_front_end_meta_description_text(@seo),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
-      :title => @seo.seo_info.title, :type => 'book' }, @seo.seo_info)
+      :title => @seo.seoable.pretty_title, :type => 'book' }, @seo.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
 #book-page.audiobook{:name => @book.id }
