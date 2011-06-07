@@ -32,7 +32,7 @@ Classicly::Application.routes.draw do
   match 'json_books' => 'books#json_books'
 
   # for delivering audiobook file
-  match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :ge
+  match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
   match 'random_json_audiobooks/:total_audiobooks' => 'audiobooks#random_json'
   match 'random_json_books/:total_books' => 'pages#random_json_books'
   match 'related_audiobooks/:id/:total_related' => 'audiobooks#related_audiobooks_in_json'
