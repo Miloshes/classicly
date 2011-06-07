@@ -22,8 +22,8 @@ class Admin::AdminSeoController < Admin::BaseController
   
   def update_seo_info
     @seo_info = @element.seo_info || @element.build_seo_info(params[:seo_info])
-    res = @seo_info.new_record? ? @seo_info.save :  @seo_info.update_attributes(params[:seo_info])
-    if res
+    ok = @seo_info.new_record? ? @seo_info.save :  @seo_info.update_attributes(params[:seo_info])
+    if ok
       redirect_to admin_admin_infoable_path(params[:type])
     else
       render :action => :edit_seo
