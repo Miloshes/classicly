@@ -46,10 +46,6 @@
         Edit this Seo
     = form_for @seo_info , :url => admin_update_seo_info_path(@element.class.to_s, @element.id) do |f|
       = render 'shared/error_messages', :target => @seo_info
-      - unless @element.is_a?(SeoSlug)
-        %p
-          = f.label :infoable_title, @element.is_a?(Collection) ? 'Collection name' : "#{@element.class.to_s} title"
-          = f.text_field :infoable_title
       %p
         = f.label :title, "Text to show in web title"
         = f.text_field :title
