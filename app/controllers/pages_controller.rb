@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
-  
+  def about
+    
+  end
+
   def audiobook_authors
     @collections = Collection.of_type('audiobook').collection_type('author').random(10)
     @featured = @collections.first

@@ -18,7 +18,7 @@ Classicly::Application.routes.draw do
     resources :reviews, :only => [:index, :destroy]
   end
   
-
+  match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
