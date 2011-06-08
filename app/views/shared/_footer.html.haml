@@ -33,15 +33,7 @@
 		.collections
 			- for collection in @collections_for_footer
 				= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
+			.clear
+			- for collection in @author_collections_for_footer
+				= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
 		=image_tag 'footer-collections-bottom.png'
-#bottom-notification-bar{:style => 'display:none'}
-.content
-	.left
-		%span Unlimited book downloads. 
-		%span Saved bookmarks. 
-		%span Sync to iPhone and iPad.
-	.center
-		%span Register today! It's free.
-	.right
-		%a.button.kiss.green
-			%span Create a Classicly account.
