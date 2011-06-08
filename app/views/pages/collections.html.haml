@@ -9,7 +9,7 @@
           .spinner
     .detail-column
       %h1 Featured Collection: <strong>#{@featured.name}</strong>
-      %p=raw parsed_collection_description(@featured.description)
+      %p=raw @featured.parsed_description
     .books-and-link
       .cover-here.tiny
         .stable
@@ -32,9 +32,4 @@
       = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured), :class => 'browse-collection'
   #collection-list
     %h2 Collections:
-    = render 'collection_list', :collections => @featured_collections
-  #other-collections
-    %ul
-      - for collection in @other_collections
-        %li
-          = link_to collection.name, seo_url(collection)
+    = render 'collection_list', :collections => @collections
