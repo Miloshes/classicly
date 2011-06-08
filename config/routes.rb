@@ -44,7 +44,6 @@ Classicly::Application.routes.draw do
   match "incoming_data" => "incoming_datas#create", :method => :post
   
   
-  match 'post/:id' => 'blog#show', :as => :post
   match 'privacy' => 'pages#privacy'
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post

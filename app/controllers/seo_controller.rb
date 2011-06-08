@@ -45,10 +45,14 @@ class SeoController < ApplicationController
     @author_collections = find_author_collections :book
     @popular_books = Book.blessed.random(8)
     render :template => 'search/show'
+    #TODO! check if all objects are used!
   end
 
   def render_seo(seo)
-    if seo.is_for_type?('collection')
+    if seo.is_for_type?('blogpost')
+      @blog_post = seo.seoable
+      render 'blog/show' and return
+    elsif seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)

@@ -1,5 +1,6 @@
 class BlogPost < ActiveRecord::Base
   has_many :custom_resources
+  has_one :seo_slug,  :as => :seoable
   # we defined a finder sql because we don't need every field in the book model
   has_and_belongs_to_many :related_books,
                           :class_name =>  'Book',
@@ -22,5 +23,9 @@ class BlogPost < ActiveRecord::Base
                               
   def blog_post_slug
     self.title.downcase.rstrip.gsub(' ', '-')
+  end
+  
+  def generate_seo_slug
+    SeoSlug.create(:seoable => self, :slug => self.friendly_id, :format => 'post')
   end
 end
