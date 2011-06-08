@@ -11,6 +11,7 @@ class BlogPost < ActiveRecord::Base
                                           'WHERE blog_posts_books.blog_post_id = #{id}'
   validates_presence_of :meta_description
   accepts_nested_attributes_for :custom_resources, :allow_destroy => true
+  after_save :generate_seo_slug
   has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
   
   def self.persist(blog_post, params)

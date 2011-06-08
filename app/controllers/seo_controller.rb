@@ -41,11 +41,7 @@ class SeoController < ApplicationController
   def render_search
     @search = params[:id]
     @books = Book.search(@search, params[:page])
-    @genre_collections = find_genre_collections :book
-    @author_collections = find_author_collections :book
-    @popular_books = Book.blessed.random(8)
     render :template => 'search/show'
-    #TODO! check if all objects are used!
   end
 
   def render_seo(seo)
