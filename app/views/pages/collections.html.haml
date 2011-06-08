@@ -9,7 +9,7 @@
           .spinner
     .detail-column
       %h1 Featured Collection: <strong>#{@featured.name}</strong>
-      %p=raw @featured.parsed_description
+      %p=raw parsed_collection_description(@featured.description)
     .books-and-link
       .cover-here.tiny
         .stable
