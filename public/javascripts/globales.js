@@ -12,7 +12,7 @@
     window.setElementCover = function setElementCover(element, toTake) {
       var threshold;
       element.children('.stable').append('<img src="http://spreadsong-book-covers.s3.amazonaws.com/book_id' + toTake[0].id + '_size3.jpg"/>');
-      element.wrap('<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">');
+      //element.wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
       if (element.hasClass('cover-with-title-here')) {
         threshold = element.hasClass('small' || element.hasClass('tiny')) ? 40 : 61;
         element.append('<div class="text" style="display:none"><span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span><span class="type">Book</span></div>');
@@ -20,14 +20,14 @@
       return $('.cover-here img, .cover-with-title-here img').bind('load', function() {
         return $(this).siblings('.spinner').fadeOut(200, function() {
           $(this).parents().siblings('.text').fadeIn(1000);
-          return $(this).siblings('img').fadeIn(1000);
+          return $(this).siblings('img').fadeIn(1000).wrap('<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">');
         });
       });
     };
     window.setCoverForAudiobook = function setCoverForAudiobook(element, toTake) {
       var threshold;
       element.children('.stable').append('<img src="http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id' + toTake[0].id + '_size3.jpg"/>');
-      element.wrap('<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">');
+      //element.wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
       if (element.hasClass('cover-with-title-here')) {
         threshold = element.hasClass('small' || element.hasClass('tiny')) ? 40 : 61;
         element.append('<div class="text" style="display:none"><span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span><span class="type">Audiobook</span></div>');
@@ -35,7 +35,7 @@
       return $('.cover-here img, .cover-with-title-here img').bind('load', function() {
         return $(this).siblings('.spinner').fadeOut(200, function() {
           $(this).parents().siblings('.text').fadeIn(1000);
-          return $(this).siblings('img').fadeIn(1000);
+          return $(this).siblings('img').fadeIn(1000).wrap('<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">');
         });
       });
     };
