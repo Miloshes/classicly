@@ -17,7 +17,7 @@ $ ->
           $(this).siblings('img').fadeIn(1000).wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
           
   window.setCoverForAudiobook = (element, toTake) ->
-    element.children('.stable').append '<img src="http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id' + toTake[0].id + '_size3.jpg"/>'
+    element.children('.stable').append '<a "/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline"><img src="http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id' + toTake[0].id + '_size3.jpg"/></a>'
     #element.wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
     if element.hasClass( 'cover-with-title-here' )
       threshold = if element.hasClass 'small' or element.hasClass 'tiny' then 40 else 61
@@ -25,7 +25,7 @@ $ ->
     $( '.cover-here img, .cover-with-title-here img' ).bind 'load', ->
       $( this ).siblings('.spinner').fadeOut 200, ->
         $(this).parents().siblings('.text').fadeIn(1000)
-        $( this ).siblings( 'img' ).fadeIn(1000).wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
+        $( this ).siblings( 'a' ).fadeIn(1000)
         
   
   window.coversForRelatedBooks = () ->
