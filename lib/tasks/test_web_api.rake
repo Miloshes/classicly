@@ -5,10 +5,25 @@ namespace :test_web_api do
   task :register_book_review => :environment do
     data = {
         "user_fbconnect_id" => "1232134",
+        "device_id" => "ASDASD",
         "book_id" => 30,
         "action" => "register_book_review",
-        "content" => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+        "content" => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.2",
         "rating" => 5,
+        "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
+      }
+    
+      response = RestClient.post('http://localhost:3000/web_api', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+  
+  task :register_anonymous_book_review => :environment do
+    data = {
+        'device_id' => 'ASDASD',
+        "book_id"   => 32,
+        "action"    => "register_book_review",
+        "content"   => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+        "rating"    => 5,
         "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
       }
     
@@ -32,8 +47,10 @@ namespace :test_web_api do
   
   task :register_ios_user => :environment do
     data = {
+        'structure_version'     => '1.2',
         'action'                => 'register_ios_user',
         'user_fbconnect_id'     => '1232134',
+        'device_id'             => 'ASDASD',
         'user_email'            => 'test@test.com',
         'user_first_name'       => 'Zsolt',
         'user_last_name'        => 'Maslanyi',
