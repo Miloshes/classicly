@@ -9,14 +9,11 @@ class ApplicationController < ActionController::Base
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
   before_filter :set_abingo_identity
+  caches_action :collections_for_footer
 
   def collections_for_footer
-    @collections_for_footer = Rails.cache.fetch('collections_for_footer') {
-      result = Collection.book_type.by_author.limit(14).order('name asc')
-      result += Collection.book_type.by_collection.limit(14).order('name asc')
-      
-      result
-    }
+    @collections_for_footer = Collection.of_type('book').collection_type('collection').limit(14).order('name asc')
+    @author_collections_for_footer = Collection.of_type('book').collection_type('author').limit(14).order('name asc')
  end
   
   def current_admin_user_session
