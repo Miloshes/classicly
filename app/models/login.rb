@@ -1,68 +1,40 @@
 class Login < ActiveRecord::Base
   has_many :reviews
   
-  # code paths:
-  # API v 1.1
-  #  - login exists with fb_connect_id, exit
-  #  - login doesn't exists with fb_connect_id, register with all the params
-  # API v 1.2
-  #  - no fb_connect_id in params, just device_id
-  #    - already exists, exit
-  #    - doesn't exists, create it
-  #  - fb_connect_id and device_id
-  #    - already exists, exit
-  #    - doesn't exists, update the login and the associated reviews with the FB info
   def self.register_from_ios_app(params)
     params.stringify_keys!
     
-    # avoid double registration - works for API version 1.1 and 1.2
+    # avoid double registration
     if params['user_fbconnect_id']
       return true if Login.where(:fb_connect_id => params['user_fbconnect_id']).exists?
-    else
-      return true if Login.where(:ios_device_id => params['device_id']).exists?
     end
     
-    # API 1.1 and older
-    if params['structure_version'] != '1.2'
-      
-      new_login = Login.create(
-        :fb_connect_id    => params['user_fbconnect_id'],
-        :email            => params['user_email'],
-        :first_name       => params['user_first_name'],
-        :last_name        => params['user_last_name'],
-        :location_city    => params['user_location_city'],
-        :location_country => params['user_location_country']
-      )
-      
-      Rails.logger.info(" API 1.1 (or older): created new login with FBConnect data")
+    new_login = Login.create(
+      :fb_connect_id    => params['user_fbconnect_id'],
+      :ios_device_id    => params['device_id'],
+      :email            => params['user_email'],
+      :first_name       => params['user_first_name'],
+      :last_name        => params['user_last_name'],
+      :location_city    => params['user_location_city'],
+      :location_country => params['user_location_country']
+    )
     
-    else
-      # API 1.2
-      
-      if params['user_fbconnect_id'].blank?
-        new_login = Login.create(:ios_device_id => params['device_id'])
-        
-        Rails.logger.info(" API 1.2: created new login with device ID")
-      else
-        login_to_update = Login.where(:ios_device_id => params['device_id']).first()
-        login_to_update.update_attributes(
-          :fb_connect_id    => params['user_fbconnect_id'],
-          :email            => params['user_email'],
-          :first_name       => params['user_first_name'],
-          :last_name        => params['user_last_name'],
-          :location_city    => params['user_location_city'],
-          :location_country => params['user_location_country']
-        )
-        
-        login_to_update.reviews.find_each do |review|
-          review.update_attributes(:fb_connect_id => login_to_update.fb_connect_id)
-        end
-        
-        Rails.logger.info(" API 1.2: existing login, updating with FBConnect data and migrating reviews")
+    # migrate the anonymous reviews as we have the facebook information now
+    if params['structure_version'] == '1.2'
+      AnonymousReview.where(:ios_device_id => new_login.ios_device_id).each do |anonymous_review|
+        new_review = Review.create(
+            :reviewer      => new_login,
+            :fb_connect_id => new_login.fb_connect_id,
+            :reviewable    => anonymous_review.reviewable,
+            :content       => anonymous_review.content,
+            :rating        => anonymous_review.rating,
+            :created_at    => anonymous_review.created_at
+          )
+          
+        anonymous_review.destroy if new_review
       end
-    
     end
-    
+  
   end
     
   def self.register_from_classicly(profile, location, mix_panel)

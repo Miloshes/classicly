@@ -47,7 +47,7 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
-    reviews = book.reviews.where('fb_connect_id IS NOT NULL').order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
+    reviews = book.reviews.order('created_at DESC, id DESC').includes('reviewer').page(page).per(per_page)
     
     result = []
     reviews.each do |review|
@@ -65,6 +65,7 @@ class WebApiHandler
     return result.to_json
   end
   
+  # TODO: check what's this for. Do we have to include anonymous reviews?
   def get_list_of_books_the_user_wrote_review_for(params)
     if params['user_fbconnect_id']
       login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
@@ -126,31 +127,24 @@ class WebApiHandler
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
     
+    return nil.to_json if book.blank?
+    
     if params['user_fbconnect_id']
-      login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
-    else
-      login = Login.where(:ios_device_id => params['device_id'].to_s).first()
-    end
-    
-    return nil.to_json if login.blank? || book.blank?
-    
-    review = Review.where(:reviewable => book, :reviewer => login).first()
-    
-    if review
+      login  = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+      review = Review.where(:reviewable => book, :reviewer => login).first()
       
-      if params['user_fbconnect_id']
-        return {
-            :content    => review.content,
-            :rating     => review.rating,
-            :created_at => review.created_at
-          }.to_json
-      else
-        # for device_id only reviews, they don't have content so we're not sending it back
-        return {:rating => review.rating, :created_at => review.created_at}.to_json
-      end
+      return nil.to_json if login.blank? || review.blank?
       
+      return {
+          :content    => review.content,
+          :rating     => review.rating,
+          :created_at => review.created_at
+        }.to_json
     else
-      return nil.to_json
+      review = AnonymousReview.where(:reviewable => book, :ios_device_id => params['device_id'].to_s).first()
+      
+      # for device_id only reviews, they don't have content so we're not sending it back
+      return {:rating => review.rating, :created_at => review.created_at}.to_json
     end
   end
   

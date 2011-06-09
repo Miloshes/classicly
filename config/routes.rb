@@ -18,7 +18,7 @@ Classicly::Application.routes.draw do
     resources :reviews, :only => [:index, :destroy]
   end
   
-
+  match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
@@ -44,7 +44,6 @@ Classicly::Application.routes.draw do
   match "incoming_data" => "incoming_datas#create", :method => :post
   
   
-  match 'post/:id' => 'blog#show', :as => :post
   match 'privacy' => 'pages#privacy'
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post

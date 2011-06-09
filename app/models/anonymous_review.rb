@@ -1,11 +1,8 @@
-class Review < ActiveRecord::Base
+class AnonymousReview < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
-  belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
 
   validates :rating, :presence => true, :numericality => true
-
-  # after_create :deliver_review_created_notification_to_flowdock
-
+  
   def self.create_or_update_from_ios_client_data(data)
     # == fetch the reviewable
     if data['book_id']
@@ -15,21 +12,12 @@ class Review < ActiveRecord::Base
     end
 
     return nil if reviewable.blank?
-
-    login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
-    
-    # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous reviews
-    if login.blank?
-      AnonymousReview.create_or_update_from_ios_client_data(data)
-      return
-    end
     
     new_timestamp = Time.parse(data['timestamp'])
   
     review_conditions = {
-        :login_id      => login.id,
-        :reviewable    => reviewable,
-        :fb_connect_id => login.fb_connect_id
+        :ios_device_id => data['device_id'],
+        :reviewable    => reviewable
       }
 
     new_review_data = {
@@ -44,12 +32,7 @@ class Review < ActiveRecord::Base
       review.update_attributes(new_review_data) unless new_timestamp < review.created_at
     else
       self.create(review_conditions.merge new_review_data)
-    end
-    
+    end    
   end
-
-  def deliver_review_created_notification_to_flowdock
-    ReviewMailer.deliver_notification_on_flowdock self
-  end
-
+  
 end

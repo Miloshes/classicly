@@ -31,26 +31,24 @@ class SeoController < ApplicationController
 
   private
   def find_author_collections(type)
-    return  Collection.audio_book_type.by_author if type == :audiobook
-    Collection.book_type.by_author
+    Collection.of_type(type.to_s).collection_type('author')
   end
 
   def find_genre_collections(type)
-    return  Collection.audio_book_type.by_collection if type == :audiobook
-    Collection.book_type.by_collection
+    Collection.of_type(type.to_s).collection_type('collection')
   end
 
   def render_search
     @search = params[:id]
     @books = Book.search(@search, params[:page])
-    @genre_collections = find_genre_collections :book
-    @author_collections = find_author_collections :book
-    @popular_books = Book.blessed.random(8)
     render :template => 'search/show'
   end
 
   def render_seo(seo)
-    if seo.is_for_type?('collection')
+    if seo.is_for_type?('blogpost')
+      @blog_post = seo.seoable
+      render 'blog/show' and return
+    elsif seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)

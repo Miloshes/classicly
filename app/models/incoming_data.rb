@@ -18,7 +18,11 @@ class IncomingData < ActiveRecord::Base
       case record['action']
       # stands for creating and updating
       when 'register_book_review'
-        Review.create_or_update_from_ios_client_data(record)
+        if record['user_fbconnect_id']
+          Review.create_or_update_from_ios_client_data(record)
+        else
+          AnonymousReview.create_or_update_from_ios_client_data(record)
+        end
       when 'register_ios_user'
         Login.register_from_ios_app(record)
       when 'update_book_description'

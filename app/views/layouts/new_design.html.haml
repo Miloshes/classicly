@@ -15,7 +15,7 @@
 		google.load("jqueryui", "1.8.7");
 		google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
 	= javascript_include_tag 'masonry'
-	= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating', 'collection-page'
+	= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating', 'collection-page', 'globales'
 	<meta property="fb:admins" content="24611995" />
 	=# javascript_include_tag 'classicly-autocomplete'
 	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
@@ -84,42 +84,7 @@
 					= link_to "Browse collections", '/collections'
 					= link_to "Browse authors", '/authors'
 	#bottom-shadow
-	#footer
-		.centering
-			.about
-				%h4 About
-				.bg
-					%p
-						Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips. 
-					%p 
-						Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
-			.applications
-				%h4 Apps
-				.app
-					= link_to image_tag('footer-books.png', :class => "icon"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"
-					%h5 Free Books
-					%span 23,469 classics to go.
-					= link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"
-					= link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8"
-				.app.grid_4.alpha.omega
-					.grid_1.alpha
-						= link_to image_tag('footer-audiobooks.png', :class => "icon"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"
-					.grid_3.omega
-						%h5 Free Audiobooks
-						%span 2,947 audiobooks for $1.99.
-						= link_to image_tag('footer-iphone.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"
-						= link_to image_tag('footer-ipad.png', :class => "link"), "http://itunes.apple.com/us/app/free-audiobooks-2-947-classics/id379861611?mt=8"
-			.connect.grid_4.omega
-				%h4 Connect
-				= link_to image_tag('footer-support.png'), "http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"
-				= link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
-				= link_to image_tag('footer-twitter.png'), "http://twitter.com/#!/classiclybooks"
-		.collection-names-list
-			=image_tag 'footer-collections-top.png'
-			.collections
-				- for collection in @collections_for_footer
-					= content_tag :span, link_to(collection.name, seo_path(collection)), :class => 'linky'
-			=image_tag 'footer-collections-bottom.png'
+	= render :partial => 'shared/footer'
 #bottom-notification-bar{:style => 'display:none'}
 	.content
 		.left
