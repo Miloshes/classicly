@@ -1,5 +1,8 @@
 -# controlled in pages_controller => authors
 -# collections here should only fetch fields -> id, description, cached_slug and name
+- content_for :title do
+  %title Classic Authors | Read Online | Sync to iPhone/iPad | Classicly
+
 #author-list-page
   #featured-collection{:name => "collection_#{@featured.id}"}
     .cover-column
@@ -8,7 +11,7 @@
           .spinner
     .detail-column
       %h1 Featured Author: <strong>#{@featured.name}</strong>
-      %p= raw parsed_collection_description(@featured.description )
+      %p= raw parsed_collection_description(@featured.description)
     .books-and-link
       .cover-here.tiny
         .stable

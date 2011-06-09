@@ -1,7 +1,8 @@
 source :rubygems
 source 'http://gems.github.com'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
+gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 gem 'aws-s3', :require => 'aws/s3'
 gem "compass", ">= 0.10.5"
 gem 'haml'
@@ -18,6 +19,7 @@ gem 'mongrel'
 gem 'nokogiri'
 gem 'paperclip'
 gem 'rest-client', :require => 'rest_client'
+gem 'rmagick'
 gem 'sitemap_generator'
 gem 'sqlite3-ruby'
 gem 'htmlentities'

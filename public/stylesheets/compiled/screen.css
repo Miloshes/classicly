@@ -148,7 +148,7 @@ body {
   float: left;
   width: 100%;
   text-align: center;
-  margin: 0;
+  float: left;
   padding: 0;
 }
 /* line 28, ../../../app/stylesheets/partials/_layout.sass */
@@ -494,6 +494,93 @@ body {
   margin: 0;
   padding: 0;
   padding-bottom: 10px;
+}
+
+/* line 281, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar {
+  width: 100%;
+  height: 90px;
+  background: black;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+}
+/* line 288, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content {
+  margin: 0 auto;
+  width: 960px;
+  text-align: left;
+  padding-top: 15px;
+}
+/* line 294, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .left {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+  padding-left: 80px;
+}
+/* line 138, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #bottom-notification-bar .content .left {
+  overflow-x: hidden;
+}
+/* line 297, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .left span {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 14px;
+}
+/* line 302, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .center {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 190px;
+  padding-left: 40px;
+}
+/* line 138, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #bottom-notification-bar .content .center {
+  overflow-x: hidden;
+}
+/* line 305, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .center span {
+  width: 100%;
+  display: block;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 20px;
+}
+/* line 313, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .right {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 310px;
+  padding-left: 80px;
+}
+/* line 138, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #bottom-notification-bar .content .right {
+  overflow-x: hidden;
+}
+/* line 316, ../../../app/stylesheets/partials/_layout.sass */
+#bottom-notification-bar .content .right a {
+  margin-top: 10px;
+}
+
+/* line 320, ../../../app/stylesheets/partials/_layout.sass */
+.like-send {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 550px;
+  height: 30px;
+  display: block;
+}
+/* line 138, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html .like-send {
+  overflow-x: hidden;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_home_page.sass */
@@ -1407,6 +1494,29 @@ ul.ui-autocomplete {
 #download-confirmation-page .download-info .read {
   margin-top: 5px;
 }
+/* line 37, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 470px;
+  margin-top: 30px;
+}
+/* line 138, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly-st/gems/compass-0.10.6/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #download-confirmation-page .more-column {
+  overflow-x: hidden;
+}
+/* line 41, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column .highlight {
+  background: #feffd8;
+  border: 1px solid #e2c822;
+  padding: 10px;
+  height: 30px;
+}
+/* line 46, ../../../app/stylesheets/partials/_download_confirmation.sass */
+#download-confirmation-page .more-column .highlight iframe {
+  margin-top: 3px;
+}
 
 /* line 1, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared {
@@ -1527,11 +1637,30 @@ ul.ui-autocomplete {
   margin-right: 10px;
 }
 
-/* line 2, ../../../app/stylesheets/partials/blog_single.sass */
+/* line 2, ../../../app/stylesheets/partials/_blog_single.sass */
 #blog-single h1 {
   font-size: 40px;
   padding: 0;
   margin: 0;
+}
+
+/* line 10, ../../../app/stylesheets/partials/_blog_single.sass */
+#blog-form ul.related-books li span.close {
+  display: block;
+  width: 20px;
+  float: left;
+}
+/* line 14, ../../../app/stylesheets/partials/_blog_single.sass */
+#blog-form ul.related-books li span.close a {
+  color: red;
+  font-size: 16px;
+  text-decoration: none;
+  padding: 2px;
+}
+/* line 19, ../../../app/stylesheets/partials/_blog_single.sass */
+#blog-form ul.related-books li span.close a:hover {
+  background-color: red;
+  color: white;
 }
 
 /* line 2, ../../../app/stylesheets/partials/_blog.sass */

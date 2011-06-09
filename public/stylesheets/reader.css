@@ -22,6 +22,7 @@ body {
   -khtml-border-radius: 10px;
   border-radius: 10px; }
   #reader_box .header {
+    display: none;
     color: #34261c;
     text-transform: uppercase;
     position: absolute;
@@ -106,14 +107,15 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    top: 0;
-    bottom: 0;
-    padding-top: 350px;
+    top: 300px;
+    bottom: 300px;
+    padding-top: 50px;
     text-align: center;
     display: none;
     cursor: pointer;
     color: #fff;
-    font-size: 40px; }
+    font-size: 40px;
+    z-index: 13; }
   #reader_box .big_navigation.right .box {
     -moz-border-radius: 0 10px 10px 0;
     -webkit-border-radius: 0 10px 10px 0;
@@ -140,6 +142,7 @@ body {
     height: 40px;
     cursor: pointer; }
   #reader_box .navigation .slider_wrap {
+    display: none;
     background: url("../images/html-reader/scroller-dots.png") repeat-x;
     position: absolute;
     top: 14px;
@@ -147,7 +150,7 @@ body {
     left: 25px;
     right: 25px; }
   #reader_box .navigation .slider {
-    position: display-block;
+    position: absolute;
     top: 0;
     bottom: 0;
     left: 0;

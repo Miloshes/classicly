@@ -5,26 +5,28 @@ class PagesController < ApplicationController
     @viewing_audibly = true
     render 'authors', :layout => 'audibly'
   end
-  
+
   def audio_collections
     @collections = Collection.of_type('audiobook').collection_type('collection').random(10)
     @featured = @collections.first
     @viewing_audibly = true
     render 'collections', :layout => 'audibly'
   end
-    
+
   def authors
-    @collections = Collection.book_type.by_author.random(10).select('id, description, name, cached_slug')
-    @featured = @collections.first
+    @featured = Collection.of_type('book').collection_type('author').random(1).first
+    @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('author').random(10)
   end
 
   def collections
-    @collections = Collection.book_type.by_collection.random(10)
-    @featured = @collections.first
+    @featured = Collection.of_type('book').collection_type('collection').random(1).first
+    @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('collection').random(10)
   end
-  
 
   def main
+  end
+
+  def privacy
   end
 
   def random_json_books

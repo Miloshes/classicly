@@ -1,1 +1,0 @@
-$(function(){FB.Event.subscribe("auth.login",function(a){login(a)})});
