@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(:version => 20110606153105) do
   add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
   add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
+  create_table "anonymous_reviews", :force => true do |t|
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
+    t.text     "content"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.string   "ios_device_id"
+  end
+
   create_table "audiobook_chapters", :force => true do |t|
     t.integer "audiobook_id"
     t.string  "title"
