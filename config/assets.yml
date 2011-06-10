@@ -1,3 +1,4 @@
+package_assets: always
 compress_assets: on
 # note: don't use yui compression, it broke the combined javascript for some reason
 javascript_compressor: closure
