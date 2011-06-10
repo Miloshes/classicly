@@ -1,6 +1,7 @@
-embed_assets: on
+compress_assets: on
 # note: don't use yui compression, it broke the combined javascript for some reason
 javascript_compressor: closure
+embed_assets: on
 
 javascripts:
   main:
