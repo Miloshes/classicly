@@ -2,7 +2,7 @@ class Admin::BlogPostsController < Admin::BaseController
   before_filter :set_blog_post, :only => [:destroy, :edit, :update, :show, :preview]
   
   def index
-    @blog_posts = BlogPost.all
+    @blog_posts = BlogPost.order('created_at DESC')
   end
 
   def new
@@ -13,7 +13,7 @@ class Admin::BlogPostsController < Admin::BaseController
   def create
     @blog_post = BlogPost.new(params[:blog_post])
     if @blog_post.save
-      redirect_to admin_blog_posts_path
+      redirect_to edit_admin_blog_post_path(@blog_post)
     else
       render :action => :new
     end
@@ -25,7 +25,7 @@ class Admin::BlogPostsController < Admin::BaseController
 
   def update
     if BlogPost.persist(@blog_post, params[:blog_post])
-      redirect_to admin_blog_posts_path
+      redirect_to edit_admin_blog_post_path(@blog_post)
     else
       render :action => :edit
     end
