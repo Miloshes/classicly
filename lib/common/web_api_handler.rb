@@ -77,9 +77,19 @@ class WebApiHandler
     
     result = []
     
-    if params['structure_version'] && ['1.1', '1.2'].include?(params['structure_version'])
-      book_ids = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable.id }
-      audiobook_ids = login.reviews.where(:reviewable_type => 'Audiobook').collect { |review| review.reviewable.id }
+    case params['structure_version']
+    when '1.2'
+      result = {
+        :books => login.reviews.where(:reviewable_type => 'Book').collect { |review|
+          {:id => review.reviewable_id, :rating => review.rating}
+        },
+        :audiobooks => login.reviews.where(:reviewable_type => 'Audiobook').collect { |review|
+          {:id => review.reviewable_id, :rating => review.rating}
+        }
+      }
+    when '1.1'
+      book_ids = login.reviews.where(:reviewable_type => 'Book').collect { |review| review.reviewable_id }
+      audiobook_ids = login.reviews.where(:reviewable_type => 'Audiobook').collect { |review| review.reviewable_id }
       
       result = {
         :book_ids => book_ids,
