@@ -7,7 +7,7 @@
 #collection-page.grid_9.alpha.omega
   - if @books.empty?
     %h1
-      Sorry. We have not found any result searching for <strong>'#{@search}'</strong>
+      No results found for '#{@search}'. As a heads-up, most of our books are pre-1923.
     -# put here more markup if needed in the case for no results
   - else
     %h1 Search results for <strong>'#{@search}'</strong>
