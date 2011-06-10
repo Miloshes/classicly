@@ -5,8 +5,8 @@
     .blog-title
       %h1.show
         = @blog_post.title
-        %span.date=@blog_post.created_at.to_s :post_title_format
-        %span.author Tyler
+      %span.date=@blog_post.created_at.to_s :post_title_format
+      %span.author Tyler
     .content
       = simple_format @blog_post.content
     - unless @blog_post.related_books.empty?
@@ -18,6 +18,6 @@
               .stable
                 .spinner
     .clear
-    = link_to 'Back to the blog', blog_path
+    = link_to content_tag(:span, 'Back to the blog'), blog_path, :class => "button kiss large green"
 
 = javascript_include_tag 'covers-blog-page'
