@@ -5,11 +5,15 @@
       %span.date= post.created_at.to_s :post_title_format
       %span.author Tyler
   .content
-    = raw post.content
-  .related
-    %h5 Related Books
-    - for book in post.related_books
-      .book-cover{:id => "book_#{book.id}"}
-        .cover-here.medium.popular
-          .stable
-            .spinner
+    %p
+      = raw limit_to_paragraph(post.content)
+      .clear
+      = link_to content_tag(:span, 'Read Complete Post'), seo_path(post), :class => 'button kiss large green'
+  - unless post.related_books.empty?
+    .related
+      %h5 Related Books
+      - for book in post.related_books
+        .book-cover{:id => "book_#{book.id}"}
+          .cover-here.medium.popular
+            .stable
+              .spinner

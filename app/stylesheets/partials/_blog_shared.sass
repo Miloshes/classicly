@@ -25,14 +25,15 @@
           :padding 5px
           &:hover 
             :background #ffff66
-        span
-          :float left
-          &.date
-            :color #444444
-          &.author
-            :color #999999
-            :margin
-              :left 20px
+      span
+        :float left
+        font-size: 30px
+        &.date
+          :color #444444
+        &.author
+          :color #999999
+          :margin
+            :left 20px
     .content
       +column(15, true)
       :margin
@@ -43,13 +44,25 @@
         :font-size 20px
         :font-weight bold
       p
-        :font-size 16px
+        :font-size 18px
+      ul, ol
+        a
+          font-weight: bold
+          text-decoration: none
+          color: #c9af87
+          font-size: 16px
+          &:hover
+            :color #866a47
+            :text-decoration underline
     .related
       +column(14, true)
       h5
         :font-size 16px
+        :color #c9af87
         :margin 0
         :padding 0
+      .cover-here
+        :margin-left 10px
       a
         :float left
         :margin
