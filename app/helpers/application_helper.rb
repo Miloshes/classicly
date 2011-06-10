@@ -131,6 +131,13 @@ module ApplicationHelper
 #===========================================================================================================================
 # books only helpers
 
+def condensed_blog_post_content(post)
+  content = post.content
+  return '' if post.content.nil?
+  boundary = content.length > 800 ? 800 : content.length
+  content[0, boundary]
+end
+
 def condensed_description(book)
   return '' if book.description.nil?
   #get the first paragraph or the hole description if no paragraphs present

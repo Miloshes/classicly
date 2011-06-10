@@ -1577,19 +1577,20 @@ ul.ui-autocomplete {
   background: #ffff66;
 }
 /* line 28, ../../../app/stylesheets/partials/_blog_shared.sass */
-.blog-shared .show-post .blog-title h2 span, .blog-shared .show-post .blog-title h1.show span {
+.blog-shared .show-post .blog-title span {
   float: left;
+  font-size: 30px;
 }
-/* line 30, ../../../app/stylesheets/partials/_blog_shared.sass */
-.blog-shared .show-post .blog-title h2 span.date, .blog-shared .show-post .blog-title h1.show span.date {
+/* line 31, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .blog-title span.date {
   color: #444444;
 }
-/* line 32, ../../../app/stylesheets/partials/_blog_shared.sass */
-.blog-shared .show-post .blog-title h2 span.author, .blog-shared .show-post .blog-title h1.show span.author {
+/* line 33, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .blog-title span.author {
   color: #999999;
   margin-left: 20px;
 }
-/* line 36, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 37, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content {
   display: inline;
   float: left;
@@ -1601,20 +1602,32 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .content {
   overflow-x: hidden;
 }
-/* line 40, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 41, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h1 {
   display: none;
 }
-/* line 42, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 43, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h2 {
   font-size: 20px;
   font-weight: bold;
 }
-/* line 45, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 46, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p {
+  font-size: 18px;
+}
+/* line 49, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .content ul a, .blog-shared .show-post .content ol a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #c9af87;
   font-size: 16px;
 }
-/* line 47, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 54, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .content ul a:hover, .blog-shared .show-post .content ol a:hover {
+  color: #866a47;
+  text-decoration: underline;
+}
+/* line 57, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related {
   display: inline;
   float: left;
@@ -1625,13 +1638,18 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .related {
   overflow-x: hidden;
 }
-/* line 49, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 59, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related h5 {
   font-size: 16px;
+  color: #c9af87;
   margin: 0;
   padding: 0;
 }
-/* line 53, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 64, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .related .cover-here {
+  margin-left: 10px;
+}
+/* line 66, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related a {
   float: left;
   margin-right: 10px;
