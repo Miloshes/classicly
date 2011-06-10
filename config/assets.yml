@@ -1,36 +1,17 @@
 embed_assets: on
-javascript_compressor: yui
+# note: don't use yui compression, it broke the combined javascript for some reason
+javascript_compressor: closure
 
 javascripts:
-  jquery:
-    - public/javascripts/jquery.js
-  main: 
-    - public/javascripts/jquery.js
-    - public/javascripts/jquery.metadata.js
-    - public/javascripts/covers.js
-    - public/javascripts/global.js
+  main:
     - public/javascripts/application.js
-    - public/javascripts/jqueryui.js
+    - public/javascripts/global.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
-    - public/javascripts/masonry.js
-  main_without_jquery_nor_jquery_ui:
-    - public/javascripts/jquery.metadata.js
-    - public/javascripts/covers.js
-    - public/javascripts/global.js
-    - public/javascripts/application.js
-    - public/javascripts/rails.js
-    - public/javascripts/jquery.rating.js
-  collections:
     - public/javascripts/collection-page.js
-
+    - public/javascripts/globales.js
+    - public/javascripts/covers-global.js
+    - public/javascripts/masonry.js
 stylesheets:
   common:
-    - public/stylesheets/main.css
-    - public/stylesheets/grid.css
-  blog:
-    - public/stylesheets/blog.css
-  jqueryui:
-    - public/stylesheets/jqueryui.css
-  rating:
-    - public/stylesheets/jquery.rating.css
+    - public/stylesheets/compiled/screen.css
