@@ -1,6 +1,8 @@
 - content_for :title do
   %title Download Free Books | Read Online | Sync to iPhone/iPad | Classicly
 
+- content_for :head do
+  = content_tag :meta, nil, :name => "description", :content => "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"
 #home-page-content
   #classicly-welcome-text
     %h1
@@ -36,43 +38,24 @@
 
   #book-tiles
     .column
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
+      - 1.upto(3) do
+        .cover-with-title-here.medium.random-book
+          .stable
+            .spinner
     .column
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
+      - 1.upto(3) do
+        .cover-with-title-here.medium.random-book
+          .stable
+            .spinner
 
     .column.last
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
-      .cover-with-title-here.medium.random-book
-        .stable
-          .spinner
+      - 1.upto(3) do
+        .cover-with-title-here.medium.random-book
+          .stable
+            .spinner
   #links
     %a.button.kiss.large.green{:href => '/collections'}
       %span
         Browse our hand-picked book<br />collections
     = link_to content_tag(:span, 'Browse by author'), '/authors', :class => 'button kiss large brown bouge small'
     = link_to content_tag(:span, 'Browse by most popular'), '/best-of', :class => 'button kiss large brown bouge small'
-
-
-
-
