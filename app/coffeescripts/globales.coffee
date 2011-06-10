@@ -6,22 +6,22 @@ $ ->
     return newText + '...'
     
   window.setElementCover = (element, toTake) ->
-      element.children( '.stable' ).append '<img src="http://spreadsong-book-covers.s3.amazonaws.com/book_id' + toTake[0].id + '_size3.jpg"/>'
-      element.wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
-      if element.hasClass( 'cover-with-title-here' )
-        threshold = if element.hasClass 'small' or element.hasClass 'tiny' then 40 else 61
-        element.append '<div class="text" style="display:none"><span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span><span class="type">Book</span></div>'
-      $( '.cover-here img, .cover-with-title-here img' ).bind 'load', ->
-        $(this).siblings( '.spinner' ).fadeOut 200, ->
-          $(this).parents().siblings('.text').fadeIn(1000)
-          $(this).siblings('img').fadeIn(1000)
-          
-  window.setCoverForAudiobook = (element, toTake) ->
-    element.children('.stable').append '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline"><img src="http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id' + toTake[0].id + '_size3.jpg"/></a>'
-    #element.wrap '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
+    anchor = '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
+    element.children( '.stable' ).append anchor + '<img src="http://spreadsong-book-covers.s3.amazonaws.com/book_id' + toTake[0].id + '_size3.jpg"/></a>'
     if element.hasClass( 'cover-with-title-here' )
       threshold = if element.hasClass 'small' or element.hasClass 'tiny' then 40 else 61
-      element.append '<div class="text" style="display:none"><span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span><span class="type">Audiobook</span></div>'
+      element.append '<div class="text" style="display:none"> ' + anchor + '<span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span></a><span class="type">Book</span></div>'
+    $( '.cover-here img, .cover-with-title-here img' ).bind 'load', ->
+      $( this ).parents( 'a' ).siblings('.spinner' ).fadeOut 200, ->
+        $( this ).parents().siblings( '.text' ).fadeIn(1000)
+        $( this ).siblings( 'a' ).children( 'img' ).fadeIn(1000)
+          
+  window.setCoverForAudiobook = (element, toTake) ->
+    anchor = '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
+    element.children('.stable').append anchor + '<img src="http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id' + toTake[0].id + '_size3.jpg"/></a>'
+    if element.hasClass( 'cover-with-title-here' )
+      threshold = if element.hasClass 'small' or element.hasClass 'tiny' then 40 else 61
+      element.append '<div class="text" style="display:none">' + anchor + '<span class="title">' + compressText(toTake[0].pretty_title, threshold) + '</span></a><span class="type">Audiobook</span></div>'
     $( '.cover-here img, .cover-with-title-here img' ).bind 'load', ->
       $( this ).parents('a').siblings('.spinner').fadeOut 200, ->
         $(this).parents().siblings('.text').fadeIn(1000)
