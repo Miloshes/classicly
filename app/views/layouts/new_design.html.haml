@@ -14,6 +14,7 @@
 		google.load("jqueryui", "1.8.7");
 		google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
 	= include_javascripts :main
+	= javascript_include_tag 'covers-for-collections'
 	<meta property="fb:admins" content="24611995" />
 	=# javascript_include_tag 'classicly-autocomplete'
 	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
@@ -75,19 +76,18 @@
 			<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
 			<fb:like href="http://www.facebook.com/pages/Classicly/193128150712368" send="true" layout="button_count" width="450" show_faces="true" font=""></fb:like>
 			.row
-				%h4 Popular
-				.cover-with-title-here.small
-					.stable
-						.spinner
-				.cover-with-title-here.small
-					.stable
-						.spinner
-				.cover-with-title-here.small
-					.stable
-						.spinner
-				.cover-with-title-here.small
-					.stable
-						.spinner
+				%p.popular
+					Popular
+				- 1.upto(4) do
+					.cover-with-title-here.popular.small
+						.stable
+							.spinner
+				-  for collection in @popular_collections
+					.collection-with-title-here{:name => collection.id}
+						- 1.upto(6) do
+							.cover-here.mini
+								.stable
+									.spinner
 				.links
 					= link_to 'See more popular books', '/best-of'
 					= link_to "Browse collections", '/collections'

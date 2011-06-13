@@ -1,6 +1,6 @@
 (function(){
   $(function() {
-    var audiobook, randomAudiobooks, randomBooks, totalAudiobooks, totalBooks, totalPopularCovers, url;
+    var audiobook, popularCovers, randomAudiobooks, randomBooks, totalAudiobooks, totalBooks, url;
     // align small sized covers to the bottom in the related books container
     $('img.cover-art').each(function() {
       var addToTop, left, nLeft, nTop, top;
@@ -13,15 +13,15 @@
         // fill up the popular book covers
       }
     });
-    totalPopularCovers = $('#right-column .row .cover-here, #right-column .row .cover-with-title-here').size();
+    popularCovers = $('#right-column .row .cover-here.popular, #right-column .row .cover-with-title-here.popular');
     if ($('#right-column .row').hasClass('audiobooks')) {
       url = '/random_json_audiobooks/';
       audiobook = true;
     } else {
       url = '/random_json_books/';
     }
-    $.getJSON(url + totalPopularCovers, function(data) {
-      return $.each($('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), function(index, value) {
+    $.getJSON(url + popularCovers.size(), function(data) {
+      return $.each(popularCovers, function(index, value) {
         var randCover, toTake, totalCovers;
         totalCovers = data.length;
         randCover = Math.floor(Math.random() * totalCovers);

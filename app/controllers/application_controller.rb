@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
   before_filter :set_abingo_identity
+  before_filter :popular_collections
   caches_action :collections_for_footer
 
   def collections_for_footer
@@ -24,6 +25,10 @@ class ApplicationController < ActionController::Base
   def current_admin_user
     return @current_admin_user if defined?(@current_admin_user)
     @current_admin_user = current_admin_user_session && current_admin_user_session.admin_user
+  end
+
+  def popular_collections
+    @popular_collections = Collection.of_type('book').random(3).select('id')
   end
 
   def require_admin_user
