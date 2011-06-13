@@ -32,7 +32,7 @@ class AnonymousReview < ActiveRecord::Base
       review.update_attributes(new_review_data) unless new_timestamp < review.created_at
     else
       self.create(review_conditions.merge new_review_data)
-    end    
+    end
   end
   
 end

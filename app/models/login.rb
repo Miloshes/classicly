@@ -5,7 +5,7 @@ class Login < ActiveRecord::Base
     params.stringify_keys!
     
     # avoid double registration
-    if params['user_fbconnect_id']
+    if params['user_fbconnect_id'] && !params['structure_version'] == '1.2'
       return true if Login.where(:fb_connect_id => params['user_fbconnect_id']).exists?
     end
     
