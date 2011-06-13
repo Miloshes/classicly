@@ -12,6 +12,7 @@ class Book < ActiveRecord::Base
   has_many :download_formats
   has_and_belongs_to_many :genres
   has_many :reviews, :as => :reviewable
+  has_many :anonymous_reviews, :as => :reviewable
   has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
   has_many :book_pages
