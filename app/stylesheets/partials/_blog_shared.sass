@@ -1,12 +1,18 @@
 .blog-shared
-  +column(18, true)
+  +column(14, true)
   :margin
     :top 30px
   :text-align left
+  a.blue
+    :color #2361A1 !important
+    :text-decoration underline
+    &:hover
+      :text-decoration none
+      :cursor pointer
   .show-post
     :margin
       :bottom 50px
-    +column(15, true)
+    +column(13, true)
     +append(3)
     .blog-title
       +column(15, true)
@@ -14,26 +20,34 @@
         :font-weight bold
         :padding 0
         :margin 0
-        :font-size 28px
+        :font-size 34px
+        :line-height 40px
         a
           :float left
           :display block
           :text-decoration none
           :color #333333
           :width 100%
-          :background #ffffe8
-          :padding 5px
           &:hover 
-            :background #ffff66
+            :color #2361A1
       span
+        :font-family georgia
         :float left
-        font-size: 30px
+        font-size: 10px
+        :font-style italic
+        :color #888888
+        :margin
+          :right 3px
+          :top -15px
         &.date
-          :color #444444
+          :font-style normal
+          :text-transform uppercase
+          :letter-spacing 1px
+
         &.author
-          :color #999999
-          :margin
-            :left 20px
+          :font-style normal
+          :text-transform uppercase
+          :letter-spacing 1px
     .content
       +column(15, true)
       :margin
@@ -44,7 +58,7 @@
         :font-size 20px
         :font-weight bold
       p
-        :font-size 18px
+        :font-size 16px
         &.quotation
           font-size: 16px
           font-style: italic
@@ -61,11 +75,11 @@
       +column(14, true)
       h5
         :font-size 16px
-        :color #c9af87
+        :color #444444
         :margin 0
         :padding 0
       .cover-here
-        :margin-left 10px
+        :margin-right 10px
       a
         :float left
         :margin
