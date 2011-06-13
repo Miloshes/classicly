@@ -8,14 +8,14 @@ $ ->
       $(this).offset top: nTop, left: nLeft
   # =============================== FILL POPULAR BOOKS COVERS:
   # fill up the popular book covers
-  totalPopularCovers = $('#right-column .row .cover-here, #right-column .row .cover-with-title-here').size()
+  popularCovers = $('#right-column .row .cover-here.popular, #right-column .row .cover-with-title-here.popular')
   if $('#right-column .row').hasClass 'audiobooks'
     url = '/random_json_audiobooks/'
     audiobook = true
   else
     url = '/random_json_books/'
-  $.getJSON url + totalPopularCovers, (data) ->
-    $.each $('#right-column .row .cover-here, #right-column .row .cover-with-title-here'), (index, value) ->
+  $.getJSON url + popularCovers.size(), (data) ->
+    $.each popularCovers, (index, value) ->
       totalCovers = data.length
       randCover = Math.floor(Math.random() * totalCovers)
       toTake = data.splice randCover, 1

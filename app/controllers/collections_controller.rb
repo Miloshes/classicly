@@ -5,9 +5,8 @@ class CollectionsController < ApplicationController
   def collection_json_books
     # cache response for a week
     response.headers['Cache-Control'] = "public, max-age=#{7*24*60*60}"
-    
     collection_ids = params[:id].split( ',' )
-    data = Collection.get_collection_books_in_json collection_ids, params[:type]
+    data = Collection.get_collection_books_in_json(collection_ids, params[:type], params[:total_books].to_i)
     render :json => data.to_json
   end
   
