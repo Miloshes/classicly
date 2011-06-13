@@ -146,7 +146,7 @@ class WebApiHandler
       return nil.to_json if login.blank? || review.blank?
       
       return {
-          :content    => review.content,
+          :content    => review.content || '',
           :rating     => review.rating,
           :created_at => review.created_at
         }.to_json
