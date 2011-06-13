@@ -52,7 +52,7 @@ class WebApiHandler
     result = []
     reviews.each do |review|
       result << {
-        :content             => review.content,
+        :content             => review.content || '',
         :rating              => review.rating,
         :created_at          => review.created_at,
         :fb_connect_id       => review.reviewer.fb_connect_id,
