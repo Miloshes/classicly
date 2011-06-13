@@ -1857,23 +1857,34 @@ ul.ui-autocomplete {
   font-size: 16px;
 }
 /* line 62, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .content p a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #c9af87;
+}
+/* line 66, ../../../app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .content p a:hover {
+  color: #866a47;
+  text-decoration: underline;
+}
+/* line 69, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p.quotation {
   font-size: 16px;
   font-style: italic;
 }
-/* line 66, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 73, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a, .blog-shared .show-post .content ol a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
   font-size: 16px;
 }
-/* line 71, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 78, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a:hover, .blog-shared .show-post .content ol a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 74, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 81, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related {
   display: inline;
   float: left;
@@ -1884,18 +1895,18 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .related {
   overflow-x: hidden;
 }
-/* line 76, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 83, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related h5 {
   font-size: 16px;
   color: #444444;
   margin: 0;
   padding: 0;
 }
-/* line 81, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 88, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related .cover-here {
   margin-right: 10px;
 }
-/* line 83, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 90, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related a {
   float: left;
   margin-right: 10px;
@@ -1903,7 +1914,7 @@ ul.ui-autocomplete {
 
 /* line 2, ../../../app/stylesheets/partials/_blog_single.sass */
 #blog-single h1 {
-  font-size: 40px;
+  font-size: 32px;
   padding: 0;
   margin: 0;
 }
