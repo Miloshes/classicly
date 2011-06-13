@@ -47,7 +47,6 @@ class AnonymousReview < ActiveRecord::Base
     existing_review = Review.where(review_conditions).first()
     
     review_data = {
-      :content    => self.content,
       :rating     => self.rating,
       :created_at => self.created_at
     }
