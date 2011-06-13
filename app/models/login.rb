@@ -4,34 +4,34 @@ class Login < ActiveRecord::Base
   def self.register_from_ios_app(params)
     params.stringify_keys!
     
-    # avoid double registration
-    if params['user_fbconnect_id'] && !params['structure_version'] == '1.2'
-      return true if Login.where(:fb_connect_id => params['user_fbconnect_id']).exists?
+    # required parameter
+    return true if params['user_fbconnect_id'].blank?
+
+    existing_login = Login.where(:fb_connect_id => params['user_fbconnect_id']).first()
+    
+    # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)
+    if params['structure_version'] != '1.2'
+      return true if existing_login
     end
     
-    new_login = Login.create(
-      :fb_connect_id    => params['user_fbconnect_id'],
-      :ios_device_id    => params['device_id'],
-      :email            => params['user_email'],
-      :first_name       => params['user_first_name'],
-      :last_name        => params['user_last_name'],
-      :location_city    => params['user_location_city'],
-      :location_country => params['user_location_country']
-    )
+    if existing_login
+      login = existing_login
+    else
+      login = Login.create(
+        :fb_connect_id    => params['user_fbconnect_id'],
+        :ios_device_id    => params['device_id'],
+        :email            => params['user_email'],
+        :first_name       => params['user_first_name'],
+        :last_name        => params['user_last_name'],
+        :location_city    => params['user_location_city'],
+        :location_country => params['user_location_country']
+      )
+    end
     
     # migrate the anonymous reviews as we have the facebook information now
     if params['structure_version'] == '1.2'
-      AnonymousReview.where(:ios_device_id => new_login.ios_device_id).each do |anonymous_review|
-        new_review = Review.create(
-            :reviewer      => new_login,
-            :fb_connect_id => new_login.fb_connect_id,
-            :reviewable    => anonymous_review.reviewable,
-            :content       => anonymous_review.content,
-            :rating        => anonymous_review.rating,
-            :created_at    => anonymous_review.created_at
-          )
-          
-        anonymous_review.destroy if new_review
+      AnonymousReview.where(:ios_device_id => login.ios_device_id).each do |anonymous_review|
+        anonymous_review.convert_to_normal_review
       end
     end
   
