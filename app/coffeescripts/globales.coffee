@@ -4,7 +4,7 @@ $ ->
     return text if text.length < threshold
     newText = text.substring 0, (threshold - 2)
     return newText + '...'
-    
+
   window.setElementCover = (element, toTake) ->
     anchor = '<a href="/' + toTake[0].author_slug + '/' + toTake[0].cached_slug + '" class="no-underline">'
     element.children( '.stable' ).append anchor + '<img src="http://spreadsong-book-covers.s3.amazonaws.com/book_id' + toTake[0].id + '_size3.jpg"/></a>'
