@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def popular_collections
-    @popular_collections = Collection.of_type('book').random(3).select('id')
+    @popular_collections = Collection.of_type('book').random(1).select('id')
   end
 
   def require_admin_user
