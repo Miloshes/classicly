@@ -12,6 +12,7 @@ javascripts:
     - public/javascripts/jquery.rating.js
     - public/javascripts/collection-page.js
     - public/javascripts/globales.js
+    - public/javascripts/global.js
     - public/javascripts/covers-global.js
     - public/javascripts/masonry.js
 stylesheets:

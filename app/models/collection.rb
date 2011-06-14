@@ -58,14 +58,11 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
   
-  def self.get_collection_books_in_json(collection_ids, type, total_books=5)
-    type = type || 'book'
+  def self.get_collection_books_in_json(collection_ids, type, total_books)
     data = []
     collection_ids.each do |id|
-      # find the collection:
-      current = Collection.find id
-      # get 5 books (or audiobooks) to show:
-      books = ( type == 'book' ) ? current.books.limit(total_books) : current.audiobooks.limit(total_books)
+      current = Collection.find id # find the collection.
+      books = ( type == 'book' ) ? current.books.limit(total_books) : current.audiobooks.limit(total_books) # get 5 books (or audiobooks) to show.
       # create the books data to be converted in json: 
       books_hash_array = books.map do |book|
         author_slug = Author.where(:id => book.author_id).select('cached_slug').first.cached_slug

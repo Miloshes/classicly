@@ -7,8 +7,7 @@
     allIds = domElements.map(function() {
       return $(this).attr('id').split('_')[1];
     });
-    allIds = allIds.get();
-    console.log(allIds);
+    allIds = unique(allIds.get());
     // create a single string:
     data = $(allIds).get().join(',');
     return $.getJSON('/json_books/', {
