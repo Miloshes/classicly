@@ -30,7 +30,9 @@ gem 'dalli' # that's for memcache
 group :development do
   gem 'awesome_print'
   gem 'hirb'
+  gem 'jasmine'
   gem 'mysql2', '~> 0.2.3'
+  gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
   gem 'taps', '> 0.3.22'
   gem 'firewatir'
@@ -38,13 +40,6 @@ group :development do
 end 
 
 group :test do
-  gem 'capybara'
-  gem 'cucumber-rails'
-  gem 'cucumber', '0.7.3'
-  gem 'database_cleaner'
   gem 'jasmine'
-  gem 'launchy'    # So you can do Then show me the page
   gem 'machinist', '>= 2.0.0.beta1'
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
-  gem 'spork'
 end
