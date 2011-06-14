@@ -45,5 +45,6 @@ module Classicly
     
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.raise_delivery_errors = true
+    Capybara.default_driver = :selenium
   end
 end
