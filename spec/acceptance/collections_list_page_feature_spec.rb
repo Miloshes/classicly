@@ -9,11 +9,11 @@ feature 'Collections list page feature: ', %q{
   background do
     collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
     collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name) }
+    # Given I am on the collections page:
+    visit collections
   end
   
   scenario 'Featured Collection' do
-    # Given I am on the collections page:
-    visit collections
     page.should have_css('div#featured-collection')
     within('div#featured-collection') do
       page.should have_css('.cover-column .cover')
@@ -28,8 +28,24 @@ feature 'Collections list page feature: ', %q{
       page.should have_css('.books-and-link')
       within('.books-and-link') do
         page.should have_css('div.cover')
+        page.should have_css('div.cover a img')
+        # and I should see a button to browse this collection
+        page.should have_css('a.browse-collection img')
       end
     end
   end
-
+  
+  scenario 'Viewing a list of collections' do
+    # Then I should see the title <Collections>
+    within('#collection-list') do
+      within('h2') do
+        page.should have_content('Collections')
+      end
+      within('ul.collection') do
+        page.should have_css('li .covers .cover img')
+        # And I should see a button to browse each collection
+        page.should have_css("li.collection .browse-this-collection a img")
+      end
+    end
+  end
 end
