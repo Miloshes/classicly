@@ -2433,83 +2433,12 @@ body.bp .showgrid {
   background-size: 100% 20px, auto;
   background-position: left top;
 }
-/* line 4, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .feedback, body.bp .error, body.bp .alert, body.bp .notice, body.bp .success, body.bp .info {
-  padding: 0.8em;
-  margin-bottom: 1em;
-  border: 2px solid #dddddd;
-}
-/* line 5, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .error, body.bp .alert {
-  background: #fbe3e4;
-  color: #8a1f11;
-  border-color: #fbc2c4;
-}
-/* line 27, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .error a, body.bp .alert a {
-  color: #8a1f11;
-}
-/* line 7, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .notice {
-  background: #fff6bf;
-  color: #514721;
-  border-color: #ffd324;
-}
-/* line 36, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .notice a {
-  color: #514721;
-}
-/* line 8, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .success {
-  background: #e6efc2;
-  color: #264409;
-  border-color: #c6d880;
-}
-/* line 45, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .success a {
-  color: #264409;
-}
-/* line 9, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .info {
-  background: #d5edf8;
-  color: #205791;
-  border-color: #92cae4;
-}
-/* line 54, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .info a {
-  color: #205791;
-}
-/* line 10, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .hide {
-  display: none;
-}
-/* line 11, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .highlight {
-  text-decoration: none;
-  color: #333333;
-  background: #ffffd7;
-}
-/* line 21, ../../../app/stylesheets/partials/_layout.sass */
-body.bp .highlight:hover {
-  background: #ffff66;
-  cursor: pointer;
-}
-/* line 12, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .added {
-  background: #006600;
-  color: white;
-}
-/* line 13, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_interaction.scss */
-body.bp .removed {
-  background: #990000;
-  color: white;
-}
-/* line 46, ../../../app/stylesheets/screen.scss */
+/* line 45, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 50, ../../../app/stylesheets/screen.scss */
+/* line 49, ../../../app/stylesheets/screen.scss */
 body.bp #content {
   width: 950px;
   margin: 0 auto;
@@ -2582,14 +2511,14 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 63, ../../../app/stylesheets/screen.scss */
+/* line 62, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 65, ../../../app/stylesheets/screen.scss */
+/* line 64, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
@@ -2600,7 +2529,7 @@ body.two-col #header, body.two-col #footer {
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 67, ../../../app/stylesheets/screen.scss */
+/* line 66, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
@@ -2611,7 +2540,7 @@ body.two-col #sidebar {
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 71, ../../../app/stylesheets/screen.scss */
+/* line 70, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;
