@@ -1,6 +1,6 @@
 class AddForceRerenderToBookPages < ActiveRecord::Migration
   def self.up
-    unless column_exists? :book_pages, :force_renderer
+    unless column_exists? :book_pages, :force_rerender
       add_column :book_pages, :force_rerender, :boolean, :default => false, :null => false
     end
   end
