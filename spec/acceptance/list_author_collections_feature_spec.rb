@@ -1,16 +1,16 @@
 require 'acceptance/acceptance_helper'
 
-feature 'Collections list page feature: ', %q{
-  In order to browse through collections
+feature 'List Author Collections feature: ', %q{
+  In order to browse through author collections
   As a user
-  I want to be able to check a list of collections in a single page and browse through it
+  I want to be able to check a list of author collections in a single page and browse through it
 } do
 
   background do
-    collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
-    collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name) }
-    # Given I am on the collections page:
-    visit collections
+    collection_names = %w{Edgar-Poe Federico-Nietzsche Marcos-Twain Carlos-Dickens Carlota-Bronte}
+    collection_names.each { |name| Collection.make!(:collection_type => 'author', :name => name) }
+    # Given I am on the author collections page:
+    visit authors
   end
   
   scenario 'Featured Collection' do
@@ -39,7 +39,7 @@ feature 'Collections list page feature: ', %q{
     # Then I should see the title <Collections>
     within('#collection-list') do
       within('h2') do
-        page.should have_content('Collections')
+        page.should have_content('Authors')
       end
       within('ul.collection') do
         page.should have_css('li .covers .cover img')
@@ -59,3 +59,4 @@ feature 'Collections list page feature: ', %q{
     end
   end
 end
+
