@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def collections
-    @featured = Collection.of_type('book').collection_type('collection').random(1).first
+    @featured = Collection.of_type('book').collection_type('collection').random(1).select('id, name, parsed_description').first
     @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('collection').random(12)
   end
   

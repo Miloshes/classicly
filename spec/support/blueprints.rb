@@ -35,18 +35,20 @@ Book.blueprint do
 end
 
 Collection.blueprint do
+  book_type {'book'}
   collection_type {'author'}
   description {lorem_ipsum}
   downloaded_count {0}
   name {"Collection-#{sn}"}
   source {"SELECT * FROM 'books' WHERE (author like '%#{name}%')"}
   source_type {'SQL'}
+  books(3)
+end
+
+Collection.blueprint(:with_10_books) do
+  books(10)
 end
 
 Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
-end
-
-Collection.blueprint(:books) do
-  book_type {'book'}
 end

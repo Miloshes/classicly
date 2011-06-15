@@ -1,6 +1,6 @@
 (function(){
   $(function() {
-    var allIds, audiobooks, bookType, data, featuredCollectionId;
+    var allIds, audiobooks, bookType, data;
     // get all collection's ids:
     allIds = $('li.collection').map(function() {
       return $(this).attr('id').split('_')[1];
@@ -12,7 +12,7 @@
     audiobooks = $('ul.collection').hasClass('audiobooks');
     // request AJAX sending all collection ids
     audiobooks ? (bookType = 'audiobook') : (bookType = 'book');
-    $.getJSON('collection_json_books', {
+    return $.getJSON('collection_json_books', {
       id: data,
       type: bookType
     }, function(data) {
@@ -33,26 +33,23 @@
       });
     });
     //now lets get the featured collection:
-    featuredCollectionId = $('#featured-collection').attr('name').split('_')[1];
-    return $.getJSON('collection_json_books', {
-      id: featuredCollectionId,
-      type: bookType
-    }, function(data) {
-      return $.each(data, function(index, value) {
-        var bookData, selector;
-        // find featured collection element:
-        selector = '#featured-collection';
-        bookData = value.books;
-        // find every cover holder and fill it with the cover:
-        return $.each($(selector + ' .cover-here'), function(index, value) {
-          var randCover, toTake, totalCovers;
-          // ATTENTION! don't remove the blank space before .cover-here
-          totalCovers = bookData.length;
-          randCover = Math.floor(Math.random() * totalCovers);
-          toTake = bookData.splice(randCover, 1);
-          return totalCovers > 0 ? audiobooks ? setCoverForAudiobook($(this), toTake) : setElementCover($(this), toTake) : $(this).remove();
-        });
-      });
-    });
+    // featuredCollectionId = $('#featured-collection').attr('name').split('_')[1]
+    //   $.getJSON 'collection_json_books', {id : featuredCollectionId, type: bookType },  ( data ) ->
+    //     $.each data, (index, value) ->
+    //       # find featured collection element:
+    //       selector = '#featured-collection'
+    //       bookData = value.books
+    //       # find every cover holder and fill it with the cover:
+    //       $.each $( selector + ' .cover-here'), ( index, value ) -> # ATTENTION! don't remove the blank space before .cover-here
+    //         totalCovers = bookData.length
+    //         randCover = Math.floor(Math.random() * totalCovers)
+    //         toTake = bookData.splice randCover, 1
+    //         if totalCovers > 0
+    //           if audiobooks
+    //             setCoverForAudiobook $(this), toTake
+    //           else
+    //             setElementCover $( this ), toTake
+    //         else
+    //           $(this).remove();
   });
 })();
