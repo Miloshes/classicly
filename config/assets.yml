@@ -1,4 +1,4 @@
-package_assets: always
+package_assets: on
 compress_assets: on
 # note: don't use yui compression, it broke the combined javascript for some reason
 javascript_compressor: closure
@@ -12,6 +12,7 @@ javascripts:
     - public/javascripts/jquery.rating.js
     - public/javascripts/collection-page.js
     - public/javascripts/globales.js
+    - public/javascripts/global.js
     - public/javascripts/covers-global.js
     - public/javascripts/masonry.js
 stylesheets:

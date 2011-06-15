@@ -4,10 +4,6 @@ class SearchController < ApplicationController
   def show
     @search = params[:term]
     @books =  Search.search_books @search, @indextank, params[:type], params[:page]
-    if params[:type]
-      @audibly = true
-      render :layout => 'audibly'
-    end
   end
   
   def autocomplete

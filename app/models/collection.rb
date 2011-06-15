@@ -58,21 +58,18 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
   
-  def self.get_collection_books_in_json(collection_ids, type)
-    type = type || 'book'
+  def self.get_collection_books_in_json(collection_ids, type, total_books)
     data = []
     collection_ids.each do |id|
-      # find the collection:
-      current = Collection.find id
-      # get 5 books (or audiobooks) to show:
-      books = ( type == 'book' ) ? current.books.limit(5) : current.audiobooks.limit(5)
+      current = Collection.find id # find the collection.
+      books = ( type == 'book' ) ? current.books.limit(total_books) : current.audiobooks.limit(total_books) # get 5 books (or audiobooks) to show.
       # create the books data to be converted in json: 
       books_hash_array = books.map do |book|
         author_slug = Author.where(:id => book.author_id).select('cached_slug').first.cached_slug
         { :id => book.id, :cached_slug => book.cached_slug, :author_slug => author_slug }
       end
-      # add the collection id to the data to be sent:
-      data << {:collection_id => id, :books => books_hash_array} 
+      # add the collection id and name to the data to be sent:
+      data << {:collection_id => id, :books => books_hash_array}.merge!(:collection_name => current.name) 
     end
     data
   end

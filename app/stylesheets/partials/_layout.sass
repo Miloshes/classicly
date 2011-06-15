@@ -4,7 +4,9 @@
 $top-nav-bg: #c9af87
 
 body
+  +blueprint-typography(true)
   background-color: white
+  :font-family 'Helvetica', 'Arial', 'Sans-serif'
 
 @mixin content-container
   +column(18, true)
@@ -28,7 +30,7 @@ body
   .wrap
     :width 100%
     :display block
-    :height 49px
+    :height 52px
     :text-align center
     background: $top-nav-bg
     .top
@@ -40,45 +42,7 @@ body
         +column(5)
         img
           :margin
-            :top 5px
-      #search
-        +column(5, true)
-        :margin
-          :top 17px
-          :left 65px
-        form
-          :background white
-          height: 22px
-          border: 1px solid #ab9573
-        input
-          margin-top: 2px
-          color: #d2d2d3
-          font-size: 12px
-          font-family: 'helvetica'
-          :border 0
-          :width 150px
-          :height 12px
-          :outline none
-          :float left
-          :margin
-            :top 5px
-          :padding
-            :left 3px
-            :top 3px
-          &:focus
-            :color #333333
-        button
-          :width 25px
-          :height 16px
-          :display block
-          :background url(/images/search-button.png)
-          :border 0
-          :float right
-          :margin
-            :top 1px
-          &:hover
-            :cursor pointer
-            
+            :top 7px
       #nav
         +column(12)
         text-align: left
@@ -87,27 +51,41 @@ body
         ul
           list-style: none
           li
-            display: inline
             :float left
+            :display block
+            .left
+              :background url('/images/header-nav-left.png')
+              :height 35px
+              :width 10px
+              :display block
+              :float left
             a
+              :background url('/images/header-nav-center.png') repeat-x
+              :height 28px
+              :padding
+                :top 7px
+                :left 3px
+                :right 3px
+              :display block
+              :float left
               :color #442507
               font-size: 14px
               font-weight: bold
               font-family: 'helvetica'
               :display block
-              :width 106px
-              :height 26px
-              :float left
               :text-decoration none
-              :background url(/images/nav-bg.png)
               :text-align center
-              :margin
-                :right 6px
-              :padding
-                :top 5px
               &:hover
                 :cursor pointer
-                :opacity .8
+                :color #4b7790
+
+          .right
+            :background url('/images/header-nav-right.png')
+            :height 35px
+            :width 12px
+            :display block
+            :float left
+
     .bottom
       :float left
       :display block
@@ -117,6 +95,44 @@ body
       :margin 0
         :top -5px
       :padding 0
+    #search
+      +column(5, true)
+      :margin
+        :top 17px
+        :left 65px
+      form
+        :background white
+        height: 22px
+        border: 1px solid #ab9573
+      input
+        margin-top: 2px
+        color: #d2d2d3
+        font-size: 12px
+        font-family: 'helvetica'
+        :border 0
+        :width 150px
+        :height 12px
+        :outline none
+        :float left
+        :margin
+          :top 5px
+        :padding
+          :left 3px
+          :top 3px
+        &:focus
+          :color #333333
+      button
+        :width 25px
+        :height 16px
+        :display block
+        :background url(/images/search-button.png)
+        :border 0
+        :float right
+        :margin
+          :top 1px
+        &:hover
+          :cursor pointer
+   
 #bottom-shadow
   :float left
   :display block
@@ -246,6 +262,16 @@ body
   padding-top: 20px
   :margin
     :left 20px
+  iframe.fb_ltr
+    :margin
+      :bottom 10px
+  h4
+    :font-size 18px
+    :font-weight bold
+    :margin
+      :top 20px
+      :bottom 0
+    :padding 0
   .row
     :Width 100%
     text-align: left

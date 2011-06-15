@@ -2,18 +2,34 @@
   .blog-title
     %h2 
       = link_to post.title, seo_path(post)
-      %span.date= post.created_at.to_s :post_title_format
+      %span by
       %span.author Tyler
+      %span on
+      %span.date= post.created_at.to_s :post_title_format
   .content
     %p
       = raw limit_to_paragraph(post.content)
       .clear
-      = link_to content_tag(:span, 'Read Complete Post'), seo_path(post), :class => 'button kiss large green'
+      = link_to content_tag(:span, '[click to continue...]'), seo_path(post), :class => 'blue'
   - unless post.related_books.empty?
     .related
       %h5 Related Books
       - for book in post.related_books
         .book-cover{:id => "book_#{book.id}"}
-          .cover-here.medium.popular
+          .cover-here.small
             .stable
               .spinner
+  .comments
+    //%a{:href => "#{seo_path(post)}#disqus_thread", :data => {:disqus-identifier => "classicly-#{@post.id}"}}First article</a>
+
+<script type="text/javascript">
+var disqus_shortname = 'classicly';
+
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+

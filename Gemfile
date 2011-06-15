@@ -27,19 +27,16 @@ gem 'delayed_job'
 gem 'rubyzip'
 gem 'dalli' # that's for memcache
 
-group :development do
+group :development, :test do
   gem 'awesome_print'
-  gem 'hirb'
+  gem 'capybara'
   gem 'jasmine'
+  gem 'machinist', '>= 2.0.0.beta1'
   gem 'mysql2', '~> 0.2.3'
   gem 'rspec-rails', '>=2.0.0.beta'
   gem 'ruby-debug'
+  gem 'steak'
   gem 'taps', '> 0.3.22'
   gem 'firewatir'
   gem 'hoe'
-end 
-
-group :test do
-  gem 'jasmine'
-  gem 'machinist', '>= 2.0.0.beta1'
 end
