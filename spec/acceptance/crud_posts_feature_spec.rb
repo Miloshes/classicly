@@ -6,7 +6,7 @@ feature 'Crud posts feature: ', %q{
   I want to be able to create, update and delete  blog posts
 } do
 
-  background do
+  background :each do
     # Given I am an admin user
     @admin = AdminUser.make!
     # And I log in
@@ -35,11 +35,67 @@ feature 'Crud posts feature: ', %q{
     create_blog_post_with_text text, title
     # When I go to the blog page
     visit blog_path
-
+    
+    # Then I should see the posts content until a break tag is found
     within(:xpath, "//div[@class='show-post']//div[@class='blog-title']//h2//a[text()='#{title}']") do    
       find(:xpath, "..//..//..//div[@class='content']").text.should include("Hello World!")
       find(:xpath, "..//..//..//div[@class='content']").text.should include("You love to read great works of literature, but sometimes you just can't settle on a book to read.")
       find(:xpath, "..//..//..//div[@class='content']").text.should_not include('This does not have to appear!')
     end
   end
+  
+  scenario 'Creating a blog post with <featured> tags does not have to show this tags on the post page' do
+    # Given I have an author called Milan Kundera
+    @author = Author.make!(:name => 'Milan Kundera')
+    # And I create a blog post of his , with a <featured> tag
+    title = "The unbearable lightness of being"
+    text = "Il n'existe aucun moyen de vérifier quelle décision est la bonne car il n'existe aucune comparaison. 
+            Tout est vécu tout de suite pour la première fois et sans préparation. Comme si un acteur entrait en 
+            scène sans avoir jamais répété. Mais que peut valoir la vie, si la première répétition de la vie est la vie même? 
+            C'est ce qui fait que la vie ressemble toujours à une esquisse. Mais même \"esquisse\" n'est pas le mot juste,
+            car <featured author_id='#{@author.id}'>une esquisse est toujours l'ébauche de quelque chose, la préparation d'un tableau, tandis que 
+            l'esquisse qu'est notre vie est une esquisse de rien, une ébauche sans tableau.</featured>"
+    create_blog_post_with_text text, title
+    # When I visit the post's page
+    @post = BlogPost.last
+    visit seo_path(@post)
+    # Then I should not see this featured tags as text
+    page.should_not have_content('</featured>')
+  end
+  
+  
+  scenario 'Creating a blog post with <featured> tags does have to show the quoted text in the author page' do
+    # Given I have an author called Milan Kundera:
+    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
+    # And I create  a blog post  , with a <featured> tag of his quotes
+    title = "La lenteur"
+    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
+            plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
+            A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
+            vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
+            dans le temps, encore trop proche de lui."
+    create_blog_post_with_text text, title
+    # When I visit the author's page
+    visit seo_path(@author.cached_slug)
+    page.should have_content('il veut se rappeler quelque chose, mais le souvenir lui échappe')
+  end
+  
+  scenario 'Creating a blog post with <featured> tags does have to show the quoted text in the author collection page' do
+    # Given I have an author called Milan Kundera:
+    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
+    @collection = Collection.make!(:name => 'Milan Kundera')
+    @seo_slug = SeoSlug.make!(:seoable_id => @collection.id, :slug => @collection.cached_slug, :format => "all")
+    # And I create  a blog post  , with a <featured> tag of his quotes
+    title = "La lenteur"
+    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
+            plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
+            A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
+            vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
+            dans le temps, encore trop proche de lui."
+    create_blog_post_with_text text, title
+    # When I visit the author's page
+    visit seo_path(@author.cached_slug)
+    page.should have_content('il veut se rappeler quelque chose, mais le souvenir lui échappe')
+  end
+  
 end

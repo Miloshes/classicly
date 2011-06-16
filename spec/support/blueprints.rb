@@ -30,6 +30,12 @@ Author.blueprint do
   name {"author_#{sn}"}
 end
 
+BlogPost.blueprint do
+  title{"blogpost_#{sn}"}
+  content{lorem_ipsum}
+  meta_description{"metadescription for blogpost_#{sn}"}
+end
+
 Book.blueprint do
   author
   avg_rating {1}
@@ -58,4 +64,9 @@ end
 
 Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
+end
+
+SeoSlug.blueprint do
+  seoable_id {"seo_slug_#{sn}"}
+  seoable_type {"Collection"}
 end

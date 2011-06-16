@@ -5,7 +5,7 @@
     %h2
       General data
   #blog-form
-    - form_for [:admin, blog_post], :html => { :multipart => true } do |f|
+    = form_for [:admin, blog_post], :html => { :multipart => true } do |f|
       = render "shared/error_messages", :target => blog_post
       %p
         = f.label :title

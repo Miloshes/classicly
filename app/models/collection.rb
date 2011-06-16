@@ -113,6 +113,14 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def author
+    Author.where(:cached_slug => self.cached_slug).first
+  end
+
+  def has_author?
+    Author.exists?(:cached_slug => self.cached_slug)
+  end
+
   def featured_book
     book = self.books.blessed.first
     book.nil? ? self.books.first : book

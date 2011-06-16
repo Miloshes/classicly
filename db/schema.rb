@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110606153105) do
+ActiveRecord::Schema.define(:version => 20110616205953) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -75,6 +75,17 @@ ActiveRecord::Schema.define(:version => 20110606153105) do
     t.integer "avg_rating",       :default => 0,     :null => false
     t.integer "downloaded_count", :default => 0
   end
+
+  create_table "author_quotings", :force => true do |t|
+    t.integer  "blog_post_id"
+    t.integer  "author_id"
+    t.text     "quoted_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "author_quotings", ["author_id"], :name => "index_author_quotings_on_author_id"
+  add_index "author_quotings", ["blog_post_id"], :name => "index_author_quotings_on_blog_post_id"
 
   create_table "authors", :force => true do |t|
     t.string "name"

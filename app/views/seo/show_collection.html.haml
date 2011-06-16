@@ -18,18 +18,17 @@
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books{:name => "collection_#{@collection.id}"}
-    .cover-here.medium
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
+    - 1.upto(4) do
+      .cover-here.medium
+        .stable
+          .spinner
+
+  - if @collection.is_author_collection? && @collection.has_author?
+    .author-quotations
+      - for quotation in @collection.author.author_quotings
+        %h5
+          = quotation.quoted_text
+      
   .book-list
     %h3 All #{@collection.name} Books
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
