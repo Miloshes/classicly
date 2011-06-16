@@ -10,6 +10,13 @@ lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu 
 #     body  { "Lorem ipsum..." }
 #   end
 
+AdminUser.blueprint do
+  name {"admin#{sn}"}
+  email {"mail_admin#{sn}@hotmail.com"}
+  password {'mypassword'}
+  password_confirmation{'mypassword'}
+end
+
 Audiobook.blueprint do
   author
   avg_rating {5}
