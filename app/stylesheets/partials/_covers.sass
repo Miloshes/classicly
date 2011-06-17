@@ -63,10 +63,11 @@ a.no-underline
 .cover
   @include cover
   &.medium
-  :height $mediumH+20px
+    :height $mediumH+20px
   img
     @include medium
     :float left
+    :border 1px solid #333333 
   &.tiny
     :height $tinyH+20px
     img
