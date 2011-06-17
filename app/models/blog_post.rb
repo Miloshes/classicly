@@ -33,13 +33,12 @@ class BlogPost < ActiveRecord::Base
   end
   
   def create_author_quotings
+    AuthorQuoting.where(:blog_post_id => self.id).delete_all
     doc = Nokogiri::HTML(self.content)
     doc.xpath("//featured").each do|quotation|
       author_id = doc.xpath('//featured').first.attributes['author_id'].value
       text = doc.xpath('//featured').first.children.text
-      unless AuthorQuoting.exists?(:blog_post_id => self.id, :quoted_text => text)
-        AuthorQuoting.create(:author_id => author_id, :blog_post_id => self.id, :quoted_text => text)
-      end
+      AuthorQuoting.create(:author_id => author_id, :blog_post_id => self.id, :quoted_text => text)
     end
   end
 end

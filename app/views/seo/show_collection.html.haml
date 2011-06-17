@@ -27,7 +27,7 @@
     .author-quotations
       - for quotation in @collection.author.author_quotings
         %h5
-          = quotation.quoted_text
+          = link_to quotation.quoted_text, quotation.blog_post.cached_slug
       
   .book-list
     %h3 All #{@collection.name} Books

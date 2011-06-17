@@ -69,15 +69,22 @@ feature 'Crud posts feature: ', %q{
     @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
     # And I create  a blog post  , with a <featured> tag of his quotes
     title = "La lenteur"
-    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
-            plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
+    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. <featured author_id='#{@author.id}'>Evoquons une situation on ne peut
+            plus banale</featured> : un homme marche dans la rue. Soudain, il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
             A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
             vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
             dans le temps, encore trop proche de lui."
     create_blog_post_with_text text, title
     # When I visit the author's page
     visit seo_path(@author.cached_slug)
-    page.should have_content('il veut se rappeler quelque chose, mais le souvenir lui échappe')
+    
+    within('.author-quotations') do
+      # Then I should have a link with the quote as text
+      page.should have_content('Evoquons une situation on ne peut plus banale')
+      # and that should redirect to the blogs post
+      collection_slug(find('h5:last a')[:href]).should  == 'la-lenteur' # I used last because the db does not get truncated. So
+                                                                        # the unbearable lightness ... quote is present.
+    end
   end
   
   scenario 'Creating a blog post with <featured> tags does have to show the quoted text in the author collection page' do
@@ -86,7 +93,7 @@ feature 'Crud posts feature: ', %q{
     @collection = Collection.make!(:name => 'Milan Kundera')
     @seo_slug = SeoSlug.make!(:seoable_id => @collection.id, :slug => @collection.cached_slug, :format => "all")
     # And I create  a blog post  , with a <featured> tag of his quotes
-    title = "La lenteur"
+    title = "La lenteur-2"
     text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
             plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
             A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
@@ -98,4 +105,25 @@ feature 'Crud posts feature: ', %q{
     page.should have_content('il veut se rappeler quelque chose, mais le souvenir lui échappe')
   end
   
+  scenario 'Removing a <featured> tag from a blog post' do
+    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
+    # Given I am on the blog post admin
+    visit admin_blog_posts_path
+    # When  I edit the blog post with title 'La lenteur'
+    within(:xpath, "//table//tbody") do
+      click_on "La lenteur"
+    end
+    # and I remove the tagged quote
+    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
+            plus banale : un homme marche dans la rue. Soudain, il veut se rappeler quelque chose, mais le souvenir lui échappe.
+            A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
+            vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
+            dans le temps, encore trop proche de lui."
+    fill_in 'blog_post_content', :with => text
+    click_on 'blog_post_submit'
+    # And I visit the author's page
+    visit seo_path(@author.cached_slug)
+    # Then I should not see the removed quoting text
+    page.should_not have_content('Evoquons une situation on ne peut plus banale') 
+  end
 end

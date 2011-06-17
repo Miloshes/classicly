@@ -12,7 +12,7 @@
   .author-quotations
     - for quotation in @author.author_quotings
       %h5
-        = quotation.quoted_text
+        = link_to quotation.quoted_text, quotation.blog_post.cached_slug
   .book-list
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
