@@ -3,8 +3,7 @@
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
 	%head
-		= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
-		= stylesheet_link_tag 'compiled/print.css', :media => 'print'
+		= include_stylesheets :common
 		/[if lt IE 8]
 		= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
 		= yield :title
@@ -14,13 +13,18 @@
 			google.load("jquery", "1.4.4");
 			google.load("jqueryui", "1.8.7");
 			google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
-		= javascript_include_tag 'masonry'
-		= javascript_include_tag 'application', 'global', 'rails', 'jquery.rating'
+		= include_javascripts :main
+		= javascript_include_tag 'covers-for-collections'
+		<meta property="fb:admins" content="24611995" />
 		=# javascript_include_tag 'classicly-autocomplete'
+		= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
 		= csrf_meta_tag
 		= typekit_include_helper
+
 		%meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
-		%meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+		<meta name="msvalidate.01" content="15B64C4C2ACD1A23F62F20544A16C9FD" />
+		<meta name="google-site-verification" content="C5mTYYrvRIWakzKx-n0y_qIWok9wPTkrEamcd3EIcKI" />
+
 		= yield :head
 
 	%body.bp
@@ -33,13 +37,21 @@
 					#nav
 						%ul
 							%li
+								.left
 								%a{:href => '/collections'} Collections
+								.right
 							%li
+								.left
 								%a{:href => '/authors'} Authors
+								.right
 							%li
+								.left
 								%a{:href => '/audiobooks'} Audiobooks
+								.right
 							%li
+								.left
 								%a.blog{:href => '/blog'} Blog
+								.right
 
 					#search
 						= form_tag search_url, :method => :get do
