@@ -1,5 +1,5 @@
 - content_for :title do
-  %title=@book.read_online_title
+  %title=seo_front_end_title_helper(@seo)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => @book.url_for_specific_format('online'),
