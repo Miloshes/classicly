@@ -1,3 +1,11 @@
+@mixin cover
+  :display block
+  :float left
+  :padding 0
+  :margin 0
+    :top 5px
+    :bottom 25px
+
 @mixin mini
   :width 25px
   :height 37px
@@ -52,13 +60,21 @@ a.no-underline
       :margin
         :left 5px
 
+.cover
+  @include cover
+  &.medium
+  :height $mediumH+20px
+  img
+    @include medium
+    :float left
+  &.tiny
+    :height $tinyH+20px
+    img
+      @include tiny
+      :float left
+    
 .cover-here, .cover-with-title-here
-  :display block
-  :float left
-  :padding 0
-  :margin 0
-    :top 5px
-    :bottom 25px
+  @include cover
   &.tiny
     :height $tinyH+20px
     img, .stable

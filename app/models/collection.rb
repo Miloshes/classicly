@@ -113,6 +113,19 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def author
+    Author.where(:cached_slug => self.cached_slug).first
+  end
+
+  def has_author?
+    Author.exists?(:cached_slug => self.cached_slug)
+  end
+
+  def featured_book
+    book = self.books.blessed.first
+    book.nil? ? self.books.first : book
+  end
+
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
@@ -199,5 +212,9 @@ class Collection < ActiveRecord::Base
     end
     
     self.parsed_description = doc.css('body').inner_html
+  end
+  
+  def thumbnail_books(n_books)
+    self.books[0..(n_books - 1)] - [self.featured_book]
   end
 end

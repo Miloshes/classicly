@@ -30,6 +30,7 @@ gem 'dalli' # that's for memcache
 group :development, :test do
   gem 'awesome_print'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'jasmine'
   gem 'machinist', '>= 2.0.0.beta1'
   gem 'mysql2', '~> 0.2.3'

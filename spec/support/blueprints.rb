@@ -10,6 +10,13 @@ lorem_ipsum = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu 
 #     body  { "Lorem ipsum..." }
 #   end
 
+AdminUser.blueprint do
+  name {"admin#{sn}"}
+  email {"mail_admin#{sn}@hotmail.com"}
+  password {'mypassword'}
+  password_confirmation{'mypassword'}
+end
+
 Audiobook.blueprint do
   author
   avg_rating {5}
@@ -21,6 +28,12 @@ end
 
 Author.blueprint do
   name {"author_#{sn}"}
+end
+
+BlogPost.blueprint do
+  title{"blogpost_#{sn}"}
+  content{lorem_ipsum}
+  meta_description{"metadescription for blogpost_#{sn}"}
 end
 
 Book.blueprint do
@@ -35,18 +48,25 @@ Book.blueprint do
 end
 
 Collection.blueprint do
+  book_type {'book'}
   collection_type {'author'}
   description {lorem_ipsum}
   downloaded_count {0}
   name {"Collection-#{sn}"}
   source {"SELECT * FROM 'books' WHERE (author like '%#{name}%')"}
   source_type {'SQL'}
+  books(3)
+end
+
+Collection.blueprint(:with_10_books) do
+  books(10)
 end
 
 Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
 end
 
-Collection.blueprint(:books) do
-  book_type {'book'}
+SeoSlug.blueprint do
+  seoable_id {"seo_slug_#{sn}"}
+  seoable_type {"Collection"}
 end

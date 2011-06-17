@@ -83,9 +83,11 @@ module ApplicationHelper
     doc.css('body').inner_html
   end
 
-  def limit_to_paragraph(text)
+  def show_only_until_break_tag(text)
+    index = text.index('<br/>')
+    text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
-    doc.xpath("//p").first.inner_html
+    doc.inner_html
   end
 
   def links_for_downloading_special_formats(book)

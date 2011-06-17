@@ -68,6 +68,7 @@ GEM
       haml (>= 3.0.4)
     daemons (1.1.0)
     dalli (1.0.5)
+    database_cleaner (0.6.7)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
@@ -234,6 +235,7 @@ DEPENDENCIES
   capybara
   compass (>= 0.10.5)
   dalli
+  database_cleaner
   delayed_job
   firewatir
   friendly_id (~> 3.2.1)

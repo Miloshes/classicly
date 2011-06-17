@@ -3,21 +3,9 @@
     %h5= collection.name
     %p= shorten_text simple_format(remove_book_tags(collection.description, 'span')), 300
   .covers
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
+    - collection.thumbnail_books(6).each do|thumb_book|
+      .cover.tiny
+        = cover_image_link(thumb_book, 2)
+
   .browse-this-collection
-    %a{:href =>"#{collection.cached_slug}"}
-      =image_tag 'browse-this-collection.png'
+    = link_to  image_tag('browse-this-collection.png'), seo_url(collection)
