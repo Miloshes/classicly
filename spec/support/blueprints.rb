@@ -66,7 +66,10 @@ Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
 end
 
+SeoInfo.blueprint do
+  infoable_type{'SeoSlug'}
+end
+
 SeoSlug.blueprint do
-  seoable_id {"seo_slug_#{sn}"}
   seoable_type {"Collection"}
 end

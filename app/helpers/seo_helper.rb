@@ -83,13 +83,31 @@ module SeoHelper # Please don't put into application helper
     prefix
   end
 
+  # an infoable can be seo slug, collection, book , or audiobook
   def seo_front_end_title_helper(element)
     if element.seo_info
       element.seo_info.title
-    elsif element.is_a? SeoSlug
+    elsif element.is_a? SeoSlug # probably , we are on the download page
       download_format_page_title(element.seoable, element.format)
     else
       element.respond_to?(:pretty_title) ? element.pretty_title : seo_front_end_title_for_collection(element)
+    end
+  end
+  
+  def title_for_special_landing_page(seo_slug)
+    if seo_slug.seo_info
+      seo_slug.seo_info.title
+    else
+      case seo_slug.format
+      when 'pdf'
+        "Download #{seo_slug.seoable.pretty_title} PDF"
+      when 'azw'
+        "Download #{seo_slug.seoable.pretty_title} for Kindle"
+      when 'online'
+        "Read #{seo_slug.seoable.pretty_title} Online for Free"
+      when 'mp3'
+        "Download #{seo_slug.seoable.pretty_title} MP3 for Free"
+      end
     end
   end
 end
