@@ -14,15 +14,10 @@
       .stable
         .spinner
     %h4 Related
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
+    - 1.upto(3) do
+      .cover-with-title-here.tiny.related
+        .stable
+          .spinner
   .book-column
     #book-metadata.grid_5.omega
       - cache :action => 'show', :action_suffix => 'book_details' do
@@ -40,7 +35,7 @@
         = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug)) : image_tag('download_pdf.png')
         = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)) : image_tag('download_kindle.png') 
       .read
-        - if @book.is_rendered_for_online_reading?
+        - if @book.read_online?
           = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
