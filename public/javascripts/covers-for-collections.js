@@ -12,7 +12,7 @@
         id: collectionId,
         total_books: covers.size()
       }, function(data) {
-        collection.append('<div class="text"><span class="name">' + data[0].collection_name + '</span><span class="type">Collection</span></div>');
+        collection.append('<div class="text"><a href="' + data[0].collection_slug + '"><span class="title">' + data[0].collection_name + '</span></a><span class="type">Collection</span></div>');
         return $.each(data, function(index, value) {
           var bookData;
           // find current collection element:

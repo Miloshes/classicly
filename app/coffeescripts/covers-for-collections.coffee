@@ -6,7 +6,7 @@ $ ->
     audiobooks = collection.hasClass( 'audiobooks' )
     covers = collection.children( '.cover-here' )
     $.getJSON '/collection_json_books' , { id : collectionId, total_books:covers.size()}, ( data ) ->
-      collection.append  '<div class="text"><span class="name">' + data[0].collection_name + '</span><span class="type">Collection</span></div>'
+      collection.append  '<div class="text"><a href="' + data[0].collection_slug + '"><span class="title">' + data[0].collection_name + '</span></a><span class="type">Collection</span></div>'
       $.each data, (index, value) ->
         # find current collection element:
         bookData = value.books
