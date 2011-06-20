@@ -1,5 +1,3 @@
-- content_for :title do
-  %title=@book.download_format_page_title(@format)
 - content_for :head do
   = fb_open_graph_metadata({:url => author_book_url(@book.author, @book), :description => seo_front_end_meta_description_text(@book),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
@@ -8,14 +6,15 @@
 #download-confirmation-page{:name => "#{@book.id}"}
   .cover-column
     = cover_image_link @book, 2
-    .cover-with-title-here.small.related
-      .stable
-        = cover_image_link @related_book, 2
-      .text
-        %span.title
-          = @related_book.pretty_title
-        %span.type
-          Book
+    - unless @related_book.nil? 
+      .cover-with-title-here.small.related
+        .stable
+          = cover_image_link @related_book, 2
+          .text
+          %span.title
+            = @related_book.pretty_title
+          %span.type
+            Book
   .download-info
     %h2
       <strong>

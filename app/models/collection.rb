@@ -69,7 +69,7 @@ class Collection < ActiveRecord::Base
         { :id => book.id, :cached_slug => book.cached_slug, :author_slug => author_slug }
       end
       # add the collection id and name to the data to be sent:
-      data << {:collection_id => id, :books => books_hash_array}.merge!(:collection_name => current.name) 
+      data << {:collection_id => id, :books => books_hash_array}.merge!(:collection_name => current.name, :collection_slug => current.cached_slug) 
     end
     data
   end
