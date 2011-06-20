@@ -1,0 +1,2 @@
+describe SeoHelper do
+end

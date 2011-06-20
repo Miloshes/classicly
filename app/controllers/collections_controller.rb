@@ -3,7 +3,7 @@ class CollectionsController < ApplicationController
   # return a json array with collection id and its books
   def collection_json_books
     # cache response for a week
-    response.headers['Cache-Control'] = "public, max-age=#{7*24*60*60}"
+    #response.headers['Cache-Control'] = "public, max-age=#{7*24*60*60}"
     collection_ids = params[:id].split( ',' )
     params[:type] = params[:type] || 'book'
     params[:total_books] = params[:total_books] || '5' 
