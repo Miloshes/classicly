@@ -4,7 +4,6 @@ class SeoController < ApplicationController
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
     if @book
       @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      set_collections_and_audibly_for_book(@book)
       @review = session[:review] || Review.new
       session[:review] = nil
       if @book.is_a?(Book)
@@ -30,13 +29,6 @@ class SeoController < ApplicationController
   end
 
   private
-  def find_author_collections(type)
-    Collection.of_type(type.to_s).collection_type('author')
-  end
-
-  def find_genre_collections(type)
-    Collection.of_type(type.to_s).collection_type('collection')
-  end
 
   def render_search
     @search = params[:id]
@@ -53,7 +45,6 @@ class SeoController < ApplicationController
       @books = seo.find_paginated_listed_books_for_collection(params)
       @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
       @featured_book = seo.find_featured_book_for_collection
-      set_collections_and_audibly_for_collection(seo.seoable)
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else
@@ -64,7 +55,6 @@ class SeoController < ApplicationController
     @book = seo.seoable
     @related_books = @book.find_fake_related(8)
     @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-    set_collections_and_audibly_for_book(@book)
     @review = session[:review] || Review.new
     session[:review] = nil
     @format = seo.download_format
@@ -77,23 +67,5 @@ class SeoController < ApplicationController
         render 'books/download_special_format'
       end
     end
-  end
-
-  def seo_layout
-    @collection ? 'collections': 'application'
-  end
-
-  def set_collections_and_audibly_for_book(book)
-    book_type = book.class.to_s.downcase.to_sym
-    @genre_collections = find_genre_collections book_type
-    @author_collections = find_author_collections book_type
-    @audibly = book_type == :audiobook
-  end
-
-  def set_collections_and_audibly_for_collection(collection)
-    collection_type = collection.is_audio_collection? ? :audiobook : :book
-    @genre_collections = find_genre_collections collection_type
-    @author_collections = find_author_collections collection_type
-    @audibly = collection_type == :audiobook
   end
 end

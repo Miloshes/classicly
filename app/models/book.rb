@@ -215,13 +215,8 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
-  def read_online_title
-    extra = "Read Online Free"
-    book_title = self.pretty_title
-    if [extra, self.pretty_title].map(&:length).reduce(:+) > 70
-      book_title = shorten_title self.pretty_title, (70 - extra.length)
-    end
-    "Read #{book_title} Online Free"
+  def read_online?
+    self.is_rendered_for_online_reading == true
   end
   
   def set_average_rating
