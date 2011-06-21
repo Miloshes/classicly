@@ -1,6 +1,6 @@
 %li.collection{:id => "collection_#{ collection.id }"}
   .info
-    %h5= collection.name
+    %h5= link_to collection.name, seo_url(collection)
     %p= shorten_text simple_format(remove_book_tags(collection.description, 'span')), 300
   .covers
     - collection.thumbnail_books(6).each do|thumb_book|

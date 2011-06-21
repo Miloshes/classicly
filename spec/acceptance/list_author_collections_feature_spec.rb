@@ -58,5 +58,18 @@ feature 'List Author Collections feature: ', %q{
       current_path.should == "/#{slug}"
     end
   end
+  
+  scenario 'individual collection page' do
+    collection = Collection.make!( :collection_type => 'author', :name => 'Ignacio Madrid' )
+    SeoSlug.make!( :seoable => collection, :slug => 'ignacio-madrid' )
+    # Given I am on the collections page:
+    visit authors
+    # When I click the link to the 'Folk' collection
+    find(:xpath, "//h5//a[text()='Ignacio Madrid']").click
+    # Then I should be in the path for this collection
+    current_path.should == "/ignacio-madrid"
+    # And I should see that this is the folk's collection page
+    page.should have_content("Ignacio Madrid Books")
+  end
 end
 

@@ -1549,14 +1549,16 @@ ul.ui-autocomplete {
 * html #collection-list-page #collection-list ul.collection li .info, * html #author-list-page #collection-list ul.collection li .info {
   overflow-x: hidden;
 }
-/* line 57, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .info h5, #author-list-page #collection-list ul.collection li .info h5 {
+/* line 58, ../../../app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info h5 a, #author-list-page #collection-list ul.collection li .info h5 a {
+  text-decoration: none;
   font-weight: bold;
   font-size: 14px;
   padding: 0;
   margin: 0;
+  color: black;
 }
-/* line 62, ../../../app/stylesheets/partials/_collection_list.sass */
+/* line 65, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p {
   font-size: 12px;
   font-style: italic;
@@ -1564,7 +1566,7 @@ ul.ui-autocomplete {
   padding: 0;
   margin: 0;
 }
-/* line 68, ../../../app/stylesheets/partials/_collection_list.sass */
+/* line 71, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .covers, #author-list-page #collection-list ul.collection li .covers {
   display: inline;
   float: left;
@@ -1575,12 +1577,12 @@ ul.ui-autocomplete {
 * html #collection-list-page #collection-list ul.collection li .covers, * html #author-list-page #collection-list ul.collection li .covers {
   overflow-x: hidden;
 }
-/* line 70, ../../../app/stylesheets/partials/_collection_list.sass */
+/* line 73, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .covers a, #author-list-page #collection-list ul.collection li .covers a {
   float: left;
   margin-right: 5px;
 }
-/* line 74, ../../../app/stylesheets/partials/_collection_list.sass */
+/* line 77, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .browse-this-collection, #author-list-page #collection-list ul.collection li .browse-this-collection {
   display: inline;
   float: left;
@@ -1592,7 +1594,7 @@ ul.ui-autocomplete {
 * html #collection-list-page #collection-list ul.collection li .browse-this-collection, * html #author-list-page #collection-list ul.collection li .browse-this-collection {
   overflow-x: hidden;
 }
-/* line 77, ../../../app/stylesheets/partials/_collection_list.sass */
+/* line 80, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .browse-this-collection a, #author-list-page #collection-list ul.collection li .browse-this-collection a {
   float: right;
   margin-top: 40px;

@@ -45,6 +45,7 @@ Book.blueprint do
   language {"language#{sn}"}
   pretty_title{"the book_#{sn}"}
   title {"book_#{sn}, the"}
+  is_rendered_for_online_reading{false}
 end
 
 Collection.blueprint do
@@ -64,6 +65,11 @@ end
 
 Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
+end
+
+DownloadFormat.blueprint do
+  legacy{true}
+  download_status{"downloaded"}
 end
 
 SeoInfo.blueprint do

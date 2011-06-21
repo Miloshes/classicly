@@ -15,15 +15,10 @@
       .stable
         .spinner
     %h4 Related
-    .cover-with-title-here.small.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
+    - 1.upto(3) do
+      .cover-with-title-here.small.related
+        .stable
+          .spinner
 
   .book-column
     #book-metadata
@@ -38,10 +33,10 @@
       .share
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
-      #read_online_button_container
-        =image_tag 'read-online-arrow.png'
-        -# if @book.book_pages.size != 0
-        = read_online_link @book
+      - if @book.read_online?
+        #read_online_button_container
+          =image_tag 'read-online-arrow.png'
+          = read_online_link @book
         .clear
         .read_online_text
           %p.explanation.first Reading on Classicly is completely free- these books are public domain. 
