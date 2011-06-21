@@ -18,10 +18,9 @@
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
   -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books{:name => "collection_#{@collection.id}"}
-    - 1.upto(4) do
-      .cover-here.medium
-        .stable
-          .spinner
+    .cover-here.medium
+      .stable
+        .spinner
 
   - if @collection.is_author_collection? && @collection.has_author?
     .author-quotations
