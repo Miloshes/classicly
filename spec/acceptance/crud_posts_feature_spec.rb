@@ -66,7 +66,7 @@ feature 'Crud posts feature: ', %q{
   
   scenario 'Creating a blog post with <featured> tags does have to show the quoted text in the author page' do
     # Given I have an author called Milan Kundera:
-    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
+    @author = Author.make!(:name => 'Milan Kundera') # steak does not truncate the db between scenarios :(
     # And I create  a blog post  , with a <featured> tag of his quotes
     title = "La lenteur"
     text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. <featured author_id='#{@author.id}'>Evoquons une situation on ne peut
@@ -89,8 +89,9 @@ feature 'Crud posts feature: ', %q{
   
   scenario 'Creating a blog post with <featured> tags does have to show the quoted text in the author collection page' do
     # Given I have an author called Milan Kundera:
-    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
+    @author = Author.make!(:name => 'Milan Kundera')
     @collection = Collection.make!(:name => 'Milan Kundera')
+    # THE NEXT LINE IS THE KEY TO THIS TEST: if an author has a slug, it means it is an author collection
     @seo_slug = SeoSlug.make!(:seoable_id => @collection.id, :slug => @collection.cached_slug, :format => "all")
     # And I create  a blog post  , with a <featured> tag of his quotes
     title = "La lenteur-2"
@@ -106,8 +107,19 @@ feature 'Crud posts feature: ', %q{
   end
   
   scenario 'Removing a <featured> tag from a blog post' do
-    @author = Author.where(:name => 'Milan Kundera').first # steak does not truncate the db between scenarios :(
-    # Given I am on the blog post admin
+    # Given I have an author called Milan Kundera:
+    @author = Author.make!(:name => 'Milan Kundera')
+    @collection = Collection.make!(:name => 'Milan Kundera')
+    @seo_slug = SeoSlug.make!(:seoable_id => @collection.id, :slug => @collection.cached_slug, :format => "all")
+    # And I create  a blog post  , with a <featured> tag of his quotes
+    title = "La lenteur"
+    text = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
+            plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
+            A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
+            vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
+            dans le temps, encore trop proche de lui."
+    create_blog_post_with_text text, title
+    # And I go back to the  the blog post admin
     visit admin_blog_posts_path
     # When  I edit the blog post with title 'La lenteur'
     within(:xpath, "//table//tbody") do
@@ -124,6 +136,6 @@ feature 'Crud posts feature: ', %q{
     # And I visit the author's page
     visit seo_path(@author.cached_slug)
     # Then I should not see the removed quoting text
-    page.should_not have_content('Evoquons une situation on ne peut plus banale') 
+    page.should_not have_content('il veut se rappeler quelque chose, mais le souvenir lui échappe.') 
   end
 end

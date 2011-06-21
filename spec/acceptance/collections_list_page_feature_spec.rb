@@ -49,7 +49,7 @@ feature 'Collections list page feature: ', %q{
     end
   end
   
-  scenario 'browsing featured collection' do
+  scenario 'going to the  featured collection route' do
     within('div#featured-collection') do
       slug = collection_slug find('.books-and-link a.browse-collection')[:href]
       # When I click the featured collection
@@ -57,5 +57,18 @@ feature 'Collections list page feature: ', %q{
       # Then I should be in the SEO path for this collection
       current_path.should == "/#{slug}"
     end
+  end
+  
+  scenario 'individual collection page' do
+    collection = Collection.make!( :collection_type => 'collection', :name => 'Folk' )
+    SeoSlug.make!( :seoable => collection, :slug => 'folk' )
+    # Given I am on the collections page:
+    visit collections
+    # When I click the link to the 'Folk' collection
+    find(:xpath, "//a[text()='Folk']").click
+    # Then I should be in the path for this collection
+    current_path.should == "/folk"
+    # And I should see that this is the folk's collection page
+    page.should have_content("Folk Books")
   end
 end
