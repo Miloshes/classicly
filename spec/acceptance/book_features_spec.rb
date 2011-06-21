@@ -17,6 +17,19 @@ feature 'Book features', %q{
     # I should see a button to read it online
     page.should have_css('.read a')
   end
+  
+  scenario 'Going to read online page with a book that can not be read(does not have book pages)' do
+    @author = Author.make!(:name => 'Bram Stoker')
+    @book = Book.make!(:author => @author, :pretty_title => 'Dracula', :is_rendered_for_online_reading => false)
+    # Given I have a book and this book is to read online 
+    @slug = SeoSlug.make!(:seoable_id => @book.id, :seoable_type => 'Book', :format => 'online', :slug => 'read-dracula-online-free')
+    # When I am in the book detail page
+    visit seo_path(@slug.slug)
+    #Then I should be on the read online page
+    page.should have_content("Read Dracula Online Free")
+    # And I should not see a button to read it online
+    page.should_not have_css('#read_online_button_container')
+  end
 
   scenario 'downloading a book ' do
     # Given I have a book and this book has a download page for pdf
