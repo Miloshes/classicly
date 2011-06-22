@@ -27,5 +27,5 @@
           = cover_image_link(thumb_book, 2)
       = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured), :class => 'browse-collection'
   #collection-list
-    %h2 Authors:
+    %h2= @featured.book_type == 'book' ? "Author\'s Books" : "Author\'s Audiobooks"
     = render 'collection_list', :collections => @collections

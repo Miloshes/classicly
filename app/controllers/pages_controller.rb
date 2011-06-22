@@ -11,7 +11,7 @@ class PagesController < ApplicationController
   end
   
   def audio_collections
-    @collections = Collection.of_type('audiobook').collection_type('collection').random(10)
+    @collections = Collection.of_type('audiobook').collection_type('collection').random(12)
     @featured = @collections.first
     @viewing_audibly = true
     render 'collections', :layout => 'audibly'

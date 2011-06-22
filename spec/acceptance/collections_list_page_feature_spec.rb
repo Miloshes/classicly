@@ -7,8 +7,8 @@ feature 'Collections list page feature: ', %q{
 } do
 
   background do
-    collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
-    collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name) }
+    @collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
+    @collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name) }
     # Given I am on the collections page:
     visit collections
   end
@@ -46,6 +46,26 @@ feature 'Collections list page feature: ', %q{
         # And I should see a button to browse each collection
         page.should have_css("li.collection .browse-this-collection a img")
       end
+    end
+  end
+  
+  scenario 'Viewing a list of audiobook collections' do
+    # Given there are audiobook collections
+    1.upto(2) do
+      Collection.make!(:audiobook_collection_with_ten_audiobooks)
+    end      
+    # Given I am in the collections page
+    # And I click Audiobooks
+    within('.audiobook-switcher') do
+      click_on 'Audiobooks'
+    end
+    #Then I should see the title Audiobook Collections
+    page.should have_content('Audiobook Collections')
+    within('ul.collection') do
+      # I should see covers for this collection
+      page.should have_css('li .covers .cover img')
+      # And I should see a button to browse each collection
+      page.should have_css("li.collection .browse-this-collection a img")
     end
   end
   
