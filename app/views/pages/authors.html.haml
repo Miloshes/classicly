@@ -4,6 +4,13 @@
   %title Classic Authors | Read Online | Sync to iPhone/iPad | Classicly
 
 #author-list-page
+  .audiobook-switcher
+    - if @featured.book_type == 'book'
+      %span Books |&nbsp;
+      = link_to 'Audiobooks', '/audiobook-authors'
+    - else
+      = link_to 'Books', '/authors'        
+      %span &nbsp;| Audiobooks
   #featured-collection
     .cover-column
       .cover.medium

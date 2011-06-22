@@ -2,6 +2,13 @@
   %title Download Public Domain Books | Read ONline | Sync to iPhone/iPad | Classicly
 
 #collection-list-page
+  .audiobook-switcher
+    - if @featured.book_type == 'book'
+      %span Books |&nbsp;
+      = link_to 'Audiobooks', '/audiobook-collections'
+    - else
+      = link_to 'Books', '/collections'        
+      %span &nbsp;| Audiobooks
   #featured-collection
     .cover-column
       .cover.medium
