@@ -1,8 +1,31 @@
 #collection-list-page, #author-list-page
   +column(18, true)
   :margin
-    :top 30px
+    :top 20px
   :text-align left
+  .audiobook-switcher
+    +column(24, true)
+    :margin
+      :bottom 10px
+    span
+      :display block
+      :float left
+      :color #333333
+      :font-size 13px
+      :margin
+        :top 5px
+        :right 5px
+    a
+      :background #ffffd7
+      :color #333333
+      :text-decoration none
+      :font-size 13px
+      :float left
+      :margin
+        :top 5px
+      &:hover
+        :background #ffff66
+        :cursor pointer
   #featured-collection
     +column(18,true)
     .cover-column

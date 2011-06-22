@@ -4,12 +4,22 @@
   %title Classic Authors | Read Online | Sync to iPhone/iPad | Classicly
 
 #author-list-page
+  .audiobook-switcher
+    - if @featured.book_type == 'book'
+      %span Books |&nbsp;
+      = link_to 'Audiobooks', '/audiobook-authors'
+    - else
+      = link_to 'Books', '/authors'        
+      %span &nbsp;| Audiobooks
   #featured-collection
     .cover-column
       .cover.medium
-        = cover_image_link(@featured.featured_book, 2)
+        = cover_image_link(@featured.featured_book || @featured.featured_audiobook, 2)
     .detail-column
-      %h1 Featured Author: <strong>#{@featured.name}</strong>
+      - if @featured.book_type == 'book'
+        %h1 Featured Author: <strong>#{@featured.name}</strong>
+      - else
+        %h1 Featured Audiobook Author: <strong>#{@featured.name}</strong>
       %p= raw @featured.parsed_description
     .books-and-link
       - @featured.thumbnail_books(6).each do|thumb_book|
