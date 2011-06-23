@@ -53,4 +53,30 @@ feature 'Book features', %q{
       find(:xpath, ".//h2").text.should include("Patula by Brammy Stokes is now downloading")
     end
   end
+  
+  scenario 'downloading an audiobook from the book view' do
+    #Given we have a book with an audiobook
+    @author = Author.make!(:name => 'Victor Hugo', :cached_slug => 'victor-hugo')
+    @book = Book.make!(:author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables', :has_audiobook => true)
+    @audiobook = Audiobook.make!(:author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables-audiobook')
+    SeoSlug.make!(:seoable_id => @audiobook.id, :seoable_type => 'Audiobook', :format => 'mp3', :slug => 'download-les-miserables-audiobook-mp3')
+    #when I go to the book view
+    visit author_book_path(@author, @book)
+    # And I click the download mp3 button
+    find(:xpath, "//a[@class='download-as-mp3']").click
+    # then I should see the download mp3 title
+    within('#book-metadata h1') do
+      page.should have_content('Download Les miserables MP3')
+    end
+  end
+  
+  scenario 'downloading an audiobook from the book view when there is no audiobook for the book' do
+    #Given we have a book with an audiobook
+    @author = Author.make!(:name => 'Victor Hugo', :cached_slug => 'victor-hugo')
+    @book = Book.make!(:author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables')
+    #when I go to the book view
+    visit author_book_path(@author, @book)
+    # Then I should not see the download mp3 button
+    page.should_not have_xpath("//a[@class='download-as-mp3']")
+  end
 end
