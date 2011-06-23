@@ -1,11 +1,11 @@
-/* line 4, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 4, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 html {
   margin: 0;
   padding: 0;
   border: 0;
 }
 
-/* line 18, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 18, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 .bp-reset-element, body, h1, h2, h3, h4, h5, h6, article, aside, dialog, figure, footer, header, hgroup, nav, section, blockquote, q, th, td, caption, table,
 div, span, object, iframe, p,
 pre, a, abbr, acronym, address,
@@ -23,21 +23,21 @@ caption, tbody, tfoot, thead, tr {
   vertical-align: baseline;
 }
 
-/* line 20, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 20, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 article, aside, dialog, figure, footer, header, hgroup, nav, section {
   display: block;
 }
 
-/* line 21, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 21, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 blockquote, q {
   quotes: "" "";
 }
-/* line 67, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 67, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 blockquote:before, blockquote:after, q:before, q:after {
   content: "";
 }
 
-/* line 22, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 22, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 th, td, caption {
   float: none !important;
   text-align: left;
@@ -45,40 +45,40 @@ th, td, caption {
   vertical-align: middle;
 }
 
-/* line 23, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 23, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 table {
   border-collapse: separate;
   border-spacing: 0;
   vertical-align: middle;
 }
 
-/* line 24, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
+/* line 24, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/reset/_utilities.scss */
 a img {
   border: none;
 }
 
-/* line 39, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 39, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 .box {
   padding: 1.5em;
   margin-bottom: 1.5em;
   background: #e5ecf9;
 }
 
-/* line 42, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 42, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 .border {
   padding-right: 4px;
   margin-right: 5px;
   border-right: 1px solid #dddddd;
 }
 
-/* line 45, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 45, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 .colborder {
   padding-right: 24px;
   margin-right: 25px;
   border-right: 1px solid #dddddd;
 }
 
-/* line 47, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 47, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 hr {
   background: #dddddd;
   color: #dddddd;
@@ -90,7 +90,7 @@ hr {
   border: none;
 }
 
-/* line 49, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 49, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 hr.space {
   background: #dddddd;
   color: #dddddd;
@@ -105,21 +105,21 @@ hr.space {
   visibility: hidden;
 }
 
-/* line 51, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
+/* line 51, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 form.inline {
   line-height: 3;
 }
-/* line 6, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 6, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.inline p {
   margin-bottom: 0;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_layout.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #main-content {
   padding-left: 15px;
 }
 
-/* line 6, ../../../app/stylesheets/partials/_layout.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 body {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -128,198 +128,198 @@ body {
   background-color: white;
   font-family: "Helvetica", "Arial", "Sans-serif";
 }
-/* line 51, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 51, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h1, body h2, body h3, body h4, body h5, body h6 {
   font-weight: normal;
   color: #222222;
 }
-/* line 52, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 52, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h1 img, body h2 img, body h3 img, body h4 img, body h5 img, body h6 img {
   margin: 0;
 }
-/* line 53, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 53, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h1 {
   font-size: 3em;
   line-height: 1;
   margin-bottom: 0.50em;
 }
-/* line 54, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 54, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h2 {
   font-size: 2em;
   margin-bottom: 0.75em;
 }
-/* line 55, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 55, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h3 {
   font-size: 1.5em;
   line-height: 1;
   margin-bottom: 1.00em;
 }
-/* line 56, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 56, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h4 {
   font-size: 1.2em;
   line-height: 1.25;
   margin-bottom: 1.25em;
 }
-/* line 57, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 57, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h5 {
   font-size: 1em;
   font-weight: bold;
   margin-bottom: 1.50em;
 }
-/* line 58, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 58, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h6 {
   font-size: 1em;
   font-weight: bold;
 }
-/* line 59, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 59, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body p {
   margin: 0 0 1.5em;
 }
-/* line 60, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 60, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body p .left {
   display: inline;
   float: left;
   margin: 1.5em 1.5em 1.5em 0;
   padding: 0;
 }
-/* line 61, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 61, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body p .right {
   display: inline;
   float: right;
   margin: 1.5em 0 1.5em 1.5em;
   padding: 0;
 }
-/* line 62, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 62, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body a {
   text-decoration: underline;
   color: #0066cc;
 }
-/* line 18, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 18, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 body a:visited {
   color: #004c99;
 }
-/* line 21, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 21, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 body a:focus {
   color: #0099ff;
 }
-/* line 24, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 24, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 body a:hover {
   color: #0099ff;
 }
-/* line 27, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
+/* line 27, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/compass/stylesheets/compass/typography/links/_link-colors.scss */
 body a:active {
   color: #bf00ff;
 }
-/* line 63, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 63, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body blockquote {
   margin: 1.5em;
   color: #666666;
   font-style: italic;
 }
-/* line 64, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 64, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body strong, body dfn {
   font-weight: bold;
 }
-/* line 65, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 65, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body em, body dfn {
   font-style: italic;
 }
-/* line 66, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 66, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body sup, body sub {
   line-height: 0;
 }
-/* line 67, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 67, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body abbr, body acronym {
   border-bottom: 1px dotted #666666;
 }
-/* line 68, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 68, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body address {
   margin: 0 0 1.5em;
   font-style: italic;
 }
-/* line 69, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 69, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body del {
   color: #666666;
 }
-/* line 70, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 70, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body pre {
   margin: 1.5em 0;
   white-space: pre;
 }
-/* line 71, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 71, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body pre, body code, body tt {
   font: 1em "andale mono", "lucida console", monospace;
   line-height: 1.5;
 }
-/* line 72, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 72, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body li ul, body li ol {
   margin: 0;
 }
-/* line 73, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 73, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body ul, body ol {
   margin: 0 1.5em 1.5em 0;
   padding-left: 1.5em;
 }
-/* line 74, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 74, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body ul {
   list-style-type: disc;
 }
-/* line 75, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 75, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body ol {
   list-style-type: decimal;
 }
-/* line 76, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 76, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body dl {
   margin: 0 0 1.5em 0;
 }
-/* line 77, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 77, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body dl dt {
   font-weight: bold;
 }
-/* line 78, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 78, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body dd {
   margin-left: 1.5em;
 }
-/* line 79, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 79, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body table {
   margin-bottom: 1.4em;
   width: 100%;
 }
-/* line 80, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 80, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body th {
   font-weight: bold;
 }
-/* line 81, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 81, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body thead th {
   background: #c3d9ff;
 }
-/* line 82, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 82, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body th, body td, body caption {
   padding: 4px 10px 4px 5px;
 }
-/* line 85, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 85, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body table.striped tr:nth-child(even) td,
 body table tr.even td {
   background: #e5ecf9;
 }
-/* line 86, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 86, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body tfoot {
   font-style: italic;
 }
-/* line 87, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 87, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body caption {
   background: #eeeeee;
 }
-/* line 88, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 88, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body .quiet {
   color: #666666;
 }
-/* line 89, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
+/* line 89, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body .loud {
   color: #111111;
 }
 
-/* line 24, ../../../app/stylesheets/partials/_layout.sass */
+/* line 24, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header {
   float: left;
   width: 100%;
@@ -327,7 +327,7 @@ body .loud {
   float: left;
   padding: 0;
 }
-/* line 30, ../../../app/stylesheets/partials/_layout.sass */
+/* line 30, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap {
   width: 100%;
   display: block;
@@ -335,13 +335,13 @@ body .loud {
   text-align: center;
   background: #c9af87;
 }
-/* line 36, ../../../app/stylesheets/partials/_layout.sass */
+/* line 36, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top {
   width: 960px;
   margin: 0 auto;
   height: 30px;
 }
-/* line 40, ../../../app/stylesheets/partials/_layout.sass */
+/* line 40, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #logo {
   float: left;
   display: inline;
@@ -349,15 +349,15 @@ body .loud {
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #logo {
   overflow-x: hidden;
 }
-/* line 43, ../../../app/stylesheets/partials/_layout.sass */
+/* line 43, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #logo img {
   margin-top: 7px;
 }
-/* line 46, ../../../app/stylesheets/partials/_layout.sass */
+/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav {
   display: inline;
   float: left;
@@ -366,20 +366,20 @@ body .loud {
   text-align: left;
   margin-top: 14px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #nav {
   overflow-x: hidden;
 }
-/* line 51, ../../../app/stylesheets/partials/_layout.sass */
+/* line 51, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul {
   list-style: none;
 }
-/* line 53, ../../../app/stylesheets/partials/_layout.sass */
+/* line 53, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li {
   float: left;
   display: inline;
 }
-/* line 56, ../../../app/stylesheets/partials/_layout.sass */
+/* line 56, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a {
   color: #442507;
   font-size: 14px;
@@ -395,12 +395,12 @@ body .loud {
   margin-right: 6px;
   padding-top: 5px;
 }
-/* line 72, ../../../app/stylesheets/partials/_layout.sass */
+/* line 72, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-/* line 76, ../../../app/stylesheets/partials/_layout.sass */
+/* line 76, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul .right {
   background: url("/images/header-nav-right.png");
   height: 35px;
@@ -408,7 +408,7 @@ body .loud {
   display: block;
   float: left;
 }
-/* line 83, ../../../app/stylesheets/partials/_layout.sass */
+/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .bottom {
   float: left;
   display: block;
@@ -419,7 +419,7 @@ body .loud {
   margin-top: -5px;
   padding: 0;
 }
-/* line 92, ../../../app/stylesheets/partials/_layout.sass */
+/* line 92, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search {
   display: inline;
   float: left;
@@ -428,17 +428,17 @@ body .loud {
   margin-top: 17px;
   margin-left: 65px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap #search {
   overflow-x: hidden;
 }
-/* line 97, ../../../app/stylesheets/partials/_layout.sass */
+/* line 97, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search form {
   background: white;
   height: 22px;
   border: 1px solid #ab9573;
 }
-/* line 101, ../../../app/stylesheets/partials/_layout.sass */
+/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search input {
   margin-top: 2px;
   color: #d2d2d3;
@@ -453,11 +453,11 @@ body .loud {
   padding-left: 3px;
   padding-top: 3px;
 }
-/* line 116, ../../../app/stylesheets/partials/_layout.sass */
+/* line 116, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search input:focus {
   color: #333333;
 }
-/* line 118, ../../../app/stylesheets/partials/_layout.sass */
+/* line 118, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search button {
   width: 25px;
   height: 16px;
@@ -467,12 +467,12 @@ body .loud {
   float: right;
   margin-top: 1px;
 }
-/* line 127, ../../../app/stylesheets/partials/_layout.sass */
+/* line 127, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search button:hover {
   cursor: pointer;
 }
 
-/* line 130, ../../../app/stylesheets/partials/_layout.sass */
+/* line 130, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -483,7 +483,7 @@ body .loud {
   padding: 0;
 }
 
-/* line 140, ../../../app/stylesheets/partials/_layout.sass */
+/* line 140, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer {
   background: #c9af87;
   width: 100%;
@@ -492,7 +492,7 @@ body .loud {
   padding-bottom: 20px;
   text-align: center;
 }
-/* line 148, ../../../app/stylesheets/partials/_layout.sass */
+/* line 148, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .centering {
   margin: 0 auto;
   width: 980px;
@@ -501,7 +501,7 @@ body .loud {
   border: 1px solid #bb9d79;
   background: #cab08b;
 }
-/* line 155, ../../../app/stylesheets/partials/_layout.sass */
+/* line 155, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list {
   margin: 0 auto;
   width: 800px;
@@ -510,11 +510,11 @@ body .loud {
   font-family: "helvetica";
   font-size: 17px;
 }
-/* line 162, ../../../app/stylesheets/partials/_layout.sass */
+/* line 162, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list img {
   float: left;
 }
-/* line 164, ../../../app/stylesheets/partials/_layout.sass */
+/* line 164, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list .collections {
   width: 830px;
   display: block;
@@ -523,7 +523,7 @@ body .loud {
   border-left: 1px solid #866a47;
   border-right: 1px solid #866a47;
 }
-/* line 173, ../../../app/stylesheets/partials/_layout.sass */
+/* line 173, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a {
   color: white;
   text-decoration: none;
@@ -533,20 +533,20 @@ body .loud {
   width: 190px;
   text-shadow: 0px 1px #555555;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #footer .collection-names-list a {
   overflow-x: hidden;
 }
-/* line 178, ../../../app/stylesheets/partials/_layout.sass */
+/* line 178, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a:hover {
   text-shadow: 0 0 15px white;
 }
-/* line 181, ../../../app/stylesheets/partials/_layout.sass */
+/* line 181, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list span.linky {
   width: 110px;
   padding: 5px;
 }
-/* line 184, ../../../app/stylesheets/partials/_layout.sass */
+/* line 184, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -559,33 +559,33 @@ body .loud {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 195, ../../../app/stylesheets/partials/_layout.sass */
+/* line 195, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 199, ../../../app/stylesheets/partials/_layout.sass */
+/* line 199, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 204, ../../../app/stylesheets/partials/_layout.sass */
+/* line 204, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 211, ../../../app/stylesheets/partials/_layout.sass */
+/* line 211, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 215, ../../../app/stylesheets/partials/_layout.sass */
+/* line 215, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app {
   text-align: left;
   float: left;
@@ -593,7 +593,7 @@ body .loud {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 222, ../../../app/stylesheets/partials/_layout.sass */
+/* line 222, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app h5 {
   color: #43260f;
   font-size: 18px;
@@ -601,46 +601,46 @@ body .loud {
   margin-top: 20px;
   padding: 0;
 }
-/* line 228, ../../../app/stylesheets/partials/_layout.sass */
+/* line 228, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app span {
   color: #43260f;
   font-size: 12px;
   display: block;
   Width: 100%;
 }
-/* line 233, ../../../app/stylesheets/partials/_layout.sass */
+/* line 233, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.link {
   margin-top: 5px;
 }
-/* line 236, ../../../app/stylesheets/partials/_layout.sass */
+/* line 236, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.icon {
   float: left;
   margin-top: 10px;
 }
-/* line 240, ../../../app/stylesheets/partials/_layout.sass */
+/* line 240, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 247, ../../../app/stylesheets/partials/_layout.sass */
+/* line 247, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .connect a img:hover {
   opacity: 0.8;
 }
 
-/* line 253, ../../../app/stylesheets/partials/_layout.sass */
+/* line 253, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 259, ../../../app/stylesheets/partials/_layout.sass */
+/* line 259, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 262, ../../../app/stylesheets/partials/_layout.sass */
+/* line 262, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -648,7 +648,7 @@ body .loud {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 269, ../../../app/stylesheets/partials/_layout.sass */
+/* line 269, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -657,20 +657,20 @@ body .loud {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 276, ../../../app/stylesheets/partials/_layout.sass */
+/* line 276, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 278, ../../../app/stylesheets/partials/_layout.sass */
+/* line 278, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 280, ../../../app/stylesheets/partials/_layout.sass */
+/* line 280, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 284, ../../../app/stylesheets/partials/_layout.sass */
+/* line 284, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -678,12 +678,12 @@ body .loud {
   text-decoration: none;
   float: left;
 }
-/* line 290, ../../../app/stylesheets/partials/_layout.sass */
+/* line 290, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 293, ../../../app/stylesheets/partials/_layout.sass */
+/* line 293, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
@@ -692,7 +692,7 @@ body .loud {
   padding-bottom: 10px;
 }
 
-/* line 301, ../../../app/stylesheets/partials/_layout.sass */
+/* line 301, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -701,14 +701,14 @@ body .loud {
   bottom: 0;
   text-align: center;
 }
-/* line 308, ../../../app/stylesheets/partials/_layout.sass */
+/* line 308, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 314, ../../../app/stylesheets/partials/_layout.sass */
+/* line 314, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -716,18 +716,18 @@ body .loud {
   width: 190px;
   padding-left: 80px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 317, ../../../app/stylesheets/partials/_layout.sass */
+/* line 317, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 322, ../../../app/stylesheets/partials/_layout.sass */
+/* line 322, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -735,11 +735,11 @@ body .loud {
   width: 190px;
   padding-left: 40px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 325, ../../../app/stylesheets/partials/_layout.sass */
+/* line 325, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -748,7 +748,7 @@ body .loud {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 333, ../../../app/stylesheets/partials/_layout.sass */
+/* line 333, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -756,16 +756,16 @@ body .loud {
   width: 310px;
   padding-left: 80px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 336, ../../../app/stylesheets/partials/_layout.sass */
+/* line 336, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 340, ../../../app/stylesheets/partials/_layout.sass */
+/* line 340, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
@@ -774,28 +774,28 @@ body .loud {
   height: 30px;
   display: block;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .like-send {
   overflow-x: hidden;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #left-column {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #left-column {
   overflow-x: hidden;
 }
 
-/* line 3, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 3, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content {
   text-align: left;
 }
-/* line 5, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 5, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text {
   display: inline;
   float: left;
@@ -803,15 +803,15 @@ body .loud {
   width: 430px;
   padding-top: 30px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #home-page-content #classicly-welcome-text {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text h1, #home-page-content #classicly-welcome-text .info {
   margin-left: 12px;
 }
-/* line 10, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 10, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text h1 {
   margin-top: 20px;
   font-family: "museo-slab-1", "museo-slab-2", arial, serif;
@@ -825,7 +825,7 @@ body .loud {
   margin: 0px;
   float: left;
 }
-/* line 22, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 22, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text .info {
   font-family: "Helvetica", arial, serif;
   font-size: 16px;
@@ -837,28 +837,28 @@ body .loud {
   margin: 0;
   margin-bottom: 12px;
 }
-/* line 32, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 32, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text .info .emphasize {
   font-size: 20px;
   color: #333333;
 }
-/* line 35, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 35, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-featured-book {
   display: inline;
   float: left;
   margin-right: 0;
   width: 270px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #home-page-content #classicly-featured-book {
   overflow-x: hidden;
 }
-/* line 37, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 37, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-featured-book .cover-here {
   margin-top: 30px;
 }
 
-/* line 40, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 40, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #links {
   display: inline;
   float: left;
@@ -867,17 +867,17 @@ body .loud {
   float: left;
   margin-top: 30px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #links {
   overflow-x: hidden;
 }
-/* line 45, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 45, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #links .small {
   margin-top: 17px;
   margin-left: 15px;
 }
 
-/* line 50, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 50, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #book-tiles {
   display: inline;
   float: left;
@@ -885,122 +885,122 @@ body .loud {
   width: 710px;
   margin-top: 25px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-tiles {
   overflow-x: hidden;
 }
-/* line 54, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 54, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #book-tiles .column {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 230px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-tiles .column {
   overflow-x: hidden;
 }
-/* line 56, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 56, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 #book-tiles .column.last {
   display: inline;
   float: left;
   margin-right: 0;
   width: 230px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-tiles .column.last {
   overflow-x: hidden;
 }
 
-/* line 62, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame {
   border: 1px solid #fcfcfc;
   float: left;
   padding: 0px;
 }
-/* line 66, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 66, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div.loader {
   width: 100%;
   height: 100%;
   display: block;
   float: left;
 }
-/* line 71, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 71, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame img {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
   vertical-align: sub !important;
   display: none;
 }
-/* line 76, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 76, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
-/* line 80, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 80, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div div {
   float: left;
   border: 1px solid #ededed;
   padding: 0px;
 }
-/* line 84, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 84, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div {
   float: left;
   border: 1px solid #e0e0e0;
   padding: 0px;
 }
-/* line 88, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 88, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div div {
   border: 1px solid #fcfcfc;
   float: left;
   padding: 0px;
 }
-/* line 92, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 92, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .cover-frame div div div div div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
 
-/* line 98, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 98, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .mini-cover {
   width: 28px;
   height: 43px;
   display: block;
 }
-/* line 102, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 102, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .mini-cover img {
   width: 28px;
   height: 43px;
 }
 
-/* line 106, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 106, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 img.mini {
   width: 28px;
   height: 43px;
 }
 
-/* line 110, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 110, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .small-cover {
   width: 62px;
   height: 96px;
   display: block;
 }
-/* line 114, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 114, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .small-cover img {
   width: 62px;
   height: 96px;
   display: none;
 }
 
-/* line 119, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 119, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 img.small-2 {
   width: 60px;
   height: 93px;
 }
 
-/* line 123, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 123, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 .big-cover {
   display: block;
   width: 218px;
@@ -1009,24 +1009,24 @@ img.small-2 {
   display: none;
 }
 
-/* line 130, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 130, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 img.big {
   width: 218px;
   height: 337px;
 }
 
-/* line 134, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 134, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 img.medium {
   width: 132px;
   height: 204px;
 }
 
-/* line 138, ../../../app/stylesheets/partials/_home_page.sass */
+/* line 138, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_home_page.sass */
 ul.ui-autocomplete {
   text-align: left;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page {
   display: inline;
   float: left;
@@ -1035,22 +1035,22 @@ ul.ui-autocomplete {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .cover-column {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column h1 {
   font-size: 16px;
   font-weight: bold;
@@ -1059,46 +1059,46 @@ ul.ui-autocomplete {
   float: left;
   width: 100%;
 }
-/* line 15, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 15, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column h4 {
   font-size: 14px;
   color: #333333;
   font-size: 16px;
   font-weight: bold;
 }
-/* line 22, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 22, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column {
   display: inline;
   float: left;
   margin-right: 0;
   width: 470px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column {
   overflow-x: hidden;
 }
-/* line 24, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 24, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h1 {
   font-size: 22px;
   margin: 0;
   padding: 0;
 }
-/* line 28, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 28, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 {
   font-size: 14px;
   color: #333333;
 }
-/* line 31, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 31, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 a {
   text-decoration: none;
   color: #333333;
   background: #ffffd7;
 }
-/* line 35, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 35, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 a:hover {
   background: #ffff66;
 }
-/* line 37, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 37, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p {
   display: inline;
   float: left;
@@ -1107,11 +1107,11 @@ ul.ui-autocomplete {
   font-size: #333333;
   font-size: 14px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column p {
   overflow-x: hidden;
 }
-/* line 41, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 41, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .share {
   height: 50px;
   display: inline;
@@ -1119,15 +1119,15 @@ ul.ui-autocomplete {
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column .share {
   overflow-x: hidden;
 }
-/* line 46, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .read {
   margin-top: 5px;
 }
-/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 49, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p.explanation {
   display: inline;
   float: left;
@@ -1136,15 +1136,15 @@ ul.ui-autocomplete {
   color: #999999;
   font-size: 14px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column p.explanation {
   overflow-x: hidden;
 }
-/* line 53, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 53, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p.explanation.first {
   margin-top: 10px;
 }
-/* line 56, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 56, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight {
   display: inline;
   float: left;
@@ -1155,16 +1155,16 @@ ul.ui-autocomplete {
   text-align: center;
   padding: 10px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column .download-highlight {
   overflow-x: hidden;
 }
-/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight img, #book-page .book-column .download-highlight a {
   margin: 0 auto;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page {
   display: inline;
   float: left;
@@ -1173,42 +1173,42 @@ ul.ui-autocomplete {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 510px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page .collection-info {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info h1 {
   font-size: 22px;
   font-weight: bold;
 }
-/* line 11, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 11, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p {
   font-size: 14px;
 }
-/* line 13, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 13, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p a {
   color: #333333;
   text-decoration: none;
   background: #ffffd7;
 }
-/* line 17, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 17, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 20, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 20, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .featured-books {
   display: inline;
   float: left;
@@ -1216,22 +1216,22 @@ ul.ui-autocomplete {
   width: 150px;
   padding-left: 40px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page .featured-books {
   overflow-x: hidden;
 }
-/* line 23, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 23, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page .book-list {
   overflow-x: hidden;
 }
-/* line 25, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 25, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list h3 {
   font-size: 22px;
   color: #333333;
@@ -1240,7 +1240,7 @@ ul.ui-autocomplete {
   margin-bottom: 3px;
   padding: 0;
 }
-/* line 32, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 32, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list p.explanation {
   display: inline;
   float: left;
@@ -1249,15 +1249,15 @@ ul.ui-autocomplete {
   color: #999999;
   font-size: 14px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page .book-list p.explanation {
   overflow-x: hidden;
 }
-/* line 36, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 36, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list p.explanation.first {
   margin-right: 200px;
 }
-/* line 39, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 39, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting {
   display: inline;
   float: left;
@@ -1265,18 +1265,18 @@ ul.ui-autocomplete {
   width: 710px;
   margin-bottom: 25px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page .sorting {
   overflow-x: hidden;
 }
-/* line 43, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 43, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting span {
   display: block;
   font-size: 14px;
   font-weight: bold;
   float: left;
 }
-/* line 48, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 48, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a {
   text-decoration: none;
   color: #333333;
@@ -1287,74 +1287,74 @@ ul.ui-autocomplete {
   display: block;
   margin-left: 20px;
 }
-/* line 58, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 58, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 61, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 61, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.selected {
   color: #333333;
   background: none;
   text-decoration: underline;
 }
-/* line 65, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 65, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.selected:hover {
   cursor: normal;
 }
-/* line 68, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 68, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li {
   display: inline;
   float: left;
   margin-right: 0;
   width: 630px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page ul.book-list li {
   overflow-x: hidden;
 }
-/* line 70, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 70, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li:hover {
   cursor: pointer;
 }
-/* line 72, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 72, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li:hover a.title {
   background: #ffff66;
 }
-/* line 74, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 74, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .cover {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 110px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page ul.book-list li .cover {
   overflow-x: hidden;
 }
-/* line 76, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 76, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 350px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page ul.book-list li .book-info {
   overflow-x: hidden;
 }
-/* line 78, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 78, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a {
   color: #333333;
 }
-/* line 80, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 80, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a.title {
   font-size: 25px;
   text-decoration: none;
   float: left;
   display: block;
 }
-/* line 85, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info span {
   font-style: italic;
   font-size: 16px;
@@ -1363,35 +1363,35 @@ ul.ui-autocomplete {
   display: block;
   width: 100%;
 }
-/* line 93, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 93, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info span a.author {
   font-style: italic;
   font-size: 16px;
   text-decoration: none;
 }
-/* line 97, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 97, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info p {
   color: #999999;
   font-style: italic;
 }
-/* line 100, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 100, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link {
   display: inline;
   float: left;
   margin-right: 0;
   width: 150px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-page ul.book-list li .download-link {
   overflow-x: hidden;
 }
-/* line 102, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 102, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link img {
   margin-top: 125px;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page, #author-list-page {
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page, #author-list-page, #collection-page {
   display: inline;
   float: left;
   margin-right: 0;
@@ -1399,24 +1399,24 @@ ul.ui-autocomplete {
   margin-top: 20px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page, * html #author-list-page {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page, * html #author-list-page, * html #collection-page {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page .audiobook-switcher, #author-list-page .audiobook-switcher {
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page .audiobook-switcher, #author-list-page .audiobook-switcher, #collection-page .audiobook-switcher {
   display: inline;
   float: left;
   margin-right: 0;
   width: 950px;
   margin-bottom: 10px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page .audiobook-switcher, * html #author-list-page .audiobook-switcher {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page .audiobook-switcher, * html #author-list-page .audiobook-switcher, * html #collection-page .audiobook-switcher {
   overflow-x: hidden;
 }
-/* line 10, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page .audiobook-switcher span, #author-list-page .audiobook-switcher span {
+/* line 10, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page .audiobook-switcher span, #author-list-page .audiobook-switcher span, #collection-page .audiobook-switcher span {
   display: block;
   float: left;
   color: #333333;
@@ -1424,8 +1424,8 @@ ul.ui-autocomplete {
   margin-top: 5px;
   margin-right: 5px;
 }
-/* line 18, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page .audiobook-switcher a, #author-list-page .audiobook-switcher a {
+/* line 18, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page .audiobook-switcher a, #author-list-page .audiobook-switcher a, #collection-page .audiobook-switcher a {
   background: #ffffd7;
   color: #333333;
   text-decoration: none;
@@ -1433,137 +1433,137 @@ ul.ui-autocomplete {
   float: left;
   margin-top: 5px;
 }
-/* line 26, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page .audiobook-switcher a:hover, #author-list-page .audiobook-switcher a:hover {
+/* line 26, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page .audiobook-switcher a:hover, #author-list-page .audiobook-switcher a:hover, #collection-page .audiobook-switcher a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 29, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection, #author-list-page #featured-collection {
+/* line 29, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection, #author-list-page #featured-collection, #collection-page #featured-collection {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #featured-collection, * html #author-list-page #featured-collection {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection, * html #author-list-page #featured-collection, * html #collection-page #featured-collection {
   overflow-x: hidden;
 }
-/* line 31, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .cover-column, #author-list-page #featured-collection .cover-column {
+/* line 31, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .cover-column, #author-list-page #featured-collection .cover-column, #collection-page #featured-collection .cover-column {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #featured-collection .cover-column, * html #author-list-page #featured-collection .cover-column {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .cover-column, * html #author-list-page #featured-collection .cover-column, * html #collection-page #featured-collection .cover-column {
   overflow-x: hidden;
 }
-/* line 33, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column, #author-list-page #featured-collection .detail-column {
+/* line 33, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column, #author-list-page #featured-collection .detail-column, #collection-page #featured-collection .detail-column {
   display: inline;
   float: left;
   margin-right: 0;
   width: 510px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #featured-collection .detail-column, * html #author-list-page #featured-collection .detail-column {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .detail-column, * html #author-list-page #featured-collection .detail-column, * html #collection-page #featured-collection .detail-column {
   overflow-x: hidden;
 }
-/* line 35, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column h1, #author-list-page #featured-collection .detail-column h1 {
+/* line 35, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h1, #author-list-page #featured-collection .detail-column h1, #collection-page #featured-collection .detail-column h1 {
   font-size: 24px;
   font-weight: bold;
 }
-/* line 38, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column h1 strong, #author-list-page #featured-collection .detail-column h1 strong {
+/* line 38, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h1 strong, #author-list-page #featured-collection .detail-column h1 strong, #collection-page #featured-collection .detail-column h1 strong {
   font-weight: normal;
 }
-/* line 40, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column h3, #author-list-page #featured-collection .detail-column h3 {
+/* line 40, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column h3, #author-list-page #featured-collection .detail-column h3, #collection-page #featured-collection .detail-column h3 {
   font-size: 16px;
   font-weight: bold;
 }
-/* line 43, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column p, #author-list-page #featured-collection .detail-column p {
+/* line 43, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p, #author-list-page #featured-collection .detail-column p, #collection-page #featured-collection .detail-column p {
   color: #333333;
   font-size: 14px;
 }
-/* line 46, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column p a, #author-list-page #featured-collection .detail-column p a {
+/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p a, #author-list-page #featured-collection .detail-column p a, #collection-page #featured-collection .detail-column p a {
   text-decoration: none;
   color: #333333;
   background: #ffffd7;
 }
-/* line 50, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .detail-column p a:hover, #author-list-page #featured-collection .detail-column p a:hover {
+/* line 50, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .detail-column p a:hover, #author-list-page #featured-collection .detail-column p a:hover, #collection-page #featured-collection .detail-column p a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 53, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .books-and-link, #author-list-page #featured-collection .books-and-link {
+/* line 53, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link, #author-list-page #featured-collection .books-and-link, #collection-page #featured-collection .books-and-link {
   display: inline;
   float: left;
   margin-right: 0;
   width: 630px;
   padding-right: 80px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #featured-collection .books-and-link, * html #author-list-page #featured-collection .books-and-link {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #featured-collection .books-and-link, * html #author-list-page #featured-collection .books-and-link, * html #collection-page #featured-collection .books-and-link {
   overflow-x: hidden;
 }
-/* line 56, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .books-and-link a, #author-list-page #featured-collection .books-and-link a {
+/* line 56, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link a, #author-list-page #featured-collection .books-and-link a, #collection-page #featured-collection .books-and-link a {
   float: left;
   margin-right: 10px;
 }
-/* line 60, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #featured-collection .books-and-link a.browse-collection, #author-list-page #featured-collection .books-and-link a.browse-collection {
+/* line 60, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #featured-collection .books-and-link a.browse-collection, #author-list-page #featured-collection .books-and-link a.browse-collection, #collection-page #featured-collection .books-and-link a.browse-collection {
   float: right;
   margin-top: 30px;
   margin-right: 0;
 }
-/* line 67, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list, #author-list-page #collection-list {
+/* line 67, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list, #author-list-page #collection-list, #collection-page #collection-list {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list, * html #author-list-page #collection-list {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list, * html #author-list-page #collection-list, * html #collection-page #collection-list {
   overflow-x: hidden;
 }
-/* line 69, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list h2, #author-list-page #collection-list h2 {
+/* line 69, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list h2, #author-list-page #collection-list h2, #collection-page #collection-list h2 {
   font-size: 24px;
   font-weight: bold;
 }
-/* line 72, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection, #author-list-page #collection-list ul.collection {
+/* line 72, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection, #author-list-page #collection-list ul.collection, #collection-page #collection-list ul.collection {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list ul.collection, * html #author-list-page #collection-list ul.collection {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection, * html #author-list-page #collection-list ul.collection, * html #collection-page #collection-list ul.collection {
   overflow-x: hidden;
 }
-/* line 74, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li, #author-list-page #collection-list ul.collection li {
+/* line 74, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li, #author-list-page #collection-list ul.collection li, #collection-page #collection-list ul.collection li {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list ul.collection li, * html #author-list-page #collection-list ul.collection li {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li, * html #author-list-page #collection-list ul.collection li, * html #collection-page #collection-list ul.collection li {
   overflow-x: hidden;
 }
-/* line 76, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .info, #author-list-page #collection-list ul.collection li .info {
+/* line 76, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info, #author-list-page #collection-list ul.collection li .info, #collection-page #collection-list ul.collection li .info {
   display: inline;
   float: left;
   margin-right: 0;
@@ -1571,12 +1571,12 @@ ul.ui-autocomplete {
   display: table-cell;
   verticle-align: bottom;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list ul.collection li .info, * html #author-list-page #collection-list ul.collection li .info {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .info, * html #author-list-page #collection-list ul.collection li .info, * html #collection-page #collection-list ul.collection li .info {
   overflow-x: hidden;
 }
-/* line 81, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .info h5 a, #author-list-page #collection-list ul.collection li .info h5 a {
+/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info h5 a, #author-list-page #collection-list ul.collection li .info h5 a, #collection-page #collection-list ul.collection li .info h5 a {
   text-decoration: none;
   font-weight: bold;
   font-size: 14px;
@@ -1584,49 +1584,49 @@ ul.ui-autocomplete {
   margin: 0;
   color: black;
 }
-/* line 88, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p {
+/* line 88, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p, #collection-page #collection-list ul.collection li .info p {
   font-size: 12px;
   font-style: italic;
   color: #999999;
   padding: 0;
   margin: 0;
 }
-/* line 94, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .covers, #author-list-page #collection-list ul.collection li .covers {
+/* line 94, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .covers, #author-list-page #collection-list ul.collection li .covers, #collection-page #collection-list ul.collection li .covers {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 350px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list ul.collection li .covers, * html #author-list-page #collection-list ul.collection li .covers {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .covers, * html #author-list-page #collection-list ul.collection li .covers, * html #collection-page #collection-list ul.collection li .covers {
   overflow-x: hidden;
 }
-/* line 96, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .covers a, #author-list-page #collection-list ul.collection li .covers a {
+/* line 96, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .covers a, #author-list-page #collection-list ul.collection li .covers a, #collection-page #collection-list ul.collection li .covers a {
   float: left;
   margin-right: 5px;
 }
-/* line 100, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .browse-this-collection, #author-list-page #collection-list ul.collection li .browse-this-collection {
+/* line 100, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .browse-this-collection, #author-list-page #collection-list ul.collection li .browse-this-collection, #collection-page #collection-list ul.collection li .browse-this-collection {
   display: inline;
   float: left;
   margin-right: 0;
   width: 270px;
   padding-right: 80px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-list-page #collection-list ul.collection li .browse-this-collection, * html #author-list-page #collection-list ul.collection li .browse-this-collection {
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #collection-list-page #collection-list ul.collection li .browse-this-collection, * html #author-list-page #collection-list ul.collection li .browse-this-collection, * html #collection-page #collection-list ul.collection li .browse-this-collection {
   overflow-x: hidden;
 }
-/* line 103, ../../../app/stylesheets/partials/_collection_list.sass */
-#collection-list-page #collection-list ul.collection li .browse-this-collection a, #author-list-page #collection-list ul.collection li .browse-this-collection a {
+/* line 103, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
+#collection-list-page #collection-list ul.collection li .browse-this-collection a, #author-list-page #collection-list ul.collection li .browse-this-collection a, #collection-page #collection-list ul.collection li .browse-this-collection a {
   float: right;
   margin-top: 40px;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_author_page.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_author_page.sass */
 #author-page {
   display: inline;
   float: left;
@@ -1635,12 +1635,12 @@ ul.ui-autocomplete {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #author-page {
   overflow-x: hidden;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page {
   display: inline;
   float: left;
@@ -1649,22 +1649,22 @@ ul.ui-autocomplete {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .cover-column {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .cover-column {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .cover-column h4 {
   font-size: 16px;
   font-weight: bold;
@@ -1673,44 +1673,44 @@ ul.ui-autocomplete {
   float: left;
   width: 100%;
 }
-/* line 16, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 16, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info {
   display: inline;
   float: left;
   margin-right: 0;
   width: 470px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 18, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 18, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info a {
   text-decoration: none;
   color: #333333;
   background: #ffffd7;
 }
-/* line 21, ../../../app/stylesheets/partials/_layout.sass */
+/* line 21, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #download-confirmation-page .download-info a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 20, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 20, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info h1 {
   font-size: 22px;
   margin: 0;
   padding: 0;
 }
-/* line 24, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 24, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info h2 {
   font-size: 22px;
   color: #333333;
 }
-/* line 27, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 27, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info h2 strong {
   font-size: 28px;
 }
-/* line 29, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 29, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info p {
   display: inline;
   float: left;
@@ -1719,15 +1719,15 @@ ul.ui-autocomplete {
   font-size: #333333;
   font-size: 14px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .download-info p {
   overflow-x: hidden;
 }
-/* line 34, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 34, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .download-info .read {
   margin-top: 5px;
 }
-/* line 37, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 37, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .more-column {
   display: inline;
   float: left;
@@ -1735,23 +1735,23 @@ ul.ui-autocomplete {
   width: 470px;
   margin-top: 30px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .more-column {
   overflow-x: hidden;
 }
-/* line 41, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 41, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .more-column .highlight {
   background: #feffd8;
   border: 1px solid #e2c822;
   padding: 10px;
   height: 30px;
 }
-/* line 46, ../../../app/stylesheets/partials/_download_confirmation.sass */
+/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_download_confirmation.sass */
 #download-confirmation-page .more-column .highlight iframe {
   margin-top: 3px;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared {
   display: inline;
   float: left;
@@ -1760,21 +1760,21 @@ ul.ui-autocomplete {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared a.blue {
   color: #2361a1 !important;
   text-decoration: underline;
 }
-/* line 9, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 9, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared a.blue:hover {
   text-decoration: none;
   cursor: pointer;
 }
-/* line 12, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 12, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post {
   margin-bottom: 50px;
   display: inline;
@@ -1783,22 +1783,22 @@ ul.ui-autocomplete {
   width: 510px;
   padding-right: 120px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post {
   overflow-x: hidden;
 }
-/* line 17, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 17, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title {
   display: inline;
   float: left;
   margin-right: 0;
   width: 590px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post .blog-title {
   overflow-x: hidden;
 }
-/* line 19, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 19, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2, .blog-shared .show-post .blog-title h1.show {
   font-weight: bold;
   padding: 0;
@@ -1806,7 +1806,7 @@ ul.ui-autocomplete {
   font-size: 34px;
   line-height: 40px;
 }
-/* line 25, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 25, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2 a, .blog-shared .show-post .blog-title h1.show a {
   float: left;
   display: block;
@@ -1814,11 +1814,11 @@ ul.ui-autocomplete {
   color: #333333;
   width: 100%;
 }
-/* line 31, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 31, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2 a:hover, .blog-shared .show-post .blog-title h1.show a:hover {
   color: #2361a1;
 }
-/* line 33, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 33, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span {
   font-family: georgia;
   float: left;
@@ -1828,19 +1828,19 @@ ul.ui-autocomplete {
   margin-right: 3px;
   margin-top: -15px;
 }
-/* line 42, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 42, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span.date {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-/* line 47, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 47, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span.author {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-/* line 51, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 51, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content {
   display: inline;
   float: left;
@@ -1848,121 +1848,121 @@ ul.ui-autocomplete {
   width: 590px;
   margin-top: 20px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post .content {
   overflow-x: hidden;
 }
-/* line 55, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 55, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h1 {
   display: none;
 }
-/* line 57, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 57, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h2 {
   font-size: 20px;
   font-weight: bold;
 }
-/* line 60, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 60, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p {
   font-size: 16px;
 }
-/* line 62, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
 }
-/* line 66, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 66, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 69, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 69, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p.quotation {
   font-size: 16px;
   font-style: italic;
 }
-/* line 73, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 73, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a, .blog-shared .show-post .content ol a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
   font-size: 16px;
 }
-/* line 78, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 78, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a:hover, .blog-shared .show-post .content ol a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 81, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related {
   display: inline;
   float: left;
   margin-right: 0;
   width: 550px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post .related {
   overflow-x: hidden;
 }
-/* line 83, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related h5 {
   font-size: 16px;
   color: #444444;
   margin: 0;
   padding: 0;
 }
-/* line 88, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 88, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related .cover-here {
   margin-right: 10px;
 }
-/* line 90, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 90, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related a {
   float: left;
   margin-right: 10px;
 }
 
-/* line 2, ../../../app/stylesheets/partials/_blog_single.sass */
+/* line 2, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_single.sass */
 #blog-single h1 {
   font-size: 32px;
   padding: 0;
   margin: 0;
 }
-/* line 8, ../../../app/stylesheets/partials/_blog_single.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_single.sass */
 #blog-single .show-post .blog-title span {
   margin-top: 0px;
 }
 
-/* line 14, ../../../app/stylesheets/partials/_blog_single.sass */
+/* line 14, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_single.sass */
 #blog-form ul.related-books li span.close {
   display: block;
   width: 20px;
   float: left;
 }
-/* line 18, ../../../app/stylesheets/partials/_blog_single.sass */
+/* line 18, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_single.sass */
 #blog-form ul.related-books li span.close a {
   color: red;
   font-size: 16px;
   text-decoration: none;
   padding: 2px;
 }
-/* line 23, ../../../app/stylesheets/partials/_blog_single.sass */
+/* line 23, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_single.sass */
 #blog-form ul.related-books li span.close a:hover {
   background-color: red;
   color: white;
 }
 
-/* line 2, ../../../app/stylesheets/partials/_blog.sass */
+/* line 2, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .about-the-blog {
   overflow-x: hidden;
 }
-/* line 4, ../../../app/stylesheets/partials/_blog.sass */
+/* line 4, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog p {
   display: inline;
   float: left;
@@ -1971,11 +1971,11 @@ ul.ui-autocomplete {
   padding-right: 400px;
   font-size: 12px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .about-the-blog p {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_blog.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h1 {
   font-family: "museo-slab-1", "museo-slab-2", arial, serif;
   font-weight: normal;
@@ -1988,38 +1988,38 @@ ul.ui-autocomplete {
   display: block;
   float: left;
 }
-/* line 19, ../../../app/stylesheets/partials/_blog.sass */
+/* line 19, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h4 {
   color: #444444;
 }
-/* line 21, ../../../app/stylesheets/partials/_blog.sass */
+/* line 21, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog iframe {
   margin-bottom: 20px;
 }
 
-/* line 5, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 5, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 .green {
   background-color: #69a846;
 }
 
-/* line 8, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 .red {
   background-color: #ad485a;
 }
 
-/* line 12, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 12, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 .brown {
   background-color: #c9af87;
 }
 
-/* line 15, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 15, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 .large {
   font-size: 1.2em;
   line-height: 2.5em;
   margin-bottom: 1.25em;
 }
 
-/* line 21, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 21, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 a.button.kiss {
   border-radius: 5px 5px 5px 5px;
   box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1);
@@ -2032,7 +2032,7 @@ a.button.kiss {
   width: auto !important;
 }
 
-/* line 33, ../../../app/stylesheets/partials/_buttons.scss */
+/* line 33, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_buttons.scss */
 a.button.kiss span {
   border-radius: 5px 5px 5px 5px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -2048,56 +2048,56 @@ a.button.kiss span {
   width: auto !important;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_decos.scss */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame {
   border: 1px solid #fcfcfc;
   float: left;
   padding: 0px;
 }
-/* line 5, ../../../app/stylesheets/partials/_decos.scss */
+/* line 5, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame img {
   margin-bottom: 0px !important;
   margin-top: 0px !important;
   vertical-align: sub !important;
 }
-/* line 10, ../../../app/stylesheets/partials/_decos.scss */
+/* line 10, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
-/* line 14, ../../../app/stylesheets/partials/_decos.scss */
+/* line 14, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame div div {
   float: left;
   border: 1px solid #ededed;
   padding: 0px;
 }
-/* line 18, ../../../app/stylesheets/partials/_decos.scss */
+/* line 18, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame div div div {
   float: left;
   border: 1px solid #e0e0e0;
   padding: 0px;
 }
-/* line 22, ../../../app/stylesheets/partials/_decos.scss */
+/* line 22, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame div div div div {
   border: 1px solid #fcfcfc;
   float: left;
   padding: 0px;
 }
-/* line 26, ../../../app/stylesheets/partials/_decos.scss */
+/* line 26, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_decos.scss */
 .cover-frame div div div div div {
   float: left;
   border: 1px solid #f6f6f6;
   padding: 0px;
 }
 
-/* line 41, ../../../app/stylesheets/partials/_covers.sass */
+/* line 41, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 a.no-underline {
   text-decoration: none !important;
   cursor: pointer;
 }
 
-/* line 46, ../../../app/stylesheets/partials/_covers.sass */
+/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .collection-here .text, .collection-with-title-here .text {
   float: left;
   width: 100%;
@@ -2105,17 +2105,17 @@ a.no-underline {
   padding: 0;
   display: none;
 }
-/* line 52, ../../../app/stylesheets/partials/_covers.sass */
+/* line 52, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .collection-here .text a, .collection-with-title-here .text a {
   text-decoration: none;
 }
-/* line 54, ../../../app/stylesheets/partials/_covers.sass */
+/* line 54, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .collection-here .text span.title, .collection-with-title-here .text span.title {
   font-size: 14px;
   color: #333333;
   padding: 0;
 }
-/* line 58, ../../../app/stylesheets/partials/_covers.sass */
+/* line 58, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .collection-here .text span.type, .collection-with-title-here .text span.type {
   font-size: 10px;
   color: #999999;
@@ -2123,7 +2123,7 @@ a.no-underline {
   margin-left: 5px;
 }
 
-/* line 65, ../../../app/stylesheets/partials/_covers.sass */
+/* line 65, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover {
   display: block;
   float: left;
@@ -2132,29 +2132,29 @@ a.no-underline {
   margin-top: 5px;
   margin-bottom: 25px;
 }
-/* line 67, ../../../app/stylesheets/partials/_covers.sass */
+/* line 67, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover.medium {
   height: 246px;
 }
-/* line 69, ../../../app/stylesheets/partials/_covers.sass */
+/* line 69, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover img {
   width: 148px;
   height: 229px;
   float: left;
   border: 1px solid #333333;
 }
-/* line 73, ../../../app/stylesheets/partials/_covers.sass */
+/* line 73, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover.tiny {
   height: 94px;
 }
-/* line 75, ../../../app/stylesheets/partials/_covers.sass */
+/* line 75, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover.tiny img {
   width: 48px;
   height: 74px;
   float: left;
 }
 
-/* line 79, ../../../app/stylesheets/partials/_covers.sass */
+/* line 79, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here, .cover-with-title-here {
   display: block;
   float: left;
@@ -2163,99 +2163,99 @@ a.no-underline {
   margin-top: 5px;
   margin-bottom: 25px;
 }
-/* line 81, ../../../app/stylesheets/partials/_covers.sass */
+/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny, .cover-with-title-here.tiny {
   height: 94px;
 }
-/* line 83, ../../../app/stylesheets/partials/_covers.sass */
+/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny img, .cover-here.tiny .stable, .cover-with-title-here.tiny img, .cover-with-title-here.tiny .stable {
   width: 48px;
   height: 74px;
 }
-/* line 85, ../../../app/stylesheets/partials/_covers.sass */
+/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny .spinner, .cover-with-title-here.tiny .spinner {
   margin-left: 12px;
   margin-top: 25px;
 }
-/* line 89, ../../../app/stylesheets/partials/_covers.sass */
+/* line 89, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini, .cover-with-title-here.mini {
   height: 57px;
 }
-/* line 91, ../../../app/stylesheets/partials/_covers.sass */
+/* line 91, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini img, .cover-here.mini .stable, .cover-with-title-here.mini img, .cover-with-title-here.mini .stable {
   width: 25px;
   height: 37px;
 }
-/* line 93, ../../../app/stylesheets/partials/_covers.sass */
+/* line 93, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini .stable, .cover-with-title-here.mini .stable {
   margin-right: 2px;
 }
-/* line 95, ../../../app/stylesheets/partials/_covers.sass */
+/* line 95, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini .spinner, .cover-with-title-here.mini .spinner {
   margin-left: 7px;
   margin-top: 17px;
 }
-/* line 99, ../../../app/stylesheets/partials/_covers.sass */
+/* line 99, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small, .cover-with-title-here.small {
   height: 171px;
 }
-/* line 101, ../../../app/stylesheets/partials/_covers.sass */
+/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small img, .cover-here.small .stable, .cover-with-title-here.small img, .cover-with-title-here.small .stable {
   width: 98px;
   height: 151px;
 }
-/* line 103, ../../../app/stylesheets/partials/_covers.sass */
+/* line 103, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small .spinner, .cover-with-title-here.small .spinner {
   margin-left: 40px;
   margin-top: 63px;
 }
-/* line 107, ../../../app/stylesheets/partials/_covers.sass */
+/* line 107, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium, .cover-with-title-here.medium {
   height: 246px;
 }
-/* line 109, ../../../app/stylesheets/partials/_covers.sass */
+/* line 109, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium img, .cover-here.medium .stable, .cover-with-title-here.medium img, .cover-with-title-here.medium .stable {
   width: 148px;
   height: 229px;
 }
-/* line 111, ../../../app/stylesheets/partials/_covers.sass */
+/* line 111, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium .spinner, .cover-with-title-here.medium .spinner {
   margin-left: 60px;
   margin-top: 105px;
 }
-/* line 115, ../../../app/stylesheets/partials/_covers.sass */
+/* line 115, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large, .cover-with-title-here.large {
   height: 326px;
 }
-/* line 117, ../../../app/stylesheets/partials/_covers.sass */
+/* line 117, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large img, .cover-here.large .stable, .cover-with-title-here.large img, .cover-with-title-here.large .stable {
   width: 198px;
   height: 306px;
 }
-/* line 119, ../../../app/stylesheets/partials/_covers.sass */
+/* line 119, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large .spinner, .cover-with-title-here.large .spinner {
   margin-top: 140px;
   margin-left: 90px;
 }
-/* line 123, ../../../app/stylesheets/partials/_covers.sass */
+/* line 123, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge, .cover-with-title-here.huge {
   height: 403px;
 }
-/* line 125, ../../../app/stylesheets/partials/_covers.sass */
+/* line 125, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge img, .cover-here.huge .stable, .cover-with-title-here.huge img, .cover-with-title-here.huge .stable {
   width: 248px;
   height: 383px;
 }
-/* line 127, ../../../app/stylesheets/partials/_covers.sass */
+/* line 127, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge .spinner, .cover-with-title-here.huge .spinner {
   margin-top: 180px;
   margin-left: 112px;
 }
-/* line 131, ../../../app/stylesheets/partials/_covers.sass */
+/* line 131, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .stable, .cover-with-title-here .stable {
   border: 1px solid #333333;
 }
-/* line 133, ../../../app/stylesheets/partials/_covers.sass */
+/* line 133, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text, .cover-with-title-here .text {
   float: left;
   width: 100%;
@@ -2263,33 +2263,33 @@ a.no-underline {
   padding: 0;
   display: none;
 }
-/* line 139, ../../../app/stylesheets/partials/_covers.sass */
+/* line 139, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text span.title, .cover-with-title-here .text span.title {
   font-size: 14px;
   color: #333333;
   padding: 0;
 }
-/* line 143, ../../../app/stylesheets/partials/_covers.sass */
+/* line 143, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text span.type, .cover-with-title-here .text span.type {
   font-size: 10px;
   color: #999999;
   padding: 0;
   margin-left: 5px;
 }
-/* line 150, ../../../app/stylesheets/partials/_covers.sass */
+/* line 150, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .spinner, .cover-with-title-here .spinner {
   width: 24px;
   height: 24px;
   display: block;
   background: url("/images/ajax-loader.gif");
 }
-/* line 155, ../../../app/stylesheets/partials/_covers.sass */
+/* line 155, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here img, .cover-with-title-here img {
   float: left;
   display: none;
 }
 
-/* line 159, ../../../app/stylesheets/partials/_covers.sass */
+/* line 159, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here {
   padding: 10px;
   padding-bottom: 3px;
@@ -2297,16 +2297,16 @@ a.no-underline {
   margin-left: -10px;
   width: 100%;
 }
-/* line 166, ../../../app/stylesheets/partials/_covers.sass */
+/* line 166, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover {
   cursor: pointer;
 }
-/* line 168, ../../../app/stylesheets/partials/_covers.sass */
+/* line 168, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover span.title {
   background: #ffff66;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_article_page.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_article_page.sass */
 #article-page {
   display: inline;
   float: left;
@@ -2315,11 +2315,11 @@ a.no-underline {
   margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #article-page {
   overflow-x: hidden;
 }
-/* line 3, ../../../app/stylesheets/partials/_article_page.sass */
+/* line 3, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_article_page.sass */
 #article-page .content {
   display: inline;
   float: left;
@@ -2327,56 +2327,56 @@ a.no-underline {
   width: 590px;
   font-size: 16px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #article-page .content {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_article_page.sass */
+/* line 6, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_article_page.sass */
 #article-page .content ul {
   list-style-type: circle;
 }
-/* line 8, ../../../app/stylesheets/partials/_article_page.sass */
+/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_article_page.sass */
 #article-page .content ul li {
   margin-left: 10px;
   margin-top: 10px;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination {
   display: inline;
   float: left;
   margin-right: 0;
   width: 710px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html nav.pagination {
   overflow-x: hidden;
 }
-/* line 3, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 3, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span {
   display: block;
   float: left;
   height: 60px;
 }
-/* line 7, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 7, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span.prev {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html nav.pagination span.prev {
   overflow-x: hidden;
 }
-/* line 9, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 9, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span.prev a {
   width: 160px;
   height: 53px;
   display: block;
   background: url(/images/pagination-previous.png);
 }
-/* line 15, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 15, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span.pagination-text {
   font-size: 23px;
   margin-top: 5px;
@@ -2386,22 +2386,22 @@ nav.pagination span.pagination-text {
   margin-right: 10px;
   width: 190px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html nav.pagination span.pagination-text {
   overflow-x: hidden;
 }
-/* line 21, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 21, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span.next {
   display: inline;
   float: left;
   margin-right: 0;
   width: 230px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html nav.pagination span.next {
   overflow-x: hidden;
 }
-/* line 23, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 23, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_pagination.sass */
 nav.pagination span.next a {
   width: 203px;
   height: 53px;
@@ -2410,52 +2410,52 @@ nav.pagination span.next a {
   float: right;
 }
 
-/* line 9, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 9, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .clear {
   clear: both;
 }
-/* line 12, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 12, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .nowrap {
   white-space: nowrap;
 }
-/* line 16, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 16, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .clearfix {
   overflow: hidden;
   *zoom: 1;
 }
-/* line 18, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 18, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .small {
   font-size: 0.8em;
   margin-bottom: 1.875em;
   line-height: 1.875em;
 }
-/* line 22, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 22, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .large {
   font-size: 1.2em;
   line-height: 2.5em;
   margin-bottom: 1.25em;
 }
-/* line 26, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 26, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .first {
   margin-left: 0;
   padding-left: 0;
 }
-/* line 29, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 29, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .last {
   margin-right: 0;
   padding-right: 0;
 }
-/* line 32, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 32, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .top {
   margin-top: 0;
   padding-top: 0;
 }
-/* line 35, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
+/* line 35, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .bottom {
   margin-bottom: 0;
   padding-bottom: 0;
 }
-/* line 25, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
+/* line 25, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 body.bp .showgrid {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(5%, rgba(0, 0, 0, 0.5)), color-stop(5%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 0% 50%, 960 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
   background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
@@ -2483,65 +2483,65 @@ body.bp #content {
   overflow: visible !important;
 }
 
-/* line 18, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 18, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp label {
   font-weight: bold;
 }
-/* line 19, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 19, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp fieldset {
   padding: 1.4em;
   margin: 0 0 1.5em 0;
 }
-/* line 20, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 20, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp legend {
   font-weight: bold;
   font-size: 1.2em;
 }
-/* line 26, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 26, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password] {
   margin: 0.5em 0;
   background-color: white;
   padding: 5px;
 }
-/* line 27, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 27, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp input.title {
   font-size: 1.5em;
 }
-/* line 29, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 29, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp textarea {
   margin: 0.5em 0;
   padding: 5px;
 }
-/* line 30, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 30, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp select {
   margin: 0.5em 0;
 }
-/* line 55, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 55, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp fieldset {
   border: 1px solid #cccccc;
 }
-/* line 58, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 58, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password],
 form.bp textarea {
   background-color: #fff;
   border: 1px solid #bbbbbb;
 }
-/* line 61, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 61, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp input.text:focus, form.bp input.title:focus, form.bp input[type=email]:focus, form.bp input[type=text]:focus, form.bp input[type=password]:focus,
 form.bp textarea:focus {
   border: 1px solid #666666;
 }
-/* line 65, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 65, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp select {
   background-color: #fff;
   border-width: 1px;
   border-style: solid;
 }
-/* line 44, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 44, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp input.text, form.bp input.title, form.bp input[type=email], form.bp input[type=text], form.bp input[type=password] {
   width: 300px;
 }
-/* line 46, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
+/* line 46, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_form.scss */
 form.bp textarea {
   width: 390px;
   height: 250px;
@@ -2561,7 +2561,7 @@ body.two-col #header, body.two-col #footer {
   margin-right: 10px;
   width: 950px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
@@ -2572,7 +2572,7 @@ body.two-col #sidebar {
   margin-right: 10px;
   width: 310px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
@@ -2583,7 +2583,7 @@ body.two-col #content {
   margin-right: 0;
   width: 630px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #content {
   overflow-x: hidden;
 }
