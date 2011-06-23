@@ -58,7 +58,7 @@ Classicly::Application.routes.draw do
 
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post  
-  match 'search' => 'search#show'
+  match 'search' => 'search#show', :method => :post
   match 'search/autocomplete' => 'search#autocomplete'
   
   # current version of the web API
