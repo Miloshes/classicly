@@ -8,6 +8,10 @@
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
 #collection-page
+  - if @collection.has_audiobook_counterpart?
+    .audiobook-switcher  
+      %span Books |&nbsp;
+      = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)    
   .collection-info
     %h1
       =@collection.name
