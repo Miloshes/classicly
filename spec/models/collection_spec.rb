@@ -84,4 +84,85 @@ describe Collection do
       end
     end
   end
+  describe '#has_audiobook_counterpart?' do
+    before :each do
+      @collection = Collection.make!(:book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
+    end
+    context 'when there is an audiobook counterpart' do
+      it 'should return true' do
+        Collection.make!(:book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+        @collection.has_audiobook_counterpart?.should be_true
+      end
+    end
+    context 'when there isnt an audiobook counterpart' do
+      it 'should return false' do
+        @collection.has_audiobook_counterpart?.should be_false
+      end
+    end
+    context 'when calling the method in an audiobook collection' do
+      it 'should return false' do
+        @audiobook_collection = Collection.make!(:book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+        @audiobook_collection.has_audiobook_counterpart?.should be_false
+      end
+    end
+  end
+  
+  describe '#has_book_counterpart?' do
+    before :each do
+      @collection = Collection.make!(:book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+    end
+    context 'when there is a book counterpart' do
+      it 'should return true' do
+        Collection.make!(:book_type => 'book', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection')
+        @collection.has_book_counterpart?.should be_true
+      end
+    end
+    context 'when there isnt a book counterpart' do
+      it 'should return false' do
+        @collection.has_book_counterpart?.should be_false
+      end
+    end
+    context 'when calling the method in an book collection' do
+      it 'should return false' do
+        @book_collection = Collection.make!(:book_type => 'book', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection')
+        @book_collection.has_book_counterpart?.should be_false
+      end
+    end
+  end
+  
+  describe '#audiobook_collection_slug' do
+    before :each do
+      @collection = Collection.make!(:book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
+    end
+    context 'when this collection does not have an audiobook counterpart' do
+      it 'should return nil' do
+        @collection.audiobook_collection_slug.should be_nil
+      end
+    end
+    context 'when there is a counterpart audiobook collection' do
+      it 'should return the audiobook collection slug' do
+        Collection.make!(:book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+        @collection.audiobook_collection_slug.should == 'my-collection-audiobooks'
+        Collection.where(:book_type => "audiobook", :name => 'My Collection').first.should_not be_nil
+      end
+    end
+  end
+  
+  describe '#audiobook_collection_book_slug' do
+    before :each do
+      @collection = Collection.make!(:book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+    end
+    context 'when this collection does not have an book counterpart' do
+      it 'should return nil' do
+        @collection.audiobook_collection_book_slug.should be_nil
+      end
+    end
+    context 'when there is a counterpart book collection' do
+      it 'should return the book collection slug' do\
+        Collection.make!(:book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
+        @collection.audiobook_collection_book_slug.should == 'my-collection'
+        Collection.where(:book_type => "book", :name => 'My Collection').first.should_not be_nil
+      end
+    end
+  end
 end

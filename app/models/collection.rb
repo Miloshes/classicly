@@ -113,6 +113,16 @@ class Collection < ActiveRecord::Base
     end
   end
 
+  def audiobook_collection_slug
+    return nil if !has_audiobook_counterpart?
+    self.cached_slug + "-audiobooks"
+  end
+  
+  def audiobook_collection_book_slug
+    return nil if !has_book_counterpart?
+    Collection.where(:name => self.name, :book_type => 'book').select('cached_slug').first.cached_slug
+  end
+
   def author
     Author.where(:cached_slug => self.cached_slug).first
   end
@@ -132,7 +142,17 @@ class Collection < ActiveRecord::Base
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
+  
+  def has_audiobook_counterpart?
+    return false if self.book_type == 'audiobook'
+    Collection.exists?(:name => self.name , :book_type => 'audiobook')
+  end
 
+  def has_book_counterpart?
+    return false if self.book_type == 'book'
+    Collection.exists?(:name => self.name , :book_type => 'book')
+  end
+  
   def ajax_paginated_audiobooks(params)
     if params[:sort_by].nil?
       self.audiobooks.page(params[:page]).per(10)
@@ -144,6 +164,10 @@ class Collection < ActiveRecord::Base
 
   def is_audio_collection?
     self.book_type == 'audiobook'  
+  end
+  
+  def is_book_collection?
+    self.book_type == 'book'
   end
   
   def is_author_collection?

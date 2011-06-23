@@ -80,6 +80,19 @@ Collection.blueprint(:audiobook_author_collection_with_ten_audiobooks) do
   audiobooks(10)
 end
 
+Collection.blueprint(:audiohummies) do
+  collection_type{'collection'}
+  book_type {'audiobook'}
+  name{'Hummies'}
+  audiobooks(2)
+end
+
+Collection.blueprint(:hummies) do
+  collection_type{'collection'}
+  book_type {'book'}
+  name{'Hummies'}
+  books(2)
+end
 DownloadFormat.blueprint do
   legacy{true}
   download_status{"downloaded"}
