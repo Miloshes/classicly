@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616205953) do
+ActiveRecord::Schema.define(:version => 20110623211500) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(:version => 20110616205953) do
     t.integer "avg_rating"
     t.integer "downloaded_count",               :default => 0
     t.boolean "is_rendered_for_online_reading", :default => false, :null => false
+    t.boolean "has_audiobook",                  :default => false
   end
 
   add_index "books", ["author_id"], :name => "index_books_on_author_id"
