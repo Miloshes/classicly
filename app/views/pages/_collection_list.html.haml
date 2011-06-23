@@ -1,4 +1,4 @@
-%ul{:class => "#{@viewing_audibly ? 'collection audiobooks' : 'collection'}"}
+%ul{:class => 'collection'}
   = render :partial => 'collection', :collection => collections
 
 = javascript_include_tag 'covers-collection-page'
