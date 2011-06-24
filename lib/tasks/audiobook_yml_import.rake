@@ -1,3 +1,4 @@
+# NOTE: These scripts are one-offs, they were used to import seed data into the DB, but it's good to keep them around.
 namespace :audiobook_yml_import do
   
   task :import_audiobook_chapters => :environment do
@@ -38,5 +39,16 @@ namespace :audiobook_yml_import do
     end
   end
   
+  task :import_librivox_zip_links => :environment do
+    link_data = YAML.load_file("db/yaml_exports/librivox_zip_links.yml")
+    
+    link_data.each do |record|
+      record.symbolize_keys!
+      audiobook = Audiobook.find(record[:audiobook_id])
+      audiobook.update_attributes(:librivox_zip_link => record[:zip_link])
+      
+      puts " - done with ##{audiobook.id}" if audiobook.id % 100 == 0
+    end
+  end
   
 end
