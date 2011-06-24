@@ -8,9 +8,7 @@
       %span.date= post.created_at.to_s :post_title_format
   .content
     %p
-      = raw show_only_until_break_tag(post.content)
-      .clear
-      = link_to content_tag(:span, '[click to continue...]'), seo_path(post), :class => 'blue'
+      = raw show_only_until_break_tag(post)
   .comments
     = link_to post.title, "#{seo_path(post)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
   - unless post.related_books.empty?
