@@ -11,6 +11,8 @@
       = raw show_only_until_break_tag(post.content)
       .clear
       = link_to content_tag(:span, '[click to continue...]'), seo_path(post), :class => 'blue'
+  .comments
+    = link_to post.title, "#{seo_path(post)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
   - unless post.related_books.empty?
     .related
       %h5 Related Books
@@ -19,17 +21,4 @@
           .cover-here.small
             .stable
               .spinner
-  .comments
-    //%a{:href => "#{seo_path(post)}#disqus_thread", :data => {:disqus-identifier => "classicly-#{@post.id}"}}First article</a>
-
-<script type="text/javascript">
-var disqus_shortname = 'classicly';
-
-(function () {
-var s = document.createElement('script'); s.async = true;
-s.type = 'text/javascript';
-s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-}());
-</script>
 

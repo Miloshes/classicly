@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110616205953) do
+ActiveRecord::Schema.define(:version => 20110624070158) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(:version => 20110616205953) do
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
     t.integer "author_id"
-    t.boolean "blessed",          :default => false, :null => false
+    t.boolean "blessed",           :default => false, :null => false
     t.integer "custom_cover_id"
     t.string  "pretty_title"
     t.string  "cached_slug"
     t.text    "description"
-    t.integer "avg_rating",       :default => 0,     :null => false
-    t.integer "downloaded_count", :default => 0
+    t.integer "avg_rating",        :default => 0,     :null => false
+    t.integer "downloaded_count",  :default => 0
+    t.text    "librivox_zip_link"
   end
 
   create_table "author_quotings", :force => true do |t|
@@ -138,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20110616205953) do
     t.integer "avg_rating"
     t.integer "downloaded_count",               :default => 0
     t.boolean "is_rendered_for_online_reading", :default => false, :null => false
+    t.boolean "has_audiobook",                  :default => false
   end
 
   add_index "books", ["author_id"], :name => "index_books_on_author_id"
