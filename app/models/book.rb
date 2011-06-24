@@ -82,6 +82,14 @@ class Book < ActiveRecord::Base
     self.download_formats.all(:conditions => ['download_status = ?', 'downloaded'], :select => ['format']).map{|format| format.format}
   end
 
+  def audiobook_download_slug
+    if self.has_audiobook
+      audiobook = Audiobook.where(:pretty_title => self.pretty_title).first
+      return nil if audiobook.nil?
+      audiobook.download_mp3_slug
+    end
+  end
+
   def belongs_to_author_collection?
     return Collection.exists?(:cached_slug => self.author.cached_slug)
   end
