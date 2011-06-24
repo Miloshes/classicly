@@ -37,24 +37,15 @@
 					#nav
 						%ul
 							%li
-								.left
 								%a{:href => '/collections'} Collections
-								.right
 							%li
-								.left
 								%a{:href => '/authors'} Authors
-								.right
 							%li
-								.left
-								%a{:href => '/audiobooks'} Audiobooks
-								.right
-							%li
-								.left
 								%a.blog{:href => '/blog'} Blog
-								.right
+
 
 					#search
-						= form_tag search_url, :method => :get do
+						= form_tag search_url do
 							= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
 							%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
 				.bottom

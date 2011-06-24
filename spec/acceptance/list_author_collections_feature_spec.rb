@@ -39,7 +39,7 @@ feature 'List Author Collections feature: ', %q{
     # Then I should see the title <Collections>
     within('#collection-list') do
       within('h2') do
-        page.should have_content('Authors')
+        page.should have_content('Author\'s Books')
       end
       within('ul.collection') do
         page.should have_css('li .covers .cover img')
@@ -49,6 +49,26 @@ feature 'List Author Collections feature: ', %q{
     end
   end
   
+  scenario 'Viewing a list of audiobook author collections' do
+    # Given there are audiobook author collections
+    1.upto(2) do
+      Collection.make!(:audiobook_author_collection_with_ten_audiobooks)
+    end
+      
+    # Given I am in the collections page
+    # And I click Audiobooks
+    within('.audiobook-switcher') do
+      click_on 'Audiobooks'
+    end
+    #Then I should see the title Audiobook Collections
+    page.should have_content('Author\'s Audiobooks')
+    within('ul.collection') do
+      # I should see covers for this collection
+      page.should have_css('li .covers .cover img')
+      # And I should see a button to browse each collection
+      page.should have_css("li.collection .browse-this-collection a img")
+    end
+  end
   scenario 'browsing featured collection' do
     within('div#featured-collection') do
       slug = collection_slug find('.books-and-link a.browse-collection')[:href]

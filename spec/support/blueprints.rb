@@ -65,6 +65,19 @@ end
 
 Collection.blueprint(:audiobooks) do
   book_type {'audiobook'}
+  audiobooks(10)
+end
+
+Collection.blueprint(:audiobook_collection_with_ten_audiobooks) do
+  collection_type{'collection'}
+  book_type {'audiobook'}
+  audiobooks(10)
+end
+
+Collection.blueprint(:audiobook_author_collection_with_ten_audiobooks) do
+  collection_type{'author'}
+  book_type {'audiobook'}
+  audiobooks(10)
 end
 
 DownloadFormat.blueprint do

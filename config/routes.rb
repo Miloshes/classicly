@@ -21,6 +21,7 @@ Classicly::Application.routes.draw do
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
+  match 'audiobooks/ajax_paginate' => 'audiobooks#ajax_paginate', :as => 'ajax_paginate_audiobooks'
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors' => 'pages#authors'
@@ -58,7 +59,7 @@ Classicly::Application.routes.draw do
 
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post  
-  match 'search' => 'search#show'
+  match 'search' => 'search#show', :method => :post
   match 'search/autocomplete' => 'search#autocomplete'
   
   # current version of the web API
@@ -66,10 +67,6 @@ Classicly::Application.routes.draw do
   match '/web_api/query' => "web_api#query", :via => :post
 
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
-  
-  resources :audiobooks, :only => :index do
-    get :ajax_paginate, :on => :collection
-  end
   
   resources :books, :only => :index do
     get :ajax_paginate, :on => :collection

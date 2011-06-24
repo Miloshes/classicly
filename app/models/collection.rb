@@ -122,8 +122,11 @@ class Collection < ActiveRecord::Base
   end
 
   def featured_book
-    book = self.books.blessed.first
-    book.nil? ? self.books.first : book
+    self.books.select{|book| book.blessed}.first || self.books.first
+  end
+  
+  def featured_audiobook
+    self.audiobooks.select{|audiobook| audiobook.blessed}.first || self.audiobooks.first
   end
 
   def has_author_portrait?
@@ -215,6 +218,10 @@ class Collection < ActiveRecord::Base
   end
   
   def thumbnail_books(n_books)
-    self.books[0..(n_books - 1)] - [self.featured_book]
+    if self.book_type == 'book'
+      self.books[0..(n_books - 1)] - [self.featured_book]
+    else
+      self.audiobooks[0..(n_books - 1)] - [self.featured_audiobook]
+    end
   end
 end

@@ -4,14 +4,14 @@ class PagesController < ApplicationController
   end
 
   def audiobook_authors
-    @collections = Collection.of_type('audiobook').collection_type('author').random(10)
-    @featured = @collections.first
+    @featured = Collection.of_type('audiobook').collection_type('author').random(1).first
+    @collections = Collection.where(:id.not_eq => @featured.id).of_type('audiobook').collection_type('author').random(12)
     @viewing_audibly = true
     render 'authors', :layout => 'audibly'
   end
   
   def audio_collections
-    @collections = Collection.of_type('audiobook').collection_type('collection').random(10)
+    @collections = Collection.of_type('audiobook').collection_type('collection').random(12)
     @featured = @collections.first
     @viewing_audibly = true
     render 'collections', :layout => 'audibly'
@@ -23,7 +23,7 @@ class PagesController < ApplicationController
   end
 
   def collections
-    @featured = Collection.of_type('book').collection_type('collection').random(1).select('id, name, parsed_description, cached_slug').first
+    @featured = Collection.of_type('book').collection_type('collection').random(1).select('id, name, parsed_description, cached_slug, book_type').first
     @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('collection').random(12)
   end
   
