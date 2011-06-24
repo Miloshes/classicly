@@ -15,8 +15,8 @@
         var disqus_shortname = 'classicly'; // required: replace example with your forum shortname
 
         // The following are highly recommended additional parameters. Remove the slashes in front to use.
-        var disqus_identifier = "blog_post_#{@blog_post.id}";
-        var disqus_url = "http://classicly-staging.heroku.com/#{@blog_post.cached_slug}";
+        //var disqus_identifier = "/#{@blog_post.cached_slug}";
+        //var disqus_url = "http://www.classicly.com//#{@blog_post.cached_slug}";
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
@@ -27,7 +27,7 @@
       %noscript
         Please enable JavaScript to view the
         = link_to "comments powered by Disqus", "http://disqus.com/?ref_noscript"
-      = link_to raw("blog comments powered by " + content_tag(:span, "Disqus", :class=>'logo-disqus')), "http://disqus.com", :class => "dsq-brlink"
+      = link_to raw("blog comments powered by" + content_tag(:span, "Disqus", :class=>'logo-disqus')), "http://disqus.com", :class => "dsq-brlink"
 
     - unless blog_post.related_books.empty?
       .related
