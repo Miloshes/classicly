@@ -8,7 +8,7 @@
       %span on
       %span.date=blog_post.created_at.to_s :post_title_format
     .content
-      = simple_format blog_post.content
+      = simple_format markdown(blog_post.content)
       #disqus_thread
       :javascript
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

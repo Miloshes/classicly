@@ -84,7 +84,7 @@ module ApplicationHelper
   end
 
   def show_only_until_break_tag(post)
-    text = post.content
+    text = markdown(post.content)
     index = text.index('<br/>')
     text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
@@ -111,6 +111,10 @@ module ApplicationHelper
       end
     end
     res
+  end
+  
+  def markdown(text)
+    Maruku.new(text).to_html
   end
 
   def search_form(path, search_term)
