@@ -85,7 +85,7 @@ module ApplicationHelper
 
   def show_only_until_break_tag(post)
     text = markdown(post.content)
-    index = text.index('<br/>')
+    index = text.index('!@cut')
     text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
     paragraph = doc.at_css('p:last')
