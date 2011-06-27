@@ -45,6 +45,26 @@ feature 'Crud posts feature: ', %q{
     end
   end
   
+ 
+  scenario 'Creating a blog post with break tags does not have to show this tags on the post page' do
+        # Given I have an author called Milan Kundera
+        @author = Author.make!(:name => 'Milan Kundera')
+        # And I create a blog post of his , with a <featured> tag
+        title = "The unbearable lightness of being"
+        text = "Il n'existe aucun moyen de vérifier quelle décision est la bonne !@cut car il n'existe aucune comparaison. 
+                Tout est vécu tout de suite pour la première fois et sans préparation. Comme si un acteur entrait en 
+                scène sans avoir jamais répété. Mais que peut valoir la vie, si la première répétition de la vie est la vie même? 
+                C'est ce qui fait que la vie ressemble toujours à une esquisse. Mais même \"esquisse\" n'est pas le mot juste,
+                car <featured author_id='#{@author.id}'>une esquisse est toujours l'ébauche de quelque chose, la préparation d'un tableau, tandis que 
+                l'esquisse qu'est notre vie est une esquisse de rien, une ébauche sans tableau.</featured>"
+        create_blog_post_with_text text, title
+        # When I visit the post's page
+        @post = BlogPost.last
+        visit seo_path(@post)
+        # Then I should not see this !@cut tag
+        page.should_not have_content('!@cut')
+      end
+  
   # scenario 'Creating a blog post with <featured> tags does not have to show this tags on the post page' do
   #     # Given I have an author called Milan Kundera
   #     @author = Author.make!(:name => 'Milan Kundera')
