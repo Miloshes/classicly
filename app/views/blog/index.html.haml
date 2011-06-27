@@ -2,7 +2,10 @@
   .about-the-blog
     %h1 Welcome to the Book Blog
     %p This is <strong>Book Blog</strong>, a weblog by Spreadsong about literature, classic authors, ereading, and our mobile apps, Free Books and Free Audiobooks, for iPhone and iPad.
-    <a href="http://twitter.com/classiclyapp" class="twitter-follow-button" data-show-count="true">Follow @classiclyapp</a>
+    %p
+      = link_to 'Follow @classiclyapp', 'http://twitter.com/classiclyapp', :class => 'twitter-follow-button', :data_show_count=> true
+    %p
+      = link_to 'RSS Feed', blog_url(:format => :rss), :class => 'highlight-link rss-feed'
 
   = render :partial => 'blog_post', :collection => @posts, :as => :post
 = javascript_include_tag 'covers-blog-page'

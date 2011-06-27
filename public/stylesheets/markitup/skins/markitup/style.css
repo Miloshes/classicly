@@ -8,7 +8,7 @@
 }
 .markItUp a:link,
 .markItUp a:visited {
-	color:#FFF;
+	color:#000;
 	text-decoration:none;
 }
 .markItUp  {
@@ -55,9 +55,6 @@
 }
 /***************************************************************************************/
 /* first row of buttons */
-.markItUpHeader a{
-  background-color: #FFF;
-}
 .markItUpHeader ul li	{
 	list-style:none;
 	float:left;

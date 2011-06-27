@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(:version => 20110624070158) do
   create_table "audiobooks", :force => true do |t|
     t.string  "title"
     t.integer "author_id"
-    t.boolean "blessed",          :default => false, :null => false
+    t.boolean "blessed",           :default => false, :null => false
     t.integer "custom_cover_id"
     t.string  "pretty_title"
     t.string  "cached_slug"
     t.text    "description"
-    t.integer "avg_rating",       :default => 0,     :null => false
-    t.integer "downloaded_count", :default => 0
+    t.integer "avg_rating",        :default => 0,     :null => false
+    t.integer "downloaded_count",  :default => 0
+    t.text    "librivox_zip_link"
   end
 
   create_table "author_quotings", :force => true do |t|

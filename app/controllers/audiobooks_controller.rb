@@ -8,9 +8,9 @@ class AudiobooksController < ApplicationController
   end
 
   def download
-    @book = Audiobook.find params[:id]
+    @audiobook = Audiobook.find params[:id]
     @popular_books = Audiobook.blessed.random 3
-    @related_book = @book.find_fake_related(1).first
+    @related_book = @audiobook.find_fake_related(1).first
     render :layout => 'download'
   end
   

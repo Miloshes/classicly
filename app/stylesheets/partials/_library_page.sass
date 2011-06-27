@@ -1,0 +1,51 @@
+#library-page
+  +content-container
+  .user-column
+    +column(4)
+    .photo
+      +column(6, true)
+      :width 112px
+      :height 112px
+      :background url('/images/profile-frame.png')
+      :display block
+      img
+        :width 100px
+        :height 100px
+        :margin 6px
+    span
+      :width 100%
+      :display block
+      :float left
+    .name
+      +column(6, true)
+      :margin
+        :top 5px
+    .stats
+      +column(6, true)
+      :margin
+        :top 15px
+    .invite
+      +column(6, true)
+      :margin
+        :top 15px
+
+  .book-column
+    +column(14, true)
+    .book
+      .cover
+        +column(3)
+        img
+          :width 100px
+          :height 155px
+      .info
+        +column(11, true)
+        h4
+          :font-size 22px
+          :color #333333
+          :font-weight normal
+          :padding 0
+          :margin 0
+        h5
+          :font-size 16px
+          :font-weight normal
+          :color #333333

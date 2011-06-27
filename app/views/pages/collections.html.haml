@@ -28,3 +28,4 @@
   #collection-list
     %h2= @featured.book_type == 'book'?  'Collections' : 'Audiobook Collections'
     = render 'collection_list', :collections => @collections
+    = paginate @collections

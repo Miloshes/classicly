@@ -27,6 +27,7 @@ Classicly::Application.routes.draw do
   match 'authors' => 'pages#authors'
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
+  match 'library' => 'pages#library'
   match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
   match 'json_audiobooks' => 'audiobooks#json_audiobooks'
@@ -81,13 +82,9 @@ Classicly::Application.routes.draw do
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
+  # == final download pages, the ones that starts downloading the file immediately
   match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
-  
-  # for invoking the download page and start the download
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
-
-  # for invoking the download page from outside classicly.com
-  match "/:author_id/:id/download/:download_format" => "books#download", :as => 'book_download_page', :via => :get
   
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
