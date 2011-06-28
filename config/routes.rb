@@ -79,7 +79,7 @@ Classicly::Application.routes.draw do
   end
   
   match "/:id" => "seo#show", :as => 'seo', :via => :get
-
+  match ':id/page/(:page)' => 'seo#show_collection', :as => :show_collection, :via => :get
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately

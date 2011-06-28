@@ -85,6 +85,7 @@ group :development, :test do
   
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
   gem 'database_cleaner'
+
   
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   gem 'jasmine'

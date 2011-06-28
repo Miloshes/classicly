@@ -80,14 +80,14 @@ feature 'Collections list page feature: ', %q{
   end
   
   scenario 'individual collection page' do
-    collection = Collection.make!( :collection_type => 'collection', :name => 'Folk' )
-    SeoSlug.make!( :seoable => collection, :slug => 'folk' )
+    collection = Collection.make!(:collection_type => 'collection', :name => 'Folk')
+    SeoSlug.make!(:seoable => collection, :slug => 'folk')
     # Given I am on the collections page:
     visit collections
     # When I click the link to the 'Folk' collection
     find(:xpath, "//a[text()='Folk']").click
     # Then I should be in the path for this collection
-    current_path.should == "/folk"
+    current_path.should == "/folk/page/1"
     # And I should see that this is the folk's collection page
     page.should have_content("Folk Books")
   end

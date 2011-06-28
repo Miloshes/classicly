@@ -47,7 +47,7 @@
       allIds = allIds.get();
       //determine if we are going to fetch audiobooks or books
       audiobooks = $('ul.book-list').hasClass('audiobooks');
-      url = audiobooks ? 'json_audiobooks' : 'json_books';
+      url = audiobooks ? '/json_audiobooks' : '/json_books';
       //create a single string:
       data = $(allIds).get().join(',');
       return $.getJSON(url, {
