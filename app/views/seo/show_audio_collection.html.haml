@@ -15,19 +15,9 @@
     %h1="#{@collection.name} Audiobooks"
     %p=simple_format(@collection.parsed_description)
   -# Warning. Don't change name attribute below , please ask Nacho:
-  .featured-books.audiobooks{:name => "collection_#{@collection.id}"}
-    .cover-here.medium
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
-    .cover-here.tiny
-      .stable
-        .spinner
+  .featured-books.audiobooks
+    .cover.medium
+      = cover_image_link(@collection.featured_audiobook, 2)
   .book-list
     %h3 All #{@collection.name} Audiobooks
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
