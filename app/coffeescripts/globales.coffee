@@ -33,7 +33,7 @@ $ ->
     allIds = allIds.get()
     #determine if we are going to fetch audiobooks or books
     audiobooks = $( 'ul.book-list' ).hasClass 'audiobooks'
-    url = if audiobooks then 'json_audiobooks' else 'json_books'
+    url = if audiobooks then '/json_audiobooks' else '/json_books'
     #create a single string:
     data = $(allIds).get().join ','
     $.getJSON url, {id: data}, (data) ->

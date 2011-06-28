@@ -13,7 +13,7 @@ feature 'Collections feature', %q{
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
     # When I visit the collection
-    visit seo_path(@collection)
+    visit show_collection_path(@collection, '1')
     #And I click audiobooks
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
@@ -27,9 +27,24 @@ feature 'Collections feature', %q{
     @collection = Collection.make!(:hummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     # When I visit the collection
-    visit seo_path(@collection)
+    visit show_collection_path(@collection, '1')
     # The I should not see the audiobooks option link
     page.should_not have_css('.audiobook-switcher')
   end
   
+  scenario 'visiting an audio collection that has an book collection counterpart' do
+    #Given we have an audiocollection and an collection and its slugs
+    @collection = Collection.make!(:hummies)
+    @audiocollection = Collection.make!(:audiohummies)
+    SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
+    SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
+    # When I visit the audiocollection
+    visit show_collection_path(@audiocollection, '1')
+    #And I click audiobooks
+    within('.audiobook-switcher') do
+      click_on 'Books'
+    end
+    #Then I should see that I am on the Hummies audiobooks page
+    page.should have_content('Hummies Books')
+  end
 end

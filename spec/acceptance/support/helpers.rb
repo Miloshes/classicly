@@ -1,7 +1,9 @@
 module HelperMethods
   # Put helper methods you need to be available in all acceptance specs here.
   def collection_slug(url_str)
-    url_str.split('/').last
+    fragments = url_str.split('/')
+    new_fragments = [fragments[-3], fragments[-2], fragments[-1]]
+    new_fragments.join('/')
   end
   
   def create_blog_post_with_text(text, title='The Blog Post')
