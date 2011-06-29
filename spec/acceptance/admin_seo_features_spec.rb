@@ -14,11 +14,10 @@ feature 'Admin seo features', %q{
   end
   
   scenario 'Assigning a default structure for a book\'s metadescription in the admin app' do
-    # and I am on the admin seo section
-    visit 'admin/admin_seo'
-    # When I go to assign the default SEO structure
-    click_on 'Set defaults for SEO info'
-    # And I select to assign the default structure for a book
-    
+    # # and I am on the admin seo section
+    #     visit 'admin/admin_seo'
+    #     # When I go to assign the default SEO structure
+    #     click_on 'Set defaults for SEO info'
+    #     # And I select to assign the default structure for a book
   end
 end
