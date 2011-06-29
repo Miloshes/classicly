@@ -75,6 +75,12 @@ a.no-underline
     img
       @include tiny
       :float left
+  &.small
+    :height $smallH+20px
+    img
+      @include small
+      :float left
+      :border 1px solid #333333
     
 .cover-here, .cover-with-title-here
   @include cover

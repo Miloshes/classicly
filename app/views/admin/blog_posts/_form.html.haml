@@ -1,4 +1,4 @@
-= stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/default/style.css"
+= stylesheet_link_tag  "markitup/skins/markitup/style.css", "markitup/sets/markdown/style.css"
 
 %fieldset
   %legend
@@ -45,7 +45,7 @@
                   = builder.check_box '_destroy'
                   = builder.label '_destroy', 'Remove'
         %p
-          To add a custom image to the blog, just use the Location URl inside an image tag as &lt;img='[Location URL]'/&gt;
+          To add a custom image to the blog, just use the Location URl inside a Markdown's image tag as ![  ](http://your_location_url_here "alternative title. Use this for SEO juice")
         %p
           = f.submit blog_post.new_record? ? 'Save' : 'Update'
   %p

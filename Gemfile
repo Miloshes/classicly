@@ -36,11 +36,12 @@ gem 'kaminari'
 # Facebook SDK - https://rubygems.org/gems/koala
 gem 'koala'
 
+# gem to parse Mardown markup to HTML
+gem 'maruku'
+
 # extends ActiveRecord where conditions - http://metautonomo.us/projects/metawhere/
 gem 'meta_where'
 
-# event tracking and analytics platform - http://mixpanel.com/
-gem 'mixpanel'
 
 # web server for local development
 gem 'mongrel'
@@ -84,6 +85,7 @@ group :development, :test do
   
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
   gem 'database_cleaner'
+
   
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   gem 'jasmine'

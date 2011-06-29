@@ -320,6 +320,19 @@ body .loud {
 }
 
 /* line 24, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+a.highlight {
+  text-decoration: none;
+  color: #333333;
+  background: #ffffd7;
+}
+/* line 28, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+a.highlight:hover {
+  color: #333333;
+  background: #ffff66;
+  cursor: pointer;
+}
+
+/* line 33, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header {
   float: left;
   width: 100%;
@@ -327,7 +340,7 @@ body .loud {
   float: left;
   padding: 0;
 }
-/* line 30, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 39, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap {
   width: 100%;
   display: block;
@@ -335,13 +348,13 @@ body .loud {
   text-align: center;
   background: #c9af87;
 }
-/* line 36, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 45, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top {
   width: 960px;
   margin: 0 auto;
   height: 30px;
 }
-/* line 40, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 49, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #logo {
   float: left;
   display: inline;
@@ -353,11 +366,11 @@ body .loud {
 * html #header .wrap .top #logo {
   overflow-x: hidden;
 }
-/* line 43, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 52, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #logo img {
   margin-top: 7px;
 }
-/* line 46, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 55, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav {
   display: inline;
   float: left;
@@ -370,16 +383,16 @@ body .loud {
 * html #header .wrap .top #nav {
   overflow-x: hidden;
 }
-/* line 51, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 60, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul {
   list-style: none;
 }
-/* line 53, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li {
   float: left;
   display: inline;
 }
-/* line 56, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 65, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a {
   color: #442507;
   font-size: 14px;
@@ -395,12 +408,12 @@ body .loud {
   margin-right: 6px;
   padding-top: 5px;
 }
-/* line 72, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-/* line 76, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul .right {
   background: url("/images/header-nav-right.png");
   height: 35px;
@@ -408,7 +421,7 @@ body .loud {
   display: block;
   float: left;
 }
-/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 92, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap .bottom {
   float: left;
   display: block;
@@ -419,7 +432,7 @@ body .loud {
   margin-top: -5px;
   padding: 0;
 }
-/* line 92, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search {
   display: inline;
   float: left;
@@ -432,13 +445,13 @@ body .loud {
 * html #header .wrap #search {
   overflow-x: hidden;
 }
-/* line 97, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 106, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search form {
   background: white;
   height: 22px;
   border: 1px solid #ab9573;
 }
-/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 110, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search input {
   margin-top: 2px;
   color: #d2d2d3;
@@ -453,11 +466,11 @@ body .loud {
   padding-left: 3px;
   padding-top: 3px;
 }
-/* line 116, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 125, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search input:focus {
   color: #333333;
 }
-/* line 118, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 127, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search button {
   width: 25px;
   height: 16px;
@@ -467,12 +480,12 @@ body .loud {
   float: right;
   margin-top: 1px;
 }
-/* line 127, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 136, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #header .wrap #search button:hover {
   cursor: pointer;
 }
 
-/* line 130, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 139, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -483,7 +496,7 @@ body .loud {
   padding: 0;
 }
 
-/* line 140, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 149, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer {
   background: #c9af87;
   width: 100%;
@@ -492,7 +505,7 @@ body .loud {
   padding-bottom: 20px;
   text-align: center;
 }
-/* line 148, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 157, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .centering {
   margin: 0 auto;
   width: 980px;
@@ -501,7 +514,7 @@ body .loud {
   border: 1px solid #bb9d79;
   background: #cab08b;
 }
-/* line 155, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 164, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list {
   margin: 0 auto;
   width: 800px;
@@ -510,11 +523,11 @@ body .loud {
   font-family: "helvetica";
   font-size: 17px;
 }
-/* line 162, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 171, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list img {
   float: left;
 }
-/* line 164, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 173, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list .collections {
   width: 830px;
   display: block;
@@ -523,7 +536,7 @@ body .loud {
   border-left: 1px solid #866a47;
   border-right: 1px solid #866a47;
 }
-/* line 173, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 182, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a {
   color: white;
   text-decoration: none;
@@ -537,16 +550,16 @@ body .loud {
 * html #footer .collection-names-list a {
   overflow-x: hidden;
 }
-/* line 178, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 187, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a:hover {
   text-shadow: 0 0 15px white;
 }
-/* line 181, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 190, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list span.linky {
   width: 110px;
   padding: 5px;
 }
-/* line 184, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 193, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -559,33 +572,33 @@ body .loud {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 195, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 204, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 199, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 208, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 204, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 213, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 211, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 220, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 215, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 224, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app {
   text-align: left;
   float: left;
@@ -593,7 +606,7 @@ body .loud {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 222, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 231, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app h5 {
   color: #43260f;
   font-size: 18px;
@@ -601,46 +614,46 @@ body .loud {
   margin-top: 20px;
   padding: 0;
 }
-/* line 228, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 237, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app span {
   color: #43260f;
   font-size: 12px;
   display: block;
   Width: 100%;
 }
-/* line 233, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 242, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.link {
   margin-top: 5px;
 }
-/* line 236, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 245, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.icon {
   float: left;
   margin-top: 10px;
 }
-/* line 240, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 249, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 247, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 256, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #footer .connect a img:hover {
   opacity: 0.8;
 }
 
-/* line 253, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 262, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 259, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 268, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 262, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 271, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -648,7 +661,7 @@ body .loud {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 269, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 278, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -657,20 +670,20 @@ body .loud {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 276, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 285, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 278, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 287, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 280, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 289, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 284, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 293, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -678,12 +691,12 @@ body .loud {
   text-decoration: none;
   float: left;
 }
-/* line 290, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 299, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 293, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 302, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
@@ -692,7 +705,7 @@ body .loud {
   padding-bottom: 10px;
 }
 
-/* line 301, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 310, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -701,14 +714,14 @@ body .loud {
   bottom: 0;
   text-align: center;
 }
-/* line 308, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 317, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 314, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 323, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -720,14 +733,14 @@ body .loud {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 317, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 326, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 322, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 331, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -739,7 +752,7 @@ body .loud {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 325, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 334, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -748,7 +761,7 @@ body .loud {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 333, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 342, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -760,12 +773,12 @@ body .loud {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 336, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 345, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 340, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
+/* line 349, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
@@ -1390,6 +1403,146 @@ ul.ui-autocomplete {
   margin-top: 125px;
 }
 
+/* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 710px;
+  margin-top: 30px;
+  text-align: left;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page {
+  overflow-x: hidden;
+}
+/* line 3, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 150px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .user-column {
+  overflow-x: hidden;
+}
+/* line 5, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column .photo {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+  width: 112px;
+  height: 112px;
+  background: url("/images/profile-frame.png");
+  display: block;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .user-column .photo {
+  overflow-x: hidden;
+}
+/* line 11, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column .photo img {
+  width: 100px;
+  height: 100px;
+  margin: 6px;
+}
+/* line 15, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column span {
+  width: 100%;
+  display: block;
+  float: left;
+}
+/* line 19, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column .name {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+  margin-top: 5px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .user-column .name {
+  overflow-x: hidden;
+}
+/* line 23, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column .stats {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+  margin-top: 15px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .user-column .stats {
+  overflow-x: hidden;
+}
+/* line 27, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .user-column .invite {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 230px;
+  margin-top: 15px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .user-column .invite {
+  overflow-x: hidden;
+}
+/* line 32, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 550px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .book-column {
+  overflow-x: hidden;
+}
+/* line 35, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column .book .cover {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 110px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .book-column .book .cover {
+  overflow-x: hidden;
+}
+/* line 37, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column .book .cover img {
+  width: 100px;
+  height: 155px;
+}
+/* line 40, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column .book .info {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 430px;
+}
+/* line 147, /Users/ignaciodelamadrid/.rvm/gems/ruby-1.8.7-p334@clas-staging/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #library-page .book-column .book .info {
+  overflow-x: hidden;
+}
+/* line 42, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column .book .info h4 {
+  font-size: 22px;
+  color: #333333;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+/* line 48, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_library_page.sass */
+#library-page .book-column .book .info h5 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #333333;
+}
+
 /* line 1, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_collection_list.sass */
 #collection-list-page, #author-list-page, #collection-page {
   display: inline;
@@ -1862,38 +2015,42 @@ ul.ui-autocomplete {
   font-weight: bold;
 }
 /* line 60, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+.blog-shared .show-post .content img {
+  border: 1px solid #333333;
+}
+/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p {
   font-size: 16px;
 }
-/* line 62, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 64, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
 }
-/* line 66, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 68, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 69, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 71, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p.quotation {
   font-size: 16px;
   font-style: italic;
 }
-/* line 73, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 75, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a, .blog-shared .show-post .content ol a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
   font-size: 16px;
 }
-/* line 78, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 80, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a:hover, .blog-shared .show-post .content ol a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related {
   display: inline;
   float: left;
@@ -1904,18 +2061,18 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .related {
   overflow-x: hidden;
 }
-/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related h5 {
   font-size: 16px;
   color: #444444;
   margin: 0;
   padding: 0;
 }
-/* line 88, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 90, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related .cover-here {
   margin-right: 10px;
 }
-/* line 90, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
+/* line 92, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related a {
   float: left;
   margin-right: 10px;
@@ -1951,7 +2108,21 @@ ul.ui-autocomplete {
   color: white;
 }
 
-/* line 2, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+/* line 3, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+#blog-page a.rss-feed {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 2px 5px;
+}
+/* line 7, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+#blog-page a.highlight-link {
+  background: none repeat scroll 0 0 #ffffd7;
+  color: #333333;
+  float: left;
+  margin-bottom: 6px;
+  text-decoration: none;
+}
+/* line 13, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog {
   display: inline;
   float: left;
@@ -1962,7 +2133,7 @@ ul.ui-autocomplete {
 * html #blog-page .about-the-blog {
   overflow-x: hidden;
 }
-/* line 4, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+/* line 15, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog p {
   display: inline;
   float: left;
@@ -1975,7 +2146,7 @@ ul.ui-autocomplete {
 * html #blog-page .about-the-blog p {
   overflow-x: hidden;
 }
-/* line 8, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+/* line 19, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h1 {
   font-family: "museo-slab-1", "museo-slab-2", arial, serif;
   font-weight: normal;
@@ -1988,11 +2159,11 @@ ul.ui-autocomplete {
   display: block;
   float: left;
 }
-/* line 19, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+/* line 30, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h4 {
   color: #444444;
 }
-/* line 21, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
+/* line 32, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog iframe {
   margin-bottom: 20px;
 }
@@ -2153,8 +2324,19 @@ a.no-underline {
   height: 74px;
   float: left;
 }
+/* line 78, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+.cover.small {
+  height: 171px;
+}
+/* line 80, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+.cover.small img {
+  width: 98px;
+  height: 151px;
+  float: left;
+  border: 1px solid #333333;
+}
 
-/* line 79, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here, .cover-with-title-here {
   display: block;
   float: left;
@@ -2163,99 +2345,99 @@ a.no-underline {
   margin-top: 5px;
   margin-bottom: 25px;
 }
-/* line 81, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 87, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny, .cover-with-title-here.tiny {
   height: 94px;
 }
-/* line 83, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 89, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny img, .cover-here.tiny .stable, .cover-with-title-here.tiny img, .cover-with-title-here.tiny .stable {
   width: 48px;
   height: 74px;
 }
-/* line 85, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 91, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.tiny .spinner, .cover-with-title-here.tiny .spinner {
   margin-left: 12px;
   margin-top: 25px;
 }
-/* line 89, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 95, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini, .cover-with-title-here.mini {
   height: 57px;
 }
-/* line 91, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 97, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini img, .cover-here.mini .stable, .cover-with-title-here.mini img, .cover-with-title-here.mini .stable {
   width: 25px;
   height: 37px;
 }
-/* line 93, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 99, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini .stable, .cover-with-title-here.mini .stable {
   margin-right: 2px;
 }
-/* line 95, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.mini .spinner, .cover-with-title-here.mini .spinner {
   margin-left: 7px;
   margin-top: 17px;
 }
-/* line 99, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 105, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small, .cover-with-title-here.small {
   height: 171px;
 }
-/* line 101, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 107, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small img, .cover-here.small .stable, .cover-with-title-here.small img, .cover-with-title-here.small .stable {
   width: 98px;
   height: 151px;
 }
-/* line 103, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 109, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.small .spinner, .cover-with-title-here.small .spinner {
   margin-left: 40px;
   margin-top: 63px;
 }
-/* line 107, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 113, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium, .cover-with-title-here.medium {
   height: 246px;
 }
-/* line 109, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 115, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium img, .cover-here.medium .stable, .cover-with-title-here.medium img, .cover-with-title-here.medium .stable {
   width: 148px;
   height: 229px;
 }
-/* line 111, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 117, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.medium .spinner, .cover-with-title-here.medium .spinner {
   margin-left: 60px;
   margin-top: 105px;
 }
-/* line 115, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 121, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large, .cover-with-title-here.large {
   height: 326px;
 }
-/* line 117, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 123, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large img, .cover-here.large .stable, .cover-with-title-here.large img, .cover-with-title-here.large .stable {
   width: 198px;
   height: 306px;
 }
-/* line 119, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 125, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.large .spinner, .cover-with-title-here.large .spinner {
   margin-top: 140px;
   margin-left: 90px;
 }
-/* line 123, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 129, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge, .cover-with-title-here.huge {
   height: 403px;
 }
-/* line 125, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 131, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge img, .cover-here.huge .stable, .cover-with-title-here.huge img, .cover-with-title-here.huge .stable {
   width: 248px;
   height: 383px;
 }
-/* line 127, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 133, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here.huge .spinner, .cover-with-title-here.huge .spinner {
   margin-top: 180px;
   margin-left: 112px;
 }
-/* line 131, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 137, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .stable, .cover-with-title-here .stable {
   border: 1px solid #333333;
 }
-/* line 133, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 139, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text, .cover-with-title-here .text {
   float: left;
   width: 100%;
@@ -2263,33 +2445,33 @@ a.no-underline {
   padding: 0;
   display: none;
 }
-/* line 139, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 145, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text span.title, .cover-with-title-here .text span.title {
   font-size: 14px;
   color: #333333;
   padding: 0;
 }
-/* line 143, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 149, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .text span.type, .cover-with-title-here .text span.type {
   font-size: 10px;
   color: #999999;
   padding: 0;
   margin-left: 5px;
 }
-/* line 150, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 156, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here .spinner, .cover-with-title-here .spinner {
   width: 24px;
   height: 24px;
   display: block;
   background: url("/images/ajax-loader.gif");
 }
-/* line 155, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 161, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-here img, .cover-with-title-here img {
   float: left;
   display: none;
 }
 
-/* line 159, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 165, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here {
   padding: 10px;
   padding-bottom: 3px;
@@ -2297,11 +2479,11 @@ a.no-underline {
   margin-left: -10px;
   width: 100%;
 }
-/* line 166, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 172, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover {
   cursor: pointer;
 }
-/* line 168, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
+/* line 174, /Users/ignaciodelamadrid/Projects/spreadsong/classicly/staging/app/stylesheets/partials/_covers.sass */
 .cover-with-title-here:hover span.title {
   background: #ffff66;
 }
@@ -2469,12 +2651,12 @@ body.bp .showgrid {
   background-size: 100% 20px, auto;
   background-position: left top;
 }
-/* line 45, ../../../app/stylesheets/screen.scss */
+/* line 46, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 49, ../../../app/stylesheets/screen.scss */
+/* line 50, ../../../app/stylesheets/screen.scss */
 body.bp #content {
   width: 950px;
   margin: 0 auto;
@@ -2547,14 +2729,14 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 62, ../../../app/stylesheets/screen.scss */
+/* line 63, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 64, ../../../app/stylesheets/screen.scss */
+/* line 65, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
@@ -2565,7 +2747,7 @@ body.two-col #header, body.two-col #footer {
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 66, ../../../app/stylesheets/screen.scss */
+/* line 67, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
@@ -2576,7 +2758,7 @@ body.two-col #sidebar {
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 70, ../../../app/stylesheets/screen.scss */
+/* line 71, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;

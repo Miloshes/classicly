@@ -7,7 +7,7 @@ $ ->
     params = { id: currentCollectionId, type: 'audiobook' }
   else
     params = { id: currentCollectionId }
-  $.getJSON 'collection_json_books', params,  ( data ) ->
+  $.getJSON '/collection_json_books', params,  ( data ) ->
     $.each data, (index, value) ->
       # find current collection element:
       selector = '.featured-books'

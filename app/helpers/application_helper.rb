@@ -83,10 +83,19 @@ module ApplicationHelper
     doc.css('body').inner_html
   end
 
-  def show_only_until_break_tag(text)
-    index = text.index('<br/>')
+  def show_only_until_break_tag(post)
+    text = markdown(post.content)
+    index = text.index('!@cut')
     text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
+    paragraph = doc.at_css('p:last')
+    link = Nokogiri::XML::Node.new 'a', doc
+    link['href'] = seo_path(post)
+    link['class'] = 'blue'
+    link_span = Nokogiri::XML::Node.new 'span', doc
+    link_span.content = ' [Click to continue...]'
+    link_span.parent = link
+    paragraph.children.last.add_next_sibling(link)
     doc.inner_html
   end
 
@@ -102,6 +111,10 @@ module ApplicationHelper
       end
     end
     res
+  end
+  
+  def markdown(text)
+    Maruku.new(text).to_html
   end
 
   def search_form(path, search_term)

@@ -24,7 +24,7 @@
       - @featured.thumbnail_books(6).each do|thumb_book|
         .cover.tiny
           = cover_image_link(thumb_book, 2)
-      = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured.cached_slug), :class => 'browse-collection'
+      = link_to image_tag('browse-this-collection-big.png'), show_collection_url(@featured, '1'), :class => 'browse-collection'
   #collection-list
     %h2= @featured.book_type == 'book'?  'Collections' : 'Audiobook Collections'
     = render 'collection_list', :collections => @collections

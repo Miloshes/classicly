@@ -11,7 +11,7 @@
     }) : (params = {
       id: currentCollectionId
     });
-    $.getJSON('collection_json_books', params, function(data) {
+    $.getJSON('/collection_json_books', params, function(data) {
       return $.each(data, function(index, value) {
         var bookData, selector;
         // find current collection element:

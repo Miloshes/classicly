@@ -1,8 +1,6 @@
 %li{:id => "audiobook_#{audiobook.id}"}
-  .cover
-    .cover-here.small
-      .stable
-        .spinner
+  .cover.small
+    = cover_image_link(audiobook, 2)
   .book-info
     = link_to audiobook.title, author_book_url(audiobook.author, audiobook), :class => "title"
     %p
