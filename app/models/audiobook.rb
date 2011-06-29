@@ -1,6 +1,6 @@
 include AWS::S3
 class Audiobook < ActiveRecord::Base
-  include Sluggable, SeoMethods, CommonBookMethods
+  include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
   belongs_to :custom_cover

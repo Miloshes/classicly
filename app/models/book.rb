@@ -1,7 +1,7 @@
 include AWS::S3
 
 class Book < ActiveRecord::Base
-  include Sluggable, SeoMethods, CommonBookMethods
+  include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
   belongs_to :custom_cover
@@ -225,16 +225,6 @@ class Book < ActiveRecord::Base
 
   def read_online?
     self.is_rendered_for_online_reading == true
-  end
-  
-  def parse_attribute_for_seo(attribute_string)
-    substrings = attribute_string.split('.')
-    if substrings.size == 2 # calling an association
-      association = self.send(substrings.first.to_sym) if self.respond_to?(substrings.first.to_sym)
-      association.send(substrings.last.to_sym) if association && association.respond_to?(substrings.last.to_sym)
-    else
-      self.send(attribute_string.to_sym) if self.respond_to?(attribute_string.to_sym)
-    end
   end
 
   def set_average_rating
