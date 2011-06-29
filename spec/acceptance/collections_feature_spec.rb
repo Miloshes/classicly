@@ -7,14 +7,14 @@ feature 'Collections feature', %q{
 } do
 
   scenario 'visiting a collection that has an audiobook collection counterpart' do
-    #Given we have a collection and an audiocollection and its slugs
+    # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
     @audiocollection = Collection.make!(:audiohummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
     # When I visit the collection
     visit show_collection_path(@collection, '1')
-    #And I click audiobooks
+    # And I click audiobooks
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
     end
@@ -23,7 +23,7 @@ feature 'Collections feature', %q{
   end
   
   scenario 'visiting a collection that does not have an audiobook collection counterpart' do
-    #Given we have a collection and an audiocollection and its slugs
+    # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     # When I visit the collection
@@ -33,18 +33,18 @@ feature 'Collections feature', %q{
   end
   
   scenario 'visiting an audio collection that has an book collection counterpart' do
-    #Given we have an audiocollection and an collection and its slugs
+    # Given we have an audiocollection and an collection and its slugs
     @collection = Collection.make!(:hummies)
     @audiocollection = Collection.make!(:audiohummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
     # When I visit the audiocollection
     visit show_collection_path(@audiocollection, '1')
-    #And I click audiobooks
+    # And I click books
     within('.audiobook-switcher') do
       click_on 'Books'
     end
-    #Then I should see that I am on the Hummies audiobooks page
+    # Then I should see that I am on the Hummies books page
     page.should have_content('Hummies Books')
   end
 end
