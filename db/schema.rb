@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110624070158) do
+ActiveRecord::Schema.define(:version => 20110628222028) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -257,6 +257,14 @@ ActiveRecord::Schema.define(:version => 20110624070158) do
   end
 
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"
+
+  create_table "seo_defaults", :force => true do |t|
+    t.string   "object_type"
+    t.string   "object_attribute"
+    t.string   "default_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "seo_infos", :force => true do |t|
     t.integer  "infoable_id"

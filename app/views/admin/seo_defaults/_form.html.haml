@@ -1,0 +1,14 @@
+= form_for [:admin, seo_default] do |f|
+  = field_set_tag "#{seo_default.new_record? ? 'Create' : 'Edit'}" do
+    %p
+      = f.label :object_type, 'Class of the object'
+      = f.text_field :object_type
+    %p
+      = f.label :object_attribute, 'Atrribute to set'
+      = f.text_field :object_attribute
+    %p
+      = f.label :default_value, 'Value'
+      = f.text_field :default_value
+    %p
+      = f.submit seo_default.new_record? ? 'Save' : 'Update', :disable_with => 'Submiting...'
+= link_to 'Back to index', admin_seo_defaults_path
