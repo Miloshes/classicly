@@ -91,8 +91,12 @@ module SeoHelper # Please don't put into application helper
       element.seo_info.title
     elsif element.is_a? SeoSlug # probably , we are on the download page
       download_format_page_title(element.seoable, element.format)
+    elsif element.is_a? Collection
+      seo_front_end_title_for_collection(element)
+    elsif element.is_a? Book
+      SeoDefault.parse_default_value(:webtitle, element)
     else
-      element.respond_to?(:pretty_title) ? element.pretty_title : seo_front_end_title_for_collection(element)
+      element.pretty_title
     end
   end
   

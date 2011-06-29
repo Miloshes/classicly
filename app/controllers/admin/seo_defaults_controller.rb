@@ -1,5 +1,5 @@
 class Admin::SeoDefaultsController < Admin::BaseController
-  before_filter :find_seo_default, :only => [:edit, :show]
+  before_filter :find_seo_default, :only => [:edit, :show, :update]
   def index
     @seo_defaults = SeoDefault.all
   end
@@ -18,6 +18,14 @@ class Admin::SeoDefaultsController < Admin::BaseController
   end
   
   def edit
+  end
+  
+  def update
+    if @seo_default.update_attributes(params[:seo_default])
+      redirect_to admin_seo_defaults_path
+    else
+      render :action => :edit
+    end
   end
   
   def show
