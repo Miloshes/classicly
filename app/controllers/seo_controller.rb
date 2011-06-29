@@ -13,20 +13,6 @@ class SeoController < ApplicationController
       end
     end
   end
-
-  def show_collection
-    params[:page] = '1' if params[:page].nil?
-    @seo = SeoSlug.find_by_slug(params[:id])
-    if @seo && @seo.is_for_type?('collection')
-      @collection = @seo.seoable
-      @books = @seo.find_paginated_listed_books_for_collection(params)
-      @blessed_books = @seo.find_paginated_blessed_books_for_collection(params)
-      @featured_book = @seo.find_featured_book_for_collection
-      @seo.seoable.is_audio_collection? ? render('show_audio_collection', :layout => 'audibly') : render('show_collection')
-    else
-      render_search
-    end
-  end
   
   def show
     @seo = SeoSlug.find_by_slug(params[:id])
