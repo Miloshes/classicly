@@ -9,7 +9,7 @@
 #collection-page
   - if @collection.has_book_counterpart?
     .audiobook-switcher
-      = link_to 'Books', show_collection_url(@collection.audiobook_collection_book_slug, '1')
+      = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug)
       %span |&nbsp; Audiobooks
   .collection-info
     %h1="#{@collection.name} Audiobooks"
