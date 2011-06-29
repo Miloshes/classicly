@@ -30,7 +30,9 @@ class Admin::SeoDefaultsController < Admin::BaseController
   
   def show
     if @seo_default.object_type == 'Book'
-      @book = Book.first 
+      @book = Book.first
+    elsif @seo_default.object_type == 'Audiobook'
+      @audiobook = Audiobook.first
     end
   end
   

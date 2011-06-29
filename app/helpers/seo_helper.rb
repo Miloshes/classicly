@@ -31,7 +31,7 @@ module SeoHelper # Please don't put into application helper
         "The world's greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([element.name] * 2)
       end
     when 'Audiobook'
-      "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % element.pretty_title
+      SeoDefault.parse_default_value(:metadescription, element)
     when 'Book'
       SeoDefault.parse_default_value(:metadescription, element)
     end
@@ -93,10 +93,8 @@ module SeoHelper # Please don't put into application helper
       download_format_page_title(element.seoable, element.format)
     elsif element.is_a? Collection
       seo_front_end_title_for_collection(element)
-    elsif element.is_a? Book
-      SeoDefault.parse_default_value(:webtitle, element)
     else
-      element.pretty_title
+      SeoDefault.parse_default_value(:webtitle, element) # Book and Audiobook!.
     end
   end
   

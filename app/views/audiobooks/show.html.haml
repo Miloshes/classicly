@@ -1,21 +1,19 @@
 - content_for :title do
   %title=seo_front_end_title_helper(@book)
 
+- content_for :head do
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
+
 #book-page.audiobook{:name => @book.id }
   .cover-column
     #current-book.cover-here.medium
       .stable
         .spinner
     %h4 Related
-    .cover-with-title-here.small.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
+    - 1.upto(3) do
+      .cover-with-title-here.small.related
+        .stable
+          .spinner
   .book-column
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title
