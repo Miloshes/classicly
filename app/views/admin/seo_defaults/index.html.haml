@@ -1,0 +1,31 @@
+%h2.section-header
+  Default settings for SEO.
+
+%table
+  %thead
+    %tr
+      %th
+        Object Type
+      %th
+        Attribute
+      %th
+        Default attribute string
+      %th
+        Actions
+  %tbody
+    - for seo_default in @seo_defaults
+      %tr
+        %th
+          = seo_default.object_type
+        %th
+          = seo_default.object_attribute
+        %th
+          = seo_default.default_value
+        %th
+          = link_to "Edit", edit_admin_seo_default_path(seo_default)
+          |
+          = link_to "View example and validity", admin_seo_default_path(seo_default)
+%p
+  = link_to 'New Seo Default', new_admin_seo_default_path
+%p
+  = link_to 'Back to Admin Seo', admin_admin_seo_path 

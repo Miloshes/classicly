@@ -16,6 +16,7 @@ Classicly::Application.routes.draw do
       end
     end
     resources :reviews, :only => [:index, :destroy]
+    resources :seo_defaults
   end
   
   match 'about' => 'pages#about'

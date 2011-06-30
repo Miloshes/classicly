@@ -30,8 +30,10 @@ module SeoHelper # Please don't put into application helper
       when 'author'
         "The world's greatest collection of books by %s. Download free books, read online, or check out %s quotes and a hand-picked collection of featured titles." % ([element.name] * 2)
       end
-    when 'Book', 'Audiobook'
-      "Download %s for free on Classicly - available as Kindle, PDF, Sony Reader, iBooks and more, or simply read online to your heart's content." % element.pretty_title
+    when 'Audiobook'
+      SeoDefault.parse_default_value(:metadescription, element)
+    when 'Book'
+      SeoDefault.parse_default_value(:metadescription, element)
     end
   end
   
@@ -69,7 +71,7 @@ module SeoHelper # Please don't put into application helper
     if element.seo_info
       description = element.seo_info.meta_description
     else
-      element = element.seoable if element.is_a? SeoSlug
+      element = element.seoable if element.is_a? SeoSlug # gets a Book, or Collection if a Slug
       meta_description_for_element(element)
     end
   end
@@ -89,8 +91,10 @@ module SeoHelper # Please don't put into application helper
       element.seo_info.title
     elsif element.is_a? SeoSlug # probably , we are on the download page
       download_format_page_title(element.seoable, element.format)
+    elsif element.is_a? Collection
+      seo_front_end_title_for_collection(element)
     else
-      element.respond_to?(:pretty_title) ? element.pretty_title : seo_front_end_title_for_collection(element)
+      SeoDefault.parse_default_value(:webtitle, element) # Book and Audiobook!.
     end
   end
   

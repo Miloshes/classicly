@@ -98,6 +98,10 @@ DownloadFormat.blueprint do
   download_status{"downloaded"}
 end
 
+SeoDefault.blueprint do
+  object_type{Book}
+end
+
 SeoInfo.blueprint do
   infoable_type{'SeoSlug'}
 end

@@ -1,0 +1,42 @@
+%h2.section-header
+  Example and Validity of the Seo Default
+  
+- if @book
+  %p
+    Book author:
+    = @book.author.name
+  %p
+    Book title:
+    = @book.pretty_title
+  %p
+    = "You have selected the following as the default value for the #{@seo_default.object_attribute} attribute"
+  %p
+    = @seo_default.default_value
+  %p
+    which results in the following output (using an example book)
+  %p
+    = SeoDefault.parse_default_value(@seo_default.object_attribute.to_sym, @book)
+  %p
+    = "The default value you have selected is #{@seo_default.is_default_value_valid? ? 'valid' : 'invalid'}"
+- if @audiobook
+  %p
+    Audiobook author:
+    = @audiobook.author.name
+  %p
+    Audiobook title:
+    = @audiobook.pretty_title
+  %p
+    = "You have selected the following as the default value for the #{@seo_default.object_attribute} attribute"
+  %p
+    = @seo_default.default_value
+  %p
+    which results in the following output (using an example audiobook)
+  %p
+    = SeoDefault.parse_default_value(@seo_default.object_attribute.to_sym, @audiobook)
+  %p
+    = "The default value you have selected is #{@seo_default.is_default_value_valid? ? 'valid' : 'invalid'}"
+    
+= link_to 'back to editing this seo default', edit_admin_seo_default_path(@seo_default)
+= link_to 'back to seo defaults index', admin_seo_defaults_path
+
+  

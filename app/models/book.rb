@@ -1,7 +1,7 @@
 include AWS::S3
 
 class Book < ActiveRecord::Base
-  include Sluggable, SeoMethods, CommonBookMethods
+  include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
   belongs_to :custom_cover
@@ -226,7 +226,7 @@ class Book < ActiveRecord::Base
   def read_online?
     self.is_rendered_for_online_reading == true
   end
-  
+
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save

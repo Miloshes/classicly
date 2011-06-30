@@ -23,7 +23,8 @@
             = link_to image_tag('logo.png'), '/'
     #content
       #left-column
-        = yield
+        .admin_page
+          = yield
       #right-column
         = link_to 'Logout', admin_logout_path if current_admin_user
     
