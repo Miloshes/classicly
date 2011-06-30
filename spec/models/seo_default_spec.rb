@@ -23,7 +23,7 @@ describe SeoDefault do
             :default_value => 'Listen Online $(pretty_title) by $(author.name) only here at Classicly')
           SeoDefault.parse_default_value(:metadescription, @audiobook).should == 'Listen Online Kawaii by Kawama San only here at Classicly'
         end
-      end  
+      end 
     end
     
     context 'when we set a non valid object attribute inside of one of the interpolation holders' do
@@ -58,7 +58,64 @@ describe SeoDefault do
           :default_value => 'Read $(pretty_title by $(author.name) only here at Classicly') # awesome_title is not valid
         SeoDefault.parse_default_value(:metadescription, @book).should == 'Read $(pretty_title by Kawama San only here at Classicly'
       end
-    end   
+    end
+    
+    context 'with collections' do
+      context 'book collection' do
+        before :each do
+           @collection = Collection.make!(:name => 'Romance', :book_type => 'book', :collection_type => 'collection')
+        end
+        it 'should return the parsed string' do
+          @seo_default = SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read $(name) books only here at Classicly',
+            :collection_type => 'book-collection')
+          SeoDefault.parse_default_value(:metadescription, @collection).should == 'Read Romance books only here at Classicly'
+        end
+      end
+      context 'book author collection' do
+        before :each do
+          @collection = Collection.make!(:name => 'Charles Dickens', :book_type => 'book', :collection_type => 'author')
+        end
+        it 'should return the parsed string' do
+          @seo_default = SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read author $(name) books only here at Classicly',
+            :collection_type => 'book-author')
+          SeoDefault.parse_default_value(:metadescription, @collection).should == 'Read author Charles Dickens books only here at Classicly'
+        end
+      end
+      context 'having saved both a collection and an author collection' do
+        before :each do
+          @author_collection = Collection.make!(:name => 'Charles Dickens', :book_type => 'book', :collection_type => 'author')
+          @collection = Collection.make!(:name => 'Romance', :book_type => 'book', :collection_type => 'collection')
+          @author_audio_collection = Collection.make!(:name => 'Charles Dickens', :book_type => 'audiobook', :collection_type => 'author')
+          @audio_collection = Collection.make!(:name => 'Romance', :book_type => 'audiobook', :collection_type => 'collection')
+          SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read $(name) books only here at Classicly',
+            :collection_type => 'book-collection')
+          SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read author $(name) books only here at Classicly',
+            :collection_type => 'book-author')
+          SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read $(name) collection audiobooks only here at Classicly',
+            :collection_type => 'audiobook-collection')
+          SeoDefault.make!(:object_type => 'Collection',
+            :object_attribute => 'metadescription',
+            :default_value => 'Read author $(name) audiobooks only here at Classicly',
+            :collection_type => 'audiobook-author')
+        end
+        it 'should return the parsed string' do
+          SeoDefault.parse_default_value(:metadescription, @collection).should == 'Read Romance books only here at Classicly'
+          SeoDefault.parse_default_value(:metadescription, @author_collection).should == 'Read author Charles Dickens books only here at Classicly'
+          SeoDefault.parse_default_value(:metadescription, @author_audio_collection).should == 'Read author Charles Dickens audiobooks only here at Classicly'
+          SeoDefault.parse_default_value(:metadescription, @audio_collection).should == 'Read Romance collection audiobooks only here at Classicly'
+        end
+      end
+    end
   end
   
   describe '#is_default_value_valid?' do

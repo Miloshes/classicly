@@ -1,7 +1,12 @@
 class SeoDefault < ActiveRecord::Base
   def self.parse_default_value(attribute, object)
     klass = object.class.to_s
-    default_seo_object = SeoDefault.where(:object_type => klass, :object_attribute => attribute.to_s).first
+    default_seo_object = if klass == "Collection"
+      collection_type = [object.book_type, object.collection_type].join('-')
+      SeoDefault.where(:object_type => klass, :object_attribute => attribute.to_s, :collection_type => collection_type).first
+    else
+      SeoDefault.where(:object_type => klass, :object_attribute => attribute.to_s).first
+    end
     string_to_parse = default_seo_object.default_value
     result = string_to_parse.scan /\$[\(]\w+.\w+[\)]/
     result.each do |expression|
