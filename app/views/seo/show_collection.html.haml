@@ -11,7 +11,7 @@
   - if @collection.has_audiobook_counterpart?
     .audiobook-switcher  
       %span Books |&nbsp;
-      = link_to 'Audiobooks', show_collection_url(@collection.audiobook_collection_slug, '1')    
+      = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)    
   .collection-info
     %h1
       =@collection.name
@@ -46,7 +46,7 @@
     %ul.book-list
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .pagination
-      = paginate @books, {:controller => 'seo', :action => 'show_collection', :id => @seo.slug}
+      = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 - if Rails.env.production?
   - if @collection.collection_type == 'author'
     = raw render_performable_script(:author)

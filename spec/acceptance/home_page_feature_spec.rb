@@ -7,6 +7,9 @@ feature 'Home page feature: ', %q{
 } do
 
   background do
+    # Given a set of collections exists
+    1.upto(14) {|index| Collection.make!(:book_type => 'book', :collection_type => 'collection')}
+    # And I am on the home page
     visit homepage
   end
   
@@ -29,5 +32,14 @@ feature 'Home page feature: ', %q{
       find(:xpath, ".//li//a[text()='Blog']").click
       current_path.should == '/blog'
     end
+  end
+  
+  scenario 'clicking on a collection in the footer' do
+    @slug = ''
+    within('#footer .collections span.linky:first') do
+      @slug = collection_slug find('a')[:href]
+      find('a').click
+    end
+    current_path.should == "/#{@slug}"
   end
 end

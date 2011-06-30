@@ -8,7 +8,11 @@
       %span on
       %span.date=blog_post.created_at.to_s :post_title_format
     .content
-      = simple_format markdown(blog_post.content).gsub!('!@cut', '')
+<<<<<<< HEAD
+      = simple_format blog_post.content
+=======
+      = simple_format markdown(blog_post.content)
+>>>>>>> staging
       #disqus_thread
       :javascript
         /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -16,7 +20,11 @@
 
         // The following are highly recommended additional parameters. Remove the slashes in front to use.
         var disqus_identifier = "blog_post_#{@blog_post.id}";
+<<<<<<< HEAD
         var disqus_url = "http://www.classicly.com/#{@blog_post.cached_slug}";
+=======
+        var disqus_url = "http://classicly-staging.heroku.com/#{@blog_post.cached_slug}";
+>>>>>>> staging
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
@@ -27,7 +35,11 @@
       %noscript
         Please enable JavaScript to view the
         = link_to "comments powered by Disqus", "http://disqus.com/?ref_noscript"
+<<<<<<< HEAD
+      = link_to raw("blog comments powered by " + content_tag(:span, "Disqus", :class=>'logo-disqus')), "http://disqus.com", :class => "dsq-brlink"
+=======
       = link_to raw("blog comments powered by" + content_tag(:span, "Disqus", :class=>'logo-disqus')), "http://disqus.com", :class => "dsq-brlink"
+>>>>>>> staging
 
     - unless blog_post.related_books.empty?
       .related

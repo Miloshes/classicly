@@ -13,7 +13,7 @@ feature 'Collections feature', %q{
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
     # When I visit the collection
-    visit show_collection_path(@collection, '1')
+    visit seo_path(@collection)
     # And I click audiobooks
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
@@ -27,7 +27,7 @@ feature 'Collections feature', %q{
     @collection = Collection.make!(:hummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     # When I visit the collection
-    visit show_collection_path(@collection, '1')
+    visit seo_path(@collection)
     # The I should not see the audiobooks option link
     page.should_not have_css('.audiobook-switcher')
   end
@@ -39,7 +39,7 @@ feature 'Collections feature', %q{
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
     # When I visit the audiocollection
-    visit show_collection_path(@audiocollection, '1')
+    visit seo_path(@audiocollection)
     # And I click books
     within('.audiobook-switcher') do
       click_on 'Books'

@@ -78,8 +78,8 @@ Classicly::Application.routes.draw do
     resources :reviews
   end
   
-  match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match ':id/page/(:page)' => 'seo#show_collection', :as => :show_collection, :via => :get
+  #match "/:id" => "seo#show", :as => 'seo', :via => :get
+  match '/:id/(:page)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/ }
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately

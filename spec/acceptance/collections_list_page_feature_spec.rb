@@ -87,7 +87,7 @@ feature 'Collections list page feature: ', %q{
     # When I click the link to the 'Folk' collection
     find(:xpath, "//a[text()='Folk']").click
     # Then I should be in the path for this collection
-    current_path.should == "/folk/page/1"
+    current_path.should == "/folk"
     # And I should see that this is the folk's collection page
     page.should have_content("Folk Books")
   end
