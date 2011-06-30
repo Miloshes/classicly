@@ -52,39 +52,15 @@ module SeoHelper # Please don't put into application helper
   end
   
   def seo_front_end_meta_description_text(element)
-    if element.seo_info
-      description = element.seo_info.meta_description
-    else
-      element = element.seoable if element.is_a? SeoSlug # gets a Book, or Collection if a Slug
-      SeoDefault.parse_default_value(:metadescription, element)
-    end
+    element.seo_info ? element.seo_info.metadescription : SeoDefault.parse_default_value(:metadescription, element)
   end
   
   # an infoable can be seo slug, collection, book , or audiobook
   def seo_front_end_title_helper(element)
-    if element.seo_info
-      element.seo_info.title
-    elsif element.is_a? SeoSlug # probably , we are on the download page
-      download_format_page_title(element.seoable, element.format)
-    else
-      SeoDefault.parse_default_value(:webtitle, element) # Book and Audiobook!.
-    end
+    element.seo_info ? element.seo_info.title : SeoDefault.parse_default_value(:webtitle, element)
   end
   
   def title_for_special_landing_page(seo_slug)
-    if seo_slug.seo_info
-      seo_slug.seo_info.title
-    else
-      case seo_slug.format
-      when 'pdf'
-        "Download #{seo_slug.seoable.pretty_title} PDF"
-      when 'azw'
-        "Download #{seo_slug.seoable.pretty_title} for Kindle"
-      when 'online'
-        "Read #{seo_slug.seoable.pretty_title} Online for Free"
-      when 'mp3'
-        "Download #{seo_slug.seoable.pretty_title} MP3 for Free"
-      end
-    end
+    seo_slug.seo_info ? seo_slug.seo_info.title : SeoDefault.parse_default_value(:webtitle, seo_slug)
   end
 end

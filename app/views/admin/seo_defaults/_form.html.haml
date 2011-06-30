@@ -13,5 +13,8 @@
       = f.label :collection_type
       = f.text_field :collection_type
     %p
+      = f.label :format
+      = f.text_field :format
+    %p
       = f.submit seo_default.new_record? ? 'Save' : 'Update', :disable_with => 'Submiting...'
 = link_to 'Back to index', admin_seo_defaults_path
