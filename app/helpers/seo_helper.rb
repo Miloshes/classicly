@@ -51,6 +51,14 @@ module SeoHelper # Please don't put into application helper
     element.class.to_s
   end
   
+  def seo_front_end_static_page_title(page)
+    SeoDefault.parse_default_value_for_static_page(:webtitle, page)  
+  end
+  
+  def seo_front_end_static_page_metadescription(page)
+    SeoDefault.parse_default_value_for_static_page(:metadescription, page)  
+  end
+  
   def seo_front_end_meta_description_text(element)
     element.seo_info ? element.seo_info.metadescription : SeoDefault.parse_default_value(:metadescription, element)
   end

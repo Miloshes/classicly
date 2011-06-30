@@ -20,7 +20,13 @@ class SeoDefault < ActiveRecord::Base
     end
     string_to_parse
   end
-  
+
+  def self.parse_default_value_for_static_page(attribute, page)
+    default_seo_object_array = SeoDefault.where(:object_type => page, :object_attribute => attribute.to_s)
+    return nil if default_seo_object_array.first.nil? # this is to save the app whenever the default has not been set.
+    default_seo_object_array.first.default_value
+  end
+
   def is_default_value_valid?
     object = self.object_type.constantize.first
     SeoDefault.parse_default_value(self.object_attribute.to_sym, object).scan(/\$[\(]/).blank?

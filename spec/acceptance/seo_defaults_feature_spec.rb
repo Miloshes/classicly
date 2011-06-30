@@ -12,6 +12,29 @@ feature 'Seo defaults feature', %q{
     @book = Book.make!(:pretty_title => 'Kawaii', :author => @author)
   end
   
+  scenario 'going to the root page' do
+    #given there is a default for the title in the home page 
+    SeoDefault.make!(:object_type => 'HomePage',
+      :object_attribute => 'webtitle',
+      :default_value => 'Classicly Homepage')
+    
+    #When I visit the root path
+    visit root_path
+    #then I should see the title as the admin set it
+    find('title').text.should == 'Classicly Homepage'
+  end
+  
+  scenario 'going to the root page' do
+    #given there is a default for the title in the blog page
+    SeoDefault.make!(:object_type => 'BlogPage',
+      :object_attribute => 'webtitle',
+      :default_value => 'Classicly Blog Test')
+    
+    #When I visit the blog path
+    visit blog_path
+    #then I should see the title as the admin set it
+    find('title').text.should == 'Classicly Blog Test'
+  end
   scenario 'going to the pdf landing page' do
     #And there is a slug for the pdf landing page
     @pdf_slug = SeoSlug.make!(:seoable_id => @book.id, :seoable_type => 'Book', :slug => 'download-kawaii-pdf', :format => 'pdf')
