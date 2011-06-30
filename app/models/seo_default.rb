@@ -10,6 +10,7 @@ class SeoDefault < ActiveRecord::Base
     else
       SeoDefault.where(:object_type => klass, :object_attribute => attribute.to_s)
     end
+    return nil if default_seo_object_array.first.nil? # this is to save the app whenever the default has not been set.
     string_to_parse = default_seo_object_array.first.default_value
     result = string_to_parse.scan /\$[\(]\w+.\w+[\)]/
     result.each do |expression|

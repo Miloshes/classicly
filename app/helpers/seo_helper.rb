@@ -59,8 +59,4 @@ module SeoHelper # Please don't put into application helper
   def seo_front_end_title_helper(element)
     element.seo_info ? element.seo_info.title : SeoDefault.parse_default_value(:webtitle, element)
   end
-  
-  def title_for_special_landing_page(seo_slug)
-    seo_slug.seo_info ? seo_slug.seo_info.title : SeoDefault.parse_default_value(:webtitle, seo_slug)
-  end
 end
