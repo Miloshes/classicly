@@ -116,6 +116,36 @@ describe SeoDefault do
         end
       end
     end
+    
+    context 'landing pages slugs' do
+      before :each do
+        @author = Author.make!(:name => 'Kawama San')
+        @book = Book.make!(:pretty_title => 'Kawaii', :author => @author)
+      end
+      context 'pdf landing page' do
+        before :each do
+          @pdf_slug = SeoSlug.make!(:seoable_id => @book.id, :seoable_type => 'Book', :slug => 'download-kawaii-pdf', :format => 'pdf')
+          SeoDefault.make!(:object_type => 'SeoSlug',
+            :object_attribute => 'metadescription',
+            :default_value => 'Download $(seoable.pretty_title) pdf book for your reader here at Classicly',
+            :format => 'pdf')
+        end
+        it 'should return a string when a valid string is set as the value for the attribute' do
+          SeoDefault.parse_default_value(:metadescription, @pdf_slug).should == 'Download Kawaii pdf book for your reader here at Classicly'
+        end
+        context 'when another format coexists in the db' do
+          it 'should return  the correct string for both landing pages' do
+            @kindle_slug = SeoSlug.make!(:seoable_id => @book.id, :seoable_type => 'Book', :slug => 'download-kawaii-kindle', :format => 'kindle')
+            SeoDefault.make!(:object_type => 'SeoSlug',
+              :object_attribute => 'metadescription',
+              :default_value => 'Download $(seoable.pretty_title) kindle book for your reader here at Classicly',
+              :format => 'kindle')
+            SeoDefault.parse_default_value(:metadescription, @pdf_slug).should == 'Download Kawaii pdf book for your reader here at Classicly'
+            SeoDefault.parse_default_value(:metadescription, @kindle_slug).should == 'Download Kawaii kindle book for your reader here at Classicly'
+          end
+        end
+      end
+    end
   end
   
   describe '#is_default_value_valid?' do
