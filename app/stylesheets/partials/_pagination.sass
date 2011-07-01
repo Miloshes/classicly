@@ -1,28 +1,48 @@
 nav.pagination
-  +column(18, true)
+  +column(16, true)
+  
   span
     :display block
     :float left
     :height 60px
+  
   span.prev
-    +column(5)
     a
-      :width 160px
+      :width 230px
       :height 53px
       :display block
       :background url(/images/pagination-previous.png)
-
-  span.pagination-text
-    :font-size 23px
-    :margin
-      :top 5px
-    :text-align center
-    +column(5)
+  
   span.next
-    +column(6, true)
+    :float right
+    :margin-right 35px
     a
-      :width 203px
+      :width 230px
       :height 53px
       :display block
       :background url(/images/pagination-next.png)
       :float right
+      
+  span.next.full-width
+    +column(16, true)
+    a
+      :float left
+      :width 594px
+      :background url(/images/pagination-next.png)
+
+  span.next_with_full_width
+    +column(16, true)
+
+  div#page_numbers
+    +column(16, true)
+    :height 60px
+    :text-align center
+    :margin 5px
+    :font-size 16px
+    :color #999999
+    
+    span
+      :margin 5px
+      a
+        :background-color #FFFFD7
+        :color #333333
