@@ -1,4 +1,5 @@
 = form_for [:admin, seo_default] do |f|
+  = render 'shared/error_messages', :target => seo_default
   = field_set_tag "#{seo_default.new_record? ? 'Create' : 'Edit'}" do
     %p
       = f.label :object_type, 'Class of the object'
