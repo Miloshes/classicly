@@ -1,0 +1,21 @@
+= form_for [:admin, seo_default] do |f|
+  = render 'shared/error_messages', :target => seo_default
+  = field_set_tag "#{seo_default.new_record? ? 'Create' : 'Edit'}" do
+    %p
+      = f.label :object_type, 'Class of the object'
+      = f.text_field :object_type
+    %p
+      = f.label :object_attribute, 'Atrribute to set'
+      = f.text_field :object_attribute
+    %p
+      = f.label :default_value, 'Value'
+      = f.text_area :default_value
+    %p
+      = f.label :collection_type
+      = f.text_field :collection_type
+    %p
+      = f.label :format
+      = f.text_field :format
+    %p
+      = f.submit seo_default.new_record? ? 'Save' : 'Update', :disable_with => 'Submiting...'
+= link_to 'Back to index', admin_seo_defaults_path

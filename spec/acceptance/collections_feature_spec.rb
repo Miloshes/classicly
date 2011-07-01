@@ -5,9 +5,27 @@ feature 'Collections feature', %q{
   As a user
   I want 
 } do
+  background do
+    SeoDefault.make!(:object_type => 'Collection',
+      :object_attribute => 'metadescription',
+      :default_value => 'Read $(name) books only here at Classicly',
+      :collection_type => 'book-collection')
+    SeoDefault.make!(:object_type => 'Collection',
+      :object_attribute => 'webtitle',
+      :default_value => 'Read $(name) books only here at Classicly',
+      :collection_type => 'book-collection')
+    SeoDefault.make!(:object_type => 'Collection',
+      :object_attribute => 'metadescription',
+      :default_value => 'Read $(name) books only here at Classicly',
+      :collection_type => 'audiobook-collection')
+    SeoDefault.make!(:object_type => 'Collection',
+      :object_attribute => 'webtitle',
+      :default_value => 'Read $(name) books only here at Classicly',
+      :collection_type => 'audiobook-collection')
+  end
 
   scenario 'visiting a collection that has an audiobook collection counterpart' do
-    #Given we have a collection and an audiocollection and its slugs
+    # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
     @audiocollection = Collection.make!(:audiohummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
@@ -23,7 +41,7 @@ feature 'Collections feature', %q{
   end
   
   scenario 'visiting a collection that does not have an audiobook collection counterpart' do
-    #Given we have a collection and an audiocollection and its slugs
+    # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
     # When I visit the collection
@@ -33,7 +51,7 @@ feature 'Collections feature', %q{
   end
   
   scenario 'visiting an audio collection that has an book collection counterpart' do
-    #Given we have an audiocollection and an collection and its slugs
+    # Given we have an audiocollection and an collection and its slugs
     @collection = Collection.make!(:hummies)
     @audiocollection = Collection.make!(:audiohummies)
     SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
@@ -44,7 +62,7 @@ feature 'Collections feature', %q{
     within('.audiobook-switcher') do
       click_on 'Books'
     end
-    #Then I should see that I am on the Hummies audiobooks page
+    # Then I should see that I am on the Hummies books page
     page.should have_content('Hummies Books')
   end
 end

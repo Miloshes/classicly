@@ -6,7 +6,13 @@ feature 'Book features', %q{
   I want to be able to download and read books online
 } do
 
-  
+  background do
+    SeoDefault.make!(:object_type => 'Book', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')
+    SeoDefault.make!(:object_type => 'Book', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
+    SeoDefault.make!(:object_type => 'Audiobook', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')
+    SeoDefault.make!(:object_type => 'Audiobook', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
+  end
+
   scenario 'Reading a book online' do
     @author = Author.make!(:name => 'Bram Stoker')
     @book = Book.make!(:author => @author, :pretty_title => 'Dracula', :is_rendered_for_online_reading => true)

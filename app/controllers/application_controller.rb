@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_admin_user_session, :current_admin_user
   
-  # NOTE: web related before filters should be skipped in web_api_controller.
+  # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
   before_filter :set_abingo_identity

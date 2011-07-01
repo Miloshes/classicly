@@ -19,7 +19,7 @@ class Admin::AdminSeoController < Admin::BaseController
 
   def main
   end
-  
+
   def update_seo_info
     @seo_info = @element.seo_info || @element.build_seo_info(params[:seo_info])
     ok = @seo_info.new_record? ? @seo_info.save :  @seo_info.update_attributes(params[:seo_info])

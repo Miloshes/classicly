@@ -35,7 +35,7 @@
 @import "partials/covers";
 @import "partials/article_page";
 @import "partials/pagination";
-
+@import "partials/admin";
 
 body.bp {
   @include blueprint-utilities;

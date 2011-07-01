@@ -1,4 +1,5 @@
 class SeoSlug < ActiveRecord::Base
+  include CommonSeoDefaultsMethods
   belongs_to :seoable, :polymorphic => true
   has_one :seo_info, :as => :infoable
 
