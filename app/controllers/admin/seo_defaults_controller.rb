@@ -1,7 +1,7 @@
 class Admin::SeoDefaultsController < Admin::BaseController
   before_filter :find_seo_default, :only => [:edit, :show, :update]
   def index
-    @seo_defaults = SeoDefault.all
+    @seo_defaults = SeoDefault.order('object_type ASC, object_attribute ASC')
   end
 
   def new
