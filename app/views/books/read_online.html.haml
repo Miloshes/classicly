@@ -1,12 +1,12 @@
 - content_for :title do
-  %title=title_for_special_landing_page(@seo)
+  %title=seo_front_end_title_helper(@seo)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => @book.url_for_specific_format('online'),
-      :description => seo_front_end_meta_description_text(@book),
+      :description => seo_front_end_meta_description_text(@seo),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
-  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
 
 #book-page{:name => @book.id}

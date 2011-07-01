@@ -2,6 +2,7 @@ class Collection < ActiveRecord::Base
   # we have to be able to handle URLs in the model
   include ActionDispatch::Routing::UrlFor
   include Rails.application.routes.url_helpers
+  include CommonSeoDefaultsMethods
 
   # books
   has_many :audiobooks, :through => :collection_audiobook_assignments

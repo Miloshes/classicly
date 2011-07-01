@@ -11,6 +11,10 @@
       %th
         Default attribute string
       %th
+        Collection Type
+      %th
+        Format
+      %th
         Actions
   %tbody
     - for seo_default in @seo_defaults
@@ -21,6 +25,10 @@
           = seo_default.object_attribute
         %th
           = seo_default.default_value
+        %th
+          = seo_default.object_type == 'Collection' ? seo_default.collection_type : 'Not applicable'
+        %th
+          = seo_default.object_type == 'SeoSlug' ? seo_default.format : 'Not applicable'
         %th
           = link_to "Edit", edit_admin_seo_default_path(seo_default)
           |
