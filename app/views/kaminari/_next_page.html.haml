@@ -1,0 +1,6 @@
+- if current_page.first?
+  %span.next.full-width
+    = link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote
+- else
+  %span.next
+    = link_to_unless current_page.last?, raw(t 'views.pagination.next'), url, :rel => 'next', :remote => remote

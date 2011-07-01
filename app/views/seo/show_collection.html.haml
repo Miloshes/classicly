@@ -47,6 +47,7 @@
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
 - if Rails.env.production?
   - if @collection.collection_type == 'author'
     = raw render_performable_script(:author)

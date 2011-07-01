@@ -1,26 +1,21 @@
--#  The container tag
-  - available local variables
-    current_page:  the page number of currently displayed page
-    num_pages:     total number of pages
-    per_page:      number of items to fetch per page
-    remote:        data-remote
-    paginator:     the paginator that renders the pagination tags inside\
 = paginator.render do
   %nav.pagination
-    = current_page > 1 ? prev_link_tag : prev_span_tag
-    %span.pagination-text
-      = "Page #{current_page} of #{num_pages}"
-    -#comment all the pagination 
-    -# each_page do |page|
-      -# if page.current?
-        =# current_page_tag
-      -# elsif page.left_outer? || page.right_outer? || page.inside_window?
-        -#if page.first?
-          =# first_page_link_tag
-        -# elsif page.last?
-          =# last_page_link_tag
-        -# else
-          =# page_link_tag
-      -# elsif !page.was_truncated?
-        =#truncated_span_tag
-    = num_pages > current_page ? next_link_tag : next_span_tag
+    - if current_page == 1
+      / how it has to look like: full-width 'More Books' button
+      = next_page_tag
+    - else
+      / how it has to look like: 'Previous Page' and 'More Books', equal width with spacing in between, page numbers below
+      = prev_page_tag
+      = next_page_tag
+      
+      #page_numbers
+        %span
+          or jump to page:
+        = first_page_tag unless current_page.first?          
+        - each_page do |page|
+          - next if page.first? || page.last?
+          - if page.left_outer? || page.right_outer? || page.inside_window?
+            = page_tag page
+          - elsif !page.was_truncated?
+            = gap_tag
+        = last_page_tag unless current_page.last?
