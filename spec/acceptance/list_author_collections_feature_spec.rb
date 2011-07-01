@@ -7,22 +7,6 @@ feature 'List Author Collections feature: ', %q{
 } do
 
   background do
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-author')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-author')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-author')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-author')
     collection_names = %w{Edgar-Poe Federico-Nietzsche Marcos-Twain Carlos-Dickens Carlota-Bronte}
     collection_names.each { |name| Collection.make!(:collection_type => 'author', :name => name) }
     # Given I am on the author collections page:

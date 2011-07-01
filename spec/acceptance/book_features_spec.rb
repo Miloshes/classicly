@@ -7,6 +7,9 @@ feature 'Book features', %q{
 } do
 
   background do
+    @validation_author = Author.make!
+    @validation_book = Book.make!(:author => @validation_author)
+    @validation_audiobook = Audiobook.make!(:author => @validation_author)
     SeoDefault.make!(:object_type => 'Book', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')
     SeoDefault.make!(:object_type => 'Book', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
     SeoDefault.make!(:object_type => 'Audiobook', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')

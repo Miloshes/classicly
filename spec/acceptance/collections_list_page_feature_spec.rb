@@ -7,22 +7,6 @@ feature 'Collections list page feature: ', %q{
 } do
 
   background do
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-collection')
     @collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
     @collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name, :book_type => 'book') }
     # Given I am on the collections page:

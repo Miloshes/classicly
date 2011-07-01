@@ -5,25 +5,7 @@ feature 'Collections feature', %q{
   As a user
   I want 
 } do
-  background do
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'book-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'metadescription',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-collection')
-    SeoDefault.make!(:object_type => 'Collection',
-      :object_attribute => 'webtitle',
-      :default_value => 'Read $(name) books only here at Classicly',
-      :collection_type => 'audiobook-collection')
-  end
-
+ 
   scenario 'visiting a collection that has an audiobook collection counterpart' do
     # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
