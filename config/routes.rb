@@ -1,5 +1,4 @@
 Classicly::Application.routes.draw do
-
   namespace 'admin' do
     root :to => "base#home"
     match 'admin_seo' => 'admin_seo#main'
@@ -28,7 +27,7 @@ Classicly::Application.routes.draw do
   match 'authors' => 'pages#authors'
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
-  match 'library' => 'pages#library'
+  match 'library' => 'libraries#show', :as => :library
   match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
   match 'json_audiobooks' => 'audiobooks#json_audiobooks'

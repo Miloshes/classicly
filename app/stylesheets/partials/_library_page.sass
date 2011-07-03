@@ -29,11 +29,17 @@
       :margin
         :top 15px
 
+  h3
+    :clear left
+
   .book-column
     +column(14, true)
     .book
+      :clear left
+      :height 190px
       .cover
-        +column(3)
+        +column(3, true)
+        :margin-top 0px
         img
           :width 100px
           :height 155px
@@ -49,3 +55,7 @@
           :font-size 16px
           :font-weight normal
           :color #333333
+      .download
+        +column(11, true)
+      .read
+        +column(11, true)
