@@ -4,6 +4,8 @@ class Audiobook < ActiveRecord::Base
 
   belongs_to :author
   belongs_to :custom_cover
+
+  has_many :libraries, :through => :library_audiobooks
   
   has_many :chapters, :class_name => 'AudiobookChapter'
 

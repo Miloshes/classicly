@@ -1,5 +1,6 @@
 class Login < ActiveRecord::Base
   has_many :reviews
+  has_one :library
   
   def self.register_from_ios_app(params)
     params.stringify_keys!
