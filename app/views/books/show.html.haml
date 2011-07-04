@@ -12,20 +12,21 @@
   .cover-column
     #current-book.cover.medium
       = cover_image_link(@book, 2)
-    %h4 Related
-    .cover.small.related
-      = cover_image_link(@related_books.first, 2)
-      .text
-        = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
-        %span.type
-          Book
-    - 1.upto(@related_books.count - 1) do|index|
-      .cover.tiny.related
-        = cover_image_link(@related_books[index], 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link(@related_books.first, 2)
         .text
-          = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
           %span.type
             Book
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link(@related_books[index], 2)
+          .text
+            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+            %span.type
+              Book
   .book-column
     #book-metadata.grid_5.omega
       - cache :action => 'show', :action_suffix => 'book_details' do

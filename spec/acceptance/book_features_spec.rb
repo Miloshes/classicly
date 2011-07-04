@@ -24,6 +24,7 @@ feature 'Book features', %q{
     # When I am in the book detail page
     visit author_book_path(@author, @book)
     # I should see a button to read it online
+    
     page.should have_css('.read a')
   end
   
