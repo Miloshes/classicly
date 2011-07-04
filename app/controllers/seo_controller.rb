@@ -3,9 +3,8 @@ class SeoController < ApplicationController
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
     if @book
-      @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      @review = session[:review] || Review.new
-      session[:review] = nil
+      @related_books = @book.find_fake_related(3, ['books.id', 'author_id', 'cached_slug', 'pretty_title'])
+      @related_books = @book.find_more_from_same_collection(2) if @related_books.empty?
       if @book.is_a?(Book)
         render 'books/show'
       else

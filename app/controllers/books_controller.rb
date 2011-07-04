@@ -71,8 +71,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @related_books = @book.find_fake_related(8)
-    @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+    @related_books = @book.find_fake_related(3)
     # if there was a failed review, it will come in the session object
     @review = session[:review] || Review.new
     session[:review] = nil
