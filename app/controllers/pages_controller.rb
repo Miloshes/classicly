@@ -26,6 +26,8 @@ class PagesController < ApplicationController
   end
   
   def main
+    @featured_book = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(1).first
+    @column_books = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(9)
   end
   
   def privacy

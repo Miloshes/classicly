@@ -13,6 +13,7 @@ feature 'Seo defaults feature', %q{
   end
   
   scenario 'going to the root page' do
+    1.upto(10){|index| Book.make!(:blessed => true)}
     #given there is a default for the title in the home page 
     SeoDefault.make!(:object_type => 'HomePage',
       :object_attribute => 'webtitle',
