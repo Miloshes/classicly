@@ -9,20 +9,23 @@
 
 #book-page{:name => "#{@book.id}"}
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
-    .cover-with-title-here.small.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-
+    #current-book.cover.medium
+      = cover_image_link(@book, 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link(@related_books.first, 2)
+        .text
+          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
+          %span.type
+            Book
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link(@related_books[index], 2)
+          .text
+            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+            %span.type
+              Book
   .book-column
     #book-metadata
       %h1

@@ -51,8 +51,7 @@ class SeoController < ApplicationController
     elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
       @book = seo.seoable
       #TODO check if this is actually used in the book , audiobook and landing pages:
-      @related_books = @book.find_fake_related(8)
-      @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+      @related_books = @book.find_fake_related(3)
       @format = seo.download_format
       if seo.is_for_type?('audiobook')
         @audiobook = @book
