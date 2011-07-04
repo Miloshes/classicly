@@ -50,7 +50,6 @@
           = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
-= javascript_include_tag 'covers-book-detail'
 
 :javascript
   $('#reviews').data('book_id', #{@book.id})
