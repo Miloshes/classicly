@@ -20,6 +20,8 @@ feature 'Collections feature', %q{
     end
     #Then I should see that I am on the Hummies audiobooks page
     page.should have_content('Hummies Audiobooks')
+    #And I should verify that a tooltip div exists
+    page.should have_css('.audiobook-switcher .tooltip')
   end
   
   scenario 'visiting a collection that does not have an audiobook collection counterpart' do
@@ -46,5 +48,7 @@ feature 'Collections feature', %q{
     end
     # Then I should see that I am on the Hummies books page
     page.should have_content('Hummies Books')
+    #And I should verify that a tooltip div exists
+    page.should have_css('.audiobook-switcher .tooltip')
   end
 end

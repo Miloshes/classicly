@@ -10,11 +10,12 @@
   - if @collection.has_book_counterpart?
     .audiobook-switcher
       = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug)
+      .tooltip
+        Check out our book titles for this collection!
       %span |&nbsp; Audiobooks
   .collection-info
     %h1="#{@collection.name} Audiobooks"
     %p=simple_format(@collection.parsed_description)
-  -# Warning. Don't change name attribute below , please ask Nacho:
   .featured-books.audiobooks
     .cover.medium
       = cover_image_link(@collection.featured_audiobook, 2)
@@ -34,5 +35,3 @@
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show_collection', :id => @seo.slug}
-
-= javascript_include_tag 'covers-collection-detail-page'

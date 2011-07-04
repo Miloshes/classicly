@@ -2219,47 +2219,15 @@ a.button.kiss span {
   width: auto !important;
 }
 
-/* line 1, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame {
-  border: 1px solid #fcfcfc;
-  float: left;
-  padding: 0px;
-}
-/* line 5, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame img {
-  margin-bottom: 0px !important;
-  margin-top: 0px !important;
-  vertical-align: sub !important;
-}
-/* line 10, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame div {
-  float: left;
-  border: 1px solid #f6f6f6;
-  padding: 0px;
-}
-/* line 14, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame div div {
-  float: left;
-  border: 1px solid #ededed;
-  padding: 0px;
-}
-/* line 18, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame div div div {
-  float: left;
-  border: 1px solid #e0e0e0;
-  padding: 0px;
-}
-/* line 22, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame div div div div {
-  border: 1px solid #fcfcfc;
-  float: left;
-  padding: 0px;
-}
-/* line 26, ../../../app/stylesheets/partials/_decos.scss */
-.cover-frame div div div div div {
-  float: left;
-  border: 1px solid #f6f6f6;
-  padding: 0px;
+/* line 1, ../../../app/stylesheets/partials/_decos.sass */
+.tooltip {
+  display: none;
+  background-color: #ffffaa;
+  border: 1px solid #cccc99;
+  padding: 3px;
+  font-size: 13px;
+  -moz-box-shadow: 2px 2px 11px #666666;
+  -webkit-box-shadow: 2px 2px 11px #666666;
 }
 
 /* line 41, ../../../app/stylesheets/partials/_covers.sass */
