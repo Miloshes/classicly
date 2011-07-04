@@ -132,6 +132,25 @@ namespace :test_web_api do
       puts "Response for AUDIOBOOK was: #{response.body}"
   end
   
+  task :get_ratings_for_all_books => :environment do
+    data = {
+        'action'    => 'get_ratings_for_all_books',
+        'book_type' => 'book'
+      }
+      
+      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response for BOOK was: #{response.body}"
+
+
+      data = {
+          'action'    => 'get_ratings_for_all_books',
+          'book_type' => 'audiobook'
+        }
+
+      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      puts "Response for AUDIOBOOK was: #{response.body}"
+  end
+  
   task :get_review_for_book_by_user => :environment do
     data = {
         'action'            => 'get_review_for_book_by_user',
