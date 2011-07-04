@@ -77,7 +77,7 @@ class WebApiHandler
     result = {}
     
     books.each do |book|
-      result[book.id] = book.avg_rating
+      result[book.id] = book.avg_rating.to_s
     end
     
     return result.to_json
