@@ -8,7 +8,7 @@
       
 #download-confirmation-page
   .cover-column
-    = cover_image_link @book, 2
+    = cover_image_link @audiobook, 2
     - unless @related_book.nil? 
       .cover.small
         = cover_image_link @related_book, 2
