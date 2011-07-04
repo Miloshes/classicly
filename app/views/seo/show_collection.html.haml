@@ -11,7 +11,9 @@
   - if @collection.has_audiobook_counterpart?
     .audiobook-switcher  
       %span Books |&nbsp;
-      = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)    
+      = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)
+      .tooltip
+        Check out our audiobook titles for this collection!
   .collection-info
     %h1
       =@collection.name
@@ -52,5 +54,3 @@
     = raw render_performable_script(:author)
   - else
     = raw render_performable_script(:collection)
-
-= javascript_include_tag 'covers-collection-detail-page'
