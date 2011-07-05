@@ -9,7 +9,9 @@ feature 'Collections list page feature: ', %q{
   background do
     @collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
     @collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name, :book_type => 'book') }
-    # Given I am on the collections page:
+    # And Given I have a genre collection
+    Collection.make!(:collection_type => 'genre', :name => 'Genre Collection', :book_type => 'book') 
+    # When  I visit the collections page:
     visit collections
   end
   
@@ -47,8 +49,10 @@ feature 'Collections list page feature: ', %q{
         page.should have_css("li.collection .browse-this-collection a img")
       end
     end
+    #And I should see the Genre collection
+    page.should have_content("Genre Collection")
   end
-  
+
   scenario 'Viewing a list of audiobook collections' do
     # Given there are audiobook collections
     1.upto(2) do

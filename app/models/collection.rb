@@ -28,7 +28,7 @@ class Collection < ActiveRecord::Base
   belongs_to :genre
   
   scope :of_type, lambda {|type| where(:book_type => type)}
-  scope :collection_type, lambda {|type| where(:collection_type => type)}
+  scope :collection_type, lambda {|type| type.is_a?(Array) ? where(:collection_type.in => type) : where(:collection_type => type)}
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
   
   before_save :set_parsed_description
