@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   def about
-    
   end
 
   def audiobook_authors
@@ -11,7 +10,7 @@ class PagesController < ApplicationController
   
   def audio_collections
     @featured = Collection.of_type('audiobook').collection_type('collection').random(1).first
-    @collections = Collection.where(:id.not_eq => @featured.id).of_type('audiobook').collection_type('collection').order('name asc').page(params[:page]).per(12)
+    @collections = Collection.where(:id.not_eq => @featured.id).of_type('audiobook').collection_type(['collection', 'genre']).order('name asc').page(params[:page]).per(12)
     render 'collections', :layout => 'audibly'
   end
     
@@ -22,7 +21,7 @@ class PagesController < ApplicationController
 
   def collections
     @featured = Collection.of_type('book').collection_type('collection').random(1).select('id, name, parsed_description, cached_slug, book_type').first
-    @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type('collection').order('name asc').page(params[:page]).per(12)
+    @collections = Collection.where(:id.not_eq => @featured.id).of_type('book').collection_type(['collection', 'genre']).order('name asc').page(params[:page]).per(12)
   end
   
   def main
