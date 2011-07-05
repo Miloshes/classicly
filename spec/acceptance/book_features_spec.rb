@@ -7,6 +7,9 @@ feature 'Book features', %q{
 } do
 
   background do
+    @validation_author = Author.make!
+    @validation_book = Book.make!(:author => @validation_author)
+    @validation_audiobook = Audiobook.make!(:author => @validation_author)
     SeoDefault.make!(:object_type => 'Book', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')
     SeoDefault.make!(:object_type => 'Book', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
     SeoDefault.make!(:object_type => 'Audiobook', :object_attribute => 'metadescription', :default_value => 'This is $(pretty_title) metadescription')
@@ -21,6 +24,7 @@ feature 'Book features', %q{
     # When I am in the book detail page
     visit author_book_path(@author, @book)
     # I should see a button to read it online
+    
     page.should have_css('.read a')
   end
   

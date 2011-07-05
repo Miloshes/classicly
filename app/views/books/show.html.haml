@@ -10,14 +10,15 @@
       
 #book-page{:name => @book.id }
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
-    - 1.upto(3) do
-      .cover-with-title-here.tiny.related
-        .stable
-          .spinner
+    #current-book.cover.medium
+      = cover_image_link(@book, 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link_with_text(@related_books.first, 2)
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link_with_text(@related_books[index], 2)
   .book-column
     #book-metadata.grid_5.omega
       - cache :action => 'show', :action_suffix => 'book_details' do
@@ -41,7 +42,6 @@
           = link_to image_tag( 'read_online_big.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
-= javascript_include_tag 'covers-book-detail'
 
 :javascript
   $('#reviews').data('book_id', #{@book.id})

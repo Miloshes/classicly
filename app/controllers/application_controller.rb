@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
   before_filter :set_abingo_identity
+  before_filter :popular_books
   before_filter :popular_collections
   caches_action :collections_for_footer
 
@@ -27,8 +28,16 @@ class ApplicationController < ActionController::Base
     @current_admin_user = current_admin_user_session && current_admin_user_session.admin_user
   end
 
+  def popular_audiobooks
+    @popular_audiobooks = Audiobook.blessed.select("id, author_id, cached_slug, pretty_title").random(3)
+  end
+  
+  def popular_books
+    @popular_books = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(3)
+  end
+  
   def popular_collections
-    @popular_collections = Collection.of_type('book').random(1).select('id')
+    @popular_collections = Collection.of_type('book').random(1).select('id, cached_slug, name')
   end
 
   def require_admin_user

@@ -3,9 +3,8 @@ class SeoController < ApplicationController
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
     if @book
-      @books_from_the_same_collection = @book.find_more_from_same_collection(2)
-      @review = session[:review] || Review.new
-      session[:review] = nil
+      @related_books = @book.find_fake_related(3)
+      @related_books = @book.find_more_from_same_collection(2) if @related_books.empty?
       if @book.is_a?(Book)
         render 'books/show'
       else
@@ -42,8 +41,6 @@ class SeoController < ApplicationController
     elsif seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
-      @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
-      @featured_book = seo.find_featured_book_for_collection
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else
@@ -52,8 +49,7 @@ class SeoController < ApplicationController
     elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
       @book = seo.seoable
       #TODO check if this is actually used in the book , audiobook and landing pages:
-      @related_books = @book.find_fake_related(8)
-      @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+      @related_books = @book.find_fake_related(3)
       @format = seo.download_format
       if seo.is_for_type?('audiobook')
         @audiobook = @book

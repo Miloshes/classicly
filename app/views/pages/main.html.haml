@@ -25,9 +25,8 @@
       Register to keep your reading collection in sync whether on the web or on the go.<br /></br >
 
   #classicly-featured-book
-    .cover-here.huge.random-book
-      .stable
-        .spinner
+    .cover.huge
+      = cover_image_link(@featured_book, 3)
   #links
     %a.button.kiss.large.green{:href => '/collections'}
       %span
@@ -39,20 +38,16 @@
   #book-tiles
     .column
       - 1.upto(3) do
-        .cover-with-title-here.medium.random-book
-          .stable
-            .spinner
+        .cover.medium
+          = cover_image_link_with_text(@column_books.pop, 2)
     .column
       - 1.upto(3) do
-        .cover-with-title-here.medium.random-book
-          .stable
-            .spinner
-
+        .cover.medium
+          = cover_image_link_with_text(@column_books.pop, 2)
     .column.last
       - 1.upto(3) do
-        .cover-with-title-here.medium.random-book
-          .stable
-            .spinner
+        .cover.medium
+          = cover_image_link_with_text(@column_books.pop, 2)
   #links
     %a.button.kiss.large.green{:href => '/collections'}
       %span

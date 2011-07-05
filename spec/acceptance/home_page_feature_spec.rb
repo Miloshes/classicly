@@ -8,6 +8,7 @@ feature 'Home page feature: ', %q{
 
   background do
     # Given a set of collections exists
+    1.upto(10){|index| Book.make!(:blessed => true)}
     1.upto(14) {|index| Collection.make!(:book_type => 'book', :collection_type => 'collection')}
     # And I am on the home page
     visit homepage

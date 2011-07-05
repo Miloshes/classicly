@@ -14,6 +14,7 @@
 			google.load("jqueryui", "1.8.7");
 			google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
 		= include_javascripts :main
+		= javascript_include_tag "http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js"
 		<meta property="fb:admins" content="24611995" />
 		=# javascript_include_tag 'classicly-autocomplete'
 		= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
@@ -68,16 +69,15 @@
 				.row
 					%p.popular
 						Popular
-					- 1.upto(3) do
-						.cover-with-title-here.popular.small
-							.stable
-								.spinner
+					- for book in @popular_books
+						.cover.small
+							= cover_image_link_with_text(book, 2)
 					-  for collection in @popular_collections
-						.collection-with-title-here{:name => collection.id}
-							- 1.upto(6) do
-								.cover-here.mini
-									.stable
-										.spinner
+						.collection-with-title-here
+							- for book in collection.books.limit(6)
+								.cover.mini
+									= cover_image_link(book, 1)
+							= text_for_collection(collection)
 					.links
 						= link_to 'See more popular books', '/best-of'
 						= link_to "Browse collections", '/collections'

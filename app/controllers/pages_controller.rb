@@ -26,13 +26,10 @@ class PagesController < ApplicationController
   end
   
   def main
+    @featured_book = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(1).first
+    @column_books = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(9)
   end
   
   def privacy
-  end
-
-  def random_json_books
-    books = Book.blessed.no_squat_image.select('books.id, author_id, cached_slug, pretty_title').random(params[:total_books].to_i)
-    render :json => Book.hashes_for_JSON(books)
   end
 end

@@ -196,6 +196,7 @@ GEM
     sinatra (1.0)
       rack (>= 1.0)
     sitemap_generator (1.4.0)
+    sorted (0.3.7)
     sqlite3 (1.3.3)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
@@ -262,6 +263,7 @@ DEPENDENCIES
   ruby-debug
   rubyzip
   sitemap_generator
+  sorted
   sqlite3-ruby
   steak
   taps (> 0.3.22)

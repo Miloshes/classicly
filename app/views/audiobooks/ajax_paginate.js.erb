@@ -1,5 +1,0 @@
-$('.pagination').html("<%= escape_javascript(paginate(@audiobooks, :params => {:controller => 'audiobooks', :action => 'ajax_paginate'} , :remote => true).to_s)%>");
-
-$('ul.book-list').html("<%= escape_javascript(render :partial => 'audiobooks/listed_audio_book', :collection => @audiobooks, :as => :audiobook)%>");
-
-coversForRelatedBooks();

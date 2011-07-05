@@ -4,16 +4,25 @@
 - content_for :head do
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
-#book-page.audiobook{:name => @book.id }
+#book-page
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
-    - 1.upto(3) do
-      .cover-with-title-here.small.related
-        .stable
-          .spinner
+    #current-audiobook.cover.medium
+      = cover_image_link(@book, 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link(@related_books.first, 2)
+        .text
+          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
+          %span.type
+            Audiobook
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link(@related_books[index], 2)
+          .text
+            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+            %span.type
+              Audiobook
   .book-column
     #book-metadata.grid_5.omega
       %h1= @book.pretty_title
@@ -23,11 +32,10 @@
           = book_author_link(@book)
       %p= simple_format(@book.description)
     .download
-      = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
+      - if @book.has_mp3_slug?
+        = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
-
-= javascript_include_tag 'covers-book-detail'
 
 
     

@@ -44,6 +44,11 @@ class Audiobook < ActiveRecord::Base
     self.seo_slugs.mp3.first.slug
   end
 
+  def has_mp3_slug?
+    return false if self.seo_slugs.blank? || self.seo_slugs.mp3.blank?
+    true
+  end
+  
   def find_fake_related(number = 8, select = nil)
     # determine if we have a SELECT whitelist on the table. Rails uses a string.
     select_fields = select.join(',') if select

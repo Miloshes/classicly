@@ -22,6 +22,8 @@ class WebApiHandler
     case parsed_data['action']
     when 'get_reviews_for_book'
       response = get_reviews_for_book(parsed_data)
+    when 'get_ratings_for_all_books'
+      response = get_ratings_for_all_books(parsed_data)
     when 'get_review_for_book_by_user'
       response = get_review_for_book_by_user(parsed_data)
     when 'get_list_of_books_the_user_wrote_review_for'
@@ -60,6 +62,22 @@ class WebApiHandler
         :fb_location_city    => review.reviewer.location_city,
         :fb_location_country => review.reviewer.location_country,
       } 
+    end
+    
+    return result.to_json
+  end
+  
+  def get_ratings_for_all_books(params)
+    if params['book_type'] == 'book'
+      books = Book.where(:avg_rating.gt => 0).all()
+    else
+      books = Audiobook.where(:avg_rating.gt => 0).all()
+    end
+    
+    result = {}
+    
+    books.each do |book|
+      result[book.id] = book.avg_rating.to_s
     end
     
     return result.to_json

@@ -23,16 +23,16 @@ class SeoSlug < ActiveRecord::Base
         (self.seoable.books.blessed.first || self.seoable.books.first)
   end
 
-  def find_paginated_blessed_books_for_collection(params)
-    return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
-    self.seoable.book_type == 'audiobook' ? self.seoable.audiobooks.blessed.page(params[:page]).per(10) :
-        self.seoable.books.blessed.page(params[:page]).per(10)
-  end
+  # def find_paginated_blessed_books_for_collection(params)
+  #     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
+  #     self.seoable.book_type == 'audiobook' ? self.seoable.audiobooks.blessed.page(params[:page]).per(10) :
+  #         self.seoable.books.blessed.page(params[:page]).per(10)
+  #   end
 
   def find_paginated_listed_books_for_collection(params)
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
-    self.seoable.book_type == 'audiobook' ? self.seoable.audiobooks.page(params[:page]).per(10) :
-        self.seoable.books.page(params[:page]).per(10)
+    self.seoable.book_type == 'audiobook' ? self.seoable.audiobooks.sorted(:sort => params[:sort]).page(params[:page]).per(10) :
+        self.seoable.books.sorted(:sort => params[:sort]).page(params[:page]).per(10)
   end
 
   def download_format

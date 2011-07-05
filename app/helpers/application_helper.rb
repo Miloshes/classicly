@@ -32,6 +32,10 @@ module ApplicationHelper
                       author_book_url(cover.author, cover)
   end
 
+  def cover_image_link_with_text(book, size, html_class=nil)
+    cover_image_link(book, size, html_class) + text_for_cover(book)
+  end
+  
   def cover_tag(book, size='2', klass='')
     type = book.class.to_s.downcase
     image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
@@ -125,15 +129,6 @@ module ApplicationHelper
     end
   end
   
-  def sort_audiobooks_ajax_link(id, text, sort_by)
-    link_to text, { :controller => 'audiobooks', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
-      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
-  end
-
-  def sort_books_ajax_link(id, text, sort_by)
-    link_to text, { :controller => 'books', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
-      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
-  end
   def shorten_text(text, limit)
     return text if text.length <= limit
     text.slice(0, (limit - 3)).concat("...")
@@ -141,6 +136,19 @@ module ApplicationHelper
 
   def facebook_image(fb_connect_id)
     image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
+  end
+  
+  def text_for_cover(book)
+    book_type = book.is_a?(Book) ? 'Book' : 'Audiobook'
+    content_tag(:div, nil, :class => 'text') do
+      link_to(content_tag(:span, book.pretty_title, :class => 'title'), author_book_url(book.author, book),:class => 'no-underline') + content_tag(:span, book_type, :class => 'type')
+    end
+  end
+  
+  def text_for_collection(collection)
+    content_tag(:div, nil, :class => 'text') do
+      link_to(content_tag(:span, collection.name, :class => 'title'), seo_url(collection), :class => 'no-underline') + content_tag(:span, 'Collection', :class => 'type')
+    end
   end
 #===========================================================================================================================
 #===========================================================================================================================
