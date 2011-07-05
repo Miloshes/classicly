@@ -57,9 +57,10 @@ feature 'Collections list page feature: ', %q{
     # Given there are audiobook collections
     1.upto(2) do
       Collection.make!(:audiobook_collection_with_ten_audiobooks)
-    end      
-    # Given I am in the collections page
-    # And I click Audiobooks
+    end
+    # And given we have an audiobook genre collection
+      Collection.make!(:book_type => 'audiobook', :collection_type => 'genre', :name => 'Genre Audiobooks')
+    # When I click the Audiobooks switch
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
     end
@@ -71,6 +72,8 @@ feature 'Collections list page feature: ', %q{
       # And I should see a button to browse each collection
       page.should have_css("li.collection .browse-this-collection a img")
     end
+    # And I should see the genre collection
+    page.should have_content('Genre Audiobooks')
   end
   
   scenario 'going to the  featured collection route' do
