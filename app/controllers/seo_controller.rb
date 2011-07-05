@@ -41,8 +41,6 @@ class SeoController < ApplicationController
     elsif seo.is_for_type?('collection')
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
-      @blessed_books = seo.find_paginated_blessed_books_for_collection(params)
-      @featured_book = seo.find_featured_book_for_collection
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else

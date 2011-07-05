@@ -64,6 +64,9 @@ gem 'sitemap_generator'
 # SQLite3 driver - http://rubygems.org/gems/sqlite3
 gem 'sqlite3-ruby'
 
+# gem to allow sort and pagination using regular HTML and avoid showing the params in the URL
+gem 'sorted'
+
 # encode/decode HTML entities (like &yacute;) - http://rubygems.org/gems/htmlentities
 gem 'htmlentities'
 

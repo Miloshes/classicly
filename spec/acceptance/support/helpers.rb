@@ -4,6 +4,12 @@ module HelperMethods
     fragments = url_str.split('/').last
   end
   
+  def create_books
+    author = Author.make!
+    1.upto(5) {|i| Book.make!(:author => author)}
+    1.upto(5) {|i| Book.make!(:author => author, :blessed => true)}
+  end
+
   def create_blog_post_with_text(text, title='The Blog Post')
     visit admin_blog_posts_path
     click_on 'New entry'

@@ -22,7 +22,6 @@ Classicly::Application.routes.draw do
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
-  match 'audiobooks/ajax_paginate' => 'audiobooks#ajax_paginate', :as => 'ajax_paginate_audiobooks'
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors' => 'pages#authors'
@@ -31,15 +30,9 @@ Classicly::Application.routes.draw do
   match 'library' => 'pages#library'
   match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
-  match 'json_audiobooks' => 'audiobooks#json_audiobooks'
-  match 'json_books' => 'books#json_books'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
-  match 'random_json_audiobooks/:total_audiobooks' => 'audiobooks#random_json'
-  match 'random_json_books/:total_books' => 'pages#random_json_books'
-  match 'related_audiobooks/:id/:total_related' => 'audiobooks#related_audiobooks_in_json'
-  match 'related_books/:id/:total_related' => 'books#related_books_JSON'
 
   # TODO: remove, this is only here for testing
   match '/reader/:id/:page_number' => "book_pages#show", :via => :get
@@ -70,7 +63,6 @@ Classicly::Application.routes.draw do
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
   
   resources :books, :only => :index do
-    get :ajax_paginate, :on => :collection
     get :show_review_form, :on => :member
     resources :reviews
   end
@@ -80,7 +72,7 @@ Classicly::Application.routes.draw do
   end
   
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match '/:id/(:page)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/ }
+  match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, :sort => /[downloaded_count_asc | pretty_title_asc]/ }
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately

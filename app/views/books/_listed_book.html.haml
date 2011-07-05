@@ -3,7 +3,7 @@
     = cover_image_link(book, 2)
 
   .book-info
-    = link_to book.title, author_book_url(book.author, book), :class => "title"
+    = link_to book.pretty_title, author_book_url(book.author, book), :class => "title"
     %p
       %span
         by

@@ -3,7 +3,7 @@
 
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => seo_front_end_meta_description_text(@collection),
-      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@featured_book.id}_size2.jpg",
+      :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.featured_book}_size2.jpg",
       :title => @collection.name, :type => 'album' }, @collection.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
@@ -40,11 +40,11 @@
 
     .sorting
       %span Sort By:
-      = sort_books_ajax_link @collection.id, 'Most Downloaded', 'downloaded_count'
-      = sort_books_ajax_link @collection.id, 'Title', 'title'
+      = link_to_sorted 'Most Downloaded', :downloaded_count
+      = link_to_sorted 'Title', :pretty_title
       -# sorting by author an author collection is pointless
-      - unless @collection.is_author_collection?
-        = sort_books_ajax_link @collection.id, 'Author', 'author' 
+      -# unless @collection.is_author_collection?
+        =# sort_books_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .pagination
