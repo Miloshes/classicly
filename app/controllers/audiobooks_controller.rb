@@ -11,7 +11,6 @@ class AudiobooksController < ApplicationController
     @audiobook = Audiobook.find params[:id]
     @popular_books = Audiobook.blessed.random 3
     @related_book = @audiobook.find_fake_related(1).first
-    render :layout => 'download'
   end
   
   def json_audiobooks

@@ -153,6 +153,12 @@ module ApplicationHelper
       link_to(content_tag(:span, book.pretty_title, :class => 'title'), author_book_url(book.author, book),:class => 'no-underline') + content_tag(:span, book_type, :class => 'type')
     end
   end
+  
+  def text_for_collection(collection)
+    content_tag(:div, nil, :class => 'text') do
+      link_to(content_tag(:span, collection.name, :class => 'title'), seo_url(collection), :class => 'no-underline') + content_tag(:span, 'Collection', :class => 'type')
+    end
+  end
 #===========================================================================================================================
 #===========================================================================================================================
 # books only helpers

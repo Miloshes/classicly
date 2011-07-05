@@ -48,7 +48,6 @@ a.no-underline
     :width 100%
     :margin-top -34px
     :padding 0
-    :display none
     a
       text-decoration: none
     span.title
@@ -79,6 +78,12 @@ a.no-underline
     img
       @include tiny
       :float left
+  &.mini
+    :height $miniH+20px
+    img
+      @include mini
+      :float left
+      :border 1px solid #333333 
   &.small
     :height $smallH+20px
     img

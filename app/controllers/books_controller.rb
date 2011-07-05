@@ -23,7 +23,6 @@ class BooksController < ApplicationController
   def download
     @popular_books = Book.blessed.random 3
     @related_book = @book.find_fake_related(1).first
-    render :layout => 'download'
   end
 
   def json_books

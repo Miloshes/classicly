@@ -7,14 +7,12 @@ embed_assets: on
 javascripts:
   main:
     - public/javascripts/application.js
-    - public/javascripts/covers-for-collections.js
     - public/javascripts/global.js
     - public/javascripts/rails.js
     - public/javascripts/jquery.rating.js
     - public/javascripts/collection-page.js
     - public/javascripts/globales.js
     - public/javascripts/global.js
-    - public/javascripts/covers-global.js
     - public/javascripts/masonry.js
 stylesheets:
   common:
