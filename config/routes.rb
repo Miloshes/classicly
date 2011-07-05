@@ -72,7 +72,13 @@ Classicly::Application.routes.draw do
   end
   
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, :sort => /[downloaded_count_asc | pretty_title_asc]/ }
+  match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 
+    :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
+    downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
+    downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
+    downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
+    downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
+  
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately
