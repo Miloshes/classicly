@@ -24,11 +24,11 @@ Classicly::Application.routes.draw do
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
-  match 'authors' => 'pages#authors'
+  match 'authors/(:page)' => 'pages#authors'
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
   match 'library' => 'pages#library'
-  match 'collections' => 'pages#collections'
+  match 'collections/(:page)' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
 
   # for delivering audiobook file
@@ -46,11 +46,6 @@ Classicly::Application.routes.draw do
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
   get "bingo_experiments/create"
-
-  
-  
-  
-
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post  
   match 'search' => 'search#show', :method => :post
