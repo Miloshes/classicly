@@ -334,94 +334,151 @@ a.highlight:hover {
 
 /* line 33, ../../../app/stylesheets/partials/_layout.sass */
 #header {
-  float: left;
+  position: fixed;
+  z-index: 100000;
+  top: 0;
   width: 100%;
   text-align: center;
-  float: left;
   padding: 0;
+  height: 60px;
+  background: white;
 }
-/* line 39, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap {
-  width: 100%;
-  display: block;
-  height: 52px;
-  text-align: center;
-  background: #c9af87;
-}
-/* line 45, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top {
-  width: 960px;
-  margin: 0 auto;
-  height: 30px;
+/* line 42, ../../../app/stylesheets/partials/_layout.sass */
+#header .top-border {
+  height: 60px;
+  border-bottom: 3px solid #414141;
+  width: 950px;
+  margin-left: 5px;
 }
 /* line 49, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #logo {
+#header .wrap {
+  display: block;
+  text-align: center;
+  width: 960px;
+  margin: 0 auto;
+  height: 60px;
+}
+/* line 55, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #logo {
   float: left;
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 110px;
+}
+/* line 147, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #header .wrap #logo {
+  overflow-x: hidden;
+}
+/* line 58, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #logo a {
+  font-size: 24px;
+  font-family: "Helvetica", "Arial", "Sans-serif";
+  font-weight: bold;
+  text-decoration: none;
+  color: #333333;
+  letter-spacing: -2px;
+  float: left;
+  padding-top: 13px;
+}
+/* line 68, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #logo a:hover {
+  color: red;
+}
+/* line 70, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #logo img {
+  margin-top: 7px;
+}
+/* line 74, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 190px;
+  margin-top: 19px;
 }
 /* line 147, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #header .wrap .top #logo {
+* html #header .wrap #search {
   overflow-x: hidden;
 }
-/* line 52, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #logo img {
-  margin-top: 7px;
+/* line 78, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search form {
+  background: white;
+  height: 20px;
+  border-bottom: 1px solid #aaaaaa;
 }
-/* line 55, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav {
+/* line 83, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search input {
+  margin-top: 2px;
+  color: #d2d2d3;
+  font-size: 12px;
+  font-family: "helvetica";
+  border: 0;
+  width: 150px;
+  height: 10px;
+  outline: none;
+  float: left;
+  margin-top: 3px;
+  padding-left: 3px;
+  padding-top: 3px;
+}
+/* line 98, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search input:hover {
+  color: #333333;
+}
+/* line 100, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search button {
+  width: 25px;
+  height: 16px;
+  display: block;
+  background: url(/images/search-button.png);
+  border: 0;
+  float: right;
+  margin-top: 1px;
+}
+/* line 109, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #search button:hover {
+  cursor: pointer;
+}
+/* line 113, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #nav {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 470px;
+  margin-right: 0;
+  width: 630px;
   text-align: left;
-  margin-top: 14px;
+  margin-top: 24px;
 }
 /* line 147, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #header .wrap .top #nav {
+* html #header .wrap #nav {
   overflow-x: hidden;
 }
-/* line 60, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul {
+/* line 118, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #nav ul {
   list-style: none;
 }
-/* line 62, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul li {
-  float: left;
+/* line 120, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #nav ul li {
+  float: right;
   display: inline;
 }
-/* line 65, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul li a {
-  color: #442507;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: "helvetica";
-  display: block;
-  width: 106px;
-  height: 26px;
-  float: left;
+/* line 123, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #nav ul li a {
+  color: #666666;
+  margin-left: 15px;
   text-decoration: none;
-  background: url(/images/nav-bg.png);
-  text-align: center;
-  margin-right: 6px;
-  padding-top: 5px;
+  font-size: 14px;
+  -webkit-transition: color 0.6s ease;
+  -webkit-transition: color 0.6s ease;
+  -moz-transition: color 0.6s ease;
+  -o-transition: color 0.6s ease;
+  transition: color 0.6s ease;
 }
-/* line 81, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul li a:hover {
-  cursor: pointer;
-  opacity: 0.8;
+/* line 134, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #nav ul li a:hover {
+  color: black;
 }
-/* line 85, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul .right {
-  background: url("/images/header-nav-right.png");
-  height: 35px;
-  width: 12px;
-  display: block;
-  float: left;
-}
-/* line 92, ../../../app/stylesheets/partials/_layout.sass */
+/* line 138, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .bottom {
   float: left;
   display: block;
@@ -432,60 +489,8 @@ a.highlight:hover {
   margin-top: -5px;
   padding: 0;
 }
-/* line 101, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 190px;
-  margin-top: 17px;
-  margin-left: 65px;
-}
-/* line 147, ../../../../../.rvm/gems/ruby-1.8.7-p302/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #header .wrap #search {
-  overflow-x: hidden;
-}
-/* line 106, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search form {
-  background: white;
-  height: 22px;
-  border: 1px solid #ab9573;
-}
-/* line 110, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search input {
-  margin-top: 2px;
-  color: #d2d2d3;
-  font-size: 12px;
-  font-family: "helvetica";
-  border: 0;
-  width: 150px;
-  height: 12px;
-  outline: none;
-  float: left;
-  margin-top: 5px;
-  padding-left: 3px;
-  padding-top: 3px;
-}
-/* line 125, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search input:focus {
-  color: #333333;
-}
-/* line 127, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search button {
-  width: 25px;
-  height: 16px;
-  display: block;
-  background: url(/images/search-button.png);
-  border: 0;
-  float: right;
-  margin-top: 1px;
-}
-/* line 136, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search button:hover {
-  cursor: pointer;
-}
 
-/* line 139, ../../../app/stylesheets/partials/_layout.sass */
+/* line 147, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -496,16 +501,17 @@ a.highlight:hover {
   padding: 0;
 }
 
-/* line 149, ../../../app/stylesheets/partials/_layout.sass */
+/* line 157, ../../../app/stylesheets/partials/_layout.sass */
 #footer {
-  background: #c9af87;
+  background: #e6e6e6;
   width: 100%;
   float: left;
+  border-top: 3px solid #323232;
   padding-top: 10px;
   padding-bottom: 20px;
   text-align: center;
 }
-/* line 157, ../../../app/stylesheets/partials/_layout.sass */
+/* line 166, ../../../app/stylesheets/partials/_layout.sass */
 #footer .centering {
   margin: 0 auto;
   width: 980px;
@@ -514,7 +520,7 @@ a.highlight:hover {
   border: 1px solid #bb9d79;
   background: #cab08b;
 }
-/* line 164, ../../../app/stylesheets/partials/_layout.sass */
+/* line 173, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list {
   margin: 0 auto;
   width: 800px;
@@ -523,11 +529,11 @@ a.highlight:hover {
   font-family: "helvetica";
   font-size: 17px;
 }
-/* line 171, ../../../app/stylesheets/partials/_layout.sass */
+/* line 180, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list img {
   float: left;
 }
-/* line 173, ../../../app/stylesheets/partials/_layout.sass */
+/* line 182, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list .collections {
   width: 830px;
   display: block;
@@ -536,7 +542,7 @@ a.highlight:hover {
   border-left: 1px solid #866a47;
   border-right: 1px solid #866a47;
 }
-/* line 182, ../../../app/stylesheets/partials/_layout.sass */
+/* line 191, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a {
   color: white;
   text-decoration: none;
@@ -550,16 +556,16 @@ a.highlight:hover {
 * html #footer .collection-names-list a {
   overflow-x: hidden;
 }
-/* line 187, ../../../app/stylesheets/partials/_layout.sass */
+/* line 196, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list a:hover {
   text-shadow: 0 0 15px white;
 }
-/* line 190, ../../../app/stylesheets/partials/_layout.sass */
+/* line 199, ../../../app/stylesheets/partials/_layout.sass */
 #footer .collection-names-list span.linky {
   width: 110px;
   padding: 5px;
 }
-/* line 193, ../../../app/stylesheets/partials/_layout.sass */
+/* line 202, ../../../app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -572,33 +578,33 @@ a.highlight:hover {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 204, ../../../app/stylesheets/partials/_layout.sass */
+/* line 213, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 208, ../../../app/stylesheets/partials/_layout.sass */
+/* line 217, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 213, ../../../app/stylesheets/partials/_layout.sass */
+/* line 222, ../../../app/stylesheets/partials/_layout.sass */
 #footer .about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 220, ../../../app/stylesheets/partials/_layout.sass */
+/* line 229, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 224, ../../../app/stylesheets/partials/_layout.sass */
+/* line 233, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app {
   text-align: left;
   float: left;
@@ -606,74 +612,84 @@ a.highlight:hover {
   margin-left: 10px;
   margin-right: 10px;
 }
-/* line 231, ../../../app/stylesheets/partials/_layout.sass */
+/* line 240, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app h5 {
   color: #43260f;
   font-size: 18px;
   margin: 0;
-  margin-top: 20px;
   padding: 0;
 }
-/* line 237, ../../../app/stylesheets/partials/_layout.sass */
+/* line 245, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app span {
   color: #43260f;
   font-size: 12px;
   display: block;
   Width: 100%;
 }
-/* line 242, ../../../app/stylesheets/partials/_layout.sass */
+/* line 250, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.link {
   margin-top: 5px;
 }
-/* line 245, ../../../app/stylesheets/partials/_layout.sass */
+/* line 253, ../../../app/stylesheets/partials/_layout.sass */
 #footer .applications .app img.icon {
   float: left;
   margin-top: 10px;
 }
-/* line 249, ../../../app/stylesheets/partials/_layout.sass */
+/* line 257, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 256, ../../../app/stylesheets/partials/_layout.sass */
+/* line 264, ../../../app/stylesheets/partials/_layout.sass */
 #footer .connect a img:hover {
   opacity: 0.8;
 }
 
-/* line 262, ../../../app/stylesheets/partials/_layout.sass */
+/* line 270, ../../../app/stylesheets/partials/_layout.sass */
+#left-column {
+  margin-top: 80px;
+}
+
+/* line 273, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
-  width: 190px;
+  width: 210px;
   float: left;
-  padding-top: 20px;
+  margin-top: 80px;
   margin-left: 20px;
 }
-/* line 268, ../../../app/stylesheets/partials/_layout.sass */
+/* line 280, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
-  text-align: left;
+  text-align: right;
+  float: left;
+  height: 150px;
+  width: 100%;
 }
-/* line 271, ../../../app/stylesheets/partials/_layout.sass */
+/* line 286, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
-  float: left !important;
+  float: right !important;
   margin: 0;
-  margin-bottom: 10px;
   padding: 0;
 }
-/* line 276, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .social iframe {
-  float: left;
-}
-/* line 278, ../../../app/stylesheets/partials/_layout.sass */
+/* line 291, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
-  margin-bottom: 10px;
+  float: right !important;
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+  width: 60px !important;
 }
-/* line 281, ../../../app/stylesheets/partials/_layout.sass */
+/* line 297, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
+  float: right !important;
+  display: block;
+  width: 150px !important;
+  text-align: right !important;
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 285, ../../../app/stylesheets/partials/_layout.sass */
+/* line 305, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -681,42 +697,43 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 292, ../../../app/stylesheets/partials/_layout.sass */
+/* line 312, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row {
-  Width: 100%;
-  text-align: left;
+  width: 100%;
+  float: left;
+  text-align: right;
   margin-bottom: 12px;
   color: #333333;
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 299, ../../../app/stylesheets/partials/_layout.sass */
+/* line 320, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 301, ../../../app/stylesheets/partials/_layout.sass */
+/* line 322, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 303, ../../../app/stylesheets/partials/_layout.sass */
+/* line 324, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 307, ../../../app/stylesheets/partials/_layout.sass */
+/* line 328, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
   background: #ffffd7;
   text-decoration: none;
-  float: left;
+  float: right;
 }
-/* line 313, ../../../app/stylesheets/partials/_layout.sass */
+/* line 334, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 316, ../../../app/stylesheets/partials/_layout.sass */
+/* line 337, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
@@ -724,8 +741,12 @@ a.highlight:hover {
   padding: 0;
   padding-bottom: 10px;
 }
+/* line 344, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .cover img {
+  float: right !important;
+}
 
-/* line 324, ../../../app/stylesheets/partials/_layout.sass */
+/* line 348, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -734,14 +755,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 331, ../../../app/stylesheets/partials/_layout.sass */
+/* line 355, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 337, ../../../app/stylesheets/partials/_layout.sass */
+/* line 361, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -753,14 +774,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 340, ../../../app/stylesheets/partials/_layout.sass */
+/* line 364, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 345, ../../../app/stylesheets/partials/_layout.sass */
+/* line 369, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -772,7 +793,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 348, ../../../app/stylesheets/partials/_layout.sass */
+/* line 372, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -781,7 +802,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 356, ../../../app/stylesheets/partials/_layout.sass */
+/* line 380, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -793,12 +814,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 359, ../../../app/stylesheets/partials/_layout.sass */
+/* line 383, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 363, ../../../app/stylesheets/partials/_layout.sass */
+/* line 387, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;

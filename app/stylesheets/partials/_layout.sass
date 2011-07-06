@@ -31,82 +31,55 @@ a.highlight
     :cursor pointer
 
 #header
-  :float left
+  :position fixed
+  :z-index 100000
+  :top 0
   :width 100%
   :text-align center
-  :float left
   :padding 0
+  :height 60px
+  :background white
+  .top-border
+    :height 60px
+    :border
+      :bottom 3px solid #414141
+    :width 950px
+    :margin
+      :left 5px
   .wrap
-    :width 100%
     :display block
-    :height 52px
     :text-align center
-    background: $top-nav-bg
-    .top
-      :width 960px
-      :margin 0 auto
-      :height 30px
-      #logo
-        :float left
-        +column(5)
-        img
-          :margin
-            :top 7px
-      #nav
-        +column(12)
-        text-align: left
-        :margin
-          :top 14px
-        ul
-          list-style: none
-          li
-            :float left
-            :display inline
-            a
-              :color #442507
-              :font-size 14px
-              :font-weight bold
-              :font-family 'helvetica'
-              :display block
-              :width 106px
-              :height 26px
-              :float left
-              :text-decoration none
-              :background url(/images/nav-bg.png)
-              :text-align center
-              :margin
-                :right 6px
-              :padding
-                :top 5px
-              &:hover
-                :cursor pointer
-                :opacity .8
-
-          .right
-            :background url('/images/header-nav-right.png')
-            :height 35px
-            :width 12px
-            :display block
-            :float left
-
-    .bottom
+    :width 960px
+    :margin 0 auto
+    :height 60px
+    #logo
       :float left
-      :display block
-      :width 100%
-      :height 6px
-      :background url(/images/shadow-top.png) repeat-x
-      :margin 0
-        :top -5px
-      :padding 0
+      +column(3)
+      a
+        :font-size 24px
+        :font-family  'Helvetica', 'Arial', 'Sans-serif'
+        :font-weight bold
+        :text-decoration none
+        :color #333333
+        :letter-spacing -2px
+        :float left
+        :padding
+          :top 13px
+        &:hover
+          :color red
+      img
+        :margin
+          :top 7px
+
     #search
-      +column(5, true)
+      +column(5)
       :margin
-        :top 17px
-        :left 65px
+        :top 19px
       form
         :background white
-        height: 22px
-        border: 1px solid #ab9573
+        height: 20px
+        :border
+          :bottom 1px solid #aaaaaa
       input
         margin-top: 2px
         color: #d2d2d3
@@ -114,15 +87,15 @@ a.highlight
         font-family: 'helvetica'
         :border 0
         :width 150px
-        :height 12px
+        :height 10px
         :outline none
         :float left
         :margin
-          :top 5px
+          :top 3px
         :padding
           :left 3px
           :top 3px
-        &:focus
+        &:hover
           :color #333333
       button
         :width 25px
@@ -136,6 +109,41 @@ a.highlight
         &:hover
           :cursor pointer
    
+
+    #nav
+      +column(16, true)
+      text-align: left
+      :margin
+        :top 24px
+      ul
+        list-style: none
+        li
+          :float right
+          :display inline
+          a
+            :color #666666
+            :margin
+              :left 15px
+            :text-decoration none
+            :font-size 14px
+            :-webkit-transition color .6s ease
+            :-webkit-transition color .6s ease
+            :-moz-transition color .6s ease
+            :-o-transition color .6s ease
+            :transition color .6s ease
+            &:hover
+              :color black
+
+     
+    .bottom
+      :float left
+      :display block
+      :width 100%
+      :height 6px
+      :background url(/images/shadow-top.png) repeat-x
+      :margin 0
+        :top -5px
+      :padding 0
 #bottom-shadow
   :float left
   :display block
@@ -147,9 +155,10 @@ a.highlight
   :padding 0
 
 #footer
-  :background #c9af87
+  :background #e6e6e6
   :width 100%
   :float left
+  :border-top 3px solid #323232
   :padding
     :top 10px
     :bottom 20px
@@ -232,7 +241,6 @@ a.highlight
         :color #43260f
         :font-size 18px
         :margin 0
-          :top 20px
         :padding 0
       span
         :color #43260f
@@ -259,26 +267,38 @@ a.highlight
 
 .ui-autocomplete
 
+#left-column
+  :margin
+    :top 80px
 #right-column
-  :width 190px
+  :width 210px
   :float left
-  padding-top: 20px
+  :margin
+    :top 80px
   :margin
     :left 20px
   .social
-    :text-align left
+    :text-align right
+    :float left
+    :height 150px
+    :width 100%
     // google+
     div
-      :float left !important
+      :float right !important
       :margin 0
-        :bottom 10px
       :padding 0
     iframe
-      :float left
       &.fb_ltr
-        :margin
-          :bottom 10px
+        :float right !important
+        :margin 0
+          :left 10px
+        :padding 0
+        :width 60px !important
       &.twitter-follow-button
+        :float right !important
+        :display block
+        :width 150px !important
+        :text-align right !important
         :margin
           :top 5px
           :bottom 5px
@@ -290,8 +310,9 @@ a.highlight
       :bottom 0
     :padding 0
   .row
-    :Width 100%
-    text-align: left
+    :width 100%
+    :float left
+    text-align: right
     margin-bottom: 12px
     color: #333
     font-size: 14px
@@ -309,7 +330,7 @@ a.highlight
         color: #333333
         :background #ffffd7
         :text-decoration none
-        :float left
+        :float right
         &:hover
           :background #ffff66
           :cursor pointer
@@ -319,6 +340,9 @@ a.highlight
     :margin 0
     :padding 0
       :bottom 10px
+  .cover
+    img
+      :float right !important
 
 
 #bottom-notification-bar
