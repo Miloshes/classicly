@@ -43,37 +43,33 @@
 		#fb-root
 		#header
 			.wrap
-				.top-border
+				.top
 					#logo
 						%a{:href => '/'}
-							Classicly.
+							= image_tag 'logo.png'
+					#nav
+						%ul
+							%li
+								%a{:href => '/collections'} Collections
+							%li
+								%a{:href => '/authors'} Authors
+							%li
+								%a.blog{:href => '/blog'} Blog
 
 					#search
 						= form_tag search_url do
 							= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
 							%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-					#nav
-						%ul
-
-							%li
-								%a.blog{:href => '/blog'} Blog
-							%li
-								%a{:href => '/authors'} Authors
-							%li
-								%a{:href => '/collections'} Collections
-
+				.bottom
 		#content
 			#left-column
 				= yield
 			#right-column
 				.social
-					.1
-						<a href="http://twitter.com/classiclyapp" class="twitter-follow-button" data-show-count="false">Follow @classiclyapp</a>
-						<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-					.2
-						<fb:like href="http://www.facebook.com/pages/Classicly/193128150712368" send="true" layout="box_count" width="200" show_faces="true" font=""></fb:like>
-					.3
-						<g:plusone size="tall"></g:plusone>
+					<g:plusone></g:plusone>
+					<a href="http://twitter.com/classiclyapp" class="twitter-follow-button" data-show-count="false">Follow @classiclyapp</a>
+					<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+					<fb:like href="http://www.facebook.com/pages/Classicly/193128150712368" send="true" layout="button_count" width="200" show_faces="true" font=""></fb:like>
 				.row
 					%p.popular
 						Popular
@@ -90,6 +86,7 @@
 						= link_to 'See more popular books', '/best-of'
 						= link_to "Browse collections", '/collections'
 						= link_to "Browse authors", '/authors'
+		#bottom-shadow
 		= render :partial => 'shared/footer'
 	#bottom-notification-bar{:style => 'display:none'}
 		.content
