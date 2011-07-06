@@ -1,7 +1,7 @@
 %h2.section-header
   Default settings for SEO.
 
-%table
+%table.listing
   %thead
     %tr
       %th
@@ -19,17 +19,17 @@
   %tbody
     - for seo_default in @seo_defaults
       %tr
-        %th
+        %td
           = seo_default.object_type
-        %th
+        %td
           = seo_default.object_attribute
-        %th
+        %td
           = seo_default.default_value
-        %th
+        %td
           = seo_default.object_type == 'Collection' ? seo_default.collection_type : 'Not applicable'
-        %th
+        %td
           = seo_default.object_type == 'SeoSlug' ? seo_default.format : 'Not applicable'
-        %th
+        %td
           = link_to "Edit", edit_admin_seo_default_path(seo_default)
-%p
+.link.blue
   = link_to 'Back to Admin Seo', admin_admin_seo_path 

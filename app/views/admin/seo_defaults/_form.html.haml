@@ -18,4 +18,5 @@
       = f.text_field :format
     %p
       = f.submit seo_default.new_record? ? 'Save' : 'Update', :disable_with => 'Submiting...'
-= link_to 'Back to index', admin_seo_defaults_path
+.link.blue
+  = link_to 'Back to index', admin_seo_defaults_path
