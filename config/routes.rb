@@ -24,11 +24,11 @@ Classicly::Application.routes.draw do
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
-  match 'authors/(:page)' => 'pages#authors'
+  match 'authors/(:page)' => 'pages#authors', :as => :authors
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
   match 'library' => 'pages#library'
-  match 'collections/(:page)' => 'pages#collections'
+  match 'collections/(:page)' => 'pages#collections', :as => :collections
   match 'collection_json_books' => 'collections#collection_json_books'
 
   # for delivering audiobook file
