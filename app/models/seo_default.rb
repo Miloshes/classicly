@@ -31,12 +31,15 @@ class SeoDefault < ActiveRecord::Base
 
   def default_value_must_be_valid
     return true if self.object_type == 'HomePage' || self.object_type == 'BlogPage'
-    object = self.object_type.constantize.first
+    object = if self.object_type == 'SeoSlug'
+      Book.first # book has the same attributes as audiobook
+    else
+      self.object_type.constantize.first
+    end
     value = self.default_value.clone
     valid = SeoDefault.parse_value_string(value, object).scan(/\$[\(]/).blank?
     errors.add(:default_value, 'is not well formed. Look for $(  characters with no closing or opening parentheses.') unless valid
   end
-  
   private
   def self.parse_value_string(string_to_parse, object)
     result = string_to_parse.scan /\$[\(]\w+.\w+[\)]/
