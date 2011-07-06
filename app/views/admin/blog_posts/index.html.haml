@@ -1,7 +1,5 @@
-%h1
+%h2.section-header
   Blog Posts
-
-= link_to 'New entry', new_admin_blog_post_path
 
 %table#blog_entries_table.listing
   %thead
@@ -22,7 +20,5 @@
         %td
           = link_to 'Edit', edit_admin_blog_post_path(post.id)
           = link_to 'Delete', admin_blog_post_path(post), :method => :delete
-
-:javascript
-  $("table tr:nth-child(even)").addClass("even");
-  $("table tr:nth-child(odd)").addClass("odd");
+.link.blue
+  = link_to 'New entry', new_admin_blog_post_path
