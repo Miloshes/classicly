@@ -650,10 +650,30 @@ a.highlight:hover {
   margin-left: 20px;
 }
 /* line 268, ../../../app/stylesheets/partials/_layout.sass */
-#right-column iframe.fb_ltr {
-  margin-bottom: 10px;
+#right-column .social {
+  text-align: left;
 }
 /* line 271, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .social div {
+  float: left !important;
+  margin: 0;
+  margin-bottom: 10px;
+  padding: 0;
+}
+/* line 276, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .social iframe {
+  float: left;
+}
+/* line 278, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .social iframe.fb_ltr {
+  margin-bottom: 10px;
+}
+/* line 281, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .social iframe.twitter-follow-button {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* line 285, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -661,7 +681,7 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 278, ../../../app/stylesheets/partials/_layout.sass */
+/* line 292, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -670,20 +690,20 @@ a.highlight:hover {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 285, ../../../app/stylesheets/partials/_layout.sass */
+/* line 299, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 287, ../../../app/stylesheets/partials/_layout.sass */
+/* line 301, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 289, ../../../app/stylesheets/partials/_layout.sass */
+/* line 303, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 293, ../../../app/stylesheets/partials/_layout.sass */
+/* line 307, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -691,12 +711,12 @@ a.highlight:hover {
   text-decoration: none;
   float: left;
 }
-/* line 299, ../../../app/stylesheets/partials/_layout.sass */
+/* line 313, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 302, ../../../app/stylesheets/partials/_layout.sass */
+/* line 316, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
@@ -705,7 +725,7 @@ a.highlight:hover {
   padding-bottom: 10px;
 }
 
-/* line 310, ../../../app/stylesheets/partials/_layout.sass */
+/* line 324, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -714,14 +734,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 317, ../../../app/stylesheets/partials/_layout.sass */
+/* line 331, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 323, ../../../app/stylesheets/partials/_layout.sass */
+/* line 337, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -733,14 +753,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 326, ../../../app/stylesheets/partials/_layout.sass */
+/* line 340, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 331, ../../../app/stylesheets/partials/_layout.sass */
+/* line 345, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -752,7 +772,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 334, ../../../app/stylesheets/partials/_layout.sass */
+/* line 348, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -761,7 +781,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 342, ../../../app/stylesheets/partials/_layout.sass */
+/* line 356, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -773,12 +793,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 345, ../../../app/stylesheets/partials/_layout.sass */
+/* line 359, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 349, ../../../app/stylesheets/partials/_layout.sass */
+/* line 363, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;

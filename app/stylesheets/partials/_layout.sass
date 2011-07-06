@@ -265,9 +265,23 @@ a.highlight
   padding-top: 20px
   :margin
     :left 20px
-  iframe.fb_ltr
-    :margin
-      :bottom 10px
+  .social
+    :text-align left
+    // google+
+    div
+      :float left !important
+      :margin 0
+        :bottom 10px
+      :padding 0
+    iframe
+      :float left
+      &.fb_ltr
+        :margin
+          :bottom 10px
+      &.twitter-follow-button
+        :margin
+          :top 5px
+          :bottom 5px
   h4
     :font-size 18px
     :font-weight bold
