@@ -2565,23 +2565,25 @@ nav.pagination {
 }
 /* line 5, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span {
-  display: block;
-  float: left;
   height: 50px;
 }
-/* line 11, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 8, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination span.prev {
+  float: left;
+}
+/* line 10, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.prev a {
   width: 215px;
   height: 28px;
   display: block;
   background: url(/images/pagination-previous.png);
 }
-/* line 17, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 16, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.next {
   float: right;
   margin-right: 35px;
 }
-/* line 20, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 19, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.next a {
   width: 215px;
   height: 28px;
@@ -2589,7 +2591,7 @@ nav.pagination span.next a {
   background: url(/images/pagination-next.png);
   float: right;
 }
-/* line 27, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 26, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.full-width {
   display: inline;
   float: left;
@@ -2600,7 +2602,7 @@ nav.pagination span.full-width {
 * html nav.pagination span.full-width {
   overflow-x: hidden;
 }
-/* line 29, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 28, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.full-width a {
   margin: 0 auto;
   width: 488px;
@@ -2608,7 +2610,7 @@ nav.pagination span.full-width a {
   display: block;
   background: url(/images/pagination-next-full-width.png);
 }
-/* line 36, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 35, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.next_with_full_width {
   display: inline;
   float: left;
@@ -2619,40 +2621,29 @@ nav.pagination span.next_with_full_width {
 * html nav.pagination span.next_with_full_width {
   overflow-x: hidden;
 }
-/* line 39, ../../../app/stylesheets/partials/_pagination.sass */
+/* line 38, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination div#page_numbers {
-  display: inline;
   float: left;
-  margin-right: 0;
-  width: 630px;
+  width: 595px;
   height: 60px;
   text-align: center;
   margin: 5px;
   font-size: 16px;
   color: #999999;
 }
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html nav.pagination div#page_numbers {
-  overflow-x: hidden;
-}
-/* line 46, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination div#page_numbers .wrapper {
-  width: 470px;
-  height: 60px;
-  margin: 0 auto;
-}
-/* line 50, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination div#page_numbers .wrapper span {
+/* line 47, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination div#page_numbers span {
+  display: inline;
   margin: 5px;
 }
-/* line 52, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination div#page_numbers .wrapper span a {
+/* line 50, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination div#page_numbers span a {
   background-color: #ffffd7;
   color: #333333;
   text-decoration: none;
 }
-/* line 56, ../../../app/stylesheets/partials/_pagination.sass */
-nav.pagination div#page_numbers .wrapper span a:hover {
+/* line 54, ../../../app/stylesheets/partials/_pagination.sass */
+nav.pagination div#page_numbers span a:hover {
   background-color: #ffff66;
   cursor: pointer;
 }

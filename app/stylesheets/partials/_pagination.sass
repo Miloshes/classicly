@@ -3,11 +3,10 @@ nav.pagination
   text-align: center
   
   span
-    :display block
-    :float left
     :height 50px
   
   span.prev
+    :float left
     a
       :width 215px
       :height 28px
@@ -37,22 +36,21 @@ nav.pagination
     +column(16, true)
 
   div#page_numbers
-    +column(16, true)
+    :float left
+    :width 595px
     :height 60px
     :text-align center
     :margin 5px
     :font-size 16px
-    :color #999999    
-    .wrapper
-      :width 470px
-      :height 60px
-      :margin 0 auto
-      span
-        :margin 5px
-        a
-          :background-color #FFFFD7
-          :color #333333
-          :text-decoration none
-          &:hover
-            :background-color #FFFF66
-            :cursor pointer
+    :color #999999
+
+    span
+      :display inline
+      :margin 5px
+      a
+        :background-color #FFFFD7
+        :color #333333
+        :text-decoration none
+        &:hover
+          :background-color #FFFF66
+          :cursor pointer
