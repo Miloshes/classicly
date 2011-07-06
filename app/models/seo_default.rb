@@ -32,7 +32,7 @@ class SeoDefault < ActiveRecord::Base
   def default_value_must_be_valid
     return true if self.object_type == 'HomePage' || self.object_type == 'BlogPage'
     object = if self.object_type == 'SeoSlug'
-      Book.first # book has the same attributes as audiobook
+      SeoSlug.where(:seoable_type => 'Book').first # book has the same attributes as audiobook
     else
       self.object_type.constantize.first
     end
