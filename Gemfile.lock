@@ -112,7 +112,7 @@ GEM
       thor (~> 0.14.4)
     json (1.5.3)
     json_pure (1.5.1)
-    kaminari (0.10.4)
+    kaminari (0.12.4)
       rails (>= 3.0.0)
     koala (1.0.0)
       json (~> 1.0)
