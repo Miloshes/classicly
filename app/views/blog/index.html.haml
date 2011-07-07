@@ -10,7 +10,7 @@
     %p
       = link_to 'Follow @classiclyapp', 'http://twitter.com/classiclyapp', :class => 'twitter-follow-button', :data_show_count=> true
     %p
-      = link_to 'RSS Feed', 'http://feeds.feedburner.com/classicly', :class => 'highlight-link rss-feed'
+      = link_to 'RSS Feed', 'http://feeds.feedburner.com/classicly', :class => 'highlight-link rss-feed', :target => '_blank'
 
   = render :partial => 'blog_post', :collection => @posts, :as => :post
 = javascript_include_tag 'covers-blog-page'
