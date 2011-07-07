@@ -16,59 +16,61 @@
       %p
         = f.label :meta_description, 'Meta Description (SEO)'
         = f.text_field :meta_description
+      .post-state
+        %span{:class =>blog_post.state}
+          Current situation:
+          = blog_post.state.capitalize
+        .transition-links
+          - unless blog_post.new_record?
+            - for transition in blog_post.state_transitions
+              = link_to transition.event.to_s, change_state_admin_blog_post_url(blog_post.id, :event => transition.event), :remote => true
       %p
-        = f.label :keywords
-        = f.text_field :keywords
-      %fieldset
-        %legend
-          %h2
-            Custom images
-        %table
-          %tr
-            %th
-              Location URL
-            %th
-              Image thumb
-            %th
-            %th
-          = f.fields_for :custom_resources do |builder|  
+        = f.submit blog_post.new_record? ? 'Save' : 'Update'
+      - unless blog_post.new_record?
+        %fieldset
+          %legend
+            %h2
+              Custom images
+          %table
             %tr
-              %td
-                = builder.object.image.url.to_s unless builder.object.new_record?
-              %td
-                = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
-              %td
-                = builder.label 'Pick an image'
-                = builder.file_field :image
-              - unless builder.object.new_record?
+              %th
+                Location URL
+              %th
+                Image thumb
+              %th
+              %th
+            = f.fields_for :custom_resources do |builder|  
+              %tr
                 %td
-                  = builder.check_box '_destroy'
-                  = builder.label '_destroy', 'Remove'
+                  = builder.object.image.url.to_s unless builder.object.new_record?
+                %td
+                  = image_tag builder.object.image.url(:thumb) unless builder.object.new_record?
+                %td
+                  = builder.label 'Pick an image'
+                  = builder.file_field :image
+                - unless builder.object.new_record?
+                  %td
+                    = builder.check_box '_destroy'
+                    = builder.label '_destroy', 'Remove'
         %p
           To add a custom image to the blog, just use the Location URl inside a Markdown's image tag as ![  ](http://your_location_url_here "alternative title. Use this for SEO juice")
         %p
-          = f.submit blog_post.new_record? ? 'Save' : 'Update'
-  %p
-    = button_to('Preview', preview_admin_blog_post_path(blog_post.id), :method => :get) unless blog_post.new_record?
-
-  %h2
-    Associated Images
-  %p
-    = label_tag 'Pick a book'
-    = text_field_tag 'covers-autocomplete'
-  - unless blog_post.new_record?
-    %ul.related-books{:id => "#{blog_post.id}"}
-      - for book in blog_post.related_books
-        %li.related
-          = cover_tag book, 1
-          %span.close
-            = link_to 'X', '#', :id => book.id
-          %span.title
-            = book.pretty_title
+          = link_to 'Preview', preview_admin_blog_post_path(blog_post.id), :method => :get
+        %h2
+          Associated Images
+        %p
+          = label_tag 'Pick a book'
+          = text_field_tag 'covers-autocomplete'
+        %ul.related-books{:id => "#{blog_post.id}"}
+          - for book in blog_post.related_books
+            %li.related
+              = cover_tag book, 1
+              %span.close
+                = link_to 'X', '#', :id => book.id
+              %span.title
+                = book.pretty_title
   .link.blue
     = link_to 'Back to Blog Posts', admin_blog_posts_path
     
 
-= javascript_include_tag 'jquery.markitup.set', 'jquery.markitup'
--# This Google javascript must be loaded before the blogPostForm file since it loads the jQuery autocomplete:
-= javascript_include_tag 'blogPostForm'
+= javascript_include_tag 'jquery.markitup.set', 'jquery.markitup', 'blogPostForm'

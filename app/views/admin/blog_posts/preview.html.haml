@@ -1,4 +1,16 @@
-= render "blog/show_blog_post", :blog_post => @blog_post
-.clear
-= link_to 'Back to edit', edit_admin_blog_post_path(@blog_post.id)
-= link_to 'Back to blog posts', admin_blog_posts_path
+#blog-single.blog-shared
+  .show-post
+    .blog-title
+      %h1.show
+        = @post.title
+      %span by
+      %span.author Tyler
+      %span on
+      %span.date=@post.created_at.to_s :post_title_format
+    .content
+      - if @post.content.index('!@cut')
+        = simple_format markdown(@post.content).gsub!('!@cut', '')
+      - else
+        = simple_format markdown(@post.content)
+  .link.sepia
+    = link_to 'Back to Edit Post', edit_admin_blog_post_path(@post)

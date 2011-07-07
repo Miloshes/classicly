@@ -93,6 +93,7 @@ module ApplicationHelper
     text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
     paragraph = doc.at_css('p:last')
+    return text if paragraph.nil?
     link = Nokogiri::XML::Node.new 'a', doc
     link['href'] = seo_path(post)
     link['class'] = 'blue'

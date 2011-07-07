@@ -14,8 +14,7 @@
       var theme = "flick";
       google.load("jqueryui", "1.8.7");
       google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
-
-    = javascript_include_tag 'admin'
+    = javascript_include_tag 'admin', 'rails'
     = csrf_meta_tag
     = yield :head
 

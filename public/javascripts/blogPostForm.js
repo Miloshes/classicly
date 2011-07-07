@@ -1,9 +1,6 @@
 $(document).ready(function(){
   // set Markitup plugin for the editor:
   $( '#blog_post_content' ).markItUp( mySettings );
-  
-  
-  
   // autocomplete to pickup covers
   var sourceCallback = function( request, responseCallback ) {
     $.ajax( {

@@ -12,6 +12,7 @@ Classicly::Application.routes.draw do
     resource :admin_user_session
     resources :blog_posts do
       member do
+        get 'change_state'
         get 'preview'
       end
     end
