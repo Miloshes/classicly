@@ -11,6 +11,10 @@
     = javascript_include_tag 'http://www.google.com/jsapi'
     = javascript_tag do
       google.load("jquery", "1.4.4");
+      var theme = "flick";
+      google.load("jqueryui", "1.8.7");
+      google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+
     = javascript_include_tag 'admin'
     = csrf_meta_tag
     = yield :head

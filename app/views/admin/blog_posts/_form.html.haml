@@ -65,15 +65,10 @@
             = link_to 'X', '#', :id => book.id
           %span.title
             = book.pretty_title
-
-  = link_to 'Back to Blog Posts', admin_blog_posts_path
+  .link.blue
+    = link_to 'Back to Blog Posts', admin_blog_posts_path
     
 
 = javascript_include_tag 'jquery.markitup.set', 'jquery.markitup'
 -# This Google javascript must be loaded before the blogPostForm file since it loads the jQuery autocomplete:
-:javascript
-  // load jQueryUI:
-  var theme = "flick";
-  google.load("jqueryui", "1.8.7");
-  google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
 = javascript_include_tag 'blogPostForm'
