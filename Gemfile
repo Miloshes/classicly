@@ -67,6 +67,9 @@ gem 'sqlite3-ruby'
 # gem to allow sort and pagination using regular HTML and avoid showing the params in the URL
 gem 'sorted'
 
+#gem to support state machine behavior in ruby classes
+gem 'state_machine'
+
 # encode/decode HTML entities (like &yacute;) - http://rubygems.org/gems/htmlentities
 gem 'htmlentities'
 

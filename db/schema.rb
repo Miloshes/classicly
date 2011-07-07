@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110630182845) do
+ActiveRecord::Schema.define(:version => 20110707170644) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(:version => 20110630182845) do
     t.datetime "updated_at"
     t.string   "meta_description"
     t.string   "cached_slug"
+    t.string   "state"
   end
 
   add_index "blog_posts", ["cached_slug"], :name => "index_blog_posts_on_cached_slug", :unique => true
