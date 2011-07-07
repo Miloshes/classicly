@@ -20,7 +20,7 @@ class Audiobook < ActiveRecord::Base
 
   scope :blessed, where({:blessed => true})
   scope :order_by_author, joins(:author) & Author.order('name')
-  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RANDOM()', :limit => limit }}
 
   has_friendly_id :audio_book_slugs, :use_slug => true
 

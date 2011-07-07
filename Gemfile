@@ -55,9 +55,6 @@ gem 'paperclip'
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem 'rest-client', :require => 'rest_client'
 
-# Imagemagick interface - http://rubygems.org/gems/rmagick
-gem 'rmagick'
-
 # Sitemap generator - http://rubygems.org/gems/sitemap_generator
 gem 'sitemap_generator'
 
@@ -92,9 +89,6 @@ group :development, :test do
   
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   gem 'machinist', '>= 2.0.0.beta1'
-  
-  # MySQL driver - http://rubygems.org/gems/mysql2
-  gem 'mysql2', '~> 0.2.3'
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
   gem 'rspec-rails', '>=2.0.0.beta'
