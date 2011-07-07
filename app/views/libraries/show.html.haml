@@ -3,14 +3,10 @@
 
 #library-page
   .user-column
-    .photo
-      %img{:src => '/images/profile-test.jpeg'}
-    .name
-      %span <strong>Colin Plamondon</strong><br />
-      %span Boston, MA
-    .stats
-      %span 3,157 pages read
-      %span 10 books downloaded
+    - if !current_login
+      = render :partial => 'fb_user_column'
+    - else
+      = render :partial => 'login_with_fb_column'
   .book-column
     %h3 Last Read:
     .book

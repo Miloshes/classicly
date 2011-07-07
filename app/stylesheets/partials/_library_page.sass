@@ -1,39 +1,43 @@
 #library-page
   +content-container
   .user-column
-    +column(4)
-    .photo
-      +column(6, true)
-      :width 112px
-      :height 112px
-      :background url('/images/profile-frame.png')
-      :display block
-      img
-        :width 100px
-        :height 100px
-        :margin 6px
-    span
-      :width 100%
-      :display block
-      :float left
-    .name
-      +column(6, true)
-      :margin
-        :top 5px
-    .stats
-      +column(6, true)
-      :margin
-        :top 15px
-    .invite
-      +column(6, true)
-      :margin
-        :top 15px
+    +column(5, true)
+    #user-profile
+      div
+        :float left
+        :margin-top 15px
+        
+      .photo
+        :margin-top 0px
+        :width 112px
+        :height 112px
+        :background url('/images/profile-frame.png')
+        :display block
+        img
+          :width 100px
+          :height 100px
+          :margin 6px
+      span
+        :width 100%
+        :display block
+        :float left
+      .name
+        :margin
+          :top 5px
+    
+    #fb-login
+      #login-text
+        :text-align center
+        :margin 5
+      #login-button
+        :margin 10
+        :text-align center
 
   h3
     :clear left
 
   .book-column
-    +column(14, true)
+    +column(13, true)
     .book
       :clear left
       :height 190px
@@ -62,6 +66,6 @@
         
 #now_downloading_top_bar
   :margin-top 20px
-  // need to override
+  // had to override
   a:visited
     :color #333333

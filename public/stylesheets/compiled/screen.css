@@ -1420,97 +1420,73 @@ ul.ui-autocomplete {
 #library-page .user-column {
   display: inline;
   float: left;
-  margin-right: 10px;
-  width: 150px;
+  margin-right: 0;
+  width: 190px;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #library-page .user-column {
   overflow-x: hidden;
 }
-/* line 5, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .photo {
-  display: inline;
+/* line 6, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #user-profile div {
   float: left;
-  margin-right: 0;
-  width: 230px;
+  margin-top: 15px;
+}
+/* line 10, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #user-profile .photo {
+  margin-top: 0px;
   width: 112px;
   height: 112px;
   background: url("/images/profile-frame.png");
   display: block;
 }
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .photo {
-  overflow-x: hidden;
-}
-/* line 11, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .photo img {
+/* line 16, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #user-profile .photo img {
   width: 100px;
   height: 100px;
   margin: 6px;
 }
-/* line 15, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column span {
+/* line 20, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #user-profile span {
   width: 100%;
   display: block;
   float: left;
 }
-/* line 19, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .name {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
+/* line 24, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #user-profile .name {
   margin-top: 5px;
 }
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .name {
-  overflow-x: hidden;
-}
-/* line 23, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .stats {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-  margin-top: 15px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .stats {
-  overflow-x: hidden;
-}
-/* line 27, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .invite {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-  margin-top: 15px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .invite {
-  overflow-x: hidden;
+/* line 29, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #fb-login #login-text {
+  text-align: center;
+  margin: 5;
 }
 /* line 32, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .user-column #fb-login #login-button {
+  margin: 10;
+  text-align: center;
+}
+/* line 36, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page h3 {
   clear: left;
 }
-/* line 35, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 39, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
+  width: 510px;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #library-page .book-column {
   overflow-x: hidden;
 }
-/* line 37, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 41, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book {
   clear: left;
   height: 190px;
 }
-/* line 40, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 44, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .cover {
   display: inline;
   float: left;
@@ -1522,12 +1498,12 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .cover {
   overflow-x: hidden;
 }
-/* line 43, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 47, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .cover img {
   width: 100px;
   height: 155px;
 }
-/* line 46, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 50, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info {
   display: inline;
   float: left;
@@ -1538,7 +1514,7 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .info {
   overflow-x: hidden;
 }
-/* line 48, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 52, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info h4 {
   font-size: 22px;
   color: #333333;
@@ -1546,13 +1522,13 @@ ul.ui-autocomplete {
   padding: 0;
   margin: 0;
 }
-/* line 54, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 58, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info h5 {
   font-size: 16px;
   font-weight: normal;
   color: #333333;
 }
-/* line 58, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 62, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .download {
   display: inline;
   float: left;
@@ -1563,7 +1539,7 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .download {
   overflow-x: hidden;
 }
-/* line 60, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 64, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .read {
   display: inline;
   float: left;
@@ -1575,11 +1551,11 @@ ul.ui-autocomplete {
   overflow-x: hidden;
 }
 
-/* line 63, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 67, ../../../app/stylesheets/partials/_library_page.sass */
 #now_downloading_top_bar {
   margin-top: 20px;
 }
-/* line 66, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 70, ../../../app/stylesheets/partials/_library_page.sass */
 #now_downloading_top_bar a:visited {
   color: #333333;
 }
