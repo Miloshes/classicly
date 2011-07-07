@@ -1,7 +1,8 @@
 class LibrariesController < ApplicationController
   
   def show
-    @books = Book.where(:title.matches => "Poems").all()
+    current_library.books = Book.where(:title.matches => "Poems").all()
+    @books = current_library.books
   end
   
   def add_book

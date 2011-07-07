@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_admin_user_session, :current_admin_user, :current_login
   
-  
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
   before_filter :collections_for_footer
