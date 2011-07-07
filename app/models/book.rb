@@ -6,6 +6,7 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
   
+  has_many :library_books
   has_many :libraries, :through => :library_books
 
   has_and_belongs_to_many :blog_posts, :join_table => 'blog_posts_books'
