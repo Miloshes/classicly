@@ -1575,6 +1575,15 @@ ul.ui-autocomplete {
   overflow-x: hidden;
 }
 
+/* line 63, ../../../app/stylesheets/partials/_library_page.sass */
+#now_downloading_top_bar {
+  margin-top: 20px;
+}
+/* line 66, ../../../app/stylesheets/partials/_library_page.sass */
+#now_downloading_top_bar a:visited {
+  color: #333333;
+}
+
 /* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page, #author-list-page, #collection-page {
   display: inline;

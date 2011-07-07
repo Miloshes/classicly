@@ -1,3 +1,6 @@
+- if @new_book_in_library
+  = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
+
 #library-page
   .user-column
     .photo
@@ -30,7 +33,6 @@
       = render :partial => 'libraries/book', :collection => @books, :as => :book
       
 - if @new_book_in_library
-  Format is: #{@download_format.inspect}
   :javascript
     $('#book_#{@new_book_in_library.id}').hide();
     
