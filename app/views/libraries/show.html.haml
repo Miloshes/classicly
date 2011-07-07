@@ -26,4 +26,17 @@
         %a.highlight{:href => '#'} <strong>Continue Reading</strong>
         
     %h3 Library:
-    = render :partial => 'book', :collection => @books, :as => :book
+    #book-list
+      = render :partial => 'libraries/book', :collection => @books, :as => :book
+      
+- if @new_book_in_library
+  Format is: #{@download_format.inspect}
+  :javascript
+    $('#book_#{@new_book_in_library.id}').hide();
+    
+    $(document).ready(function() {
+      // can do a better animation than this
+      $('#book_#{@new_book_in_library.id}').fadeIn(3000, function() {
+        window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+      });
+    });

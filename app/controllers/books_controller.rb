@@ -25,6 +25,13 @@ class BooksController < ApplicationController
     @related_book = @book.find_fake_related(1).first
     render :layout => 'download'
   end
+  
+  def download_and_add_to_library
+    session[:new_book_in_library] = params[:book_id]
+    session[:download_format_for_the_new_book] = params[:download_format]
+    
+    redirect_to library_url
+  end
 
   def json_books
     # cache response for a week

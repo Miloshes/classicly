@@ -18,6 +18,10 @@ Classicly::Application.routes.draw do
     resources :seo_defaults
   end
   
+  # == Library
+  match 'library' => 'libraries#show', :as => :library
+  match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
+  
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
@@ -27,7 +31,6 @@ Classicly::Application.routes.draw do
   match 'authors' => 'pages#authors'
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
-  match 'library' => 'libraries#show', :as => :library
   match 'collections' => 'pages#collections'
   match 'collection_json_books' => 'collections#collection_json_books'
   match 'json_audiobooks' => 'audiobooks#json_audiobooks'
@@ -52,8 +55,6 @@ Classicly::Application.routes.draw do
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
   get "bingo_experiments/create"
-
-  
   
   
 
