@@ -58,7 +58,6 @@ feature 'Seo defaults feature', %q{
   
   scenario 'going to the mp3 landing page' do
     #Given an audiobook exists
-    @author = Author.make!(:name => 'Kawama San')
     @audiobook = Audiobook.make!(:pretty_title => 'Kawaii Sound', :author => @author)
     #And there is a slug for the mp3 landing page
     @mp3_slug = SeoSlug.make!(:seoable_id => @audiobook.id, :seoable_type => 'Audiobook', :slug => 'download-kawaii-sound-mp3', :format => 'mp3')
