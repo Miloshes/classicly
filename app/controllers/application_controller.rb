@@ -14,8 +14,10 @@ class ApplicationController < ActionController::Base
   caches_action :collections_for_footer
 
   def collections_for_footer
-    @collections_for_footer = Collection.of_type('book').collection_type('collection').limit(14).order('name asc')
-    @author_collections_for_footer = Collection.of_type('book').collection_type('author').limit(14).order('name asc')
+    @footer_collections_column_1 = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
+    @footer_collections_column_2 = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
+    @footer_author_collections_column_1 = Collection.find_author_book_collections.select('name,cached_slug').limit(14).order('name asc')
+    @footer_author_collections_column_2 = Collection.find_author_book_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
  end
   
   def current_admin_user_session

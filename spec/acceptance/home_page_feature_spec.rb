@@ -37,7 +37,7 @@ feature 'Home page feature: ', %q{
   
   scenario 'clicking on a collection in the footer' do
     @slug = ''
-    within('#footer .collections span.linky:first') do
+    within('#footer .collections span:first') do
       @slug = collection_slug find('a')[:href]
       find('a').click
     end
