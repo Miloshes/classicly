@@ -2,11 +2,10 @@
   = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
 
 #library-page
+  - if !current_login
+    = render :partial => 'login_with_fb_dialog'
   .user-column
-    - if !current_login
-      = render :partial => 'fb_user_column'
-    - else
-      = render :partial => 'login_with_fb_column'
+    = render :partial => 'fb_user_column'
   .book-column
     %h3 Last Read:
     .book
