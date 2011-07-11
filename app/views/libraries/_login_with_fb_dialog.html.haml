@@ -2,5 +2,12 @@
   #login-text
     Login with Facebook so we won't lose your library.
   #login-button
-    <fb:login-button autologoutlink="true" width="230px" show-faces="false" max-rows="0" perms="user_about_me, user_hometown, user_photos"></fb:login-button>
-    %
+    = link_to image_tag('facebooklogo.gif'), "#", :class => 'facebook-signin'
+
+:javascript
+  $(function(){
+    $('a.facebook-signin').click(function(){
+      FB.login();
+      return false;
+    });
+  });

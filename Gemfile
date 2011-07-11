@@ -55,11 +55,20 @@ gem 'paperclip'
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem 'rest-client', :require => 'rest_client'
 
+# Imagemagick interface - http://rubygems.org/gems/rmagick
+gem 'rmagick'
+
 # Sitemap generator - http://rubygems.org/gems/sitemap_generator
 gem 'sitemap_generator'
 
 # SQLite3 driver - http://rubygems.org/gems/sqlite3
 gem 'sqlite3-ruby'
+
+# gem to allow sort and pagination using regular HTML and avoid showing the params in the URL
+gem 'sorted'
+
+#gem to support state machine behavior in ruby classes
+gem 'state_machine'
 
 # encode/decode HTML entities (like &yacute;) - http://rubygems.org/gems/htmlentities
 gem 'htmlentities'
@@ -89,6 +98,9 @@ group :development, :test do
   
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   gem 'machinist', '>= 2.0.0.beta1'
+  
+  # MySQL driver - http://rubygems.org/gems/mysql2
+  gem 'mysql2', '< 0.3'
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
   gem 'rspec-rails', '>=2.0.0.beta'
