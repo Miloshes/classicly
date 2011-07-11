@@ -57,7 +57,7 @@
 								%a.blog{:href => '/blog'} Blog
 
 					#search
-						= form_tag search_url do
+						= form_tag search_url, :id => 'indexTankForm' do
 							= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
 							%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
 				.bottom
