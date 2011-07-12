@@ -3,30 +3,33 @@ require 'iconv'
 
 namespace :indextank do
   $ic = Iconv.new('UTF-8//IGNORE', 'UTF-8')
+
   task :index_books => :environment do
-    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+
     Book.find_in_batches :batch_size => 200 do|books|
       documents = []
       books.each do|book|
-        title = encode_utf(book.pretty_title)
-        author_name = encode_utf(book.author.name)
+        # title = encode_utf(book.pretty_title) You can use this if your database is corrupted. I had a clean one.
+        # author_name = encode_utf(book.author.name)
+        title = book.pretty_title
+        author_name = book.author_name
         docid = "b_#{book.id}"
-        if is_ascii? docid
-          text = "#{title} , #{author_name} "
-          #add collection names to the text to find collection's books
-          book.collections.each do |collection|
-            text << ", #{collection.name}"
-          end
-          puts "book content: #{text}"
-          puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text, :type => 'book' } }
+
+        if is_ascii? docid # indextank does not index non ASCII ids.
+          # we are going to save the cover url as a field to avoid more processing in read time:
+          cover_url = "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size1.jpg"
+          slug = "/#{book.author_cached_slug}/#{book.cached_slug}" # save the slug as well.
+
+          documents << { :docid => docid, :fields => { :text => title, :author => author_name, :type => 'book', :cover_url => cover_url, :slug => slug  } }
         end
       end
+
       response = index.batch_insert(documents)
       puts "sending to indextank: #{response}"
     end
   end
-  
+
   task :index_audiobooks => :environment do
     index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
     Audiobook.find_in_batches :batch_size => 200 do|audiobooks|

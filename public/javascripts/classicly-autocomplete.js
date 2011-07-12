@@ -1,21 +1,23 @@
 var elementId = "#term";
 var apiUrl =  "http://6wfx.api.indextank.com";
-var indexName = "classicly_staging";
+var indexName = "ClassiclyAutocomplete";
 var source = apiUrl + "/v1/indexes/" + indexName + "/search";
-var titles;
+var searchResults;
 
-/* this allows us to pass in HTML tags to autocomplete. Without this they get escaped */
+/* this allows us to pass in HTML tags to autocomplete. Without this, they get escaped */
+
 $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
 return $( "<li></li>" ) 
   .data( "item.autocomplete", item )
-  .append( $( "<a></a>" ).html( item.label ) )
+  .append( $( "<a></a>" ).html( item.label + "<span class='type'>" + item.type + "</span>" ) )
   .appendTo( ul );
 };
+
 
 google.setOnLoadCallback(function() {
   $(function() {
     var sourceCallback = function( request, responseCallback ) {
-      titles = [];
+      searchResults = [];
       $.ajax( {
           url: apiUrl + "/v1/indexes/" + indexName + "/autocomplete",
           dataType: "jsonp",
@@ -24,13 +26,14 @@ google.setOnLoadCallback(function() {
               $.ajax({
                 url: source,
                 dataType: "jsonp",
-                data: {len:5, q:data.suggestions[0], snippet:'text', fetch: "text"},
+                data: {len: 10, q:data.suggestions[0], snippet:'text', fetch: "text,type,slug"},
                 success: function( data ) {
                   $.map( data.results, function( item ) {
-                    titles.push( item.snippet_text );
+                    console.log( item.slug );
+                    searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug  } );
                   });
-                  responseCallback( $.each( titles, function( index, value ){
-                    return{ label: value, value: value }
+                  responseCallback( $.each( searchResults, function( index, result ){
+                    return{ label: result.label, value: result.value }
                   })); 
                 }
             })
@@ -40,8 +43,9 @@ google.setOnLoadCallback(function() {
 
     var selectCallback = function( event, ui ) {
       event.target.value = ui.item.value;
+      window.location = "http://localhost:3000" + ui.item.slug;
       // wrap form into a jQuery object, so submit honors onsubmit.
-      $(event.target.form).submit();
+      //$(event.target.form).submit();
     }
 
     $( elementId ).autocomplete( {

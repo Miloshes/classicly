@@ -17,6 +17,7 @@ class Book < ActiveRecord::Base
   has_many :seo_slugs, :as => :seoable
   has_many :book_pages
 
+  delegate :cached_slug, :name, :to => :author, :prefix =>  true
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :for_author, lambda {|author| where(:author_id => author.id)}
