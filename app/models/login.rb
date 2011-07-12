@@ -38,26 +38,30 @@ class Login < ActiveRecord::Base
   
   end
     
-  def self.register_from_classicly(profile, location = {})
-    login      = Login.find_by_fb_connect_id(profile['id'])
-    new_login? = false
+  def self.register_from_classicly(user_profile = {})
+    user_profile.stringify_keys!
+    
+    login        = Login.find_by_fb_connect_id(user_profile['id'])
+    is_new_login = false
 
     unless login
+      city, country = user_profile['location']['name'].split(', ')
+      
       login = Login.create(
-          :fb_connect_id    => profile['id'],
-          :email            => profile['email'],
-          :first_name       => profile['first_name'],
-          :last_name        => profile['last_name'],
-          :location_city    => location[:city],
-          :location_country => location[:country]
+          :fb_connect_id    => user_profile['id'],
+          :email            => user_profile['email'],
+          :first_name       => user_profile['first_name'],
+          :last_name        => user_profile['last_name'],
+          :location_city    => city,
+          :location_country => country
         )
 
-      new_login? = true
+      is_new_login = true
     end
 
     login.performable_log_session_opened if Rails.env.production?
 
-    return new_login?
+    return is_new_login
   end
   
   def not_registered_with_facebook?
