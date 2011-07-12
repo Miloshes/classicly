@@ -8,9 +8,16 @@ javascripts:
   main:
     - public/javascripts/application.js
     - public/javascripts/global.js
-    - public/javascripts/indextank.ize.js
-    - public/javascripts/indextank.autocomplete.js
-    - public/javascripts/indextank.js
+    - public/javascripts/classicly-autocomplete.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.ize.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.autocomplete.js
+    #- public/javascripts/jquery-indextank/querybuilder.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.ajaxsearch.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.ajaxsearch.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.instantsearch.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.renderer.js
+    #- public/javascripts/jquery-indextank/jquery.indextank.statsrenderer.js
+    #- public/javascripts/indextank.js
     - public/javascripts/jquery.rating.js
     - public/javascripts/rails.js
 stylesheets:

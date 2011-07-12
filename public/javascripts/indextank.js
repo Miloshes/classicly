@@ -1,12 +1,13 @@
 // Indextank initialization and jQuery code for autocomplete
-
-var publicApiUrl = "http://6wfx.api.indextank.com";
-var indexName = "classicly_staging";
-
+var userFormat = function(item) {
+  var r = $("<div></div>").addClass("result").append( $("<a></a>").html(item.snippet_text.split(',')[0]));
+  return r;
+};
 
 $(document).ready(function(){
-  // let the form be 'indextank-aware'
-  $("#indexTankForm").indextank_Ize(publicApiUrl, indexName);
-  // let the query box have autocomplete
-  $("#term").indextank_Autocomplete();
+  $("#indexTankForm").indextank_Ize("http://6wfx.api.indextank.com", "classicly_staging");
+  var renderer =  $('#results').indextank_Renderer({format: userFormat});
+  $("#term").indextank_Autocomplete().indextank_AjaxSearch( {listeners: renderer}).indextank_InstantSearch();
 });
+
+
