@@ -43,7 +43,7 @@ google.setOnLoadCallback(function() {
 
     var selectCallback = function( event, ui ) {
       event.target.value = ui.item.value;
-      window.location = "http://localhost:3000" + ui.item.slug;
+      window.location = "http://classicly-staging.heroku.com" + ui.item.slug;
       // wrap form into a jQuery object, so submit honors onsubmit.
       //$(event.target.form).submit();
     }
