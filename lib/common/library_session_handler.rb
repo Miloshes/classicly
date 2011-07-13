@@ -22,7 +22,7 @@ module LibrarySessionHandler
 
     def fetch_library_for_current_user
       # if the user is logged in, get his library
-      if current_login
+      if current_login && current_login.library
         self.current_library = current_login.library
       # otherwise we keep a library object in the session
       elsif session[:library]

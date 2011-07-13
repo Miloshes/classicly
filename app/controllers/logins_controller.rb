@@ -1,15 +1,18 @@
 class LoginsController < ApplicationController
-  before_filter :get_profile_info
 
   def create
-    new_login = Login.register_from_classicly(@profile_info, {:city => params[:city], :country => params[:country]}, @mixpanel)
+    is_new_login = Login.register_from_classicly(fetch_user_profile_from_fb)
     
-    # if it was a new login, save the user's library which is a session-only library right now
-    if new_login
-      current_library.save
-    end
+    render :json => {:is_new_login => is_new_login}
+  end
+  
+  private
+  
+  def fetch_user_profile_from_fb
+    graph_api    = Koala::Facebook::GraphAPI.new(facebook_cookies['access_token'])
+    profile_info = graph_api.get_object('me')
     
-    render :json =>  {:new_login => new_login}
+    return profile_info
   end
 
 end

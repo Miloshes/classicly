@@ -13,7 +13,9 @@ class ApplicationController < ActionController::Base
   caches_action :collections_for_footer
   
   def current_login
-    @current_login ||= Login.where(:fb_connect_id => @profile_id).first
+    return if !facebook_cookies
+    
+    @current_login ||= Login.where(:fb_connect_id => facebook_cookies['uid']).first
   end
 
   def collections_for_footer
@@ -61,5 +63,9 @@ class ApplicationController < ActionController::Base
       session[:abingo_identity] ||= rand(10 ** 10)
       Abingo.identity = session[:abingo_identity]
     end
+  end
+  
+  def facebook_cookies
+    @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
   end
 end
