@@ -17,3 +17,6 @@ $(function(){
     offset: [-25, 5]
   });
 });
+
+// for the autocomplete list:
+$('ul.ui-autocomplete').css( 'margin-left', '-1pt' );
