@@ -18,8 +18,11 @@ Classicly::Application.routes.draw do
     resources :seo_defaults
   end
   
+  resource :logins, :only => [:create]
+  
   # == Library
   match 'library' => 'libraries#show', :as => :library
+  match 'library/handle_facebook_login' => 'libraries#handle_facebook_login', :as => :library_handle_facebook_login
   match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
   
   match 'about' => 'pages#about'

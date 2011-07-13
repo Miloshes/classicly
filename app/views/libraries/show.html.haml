@@ -5,7 +5,9 @@
   - if !current_login
     = render :partial => 'login_with_fb_dialog'
   .user-column
-    = render :partial => 'fb_user_column'
+    #user-profile
+      - if current_login
+        = render :partial => 'fb_user_profile'
   .book-column
     %h3 Last Read:
     .book
@@ -29,6 +31,7 @@
       
 - if @new_book_in_library
   :javascript
+    // animate in the new book
     $('#book_#{@new_book_in_library.id}').hide();
     
     $(document).ready(function() {

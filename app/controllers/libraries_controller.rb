@@ -13,5 +13,17 @@ class LibrariesController < ApplicationController
     end
     @books = current_library.books
   end
+  
+  # NOTE: should be called after the Facebook Login happens
+  def handle_facebook_login
+    # == save the library (which was just a session) into the DB
+    
+    # the current user is the owner of the library to be created
+    current_library.user = current_login
+    current_library.save
+    
+    # == update the current page
+    render :action => 'handle_facebook_login'
+  end
 
 end

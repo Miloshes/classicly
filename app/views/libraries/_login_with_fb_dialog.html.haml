@@ -2,12 +2,37 @@
   #login-text
     Login with Facebook so we won't lose your library.
   #login-button
-    = link_to image_tag('facebooklogo.gif'), "#", :class => 'facebook-signin'
+    = link_to image_tag('facebooklogo.gif'), "#", :id => 'facebook-signin'
 
 :javascript
   $(function(){
-    $('a.facebook-signin').click(function(){
-      FB.login();
+  
+    $('a#facebook-signin').click( function(){
+      
+      FB.login(function(response) {
+        // the user successfully logs in, let's register him and notify the Library model afterwards
+        if (response.session) {
+          // register the user via the Login model
+          $.ajax({
+            type: "POST", url: "/logins", dataType: "json",
+            success: function(data) {
+              console.log("successfull registration");
+              // log new registrations to Performable 
+              if(data.is_new_login && RAILS_ENV == "production") {
+                _paq.push(["trackConversion", {id: "3F6mY45twfux", value: null}]);
+              }
+            
+              // notify the Library model about the new registration
+              $.ajax({url: '#{library_handle_facebook_login_url}'});
+            }
+          });
+          
+        } else {
+          // user cancelled login
+        }
+      });
+      
       return false;
     });
+    
   });
