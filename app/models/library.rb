@@ -6,4 +6,6 @@ class Library < ActiveRecord::Base
   
   has_many :library_audiobooks
   has_many :audiobooks, :through => :library_audiobooks
+  
+  has_one :last_read_book, :through => :library_books, :order => 'library_books.last_opened DESC', :source => :book
 end
