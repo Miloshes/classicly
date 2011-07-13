@@ -1,3 +1,11 @@
+$(function(){
+  $("ul.ui-autocomplete li.ui-menu-item:has('img')").each(function(){
+    newHeight = $(this).find("img").height();
+    $(this).height(newHeight + 4);
+  });
+});
+
+
 var elementId = "#term";
 var apiUrl =  "http://6wfx.api.indextank.com";
 var indexName = "ClassiclyAutocomplete";
@@ -9,7 +17,7 @@ var searchResults;
 $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
 var html;
 if( item.type == "book" || item.type == "audiobook"){
-  html =  "<img src='" + item.cover_url + "'class='micro-cover'>" + item.label + "<span class='type'>" + item.type + "</span>";
+html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + item.label + "<span class='type'>" + item.type + "</span></span></div>";
 }else{
   html =  item.label + "<span class='type'>" + item.type + "</span>";
 }

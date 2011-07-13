@@ -93,14 +93,26 @@ namespace :indextank do
     end
   end
 
+  task :delete_audiobooks => :environment do
+    index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+
+    Audiobook.find_in_batches :batch_size => 200 do|audiobooks|
+      audiobooks.each do|audiobook|
+        docid = "ab_#{audiobook.id}"
+        index.document(docid).delete()
+      end
+    end
+
+  end
+
   def encode_utf(str)
     $ic.iconv(str + ' ')[0..-2]
   end
-  
+
 
   def is_ascii?(str)
     str.each_byte {|c| return false if c>=128}
     true
   end
-  
+
 end
