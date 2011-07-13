@@ -16,7 +16,6 @@
           $.ajax({
             type: "POST", url: "/logins", dataType: "json",
             success: function(data) {
-              console.log("successfull registration");
               // log new registrations to Performable 
               if(data.is_new_login && RAILS_ENV == "production") {
                 _paq.push(["trackConversion", {id: "3F6mY45twfux", value: null}]);
