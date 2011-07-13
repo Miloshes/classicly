@@ -2275,37 +2275,38 @@ a.button.kiss span {
 
 /* line 12, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete {
-  min-width: 164px;
+  min-width: 188px;
   border: 1px solid #ab9573;
+  margin-left: -1px;
 }
-/* line 15, ../../../app/stylesheets/partials/_decos.sass */
+/* line 16, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item {
-  padding: 2px;
+  padding-right: 10px;
   overflow: hidden;
 }
-/* line 19, ../../../app/stylesheets/partials/_decos.sass */
+/* line 20, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #cccccc;
 }
-/* line 22, ../../../app/stylesheets/partials/_decos.sass */
+/* line 23, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 24, ../../../app/stylesheets/partials/_decos.sass */
+/* line 25, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 29, ../../../app/stylesheets/partials/_decos.sass */
+/* line 30, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
-  width: 91%;
+  width: 84%;
 }
-/* line 30, ../../../app/stylesheets/partials/_decos.sass */
+/* line 31, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }

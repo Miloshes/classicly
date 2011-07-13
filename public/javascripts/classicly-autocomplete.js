@@ -1,8 +1,13 @@
 $(function(){
-  $("ul.ui-autocomplete li.ui-menu-item:has('img')").each(function(){
-    newHeight = $(this).find("img").height();
-    $(this).height(newHeight + 4);
+
+  $( "ul.ui-autocomplete li.ui-menu-item" ).each(function( index ){
+    imgWidth = 23;
+    totalWidth = $( this ).width();
+    textWidth = totalWidth - imgWidth;
+    percentageWidth = ( textWidth / totalWidth ) * 100;
+    $(this).find('.text').width( percentageWidth + "%" );
   });
+
 });
 
 
