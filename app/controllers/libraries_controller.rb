@@ -6,7 +6,7 @@ class LibrariesController < ApplicationController
       @new_book_in_library = Book.find(session[:new_book_in_library])
 
       current_library.books << @new_book_in_library
-      current_library.books_downloaded = current_library.books.count
+      current_library.books_downloaded = current_library.books.size
 
       @download_format = session[:download_format_for_the_new_book]
 
@@ -23,6 +23,7 @@ class LibrariesController < ApplicationController
     
     # the current user is the owner of the library to be created
     current_library.user = current_login
+    current_library.books_downloaded = current_library.books.size
     current_library.save
     
     # == update the current page
