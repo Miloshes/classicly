@@ -8,7 +8,6 @@
   $(function(){
   
     $('a#facebook-signin').click( function(){
-      
       FB.login(function(response) {
         // the user successfully logs in, let's register him and notify the Library model afterwards
         if (response.session) {

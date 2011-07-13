@@ -1459,52 +1459,27 @@ ul.ui-autocomplete {
   margin-top: 5px;
 }
 /* line 27, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page #fb-login-dialog {
-  position: absolute;
-  left: 50%;
-  top: 125px;
-  width: 460px;
-  margin-left: -230px;
-  height: 150px;
-  z-index: 1;
-  border: 1px solid #866a47;
-  background-color: #c9af87;
-  padding: 10px;
-}
-/* line 38, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page #fb-login-dialog #login-text {
-  text-align: center;
-  margin: 10px;
-  font-size: 17px;
-  color: white;
-  text-shadow: 0 1px #555555;
-}
-/* line 44, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page #fb-login-dialog #login-button {
-  margin: 20px;
-  text-align: center;
-}
-/* line 48, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page h3 {
   clear: left;
 }
-/* line 51, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 30, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column {
   display: inline;
   float: left;
   margin-right: 0;
   width: 510px;
+  position: relative;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #library-page .book-column {
   overflow-x: hidden;
 }
-/* line 53, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 33, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book {
   clear: left;
   height: 190px;
 }
-/* line 56, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 36, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .cover {
   display: inline;
   float: left;
@@ -1516,12 +1491,12 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .cover {
   overflow-x: hidden;
 }
-/* line 59, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 39, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .cover img {
   width: 100px;
   height: 155px;
 }
-/* line 62, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 42, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info {
   display: inline;
   float: left;
@@ -1532,7 +1507,7 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .info {
   overflow-x: hidden;
 }
-/* line 64, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 44, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info h4 {
   font-size: 22px;
   color: #333333;
@@ -1540,13 +1515,13 @@ ul.ui-autocomplete {
   padding: 0;
   margin: 0;
 }
-/* line 70, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 50, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .info h5 {
   font-size: 16px;
   font-weight: normal;
   color: #333333;
 }
-/* line 74, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 54, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .download {
   display: inline;
   float: left;
@@ -1557,7 +1532,7 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .download {
   overflow-x: hidden;
 }
-/* line 76, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 56, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column .book .read {
   display: inline;
   float: left;
@@ -1568,12 +1543,38 @@ ul.ui-autocomplete {
 * html #library-page .book-column .book .read {
   overflow-x: hidden;
 }
+/* line 59, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .book-column #fb-login-dialog {
+  position: absolute;
+  left: 50%;
+  top: 50px;
+  width: 460px;
+  margin-left: -230px;
+  height: 150px;
+  z-index: 1;
+  border: 1px solid #866a47;
+  background-color: #c9af87;
+  padding: 10px;
+}
+/* line 70, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .book-column #fb-login-dialog #login-text {
+  text-align: center;
+  margin: 10px;
+  font-size: 17px;
+  color: white;
+  text-shadow: 0 1px #555555;
+}
+/* line 76, ../../../app/stylesheets/partials/_library_page.sass */
+#library-page .book-column #fb-login-dialog #login-button {
+  margin: 20px;
+  text-align: center;
+}
 
-/* line 79, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 80, ../../../app/stylesheets/partials/_library_page.sass */
 #now_downloading_top_bar {
   margin-top: 20px;
 }
-/* line 82, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 83, ../../../app/stylesheets/partials/_library_page.sass */
 #now_downloading_top_bar a:visited {
   color: #333333;
 }

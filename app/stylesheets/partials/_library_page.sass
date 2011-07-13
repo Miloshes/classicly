@@ -23,33 +23,13 @@
       .name
         :margin
           :top 5px
-    
-  #fb-login-dialog
-    :position absolute
-    :left 50%
-    :top 125px
-    :width 460px
-    :margin-left -230px
-    :height 150px
-    :z-index 1
-    :border 1px solid #866A47
-    :background-color #C9AF87
-    :padding 10px
-    #login-text
-      :text-align center
-      :margin 10px
-      :font-size 17px
-      :color white
-      :text-shadow 0 1px #555555
-    #login-button
-      :margin 20px
-      :text-align center
 
   h3
     :clear left
 
   .book-column
     +column(13, true)
+    position: relative
     .book
       :clear left
       :height 190px
@@ -75,6 +55,27 @@
         +column(10, true)
       .read
         +column(10, true)
+        
+    #fb-login-dialog
+      :position absolute
+      :left 50%
+      :top 50px
+      :width 460px
+      :margin-left -230px
+      :height 150px
+      :z-index 1
+      :border 1px solid #866A47
+      :background-color #C9AF87
+      :padding 10px
+      #login-text
+        :text-align center
+        :margin 10px
+        :font-size 17px
+        :color white
+        :text-shadow 0 1px #555555
+      #login-button
+        :margin 20px
+        :text-align center
         
 #now_downloading_top_bar
   :margin-top 20px
