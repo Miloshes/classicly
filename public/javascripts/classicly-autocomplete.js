@@ -54,7 +54,7 @@ google.setOnLoadCallback(function() {
     var selectCallback = function( event, ui ) {
       event.target.value = ui.item.value;
       if( ui.item.slug != undefined )
-        window.location = "http://classicly.com" + ui.item.slug;
+        window.location = "http://www.classicly.com" + ui.item.slug;
       else
         $(event.target.form).submit(); //wrap form into a jQuery object, so submit honors onsubmit.
     }
