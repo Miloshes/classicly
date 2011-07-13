@@ -61,19 +61,22 @@ namespace :indextank do
 
   task :index_collections => :environment do
     index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+    collection_names = []
 
     Collection.find_in_batches :batch_size => 200 do|collections|
       documents = []
 
       collections.each do|collection|
+        write = collection_names.include?(collection.name) ? false : true
+        collection_names.push(collection.name) if write
+
         docid = "c_#{collection.id}"
-        if is_ascii? docid
+        if (is_ascii? docid) && write
           # we are going to save the cover url as a field to avoid more processing in read time:
           slug = "/#{collection.cached_slug}"
           # puts "collection text: #{text}"
           # puts "key: #{docid}"
-          type = collection.is_audio_collection? ? 'audiobook collection' : 'book collection'
-          documents << { :docid => docid, :fields => { :text => collection.name, :type => type, :slug => slug } }
+          documents << { :docid => docid, :fields => { :text => collection.name, :type => "collection", :slug => slug } }
         end
       end
 
@@ -83,7 +86,8 @@ namespace :indextank do
   end
 
   task :delete_collections => :environment do
-    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+
     Collection.find_in_batches :batch_size => 200 do|collections|
       collections.each do|collection|
         docid = "c_#{collection.id}"
@@ -91,6 +95,7 @@ namespace :indextank do
         puts "deleting collection : #{docid}"
       end
     end
+
   end
 
   task :delete_audiobooks => :environment do

@@ -2298,15 +2298,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   height: 37px;
   float: left;
   margin-right: 5px;
-  width: 7%;
 }
-/* line 30, ../../../app/stylesheets/partials/_decos.sass */
+/* line 29, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 91%;
 }
-/* line 31, ../../../app/stylesheets/partials/_decos.sass */
+/* line 30, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
