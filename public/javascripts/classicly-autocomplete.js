@@ -1,16 +1,3 @@
-$(function(){
-
-  $( "ul.ui-autocomplete li.ui-menu-item" ).each(function( index ){
-    imgWidth = 23;
-    totalWidth = $( this ).width();
-    textWidth = totalWidth - imgWidth;
-    percentageWidth = ( textWidth / totalWidth ) * 100;
-    $(this).find('.text').width( percentageWidth + "%" );
-  });
-
-});
-
-
 var elementId = "#term";
 var apiUrl =  "http://6wfx.api.indextank.com";
 var indexName = "ClassiclyAutocomplete";
@@ -18,18 +5,21 @@ var source = apiUrl + "/v1/indexes/" + indexName + "/search";
 var searchResults;
 
 /* this allows us to pass in HTML tags to autocomplete. Without this, they get escaped */
-
 $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
-var html;
-if( item.type == "book" || item.type == "audiobook"){
-html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + item.label + "<span class='type'>" + item.type + "</span></span></div>";
-}else{
-  html =  item.label + "<span class='type'>" + item.type + "</span>";
-}
-return $( "<li></li>" ) 
-  .data( "item.autocomplete", item )
-  .append( $( "<a></a>" ).html( html ) )
-  .appendTo( ul );
+  var html;
+
+  if( item.type == "book" || item.type == "audiobook"){
+    html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + item.label + "<span class='type'>" + item.type + "</span></span></div>";
+  }else if( item.type == "collection" ){
+    html =  item.label + "<span class='type'>" + item.type + "</span>";
+  }else{
+   html =  item.label;
+  }
+
+  return $( "<li></li>" ) 
+    .data( "item.autocomplete", item )
+    .append( $( "<a></a>" ).html( html ) )
+    .appendTo( ul );
 }
 
 
@@ -50,6 +40,8 @@ google.setOnLoadCallback(function() {
                   $.map( data.results, function( item ) {
                     searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug, cover_url : item.cover_url } );
                   });
+                  // finally add the searc for 'xyz' list item:
+                  searchResults.push( { label: "search <b>" + request.term + "</b>", value : request.term } );
                   responseCallback( $.each( searchResults, function( index, result ){
                     return{ label: result.label, value: result.value }
                   })); 
@@ -61,9 +53,10 @@ google.setOnLoadCallback(function() {
 
     var selectCallback = function( event, ui ) {
       event.target.value = ui.item.value;
-      window.location = "http://classicly-staging.heroku.com" + ui.item.slug;
-      // wrap form into a jQuery object, so submit honors onsubmit.
-      //$(event.target.form).submit();
+      if( ui.item.slug != undefined )
+        window.location = "http://classicly-staging.heroku.com" + ui.item.slug;
+      else
+        $(event.target.form).submit(); //wrap form into a jQuery object, so submit honors onsubmit.
     }
 
     $( elementId ).autocomplete( {

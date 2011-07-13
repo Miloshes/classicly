@@ -2289,24 +2289,28 @@ ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #cccccc;
 }
-/* line 23, ../../../app/stylesheets/partials/_decos.sass */
+/* line 24, ../../../app/stylesheets/partials/_decos.sass */
+ul.ui-autocomplete li.ui-menu-item a:hover span.type {
+  color: #cad2d4;
+}
+/* line 27, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 25, ../../../app/stylesheets/partials/_decos.sass */
+/* line 29, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 30, ../../../app/stylesheets/partials/_decos.sass */
+/* line 34, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 31, ../../../app/stylesheets/partials/_decos.sass */
+/* line 35, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
