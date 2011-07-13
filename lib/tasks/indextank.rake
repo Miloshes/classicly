@@ -31,48 +31,57 @@ namespace :indextank do
   end
 
   task :index_audiobooks => :environment do
-    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+
+
     Audiobook.find_in_batches :batch_size => 200 do|audiobooks|
       documents = []
+
       audiobooks.each do|audiobook|
-        title = encode_utf(audiobook.pretty_title)
-        author_name = encode_utf(audiobook.author.name)
+        # title = encode_utf(audiobook.pretty_title)
+        # author_name = encode_utf(audiobook.author.name)
+
         docid = "ab_#{audiobook.id}"
+
         if is_ascii? docid
-          text = "#{title} , #{author_name} "
-          #add collection names to the text to find collection's books
-          audiobook.collections.each do |collection|
-            text << ", #{encode_utf(collection.name)}"
-          end
-          puts "abook content: #{text}"
-          puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text, :type => 'audiobook' } }
+          # we are going to save the cover url as a field to avoid more processing in read time:
+          cover_url = "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{audiobook.id}_size1.jpg"
+          slug = "/#{audiobook.author_cached_slug}/#{audiobook.cached_slug}" # save the slug as well.
+
+          #puts "abook content: #{text}"
+          #puts "key: #{docid}"
+          documents << { :docid => docid, :fields => { :text => audiobook.pretty_title, :author => audiobook.author_name, :type => 'audiobook', :slug => slug, :cover_url => cover_url } }
         end
       end
       response = index.batch_insert(documents)
       puts "sending to indextank: #{response}"
     end
   end
-  
+
+
   task :index_collections => :environment do
-    index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    index = IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
+
     Collection.find_in_batches :batch_size => 200 do|collections|
       documents = []
+
       collections.each do|collection|
-        title = encode_utf(collection.name)
         docid = "c_#{collection.id}"
         if is_ascii? docid
-          text = title
-          puts "collection text: #{text}"
-          puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => text, :type => collection.book_type, :collection_type => collection.collection_type } }
+          # we are going to save the cover url as a field to avoid more processing in read time:
+          slug = "/#{collection.cached_slug}"
+          # puts "collection text: #{text}"
+          # puts "key: #{docid}"
+          type = collection.is_audio_collection? ? 'audiobook collection' : 'book collection'
+          documents << { :docid => docid, :fields => { :text => collection.name, :type => type, :slug => slug } }
         end
       end
+
       response = index.batch_insert(documents)
       puts "sending to indextank: #{response}"
     end
   end
-  
+
   task :delete_collections => :environment do
     index = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
     Collection.find_in_batches :batch_size => 200 do|collections|

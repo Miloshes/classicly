@@ -7,11 +7,17 @@ var searchResults;
 /* this allows us to pass in HTML tags to autocomplete. Without this, they get escaped */
 
 $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
+var html;
+if( item.type == "book" || item.type == "audiobook"){
+  html =  "<img src='" + item.cover_url + "'class='micro-cover'>" + item.label + "<span class='type'>" + item.type + "</span>";
+}else{
+  html =  item.label + "<span class='type'>" + item.type + "</span>";
+}
 return $( "<li></li>" ) 
   .data( "item.autocomplete", item )
-  .append( $( "<a></a>" ).html( item.label + "<span class='type'>" + item.type + "</span>" ) )
+  .append( $( "<a></a>" ).html( html ) )
   .appendTo( ul );
-};
+}
 
 
 google.setOnLoadCallback(function() {
@@ -26,11 +32,10 @@ google.setOnLoadCallback(function() {
               $.ajax({
                 url: source,
                 dataType: "jsonp",
-                data: {len: 10, q:data.suggestions[0], snippet:'text', fetch: "text,type,slug"},
+                data: {len: 10, q:data.suggestions[0], snippet:'text', fetch: "text,type,slug,cover_url"},
                 success: function( data ) {
                   $.map( data.results, function( item ) {
-                    console.log( item.slug );
-                    searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug  } );
+                    searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug, cover_url : item.cover_url } );
                   });
                   responseCallback( $.each( searchResults, function( index, result ){
                     return{ label: result.label, value: result.value }

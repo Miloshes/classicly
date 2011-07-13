@@ -16,6 +16,7 @@ class Audiobook < ActiveRecord::Base
 
   validates :title, :presence => true
 
+  delegate :name, :cached_slug, :to => :author, :prefix => true
   scope :blessed, where({:blessed => true})
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}

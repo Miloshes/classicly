@@ -2273,14 +2273,21 @@ a.button.kiss span {
   -webkit-box-shadow: 2px 2px 11px #666666;
 }
 
-/* line 10, ../../../app/stylesheets/partials/_decos.sass */
+/* line 12, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete {
   min-width: 164px;
 }
-/* line 13, ../../../app/stylesheets/partials/_decos.sass */
+/* line 16, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #cccccc;
+}
+/* line 19, ../../../app/stylesheets/partials/_decos.sass */
+ul.ui-autocomplete li.ui-menu-item a img.micro-cover {
+  width: 12 px;
+  height: 19px;
+  float: left;
+  margin-right: 12px;
 }
 
 /* line 41, ../../../app/stylesheets/partials/_covers.sass */
