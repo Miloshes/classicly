@@ -1,26 +1,228 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>The page you were looking for can't be found (404)</title>
+  <link href="/stylesheets/compiled/screen.css?1310596020" media="screen" rel="stylesheet" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Dancing+Script:700&v2' rel='stylesheet' type='text/css'>
+
   <style type="text/css">
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
-      width: 25em;
+      width: 82em;
       padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
+      margin: 130px auto 200px auto;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+
+    div.dialog div#error-page-message{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      font-size: 28px;
+    }
+
+    div.dialog div.message {
+      font-size: 26px;
+      margin-top: 25px;
+    }
+
+    div.dialog a{
+      background: none repeat scroll 0 0 #FFFFD7;
+      color: #333333;
+      margin-bottom: 6px;
+      text-decoration: none;
+    }
+
+    div.dialog div.error-box{
+      border: 2px solid #c9af87;
+      margin: 10px auto;
+      color: #c9af87;
+      width: 8em;
+      font-size: 50px;
+      font-family: 'Dancing Script', cursive;
+    }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
+  <div id='header'>
+    <div class='wrap'>
+
+      <div class='top'>
+
+        <div id='logo'>
+          <a href='/'>
+            <img alt="Logo" src="/images/logo.png?1306595453" />
+          </a>
+        </div>
+
+        <div id='nav'>
+          <ul>
+            <li>
+              <a href='/collections'>Collections</a>
+            </li>
+            <li>
+              <a href='/authors'>Authors</a>
+            </li>
+            <li>
+              <a class='blog' href='/blog'>Blog</a>
+            </li>
+          </ul>
+        </div>
+
+        <div id='search'>
+          <form accept-charset="UTF-8" action="http://localhost:3000/search" id="indexTankForm" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="jyOIFLQXKEk8efQn5I7klupS951RhnxwUw3dsG3EL2g=" /></div>
+            <input id="term" name="term" placeholder="Search" tabIndex="1" type="text" />
+            <button name='commit' type='submit' value='search_submit'></button>
+          </form>
+        </div>
+
+      </div><!--End Top -->
+
+      <div class='bottom'></div>
+    </div><!--End Wrap-->
+  </div> <!--end Header-->
+
+  <div style='clear: both;'></div>
+
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+    <div class='error-box'>Error 404</div>
+    <div id ='error-page-message'> We're sorry, but the page you're looking for can't be found.</div>
+    <!--img src="images/404.png" alt="404"/-->
+    <div class="message"> You might try by starting at our <a href="/">homepage</a>.</div>
   </div>
+
+
+<div id='bottom-shadow'>
+      <div id='footer'>
+        <div class='centering'>
+          <div class='about'>
+            <h4>About</h4>
+
+            <div class='bg'>
+              <p>
+                Classicly makes the <b>public domain</b> come alive. Download <b>free books</b>, <b>read online</b>, explore <B>classic books</b>, and discover related gems- the world of free books is at your fingertips.
+              </p>
+              <p>
+
+                Dozens of custom collections, hundreds of gorgeous high resolution cover- Classicly is the best way to read online around. Have an iPod, iPad, or iPhone? Sync to Free Books!
+              </p>
+            </div>
+          </div>
+          <div class='applications'>
+            <h4>Apps</h4>
+            <div class='app'>
+              <a href="http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"><img alt="Footer-books" class="icon" src="/images/footer-books.png?1304912428" /></a>
+              <h5>Free Books</h5>
+
+              <span>23,469 classics to go.</span>
+              <a href="http://itunes.apple.com/us/app/free-books-23-469-classics/id317776727?mt=8"><img alt="Footer-iphone" class="link" src="/images/footer-iphone.png?1304912428" /></a>
+              <a href="http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8"><img alt="Footer-ipad" class="link" src="/images/footer-ipad.png?1304912428" /></a>
+            </div>
+            <div class='app grid_4 alpha omega'>
+              <div class='grid_1 alpha'>
+                <a href="http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"><img alt="Footer-audiobooks" class="icon" src="/images/footer-audiobooks.png?1304912428" /></a>
+              </div>
+
+              <div class='grid_3 omega'>
+                <h5>Free Audiobooks</h5>
+                <span>2,947 audiobooks to go.</span>
+                <a href="http://itunes.apple.com/us/app/free-audiobooks-2-947-classic/id352615816?mt=8"><img alt="Footer-iphone" class="link" src="/images/footer-iphone.png?1304912428" /></a>
+                <a href="http://itunes.apple.com/us/app/free-audiobooks-2-947-classics/id379861611?mt=8"><img alt="Footer-ipad" class="link" src="/images/footer-ipad.png?1304912428" /></a>
+              </div>
+            </div>
+          </div>
+
+          <div class='connect grid_4 omega'>
+            <h4>Connect</h4>
+            <a href="http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"><img alt="Footer-support" src="/images/footer-support.png?1304912428" /></a>
+            <a href="http://www.facebook.com/pages/Classicly/193128150712368"><img alt="Footer-facebook" src="/images/footer-facebook.png?1304912428" /></a>
+            <a href="http://twitter.com/#!/classiclyapp"><img alt="Footer-twitter" src="/images/footer-twitter.png?1304912428" /></a>
+          </div>
+        </div>
+        <div class='collection-names-list'>
+
+          <img alt="Footer-collections-top" src="/images/footer-collections-top.png?1306595453" />
+          <div class='collections'>
+            <div class='column-1 column'>
+              <span><a href="/adventure">Adventure</a></span>
+              <span><a href="/african-american-studies">African-American Studies</a></span>
+              <span><a href="/art">Art</a></span>
+              <span><a href="/autos-bios">Autos &amp; Bios</a></span>
+
+              <span><a href="/banned-books">Banned Books</a></span>
+              <span><a href="/best-of">Best Of</a></span>
+              <span><a href="/classic-psychology">Classic Psychology</a></span>
+              <span><a href="/computers">Computers</a></span>
+              <span><a href="/cooking">Cooking</a></span>
+              <span><a href="/correspondence">Correspondence</a></span>
+
+              <span><a href="/creative-commons">Creative Commons</a></span>
+              <span><a href="/criticism">Criticism</a></span>
+              <span><a href="/drama">Drama</a></span>
+              <span><a href="/english-101">English 101</a></span>
+            </div>
+            <div class='column-2 column'>
+              <span><a href="/epic-epics">Epic Epics</a></span>
+
+              <span><a href="/espionage">Espionage</a></span>
+              <span><a href="/essays">Essays</a></span>
+              <span><a href="/etiquette">Etiquette</a></span>
+              <span><a href="/fantasy">Fantasy</a></span>
+              <span><a href="/fiction">Fiction</a></span>
+              <span><a href="/games">Games</a></span>
+
+              <span><a href="/ghost-stories">Ghost Stories</a></span>
+              <span><a href="/gothic">Gothic</a></span>
+              <span><a href="/government-publication">Government Publication</a></span>
+              <span><a href="/harvard-classics">Harvard Classics</a></span>
+              <span><a href="/health">Health</a></span>
+              <span><a href="/history">History</a></span>
+
+              <span><a href="/horror">Horror</a></span>
+            </div>
+            <div class='column-3 column'>
+              <span><a href="/abraham-lincoln">Abraham Lincoln</a></span>
+              <span><a href="/alexandre-dumas">Alexandre Dumas</a></span>
+              <span><a href="/aristotle">Aristotle</a></span>
+              <span><a href="/arthur-conan-doyle">Arthur Conan Doyle</a></span>
+
+              <span><a href="/bram-stoker">Bram Stoker</a></span>
+              <span><a href="/charles-dickens">Charles Dickens</a></span>
+              <span><a href="/cicero">Cicero</a></span>
+              <span><a href="/daniel-defoe">Daniel Defoe</a></span>
+              <span><a href="/dante-alighieri">Dante Alighieri</a></span>
+              <span><a href="/edgar-allen-poe">Edgar Allen Poe</a></span>
+
+              <span><a href="/edgar-rice-burroughs">Edgar Rice Burroughs</a></span>
+              <span><a href="/edward-gibbon">Edward Gibbon</a></span>
+              <span><a href="/edward-morgan-forster">Edward Morgan Forster</a></span>
+              <span><a href="/f-scott-fitzgerald">F. Scott Fitzgerald</a></span>
+            </div>
+            <div class='column-4 column'>
+              <span><a href="/fyodor-dostoyevsky">Fyodor Dostoyevsky</a></span>
+
+              <span><a href="/h-g-wells">H. G. Wells</a></span>
+              <span><a href="/h-p-lovecraft">H. P. Lovecraft</a></span>
+              <span><a href="/henry-david-thoreau">Henry David Thoreau</a></span>
+              <span><a href="/homer">Homer</a></span>
+              <span><a href="/jack-london">Jack London</a></span>
+              <span><a href="/james-joyce">James Joyce</a></span>
+
+              <span><a href="/jane-austen">Jane Austen</a></span>
+              <span><a href="/jonathan-swift">Jonathan Swift</a></span>
+              <span><a href="/joseph-conrad">Joseph Conrad</a></span>
+              <span><a href="/jules-verne">Jules Verne</a></span>
+              <span><a href="/lewis-carrol">Lewis Carrol</a></span>
+              <span><a href="/mark-twain">Mark Twain</a></span>
+
+              <span><a href="/oscar-wilde">Oscar Wilde</a></span>
+            </div>
+          </div>
+          <img alt="Footer-collections-bottom" src="/images/footer-collections-bottom.png?1306595453" />
+          <span class='copyright'>&copy;2010-2011 Spreadsong, Inc.</span>
+        </div>
+      </div>
+    </div>
+  
 </body>
 </html>
