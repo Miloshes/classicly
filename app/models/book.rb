@@ -24,6 +24,7 @@ class Book < ActiveRecord::Base
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
   validates :title, :presence => true
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
 

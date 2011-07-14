@@ -23,17 +23,14 @@ class Search
       return {:type => 'collection', :name => collection.name, :slug => collection.cached_slug }
     end
   end
-  
-  def self.search_books(search, indextank, bookType, page)
-    search_type, search_prefix = bookType ? ['audiobook', 'ab']  : ['book', 'b']
-    documents = indextank.search "#{search} type:#{search_type}"
-    match_count = documents['matches']
-    docids = documents['results'].collect{|doc| doc['docid']}
-    bookids = docids.collect do |docid|
-      arr = docid.split('_')
-      arr.first == search_prefix ? arr.last.to_i : nil
-    end
+
+  def self.search_books(search, indextank, page)
+    indices = indextank.search "#{search} type:book ", :len => 50
+
+    bookids = indices['results'].collect{ |index| index['docid'].split('_').last.to_i }
     bookids.compact!
-    search_type.classify.constantize.where(:id.in => bookids).page(page).per(10)
+
+    Book.search_in_ids(bookids).page(page).per(10)
   end
+
 end
