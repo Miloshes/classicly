@@ -35,7 +35,7 @@ google.setOnLoadCallback(function() {
               $.ajax({
                 url: source,
                 dataType: "jsonp",
-                data: {len: 10, q:data.suggestions[0], snippet:'text', fetch: "text,type,slug,cover_url"},
+                data: {len: 10, q: "(" + data.suggestions[0] + ") OR full:"  + data.suggestions[0].replace(" ", "") + "^100000", snippet:'text', fetch: "text,type,slug,cover_url"},
                 success: function( data ) {
                   $.map( data.results, function( item ) {
                     searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug, cover_url : item.cover_url } );
