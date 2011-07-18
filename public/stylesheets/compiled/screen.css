@@ -515,20 +515,21 @@ a.highlight:hover {
   background: #cab08b;
 }
 /* line 164, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list {
+#footer #collection-names-list {
   margin: 0 auto;
   width: 800px;
   padding: 10px;
+  padding-bottom: 0px;
   background: 1px solid #bb9d79;
   font-family: "helvetica";
   font-size: 17px;
 }
-/* line 171, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list img {
+/* line 172, ../../../app/stylesheets/partials/_layout.sass */
+#footer #collection-names-list img {
   float: left;
 }
-/* line 173, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list .collections {
+/* line 174, ../../../app/stylesheets/partials/_layout.sass */
+#footer #collection-names-list .collections {
   width: 830px;
   display: block;
   float: left;
@@ -536,13 +537,13 @@ a.highlight:hover {
   border-left: 1px solid #866a47;
   border-right: 1px solid #866a47;
 }
-/* line 182, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list .column {
+/* line 183, ../../../app/stylesheets/partials/_layout.sass */
+#footer #collection-names-list .column {
   float: left;
   width: 190px;
 }
-/* line 185, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list a {
+/* line 186, ../../../app/stylesheets/partials/_layout.sass */
+#footer #collection-names-list a {
   color: white;
   text-decoration: none;
   display: inline;
@@ -552,14 +553,14 @@ a.highlight:hover {
   text-shadow: 0px 1px #555555;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #footer .collection-names-list a {
+* html #footer #collection-names-list a {
   overflow-x: hidden;
 }
-/* line 190, ../../../app/stylesheets/partials/_layout.sass */
-#footer .collection-names-list a:hover {
+/* line 191, ../../../app/stylesheets/partials/_layout.sass */
+#footer #collection-names-list a:hover {
   text-shadow: 0 0 15px white;
 }
-/* line 192, ../../../app/stylesheets/partials/_layout.sass */
+/* line 193, ../../../app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -572,108 +573,115 @@ a.highlight:hover {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 203, ../../../app/stylesheets/partials/_layout.sass */
-#footer .about {
+/* line 204, ../../../app/stylesheets/partials/_layout.sass */
+#footer #about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 207, ../../../app/stylesheets/partials/_layout.sass */
-#footer .about .bg {
+/* line 208, ../../../app/stylesheets/partials/_layout.sass */
+#footer #about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 212, ../../../app/stylesheets/partials/_layout.sass */
-#footer .about .bg p {
+/* line 213, ../../../app/stylesheets/partials/_layout.sass */
+#footer #about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 219, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications {
+/* line 220, ../../../app/stylesheets/partials/_layout.sass */
+#footer #applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 223, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications .app {
+/* line 224, ../../../app/stylesheets/partials/_layout.sass */
+#footer #applications .app {
   text-align: left;
   float: left;
   width: 300px;
-  margin-left: 10px;
-  margin-right: 10px;
 }
-/* line 230, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications .app h5 {
+/* line 228, ../../../app/stylesheets/partials/_layout.sass */
+#footer #applications .app h5 {
   color: #43260f;
   font-size: 18px;
   margin: 0;
   margin-top: 20px;
   padding: 0;
+  text-indent: 5px;
 }
-/* line 236, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications .app span {
+/* line 235, ../../../app/stylesheets/partials/_layout.sass */
+#footer #applications .app span {
   color: #43260f;
   font-size: 12px;
+  text-indent: 5px;
   display: block;
-  Width: 100%;
+  width: 100%;
 }
 /* line 241, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications .app img.link {
+#footer #applications .app img.link {
   margin-top: 5px;
 }
 /* line 244, ../../../app/stylesheets/partials/_layout.sass */
-#footer .applications .app img.icon {
+#footer #applications .app img.icon {
   float: left;
-  margin-top: 10px;
+  margin: 5px;
+  margin-top: 17px;
 }
 /* line 248, ../../../app/stylesheets/partials/_layout.sass */
-#footer .connect {
+#footer #connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
 /* line 255, ../../../app/stylesheets/partials/_layout.sass */
-#footer .connect a img:hover {
+#footer #connect a img:hover {
   opacity: 0.8;
 }
+/* line 257, ../../../app/stylesheets/partials/_layout.sass */
+#footer #copyright {
+  clear: left;
+  margin-top: 5px;
+  font-size: 17px;
+}
 
-/* line 261, ../../../app/stylesheets/partials/_layout.sass */
+/* line 265, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 267, ../../../app/stylesheets/partials/_layout.sass */
+/* line 271, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
   text-align: left;
 }
-/* line 270, ../../../app/stylesheets/partials/_layout.sass */
+/* line 274, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
   float: left !important;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 275, ../../../app/stylesheets/partials/_layout.sass */
+/* line 279, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe {
   float: left;
 }
-/* line 277, ../../../app/stylesheets/partials/_layout.sass */
+/* line 281, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 280, ../../../app/stylesheets/partials/_layout.sass */
+/* line 284, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 284, ../../../app/stylesheets/partials/_layout.sass */
+/* line 288, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -681,7 +689,7 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 291, ../../../app/stylesheets/partials/_layout.sass */
+/* line 295, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row {
   Width: 100%;
   text-align: left;
@@ -690,20 +698,20 @@ a.highlight:hover {
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 298, ../../../app/stylesheets/partials/_layout.sass */
+/* line 302, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row:hover {
   cursor: pointer;
 }
-/* line 300, ../../../app/stylesheets/partials/_layout.sass */
+/* line 304, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row img {
   margin-bottom: 0px;
 }
-/* line 302, ../../../app/stylesheets/partials/_layout.sass */
+/* line 306, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 306, ../../../app/stylesheets/partials/_layout.sass */
+/* line 310, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a {
   margin-bottom: 6px;
   color: #333333;
@@ -711,12 +719,12 @@ a.highlight:hover {
   text-decoration: none;
   float: left;
 }
-/* line 312, ../../../app/stylesheets/partials/_layout.sass */
+/* line 316, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .row .links a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 315, ../../../app/stylesheets/partials/_layout.sass */
+/* line 319, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
@@ -725,7 +733,7 @@ a.highlight:hover {
   padding-bottom: 10px;
 }
 
-/* line 323, ../../../app/stylesheets/partials/_layout.sass */
+/* line 327, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -734,14 +742,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 330, ../../../app/stylesheets/partials/_layout.sass */
+/* line 334, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 336, ../../../app/stylesheets/partials/_layout.sass */
+/* line 340, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -753,14 +761,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 339, ../../../app/stylesheets/partials/_layout.sass */
+/* line 343, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 344, ../../../app/stylesheets/partials/_layout.sass */
+/* line 348, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -772,7 +780,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 347, ../../../app/stylesheets/partials/_layout.sass */
+/* line 351, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -781,7 +789,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 355, ../../../app/stylesheets/partials/_layout.sass */
+/* line 359, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -793,12 +801,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 358, ../../../app/stylesheets/partials/_layout.sass */
+/* line 362, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 362, ../../../app/stylesheets/partials/_layout.sass */
+/* line 366, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
@@ -1463,17 +1471,8 @@ ul.ui-autocomplete {
   background: url("/images/profile-frame.png");
   display: block;
 }
-<<<<<<< HEAD
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .photo {
-  overflow-x: hidden;
-}
-/* line 11, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .photo img {
-=======
 /* line 16, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .user-column #user-profile .photo img {
->>>>>>> library
   width: 100px;
   margin: 6px;
 }
@@ -1483,43 +1482,6 @@ ul.ui-autocomplete {
   display: block;
   float: left;
 }
-<<<<<<< HEAD
-/* line 19, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .name {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-  margin-top: 5px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .name {
-  overflow-x: hidden;
-}
-/* line 23, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .stats {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-  margin-top: 15px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .stats {
-  overflow-x: hidden;
-}
-/* line 27, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column .invite {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 230px;
-  margin-top: 15px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column .invite {
-  overflow-x: hidden;
-=======
 /* line 23, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .user-column #user-profile .name {
   margin-top: 5px;
@@ -1527,7 +1489,6 @@ ul.ui-autocomplete {
 /* line 27, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page h3 {
   clear: left;
->>>>>>> library
 }
 /* line 30, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page .book-column {
@@ -2720,15 +2681,6 @@ nav.pagination span {
 /* line 8, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.prev {
   float: left;
-<<<<<<< HEAD
-=======
-  margin-right: 10px;
-  width: 190px;
-}
-/* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html nav.pagination span.prev {
-  overflow-x: hidden;
->>>>>>> library
 }
 /* line 10, ../../../app/stylesheets/partials/_pagination.sass */
 nav.pagination span.prev a {
@@ -2758,11 +2710,7 @@ nav.pagination span.full-width {
   width: 630px;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-<<<<<<< HEAD
 * html nav.pagination span.full-width {
-=======
-* html nav.pagination span.pagination-text {
->>>>>>> library
   overflow-x: hidden;
 }
 /* line 28, ../../../app/stylesheets/partials/_pagination.sass */
@@ -2781,11 +2729,7 @@ nav.pagination span.next_with_full_width {
   width: 630px;
 }
 /* line 147, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-<<<<<<< HEAD
 * html nav.pagination span.next_with_full_width {
-=======
-* html nav.pagination span.next {
->>>>>>> library
   overflow-x: hidden;
 }
 /* line 38, ../../../app/stylesheets/partials/_pagination.sass */
@@ -2825,7 +2769,6 @@ nav.pagination div#page_numbers span a:hover {
   color: #c9af87;
 }
 
-<<<<<<< HEAD
 /* line 6, ../../../app/stylesheets/partials/_admin.sass */
 table tr a {
   text-decoration: none;
@@ -2874,8 +2817,6 @@ table tr a {
   font-size: 20px;
 }
 
-=======
->>>>>>> library
 /* line 9, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .clear {
   clear: both;
