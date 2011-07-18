@@ -6,10 +6,15 @@ class BookPagesController < ApplicationController
   def show
     slug = SeoSlug.where(:slug => params[:id]).first
     book = slug.seoable
+
     @book_page  = book.book_pages.where(:page_number => params[:page_number]).first()
-    
+    if @book_page.nil?
+      redirect_to author_book_path(book.author, book)
+    else
     # render the html reader version:
-    render :action => 'show', :layout => 'layouts/html_reader'
+      render :action => 'show', :layout => 'layouts/html_reader'
+    end
+
     # if params[:html_reader]
     # else
     #   # == render the static html version
