@@ -1,5 +1,4 @@
 Classicly::Application.routes.draw do
-
   namespace 'admin' do
     root :to => "base#home"
     match 'admin_seo' => 'admin_seo#main'
@@ -20,6 +19,13 @@ Classicly::Application.routes.draw do
     resources :seo_defaults
   end
   
+  resource :logins, :only => [:create]
+  
+  # == Library
+  match 'library' => 'libraries#show', :as => :library
+  match 'library/handle_facebook_login' => 'libraries#handle_facebook_login', :as => :library_handle_facebook_login
+  match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
+  
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
@@ -28,7 +34,6 @@ Classicly::Application.routes.draw do
   match 'authors/(:page)' => 'pages#authors', :as => :authors
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
-  match 'library' => 'pages#library'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
   match 'collection_json_books' => 'collections#collection_json_books'
 
@@ -47,6 +52,7 @@ Classicly::Application.routes.draw do
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
   get "bingo_experiments/create"
+
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post  
   match 'search' => 'search#show', :method => :post

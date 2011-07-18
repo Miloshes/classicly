@@ -254,7 +254,7 @@ DEPENDENCIES
   maruku
   meta_where
   mongrel
-  mysql2 (~> 0.2.3)
+  mysql2 (< 0.3)
   nokogiri
   paperclip
   rails (= 3.0.7)

@@ -1,0 +1,61 @@
+- if @new_book_in_library
+  = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
+
+#library-page
+  - if current_library.books.size == 0
+    TODO: Empty library placeholder comes here.
+  - else
+    .user-column
+      #user-profile
+        - if current_login
+          = render :partial => 'fb_user_profile'
+    .book-column
+      - if !current_login
+        = render :partial => 'login_with_fb_dialog'
+  
+      - if current_library.last_read_book
+        %h3 Last Read:
+        #last-read
+          = render :partial => 'libraries/book', :object => current_library.last_read_book, :as => :book
+  
+      %h3 Library:
+      #book-list
+        = render :partial => 'libraries/book', :collection => @books, :as => :book
+
+:javascript
+  // hide the FB login dialog if we've rendered it (for animation purposes)
+  if ( $('#fb-login-dialog').length ) {
+    $('#fb-login-dialog').hide();
+  }
+      
+- if @new_book_in_library
+  :javascript
+    // preparing DOM element for the new book for animation
+    $('#book_#{@new_book_in_library.id}').hide();
+    
+    $(document).ready(function() {
+      // slide in the new book to the library
+      $('#book_#{@new_book_in_library.id}').show('slide', {direction: 'right'}, 500, function() {
+        
+        // if we have a FB login dialog, animate it in after the book adding animation
+        if ( $('#fb-login-dialog').length ) {
+          $('#fb-login-dialog').fadeIn(500, function() {
+            // redirect after the animation to serve the book file for download
+            window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+          });
+        } else {
+          // no FB dialog, just redirect to book download right after the book adding animation
+          window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+        }
+      });
+    });
+
+// user got straight to the library page, but doesn't registered yet -> show him the FB login dialog
+- if !current_login && !@new_book_in_library
+  :javascript
+    $(document).ready(function() {
+      if ( $('#fb-login-dialog').length ) {
+        $('#fb-login-dialog').fadeIn(500);
+      }
+    });
+  

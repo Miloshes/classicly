@@ -1,0 +1,4 @@
+$('#user-profile').hide();
+$('#user-profile').html("<%= escape_javascript(render :partial => 'fb_user_profile') %>");
+$('#user-profile').fadeIn();
+$('#fb-login-dialog').fadeOut();

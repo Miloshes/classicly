@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
-  layout 'new_design'
-
-  protect_from_forgery
+  include LibrarySessionHandler
   
-  helper_method :current_admin_user_session, :current_admin_user
+  layout 'new_design'
+  protect_from_forgery
+  helper_method :current_admin_user_session, :current_admin_user, :current_login
   
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
@@ -12,6 +12,12 @@ class ApplicationController < ActionController::Base
   before_filter :popular_books
   before_filter :popular_collections
   caches_action :collections_for_footer
+  
+  def current_login
+    return if !facebook_cookies
+    
+    @current_login ||= Login.where(:fb_connect_id => facebook_cookies['uid']).first
+  end
 
   def collections_for_footer
     @footer_collections_column_1 = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
@@ -68,5 +74,9 @@ class ApplicationController < ActionController::Base
       session[:abingo_identity] ||= rand(10 ** 10)
       Abingo.identity = session[:abingo_identity]
     end
+  end
+  
+  def facebook_cookies
+    @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
   end
 end

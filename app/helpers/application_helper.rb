@@ -56,10 +56,6 @@ module ApplicationHelper
                       :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
   end
   
-  def current_login
-    Login.where(:fb_connect_id => @profile_id).first
-  end
-
   def user_signed_in?
     @profile_id != nil && Login.exists?(:fb_connect_id => @profile_id)
   end

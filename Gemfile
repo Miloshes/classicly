@@ -100,7 +100,7 @@ group :development, :test do
   gem 'machinist', '>= 2.0.0.beta1'
   
   # MySQL driver - http://rubygems.org/gems/mysql2
-  gem 'mysql2', '~> 0.2.3'
+  gem 'mysql2', '< 0.3'
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
   gem 'rspec-rails', '>=2.0.0.beta'
