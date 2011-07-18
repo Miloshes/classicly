@@ -1,11 +1,13 @@
 include AWS::S3
 
 class BookPagesController < ApplicationController
+
   # GET /bram-stoker/dracula/page/15
   # test url: http://localhost:3000/read-dracula-online-free/page/1
   def show
     slug = SeoSlug.where(:slug => params[:id]).first
     book = slug.seoable
+
     @book_page  = book.book_pages.where(:page_number => params[:page_number]).first()
     
     # if we have a user logged in, set this book's last-opened property in his library
@@ -14,8 +16,13 @@ class BookPagesController < ApplicationController
       library_book.update_attributes(:last_opened => Time.now)
     end
     
-    # render the html reader version:
-    render :action => 'show', :layout => 'layouts/html_reader'
+    if @book_page.nil?
+      redirect_to author_book_path(book.author, book)
+    else
+      # render the html reader version:
+      render :action => 'show', :layout => 'layouts/html_reader'
+    end
+
     # if params[:html_reader]
     # else
     #   # == render the static html version

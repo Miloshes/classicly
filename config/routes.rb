@@ -35,7 +35,6 @@ Classicly::Application.routes.draw do
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
   match 'collections/(:page)' => 'pages#collections', :as => :collections
-  match 'collection_json_books' => 'collections#collection_json_books'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
