@@ -8,7 +8,7 @@ class BookPagesController < ApplicationController
     book = slug.seoable
     @book_page  = book.book_pages.where(:page_number => params[:page_number]).first()
     
-    # if we have a user logged in, set this book's last-read property in his library
+    # if we have a user logged in, set this book's last-opened property in his library
     if current_login
       library_book = current_library.library_books.where(:book_id => book.id).first()
       library_book.update_attributes(:last_opened => Time.now)
