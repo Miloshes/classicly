@@ -7,7 +7,7 @@
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
-      
+
 #book-page{:name => @book.id }
   .cover-column
     #current-book.cover.medium
@@ -33,8 +33,8 @@
         %p= simple_format(@book.description)
         .share
       .download
-        = @book.available_in_format?('pdf') ? link_to(image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug)) : image_tag('download_pdf.png')
-        = @book.available_in_format?('azw') ? link_to(image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)) : image_tag('download_kindle.png')
+        = (@book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf'))? link_to(image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug)) : image_tag('download_pdf.png')
+        = (@book.available_in_format?('azw') && @book.has_slug_for_format?('kindle'))? link_to(image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)) : image_tag('download_kindle.png')
         - if @book.has_audiobook
           = link_to image_tag('mp3-download_03.png'), seo_url(@book.audiobook_download_slug), :class => 'download-as-mp3'
       .read
