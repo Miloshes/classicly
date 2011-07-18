@@ -30,7 +30,6 @@ Classicly::Application.routes.draw do
   match 'blog' => 'blog#index', :as => :blog
   match 'library' => 'pages#library'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
-  match 'collection_json_books' => 'collections#collection_json_books'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
