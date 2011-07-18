@@ -5,9 +5,12 @@ class LibrariesController < ApplicationController
     if session[:new_book_in_library]
       @new_book_in_library = Book.find(session[:new_book_in_library])
 
-      current_library.books << @new_book_in_library
+      unless current_library.books.include?(@new_book_in_library)
+        current_library.books << @new_book_in_library
+      end
+      
       current_library.books_downloaded = current_library.books.size
-
+      
       @download_format = session[:download_format_for_the_new_book]
 
       session[:new_book_in_library] = nil
