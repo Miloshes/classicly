@@ -234,23 +234,11 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
   end
 
   create_table "libraries", :force => true do |t|
-    t.integer "login_id"
-    t.integer "total_pages_read", :default => 0, :null => false
-    t.integer "books_downloaded", :default => 0, :null => false
-  end
-
-  create_table "library_audiobooks", :force => true do |t|
-    t.integer  "library_id"
-    t.integer  "audiobook_id"
-    t.datetime "last_opened"
-    t.integer  "listening_position"
-    t.datetime "created_at"
-  end
-
-  create_table "libraries", :force => true do |t|
-    t.integer "login_id"
-    t.integer "total_pages_read", :default => 0, :null => false
-    t.integer "books_downloaded", :default => 0, :null => false
+    t.integer  "login_id"
+    t.integer  "total_pages_read", :default => 0,    :null => false
+    t.integer  "books_downloaded", :default => 0,    :null => false
+    t.boolean  "unregistered",     :default => true, :null => false
+    t.datetime "last_accessed"
   end
 
   create_table "library_audiobooks", :force => true do |t|
