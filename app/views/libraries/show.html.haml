@@ -1,5 +1,6 @@
 - if @new_book_in_library
-  = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
+  - content_for :notifications do
+    = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
 
 #library-page
   - if current_library.books.size == 0

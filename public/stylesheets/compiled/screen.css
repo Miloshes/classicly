@@ -1598,15 +1598,6 @@ ul.ui-autocomplete {
   text-align: center;
 }
 
-/* line 80, ../../../app/stylesheets/partials/_library_page.sass */
-#now_downloading_top_bar {
-  margin-top: 20px;
-}
-/* line 83, ../../../app/stylesheets/partials/_library_page.sass */
-#now_downloading_top_bar a:visited {
-  color: #333333;
-}
-
 /* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page, #author-list-page, #collection-page {
   display: inline;
@@ -2817,6 +2808,7 @@ table tr a {
   font-size: 20px;
 }
 
+@import url(partials/_notifications.css);
 /* line 9, ../../../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.3/frameworks/blueprint/stylesheets/blueprint/_utilities.scss */
 body.bp .clear {
   clear: both;
@@ -2876,12 +2868,16 @@ body.bp .showgrid {
   background-size: 100% 20px, auto;
   background-position: left top;
 }
-/* line 46, ../../../app/stylesheets/screen.scss */
+/* line 47, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 50, ../../../app/stylesheets/screen.scss */
+/* line 51, ../../../app/stylesheets/screen.scss */
+body.bp a:visited {
+  color: #333333;
+}
+/* line 54, ../../../app/stylesheets/screen.scss */
 body.bp #content {
   width: 950px;
   margin: 0 auto;
@@ -2954,14 +2950,14 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 63, ../../../app/stylesheets/screen.scss */
+/* line 67, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
   width: 950px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 65, ../../../app/stylesheets/screen.scss */
+/* line 69, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
@@ -2972,7 +2968,7 @@ body.two-col #header, body.two-col #footer {
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 67, ../../../app/stylesheets/screen.scss */
+/* line 71, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
@@ -2983,7 +2979,7 @@ body.two-col #sidebar {
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 71, ../../../app/stylesheets/screen.scss */
+/* line 75, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;

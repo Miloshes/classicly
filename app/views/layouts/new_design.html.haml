@@ -4,8 +4,6 @@
 
   %head
     = include_stylesheets :common
-    /[if lt IE 8]
-    = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
     = stylesheet_link_tag "custom-theme/jquery-ui-1.8.14.custom.css"
     = yield :title
     = javascript_include_tag 'http://www.google.com/jsapi'
@@ -40,6 +38,8 @@
     s.parentNode.insertBefore(p, s);
     })();
     </script>
+    
+    = yield :notifications
 
     #fb-root
     #header

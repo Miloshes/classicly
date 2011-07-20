@@ -36,18 +36,22 @@
 @import "partials/article_page";
 @import "partials/pagination";
 @import "partials/admin";
+@import "partials/_notifications.css";
 
 body.bp {
   @include blueprint-utilities;
   @include blueprint-debug;
   // Remove the scaffolding when you're ready to start doing visual design.
   // Or leave it in if you're happy with how blueprint looks out-of-the-box
-  //override genberal properties that affect all tghe app
-  ul{
+  // override general properties that affect all the app
+  ul {
     list-style: none;
     padding: 0;
   }
-  #content{
+	a:visited {
+		color: #333333;
+	}
+  #content {
     @include container;
     overflow: visible !important;
   }
