@@ -27,6 +27,7 @@ Classicly::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
+  config.middleware.use 'WwwMiddleware'
   # Disable Rails's static asset server
   # In production, Apache or nginx will already do this
   config.serve_static_assets = false
