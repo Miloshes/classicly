@@ -15,3 +15,5 @@ javascripts:
 stylesheets:
   common:
     - public/stylesheets/compiled/screen.css
+    # NOTE: SASS chokes on it if I try to make it a partial :(
+    - public/stylesheets/notifications.css

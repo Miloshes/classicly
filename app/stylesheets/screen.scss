@@ -36,7 +36,6 @@
 @import "partials/article_page";
 @import "partials/pagination";
 @import "partials/admin";
-@import "partials/_notifications.css";
 
 body.bp {
   @include blueprint-utilities;
