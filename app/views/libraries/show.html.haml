@@ -14,11 +14,11 @@
         = render :partial => 'login_with_fb_dialog'
   
       - if current_library.last_read_book
-        %h3 Last Read:
+        %h3 Last Read
         #last-read
           = render :partial => 'libraries/book', :object => current_library.last_read_book, :as => :book
   
-      %h3 Library:
+      %h3 My Library
       #book-list
         = render :partial => 'libraries/book', :collection => @books, :as => :book
 
