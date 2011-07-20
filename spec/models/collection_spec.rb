@@ -1,11 +1,29 @@
 require 'spec_helper'
 
 describe Collection do
+
+  describe '#needs_canonical_link' do
+    before :each do
+      @collection = Collection.new(:book_type => 'book')
+      books = double('Books')
+      books.stub(:count).and_return(20)
+      @collection.stub(:books).and_return(books)
+    end
+
+    it 'should return something' do
+      @collection.needs_canonical_link?(10).should be_true
+    end
+
+    it 'should return false when the collection has just one page of books' do
+      @collection.needs_canonical_link?(20).should be_false
+    end
+  end
+
   describe '#featured_audiobook' do
     before :each do
       @collection = Collection.make(:audiobooks)
     end
-    
+
     context 'when the collection doesnt have blessed audiobooks' do
       it 'should not return nil' do
         @collection.featured_audiobook.should_not be_nil

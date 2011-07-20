@@ -23,7 +23,11 @@ module ApplicationHelper
                       :alt => "#{book.pretty_title} by #{author.name}", :class => html_class),
                       author_book_url(author,book)
   end
-  
+
+  def canonical_link_for_collection(collection)
+    content_tag :link, nil, :rel => "canonical", :href => "http://www.classicly.com/#{@collection.cached_slug}"
+  end
+
   def cover_image_link(cover, size, html_class=nil)
     type = cover.class.to_s.downcase
     bucket = "#{type}_id"
