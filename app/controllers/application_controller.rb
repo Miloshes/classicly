@@ -1,21 +1,32 @@
 class ApplicationController < ActionController::Base
   include LibrarySessionHandler
-  
+
   layout 'new_design'
   protect_from_forgery
   helper_method :current_admin_user_session, :current_admin_user, :current_login
-  
+
+  APP_DOMAIN = URL_CONFIG['domain_name']
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
+  before_filter :ensure_domain
   before_filter :collections_for_footer
   before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
   caches_action :collections_for_footer
-  
+
+  #
+
+  def ensure_domain
+    if request.env['HTTP_HOST'] != APP_DOMAIN
+      # HTTP 301 is a "permanent" redirect
+      redirect_to "http://#{APP_DOMAIN}#{request.request_uri}", :status => 301
+    end
+  end
+
   def current_login
     return if !facebook_cookies
-    
+
     @current_login ||= Login.where(:fb_connect_id => facebook_cookies['uid']).first
   end
 
@@ -25,7 +36,7 @@ class ApplicationController < ActionController::Base
     @footer_author_collections_column_1 = Collection.find_author_book_collections.select('name,cached_slug').limit(14).order('name asc')
     @footer_author_collections_column_2 = Collection.find_author_book_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
  end
-  
+
   def current_admin_user_session
     return @current_admin_user_session if defined?(@current_admin_user_session)
     @current_admin_user_session = AdminUserSession.find
@@ -39,11 +50,11 @@ class ApplicationController < ActionController::Base
   def popular_audiobooks
     @popular_audiobooks = Audiobook.blessed.select("id, author_id, cached_slug, pretty_title").random(3)
   end
-  
+
   def popular_books
     @popular_books = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(3)
   end
-  
+
   def popular_collections
     @popular_collections = Collection.of_type('book').random(1).select('id, cached_slug, name')
   end
@@ -64,7 +75,7 @@ class ApplicationController < ActionController::Base
       return false
     end
   end
- 
+
   def set_abingo_identity
     if request.user_agent =~ /\b(Baidu|Gigabot|Googlebot|libwww-perl|lwp-trivial|msnbot|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)\b/i
       Abingo.identity = "robot"
@@ -75,7 +86,7 @@ class ApplicationController < ActionController::Base
       Abingo.identity = session[:abingo_identity]
     end
   end
-  
+
   def facebook_cookies
     @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
   end
