@@ -1598,6 +1598,81 @@ ul.ui-autocomplete {
   text-align: center;
 }
 
+/* line 80, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview {
+  width: 662px;
+  height: 755px;
+  background: url(/images/library-preview.png);
+  position: relative;
+}
+/* line 86, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container {
+  left: 145px;
+  top: 258px;
+  position: absolute;
+  height: 160px;
+  width: 430px;
+  text-align: center;
+}
+/* line 94, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container #copy {
+  font-family: "Helvetica", "Arial", "Sans-serif";
+  font-weight: bold;
+  font-size: 19px;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  line-height: 1.1em;
+}
+/* line 103, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container #browse {
+  display: block;
+  font-size: 9px;
+  margin-top: 15px;
+  color: #88a6d6;
+  text-decoration: none;
+}
+/* line 110, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container #register-button {
+  background-color: #ff030d;
+  -moz-border-radius: 0.4em 0.4em 0.4em 0.4em;
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  -webkit-border-radius: 0.4em 0.4em 0.4em 0.4em;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
+  background: url(/images/conversion-button-shadow.png) repeat-x scroll 0 0 #222222;
+  background-color: #cc1100;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "lucida grande", "lucida sans unicode", arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0;
+  overflow: visible;
+  padding: 0.6em 1.3em;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
+  vertical-align: baseline;
+  *vertical-align: middle;
+  width: auto;
+}
+/* line 141, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container #register-button:hover {
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
+  background-color: #991100;
+}
+/* line 146, ../../../app/stylesheets/partials/_library_page.sass */
+#library-preview #container #register-button:active {
+  top: 1px;
+}
+
 /* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page, #author-list-page, #collection-page {
   display: inline;
