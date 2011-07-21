@@ -3,7 +3,7 @@
     = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
 
 #library-page
-  - if current_login
+  - if !current_login
     = render :partial => 'empty_library'
   - else
     = render :partial => 'library_with_content'
