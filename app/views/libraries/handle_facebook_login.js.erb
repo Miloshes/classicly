@@ -1,4 +1,4 @@
-$('#user-profile').hide();
-$('#user-profile').html("<%= escape_javascript(render :partial => 'fb_user_profile') %>");
-$('#user-profile').fadeIn();
-$('#fb-login-dialog').fadeOut();
+$('#library-page').fadeOut(1100, function() {
+	$('#library-page').html("<%= escape_javascript(render :partial => 'library_with_content') %>");
+	$('#library-page').fadeIn(1100);
+});
