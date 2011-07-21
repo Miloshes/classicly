@@ -11,13 +11,18 @@
 
   = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
   = javascript_include_tag 'reader/reader.js', 'reader/shortcut.js', 'reader/sliders.js'
-  
-  = csrf_meta_tag  
+
+  = csrf_meta_tag
 %body.container_12
   #reader_box
     .loading_box
-    .error_box An error has occured. Please try to reload page.
+      .error_box An error has occured. Please try to reload page.
+    #library_button
+      .button
+        = link_to 'Back to Library', '/library'
     .header
+    #bookmark_tag
+      = link_to image_tag('reader_sepia_bookmark.png'), '#'
     .text_box
       = yield
     %div{:class => 'big_navigation right'}

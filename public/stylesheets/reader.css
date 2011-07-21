@@ -4,13 +4,50 @@
 body {
   background: #f6f3ee; }
 
+#reader-left-nav{
+  width: 20%;
+  padding: 5px;
+  float: left;
+}
+
+#reader-left-nav .button a{
+  background-color: #efe7d1;
+  width: 150px;
+  padding: 10px;
+  height: 18px;
+  margin-top: 20px;
+  margin-left: 10px;
+  display: block;
+  border: none;
+  color: #3a1b07;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#reader-left-nav .button a:hover {
+  background-color: #f0e8d3;
+}
+
+#reader-left-nav .button a img {
+  margin-top: -6px;
+}
+
+#reader-left-nav .button a span {
+  padding-top: 4px;
+  vertical-align: top;
+  display: inline-block;
+}
+
 #reader_box {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   margin-bottom: 50px;
   background: #f8f5f0;
-  width: 690px;
+  width: 48em;
   height: 750px;
   position: relative;
   font-family: georgia, serif;
@@ -21,6 +58,35 @@ body {
   -ms-border-radius: 10px;
   -khtml-border-radius: 10px;
   border-radius: 10px; }
+
+  #reader_box #library_button {
+    color: #34261c;
+    margin-top: 36px;
+    margin-left: 20px;
+    width: 135px;
+    float: left;
+    position: relative;
+    z-index: 1000;
+    display: none;
+  }
+
+  #reader_box #library_button .button{
+    background-color: #efe7d1;
+    padding: 10px;
+    height: 18px;
+    color: #3a1b07;
+    border: 1px solid #E3E0DA;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+  }
+
+  #reader_box #library_button a {
+    text-decoration: none;
+    color: #34261c;
+    cursor: pointer;
+  }
+
   #reader_box .header {
     display: none;
     color: #34261c;
@@ -28,9 +94,21 @@ body {
     position: absolute;
     left: 50px;
     right: 50px;
-    top: 25px;
+    top: 50px;
     font-size: 17px;
-    text-align: center; }
+    text-align: center;
+  }
+
+  #reader_box #bookmark_tag {
+    width: 50px;
+    position: relative;
+    z-index: 1000;
+    left: 45em;
+    top: -2em;
+    margin-top: 35px;
+    display: none;
+  }
+
   #reader_box .text_box {
     position: absolute;
     top: 75px;
@@ -94,11 +172,14 @@ body {
     text-indent: 15px; }
   #reader_box .text_box p.no_indent {
     text-indent: 0 !important; }
+
   #reader_box .big_navigation {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100px; }
+    width: 4em;
+  }
+
   #reader_box .big_navigation .box {
     background-color: #000;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
