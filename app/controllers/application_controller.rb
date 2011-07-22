@@ -8,21 +8,11 @@ class ApplicationController < ActionController::Base
   APP_DOMAIN = URL_CONFIG['domain_name']
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
-  before_filter :ensure_domain
   before_filter :collections_for_footer
   before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
   caches_action :collections_for_footer
-
-  #
-
-  def ensure_domain
-    if request.env['HTTP_HOST'] != APP_DOMAIN
-      # HTTP 301 is a "permanent" redirect
-      redirect_to "http://#{APP_DOMAIN}#{request.request_uri}", :status => 301
-    end
-  end
 
   def current_login
     return if !facebook_cookies
