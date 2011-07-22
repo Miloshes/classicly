@@ -39,10 +39,17 @@
 	text-align: center;
 	font-size: 14px;
 	
-	background-color: #C9AF87;
-	border-color: #d99a36;
+	background-color: #61b832;
+	border-color: #55a12c;
 	
 	z-index: 2;
+}
+
+.global-notification a, .global-notification a:visited {
+	color: #444444 !important;
+	background: none;
+	text-decoration: underline;
+	text-shadow: none;
 }
 
 .notification-header
