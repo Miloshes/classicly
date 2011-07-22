@@ -8,9 +8,9 @@
   - else
     = render :partial => 'library_with_content'
 
-:javascript
 - if @new_book_in_library
   :javascript
+  
     $(document).ready(function() {
-        window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+      window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
     });
