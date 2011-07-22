@@ -175,7 +175,7 @@ Reader.prototype = {
   },
   
   init : function(){
-    this.controls = $('.big_navigation .box, .slider_wrap, .header');
+    this.controls = $('.big_navigation .box, .slider_wrap, .header, #library_button, #bookmark_tag');
     this._controls_on_hover();
     this._init_navigation();
     this._init_slider();
@@ -259,7 +259,7 @@ Reader.prototype = {
   },
 
   _set_title : function(title){
-    $('#reader_box .header').text(title);
+    $( '#reader_box .header' ).text( title );
   },
 
   _controls_on_hover : function(){
