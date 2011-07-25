@@ -4,42 +4,6 @@
 body {
   background: #f6f3ee; }
 
-#reader-left-nav{
-  width: 20%;
-  padding: 5px;
-  float: left;
-}
-
-#reader-left-nav .button a{
-  background-color: #efe7d1;
-  width: 150px;
-  padding: 10px;
-  height: 18px;
-  margin-top: 20px;
-  margin-left: 10px;
-  display: block;
-  border: none;
-  color: #3a1b07;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-}
-
-#reader-left-nav .button a:hover {
-  background-color: #f0e8d3;
-}
-
-#reader-left-nav .button a img {
-  margin-top: -6px;
-}
-
-#reader-left-nav .button a span {
-  padding-top: 4px;
-  vertical-align: top;
-  display: inline-block;
-}
 
 #reader_box {
   margin-left: auto;
@@ -60,35 +24,47 @@ body {
   border-radius: 10px; }
 
   #reader_box #library_button {
-    color: #34261c;
     margin-top: 36px;
     margin-left: 20px;
     width: 135px;
     float: left;
     position: relative;
     z-index: 1000;
-    display: none;
   }
 
-  #reader_box #library_button .button{
-    background-color: #efe7d1;
-    padding: 10px;
-    height: 18px;
-    color: #3a1b07;
-    border: 1px solid #E3E0DA;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
+  #reader_box #library_button .button .left {
+    display: block;
+    float: left;
+    background: url(../images/reader_btn_left.png) no-repeat;
+    width: 4px;
+    height: 30px;
   }
 
-  #reader_box #library_button a {
+  #reader_box #library_button .button a {
     text-decoration: none;
-    color: #34261c;
-    cursor: pointer;
+    display: block;
+    float: left;
+    padding: 5px 4px 0px 4px;
+    background: url(../images/reader_btn_middle.png) repeat-x;
+    background-position: 5px 0px;
+    height: 30px;
   }
+
+  #reader_box #library_button .button a, #reader_box #library_button .button a:active {
+    color: #34261c;
+  }
+
+  #reader_box #library_button .button .right
+  {
+    display: block;
+    float: left;
+    background: url(../images/reader_btn_right.png) no-repeat;
+    width: 4px;
+    height: 30px;
+  }
+
 
   #reader_box .header {
-    display: none;
     color: #34261c;
     text-transform: uppercase;
     position: absolute;
@@ -106,7 +82,16 @@ body {
     left: 45em;
     top: -2em;
     margin-top: 35px;
-    display: none;
+  }
+
+  #reader_box #bookmark_ribbon {
+    width: 54px;
+    height: 79px;
+    position: absolute;
+    z-index: 1000;
+    left: 44em;
+    top: 1em;
+    margin-top: -16px;
   }
 
   #reader_box .text_box {

@@ -5,6 +5,7 @@
  todo: add more error handling. (when page is not loaded)
  */
 
+
 function Book(id){
   this.id = id;
   this._total_pages = null;
@@ -22,16 +23,19 @@ Book.prototype = {
       cb(this.page_cache[page_num]);
     }else{
       var self = this;
+
       var data = {
         action : 'get_page',
         book_id : this.id,
         page_number : page_num
       };
+
       $.post('/reader_engine_api/query',
              {json_data : $.toJSON(data)},
              'json')
-        .success(function(data){
-                   if(data.match(/^\s*$/)){
+
+        .success( function( data ){
+                   if( data.match(/^\s*$/) ){
                      cb(null);
                      return;
                    }
@@ -40,11 +44,14 @@ Book.prototype = {
                      self._total_pages = data.total_page_count;
                      self._title = data.book_title;
                    }
+
                    self.page_cache[page_num] = {
                      content : self.split_text_into_lines(data.content),
-                     first_line_indent : data.first_line_indent
+                     first_line_indent : data.first_line_indent,
+                     bookmarked: data.bookmarked
                    };
-                   cb(self.page_cache[page_num]);
+
+                  cb(self.page_cache[page_num]);
                  })
         .error(function(){
                  cb(null);
@@ -67,25 +74,58 @@ Book.prototype = {
     return this._title;    
   },
 
-	split_text_into_lines : function(text) {
-		var line_ending = '';
+  split_text_into_lines : function(text) {
+    var line_ending = '';
 
-		if (text.indexOf("\r") != -1)
-		{
-			line_ending = "\r";
-		} 
-		else
-		{
-			line_ending = "\n";
-		}
+    if (text.indexOf("\r") != -1)
+    {
+      line_ending = "\r";
+    }
+    else
+    {
+      line_ending = "\n";
+    }
 
-		return text.split(line_ending);
-	}
-  
+    return text.split(line_ending);
+  }
+
 };
 
-function Reader(book){
+function BookmarkRemoveHandler( jQObject ){
+  this.handler = jQObject;
+}
+
+BookmarkRemoveHandler.prototype = {
+  init: function( reader ){
+    var self = this;
+    self.reader = reader;
+    this.handler.live( "click", function(){
+      self.reader.removeBookmark();
+      return false;
+    });
+  }
+}
+
+function BookMarkHandler( jQObject ){
+  this.handler = jQObject;
+}
+
+BookMarkHandler.prototype = {
+  init: function( reader ){
+    var self = this;
+    self.reader = reader;
+    // requires jQuery!:
+    this.handler.live( "click", function(){
+      self.reader.saveBookmark();
+      return false;
+    });
+  }
+}
+
+function Reader( book, bookmarkHandler, bookmarkRemoveHandler ){
   this.book = book;
+  this.bookmarkHandler = bookmarkHandler;
+  this.bookmarkRemoveHandler = bookmarkRemoveHandler;
   this.current_page = this._get_page_id_from_url();
   this.init();
   this.draw_page(this.current_page);
@@ -103,7 +143,7 @@ Reader.prototype = {
   turn_page_right : function(){
     if(this.current_page < this.book.get_total_pages()){
       this.draw_page(this.current_page + 1);
-    }    
+    }
   },
 
   show_loading : function(){
@@ -127,7 +167,7 @@ Reader.prototype = {
         window.location.pathname.replace(/\/[0-9]+$/, '/'+num);
       history.replaceState(null, '', new_location);
     }else{
-      window.location.hash = num;      
+      window.location.hash = num;
     }
 
   },
@@ -143,43 +183,107 @@ Reader.prototype = {
     return Number(result);
   },
 
-  draw_page : function(num){
+  draw_page : function( num ){
     var self = this;
     var book = this.book;
+
     this.current_page = num;
     this.show_loading();
-    book.get_page(num,
-                  function(page_data){
+
+    book.get_page(  num,
+                    function( page_data ){
+
                     var page_content = page_data.content;
                     var first_line_indent = page_data.first_line_indent;
+                    self.setBookmark( page_data.bookmarked );
                     self.hide_loading();
-                    if(page_content == null){
+
+                    if( page_content == null ){
                       self.show_error();
                       return;
                     }
+
                     var text_box = $('#reader_box .text_box');
+
                     self.clear_content();
+
                     $.each(page_content,
-                           function(i,string){
-                             var p = $('<p>').text(string);
-                             text_box.append(p);
-                           });
+                      function(i,string){
+                        var p = $('<p>').text(string);
+                          text_box.append(p);
+                        });
                     if(!first_line_indent){
                       text_box.find('p:first').addClass('no_indent');
                     }
+
                     self._set_title(book.get_title());
                     self._slider_move_to_page(num);
                     self._set_page_id_to_url(num);
                     self._prefetch(Number(num) + 1);
+
                   });
   },
-  
+
   init : function(){
-    this.controls = $('.big_navigation .box, .slider_wrap, .header, #library_button, #bookmark_tag');
+    this.controls = $('.big_navigation .box, .slider_wrap');
     this._controls_on_hover();
     this._init_navigation();
     this._init_slider();
+    this.bookmarkHandler.init( this );
+    this.bookmarkRemoveHandler.init( this );
     this._init_shorcuts();
+  },
+
+  removeBookmark: function(){
+    var self = this;
+    var data = "page=" + this.current_page;
+    $.ajax({
+      type: "DELETE",
+      url: "/bookmarks/" + this.book.id,
+      data: data,
+      complete: function(  ){
+        self.drawBookmarkButton();
+      }
+    });
+  },
+
+  saveBookmark: function(){
+    var self = this;
+    // the call would only require a book id and the page number:
+    var data = "book_id=" + this.book.id + "&page=" + this.current_page;
+
+    $.ajax({
+      type: "POST",
+      url: "/bookmarks",
+      data: data,
+      success: function ( response ) {
+        if( response == 'true' )
+          self.drawBookmarkRibbon();
+        else
+          alert('There\'s been an error');
+      }
+    });
+  },
+
+  setBookmark: function(isBookmarked){
+    if( isBookmarked ){
+      this.drawBookmarkRibbon();
+    }else{
+      this.drawBookmarkButton();
+    }
+  },
+
+  drawBookmarkButton: function (){
+    $( " #bookmark_ribbon " ).remove();
+    if (! $(" #bookmark_tag ").get(0) )
+      $( " <div id='bookmark_tag'><a href=''><img src='/images/reader_sepia_bookmark.png'></a></div> ").insertAfter( ' #reader_box .header ' );
+    $( " #bookmark_tag " ).show();
+  },
+
+  drawBookmarkRibbon: function (){
+    $( " #bookmark_tag ").remove();
+    $( " <div id='bookmark_ribbon'><a href='#'><img src='/images/reader/reader_bookmark_ribbon.png'></a></div> ").insertAfter( ' #reader_box .header ' );
+    $( " #bookmark_ribbon ").show();
   },
 
   _init_slider : function(){
@@ -264,24 +368,27 @@ Reader.prototype = {
 
   _controls_on_hover : function(){
     var self = this;
-    $('body')
-      .mousemove(function(){
-                   self._flash_controls();
-                   return true;
-             });
+
+    $('body').mousemove( function(){
+      self._flash_controls();
+      return true;
+    });
+
   },
 
 
   _flash_controls : function(){
     var self = this;
+
     this._show_controls();
+
     if(typeof arguments.callee.timeout_id !== 'undefined'){
       clearTimeout(arguments.callee.timeout_id);
     }
-    arguments.callee.timeout_id = 
-      setTimeout(function(){
-                   self._hide_controls();
-                 },2000);
+
+    arguments.callee.timeout_id = setTimeout( function(){
+                                    self._hide_controls();
+                                  }, 2000 );
   },
 
   _hide_controls : function(){

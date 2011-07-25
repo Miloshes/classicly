@@ -19,11 +19,17 @@
       .error_box An error has occured. Please try to reload page.
     #library_button
       .button
+        %span.left
         = link_to 'Back to Library', '/library'
+        %span.right
     .header
-    #bookmark_tag
-      = link_to image_tag('reader_sepia_bookmark.png'), '#'
-    .text_box
+    - unless @bookmarked
+      #bookmark_tag
+        = link_to image_tag('reader_sepia_bookmark.png'), '#'
+    - else
+      #bookmark_ribbon
+        = link_to image_tag('reader/reader_bookmark_ribbon.png'), '#'
+    .text_box{:data_message => "#{ @book_page.id }"}
       = yield
     %div{:class => 'big_navigation right'}
       .box

@@ -8,24 +8,29 @@ Classicly::Application.routes.draw do
     match 'blog_posts/associate_book' => 'blog_posts#associate_book'
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
+
     resource :admin_user_session
+
     resources :blog_posts do
       member do
         get 'change_state'
         get 'preview'
       end
     end
+
     resources :reviews, :only => [:index, :destroy]
     resources :seo_defaults
   end
-  
+
+  resources :bookmarks, :only => [:create, :destroy]
+
   resource :logins, :only => [:create]
-  
+
   # == Library
   match 'library' => 'libraries#show', :as => :library
   match 'library/handle_facebook_login' => 'libraries#handle_facebook_login', :as => :library_handle_facebook_login
   match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
-  
+
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
@@ -43,8 +48,8 @@ Classicly::Application.routes.draw do
   match '/reader/:id/:page_number' => "book_pages#show", :via => :get
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
-  
-  
+
+
   match 'privacy' => 'pages#privacy'
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post

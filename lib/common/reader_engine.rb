@@ -60,27 +60,32 @@ class ReaderEngine
         book.book_pages.create(new_data.merge(:page_number => record['page'].to_i))
       end
     end
-    
+
     return true
   end
-  
-  def get_page(book_id, page_number)    
-    book = Book.find(book_id)
-    return nil if book.blank?
-    
-    book_page = book.book_pages.where(:page_number => page_number).first()
-    return nil if book_page.blank?
-    
+
+  def get_page book_id, page_number, library
+
+    book = Book.find_by_id book_id
+    return if book.nil?
+
+    book_page = book.book_pages.find_by_page_number page_number
+    return if book_page.nil?
+
+    bookmarked = library.bookmark_exists? book, page_number
+
     return {
         :first_character   => book_page.first_character,
         :last_character    => book_page.last_character,
         :first_line_indent => book_page.first_line_indent,
         :content           => book_page.content,
         :total_page_count  => book.book_pages.count,
-        :book_title        => book.pretty_title
-      }.to_json
+        :book_title        => book.pretty_title,
+        :bookmarked        => bookmarked
+    }.to_json
+
   end
-  
+
   def get_book(book_id)
     lazy_load_book_content(book_id)
     current_book_content
