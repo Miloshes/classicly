@@ -12,5 +12,14 @@ class Library < ActiveRecord::Base
   def self.clean_up_not_claimed_libraries
     self.where(:unregistered => true, :last_accessed.lt => Time.now - 2.days).delete_all
   end
-  
+
+  def bookmark_exists? book, page_number
+    return false if self.library_books.empty? || !self.books.include?(book)
+    library_book_for_book(book).is_bookmarked_at? page_number
+  end
+
+  def library_book_for_book book
+    return self.library_books.where(:book => book).first
+  end
+
 end
