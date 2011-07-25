@@ -3,8 +3,10 @@ class BookmarksController < ApplicationController
   def create
     message = ""
 
-    if current_login && current_library.library_books.exists?(:book_id => params[:book_id])
-      book_from_library  = LibraryBook.find_by_library_id_and_book_id(current_library.id, params[:book_id])
+
+    if current_login
+      # since the user wants to bookmark this page, it is automatically a part of his/her library:
+      book_from_library  = LibraryBook.find_or_create_by_library_id_and_book_id(current_library.id, params[:book_id])
       book_from_library.bookmarks.find_or_create_by_page_number(params[:page])
       message = true
     else

@@ -260,7 +260,7 @@ Reader.prototype = {
         if( response == 'true' )
           self.drawBookmarkRibbon();
         else
-          alert('There\'s been an error');
+          $( "#notification" ).slideDown( 'normal' );
       }
     });
   },

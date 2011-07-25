@@ -10,10 +10,15 @@
   = stylesheet_link_tag 'reader.css', :media => :screen
 
   = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
-  = javascript_include_tag 'reader/reader.js', 'reader/shortcut.js', 'reader/sliders.js'
+  = javascript_include_tag 'reader/reader', 'reader/shortcut', 'reader/sliders', 'reader/webUI'
+  -# load facebook js:
+  = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
 
   = csrf_meta_tag
 %body.container_12
+  #notification
+    To bookmark, you must be connected through Facebook.
+    = link_to 'Connect.', '#', :class => 'facebook_connect_reader'
   #reader_box
     .loading_box
       .error_box An error has occured. Please try to reload page.
@@ -40,11 +45,19 @@
     .navigation
       .slider_wrap
         .slider
+#fb-root
 
 = yield :scripts
+
+:javascript
+  FACEBOOK_APP_ID = "#{Facebook::APP_ID}";
+
+= javascript_include_tag 'reader/initialize.third.parties'
+
 :javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";
+  
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-21890797-1']);

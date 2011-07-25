@@ -35,18 +35,18 @@ class Login < ActiveRecord::Base
         anonymous_review.convert_to_normal_review
       end
     end
-  
+
   end
-    
-  def self.register_from_classicly(user_profile = {})
+
+  def self.register_from_classicly user_profile = {}
     user_profile.stringify_keys!
-    
-    login        = Login.find_by_fb_connect_id(user_profile['id'])
+
+    login        = Login.find_by_fb_connect_id user_profile['id']
     is_new_login = false
-    
+
     unless login
       city, country = user_profile['location']['name'].split(', ')
-      
+
       login = Login.create(
           :fb_connect_id    => user_profile['id'],
           :email            => user_profile['email'],
@@ -55,13 +55,13 @@ class Login < ActiveRecord::Base
           :location_city    => city,
           :location_country => country
         )
-        
+
       is_new_login = true
     end
 
     login.performable_log_session_opened if Rails.env.production?
 
-    return is_new_login
+    return login, is_new_login
   end
   
   def not_registered_with_facebook?
