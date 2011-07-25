@@ -7,3 +7,6 @@ staging:
 production:
   root_path: http://www.classicly.com
   domain_name: www.classicly.com
+test:
+  root_path: http://localhost:3000
+  domain_name: localhost:3000
