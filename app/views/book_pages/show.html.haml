@@ -4,7 +4,9 @@
 - content_for :scripts do
   :javascript
     $(function() {
-      var book, reader;
+      var book, bookmarkHandler, reader;
       book = new Book(#{@book_page.book.id});
-      reader = new Reader(book);
+      bookmarkHandler = new BookMarkHandler( $( "#bookmark_tag" ) );
+      bookmarkRemoveHandler = new BookmarkRemoveHandler( $( "#bookmark_ribbon" ) );
+      reader = new Reader(book, bookmarkHandler, bookmarkRemoveHandler );
     });

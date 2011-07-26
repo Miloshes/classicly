@@ -17,21 +17,21 @@ class ReaderEngineApiController < ApplicationController
       render :text => 'FAILURE' and return
     end
   end
-  
+
   def query
     @engine = ReaderEngine.new
-    
+
     case @action
     when 'get_book'
       render :text => @engine.get_book(@api_params['book_id'])
       return
     when 'get_page'
-      render :text => @engine.get_page(@api_params['book_id'], @api_params['page_number'])
+      render :text => @engine.get_page(@api_params['book_id'], @api_params['page_number'], current_library)
       return
     end
 
   end
-  
+
   private
   
   def get_api_params_and_action

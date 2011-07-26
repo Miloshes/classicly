@@ -9,13 +9,14 @@ class BookPagesController < ApplicationController
     book = slug.seoable
 
     @book_page  = book.book_pages.where(:page_number => params[:page_number]).first()
-    
+
     # if we have a user logged in, set this book's last-opened property in his library
     if current_login
-      library_book = current_library.library_books.where(:book_id => book.id).first()
+      library_book = current_library.library_books.find_or_create_by_library_id_and_book_id(current_library.id, book.id)
+      @bookmarked = library_book.is_bookmarked_at? @book_page.page_number
       library_book.update_attributes(:last_opened => Time.now)
     end
-    
+
     if @book_page.nil?
       redirect_to author_book_path(book.author, book)
     else
