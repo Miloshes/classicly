@@ -60,7 +60,7 @@ module SeoHelper # Please don't put into application helper
   end
   
   def seo_front_end_meta_description_text(element)
-    element.seo_info ? element.seo_info.metadescription : SeoDefault.parse_default_value(:metadescription, element)
+    element.seo_info ? element.seo_info.meta_description : SeoDefault.parse_default_value(:metadescription, element)
   end
   
   # an infoable can be seo slug, collection, book , or audiobook
