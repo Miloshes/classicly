@@ -1,5 +1,5 @@
 module SeoHelper # Please don't put into application helper
-  
+
   def download_format_page_title(book, format)
     format = (format == 'azw') ? 'Kindle' : format.upcase
     # 70 chars is the limit, but substract  4 characters for ' by '
@@ -10,7 +10,7 @@ module SeoHelper # Please don't put into application helper
       "#{prefix} #{shorten_title(book.pretty_title, 70 - prefix.length - format.length)}#{format}"
     end
   end
-  
+
   def fb_open_graph_metadata(config={}, seo_info = nil)
     content_tag(:meta, nil, {:property => "og:title", :content => seo_info.try(:og_title) || config[:title] || "Classicly"}) +
     content_tag(:meta, nil, {:property => "og:type", :content => config[:type] || "website"}) +
@@ -20,7 +20,7 @@ module SeoHelper # Please don't put into application helper
     content_tag(:meta, nil, {:property => "fb:app_id", :content => Facebook::APP_ID}) +
     content_tag(:meta, nil, {:property => "og:description", :content => seo_info.try(:og_description) || config[:description] || "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
-    
+
   def seo_admin_element_name(element)
     case element.class.to_s
     when 'Book', 'Audiobook'
@@ -33,7 +33,7 @@ module SeoHelper # Please don't put into application helper
       nil
     end
   end
-  
+
   def seo_admin_element_slug(element)
     case element.class.to_s
     when 'Book', 'Audiobook', 'Collection'
@@ -50,21 +50,21 @@ module SeoHelper # Please don't put into application helper
     return "#{element.book_type.capitalize} Collection" if element.is_a?(Collection)
     element.class.to_s
   end
-  
+
   def seo_front_end_static_page_title(page)
     SeoDefault.parse_default_value_for_static_page(:webtitle, page)  
   end
-  
+
   def seo_front_end_static_page_metadescription(page)
     SeoDefault.parse_default_value_for_static_page(:metadescription, page)  
   end
-  
+
   def seo_front_end_meta_description_text(element)
-    element.seo_info ? element.seo_info.meta_description : SeoDefault.parse_default_value(:metadescription, element)
+    (element.seo_info && !element.seo_info.meta_description.blank?) ? element.seo_info.meta_description : SeoDefault.parse_default_value(:metadescription, element)
   end
-  
+
   # an infoable can be seo slug, collection, book , or audiobook
   def seo_front_end_title_helper(element)
-    element.seo_info ? element.seo_info.title : SeoDefault.parse_default_value(:webtitle, element)
+    (element.seo_info && !element.seo_info.title.blank?) ? element.seo_info.title : SeoDefault.parse_default_value(:webtitle, element)
   end
 end
