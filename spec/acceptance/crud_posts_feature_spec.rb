@@ -1,9 +1,9 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Crud posts feature: ', %q{
-  In order to make my website more interesting
+  In order to get better ranking at search engines
   As an admin
-  I want to be able to create, update and delete  blog posts
+  I want to be able to create, update and delete blog posts
 } do
 
   background :each do
@@ -70,7 +70,7 @@ feature 'Crud posts feature: ', %q{
   
  
   scenario 'Creating a blog post with break tags does not have to show this tags on the post page' do
-     # And given I have created a blog_post with a break tag
+    # And given I have created a blog_post with a break tag
     title = "The unbearable lightness of being"
     text = "Il n'existe aucun moyen de vérifier quelle décision est la bonne !@cut car il n'existe aucune comparaison. 
                 Tout est vécu tout de suite pour la première fois et sans préparation. Comme si un acteur entrait en 
@@ -82,7 +82,7 @@ feature 'Crud posts feature: ', %q{
     # When I visit the post's page
     @post = BlogPost.last
     visit seo_path(@post)
-    #The I should see the title
+    # The I should see the title
     page.should have_content(title)
     # And I should not see this !@cut tag
     page.should_not have_content('!@cut')

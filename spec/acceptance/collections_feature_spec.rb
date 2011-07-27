@@ -18,9 +18,9 @@ feature 'Collections feature', %q{
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
     end
-    #Then I should see that I am on the Hummies audiobooks page
+    # Then I should see that I am on the Hummies audiobooks page
     page.should have_content('Hummies Audiobooks')
-    #And I should verify that a tooltip div exists
+    # And I should verify that a tooltip div exists
     page.should have_css('.audiobook-switcher .tooltip')
   end
   
@@ -34,7 +34,7 @@ feature 'Collections feature', %q{
     page.should_not have_css('.audiobook-switcher')
   end
   
-  scenario 'visiting an audio collection that has an book collection counterpart' do
+  scenario 'visiting an audio collection that has a book collection counterpart' do
     # Given we have an audiocollection and an collection and its slugs
     @collection = Collection.make!(:hummies)
     @audiocollection = Collection.make!(:audiohummies)
@@ -48,7 +48,7 @@ feature 'Collections feature', %q{
     end
     # Then I should see that I am on the Hummies books page
     page.should have_content('Hummies Books')
-    #And I should verify that a tooltip div exists
+    # And I should verify that a tooltip div exists
     page.should have_css('.audiobook-switcher .tooltip')
   end
 end
