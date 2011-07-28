@@ -12,7 +12,7 @@ class SeoController < ApplicationController
       end
     end
   end
-  
+
   def show
     @seo = SeoSlug.find_by_slug(params[:id])
     if @seo && @seo.is_valid?
@@ -48,13 +48,16 @@ class SeoController < ApplicationController
       end
     elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
       @book = seo.seoable
-      #TODO check if this is actually used in the book , audiobook and landing pages:
+
       @related_books = @book.find_fake_related(3)
-      @format = seo.download_format
+      @format = seo.format
+
       if seo.is_for_type?('audiobook')
         @audiobook = @book
         render 'audiobooks/download_special_format', :layout => 'audibly'
+
       elsif seo.is_for_type?('book')
+
         if @format == 'online'
           render 'books/read_online'
         else

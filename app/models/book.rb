@@ -60,7 +60,8 @@ class Book < ActiveRecord::Base
   end
 
   def available_in_format?(format)
-    ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
+    format = 'azw' if (format == 'kindle')
+    ! self.download_formats.find_by_format_and_download_status(format, 'downloaded').nil?
   end
 
   def download_url_for_format(format)
