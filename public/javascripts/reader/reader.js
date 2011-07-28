@@ -260,7 +260,7 @@ Reader.prototype = {
         if( response == 'true' )
           self.drawBookmarkRibbon();
         else
-          $( "#notification" ).slideDown( 'normal' );
+          $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
       }
     });
   },
