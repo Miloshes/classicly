@@ -38,12 +38,14 @@ module Classicly
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+
     config.generators do |g|
-      g.test_framework :rspec
+      g.test_framework      :rspec, :fixture => true
+      g.fixture_replacement :fabrication
     end
-    
+
     config.action_mailer.delivery_method = :smtp
+
     config.action_mailer.raise_delivery_errors = true
   end
 end

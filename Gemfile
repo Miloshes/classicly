@@ -85,14 +85,16 @@ gem 'dalli'
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
-  
+
   # integration testing - http://rubygems.org/gems/capybara
   gem 'capybara'
-  
+
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
   gem 'database_cleaner'
 
-  
+  # fixtures generator for tests
+  gem 'fabrication', '~> 1.0.1'
+
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   gem 'jasmine'
   
