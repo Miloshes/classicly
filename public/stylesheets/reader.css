@@ -6,20 +6,93 @@ body {
 
 #notification{
   width: 100%;
-  background-color: #61B832;
+  background-image: url(../images/Registration_slices/reg_bg.png);
+  /*background-color: #61B832;
   background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
-  background-size: 40px 40px;
-  border: 1px solid #55A12C;
-  box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.4) inset;
+  background-size: 40px 40px;*/
+  height: 256px;
   color: #FFFFFF;
   font-size: 14px;
-  padding: 15px;
+  font-family: arial;
   text-align: center;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: none;
 }
 
+
+#notification #registration .registration_box{
+  display: inline-table;
+  background-image: url(../images/Registration_slices/reg_box.png);
+  width: 220px;
+  height: 102px;
+  margin-top: 20px;
+  margin-right: 16px;
+}
+
+#notification #registration .registration_box img{
+  margin-top: 11px;
+}
+
+#notification #registration .registration_box p{
+  width: 160px;
+  margin: 0 auto;
+  margin-top: 17px;
+}
+
+#notification a#fb_connect{
+  width: 362px;
+  display: block;
+  height: 49px;
+  margin: 19px auto;
+  text-decoration: none;
+}
+
+#notification a#fb_connect #facebook_connect{
+  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  width: 362px;
+  height: 49px;
+  padding-top: 1px;
+}
+
+
+#notification a#fb_connect:active #facebook_connect{
+  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  background-position: 0px -51px;
+}
+
+
+#notification #facebook_connect p {
+  margin-top: 12px;
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+#notification a#fb_decline{
+  display: block;
+  width: 102px;
+  height: 24px;
+  margin: 19px auto;
+  text-decoration: none;
+}
+
+#notification a#fb_decline #facebook_decline{
+  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  width: 102px;
+  height: 24px;
+  padding-top: 1px;
+}
+
+#notification a#fb_decline:active #facebook_decline{
+  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  background-position: 0px -28px;
+}
+
+#notification #facebook_decline p {
+  margin-top: 5px;
+  color: #fff;
+}
 
 #reader_box {
   margin-left: auto;

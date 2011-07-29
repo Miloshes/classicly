@@ -1,5 +1,8 @@
+
+
 $( function() {
-  $( ".facebook_connect_reader" ).live( "click", function(){
+
+  $( "a#fb_connect" ).live( "click", function(){
     FB.login( function( response ) {
       // the user successfully logs in, let's register him and notify the Library model afterwards
       if ( response.session ) {
@@ -21,4 +24,11 @@ $( function() {
 
     return false;
   });
+
+  $( "a#fb_decline" ).live( "click", function(){
+    $( "#notification" ).hide( "blind", { direction: "vertical" }, 1000 );
+    return false;
+  });
 });
+
+

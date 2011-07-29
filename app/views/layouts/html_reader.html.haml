@@ -9,16 +9,50 @@
   = stylesheet_link_tag 'sliders.css', :media => :screen
   = stylesheet_link_tag 'reader.css', :media => :screen
 
-  = javascript_include_tag 'jquery.min', 'jqueryui', 'jquery.json-2.2.min', 'rails'
+  = javascript_include_tag 'jquery.min', 'jquery.json-2.2.min', 'rails'
+  = javascript_include_tag 'http://www.google.com/jsapi'
+  = javascript_tag do
+    google.load("jqueryui", "1.8.14");
+
   = javascript_include_tag 'reader/reader', 'reader/shortcut', 'reader/sliders', 'reader/webUI'
   -# load facebook js:
   = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
 
   = csrf_meta_tag
 %body.container_12
+  -# NOTIFICATION CONTAINER ----------
   #notification
-    To bookmark, you must be connected through Facebook.
-    = link_to 'Connect.', '#', :class => 'facebook_connect_reader'
+    #registration
+      .registration_box
+        .icon
+          = image_tag "Registration_slices/reg_icon_library.png"
+        %p
+          Create your own Library in the web.
+      .registration_box
+        .icon
+          = image_tag "Registration_slices/reg_icon_bookmark.png"
+        %p
+          Add bookmarks in the online reader.
+      .registration_box
+        .icon
+          = image_tag "Registration_slices/reg_icon_sync.png"
+        %p
+          Sync with your iPhone and iPad.
+      .registration_box
+        .icon
+          = image_tag "Registration_slices/reg_icon_free.png"
+        %p
+          Totally free without any hidden costs.
+    %a{:href => "#", :id => "fb_connect"}
+      #facebook_connect
+        %p
+          Connect with Facebook
+    %a{:href => "#", :id => "fb_decline"}
+      #facebook_decline
+        %p
+          Not now
+    %div{:style => 'clear:both;'}
+  -# END NOTIFICATION CONTAINER --------------------
   #reader_box
     .loading_box
       .error_box An error has occured. Please try to reload page.
@@ -57,7 +91,7 @@
 :javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";
-  
+
 
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-21890797-1']);
