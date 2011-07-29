@@ -1,21 +1,25 @@
 require 'acceptance/acceptance_helper'
 
-feature 'Audiobooks feature: ', %q{
-  In order to be able to download desired audiobooks
-  As a user
-  I want to browse or search through an audiobooks section
-} do
-  
+  feature 'Audiobook individual page ', %q{
+    In order to be able to read audiobooks
+    As a user
+    I should be able to get into and audiobook page
+  } do
+
   background  do
-    @author = Author.make!(:name => 'Bram Stoker')
-    @audiobook = Audiobook.make!(:author => @author, :pretty_title => 'Dracula')
+    # Given I have an audiobook in the system
+    @author     = Fabricate(:author, :name => 'Bram Stoker')
+    @audiobook  = Fabricate(:audiobook, :author => @author, :pretty_title => 'Dracula')
   end
-  scenario 'visiting an audiobook page' do
+
+  scenario 'going to individual audiobook page' do
     # When I visit the audiobook page
     visit author_book_path(@author, @audiobook)
+
     # I should see the audiobook pretty title
     within('div#book-metadata') do
       page.should have_content('Dracula')
     end
+
   end
 end
