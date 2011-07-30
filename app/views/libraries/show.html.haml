@@ -4,7 +4,7 @@
 
 #library-page
   - if !current_login
-    = render :partial => 'empty_library'
+    = render :partial => 'library_preview'
   - else
     = render :partial => 'library_with_content'
 
