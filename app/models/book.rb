@@ -232,6 +232,7 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
+  # NOTE: we should remove this. It's shorter, but it's actually harder to figure out what it does
   def read_online?
     self.is_rendered_for_online_reading == true
   end
