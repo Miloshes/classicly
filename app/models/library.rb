@@ -10,7 +10,7 @@ class Library < ActiveRecord::Base
   has_one :last_read_book, :through => :library_books, :order => 'library_books.last_opened DESC', :source => :book
   
   def self.clean_up_not_claimed_libraries
-    self.where(:unregistered => true, :last_accessed.lt => Time.now - 2.days).delete_all
+    self.where(:unregistered => true, :last_accessed.lt => Time.now - 2.days).destroy_all
   end
 
   def bookmark_exists? book, page_number
