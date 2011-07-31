@@ -1,5 +1,5 @@
 Fabricator(:audiobook) do
-  title "title"
-  pretty_title "pretty title"
+  title "Aesop's Fable"
+  pretty_title "Aesop's Fable"
   author
 end

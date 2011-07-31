@@ -5,14 +5,7 @@ class LibrariesController < ApplicationController
     if session[:new_book_in_library]
       @new_book_in_library = Book.find(session[:new_book_in_library])
 
-      unless current_library.books.include?(@new_book_in_library)
-        current_library.books << @new_book_in_library
-      end
-
-      current_library.update_attributes(
-        :books_downloaded => current_library.books.size,
-        :last_accessed    => Time.now
-      )
+      current_library.add_book(@new_book_in_library)
 
       @download_format = session[:download_format_for_the_new_book]
 
@@ -26,9 +19,7 @@ class LibrariesController < ApplicationController
   # NOTE: should be called after the Facebook Login happens
   def handle_facebook_login
     # register the library
-    current_library.user         = current_login
-    current_library.unregistered = false
-    current_library.save
+    current_library.register_for(current_login)
 
     # update the current page
     render :action => 'handle_facebook_login'

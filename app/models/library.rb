@@ -12,13 +12,31 @@ class Library < ActiveRecord::Base
   def self.clean_up_not_claimed_libraries
     self.where(:unregistered => true, :last_accessed.lt => Time.now - 2.days).destroy_all
   end
+  
+  def add_book(new_book)
+    unless self.books.include?(new_book)
+      self.books << new_book
+      self.save
+    end
 
-  def bookmark_exists? book, page_number
-    return false if self.library_books.empty? || !self.books.include?(book)
-    library_book_for_book(book).is_bookmarked_at? page_number
+    self.update_attributes(
+      :books_downloaded => self.books.size,
+      :last_accessed    => Time.now
+    )
+  end
+  
+  def register_for(owner)
+    self.user         = owner
+    self.unregistered = false
+    self.save
   end
 
-  def library_book_for_book book
+  def bookmark_exists?(book, page_number)
+    return false if self.library_books.empty? || !self.books.include?(book)
+    self.fetch_record_for_book(book).is_bookmarked_at? page_number
+  end
+
+  def fetch_record_for_book(book)
     return self.library_books.where(:book => book).first
   end
 
