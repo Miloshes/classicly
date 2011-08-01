@@ -62,13 +62,21 @@
         :margin
           :top 30px
           :right 0
-      
+
 
   #collection-list
     +column(18, true)
     h2
       :font-size 24px
       :font-weight bold
+
+    span.page_number
+      font-size: 24px
+      color: #ccc
+      display: inline-block
+      float: right
+      margin-right: 20px
+
     ul.collection
       +column(18, true)
       li
