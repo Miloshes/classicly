@@ -51,6 +51,8 @@ class BooksController < ApplicationController
 
   # for actually serving the downloadable file
   def serve_downloadable_file
+    @format = 'azw' if @format == 'kindle'
+    
     # The Library app tries to request PDF for book devliveries, whether we have it or not
     # Falling back to RTF if we don't have it
     if @format == 'pdf' && !@book.available_in_format?(@format)

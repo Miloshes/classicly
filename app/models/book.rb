@@ -77,6 +77,8 @@ class Book < ActiveRecord::Base
 
   # Reads the binary data from S3 for the book file. Needs the file format as a parameter
   def file_data_for_format(format)
+    format = 'azw' if format == 'kindle'
+    
     AWS::S3::Base.establish_connection!(
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
         :secret_access_key => APP_CONFIG['amazon']['secret_key']
