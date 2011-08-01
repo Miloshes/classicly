@@ -24,9 +24,6 @@ class BooksController < ApplicationController
   end
 
   def json_books
-    # cache response for a week
-    response.headers['Cache-Control'] = "public, max-age=#{7*24*60*60}"
-    
     data = []
     book_ids = params[:id].split( ',' )
     book_ids.each do |id|
