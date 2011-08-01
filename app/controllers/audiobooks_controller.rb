@@ -7,6 +7,12 @@ class AudiobooksController < ApplicationController
     @related_book = @audiobook.find_fake_related(1).first
   end
 
+  def inc_downloaded_count
+    audiobook = Audiobook.find(params[:id])
+    audiobook.increment! :downloaded_count
+    render :text => ''
+  end
+
   # Code below is when serving audiochapters, but we are now serving the whole book as a zipped file.
   # def serve_audiofile
   #     audiobook = Audiobook.find params[:id]
@@ -14,13 +20,13 @@ class AudiobooksController < ApplicationController
   #     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
   #     response.headers["Pragma"] = "no-cache"
   #     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-  # 
+  #
   #     send_data audiochapter.data_file,
   #         :disposition => 'attachment',
   #         :filename => "#{audiobook.pretty_title} - #{audiochapter.title}.mp3"
   #     audiobook.increment!(:downloaded_count)
   #   end
-  
+
   def serve_audiofile
     audiobook = Audiobook.find params[:id]
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"

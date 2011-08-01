@@ -61,13 +61,15 @@ Classicly::Application.routes.draw do
   match "incoming_data" => "incoming_datas#create", :method => :post  
   match 'search' => 'search#show', :method => :post
   match 'search/autocomplete' => 'search#autocomplete'
-  
+
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
 
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
-  
+
+  match '/inc_audiobook_downloaded_count/:id' => 'audiobooks#inc_downloaded_count'
+
   resources :books, :only => :index do
     get :show_review_form, :on => :member
     resources :reviews
@@ -76,7 +78,7 @@ Classicly::Application.routes.draw do
   resources :collections, :only => :show do
     resources :reviews
   end
-  
+
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
   match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 
     :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|

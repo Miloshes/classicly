@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110707170644) do
+ActiveRecord::Schema.define(:version => 20110721210149) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
     t.text    "description"
     t.integer "avg_rating",        :default => 0,     :null => false
     t.text    "librivox_zip_link"
+    t.integer "downloaded_count",  :default => 0
   end
 
   create_table "author_quotings", :force => true do |t|
@@ -124,6 +125,14 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
   end
 
   add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "library_book_id"
+    t.integer  "page_number"
+    t.text     "annotation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "books", :force => true do |t|
     t.text    "title"
@@ -228,9 +237,9 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
   end
 
   create_table "incoming_data", :force => true do |t|
-    t.text      "json_data"
-    t.boolean   "processed",  :default => false, :null => false
-    t.timestamp "created_at"
+    t.text     "json_data"
+    t.boolean  "processed",  :default => false, :null => false
+    t.datetime "created_at"
   end
 
   create_table "libraries", :force => true do |t|
