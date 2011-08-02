@@ -24,9 +24,20 @@ class SeoSlug < ActiveRecord::Base
   end
 
   def find_paginated_listed_books_for_collection(params)
+
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
-    self.seoable.book_type == 'audiobook' ? self.seoable.audiobooks.sorted(:sort => params[:sort]).page(params[:page]).per(10) :
-        self.seoable.books.sorted(:sort => params[:sort]).page(params[:page]).per(10)
+    method        = self.seoable.book_type.pluralize.to_sym
+
+    order_query = 'downloaded_count asc'
+
+    if params[:sort]
+      query_segments = params[:sort].split('_')
+      field = query_segments[0..1].join('_')
+      order_query = ([field] + [query_segments.last]).join(' ')
+    end
+
+    self.seoable.send(method).order(order_query).page(params[:page]).per(10)
+
   end
 
   def is_for_type?(type)

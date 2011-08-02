@@ -86,17 +86,17 @@ Classicly::Application.routes.draw do
     downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
     downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
     downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
-  
+
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately
   match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
-  
+
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
         :as => 'serve_downloadable_file', :via => :get
-        
+
   # for invoking the book reader
   match '/:id/page/:page_number' => "book_pages#show",
   :as => 'read_online', :via => :get

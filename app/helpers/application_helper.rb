@@ -117,7 +117,34 @@ module ApplicationHelper
     end
     res
   end
-  
+
+  def link_to_sorted(text, field, collection, parameters, default_sort = 'downloaded_count')
+    sort =  if params[:sort]
+             params[:sort].split('_')[0..1].join('_')
+            else
+              default_sort
+            end
+    order = if params[:sort]
+              past = params[:sort].split('_').last
+              past == 'desc' ? '_asc' : '_desc'
+            else
+              '_asc'
+            end
+
+    if sort == field
+      link_to text, seo_path(collection, :sort => field + order), :class => 'active'
+    else
+      link_to text, seo_path(collection, :sort => field + order )
+    end
+  end
+
+  def toggle_sort(field)
+    query_segments = field.split('_')
+    order = query_segments.last
+    new_segment = order == 'asc' ? 'desc' : 'asc'
+    (query_segments[0..1] + [new_segment]).join('_')
+  end
+
   def markdown(text)
     Maruku.new(text).to_html
   end

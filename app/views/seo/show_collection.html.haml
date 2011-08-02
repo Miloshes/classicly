@@ -45,9 +45,10 @@
     %h3 All #{@collection.name} Books
 
     .sorting
-      %span Sort By:
-      = link_to_sorted 'Most Downloaded', :downloaded_count
-      = link_to_sorted 'Title', :pretty_title
+      %span Sort Bya:
+      = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+      = link_to_sorted 'Title', 'pretty_title', @collection, params
+
       -# sorting by author an author collection is pointless
       -# unless @collection.is_author_collection?
         =# sort_books_ajax_link @collection.id, 'Author', 'author' 

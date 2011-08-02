@@ -40,34 +40,48 @@
       margin-top: -10px
       &.first
         width: 482px
+
   .sorting
     +column(18, true)
     :margin
       :bottom 25px
+
     span
-      :display block
-      :font-size 14px
-      :font-weight bold
-      :float left
+      display: block
+      font-size: 14px
+      font-weight: bold
+      float: left
+
     a
-      :text-decoration none
-      :color #333333
-      :background #ffffd7
-      :text-decoration none
-      :font-size 14px
-      :float left
-      :display block
-      :margin
-        :left 20px
-      &:hover 
+      text-decoration: none
+      color: #333333
+      background: #ffffd7
+      text-decoration: none
+      font-size: 14px
+      float: left
+      display: block
+      margin:
+        left: 20px
+
+      &.active
+        color: #ccc
+        background: #fff
+
+        &:hover
+          background: #fff
+          cursor: normal
+
+      &:hover
         :background #ffff66
         :cursor pointer
+
       &.selected
-        :color #333333
-        :background none
-        :text-decoration underline
+        color: #333333
+        background: none
+        text-decoration: underline
         &:hover
-          :cursor normal
+          cursor: normal
+
   ul.book-list
     li
       +column(16, true)

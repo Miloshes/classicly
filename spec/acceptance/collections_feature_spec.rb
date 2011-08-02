@@ -23,7 +23,7 @@ feature 'Collections feature', %q{
     # And I should verify that a tooltip div exists
     page.should have_css('.audiobook-switcher .tooltip')
   end
-  
+
   scenario 'visiting a collection that does not have an audiobook collection counterpart' do
     # Given we have a collection and an audiocollection and its slugs
     @collection = Collection.make!(:hummies)
@@ -33,7 +33,7 @@ feature 'Collections feature', %q{
     # The I should not see the audiobooks option link
     page.should_not have_css('.audiobook-switcher')
   end
-  
+
   scenario 'visiting an audio collection that has a book collection counterpart' do
     # Given we have an audiocollection and an collection and its slugs
     @collection = Collection.make!(:hummies)
