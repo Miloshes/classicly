@@ -8,38 +8,41 @@
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => seo_front_end_meta_description_text(@collection),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.featured_book}_size2.jpg",
       :title => @collection.name, :type => 'album' }, @collection.seo_info)
+
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
+
 
 #collection-page
   - if @collection.has_audiobook_counterpart?
-    .audiobook-switcher  
+    .audiobook-switcher
       %span Books |&nbsp;
       = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)
       .tooltip
         View this collection as audiobooks. Available as MP3 downloads.
-  .collection-info
-    %h1
-      =@collection.name
-      Books
 
-    %p=simple_format(@collection.parsed_description)
-    .share
-      <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+  - unless params[:page]
+    .collection-info
+      %h1
+        =@collection.name
+        Books
+      %p
+        = simple_format(@collection.parsed_description)
 
-  .featured-books.audiobooks
-    .cover.medium
-      = cover_image_link(@collection.featured_book, 2)
+      .share
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+
+    .featured-books.audiobooks
+      .cover.medium
+        = cover_image_link(@collection.featured_book, 2)
 
   - if @collection.is_author_collection? && @collection.has_author?
     .author-quotations
       - for quotation in @collection.author.author_quotings
         %h5
           = link_to quotation.quoted_text, quotation.blog_post.cached_slug
-      
+
   .book-list
     %h3 All #{@collection.name} Books
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
 
     .sorting
       %span Sort By:
@@ -52,6 +55,9 @@
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
+    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
+    %p.explanation We don’t pay a cent, so neither do you.
 
 - if Rails.env.production?
   - if @collection.collection_type == 'author'

@@ -37,20 +37,25 @@ class SeoController < ApplicationController
   end
 
   def render_seo(seo)
+
     if seo.is_for_type?('blogpost')
       @blog_post = seo.seoable
       render 'blog/show' and return
+
     elsif seo.is_for_type?('collection')
+
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
+
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else
         render 'show_collection' and return
       end
-    elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
-      @book = seo.seoable
 
+    elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
+
+      @book = seo.seoable
       @related_books = @book.find_fake_related(3)
       @format = seo.format
 
