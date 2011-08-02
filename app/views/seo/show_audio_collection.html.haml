@@ -1,10 +1,12 @@
 - content_for :title do
   %title=seo_front_end_title_helper(@collection)
+
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => seo_front_end_meta_description_text(@collection),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.featured_audiobook}_size2.jpg",
       :title => @collection.name, :type => 'album' }, @collection.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
+
 
 #collection-page
   - if @collection.has_book_counterpart?
@@ -13,16 +15,21 @@
       .tooltip
         View this collection as normal books. Available for Kindle, PDF, and our HTML5 reader.
       %span |&nbsp; Audiobooks
-  .collection-info
-    %h1="#{@collection.name} Audiobooks"
-    %p=simple_format(@collection.parsed_description)
-  .featured-books.audiobooks
-    .cover.medium
-      = cover_image_link(@collection.featured_audiobook, 2)
+
+  -unless params[:page]
+    .collection-info
+      %h1="#{@collection.name} Audiobooks"
+      %p=simple_format(@collection.parsed_description)
+
+      .share
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+
+    .featured-books.audiobooks
+      .cover.medium
+        = cover_image_link(@collection.featured_audiobook, 2)
+
   .book-list
     %h3 All #{@collection.name} Audiobooks
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
 
     .sorting
       %span Sort By:
@@ -35,3 +42,6 @@
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
+    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
+    %p.explanation We don’t pay a cent, so neither do you.
