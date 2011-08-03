@@ -260,7 +260,8 @@ Reader.prototype = {
         if( response == 'true' )
           self.drawBookmarkRibbon();
         else
-          $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
+          if( $( '#notification' ).is( ':hidden' ) )
+            $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
       }
     });
   },
