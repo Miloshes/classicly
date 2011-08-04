@@ -29,10 +29,6 @@
           %span.book-author
             = book_author_link(@book)
 
-        .like-send
-          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-        %p= simple_format(@book.description)
-
         -# Google AdSense. DO NOT MODIFY.
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-5075439250266786";
@@ -45,6 +41,11 @@
         <script type="text/javascript"
         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </script>
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        %p= simple_format(@book.description)
+
+        
       .download
         = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
         = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
