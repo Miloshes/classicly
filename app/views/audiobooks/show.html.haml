@@ -31,6 +31,10 @@
         %span.book-author
           = book_author_link(@book)
 
+      .like-send
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+      %p= simple_format(@book.description)
+
       -# Google AdSense. DO NOT MODIFY.
       <script type="text/javascript"><!--
       google_ad_client = "ca-pub-5075439250266786";
@@ -43,12 +47,6 @@
       <script type="text/javascript"
       src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
-
-      .like-send
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-      %p= simple_format(@book.description)
-
-      -# Google Adsense. DO NOT MODIFY.
 
     .download
       - if @book.has_mp3_slug?
