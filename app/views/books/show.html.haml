@@ -45,8 +45,6 @@
         .like-send
           <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
         %p= simple_format(@book.description)
-        .share
-
 
       .download
         = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
