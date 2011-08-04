@@ -11,7 +11,7 @@ feature 'Collections list page feature: ', %q{
     @collection_names.each { |name| Collection.make!(:collection_type => 'collection', :name => name, :book_type => 'book') }
     # And Given I have a genre collection
     Collection.make!(:collection_type => 'genre', :name => 'Genre Collection', :book_type => 'book') 
-    # When  I visit the collections page:
+    # When I visit the collections page
     visit collections
   end
   
@@ -76,7 +76,7 @@ feature 'Collections list page feature: ', %q{
     page.should have_content('Genre Audiobooks')
   end
   
-  scenario 'going to the  featured collection route' do
+  scenario 'going to the featured collection route' do
     within('div#featured-collection') do
       slug = collection_slug find('.books-and-link a.browse-collection')[:href]
       # When I click the featured collection

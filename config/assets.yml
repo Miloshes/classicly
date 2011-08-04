@@ -11,6 +11,9 @@ javascripts:
     - public/javascripts/classicly-autocomplete.js
     - public/javascripts/jquery.rating.js
     - public/javascripts/rails.js
+    - public/javascripts/notifications.js
 stylesheets:
   common:
     - public/stylesheets/compiled/screen.css
+    # NOTE: SASS chokes on it if I try to make it a partial :(
+    - public/stylesheets/notifications.css

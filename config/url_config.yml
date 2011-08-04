@@ -3,7 +3,10 @@ development:
   domain_name: localhost:3000
 staging:
   root_path: http://classicly-staging.heroku.com
-  domain_name: classicly_staging.heroku.com
+  domain_name: classicly-staging.heroku.com
 production:
   root_path: http://www.classicly.com
   domain_name: www.classicly.com
+test:
+  root_path: http://localhost:3000
+  domain_name: localhost:3000

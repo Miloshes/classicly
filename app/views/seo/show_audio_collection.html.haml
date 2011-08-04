@@ -1,10 +1,12 @@
 - content_for :title do
   %title=seo_front_end_title_helper(@collection)
+
 - content_for :head do
   = fb_open_graph_metadata({:url => seo_url(@collection), :description => seo_front_end_meta_description_text(@collection),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@collection.featured_audiobook}_size2.jpg",
       :title => @collection.name, :type => 'album' }, @collection.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
+
 
 #collection-page
   - if @collection.has_book_counterpart?
@@ -12,22 +14,41 @@
       = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug)
       .tooltip
         View this collection as normal books. Available for Kindle, PDF, and our HTML5 reader.
-      %span |&nbsp; Audiobooks
-  .collection-info
-    %h1="#{@collection.name} Audiobooks"
-    %p=simple_format(@collection.parsed_description)
-  .featured-books.audiobooks
-    .cover.medium
-      = cover_image_link(@collection.featured_audiobook, 2)
+      %span  &nbsp;|&nbsp;Audiobooks
+
+  -unless params[:page]
+    .collection-info
+      %h1="#{@collection.name} Audiobooks"
+      %p=simple_format(@collection.parsed_description)
+
+      .share
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+
+    .featured-books.audiobooks
+      .cover.medium
+        = cover_image_link(@collection.featured_audiobook, 2)
+  .clear
+  #ga_ads
+    -# Google AdSense. DO NOT MODIFY.
+    <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-5075439250266786";
+    /* 728x90, Leaderboard */
+    google_ad_slot = "0966986300";
+    google_ad_width = 728;
+    google_ad_height = 90;
+    //-->
+    </script>
+    <script type="text/javascript"
+    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+    </script>
+
   .book-list
     %h3 All #{@collection.name} Audiobooks
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
 
     .sorting
       %span Sort By:
-      = link_to_sorted 'Most Downloaded', :downloaded_count
-      = link_to_sorted 'Title', :pretty_title
+      = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+      = link_to_sorted 'Title', 'pretty_title', @collection, params
       -# sorting by author an author collection is pointless
       -# unless @collection.is_author_collection?
         =# sort_audiobooks_ajax_link @collection.id, 'Author', 'author' 
@@ -35,3 +56,6 @@
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
+    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
+    %p.explanation We don’t pay a cent, so neither do you.

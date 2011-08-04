@@ -4,13 +4,103 @@
 body {
   background: #f6f3ee; }
 
+#notification{
+  width: 100%;
+  background-image: url(../images/Registration_slices/reg_bg.png);
+  /*background-color: #61B832;
+  background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
+  background-size: 40px 40px;*/
+  height: 256px;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: arial;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  display: none;
+}
+
+
+#notification #registration .registration_box{
+  display: inline-table;
+  background-image: url(../images/Registration_slices/reg_box.png);
+  width: 220px;
+  height: 102px;
+  margin-top: 20px;
+  margin-right: 16px;
+}
+
+#notification #registration .registration_box img{
+  margin-top: 11px;
+}
+
+#notification #registration .registration_box p{
+  width: 160px;
+  margin: 0 auto;
+  margin-top: 17px;
+}
+
+#notification a#fb_connect{
+  width: 362px;
+  display: block;
+  height: 49px;
+  margin: 19px auto;
+  text-decoration: none;
+}
+
+#notification a#fb_connect #facebook_connect{
+  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  width: 362px;
+  height: 49px;
+  padding-top: 1px;
+}
+
+
+#notification a#fb_connect:active #facebook_connect{
+  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  background-position: 0px -51px;
+}
+
+
+#notification #facebook_connect p {
+  margin-top: 12px;
+  font-size: 24px;
+  text-decoration: none;
+  color: #fff;
+}
+
+#notification a#fb_decline{
+  display: block;
+  width: 102px;
+  height: 24px;
+  margin: 19px auto;
+  text-decoration: none;
+}
+
+#notification a#fb_decline #facebook_decline{
+  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  width: 102px;
+  height: 24px;
+  padding-top: 1px;
+}
+
+#notification a#fb_decline:active #facebook_decline{
+  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  background-position: 0px -28px;
+}
+
+#notification #facebook_decline p {
+  margin-top: 5px;
+  color: #fff;
+}
+
 #reader_box {
   margin-left: auto;
   margin-right: auto;
   margin-top: 50px;
   margin-bottom: 50px;
   background: #f8f5f0;
-  width: 690px;
+  width: 48em;
   height: 750px;
   position: relative;
   font-family: georgia, serif;
@@ -21,19 +111,81 @@ body {
   -ms-border-radius: 10px;
   -khtml-border-radius: 10px;
   border-radius: 10px; }
+
+  #reader_box #library_button {
+    margin-top: 36px;
+    margin-left: 20px;
+    width: 135px;
+    float: left;
+    position: relative;
+    z-index: 1000;
+  }
+
+  #reader_box #library_button .button .left {
+    display: block;
+    float: left;
+    background: url(../images/reader_btn_left.png) no-repeat;
+    width: 4px;
+    height: 30px;
+  }
+
+  #reader_box #library_button .button a {
+    text-decoration: none;
+    display: block;
+    float: left;
+    padding: 5px 4px 0px 4px;
+    background: url(../images/reader_btn_middle.png) repeat-x;
+    background-position: 5px 0px;
+    height: 30px;
+  }
+
+  #reader_box #library_button .button a, #reader_box #library_button .button a:active {
+    color: #34261c;
+  }
+
+  #reader_box #library_button .button .right
+  {
+    display: block;
+    float: left;
+    background: url(../images/reader_btn_right.png) no-repeat;
+    width: 4px;
+    height: 30px;
+  }
+
+
   #reader_box .header {
-    display: none;
     color: #34261c;
     text-transform: uppercase;
     position: absolute;
     left: 50px;
     right: 50px;
-    top: 25px;
+    top: 50px;
     font-size: 17px;
-    text-align: center; }
+    text-align: center;
+  }
+
+  #reader_box #bookmark_tag {
+    width: 50px;
+    position: relative;
+    z-index: 1000;
+    left: 45em;
+    top: -2em;
+    margin-top: 35px;
+  }
+
+  #reader_box #bookmark_ribbon {
+    width: 54px;
+    height: 79px;
+    position: absolute;
+    z-index: 1000;
+    left: 44em;
+    top: 1em;
+    margin-top: -16px;
+  }
+
   #reader_box .text_box {
     position: absolute;
-    top: 75px;
+    top: 100px;
     left: 25px;
     right: 25px;
     bottom: 100px; }
@@ -94,11 +246,14 @@ body {
     text-indent: 15px; }
   #reader_box .text_box p.no_indent {
     text-indent: 0 !important; }
+
   #reader_box .big_navigation {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 100px; }
+    width: 4em;
+  }
+
   #reader_box .big_navigation .box {
     background-color: #000;
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";

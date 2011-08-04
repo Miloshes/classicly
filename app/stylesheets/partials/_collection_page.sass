@@ -3,6 +3,7 @@
   :margin
     :top 30px
   :text-align left
+
   .collection-info
     +column(13)
     h1
@@ -17,9 +18,16 @@
         &:hover
           :background #ffff66
           :cursor pointer
+    .share
+      margin-bottom: 50px
+
   .featured-books
     +column(4, true)
     +prepend(1)
+
+  #ga_ads
+    margin-bottom: 57px
+
   .book-list
     +column(18, true)
     h3
@@ -28,42 +36,56 @@
       :font-weight bold
       :margin 0
         :bottom 3px
-      :padding 0
+
     p.explanation
       +column(7, true)
       :color #999999
       :font-size 14px
+      margin-top: -10px
       &.first
-        :margin
-          :right 200px
+        width: 482px
+
   .sorting
     +column(18, true)
     :margin
       :bottom 25px
+
     span
-      :display block
-      :font-size 14px
-      :font-weight bold
-      :float left
+      display: block
+      font-size: 14px
+      font-weight: bold
+      float: left
+
     a
-      :text-decoration none
-      :color #333333
-      :background #ffffd7
-      :text-decoration none
-      :font-size 14px
-      :float left
-      :display block
-      :margin
-        :left 20px
-      &:hover 
+      text-decoration: none
+      color: #333333
+      background: #ffffd7
+      text-decoration: none
+      font-size: 14px
+      float: left
+      display: block
+      margin:
+        left: 20px
+
+      &.active
+        color: #ccc
+        background: #fff
+
+        &:hover
+          background: #fff
+          cursor: normal
+
+      &:hover
         :background #ffff66
         :cursor pointer
+
       &.selected
-        :color #333333
-        :background none
-        :text-decoration underline
+        color: #333333
+        background: none
+        text-decoration: underline
         &:hover
-          :cursor normal
+          cursor: normal
+
   ul.book-list
     li
       +column(16, true)

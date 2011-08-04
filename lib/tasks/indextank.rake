@@ -20,8 +20,8 @@ namespace :indextank do
           # we are going to save the cover url as a field to avoid more processing in read time:
           cover_url = "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size1.jpg"
           slug = "/#{book.author_cached_slug}/#{book.cached_slug}" # save the slug as well.
-
-          documents << { :docid => docid, :fields => { :text => title, :author => author_name, :type => 'book', :cover_url => cover_url, :slug => slug  } }
+          downloads_count = book.downloaded_count.nil? ? 0 : book.downloaded_count
+          documents << { :docid => docid, :fields => { :text => title, :author => author_name, :type => 'book', :cover_url => cover_url, :slug => slug  }, :variables => { 0  => downloads_count } }
         end
       end
 
@@ -47,10 +47,10 @@ namespace :indextank do
           # we are going to save the cover url as a field to avoid more processing in read time:
           cover_url = "http://spreadsong-audiobook-covers.s3.amazonaws.com/audiobook_id#{audiobook.id}_size1.jpg"
           slug = "/#{audiobook.author_cached_slug}/#{audiobook.cached_slug}" # save the slug as well.
-
+          downloads_count = audiobook.downloaded_count.nil? ? 0 : audiobook.downloaded_count
           #puts "abook content: #{text}"
           #puts "key: #{docid}"
-          documents << { :docid => docid, :fields => { :text => audiobook.pretty_title, :author => audiobook.author_name, :type => 'audiobook', :slug => slug, :cover_url => cover_url } }
+          documents << { :docid => docid, :fields => { :text => audiobook.pretty_title, :author => audiobook.author_name, :type => 'audiobook', :slug => slug, :cover_url => cover_url }, :variables => { 0 => downloads_count} }
         end
       end
       response = index.batch_insert(documents)

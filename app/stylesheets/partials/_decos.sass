@@ -10,19 +10,22 @@
 $mini-cover-height: 37
 
 ul.ui-autocomplete
-  :min-width 365px
-  :max-width 365px
-  :cursor pointer
+  min-width: 365px
+  max-width: 365px
+  cursor: pointer
+
   li.ui-menu-item
-    :padding-right 10px
-    :overflow hidden
-    :color #333333
-    a 
+    padding-right: 10px
+    overflow: hidden
+    &.ui-state-active
+      color: #195596
+    a
       span.type
-        :padding-left 5px
-        :color #9999ae
-      &:hover
-        color: #195596
+        padding-left: 5px
+        color: #9999ae
+
+      &:hover, &#ui-active-menuitem
+        color: #195596 !important
         span.type
           :color #538dc2
 

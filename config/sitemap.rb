@@ -25,6 +25,7 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   #   Article.find_each do |article|
   #     sitemap.add article_url(article), :lastmod => article.updated_at
   #   end
+
   Audiobook.find_each do|book|
     sitemap.add author_book_path(book.author, book) unless book.author.nil?
   end
@@ -36,9 +37,19 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   Collection.find_each do|collection|
     sitemap.add seo_path(collection)
   end
-  
-  # now check the seo slugs
-  SeoSlug.find_each do|slug|
-    sitemap.add seo_path(slug.slug)
+
+  SeoSlug.find_each do|landing_page|
+    sitemap.add seo_path(landing_page.slug) unless (landing_page.format == 'all' || landing_page.slug.nil?)
   end
+
+  # add each page from each online readable book to the sitemap
+  Book.where(:is_rendered_for_online_reading).each do |book|
+
+    id = book.seo_slugs.read_online.first.slug
+
+    1.upto(book.book_pages.count) do |page_number|
+      sitemap.add read_online_path(id, page_number)
+    end
+  end
+
 end

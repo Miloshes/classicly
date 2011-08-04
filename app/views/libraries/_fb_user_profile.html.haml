@@ -1,0 +1,14 @@
+.photo
+  %img{:src => "https://graph.facebook.com/#{current_login.fb_connect_id}/picture?type=normal"}
+.name
+  %span
+    %strong
+      = "#{current_login.first_name} #{current_login.last_name}"
+      %br
+  %span
+    = "#{current_login.location_city}, #{current_login.location_country}" if current_login.location_city && current_login.location_country
+.stats
+  %span
+    = "#{current_library.total_pages_read} pages read"
+  %span
+    = "#{current_library.books_downloaded} books downloaded"

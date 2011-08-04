@@ -9,10 +9,13 @@ $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
   var html;
 
   if( item.type == "book" || item.type == "audiobook"){
-    html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + item.label + "<span class='type'>" + item.type + "</span></span></div>";
-  }else if( item.type == "collection" ){
+    html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + ssLess( item.label, 40 )
+    + "<span class='type'>" + item.type + "</span></span></div>";
+  }
+  else if( item.type == "collection" ){
     html =  item.label + "<span class='type'>" + item.type + "</span>";
-  }else{
+  }
+  else{
    html =  item.label;
   }
 
@@ -41,7 +44,7 @@ google.setOnLoadCallback(function() {
                     searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug, cover_url : item.cover_url } );
                   });
                   // finally add the searc for 'xyz' list item:
-                  searchResults.push( { label: "search <b>" + request.term + "</b>", value : request.term } );
+                 searchResults.push( { label: "search <b>" + request.term + "</b>", value : request.term } );
                   responseCallback( $.each( searchResults, function( index, result ){
                     return{ label: result.label, value: result.value }
                   })); 
@@ -66,3 +69,5 @@ google.setOnLoadCallback(function() {
     });
   }); // $ fun
 }); // g callback
+
+

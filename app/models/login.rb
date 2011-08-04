@@ -1,5 +1,6 @@
 class Login < ActiveRecord::Base
   has_many :reviews
+  has_one :library
   
   def self.register_from_ios_app(params)
     params.stringify_keys!
@@ -34,24 +35,33 @@ class Login < ActiveRecord::Base
         anonymous_review.convert_to_normal_review
       end
     end
-  
+
   end
-    
-  def self.register_from_classicly(profile, location, mix_panel)
-    login = Login.find_by_fb_connect_id profile['id']
-    is_new = false
+
+  def self.register_from_classicly user_profile = {}
+    user_profile.stringify_keys!
+
+    login        = Login.find_by_fb_connect_id user_profile['id']
+    is_new_login = false
+
     unless login
-      login = Login.create(:fb_connect_id => profile['id'], :first_name => profile['first_name'],
-        :last_name => profile['last_name'],:email => profile['email'], :location_city => location[:city],
-        :location_country => location[:country])
-      if Rails.env.production?
-        mix_panel.track_event("Facebook Register", {:id => login.fb_connect_id})
-        login.report_successful_registration_to_performable  
-      end
-      is_new = true
+      city, country = user_profile['location']['name'].split(', ')
+
+      login = Login.create(
+          :fb_connect_id    => user_profile['id'],
+          :email            => user_profile['email'],
+          :first_name       => user_profile['first_name'],
+          :last_name        => user_profile['last_name'],
+          :location_city    => city,
+          :location_country => country
+        )
+
+      is_new_login = true
     end
+
     login.performable_log_session_opened if Rails.env.production?
-    is_new
+
+    return login, is_new_login
   end
   
   def not_registered_with_facebook?

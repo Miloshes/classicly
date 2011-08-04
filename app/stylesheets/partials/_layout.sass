@@ -29,6 +29,9 @@ a.highlight
     :color #333333
     :background #ffff66
     :cursor pointer
+    
+#site-container
+  :position relative
 
 #header
   :float left
@@ -161,10 +164,11 @@ a.highlight
     :padding 10px
     :border 1px solid #bb9d79
     :background #cab08b
-  .collection-names-list
+  #collection-names-list
     :margin 0 auto
     :width 800px
     :padding 10px
+      :bottom 0px
     :background 1px solid #bb9d79
     :font-family 'helvetica'
     :font-size 17px
@@ -200,7 +204,7 @@ a.highlight
     :text-align center
     :background url('/images/footer-header-bg.png')
     font-family: "museo-slab-1", "museo-slab-2"
-  .about
+  #about
     :width 340px
     :float left
     :height 100%
@@ -216,7 +220,7 @@ a.highlight
           :top 25px
 
         :text-align left
-  .applications
+  #applications
     :width 300px
     :height 100%
     :float left
@@ -224,28 +228,27 @@ a.highlight
       :text-align left
       :float left
       :width 300px
-      :margin
-        :left 10px
-        :right 10px
       h5
         :color #43260f
         :font-size 18px
         :margin 0
           :top 20px
         :padding 0
+        :text-indent 5px
       span
         :color #43260f
         :font-size 12px
+        :text-indent 5px
         :display block
-        :Width 100%
+        :width 100%
       img.link
         :margin
           :top 5px
       img.icon
         :float left
-        :margin
-          :top 10px
-  .connect
+        :margin 5px
+          :top 17px
+  #connect
     :width 320px
     :margin 0
     :padding 0
@@ -254,6 +257,10 @@ a.highlight
       img
         &:hover
           :opacity .8
+  #copyright
+    :clear left
+    :margin-top 5px
+    :font-size 17px
       
 
 .ui-autocomplete

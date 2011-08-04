@@ -176,6 +176,7 @@ class Collection < ActiveRecord::Base
     self.collection_type == 'author'
   end
 
+  # NOTE: refactor!
   def needs_canonical_link?(per_page)
     per_page < self.send(self.book_type.pluralize.to_sym).count 
   end

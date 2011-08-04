@@ -83,34 +83,15 @@ gem 'rubyzip'
 gem 'dalli'
 
 group :development, :test do
+  # MySQL driver - http://rubygems.org/gems/mysql2
+  gem 'mysql2', '< 0.3'
+  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
-  
-  # integration testing - http://rubygems.org/gems/capybara
-  gem 'capybara'
-  
-  # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
-  gem 'database_cleaner'
-
-  
-  # Javascript testing framework - http://rubygems.org/gems/jasmine
-  gem 'jasmine'
-  
-  # fixtures generator for testing - http://rubygems.org/gems/machinist
-  gem 'machinist', '>= 2.0.0.beta1'
-  
-  # MySQL driver - http://rubygems.org/gems/mysql2
-  gem 'mysql2', '~> 0.2.3'
-  
-  # RSpec BDD testing framework - http://rubygems.org/gems/rspec
-  gem 'rspec-rails', '>=2.0.0.beta'
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
   # NOTE: for Ruby v1.9 use ruby-debug19!
   gem 'ruby-debug'
-  
-  # Testing framework, a Cucumber replacemen - thttp://rubygems.org/gems/steak
-  gem 'steak'
   
   # Heroku database import/export - http://rubygems.org/gems/taps
   gem 'taps', '> 0.3.22'
@@ -120,4 +101,39 @@ group :development, :test do
   
   # rake extension for better deploys - http://rubygems.org/gems/hoe
   gem 'hoe'
+  
+  # == Testing related
+  
+  # Testing framework, a Cucumber replacement - http://rubygems.org/gems/steak
+  gem 'steak'
+
+  # integration testing - http://rubygems.org/gems/capybara
+  gem 'capybara'
+
+  # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
+  gem 'database_cleaner'
+
+  # fixtures generator for tests
+  gem 'fabrication', '~> 1.0.1'
+
+  # Javascript testing framework - http://rubygems.org/gems/jasmine
+  gem 'jasmine'
+  
+  # fixtures generator for testing - http://rubygems.org/gems/machinist
+  gem 'machinist', '>= 2.0.0.beta1'
+  
+  # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
+  gem 'ZenTest'
+  
+  # Gem for reporting passing and failing tests via Growl on OS X. https://rubygems.org/gems/autotest-growl
+  gem 'autotest-growl', '~> 0.2.9'
+  
+  # Autotest will not poll the filesystem for changes, but uses OS X APIs instead (much faster) http://rubygems.org/gems/autotest-fsevent
+  gem 'autotest-fsevent'
+  
+  # RSpec BDD testing framework - http://rubygems.org/gems/rspec
+  gem 'rspec-rails'
+  
+  # makes Capybara able to show the browser in the last state - http://rubygems.org/gems/launchy
+  gem 'launchy'
 end

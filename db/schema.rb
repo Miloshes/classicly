@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110707170644) do
+ActiveRecord::Schema.define(:version => 20110721210149) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
     t.string  "cached_slug"
     t.text    "description"
     t.integer "avg_rating",        :default => 0,     :null => false
-    t.integer "downloaded_count",  :default => 0
     t.text    "librivox_zip_link"
+    t.integer "downloaded_count",  :default => 0
   end
 
   create_table "author_quotings", :force => true do |t|
@@ -125,6 +125,14 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
   end
 
   add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
+
+  create_table "bookmarks", :force => true do |t|
+    t.integer  "library_book_id"
+    t.integer  "page_number"
+    t.text     "annotation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "books", :force => true do |t|
     t.text    "title"
@@ -234,6 +242,30 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
     t.datetime "created_at"
   end
 
+  create_table "libraries", :force => true do |t|
+    t.integer  "login_id"
+    t.integer  "total_pages_read", :default => 0,    :null => false
+    t.integer  "books_downloaded", :default => 0,    :null => false
+    t.boolean  "unregistered",     :default => true, :null => false
+    t.datetime "last_accessed"
+  end
+
+  create_table "library_audiobooks", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "audiobook_id"
+    t.datetime "last_opened"
+    t.integer  "listening_position"
+    t.datetime "created_at"
+  end
+
+  create_table "library_books", :force => true do |t|
+    t.integer  "library_id"
+    t.integer  "book_id"
+    t.datetime "last_opened"
+    t.integer  "reading_position"
+    t.datetime "created_at"
+  end
+
   create_table "logins", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -310,6 +342,7 @@ ActiveRecord::Schema.define(:version => 20110707170644) do
     t.datetime "created_at"
   end
 
+  add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "user_sessions", :force => true do |t|

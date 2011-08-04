@@ -49,4 +49,6 @@ Classicly::Application.configure do
   config.active_support.deprecation = :notify
   
   config.cache_store = :dalli_store
+  
+  config.middleware.use 'WwwMiddleware'
 end

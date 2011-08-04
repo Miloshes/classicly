@@ -1,5 +1,4 @@
 Classicly::Application.routes.draw do
-
   namespace 'admin' do
     root :to => "base#home"
     match 'admin_seo' => 'admin_seo#main'
@@ -9,17 +8,29 @@ Classicly::Application.routes.draw do
     match 'blog_posts/associate_book' => 'blog_posts#associate_book'
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
+
     resource :admin_user_session
+
     resources :blog_posts do
       member do
         get 'change_state'
         get 'preview'
       end
     end
+
     resources :reviews, :only => [:index, :destroy]
     resources :seo_defaults
   end
-  
+
+  resources :bookmarks, :only => [:create, :destroy]
+
+  resource :logins, :only => [:create]
+
+  # == Library
+  match 'library' => 'libraries#show', :as => :library
+  match 'library/handle_facebook_login' => 'libraries#handle_facebook_login', :as => :library_handle_facebook_login
+  match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
+
   match 'about' => 'pages#about'
   match 'abingo' => "abingo_dashboard#index", :via => :get
   match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
@@ -28,7 +39,6 @@ Classicly::Application.routes.draw do
   match 'authors/(:page)' => 'pages#authors', :as => :authors
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
-  match 'library' => 'pages#library'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
 
   # for delivering audiobook file
@@ -38,25 +48,28 @@ Classicly::Application.routes.draw do
   match '/reader/:id/:page_number' => "book_pages#show", :via => :get
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post
-  
-  
+
+
   match 'privacy' => 'pages#privacy'
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
 
   get "bingo_experiments/create"
+
   # NOTE: this is for the first version of the review API, will be deprecated soon
   match "incoming_data" => "incoming_datas#create", :method => :post  
   match 'search' => 'search#show', :method => :post
   match 'search/autocomplete' => 'search#autocomplete'
-  
+
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
 
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
-  
+
+  match '/inc_audiobook_downloaded_count/:id' => 'audiobooks#inc_downloaded_count'
+
   resources :books, :only => :index do
     get :show_review_form, :on => :member
     resources :reviews
@@ -65,7 +78,7 @@ Classicly::Application.routes.draw do
   resources :collections, :only => :show do
     resources :reviews
   end
-  
+
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
   match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 
     :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
@@ -73,17 +86,17 @@ Classicly::Application.routes.draw do
     downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
     downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
     downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
-  
+
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately
   match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
-  
+
   # for delivering the book file (automatic file downloading)
   match "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
         :as => 'serve_downloadable_file', :via => :get
-        
+
   # for invoking the book reader
   match '/:id/page/:page_number' => "book_pages#show",
   :as => 'read_online', :via => :get

@@ -6,6 +6,8 @@ class Book < ActiveRecord::Base
   belongs_to :author
   belongs_to :custom_cover
 
+  has_many :library_books
+  has_many :libraries, :through => :library_books
   has_and_belongs_to_many :blog_posts, :join_table => 'blog_posts_books'
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
@@ -18,6 +20,7 @@ class Book < ActiveRecord::Base
   has_many :book_pages
 
   delegate :cached_slug, :name, :to => :author, :prefix =>  true
+
   scope :available, where({:available => true})
   scope :blessed, where({:blessed => true})
   scope :for_author, lambda {|author| where(:author_id => author.id)}
@@ -25,7 +28,9 @@ class Book < ActiveRecord::Base
   scope :with_description, where('description is not null')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
   scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
+
   validates :title, :presence => true
+
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
 
   def self.available_in_formats(formats)
@@ -55,7 +60,8 @@ class Book < ActiveRecord::Base
   end
 
   def available_in_format?(format)
-    ! self.download_formats.where({:format => format, :download_status => 'downloaded'}).blank?
+    format = 'azw' if (format == 'kindle')
+    ! self.download_formats.find_by_format_and_download_status(format, 'downloaded').nil?
   end
 
   def download_url_for_format(format)
@@ -71,6 +77,8 @@ class Book < ActiveRecord::Base
 
   # Reads the binary data from S3 for the book file. Needs the file format as a parameter
   def file_data_for_format(format)
+    format = 'azw' if format == 'kindle'
+    
     AWS::S3::Base.establish_connection!(
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
         :secret_access_key => APP_CONFIG['amazon']['secret_key']
@@ -85,11 +93,12 @@ class Book < ActiveRecord::Base
   end
 
   def audiobook_download_slug
+
     if self.has_audiobook
-      audiobook = Audiobook.where(:pretty_title => self.pretty_title).first
-      return nil if audiobook.nil?
-      audiobook.download_mp3_slug
+      audiobook = Audiobook.find_by_pretty_title self.pretty_title
+      audiobook.nil? ? nil : audiobook.download_mp3_slug
     end
+
   end
 
   def belongs_to_author_collection?
@@ -225,6 +234,7 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
+  # NOTE: we should remove this. It's shorter, but it's actually harder to figure out what it does
   def read_online?
     self.is_rendered_for_online_reading == true
   end
