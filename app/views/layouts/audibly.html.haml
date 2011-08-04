@@ -3,127 +3,129 @@
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
 %head
-	= stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
-	= stylesheet_link_tag 'compiled/print.css', :media => 'print'
-	/[if lt IE 8]
-	= stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
-	= yield :title
-	= javascript_include_tag 'http://www.google.com/jsapi'
-	= javascript_tag do
-		var theme = "flick";
-		google.load("jquery", "1.4.4");
-		google.load("jqueryui", "1.8.7");
-		google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
-	= include_javascripts :main
-	= javascript_include_tag "http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js"
-	=# javascript_include_tag 'classicly-autocomplete'
-	= javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
-	= csrf_meta_tag
-	= typekit_include_helper
+  = stylesheet_link_tag 'compiled/screen.css', :media => 'screen, projection'
+  = stylesheet_link_tag 'compiled/print.css', :media => 'print'
+  /[if lt IE 8]
+  = stylesheet_link_tag 'compiled/ie.css', :media => 'screen, projection'
+  = yield :title
+  = javascript_include_tag 'http://www.google.com/jsapi'
+  = javascript_tag do
+    var theme = "flick";
+    google.load("jquery", "1.4.4");
+    google.load("jqueryui", "1.8.7");
+    google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+  = include_javascripts :main
+  = javascript_include_tag "http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js"
+  =# javascript_include_tag 'classicly-autocomplete'
+  = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
+  = csrf_meta_tag
+  = typekit_include_helper
 
-	%meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
-	%meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
-	= yield :head
+  %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
+  %meta{:name => "google-site-verification", :content => "6O3-Qaesz8YLRESdSAbCarV1HzsC4F3dh4QTrTfmsj4"}
+  = yield :head
 
 %body.bp.showgrid
-	#fb-root
-	#header
-		.wrap
-			.top
-				#logo
-					%a{:href => '/'}
-						= image_tag 'logo.png'
-				#nav
-					%ul
-						%li
-							%a{:href => '/collections'} Collections
-						%li
-							%a{:href => '/authors'} Authors
-						%li
-							%a.blog{:href => '/blog'} Blog
+  #fb-root
+  #header
+    .wrap
+      .top
+        #logo
+          %a{:href => '/'}
+            = image_tag 'logo.png'
+        #nav
+          %ul
+            %li
+              %a{:href => '/collections'} Collections
+            %li
+              %a{:href => '/authors'} Authors
+            %li
+              %a.blog{:href => '/blog'} Blog
+            %li
+              = link_to  'Library', '/library'
 
-				#search
-					= form_tag search_url, :method => :get do
-						= text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-						%button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-			.bottom
-	#content
-		#left-column
-			= yield
-		#right-column
-			<a href="http://twitter.com/classiclyapp" class="twitter-follow-button" data-show-count="false">Follow @classiclyapp</a>
-			<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
-			<fb:like href="http://www.facebook.com/pages/Classicly/193128150712368" send="true" layout="button_count" width="200" show_faces="true" font=""></fb:like>
-			.row.audiobooks
-				%p.popular
-					Popular
-				- for book in @popular_books
-					.cover.small
-						= cover_image_link_with_text(book, 2)
-				- for collection in @popular_collections
-					.collection-with-title-here
-						- for book in collection.books.limit(6)
-							.cover.mini
-								= cover_image_link(book, 1)
-						= text_for_collection(collection)
-				.links
-					= link_to 'See more popular books', '/best-of'
-					= link_to "Browse collections", '/collections'
-					= link_to "Browse authors", '/authors'
-	#bottom-shadow
-	= render :partial => 'shared/footer'
+        #search
+          = form_tag search_url, :method => :get do
+            = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+            %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+    .bottom
+  #content
+    #left-column
+      = yield
+    #right-column
+      <a href="http://twitter.com/classiclyapp" class="twitter-follow-button" data-show-count="false">Follow @classiclyapp</a>
+      <script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>
+      <fb:like href="http://www.facebook.com/pages/Classicly/193128150712368" send="true" layout="button_count" width="200" show_faces="true" font=""></fb:like>
+      .row.audiobooks
+        %p.popular
+          Popular
+        - for book in @popular_books
+          .cover.small
+            = cover_image_link_with_text(book, 2)
+        - for collection in @popular_collections
+          .collection-with-title-here
+            - for book in collection.books.limit(6)
+              .cover.mini
+                = cover_image_link(book, 1)
+          = text_for_collection(collection)
+        .links
+          = link_to 'See more popular books', '/best-of'
+          = link_to "Browse collections", '/collections'
+          = link_to "Browse authors", '/authors'
+  #bottom-shadow
+  = render :partial => 'shared/footer'
 #bottom-notification-bar{:style => 'display:none'}
-	.content
-		.left
-			%span Unlimited book downloads. 
-			%span Saved bookmarks. 
-			%span Sync to iPhone and iPad.
-		.center
-			%span Register today! It's free.
-		.right
-			%a.button.kiss.green
-				%span Create a Classicly account.
+  .content
+    .left
+      %span Unlimited book downloads. 
+      %span Saved bookmarks. 
+      %span Sync to iPhone and iPad.
+    .center
+      %span Register today! It's free.
+    .right
+      %a.button.kiss.green
+        %span Create a Classicly account.
 
 :javascript
-	// initialize the environment for JS
-	RAILS_ENV = "#{Rails.env}";
-	// initialize Facebook
-	FB.init({
-	appId  : '#{Facebook::APP_ID}',
-	status : true, // check login status
-	cookie : true, // enable cookies to allow the server to access the session
-	xfbml  : true  // parse XFBML
-	});
+  // initialize the environment for JS
+  RAILS_ENV = "#{Rails.env}";
+  // initialize Facebook
+  FB.init({
+  appId  : '#{Facebook::APP_ID}',
+  status : true, // check login status
+  cookie : true, // enable cookies to allow the server to access the session
+  xfbml  : true  // parse XFBML
+  });
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-21890797-1']);
-	_gaq.push(['_trackPageview']);
-	_gaq.push(['_trackPageLoadTime']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21890797-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
 
-	(function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-21890797-1']);
-	_gaq.push(['_trackPageview']);
-	_gaq.push(['_trackPageLoadTime']);
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21890797-1']);
+  _gaq.push(['_trackPageview']);
+  _gaq.push(['_trackPageLoadTime']);
 
-	(function() {
-	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	})();
+  (function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
 
-	(function() {
-	var p = document.createElement('script');
-	p.type = 'text/javascript'; p.async = true;
-	p.src = '//d2f7h8c8hc0u7y.cloudfront.net/performable/pax/0HuiG9.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(p, s);
-	})();
+  (function() {
+  var p = document.createElement('script');
+  p.type = 'text/javascript'; p.async = true;
+  p.src = '//d2f7h8c8hc0u7y.cloudfront.net/performable/pax/0HuiG9.js';
+  var s = document.getElementsByTagName('script')[0];
+  s.parentNode.insertBefore(p, s);
+  })();
 
 <script src="//d2f7h8c8hc0u7y.cloudfront.net/performable/pax/0HuiG9.js" type="text/javascript"></script>
 
