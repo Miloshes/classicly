@@ -5,18 +5,18 @@
   = fb_open_graph_metadata({:url => author_book_url(@audiobook.author, @audiobook), :description => seo_front_end_meta_description_text(@audiobook),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@audiobook.id}_size2.jpg",
       :title => @audiobook.pretty_title, :type => 'book' }, @audiobook.seo_info)
-      
-#download-confirmation-page{:name => "#{@audiobook.id}"}
+
+
+#download-confirmation-page
   .cover-column
     = cover_image_link @audiobook, 2
-    .cover-with-title-here.small.related
-      .stable
+    - unless @related_book.nil? 
+      .cover.small
         = cover_image_link @related_book, 2
-      .text
-        %span.title
-          = @related_book.pretty_title
-        %span.type
-          Audiobook
+        .text
+          = link_to content_tag(:span, @related_book.pretty_title, :class => 'title'),author_book_url(@related_book.author, @related_book),:class => 'no-underline'
+          %span.type
+            AudioBook
   .download-info
     %h2
       <strong>
@@ -28,3 +28,10 @@
     %span
       If the download does not automatically start,
       = link_to "click here", @audiobook.librivox_zip_link, :class => 'download-link', :name => @format
+
+:javascript
+  $(window).load(function(){
+    $.get("/inc_audiobook_downloaded_count/#{@audiobook.id}", function( data ){
+      window.location = $('.download-link').attr('href');
+    });
+  });

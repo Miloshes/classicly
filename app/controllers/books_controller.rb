@@ -3,17 +3,7 @@ class BooksController < ApplicationController
   before_filter :find_book_with_specific_author, :only => [:show, :kindle_format, :pdf_format]
   before_filter :find_format, :only => [:download, :serve_downloadable_file]
 
-  def ajax_paginate
-    @collection = Collection.find(params[:id])
-    @books = if params[:sort_by].nil?
-      @collection.books.page(params[:page]).per(10)
-    else
-      params[:sort_by] == 'author' ? @collection.books.order_by_author.page(params[:page]).per(10) : 
-        @collection.books.order(params[:sort_by]).page(params[:page]).per(10)
-    end
-    render :layout => false
-  end
-
+  
   def autocomplete_json
     @books = Book.where(:pretty_title.matches =>"#{params[:term]}%").select('id, pretty_title').limit(25)
     render :json => @books.to_json
@@ -25,11 +15,15 @@ class BooksController < ApplicationController
     @related_book = @book.find_fake_related(1).first
     render :layout => 'download'
   end
+  
+  def download_and_add_to_library
+    session[:new_book_in_library] = params[:book_id]
+    session[:download_format_for_the_new_book] = params[:download_format]
+    
+    redirect_to library_url
+  end
 
   def json_books
-    # cache response for a week
-    response.headers['Cache-Control'] = "public, max-age=#{7*24*60*60}"
-    
     data = []
     book_ids = params[:id].split( ',' )
     book_ids.each do |id|
@@ -54,6 +48,8 @@ class BooksController < ApplicationController
 
   # for actually serving the downloadable file
   def serve_downloadable_file
+    @format = 'azw' if @format == 'kindle'
+    
     # The Library app tries to request PDF for book devliveries, whether we have it or not
     # Falling back to RTF if we don't have it
     if @format == 'pdf' && !@book.available_in_format?(@format)
@@ -71,8 +67,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @related_books = @book.find_fake_related(8)
-    @books_from_the_same_collection = @book.find_more_from_same_collection(2)
+    @related_books = @book.find_fake_related(3)
     # if there was a failed review, it will come in the session object
     @review = session[:review] || Review.new
     session[:review] = nil

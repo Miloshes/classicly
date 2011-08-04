@@ -39,13 +39,14 @@ end
 Book.blueprint do
   author
   avg_rating {1}
-  blessed {false}
-  description {"Lorem ipsum dolorem ..."}
-  downloaded_count {0}
-  language {"language#{sn}"}
-  pretty_title{"the book_#{sn}"}
-  title {"book_#{sn}, the"}
-  is_rendered_for_online_reading{false}
+  blessed { false }
+  description { "Lorem ipsum dolorem ..." }
+  downloaded_count { 0 }
+  language { "language#{sn}" }
+  pretty_title{ "the book_#{sn}" }
+  title { "book_#{sn}, The" }
+  pretty_title { "The book_#{sn}" }
+  is_rendered_for_online_reading { false }
 end
 
 Collection.blueprint do
@@ -96,6 +97,10 @@ end
 DownloadFormat.blueprint do
   legacy{true}
   download_status{"downloaded"}
+end
+
+SeoDefault.blueprint do
+  object_type{Book}
 end
 
 SeoInfo.blueprint do

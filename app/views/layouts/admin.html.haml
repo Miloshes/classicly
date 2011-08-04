@@ -11,7 +11,10 @@
     = javascript_include_tag 'http://www.google.com/jsapi'
     = javascript_tag do
       google.load("jquery", "1.4.4");
-    = javascript_include_tag 'application', 'globales'
+      var theme = "flick";
+      google.load("jqueryui", "1.8.7");
+      google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
+    = javascript_include_tag 'admin', 'rails'
     = csrf_meta_tag
     = yield :head
 
@@ -23,7 +26,16 @@
             = link_to image_tag('logo.png'), '/'
     #content
       #left-column
-        = yield
+        .admin_page
+          = yield
       #right-column
-        = link_to 'Logout', admin_logout_path if current_admin_user
+        - if current_admin_user
+          .link.sepia
+            = link_to 'Admin Reviews', admin_reviews_path
+          .link.sepia
+            = link_to 'Admin Blog', admin_blog_posts_path
+          .link.sepia
+            = link_to 'Admin Seo', admin_admin_seo_path
+          .link.sepia
+            = link_to 'Logout', admin_logout_path
     

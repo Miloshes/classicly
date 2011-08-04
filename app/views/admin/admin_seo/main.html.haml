@@ -1,4 +1,10 @@
-= link_to 'Admin books', admin_admin_infoable_path(:type => 'book')
-= link_to 'Admin audiobooks', admin_admin_infoable_path(:type => 'audiobook')
-= link_to 'Admin collections', admin_admin_infoable_path(:type => 'collection')
-= link_to 'Admin download pages', admin_admin_infoable_path(:type => 'seo_slug')
+.link.sepia
+  = link_to 'Set defaults for SEO info', admin_seo_defaults_url
+.link.sepia
+  = link_to 'Manage individual book page SEO info', admin_admin_infoable_path(:type => 'book')
+.link.sepia
+  = link_to 'Manage individual audioobook page SEO info', admin_admin_infoable_path(:type => 'audiobook')
+.link.sepia
+  = link_to 'Manage individual collection page SEO info', admin_admin_infoable_path(:type => 'collection')
+.link.sepia
+  = link_to 'Manage landing pages SEO info', admin_admin_infoable_path(:type => 'seo_slug')

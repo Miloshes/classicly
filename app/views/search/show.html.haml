@@ -11,9 +11,8 @@
     -# put here more markup if needed in the case for no results
   - else
     %h1 Search results for <strong>'#{@search}'</strong>
-    .pagination
-      = paginate @books
     %ul{:class => "#{ @audibly ? 'book-list audiobooks' : 'book-list' }"}
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
-= javascript_include_tag 'covers-search-page'
+    .pagination
+      = paginate @books
 

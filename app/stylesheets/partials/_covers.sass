@@ -42,106 +42,92 @@ a.no-underline
   :text-decoration none !important
   :cursor pointer
 
-.collection-here , .collection-with-title-here
-  .text
-    :float left
-    :width 100%
-    :margin-top -34px
-    :padding 0
-    :display none
-    a
-      text-decoration: none
-    span.title
-      :font-size 14px
-      :color #333333
+a.collection_link
+  text-decoration: none !important
+
+  .collection-here, .collection-with-title-here
+    &:hover
+      :cursor pointer
+      span.title
+        :background #ffff66
+
+    // assign some padding between each minicover
+    .cover
+      margin-right: 4px
+
+    .text
+      :float left
+      :width 100%
+      :margin-top -34px
       :padding 0
-    span.type
-      :font-size 10px
-      :color #999999
-      :padding 0
-      :margin
-        :left 5px
+
+      span.title
+        :font-size 14px
+        :color #333333
+        :padding 0
+
+      span.type
+        :font-size 10px
+        :color #999999
+        :padding 0
+          :left 5px
+
 
 .cover
+
   @include cover
+  &:hover
+    :cursor pointer
+    span.title
+      :background #ffff66
+
+
   &.medium
     :height $mediumH+20px
   img
     @include medium
     :float left
     :border 1px solid #333333 
+
   &.tiny
     :height $tinyH+20px
     img
       @include tiny
       :float left
+
+  &.mini
+    :height $miniH+20px
+    img
+      @include mini
+      :float left
+      :border 1px solid #333333 
+
   &.small
     :height $smallH+20px
     img
       @include small
       :float left
       :border 1px solid #333333
-    
-.cover-here, .cover-with-title-here
-  @include cover
-  &.tiny
-    :height $tinyH+20px
-    img, .stable
-      @include tiny
-    .spinner
-      :margin
-        :left 12px
-        :top 25px
-  &.mini
-    :height $miniH+20px
-    img, .stable
-      @include mini
-    .stable
-      margin-right: 2px
-    .spinner
-      :margin
-        :left 7px
-        :top 17px
-  &.small
-    :height $smallH+20px
-    img, .stable
-      @include small
-    .spinner
-      :margin
-        :left 40px
-        :top 63px
+
   &.medium
     :height $mediumH+20px
-    img, .stable
+    img
       @include medium
-    .spinner
-      :margin
-        :left 60px
-        :top 105px
-  &.large
-    :height $largeH+20px
-    img, .stable
-      @include large
-    .spinner
-      :margin
-        :top 140px
-        :left 90px
+      :float left
+      :border 1px solid #333333
+
   &.huge
     :height $hugeH+20px
-    img, .stable
+    img
       @include huge
-    .spinner
-      :margin
-        :top 180px
-        :left 112px
-  .stable
-    :border 1px solid #333333
+      :float left
+      :border 1px solid #333333
+
   .text
     :float left
     :width 100%
     :margin 0
     :padding 0
-    :display none
     span.title
       :font-size 14px
       :color #333333
@@ -152,24 +138,3 @@ a.no-underline
       :padding 0
       :margin
         :left 5px
-    
-  .spinner
-    width: 24px
-    height: 24px
-    display: block
-    background: url("/images/ajax-loader.gif")
-  img
-    :float left
-    :display none
-
-.cover-with-title-here
-  :padding 10px
-    :bottom 3px
-    :top 3px
-  :margin
-    :left -10px
-  :width 100%
-  &:hover
-    :cursor pointer
-    span.title
-      :background #ffff66

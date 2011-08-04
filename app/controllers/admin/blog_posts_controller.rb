@@ -1,5 +1,5 @@
 class Admin::BlogPostsController < Admin::BaseController
-  before_filter :set_blog_post, :only => [:destroy, :edit, :update, :show, :preview]
+  before_filter :set_blog_post, :only => [:destroy, :edit, :update, :show]
   
   def index
     @blog_posts = BlogPost.order('created_at DESC')
@@ -43,8 +43,18 @@ class Admin::BlogPostsController < Admin::BaseController
     blog_post.save
     render :text => '' 
   end
+  
+  def change_state
+    @blog_post = BlogPost.find(params[:id])
+    @blog_post.send(params[:event].to_sym)
+    @links = ''
+    @blog_post.state_transitions.each do|transition|
+      @links += "<a data-remote='true' href='/admin/blog_posts/#{@blog_post.id}/change_state?event=#{transition.event}'>#{transition.event.to_s}</a>"
+    end
+  end
 
   def preview
+    @post = BlogPost.find(params[:id])
   end
   
   private

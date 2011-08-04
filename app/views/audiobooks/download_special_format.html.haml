@@ -1,5 +1,5 @@
 - content_for :title do
-  %title= title_for_special_landing_page(@seo)
+  %title= seo_front_end_title_helper(@seo)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => "http://www.classicly.com/#{@seo.slug}", :description => seo_front_end_meta_description_text(@seo),
@@ -7,21 +7,25 @@
       :title => @seo.seoable.pretty_title, :type => 'book' }, @seo.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
-#book-page.audiobook{:name => @audiobook.id }
+#book-page
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
-    .cover-with-title-here.small.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
-    .cover-with-title-here.tiny.related
-      .stable
-        .spinner
+    #current-audiobook.cover.medium
+      = cover_image_link(@book, 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link(@related_books.first, 2)
+        .text
+          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
+          %span.type
+            Audiobook
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link(@related_books[index], 2)
+          .text
+            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+            %span.type
+              Audiobook
   .book-column
     #book-metadata
       %h1
@@ -31,12 +35,9 @@
         %span.book-author
           = @audiobook.author.name
       %p= simple_format(@audiobook.description)
-
       - if !@audiobook.librivox_zip_link.blank?
         .download-highlight
           = link_to content_tag(:span, 'Download as MP3'), download_audiobook_url(@audiobook.author, @audiobook), :id => 'download-facebook-post', :class => 'button kiss green large kiss'
 
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you
-      
-= javascript_include_tag 'covers-book-detail'

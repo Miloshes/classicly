@@ -1,0 +1,24 @@
+.book{:id => "book_#{book.id}"}
+  .cover
+    %img{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size2.jpg"}
+    .stable
+      .spinner
+  .info
+    %h4
+      = book.title
+    %h5
+      = book.author.name
+  .download
+  - if book.available_in_format?('azw')
+    = link_to download_book_url(book.author, book, :download_format => 'azw'), :class => 'highlight' do
+      Download for Kindle
+      <br />
+      
+  - if book.available_in_format?('pdf')
+    = link_to download_book_url(book.author, book, :download_format => 'pdf'), :class => 'highlight' do
+      Download as PDF
+      
+  - if book.is_rendered_for_online_reading?
+    .read
+      = link_to "#{book.seo_slugs.read_online.first.slug}/page/1", :class => 'highlight' do
+        <strong>Continue Reading</strong>

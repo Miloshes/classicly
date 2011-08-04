@@ -2,6 +2,7 @@ class Collection < ActiveRecord::Base
   # we have to be able to handle URLs in the model
   include ActionDispatch::Routing::UrlFor
   include Rails.application.routes.url_helpers
+  include CommonSeoDefaultsMethods
 
   # books
   has_many :audiobooks, :through => :collection_audiobook_assignments
@@ -25,13 +26,14 @@ class Collection < ActiveRecord::Base
   has_one :seo_info, :as => :infoable
 
   belongs_to :genre
-  
+  scope :find_book_collections_and_genres, where(:book_type => 'book', :collection_type.in => ['collection', 'genre'])
+  scope :find_author_book_collections, where(:book_type => 'book', :collection_type => 'author')
   scope :of_type, lambda {|type| where(:book_type => type)}
-  scope :collection_type, lambda {|type| where(:collection_type => type)}
+  scope :collection_type, lambda {|type| type.is_a?(Array) ? where(:collection_type.in => type) : where(:collection_type => type)}
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
-  
+
   before_save :set_parsed_description
-  
+
   validates :name, :presence => true
   validates :book_type, :presence => true
   validates :collection_type, :presence => true
@@ -57,7 +59,7 @@ class Collection < ActiveRecord::Base
     :s3_permissions => 'public-read',
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
-  
+
   def self.get_collection_books_in_json(collection_ids, type, total_books)
     data = []
     collection_ids.each do |id|
@@ -73,7 +75,7 @@ class Collection < ActiveRecord::Base
     end
     data
   end
-  
+
   def self.options_for_book_type
     ["book", "audiobook"].collect { |name|
         ["#{name}", name]
@@ -85,23 +87,23 @@ class Collection < ActiveRecord::Base
         ["#{name}", name]
       }
   end
-  
+
   def self.options_for_paperback_color
     PaperbackColor.all.collect { |name|
         ["#{name}", name]
       }
   end
-  
+
   def self.options_for_source_type
     ["SQL", "DBCategory", "IDList"].collect { |name|
         ["#{name}", name]
       }
   end
-  
+
   def self.search(search_term, current_page, per_page = 25)
     self.where(:name.matches => "%#{search_term}%").page(current_page).per(per_page)
   end
-  
+
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
       case collection.book_type
@@ -117,7 +119,7 @@ class Collection < ActiveRecord::Base
     return nil if !has_audiobook_counterpart?
     self.cached_slug + "-audiobooks"
   end
-  
+
   def audiobook_collection_book_slug
     return nil if !has_book_counterpart?
     Collection.where(:name => self.name, :book_type => 'book').select('cached_slug').first.cached_slug
@@ -134,7 +136,7 @@ class Collection < ActiveRecord::Base
   def featured_book
     self.books.select{|book| book.blessed}.first || self.books.first
   end
-  
+
   def featured_audiobook
     self.audiobooks.select{|audiobook| audiobook.blessed}.first || self.audiobooks.first
   end
@@ -142,7 +144,7 @@ class Collection < ActiveRecord::Base
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
-  
+
   def has_audiobook_counterpart?
     return false if self.book_type == 'audiobook'
     Collection.exists?(:name => self.name , :book_type => 'audiobook')
@@ -152,7 +154,7 @@ class Collection < ActiveRecord::Base
     return false if self.book_type == 'book'
     Collection.exists?(:name => self.name , :book_type => 'book')
   end
-  
+
   def ajax_paginated_audiobooks(params)
     if params[:sort_by].nil?
       self.audiobooks.page(params[:page]).per(10)
@@ -163,15 +165,20 @@ class Collection < ActiveRecord::Base
   end
 
   def is_audio_collection?
-    self.book_type == 'audiobook'  
+    self.book_type == 'audiobook'
   end
-  
+
   def is_book_collection?
     self.book_type == 'book'
   end
-  
+
   def is_author_collection?
     self.collection_type == 'author'
+  end
+
+  # NOTE: refactor!
+  def needs_canonical_link?(per_page)
+    per_page < self.send(self.book_type.pluralize.to_sym).count 
   end
 
   def random_blessed(num = 8)
@@ -217,14 +224,14 @@ class Collection < ActiveRecord::Base
     limit = self.description.length - 1 if limit >= self.description.length
     self.description[0..limit]
   end
-  
+
   # turns the collection's description into HTML
   def set_parsed_description
     default_url_options[:host] = 'www.classicly.com'
-    
+
     doc = Nokogiri::HTML(self.description)
     books_tags = doc.xpath("//book") # get all <book> tags
-    
+
     books_tags.each do |book_tag|
       book_id = book_tag.attributes["id"].value.to_i
       book_object = Book.find(book_id)
@@ -232,15 +239,15 @@ class Collection < ActiveRecord::Base
       book_tag.set_attribute("href", author_book_url(book_object.author, book_object))
       book_tag.set_attribute("class", "description-link")
     end
-    
+
     quotes = doc.xpath('//quote')
     quotes.each do|quote|
       quote.remove
     end
-    
+
     self.parsed_description = doc.css('body').inner_html
   end
-  
+
   def thumbnail_books(n_books)
     if self.book_type == 'book'
       self.books[0..(n_books - 1)] - [self.featured_book]

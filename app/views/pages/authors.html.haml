@@ -1,32 +1,40 @@
 -# controlled in pages_controller => authors
 -# collections here should only fetch fields -> id, description, cached_slug and name
+
 - content_for :title do
   %title Classic Authors | Read Online | Sync to iPhone/iPad | Classicly
 
 #author-list-page
   .audiobook-switcher
-    - if @featured.book_type == 'book'
+    - if @collections.first.book_type == 'book'
       %span Books |&nbsp;
       = link_to 'Audiobooks', '/audiobook-authors'
     - else
-      = link_to 'Books', '/authors'        
+      = link_to 'Books', '/authors'
       %span &nbsp;| Audiobooks
-  #featured-collection
-    .cover-column
-      .cover.medium
-        = cover_image_link(@featured.featured_book || @featured.featured_audiobook, 2)
-    .detail-column
-      - if @featured.book_type == 'book'
-        %h1 Featured Author: <strong>#{@featured.name}</strong>
-      - else
-        %h1 Featured Audiobook Author: <strong>#{@featured.name}</strong>
-      %p= raw @featured.parsed_description
-    .books-and-link
-      - @featured.thumbnail_books(6).each do|thumb_book|
-        .cover.tiny
-          = cover_image_link(thumb_book, 2)
-      = link_to image_tag('browse-this-collection-big.png'), show_collection_url(@featured, '1'), :class => 'browse-collection'
+
+  - if @featured
+    #featured-collection
+      .cover-column
+        .cover.medium
+          = cover_image_link(@featured.featured_book || @featured.featured_audiobook, 2)
+      .detail-column
+        - if @featured.book_type == 'book'
+          %h1 Featured Author: <strong>#{@featured.name}</strong>
+        - else
+          %h1 Featured Audiobook Author: <strong>#{@featured.name}</strong>
+        %p= raw @featured.parsed_description
+      .books-and-link
+        - @featured.thumbnail_books(6).each do|thumb_book|
+          .cover.tiny
+            = cover_image_link(thumb_book, 2)
+        = link_to image_tag('browse-this-collection-big.png'), seo_url(@featured), :class => 'browse-collection'
+
   #collection-list
-    %h2= @featured.book_type == 'book' ? "Author\'s Books" : "Author\'s Audiobooks"
+    %h2
+      = @collections.first.book_type == 'book' ? "Author\'s Books" : "Author\'s Audiobooks"
+      - unless @featured
+        %span.page_number
+          = "Page #{params[:page]}"
     = render 'collection_list', :collections => @collections
     = paginate @collections

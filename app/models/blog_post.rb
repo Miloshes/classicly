@@ -16,6 +16,18 @@ class BlogPost < ActiveRecord::Base
   after_save :generate_seo_slug, :create_author_quotings
   has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
   
+  state_machine :state, :initial => :draft do
+    event :publish do
+      transition :draft => :published
+    end
+    event :archive do
+      transition :published => :archived
+    end
+    event :unarchive do
+      transition :archived => :published
+    end
+  end
+
   def self.persist(blog_post, params)
     if params[:title].blank?
       blog_post.errors.merge!(:title => 'must be present for realsies!')
@@ -23,15 +35,11 @@ class BlogPost < ActiveRecord::Base
     end
     blog_post.update_attributes(params)
   end
-                              
+
   def blog_post_slug
     self.title.downcase.rstrip.gsub(' ', '-')
   end
-  
-  def generate_seo_slug
-    SeoSlug.create(:seoable => self, :slug => self.friendly_id, :format => 'post')
-  end
-  
+
   def create_author_quotings
     AuthorQuoting.where(:blog_post_id => self.id).delete_all
     doc = Nokogiri::HTML(self.content)
@@ -40,5 +48,9 @@ class BlogPost < ActiveRecord::Base
       text = doc.xpath('//featured').first.children.text
       AuthorQuoting.create(:author_id => author_id, :blog_post_id => self.id, :quoted_text => text)
     end
+  end
+
+  def generate_seo_slug
+    SeoSlug.create(:seoable => self, :slug => self.friendly_id, :format => 'post')
   end
 end

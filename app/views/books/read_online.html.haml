@@ -1,24 +1,33 @@
 - content_for :title do
-  %title=title_for_special_landing_page(@seo)
+  %title=seo_front_end_title_helper(@seo)
 
 - content_for :head do
   = fb_open_graph_metadata({:url => @book.url_for_specific_format('online'),
-      :description => seo_front_end_meta_description_text(@book),
+      :description => seo_front_end_meta_description_text(@seo),
       :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg",
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
-  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
+  = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
 
 #book-page{:name => @book.id}
   .cover-column
-    #current-book.cover-here.medium
-      .stable
-        .spinner
-    %h4 Related
-    - 1.upto(3) do
-      .cover-with-title-here.small.related
-        .stable
-          .spinner
+    #current-book.cover.medium
+      = cover_image_link(@book, 2)
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link(@related_books.first, 2)
+        .text
+          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
+          %span.type
+            Book
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link(@related_books[index], 2)
+          .text
+            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
+            %span.type
+              Book
 
   .book-column
     #book-metadata
@@ -44,7 +53,7 @@
           %p.explanation We don’t pay a  cent, so neither do you.
 
 
-= javascript_include_tag 'covers-book-detail','book-details'
+= javascript_include_tag 'book-details'
 :javascript
   $('#reviews').data('book_id', #{@book.id})
 :javascript

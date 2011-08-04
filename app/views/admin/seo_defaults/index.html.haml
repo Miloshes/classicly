@@ -1,0 +1,35 @@
+%h2.section-header
+  Default settings for SEO.
+
+%table.listing
+  %thead
+    %tr
+      %th
+        Object Type
+      %th
+        Attribute
+      %th
+        Default attribute string
+      %th
+        Collection Type
+      %th
+        Format
+      %th
+        Actions
+  %tbody
+    - for seo_default in @seo_defaults
+      %tr
+        %td
+          = seo_default.object_type
+        %td
+          = seo_default.object_attribute
+        %td
+          = seo_default.default_value
+        %td
+          = seo_default.object_type == 'Collection' ? seo_default.collection_type : 'Not applicable'
+        %td
+          = seo_default.object_type == 'SeoSlug' ? seo_default.format : 'Not applicable'
+        %td
+          = link_to "Edit", edit_admin_seo_default_path(seo_default)
+.link.blue
+  = link_to 'Back to Admin Seo', admin_admin_seo_path 

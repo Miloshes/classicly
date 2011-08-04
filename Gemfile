@@ -136,4 +136,8 @@ group :development, :test do
   
   # makes Capybara able to show the browser in the last state - http://rubygems.org/gems/launchy
   gem 'launchy'
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 5ee41cd73d720ec99f568b311465ca741fa69f62

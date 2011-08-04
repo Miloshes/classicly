@@ -1,0 +1,16 @@
+book:
+  metadescription: Read $(title) online on Classicly. Book by $(author.name) 
+  webtitle: Read $(author.name)'s $(pretty_title) at Classicly
+audiobook:
+  metadescription:
+  webtitle:
+collection:
+  audiobook_author:
+  audiobook_collection:
+  book_author:
+  book_collection:
+landing_page:
+  kindle:
+  mp3:
+  pdf:
+  read_online:

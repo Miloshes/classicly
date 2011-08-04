@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe BlogPost do
+  
   before :each do
     @author = Author.make!
     content = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
@@ -12,20 +13,24 @@ describe BlogPost do
   end
   
   describe '#create_author_quotings' do
-    describe 'when creating for first time the quoting' do
+      
+    describe 'when creating the quoting for the first time' do
       it 'should create quoting from content between <featured> tags once the blog post is saved' do
         AuthorQuoting.where(:blog_post_id => @blog_post.id).count.should == 1
       end
+      
       it 'should assign a quoted text to the author quoting object' do
         AuthorQuoting.where(:blog_post_id => @blog_post.id).first.quoted_text.should == 'il veut se rappeler quelque chose, mais le souvenir lui échappe.'
-      end  
+      end
     end
     
     describe 'when updating' do
-      it 'should not create duplicates for the author quotinngs' do
+      it 'should not create duplicates for the author quotings' do
         @blog_post.update_attribute(:title, 'Testing')
         AuthorQuoting.where(:blog_post_id => @blog_post.id).count.should == 1
       end
     end
+    
   end
+  
 end

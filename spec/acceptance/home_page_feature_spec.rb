@@ -7,6 +7,10 @@ feature 'Home page feature: ', %q{
 } do
 
   background do
+    # Given a set of collections exists
+    1.upto(10){|index| Book.make!(:blessed => true)}
+    1.upto(14) {|index| Collection.make!(:book_type => 'book', :collection_type => 'collection')}
+    # And I am on the home page
     visit homepage
   end
   
@@ -17,17 +21,26 @@ feature 'Home page feature: ', %q{
     end
   end
   
-  scenario 'Going to authors page from home page' do
+  scenario 'Going to collection page from home page' do
     within :xpath, "id('nav')//ul" do
       find(:xpath, ".//li//a[text()='Collections']").click
       current_path.should == '/collections'
     end
   end
   
-  scenario 'Going to authors page from home page' do
+  scenario 'Going to blog page from home page' do
     within :xpath, "id('nav')//ul" do
       find(:xpath, ".//li//a[text()='Blog']").click
       current_path.should == '/blog'
     end
+  end
+  
+  scenario 'Clicking on a collection in the footer' do
+    @slug = ''
+    within('#footer .collections span:first') do
+      @slug = collection_slug find('a')[:href]
+      find('a').click
+    end
+    current_path.should == "/#{@slug}"
   end
 end

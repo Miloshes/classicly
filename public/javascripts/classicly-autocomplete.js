@@ -1,45 +1,73 @@
 var elementId = "#term";
-var slugField = "#page_slug"
-var source = "search/autocomplete";
+var apiUrl =  "http://6wfx.api.indextank.com";
+var indexName = "ClassiclyAutocomplete";
+var source = apiUrl + "/v1/indexes/" + indexName + "/search";
+var searchResults;
+
+/* this allows us to pass in HTML tags to autocomplete. Without this, they get escaped */
+$[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
+  var html;
+
+  if( item.type == "book" || item.type == "audiobook"){
+    html =  "<div class='with-cover'><img src='" + item.cover_url + "'class='micro-cover'><span class='text'>" + ssLess( item.label, 40 )
+    + "<span class='type'>" + item.type + "</span></span></div>";
+  }
+  else if( item.type == "collection" ){
+    html =  item.label + "<span class='type'>" + item.type + "</span>";
+  }
+  else{
+   html =  item.label;
+  }
+
+  return $( "<li></li>" ) 
+    .data( "item.autocomplete", item )
+    .append( $( "<a></a>" ).html( html ) )
+    .appendTo( ul );
+}
+
+
 google.setOnLoadCallback(function() {
   $(function() {
-
     var sourceCallback = function( request, responseCallback ) {
-    	$.ajax( {
-    		url: source,
-    		dataType: "json",
-    		data: { query: request.term },
-    		success: function( data ) {
-    		  responseCallback( $.map( data, function( item ) {
-    		    console.log( item );
-    				if( item.type == 'audiobook' || item.type == 'book' )
-    					return {
-    						label: item.type + ' - ' + item.pretty_title,
-    						value: item.pretty_title,
-    						slug: item.slug
-    					}
-    				else
-    					return {
-    						label: item.type + ' - ' + item.name,
-    						value: item.pretty_title,
-    						slug: item.slug
-    					}
-    			}));
-    		}
-    	} );
+      searchResults = [];
+      $.ajax( {
+          url: apiUrl + "/v1/indexes/" + indexName + "/autocomplete",
+          dataType: "jsonp",
+          data: { query: request.term, field: 'text' },
+          success: function( data ) { 
+              $.ajax({
+                url: source,
+                dataType: "jsonp",
+                data: {len: 10, q: "(" + data.suggestions[0] + ") OR full:"  + data.suggestions[0].replace(" ", "") + "^100000", snippet:'text', fetch: "text,type,slug,cover_url"},
+                success: function( data ) {
+                  $.map( data.results, function( item ) {
+                    searchResults.push( { label : item.snippet_text, value : item.text, type : item.type, slug : item.slug, cover_url : item.cover_url } );
+                  });
+                  // finally add the searc for 'xyz' list item:
+                 searchResults.push( { label: "search <b>" + request.term + "</b>", value : request.term } );
+                  responseCallback( $.each( searchResults, function( index, result ){
+                    return{ label: result.label, value: result.value }
+                  })); 
+                }
+            })
+          }
+      });
     };
 
-    var selectCallback = function( event, ui ) { 
-    	event.target.value = ui.item.label;
-    	$( slugField ).val( ui.item.slug )
-    	window.location = 'http://classicly-staging.heroku.com/' + $( slugField ).val();
-    };
+    var selectCallback = function( event, ui ) {
+      event.target.value = ui.item.value;
+      if( ui.item.slug != undefined )
+        window.location = "http://www.classicly.com" + ui.item.slug;
+      else
+        $(event.target.form).submit(); //wrap form into a jQuery object, so submit honors onsubmit.
+    }
 
     $( elementId ).autocomplete( {
-    	source: sourceCallback,
-    	minLength: 2,
-    	delay: 250,
-    	select: selectCallback
-    } );
+      source: sourceCallback,
+      delay: 250,
+      select: selectCallback
+    });
   }); // $ fun
 }); // g callback
+
+

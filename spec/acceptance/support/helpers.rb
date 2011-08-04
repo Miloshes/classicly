@@ -1,11 +1,15 @@
 module HelperMethods
   # Put helper methods you need to be available in all acceptance specs here.
   def collection_slug(url_str)
-    fragments = url_str.split('/')
-    new_fragments = [fragments[-3], fragments[-2], fragments[-1]]
-    new_fragments.join('/')
+    fragments = url_str.split('/').last
   end
   
+  def create_books
+    author = Author.make!
+    1.upto(5) {|i| Book.make!(:author => author)}
+    1.upto(5) {|i| Book.make!(:author => author, :blessed => true)}
+  end
+
   def create_blog_post_with_text(text, title='The Blog Post')
     visit admin_blog_posts_path
     click_on 'New entry'

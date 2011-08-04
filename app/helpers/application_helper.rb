@@ -23,7 +23,11 @@ module ApplicationHelper
                       :alt => "#{book.pretty_title} by #{author.name}", :class => html_class),
                       author_book_url(author,book)
   end
-  
+
+  def canonical_link_for_collection(collection)
+    content_tag :link, nil, :rel => "canonical", :href => "http://www.classicly.com/#{@collection.cached_slug}"
+  end
+
   def cover_image_link(cover, size, html_class=nil)
     type = cover.class.to_s.downcase
     bucket = "#{type}_id"
@@ -32,11 +36,15 @@ module ApplicationHelper
                       author_book_url(cover.author, cover)
   end
 
+  def cover_image_link_with_text(book, size, html_class=nil)
+    cover_image_link(book, size, html_class) + text_for_cover(book)
+  end
+
   def cover_tag(book, size='2', klass='')
     type = book.class.to_s.downcase
     image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
   end
-  
+
   def image_or_link_to_download_format(book, format)
     image = (format == 'azw') ? 'download_kindle.png' : 'download_pdf.png' 
     if book.available_in_format?(format)
@@ -52,10 +60,6 @@ module ApplicationHelper
                       :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
   end
   
-  def current_login
-    Login.where(:fb_connect_id => @profile_id).first
-  end
-
   def user_signed_in?
     @profile_id != nil && Login.exists?(:fb_connect_id => @profile_id)
   end
@@ -89,6 +93,7 @@ module ApplicationHelper
     text = index.nil? ? text : text[0..(index - 1)]
     doc = Nokogiri::HTML(text)
     paragraph = doc.at_css('p:last')
+    return text if paragraph.nil?
     link = Nokogiri::XML::Node.new 'a', doc
     link['href'] = seo_path(post)
     link['class'] = 'blue'
@@ -112,7 +117,34 @@ module ApplicationHelper
     end
     res
   end
-  
+
+  def link_to_sorted(text, field, collection, parameters, default_sort = 'downloaded_count')
+    sort =  if params[:sort]
+             params[:sort].split('_')[0..1].join('_')
+            else
+              default_sort
+            end
+    order = if params[:sort]
+              past = params[:sort].split('_').last
+              past == 'desc' ? '_asc' : '_desc'
+            else
+              '_asc'
+            end
+
+    if sort == field
+      link_to text, seo_path(collection, :sort => field + order), :class => 'active'
+    else
+      link_to text, seo_path(collection, :sort => field + order )
+    end
+  end
+
+  def toggle_sort(field)
+    query_segments = field.split('_')
+    order = query_segments.last
+    new_segment = order == 'asc' ? 'desc' : 'asc'
+    (query_segments[0..1] + [new_segment]).join('_')
+  end
+
   def markdown(text)
     Maruku.new(text).to_html
   end
@@ -125,15 +157,6 @@ module ApplicationHelper
     end
   end
   
-  def sort_audiobooks_ajax_link(id, text, sort_by)
-    link_to text, { :controller => 'audiobooks', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
-      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
-  end
-
-  def sort_books_ajax_link(id, text, sort_by)
-    link_to text, { :controller => 'books', :action => 'ajax_paginate', :id => id, :sort_by => sort_by},
-      :class => 'selected', :name => "sort_by_#{sort_by}",  :remote => true
-  end
   def shorten_text(text, limit)
     return text if text.length <= limit
     text.slice(0, (limit - 3)).concat("...")
@@ -142,6 +165,22 @@ module ApplicationHelper
   def facebook_image(fb_connect_id)
     image_tag "http://graph.facebook.com/%s/picture?type=square" % fb_connect_id
   end
+
+  def text_for_cover(book)
+    book_type = book.is_a?(Book) ? 'Book' : 'Audiobook'
+    content_tag(:div, nil, :class => 'text') do
+      link_to(content_tag(:span, book.pretty_title, :class => 'title'), author_book_url(book.author, book),:class => 'no-underline') + content_tag(:span, book_type, :class => 'type')
+    end
+  end
+
+  def text_for_collection(collection)
+
+    content_tag(:div, nil, :class => 'text') do
+      content_tag(:span, collection.name, :class => 'title') + content_tag(:span, 'Collection', :class => 'type')
+    end
+
+  end
+
 #===========================================================================================================================
 #===========================================================================================================================
 # books only helpers

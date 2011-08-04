@@ -1,44 +1,46 @@
 #library-page
   +content-container
   .user-column
-    +column(4)
-    .photo
-      +column(6, true)
-      :width 112px
-      :height 112px
-      :background url('/images/profile-frame.png')
-      :display block
-      img
-        :width 100px
-        :height 100px
-        :margin 6px
-    span
-      :width 100%
-      :display block
-      :float left
-    .name
-      +column(6, true)
-      :margin
-        :top 5px
-    .stats
-      +column(6, true)
-      :margin
-        :top 15px
-    .invite
-      +column(6, true)
-      :margin
-        :top 15px
+    +column(5, true)
+    #user-profile
+      :height 300px
+      div
+        :float left
+        :margin-top 15px
+        
+      .photo
+        :margin-top 0px
+        :width 112px
+        :background url('/images/profile-frame.png')
+        :display block
+        img
+          :width 100px
+          :margin 6px
+      span
+        :width 100%
+        :display block
+        :float left
+      .name
+        :margin
+          :top 5px
+
+  h3
+    :clear left
 
   .book-column
-    +column(14, true)
+    +column(13, true)
+    position: relative
     .book
+      :clear left
+      :height 190px
       .cover
-        +column(3)
+        +column(3, true)
+        :margin-top 0px
         img
           :width 100px
           :height 155px
       .info
-        +column(11, true)
+        +column(10, true)
         h4
           :font-size 22px
           :color #333333
@@ -49,3 +51,97 @@
           :font-size 16px
           :font-weight normal
           :color #333333
+      .download
+        +column(10, true)
+      .read
+        +column(10, true)
+        
+    #fb-login-dialog
+      :position absolute
+      :left 50%
+      :top 50px
+      :width 460px
+      :margin-left -230px
+      :height 150px
+      :z-index 1
+      :border 1px solid #866A47
+      :background-color #C9AF87
+      :padding 10px
+      #login-text
+        :text-align center
+        :margin 10px
+        :font-size 17px
+        :color white
+        :text-shadow 0 1px #555555
+      #login-button
+        :margin 20px
+        :text-align center
+        
+#library-preview
+  :width 654px
+  :height 748px
+  :background url(/images/library-preview.png)
+  :position relative
+  
+  #container
+    :left 145px
+    :top 258px
+    :position absolute
+    :height 160px
+    :width 430px
+    :text-align center
+    
+    #copy
+      :font-family 'Helvetica', 'Arial', 'Sans-serif'
+      :font-weight bold
+      :font-size 19px
+      :letter-spacing 1px
+      :margin-top 15px
+      :margin-bottom 20px
+      :line-height 1.1em
+      
+    #browse
+      :display block
+      :font-size 9px
+      :margin-top 15px
+      :color #88A6D6
+      :text-decoration none
+  
+    #register-button
+      :background-color #FF030D
+    
+      :-moz-border-radius 0.4em 0.4em 0.4em 0.4em
+      :-moz-box-shadow 0 1px 3px rgba(0, 0, 0, 0.75)
+      :-webkit-border-radius 0.4em 0.4em 0.4em 0.4em
+      :-webkit-box-shadow 0 1px 3px rgba(0, 0, 0, 0.75)
+      :border-radius 5px
+    
+      :box-shadow 0 1px 3px rgba(0,0,0,0.75)
+      :text-shadow 0 -1px 1px rgba(0,0,0,0.3)
+    
+      :background url(/images/conversion-button-shadow.png) repeat-x scroll 0 0 #222222
+      :background-color #CC1100
+      :border none
+      :color #FFFFFF
+      :cursor pointer
+      :display inline-block
+      :font-family "lucida grande","lucida sans unicode",arial,sans-serif
+      :font-size 20px
+      :font-weight bold
+      :line-height 1
+      :margin 0
+      :overflow visible
+      :padding 0.6em 1.3em
+      :text-decoration none
+      :text-shadow 0 -1px 1px rgba(0, 0, 0, 0.3)
+      :vertical-align baseline
+      :*vertical-align middle
+      :width auto
+    
+      &:hover
+        :-moz-box-shadow 0 1px 3px rgba(0,0,0,0.75)
+        :-webkit-box-shadow 0 1px 3px rgba(0,0,0,0.75)
+        :box-shadow 0 1px 3px rgba(0,0,0,0.75)
+        :background-color #991100
+      &:active
+        :top 1px

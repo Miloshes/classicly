@@ -1,9 +1,12 @@
 include AWS::S3
 class Audiobook < ActiveRecord::Base
-  include Sluggable, SeoMethods, CommonBookMethods
+  include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
   belongs_to :custom_cover
+
+  has_many :library_audiobooks
+  has_many :libraries, :through => :library_audiobooks
   
   has_many :chapters, :class_name => 'AudiobookChapter'
 
@@ -16,6 +19,7 @@ class Audiobook < ActiveRecord::Base
 
   validates :title, :presence => true
 
+  delegate :name, :cached_slug, :to => :author, :prefix => true
   scope :blessed, where({:blessed => true})
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
@@ -44,6 +48,11 @@ class Audiobook < ActiveRecord::Base
     self.seo_slugs.mp3.first.slug
   end
 
+  def has_mp3_slug?
+    return false if self.seo_slugs.blank? || self.seo_slugs.mp3.blank?
+    true
+  end
+  
   def find_fake_related(number = 8, select = nil)
     # determine if we have a SELECT whitelist on the table. Rails uses a string.
     select_fields = select.join(',') if select

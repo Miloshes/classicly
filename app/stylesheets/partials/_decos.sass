@@ -1,0 +1,44 @@
+.tooltip
+  display: none
+  background-color: #ffa
+  border: 1px solid #cc9
+  padding: 3px
+  font-size: 13px
+  -moz-box-shadow: 2px 2px 11px #666
+  -webkit-box-shadow: 2px 2px 11px #666
+
+$mini-cover-height: 37
+
+ul.ui-autocomplete
+  min-width: 365px
+  max-width: 365px
+  cursor: pointer
+
+  li.ui-menu-item
+    padding-right: 10px
+    overflow: hidden
+    &.ui-state-active
+      color: #195596
+    a
+      span.type
+        padding-left: 5px
+        color: #9999ae
+
+      &:hover, &#ui-active-menuitem
+        color: #195596 !important
+        span.type
+          :color #538dc2
+
+    .with-cover
+      :height 39px
+      img.micro-cover
+        :width 23px
+        :height 37px
+        :float left
+        :margin-right 5px
+      .text
+        b
+          :text-decoration underline
+        :display inline-block
+        :float left
+        :width 84%

@@ -1,3 +1,8 @@
+- content_for :title do
+  %title=seo_front_end_static_page_title('BlogPage')
+- content_for :head do
+  %link{:rel=>"alternate",  :type=> "application/rss+xml", :title=> "Classicly Blog (RSS)", :href=>"http://feeds.feedburner.com/classicly?format=xml"}
+  
 #blog-page.blog-shared
   .about-the-blog
     %h1 Welcome to the Book Blog
@@ -5,10 +10,10 @@
     %p
       = link_to 'Follow @classiclyapp', 'http://twitter.com/classiclyapp', :class => 'twitter-follow-button', :data_show_count=> true
     %p
-      = link_to 'RSS Feed', blog_url(:format => :rss), :class => 'highlight-link rss-feed'
+      = link_to 'RSS Feed', 'http://feeds.feedburner.com/classicly', :class => 'highlight-link rss-feed', :target => '_blank'
 
-  = render :partial => 'blog_post', :collection => @posts, :as => :post
-= javascript_include_tag 'covers-blog-page'
+  = render :partial => 'blog_post', :collection => @posts, :as => :post unless @posts.blank?
+
 :javascript
   /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
   var disqus_shortname = 'classicly'; // required: replace example with your forum shortname

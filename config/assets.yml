@@ -7,15 +7,13 @@ embed_assets: on
 javascripts:
   main:
     - public/javascripts/application.js
-    - public/javascripts/covers-for-collections.js
     - public/javascripts/global.js
-    - public/javascripts/rails.js
+    - public/javascripts/classicly-autocomplete.js
     - public/javascripts/jquery.rating.js
-    - public/javascripts/collection-page.js
-    - public/javascripts/globales.js
-    - public/javascripts/global.js
-    - public/javascripts/covers-global.js
-    - public/javascripts/masonry.js
+    - public/javascripts/rails.js
+    - public/javascripts/notifications.js
 stylesheets:
   common:
     - public/stylesheets/compiled/screen.css
+    # NOTE: SASS chokes on it if I try to make it a partial :(
+    - public/stylesheets/notifications.css

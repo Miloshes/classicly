@@ -1,22 +1,23 @@
-.show-post
-  .blog-title
-    %h2 
-      = link_to post.title, seo_path(post)
-      %span by
-      %span.author Tyler
-      %span on
-      %span.date= post.created_at.to_s :post_title_format
-  .content
-    %p
-      = raw show_only_until_break_tag(post)
-  .comments
-    = link_to post.title, "#{seo_path(post)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
-  - unless post.related_books.empty?
-    .related
-      %h5 Related Books
-      - for book in post.related_books
-        .book-cover{:id => "book_#{book.id}"}
-          .cover-here.small
-            .stable
-              .spinner
+- if post.published?
+  .show-post
+    .blog-title
+      %h2 
+        = link_to post.title, seo_path(post)
+        %span by
+        %span.author Tyler
+        %span on
+        %span.date= post.created_at.to_s :post_title_format
+    .content
+      %p
+        = raw show_only_until_break_tag(post)
+    .comments
+      = link_to post.title, "#{seo_path(post)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
+  / - unless post.related_books.empty?
+  /     .related
+  /       %h5 Related Books
+  /       - for book in post.related_books
+  /         .book-cover{:id => "book_#{book.id}"}
+  /           .cover-here.small
+  /             .stable
+  /               .spinner
 
