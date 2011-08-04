@@ -25,6 +25,20 @@
       %h1
         =@collection.name
         Books
+
+      -# Google AdSense. DO NOT MODIFY.
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-5075439250266786";
+      /* Medium Rectangle */
+      google_ad_slot = "6739696972";
+      google_ad_width = 300;
+      google_ad_height = 250;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+
       %p
         = simple_format(@collection.parsed_description)
 
@@ -40,19 +54,6 @@
       - for quotation in @collection.author.author_quotings
         %h5
           = link_to quotation.quoted_text, quotation.blog_post.cached_slug
-
-  #ga_ads
-    <script type="text/javascript"><!--
-    google_ad_client = "ca-pub-5075439250266786";
-    /* 728x90, Leaderboard */
-    google_ad_slot = "0966986300";
-    google_ad_width = 728;
-    google_ad_height = 90;
-    //-->
-    </script>
-    <script type="text/javascript"
-    src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-    </script>
 
   .book-list
     %h3 All #{@collection.name} Books
