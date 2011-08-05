@@ -21,10 +21,10 @@ module LibrarySessionHandler
     end
 
     def fetch_library_for_current_user
-      if session[:library_id]
-        self.current_library = Library.find_by_id(session[:library_id])
+      if current_login && current_login.library
+        self.current_library = current_login.library
       else
-        new_session_library  = Library.create(:unregistered => true, :last_accessed => Time.now)
+        new_session_library  = Library.new(:unregistered => true, :last_accessed => Time.now)
         self.current_library = new_session_library
       end
     end
