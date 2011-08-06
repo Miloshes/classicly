@@ -22,3 +22,4 @@ Koala::Facebook::OAuth.class_eval do
   alias_method_chain :initialize, :default_settings 
 end
 
+Koala.http_service.ca_file = '/usr/lib/ssl/certs/ca-certificates.crt'
