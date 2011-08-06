@@ -20,7 +20,6 @@ class LibrariesController < ApplicationController
   def handle_facebook_login
     # register the library
     current_library.register_for(current_login)
-
     # update the current page
     render :action => 'handle_facebook_login'
   end
