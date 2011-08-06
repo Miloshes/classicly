@@ -8,7 +8,7 @@ class LoginsController < ApplicationController
   private
 
   def fetch_user_profile_from_fb
-    graph_api    = Koala::Facebook::GraphAPI.new(facebook_cookies['access_token'], :ca_path => '/usr/lib/ssl/certs/ca-certificates.crt')
+    graph_api    = Koala::Facebook::GraphAPI.new(facebook_cookies['access_token'])
     profile_info = graph_api.get_object('me')
 
     return profile_info
