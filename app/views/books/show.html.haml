@@ -29,24 +29,23 @@
           %span.book-author
             = book_author_link(@book)
 
-        .like-send
-          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-        %p= simple_format(@book.description)
-        .share
-
-        -# Google AdSense. DO NOT MODIFY. GOOGLE IS EXTREMELY PICKY.
+        -# Google AdSense. DO NOT MODIFY.
         <script type="text/javascript"><!--
         google_ad_client = "ca-pub-5075439250266786";
-        /* Classicly In-Text */
-        google_ad_slot = "0932104075";
-        google_ad_width = 336;
-        google_ad_height = 280;
+        /* Medium Rectangle */
+        google_ad_slot = "6739696972";
+        google_ad_width = 300;
+        google_ad_height = 250;
         //-->
         </script>
         <script type="text/javascript"
         src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
         </script>
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        %p= simple_format(@book.description)
 
+        
       .download
         = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
         = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')

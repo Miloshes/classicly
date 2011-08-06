@@ -30,21 +30,24 @@
         by
         %span.book-author
           = book_author_link(@book)
-      %p= simple_format(@book.description)
 
-      -# Google Adsense. DO NOT MODIFY.
+      -# Google AdSense. DO NOT MODIFY.
       <script type="text/javascript"><!--
       google_ad_client = "ca-pub-5075439250266786";
-      /* Classicly In-Text */
-      google_ad_slot = "0932104075";
-      google_ad_width = 336;
-      google_ad_height = 280;
+      /* Medium Rectangle */
+      google_ad_slot = "6739696972";
+      google_ad_width = 300;
+      google_ad_height = 250;
       //-->
       </script>
       <script type="text/javascript"
       src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
 
+      .like-send
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+      %p= simple_format(@book.description)
+      
     .download
       - if @book.has_mp3_slug?
         = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
