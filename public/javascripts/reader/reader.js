@@ -257,12 +257,14 @@ Reader.prototype = {
       url: "/bookmarks",
       data: data,
       success: function ( response ) {
-        if( response == 'true' )
-          self.drawBookmarkRibbon();
-        else{
 
+        if( response == 'true' ){
+          self.drawBookmarkRibbon();
+          if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_completed']);
+        }else{
           if( $( '#notification' ).is( ':hidden' ) )
             $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
+
           if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_drop_shown']);
         }
       }
