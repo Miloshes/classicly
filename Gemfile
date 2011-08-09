@@ -109,6 +109,8 @@ group :development, :test do
   # fixtures generator for tests
   gem 'fabrication', '~> 1.0.1'
 
+  gem 'factory_girl'
+
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   gem 'jasmine'
   
