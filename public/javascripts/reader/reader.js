@@ -259,9 +259,12 @@ Reader.prototype = {
       success: function ( response ) {
         if( response == 'true' )
           self.drawBookmarkRibbon();
-        else
+        else{
+
           if( $( '#notification' ).is( ':hidden' ) )
             $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
+          _gaq.push(['_trackEvent', 'Registrations', 'Register', 'Drop Down Shown']);
+        }
       }
     });
   },
