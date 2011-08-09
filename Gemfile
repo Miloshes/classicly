@@ -54,9 +54,6 @@ gem 'paperclip'
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem 'rest-client', :require => 'rest_client'
 
-# Imagemagick interface - http://rubygems.org/gems/rmagick
-gem 'rmagick'
-
 # Sitemap generator - http://rubygems.org/gems/sitemap_generator
 gem 'sitemap_generator'
 
@@ -82,9 +79,6 @@ gem 'rubyzip'
 gem 'dalli'
 
 group :development, :test do
-  # MySQL driver - http://rubygems.org/gems/mysql2
-  gem 'mysql2', '< 0.3'
-  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
   
@@ -114,6 +108,8 @@ group :development, :test do
 
   # fixtures generator for tests
   gem 'fabrication', '~> 1.0.1'
+
+  gem 'factory_girl'
 
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   gem 'jasmine'

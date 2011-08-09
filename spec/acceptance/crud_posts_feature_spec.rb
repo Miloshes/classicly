@@ -8,11 +8,12 @@ feature 'Crud posts feature: ', %q{
 
   background :each do
     # Given I am an admin user
-    @admin = AdminUser.make!
+    @admin = FactoryGirl.create(:admin_user)
+
     # And I log in
     admin_login(@admin)
   end
-  
+
   scenario 'creating a draft post' do
     # And given I create a blog post
     title = 'The Fall of the House of Usher'
@@ -24,14 +25,17 @@ feature 'Crud posts feature: ', %q{
       27 are free books to read online using a built-in reader, or are free to download for your iPad, Kindle, or Sony tablet.}
 
     create_blog_post_with_text text, title
+
     # When I go to the blog page
     visit blog_path
-    # The I should be on tyhe blog index page
+
+    # Then I should be on tyhe blog index page
     page.should have_content("Welcome to the Book Blog")
+
     # And I should not see this blog post since it is on draft state
     page.should_not have_content(title)
   end
-  
+
   scenario 'creating a post' do
     text = %q{
       You love to read great works of literature, but sometimes you just can't settle on a book to read. 
@@ -41,12 +45,13 @@ feature 'Crud posts feature: ', %q{
       27 are free books to read online using a built-in reader, or are free to download for your iPad, Kindle, or Sony tablet. 
     }
     create_blog_post_with_text text
+
     # Then I should be on the edit page for this post.
     # Note. There's no need to use the visit method since once the post is saved, the admin is redirected to the edit action.
     page.should have_content('Edit this blog post')
     find(:xpath, "id('blog_post_title')").value.should == 'The Blog Post'
   end
-  
+
   scenario 'Creating a blog post with a break tag to determine the amount of text to show on the frontend' do
     # And given I have created a blog_post with a break tag
     title = 'Excellent blog post'
@@ -67,8 +72,8 @@ feature 'Crud posts feature: ', %q{
       find(:xpath, "..//..//..//div[@class='content']").text.should_not include('This does not have to appear!')
     end
   end
-  
- 
+
+
   scenario 'Creating a blog post with break tags does not have to show this tags on the post page' do
     # And given I have created a blog_post with a break tag
     title = "The unbearable lightness of being"
@@ -79,16 +84,19 @@ feature 'Crud posts feature: ', %q{
                 car une esquisse est toujours l'ébauche de quelque chose, la préparation d'un tableau, tandis que 
                 l'esquisse qu'est notre vie est une esquisse de rien, une ébauche sans tableau."
     create_blog_post_with_text text, title
+
     # When I visit the post's page
     @post = BlogPost.last
     visit seo_path(@post)
-    # The I should see the title
+
+    # Then I should see the title
     page.should have_content(title)
+
     # And I should not see this !@cut tag
     page.should_not have_content('!@cut')
   end
-  
-  
+
+
   # scenario 'Creating a blog post with <featured> tags does not have to show this tags on the post page' do
   #     # Given I have an author called Milan Kundera
   #     @author = Author.make!(:name => 'Milan Kundera')

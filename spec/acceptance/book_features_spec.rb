@@ -7,21 +7,15 @@ require 'acceptance/acceptance_helper'
   } do
     background do
       # FIXME: parse_seo function should not depend on these
-      @validation_author    = Fabricate(:author, :name => "Ignacio De La Madrid")
-      @validation_book      = Fabricate(:book, :author => @validation_author)
-      @validation_audiobook = Fabricate(:audiobook, :author => @validation_author)
-
-      # Fabricator's default is metadescription, Book
-      Fabricate(:seo_default, :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
+      @validation_author    = FactoryGirl.create(:author, :name => "Ignacio De La Madrid")
+      @validation_book      = FactoryGirl.create(:book, :author => @validation_author)
+      @validation_audiobook = FactoryGirl.create(:audiobook, :author => @validation_author)
 
 
       # Given I have a book and this book is to read online
-      @author           = Fabricate(:author, :name => 'Bram Stoker')
-      @book             = Fabricate(:book, :author => @author, :pretty_title => 'Dracula', :is_rendered_for_online_reading => true)
-      @slug_read_online = Fabricate(:seo_slug, :seoable_id => @book.id, :seoable_type => 'Book', :format => 'online', :slug => 'read-dracula-online-free')
+      @author           = FactoryGirl.create(:author, :name => 'Bram Stoker')
+      @book             = FactoryGirl.create(:book, :author => @author, :pretty_title => 'Dracula', :is_rendered_for_online_reading => true)
+      @slug_read_online = FactoryGirl.create(:seo_slug, :seoable => @book, :format => 'online', :slug => 'read-dracula-online-free')
     end
 
 
@@ -57,25 +51,20 @@ require 'acceptance/acceptance_helper'
 
     background do
       # FIXME: parse_seo function should not depend on these
-      @validation_author    = Fabricate(:author, :name => "Ignacio De La Madrid")
-      @validation_book      = Fabricate(:book, :author => @validation_author)
-      @validation_audiobook = Fabricate(:audiobook, :author => @validation_author)
+      @validation_author    = FactoryGirl.create(:author, :name => "Ignacio De La Madrid")
+      @validation_book      = FactoryGirl.create(:book, :author => @validation_author)
+      @validation_audiobook = FactoryGirl.create(:audiobook, :author => @validation_author)
 
-      # Fabricator's default is metadescription, Book
-      Fabricate(:seo_default, :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
 
       #Given we have a book:
-      @author = Fabricate(:author, :name => 'Victor Hugo', :cached_slug => 'victor-hugo')
-      @book   = Fabricate(:book, :author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables', :has_audiobook => true)
+      @author = FactoryGirl.create(:author, :name => 'Victor Hugo', :cached_slug => 'victor-hugo')
+      @book   = FactoryGirl.create(:book, :author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables', :has_audiobook => true)
     end
 
     scenario 'downloading an audiobook from the book view' do
       # And an audiobook exists for that book
-      @audiobook  = Fabricate(:audiobook, :author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables-audiobook')
-      @slug       = Fabricate(:seo_slug, :seoable_id => @audiobook.id, :seoable_type => 'Audiobook', :format => 'mp3', :slug => 'download-les-miserables-audiobook-mp3')
+      @audiobook  = FactoryGirl.create(:audiobook, :author => @author, :pretty_title => 'Les miserables', :cached_slug => 'les-miserables-audiobook')
+      @slug       = FactoryGirl.create(:seo_slug, :seoable => @audiobook, :format => 'mp3', :slug => 'download-les-miserables-audiobook-mp3')
 
       #when I go to the book view
       visit author_book_path(@author, @book)
@@ -110,28 +99,21 @@ require 'acceptance/acceptance_helper'
 
     background do
       # FIXME: parse_seo function should not depend on these
-      @validation_author    = Fabricate(:author, :name => "Ignacio De La Madrid")
-      @validation_book      = Fabricate(:book, :author => @validation_author)
-      @validation_audiobook = Fabricate(:audiobook, :author => @validation_author)
-
-      # Fabricator's default is metadescription, Book
-      Fabricate(:seo_default, :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :default_value => 'This is $(pretty_title) metadescription')
-      Fabricate(:seo_default, :object_type => 'Audiobook', :object_attribute => 'webtitle', :default_value => 'This is $(pretty_title) webtitle')
+      @validation_author    = FactoryGirl.create(:author, :name => "Ignacio De La Madrid")
+      @validation_book      = FactoryGirl.create(:book, :author => @validation_author)
+      @validation_audiobook = FactoryGirl.create(:audiobook, :author => @validation_author)
     end
-
-
 
     scenario 'downloading an available book' do
 
       # Given I have a book and this book has a download page for pdf
-      author            = Fabricate(:author, :name => 'Brammy Stokes')
-      book              = Fabricate(:book, :author => author, :pretty_title => 'Patula')
-      landing_page_slug = Fabricate(:seo_slug, :seoable_id => book.id,  :seoable_type => 'Book', :format => 'pdf', :slug => 'download-patula-pdf')
-      download_format   = Fabricate(:download_format, :book_id => book.id, :format => 'pdf')
+      author            = FactoryGirl.create(:author, :name => 'Brammy Stokes')
+      book              = FactoryGirl.create(:book, :author => author, :pretty_title => 'Patula')
+      landing_page_slug = FactoryGirl.create(:seo_slug, :seoable => book, :format => 'pdf', :slug => 'download-patula-pdf')
+      download_format   = FactoryGirl.create(:download_format, :book => book)
 
-      1.upto(5) {|i| Fabricate(:book, :author => author, :blessed => true)} #needed because of the related books in the UI
+
+      1.upto(5) {|i| FactoryGirl.create(:book, :author => author, :blessed => true)} #needed because of the related books in the UI
 
       # When I am on the book detail page
       visit author_book_path(author, book)

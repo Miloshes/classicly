@@ -5,19 +5,32 @@ feature 'Collections feature', %q{
   As a user
   I want 
 } do
- 
+
   scenario 'visiting a collection that has an audiobook collection counterpart' do
     # Given we have a collection and an audiocollection and its slugs
-    @collection = Collection.make!(:hummies)
-    @audiocollection = Collection.make!(:audiohummies)
-    SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
-    SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
+    @collection = FactoryGirl.create(:collection, :name => 'Hummies')
+
+    ['hummies-1', 'hummies-2'].each do|title|
+      @collection.books << FactoryGirl.create(:book, :pretty_title => title)
+    end
+
+    @audiocollection = FactoryGirl.create(:collection, :book_type => 'audiobook', :name => 'Hummies')
+
+    ['audiohummies-1', 'audiohummies-2'].each do|title|
+      @audiocollection.audiobooks << FactoryGirl.create(:audiobook, :pretty_title => title)
+    end
+
+    FactoryGirl.create(:seo_slug, :seoable => @collection, :slug => 'hummies')
+    FactoryGirl.create(:seo_slug, :seoable => @audiocollection, :slug => 'hummies-audiobooks')
+
     # When I visit the collection
     visit seo_path(@collection)
+
     # And I click audiobooks
     within('.audiobook-switcher') do
       click_on 'Audiobooks'
     end
+
     # Then I should see that I am on the Hummies audiobooks page
     page.should have_content('Hummies Audiobooks')
     # And I should verify that a tooltip div exists
@@ -26,29 +39,19 @@ feature 'Collections feature', %q{
 
   scenario 'visiting a collection that does not have an audiobook collection counterpart' do
     # Given we have a collection and an audiocollection and its slugs
-    @collection = Collection.make!(:hummies)
-    SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
+    @collection = FactoryGirl.create(:collection, :name => 'Hummies')
+
+    ['hummies-1', 'hummies-2'].each do|title|
+      @collection.books << FactoryGirl.create(:book, :pretty_title => title)
+    end
+
+    #@collection = Collection.make!(:hummies)
+    FactoryGirl.create(:seo_slug, :seoable => @collection, :slug => 'hummies')
+
     # When I visit the collection
     visit seo_path(@collection)
+
     # The I should not see the audiobooks option link
     page.should_not have_css('.audiobook-switcher')
-  end
-
-  scenario 'visiting an audio collection that has a book collection counterpart' do
-    # Given we have an audiocollection and an collection and its slugs
-    @collection = Collection.make!(:hummies)
-    @audiocollection = Collection.make!(:audiohummies)
-    SeoSlug.make!(:seoable => @collection, :slug => 'hummies')
-    SeoSlug.make!(:seoable => @audiocollection, :slug => 'hummies-audiobooks')
-    # When I visit the audiocollection
-    visit seo_path(@audiocollection)
-    # And I click books
-    within('.audiobook-switcher') do
-      click_on 'Books'
-    end
-    # Then I should see that I am on the Hummies books page
-    page.should have_content('Hummies Books')
-    # And I should verify that a tooltip div exists
-    page.should have_css('.audiobook-switcher .tooltip')
   end
 end
