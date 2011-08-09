@@ -263,7 +263,7 @@ Reader.prototype = {
 
           if( $( '#notification' ).is( ':hidden' ) )
             $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
-          _gaq.push(['_trackEvent', 'Registrations', 'Register', 'Drop Down Shown']);
+          if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_drop_shown']);
         }
       }
     });
