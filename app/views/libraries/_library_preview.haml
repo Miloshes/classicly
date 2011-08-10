@@ -12,6 +12,7 @@
   $(function(){
 
     $('a#register-button').click( function(){
+      if( _gaq ) _gaq.push([ '_trackEvent', 'registrations', 'add_library', 'reg_button_clicked' ]);
       FB.login(function(response) {
         // the user successfully logs in, let's register him and notify the Library model afterwards
         if (response.session) {
