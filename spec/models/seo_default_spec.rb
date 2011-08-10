@@ -38,7 +38,7 @@ describe SeoDefault do
 
 
   describe '#self.parse_default_value' do
-    
+
     context 'when a valid string is set as the value for the attribute' do
       context 'with book' do
         it 'should return the parsed string' do

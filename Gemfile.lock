@@ -82,7 +82,6 @@ GEM
     diff-lcs (1.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    fabrication (1.0.1)
     factory_girl (2.0.3)
     faraday (0.7.4)
       addressable (~> 2.2.6)
@@ -258,7 +257,6 @@ DEPENDENCIES
   dalli
   database_cleaner
   delayed_job
-  fabrication (~> 1.0.1)
   factory_girl
   firewatir
   friendly_id (~> 3.2.1)

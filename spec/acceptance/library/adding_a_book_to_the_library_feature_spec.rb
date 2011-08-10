@@ -7,15 +7,15 @@ feature 'Adding a book to the library', %q{
 } do
 
   background do
-    @current_user = Fabricate(:login, :fb_connect_id => '123')
-        
-    @author   = Fabricate(:author, :name => 'Bram Stoker')    
-    @book     = Fabricate(:book, :author => @author, :title => 'Dracula')
+    @current_user     = FactoryGirl.create(:login, :fb_connect_id => '123')
 
-    @seo_slug = Fabricate(:seo_slug, :seoable => @book, :format => 'pdf', :slug => 'download-dracula-pdf')
-    
-    @download_format = Fabricate(:download_format, :book => @book)
-  
+    @author           = FactoryGirl.create(:author, :name => 'Bram Stoker')    
+    @book             = FactoryGirl.create(:book, :author => @author, :title => 'Dracula')
+
+    @seo_slug         = FactoryGirl.create(:seo_slug, :seoable => @book, :format => 'pdf', :slug => 'download-dracula-pdf')
+
+    @download_format  = FactoryGirl.create(:download_format, :book => @book)
+
     @download_book_page_url = seo_path(@seo_slug.slug)
   end
 
@@ -29,10 +29,10 @@ feature 'Adding a book to the library', %q{
     #   I should see the library preview, which is a Facebook registration page
     #   and I should have a Registration button
     #   and I shouldn't be seeing my library as I haven't registered yet
-  
+
     visit @download_book_page_url
     click_link("download_button")
-    
+
     page.should have_css("#library-preview")
     page.should have_css("#register-button")
     page.should_not have_css("#library-content")
@@ -48,15 +48,15 @@ feature 'Adding a book to the library', %q{
     #   I should see my Library
     #   and my Library should contain my downloaded Book
     #   and I shouldn't be seeing any registration page
-    
+
     # faking the Facebook login by stubbing Koala to return fake FB cookies
     fake_koala = Object.new
     Koala::Facebook::OAuth.stub(:new).and_return(fake_koala)
     fake_koala.stub(:get_user_info_from_cookies).and_return({'uid' => @current_user.fb_connect_id})
-    
+
     visit @download_book_page_url
     click_link("download_button")
-    
+
     page.should have_css("#library-content")
     page.should have_css("#book_#{@book.id}")
     page.should_not have_css("#library-preview")

@@ -107,8 +107,6 @@ group :development, :test do
   gem 'database_cleaner'
 
   # fixtures generator for tests
-  gem 'fabrication', '~> 1.0.1'
-
   gem 'factory_girl'
 
   # Javascript testing framework - http://rubygems.org/gems/jasmine
