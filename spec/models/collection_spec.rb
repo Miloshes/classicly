@@ -4,7 +4,7 @@ describe Collection do
 
   # NOTE: refactor! - Zsolt
   describe '#needs_canonical_link' do
-    
+
     before :each do
       @collection = Collection.new(:book_type => 'book')
       books = double('Books')
