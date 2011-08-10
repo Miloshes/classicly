@@ -1,4 +1,5 @@
 $('#library-page').fadeOut(1100, function() {
 	$('#library-page').html("<%= escape_javascript(render :partial => 'library_with_content') %>");
-	$('#library-page').fadeIn(1100);
+  $('#library-page').fadeIn(1100);
+  if( _gaq ) _gaq.push( [ '_trackEvent', 'registrations', 'add_library', 'reg_complete' ] );
 });

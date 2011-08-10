@@ -10,7 +10,6 @@
 
 - if @new_book_in_library
   :javascript
-  
     $(document).ready(function() {
       window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
     });
