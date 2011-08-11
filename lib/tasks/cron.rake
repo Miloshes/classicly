@@ -16,7 +16,7 @@ task :cron => :environment do
   end
   
   if Time.now.hour == 0 # run once a day
-    OnlineReader.update_online_reader_cache
+    OnlineReader.update_cache
   end
   
 end

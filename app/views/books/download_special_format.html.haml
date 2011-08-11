@@ -53,5 +53,5 @@
         = image_or_link_to_download_format @book, 'pdf'
       - else
         = image_or_link_to_download_format @book, 'azw'
-      - if @book.read_online?
-        = link_to image_tag( 'read-online-small.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
+
+      = link_to image_tag( 'read-online-small.png' ), seo_url( @book.seo_slugs.read_online.first.slug )
