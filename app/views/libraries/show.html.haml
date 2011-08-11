@@ -12,4 +12,5 @@
   :javascript
     $(document).ready(function() {
       window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+      if( _gaq ) _gaq.push(["_trackEvent", "books", "download", "id_#{@new_book_in_library.id}"]);
     });
