@@ -64,13 +64,9 @@
           %p.explanation We don’t pay a  cent, so neither do you.
 
 
-= javascript_include_tag 'book-details'
 :javascript
-  $('#reviews').data('book_id', #{@book.id})
-:javascript
-  FB.init({
-    appId  : '#{Facebook::APP_ID}',
-    status : true, // check login status
-    cookie : true, // enable cookies to allow the server to access the session
-    xfbml  : true  // parse XFBML
+  $( function (){
+    $( "#read_online_button_container a" ).click( function(){
+      if ( _gaq ) _gaq.push( ['_trackEvent', 'books', 'read_online', "id_#{@book.id}"] );
+    });
   });
