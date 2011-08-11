@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110721210149) do
+ActiveRecord::Schema.define(:version => 20110810145645) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -75,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20110721210149) do
     t.integer "avg_rating",        :default => 0,     :null => false
     t.integer "downloaded_count",  :default => 0
     t.text    "librivox_zip_link"
-    t.integer "downloaded_count",  :default => 0
   end
 
   create_table "author_quotings", :force => true do |t|
@@ -119,8 +118,6 @@ ActiveRecord::Schema.define(:version => 20110721210149) do
     t.integer "last_character"
     t.text    "content"
     t.boolean "first_line_indent", :default => false, :null => false
-    t.boolean "re_render_flag",    :default => false, :null => false
-    t.boolean "force_rerender",    :default => false, :null => false
   end
 
   add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
@@ -134,20 +131,21 @@ ActiveRecord::Schema.define(:version => 20110721210149) do
   end
 
   create_table "books", :force => true do |t|
-    t.text    "title"
-    t.integer "author_id"
-    t.string  "language"
-    t.integer "published"
-    t.boolean "blessed",                        :default => false, :null => false
-    t.integer "custom_cover_id"
-    t.text    "description"
-    t.string  "pretty_title"
-    t.boolean "available",                      :default => true
-    t.string  "cached_slug"
-    t.integer "avg_rating"
-    t.integer "downloaded_count",               :default => 0
-    t.boolean "is_rendered_for_online_reading", :default => false, :null => false
-    t.boolean "has_audiobook",                  :default => false
+    t.text     "title"
+    t.integer  "author_id"
+    t.string   "language"
+    t.integer  "published"
+    t.boolean  "blessed",                        :default => false, :null => false
+    t.integer  "custom_cover_id"
+    t.text     "description"
+    t.string   "pretty_title"
+    t.boolean  "available",                      :default => true
+    t.string   "cached_slug"
+    t.integer  "avg_rating"
+    t.integer  "downloaded_count",               :default => 0
+    t.boolean  "is_rendered_for_online_reading", :default => false, :null => false
+    t.boolean  "has_audiobook",                  :default => false
+    t.datetime "global_last_opened"
   end
 
   add_index "books", ["author_id"], :name => "index_books_on_author_id"
@@ -236,9 +234,9 @@ ActiveRecord::Schema.define(:version => 20110721210149) do
   end
 
   create_table "incoming_data", :force => true do |t|
-    t.text     "json_data"
-    t.boolean  "processed",  :default => false, :null => false
-    t.datetime "created_at"
+    t.text      "json_data"
+    t.boolean   "processed",  :default => false, :null => false
+    t.timestamp "created_at"
   end
 
   create_table "libraries", :force => true do |t|

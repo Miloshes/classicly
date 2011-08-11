@@ -8,7 +8,12 @@ class BookPagesController < ApplicationController
     slug = SeoSlug.where(:slug => params[:id]).first
     book = slug.seoable
 
-    @book_page  = book.book_pages.where(:page_number => params[:page_number]).first()
+    # render the book if it's necessary
+    if !book.is_rendered_for_online_reading?
+      book.render_book_content
+    end
+
+    @book_page = book.book_pages.where(:page_number => params[:page_number]).first()
 
     # if we have a user logged in, set this book's last-opened property in his library
     if current_login
@@ -16,6 +21,9 @@ class BookPagesController < ApplicationController
       @bookmarked = library_book.is_bookmarked_at? @book_page.page_number
       library_book.update_attributes(:last_opened => Time.now)
     end
+    
+    # set the book's global_last_opened to now
+    book.update_attributes(:global_last_opened => Time.now)
 
     if @book_page.nil?
       redirect_to author_book_path(book.author, book)
