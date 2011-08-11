@@ -30,7 +30,7 @@ class Collection < ActiveRecord::Base
   scope :find_author_book_collections, where(:book_type => 'book', :collection_type => 'author')
   scope :of_type, lambda {|type| where(:book_type => type)}
   scope :collection_type, lambda {|type| type.is_a?(Array) ? where(:collection_type.in => type) : where(:collection_type => type)}
-  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RANDOM()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
 
   before_save :set_parsed_description
 

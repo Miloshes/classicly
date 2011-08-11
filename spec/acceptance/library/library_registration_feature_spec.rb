@@ -7,16 +7,16 @@ feature "Library registration", %q{
 } do
   
   background do
-    @current_user = Fabricate(:login, :fb_connect_id => '123')
+    #@current_user = Fabricate(:login, :fb_connect_id => '123')
         
-    @author   = Fabricate(:author, :name => 'Bram Stoker')    
-    @book     = Fabricate(:book, :author => @author, :title => 'Dracula')
+    #@author   = Fabricate(:author, :name => 'Bram Stoker')    
+    #@book     = Fabricate(:book, :author => @author, :title => 'Dracula')
 
-    @seo_slug = Fabricate(:seo_slug, :seoable => @book, :format => 'pdf', :slug => 'download-dracula-pdf')
+    #@seo_slug = Fabricate(:seo_slug, :seoable => @book, :format => 'pdf', :slug => 'download-dracula-pdf')
     
-    @download_format = Fabricate(:download_format, :book => @book)
+    #@download_format = Fabricate(:download_format, :book => @book)
   
-    @download_book_page_url = seo_path(@seo_slug.slug)
+    #@download_book_page_url = seo_path(@seo_slug.slug)
   end
   
   scenario "register after downloading a book" do
