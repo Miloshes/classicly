@@ -64,7 +64,7 @@ class ReaderEngine
     return true
   end
 
-  def get_page book_id, page_number, library
+  def get_page(book_id, page_number, library)
 
     book = Book.find_by_id book_id
     return if book.nil?
@@ -96,29 +96,35 @@ class ReaderEngine
   def lazy_load_book_content(book_id)
     if book_id != self.current_book_id
       self.current_book_id = book_id
+      
       # for reading the book from S3, takes like 8 seconds so not advised
-      # self.current_book_content = get_book_content_from_s3(book_id)
-      # this is the quick solution, read it from the local disk
-      self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
+      self.current_book_content = get_book_content_from_s3(book_id)
+      
+      # this is the quick solution, read it from the local disk (only for local rendering!)
+      # self.current_book_content = open(BASE_BOOK_DIR + "/book_#{book_id}.txt").read
     end
   end
 
   def get_book_content_from_s3(book_id)
-    book = Book.find book_id
-
+    book          = Book.find book_id
     zip_file_data = book.file_data_for_format('txt.zip')
+    
     # rubyzip cannot unzip strings in memory, so we have to create a temp file for it
-    file = Tempfile.new('book_content.zip')
-    file.write zip_file_data
+    file_path = "tmp/book_#{book_id}_tmp.zip"
+    file = File.open(file_path, "wb")
+    file.write(zip_file_data)
     file.flush
     file.rewind
+
     data = ''
-    Zip::ZipFile.foreach(file.path){ |f| data = f.get_input_stream.read}
-    data
+
+    Zip::ZipFile.foreach(file.path) { |f| data = f.get_input_stream.read }
+    
+    return data
   ensure
     if file
       file.close
-      file.unlink
+      File.delete file_path
     end
   end
   

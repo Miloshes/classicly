@@ -32,6 +32,9 @@ class Book < ActiveRecord::Base
   validates :title, :presence => true
 
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
+  
+  # instance variables to help rendering the book content
+  attr_accessor :book_content, :reader_engine
 
   def self.available_in_formats(formats)
     find_each do |book|
@@ -248,4 +251,38 @@ class Book < ActiveRecord::Base
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['pdf', 'kindle', 'online'])
   end
+  
+  # === Methods related to online reading and rendering
+  
+  # The whole content of the book in plain-text format, fetched from the S3 bucket.
+  # NOTE: this is used by the rendering algorithms, and takes a couple of seconds on the first call
+  def book_content
+    @book_content ||= reader_engine.get_book(self.id).current_book_content
+  end
+  
+  def reader_engine
+    @reader_engine ||= ReaderEngine.new
+  end
+  
+  # Based on it's book pages' renderdata (character ranges for the pages), it fills up the book pages with the actual book content
+  # TODO: add a flag for indicating that the book is getting rendered
+  def render_book_for_online_reading!
+    self.book_pages.find_each do |book_page|
+      book_page.render_page_content_from(book_content)
+    end
+    
+    self.update_attributes(:is_rendered_for_online_reading => true)
+  end
+  
+  # Removes the content from the book pages.
+  # NOTE: gets called by the cleanup cron jobs. We only keep the popular books in the database.
+  def wipe_book_pages!
+    
+    self.book_pages.find_each do |book_page|
+      book_page.wipe_page_content!
+    end
+    
+    self.update_attributes(:is_rendered_for_online_reading => false)
+  end
+  
 end

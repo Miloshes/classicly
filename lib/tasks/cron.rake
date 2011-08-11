@@ -11,8 +11,12 @@ task :cron => :environment do
     end
   end
   
-  if Time.now.hours % 12 == 0 # run every 12 hours
+  if Time.now.hour % 12 == 0 # run every 12 hours
     Library.clean_up_not_claimed_libraries
+  end
+  
+  if Time.now.hour == 0 # run once a day
+    OnlineReader.update_online_reader_cache
   end
   
 end
