@@ -38,13 +38,26 @@
             #{link_to @book.author.name, seo_path(@book.author)}
           -else
             = @book.author.name
+
       %p= simple_format(@book.description)
 
+      -# Google AdSense. DO NOT MODIFY.
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-7773516323337861";
+      /* Book Page 250&#42;300 */
+      google_ad_slot = "6647913200";
+      google_ad_width = 300;
+      google_ad_height = 250;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
 
       .download-highlight
         = link_to download_and_add_to_library_url(:book_id => @book.id, :download_format => @format), :id => 'download_button', :class => 'button kiss green large kiss' do
           = content_tag(:span, "Download and add to your library")
-            
+
         / = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, @format), :id => 'download-facebook-post', :class => 'button kiss green large kiss'
 
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
