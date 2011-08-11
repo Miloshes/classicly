@@ -113,7 +113,7 @@ group :development, :test do
   gem 'jasmine'
   
   # fixtures generator for testing - http://rubygems.org/gems/machinist
-  gem 'machinist', '>= 2.0.0.beta1'
+  #gem 'machinist', '>= 2.0.0.beta1'
 
   gem 'mysql2'
 
