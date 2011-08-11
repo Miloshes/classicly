@@ -23,7 +23,7 @@
           %h1 Featured Author: <strong>#{@featured.name}</strong>
         - else
           %h1 Featured Audiobook Author: <strong>#{@featured.name}</strong>
-        %p= raw @featured.parsed_description
+        %p= simple_format @featured.parsed_description
       .books-and-link
         - @featured.thumbnail_books(6).each do|thumb_book|
           .cover.tiny
