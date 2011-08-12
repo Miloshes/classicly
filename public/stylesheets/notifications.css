@@ -30,7 +30,7 @@
 	 border: 1px solid;
 	 color: #fff;
 	 padding: 15px;
-	 position: fixed;
+	 position: relative;
 	 _position: absolute;
 	 text-shadow: 0 1px 0 rgba(0,0,0,.5);
 	 -webkit-animation: animate-bg 5s linear infinite;
@@ -41,7 +41,7 @@
 	
 	background-color: #61b832;
 	border-color: #55a12c;
-	
+	margin-bottom: -79px;
 	z-index: 2;
 }
 

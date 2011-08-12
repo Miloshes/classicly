@@ -8,11 +8,11 @@
   .notification-text
     If the download does not automatically start,
     = link_to "click here", serve_downloadable_file_url(book, download_format), :name => download_format
-    
+
 :javascript
   // hide it by default, then we'll animate in
   hideGlobalNotifications();
-  
+
   $(document).ready( function() {
-  	showGlobalNotifications();
+    showGlobalNotifications();
   });

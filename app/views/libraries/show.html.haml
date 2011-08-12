@@ -1,5 +1,6 @@
-- if @new_book_in_library
-  - content_for :notifications do
+- content_for :notifications do
+  = render :partial => "/shared/connect_with_facebook_bar"
+  - if @new_book_in_library
     = render :partial => 'now_downloading_top_bar', :locals => {:book => @new_book_in_library, :download_format => @download_format}
 
 #library-page

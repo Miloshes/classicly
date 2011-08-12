@@ -262,8 +262,8 @@ Reader.prototype = {
           self.drawBookmarkRibbon();
           if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_completed']);
         }else{
-          if( $( '#notification' ).is( ':hidden' ) )
-            $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
+          if( $( '#fb_connect_notification' ).is( ':hidden' ) )
+            $( "#fb_connect_notification" ).show("blind", { direction: "vertical" }, 1000);
 
           if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_drop_shown']);
         }
