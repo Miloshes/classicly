@@ -18,10 +18,10 @@ class BookPagesController < ApplicationController
     # if we have a user logged in, set this book's last-opened property in his library
     if current_login
       library_book = current_library.library_books.find_or_create_by_library_id_and_book_id(current_library.id, book.id)
-      @bookmarked = library_book.is_bookmarked_at? @book_page.page_number
+      @bookmarked = library_book.is_bookmarked_at? @book_page.page_number # flag used for UI reasons.
       library_book.update_attributes(:last_opened => Time.now)
     end
-    
+
     # set the book's global_last_opened to now
     book.update_attributes(:global_last_opened => Time.now)
 

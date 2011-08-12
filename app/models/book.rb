@@ -91,6 +91,14 @@ class Book < ActiveRecord::Base
     S3Object.value(object_key, APP_CONFIG['buckets']['books'])
   end
 
+  def last_bookmarked_page(library)
+    if library.library_books.map(&:book_id).include?(self.id)
+      library_book = library.library_books.find_by_book_id(self.id)
+      page  = library_book.bookmarks.maximum('page_number') unless library_book.bookmarks.empty?
+    end
+    page || 1
+  end
+
   def all_downloadable_formats
     self.download_formats.all(:conditions => ['download_status = ?', 'downloaded'], :select => ['format']).map{|format| format.format}
   end

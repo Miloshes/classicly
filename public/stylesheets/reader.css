@@ -173,6 +173,21 @@ body {
     margin-top: 35px;
   }
 
+  #reader_box #bookmark_tag .tooltip{
+    display:none;
+    width: 150px;
+    line-height: 1.5em;
+    color: #fff;
+    background-image: url(../images/Registration_slices/reg_bg.png);
+    padding: 5px 0px 5px 10px;
+    border-radius: 2px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -moz-box-shadow: 10px 10px 5px #888;
+    -webkit-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888;
+  }
+
   #reader_box #bookmark_ribbon {
     width: 54px;
     height: 79px;
