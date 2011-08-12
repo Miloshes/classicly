@@ -2074,17 +2074,17 @@ ul.ui-autocomplete {
 * html .blog-shared {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 7, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared a.blue {
   color: #2361a1 !important;
   text-decoration: underline;
 }
-/* line 9, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 10, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared a.blue:hover {
   text-decoration: none;
   cursor: pointer;
 }
-/* line 12, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 14, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post {
   margin-bottom: 50px;
   display: inline;
@@ -2097,7 +2097,7 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post {
   overflow-x: hidden;
 }
-/* line 17, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 20, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title {
   display: inline;
   float: left;
@@ -2108,7 +2108,7 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .blog-title {
   overflow-x: hidden;
 }
-/* line 19, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 23, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2, .blog-shared .show-post .blog-title h1.show {
   font-weight: bold;
   padding: 0;
@@ -2116,7 +2116,7 @@ ul.ui-autocomplete {
   font-size: 34px;
   line-height: 40px;
 }
-/* line 25, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 30, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2 a, .blog-shared .show-post .blog-title h1.show a {
   float: left;
   display: block;
@@ -2124,11 +2124,11 @@ ul.ui-autocomplete {
   color: #333333;
   width: 100%;
 }
-/* line 31, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 37, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title h2 a:hover, .blog-shared .show-post .blog-title h1.show a:hover {
   color: #2361a1;
 }
-/* line 33, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 40, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span {
   font-family: georgia;
   float: left;
@@ -2138,19 +2138,19 @@ ul.ui-autocomplete {
   margin-right: 3px;
   margin-top: -15px;
 }
-/* line 42, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 50, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span.date {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-/* line 47, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 55, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .blog-title span.author {
   font-style: normal;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-/* line 51, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 60, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content {
   display: inline;
   float: left;
@@ -2162,52 +2162,48 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .content {
   overflow-x: hidden;
 }
-/* line 55, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 64, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h1 {
   display: none;
 }
-/* line 57, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 66, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content h2 {
   font-size: 20px;
   font-weight: bold;
 }
-/* line 60, ../../../app/stylesheets/partials/_blog_shared.sass */
-.blog-shared .show-post .content img {
-  border: 1px solid #333333;
-}
-/* line 62, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 70, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p {
   font-size: 16px;
 }
-/* line 64, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 72, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
 }
-/* line 68, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 76, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 71, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 79, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content p.quotation {
   font-size: 16px;
   font-style: italic;
 }
-/* line 75, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 83, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a, .blog-shared .show-post .content ol a {
   font-weight: bold;
   text-decoration: none;
   color: #c9af87;
   font-size: 16px;
 }
-/* line 80, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 88, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .content ul a:hover, .blog-shared .show-post .content ol a:hover {
   color: #866a47;
   text-decoration: underline;
 }
-/* line 83, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 91, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related {
   display: inline;
   float: left;
@@ -2218,18 +2214,18 @@ ul.ui-autocomplete {
 * html .blog-shared .show-post .related {
   overflow-x: hidden;
 }
-/* line 85, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 93, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related h5 {
   font-size: 16px;
   color: #444444;
   margin: 0;
   padding: 0;
 }
-/* line 90, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 98, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related .cover-here {
   margin-right: 10px;
 }
-/* line 92, ../../../app/stylesheets/partials/_blog_shared.sass */
+/* line 100, ../../../app/stylesheets/partials/_blog_shared.sass */
 .blog-shared .show-post .related a {
   float: left;
   margin-right: 10px;
