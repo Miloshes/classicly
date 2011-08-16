@@ -16,6 +16,13 @@ $(function(){
     position: "bottom right",
     offset: [-25, 5]
   });
+
+  // record search events
+  $( '#search #indexTankForm' ).submit( function(){
+    var searchTerm = $( this ).find('#term').val();
+    if( _gaq ) _gaq.push( ['_trackEvent', 'search_events', 'search', searchTerm] );
+  });
+
 });
 
 // for the autocomplete list:
