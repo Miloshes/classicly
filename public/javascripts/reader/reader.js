@@ -260,12 +260,15 @@ Reader.prototype = {
 
         if( response == 'true' ){
           self.drawBookmarkRibbon();
+
           if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_completed']);
+          if( _kmq ) _kmq.push(['activated', 'Opened Reader']);
         }else{
           if( $( '#notification' ).is( ':hidden' ) )
             $( "#notification" ).show("blind", { direction: "vertical" }, 1000);
 
           if( _gaq ) _gaq.push(['_trackEvent', 'registrations', 'bookmark_attempt', 'reg_drop_shown']);
+          if( _kmq ) _kmq.push(['refused activation', 'Opened Reader']);
         }
       }
     });
