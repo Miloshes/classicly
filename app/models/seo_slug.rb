@@ -28,7 +28,7 @@ class SeoSlug < ActiveRecord::Base
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
     method        = self.seoable.book_type.pluralize.to_sym
 
-    order_query = 'downloaded_count asc'
+    order_query = 'downloaded_count desc'
 
     if params[:sort]
       query_segments = params[:sort].split('_')
