@@ -58,4 +58,4 @@
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
-  else _kmq.push([ 'book', 'Page Viewed', { 'id': "#{@book.id}" } ]);
+  else _kmq.push([ 'record', 'Book Viewed', { 'name': "#{@book.pretty_title}" } ]);
