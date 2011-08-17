@@ -71,6 +71,14 @@
                 = book.pretty_title
   .link.blue
     = link_to 'Back to Blog Posts', admin_blog_posts_path
-    
 
-= javascript_include_tag 'jquery.markitup.set', 'jquery.markitup', 'blogPostForm'
+  #dialog-form{:title => "Create new user"}
+    %p{:class => "validateTips"}
+      Type the name of the author collection you want to link to the quote.
+    %form
+      %fieldset
+        %label{:for => "name"}
+          Collection's Name
+        %input{:type => "text", :name => "name", :id => "name", :class => "text ui-widget-content ui-corner-all"}
+
+= javascript_include_tag 'jquery.markitup.set', 'jquery.markitup', 'jquery.hotkeys.js', 'jquery.fieldselection.min.js', 'blogPostForm'

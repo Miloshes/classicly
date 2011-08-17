@@ -1,6 +1,27 @@
 $(document).ready(function(){
   // set Markitup plugin for the editor:
   $( '#blog_post_content' ).markItUp( mySettings );
+
+  // Featured Quotes Dialog
+  $( "#dialog-form" ).dialog({
+      autoOpen: false,
+      height: 300,
+      width: 350,
+      modal: true,
+      buttons: {
+        "Accept": function(){
+          alert( $( "#blog_post_content" ).getSelection().text );
+          $( this ).dialog( 'close' );
+        },
+        Cancel: function(){
+          $( this ).dialog( 'close' );
+        }
+      },
+      close: function(){
+        $( "#name" ).val( "" ).removeClass( "ui-state-error" );
+      }
+  });
+
   // autocomplete to pickup covers
   var sourceCallback = function( request, responseCallback ) {
     $.ajax( {
@@ -17,10 +38,11 @@ $(document).ready(function(){
       }
     });
   };
-  
+
   var selectCallback = function( event, ui ) {
     // send the ajax call to save the book as related to the blog post
     blogPostId = $( 'ul.related-books' ).attr( 'id' );
+
     $.ajax( {
       url: '/admin/blog_posts/associate_book/',
       data: { id : ui.item.value, blog_post_id: blogPostId }
@@ -31,16 +53,16 @@ $(document).ready(function(){
     '<span class = "close"><a id="' + ui.item.value + '" href="#">X</a></span>' + 
     '<span class="title">' + ui.item.label + '</span><li>' );
     ui.item.value = ''; // clear the value!
-    
+
   };
-  
+
   $( "#covers-autocomplete" ).autocomplete({
     source: sourceCallback,
     minLength: 2,
     select: selectCallback
   });
-  
-  
+
+
   // delete associations
   $( 'ul.related-books li span.close a' ).live('click', function(){
     var link = $( this );
@@ -55,4 +77,19 @@ $(document).ready(function(){
     });
     return false;
   });
+
+
+  // function to attach collections to quotes
+  $( "#blog_post_content" ).bind( 'keydown', 'ctrl+a', function() {
+    // trigger a dialog
+    $( "#dialog-form" ).dialog( "open" );
+    //alert( $( this ).getSelection().text );
+  });
+
+  $( "#dialog-form #name" ).autocomplete({
+    source: "/collections/autocomplete",
+    dataType: 'json',
+    minLength: 2
+  });
+
 });

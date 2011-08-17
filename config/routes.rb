@@ -39,6 +39,8 @@ Classicly::Application.routes.draw do
   match 'authors/(:page)' => 'pages#authors', :as => :authors
   match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
+
+  match 'collections/autocomplete' => 'collections#autocomplete'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
 
   # for delivering audiobook file
