@@ -55,3 +55,7 @@
         = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug) if @book.read_online?
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
       %p.explanation We don’t pay a cent, so neither do you.
+
+:javascript
+  if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
+  else _kmq.push([ 'book', 'Page Viewed', { 'id': "#{@book.id}" } ]);

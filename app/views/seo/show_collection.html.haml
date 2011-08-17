@@ -79,3 +79,7 @@
     = raw render_performable_script(:author)
   - else
     = raw render_performable_script(:collection)
+
+:javascript
+  if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
+  else _kmq.push([ 'collection', 'Page Viewed', { 'id': "#{@collection.id}" } ]);
