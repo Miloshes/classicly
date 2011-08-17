@@ -56,7 +56,9 @@
     = render 'collection_list', :collections => @collections
     = paginate @collections
 
-
+<script>
+if( _kmq ) _kmq.push([ 'collections', 'List Page Viewed' ]);
+</script>
 
 :javascript
   $(function(){
@@ -75,4 +77,3 @@
     });
   });
 
-  if( _kmq ) _kmq.push([ 'collections', 'List Page Viewed' ]);
