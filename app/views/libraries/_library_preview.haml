@@ -23,9 +23,10 @@
           // register the user via the Login model
           $.ajax({
             type: "POST", url: "/logins", dataType: "json",
-            success: function(data) {
+
+            success: function( data ) {
               // notify the Library model about the new registration
-              $.ajax({url: '#{library_handle_facebook_login_url}'});
+              $.ajax({ url: '#{library_handle_facebook_login_url}'});
             }
           });
 
