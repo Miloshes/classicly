@@ -25,6 +25,14 @@
             type: "POST", url: "/logins", dataType: "json",
 
             success: function( data ) {
+
+              if( data.is_new_login == false ){
+                _kmq.push(["record", "User Signed In"]);
+              }
+              else{
+                _kmq.push(["record", "User Signed Up"]);
+              }
+
               // notify the Library model about the new registration
               $.ajax({ url: '#{library_handle_facebook_login_url}'});
             }
