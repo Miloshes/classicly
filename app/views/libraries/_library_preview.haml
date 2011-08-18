@@ -7,12 +7,16 @@
     %a#register-button
       %span Create your free library
     = link_to "... or just keep browsing", '/', :id => 'browse'
-    
+
 :javascript
   $(function(){
+    // kiss metrics track
+    if( _kmq ) _kmq.push([ "record", "Library Upsell Viewed" ]);
 
+    // react when the user clicks the button for the library upsell:
     $('a#register-button').click( function(){
       if( _gaq ) _gaq.push([ '_trackEvent', 'registrations', 'add_library', 'reg_button_clicked' ]);
+
       FB.login(function(response) {
         // the user successfully logs in, let's register him and notify the Library model afterwards
         if (response.session) {
@@ -20,11 +24,6 @@
           $.ajax({
             type: "POST", url: "/logins", dataType: "json",
             success: function(data) {
-              // log new registrations to Performable 
-              if(data.is_new_login && RAILS_ENV == "production") {
-                _paq.push(["trackConversion", {id: "3F6mY45twfux", value: null}]);
-              }
-
               // notify the Library model about the new registration
               $.ajax({url: '#{library_handle_facebook_login_url}'});
             }
