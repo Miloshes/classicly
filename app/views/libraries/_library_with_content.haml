@@ -11,3 +11,7 @@
     %h3 My Library
     #book-list
       = render :partial => 'libraries/book', :collection => current_library.books, :as => :book
+
+<script>
+if( _kmq ) _kmq.push([ "record" ,"Library Viewed", {"id": "#{current_login.fb_connect_id}"}]);
+</script>
