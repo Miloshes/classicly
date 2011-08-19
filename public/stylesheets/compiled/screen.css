@@ -2405,6 +2405,19 @@ a.button.kiss span {
 }
 
 /* line 1, ../../../app/stylesheets/partials/_decos.sass */
+a.classicly-link {
+  color: #333333;
+  text-decoration: none;
+  background: none repeat scroll 0 0 #ffffd7;
+}
+/* line 6, ../../../app/stylesheets/partials/_decos.sass */
+a.classicly-link:hover {
+  cursor: pointer;
+  background: none repeat scroll 0 0 #ffff66;
+  color: #333333;
+}
+
+/* line 11, ../../../app/stylesheets/partials/_decos.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -2415,52 +2428,52 @@ a.button.kiss span {
   -webkit-box-shadow: 2px 2px 11px #666666;
 }
 
-/* line 12, ../../../app/stylesheets/partials/_decos.sass */
+/* line 22, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 17, ../../../app/stylesheets/partials/_decos.sass */
+/* line 27, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 20, ../../../app/stylesheets/partials/_decos.sass */
+/* line 30, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 23, ../../../app/stylesheets/partials/_decos.sass */
+/* line 33, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 27, ../../../app/stylesheets/partials/_decos.sass */
+/* line 37, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 29, ../../../app/stylesheets/partials/_decos.sass */
+/* line 39, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 32, ../../../app/stylesheets/partials/_decos.sass */
+/* line 42, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 34, ../../../app/stylesheets/partials/_decos.sass */
+/* line 44, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 39, ../../../app/stylesheets/partials/_decos.sass */
+/* line 49, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 40, ../../../app/stylesheets/partials/_decos.sass */
+/* line 50, ../../../app/stylesheets/partials/_decos.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }

@@ -71,7 +71,7 @@
         #counts
           3 Reviews, 22 Ratings
         #write-review
-          Write a review
+          = link_to 'Write a review', '#', :class => 'classicly-link'
       #greeting
         Welcome Colin!
       #review-box
@@ -84,7 +84,7 @@
             = radio_button_tag "book_rating_dynamic", (i + 1), ( (i+1) == 5), :class => 'dynamic-stars'
 
       #submit-review
-        Submit review
+        = link_to 'Submit review', '#', :class => 'classicly-link'
 
 
 
