@@ -119,7 +119,7 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(author, book)
 
       # And I click the download as PDF button
-      within('.download') do
+      within('.cover-column .buttons') do
         find(:xpath, ".//a[1]").click
       end
 
