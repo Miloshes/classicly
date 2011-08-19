@@ -57,6 +57,9 @@
   $( function (){
     $( "#read_online_button_container a" ).click( function(){
       if ( _gaq ) _gaq.push( ['_trackEvent', 'books', 'read_online', "id_#{@book.id}"] );
-      if ( _kmq ) _kmq.push(['book', 'Read Online', {'id': "id_#{@book.id}"}]);
+      if ( _kmq ) {
+        _kmq.push(['book', 'Read Online', {'id': "id_#{@book.id}"}]);
+        _kmq.push([ "record", "User Activated" ]);
+      }
     });
   });
