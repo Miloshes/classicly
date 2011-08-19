@@ -1211,6 +1211,28 @@ ul.ui-autocomplete {
   overflow-x: hidden;
 }
 /* line 77, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #rate .text {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 110px;
+}
+/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #book-page .book-column #rate .text {
+  overflow-x: hidden;
+}
+/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #rate .stars {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 350px;
+}
+/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #book-page .book-column #rate .stars {
+  overflow-x: hidden;
+}
+/* line 85, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
   background: url(/images/new_reviews_editor.png);
   width: 400px;

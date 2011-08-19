@@ -77,7 +77,12 @@
       #review-box
         = text_area_tag 'review'
       #rate
-        How many stars?
+        .text
+          How many stars?
+        .stars
+          - 5.times do|i|
+            = radio_button_tag "book_rating_dynamic", (i + 1), ( (i+1) == 5), :class => 'dynamic-stars'
+
       #submit-review
         Submit review
 
@@ -86,6 +91,7 @@
 :javascript
   $(function(){
     $('input.star').rating();
+    $('input.dynamic-stars').rating();
     $('.rating-cancel').remove();
   });
 
