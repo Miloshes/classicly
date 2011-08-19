@@ -1210,6 +1210,15 @@ ul.ui-autocomplete {
 * html #book-page .book-column #reviews-rating-count #write-review {
   overflow-x: hidden;
 }
+/* line 77, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #review-box textarea {
+  background: url(/images/new_reviews_editor.png);
+  width: 400px;
+  height: 89px;
+  border: none;
+  resize: none;
+  padding: 7px 0px 0px 7px;
+}
 
 /* line 1, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page {
