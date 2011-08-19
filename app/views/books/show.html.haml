@@ -62,8 +62,31 @@
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
 
+      .clear
+
+      #book_rating
+        - 5.times do|i|
+          = radio_button_tag "book_rating", (i + 1), ( (i+1) == 5), :class => 'star'
+      #reviews-rating-count
+        #counts
+          3 Reviews, 22 Ratings
+        #write-review
+          Write a review
+        #greeting
+          Welcome Colin!
+        #review-box
+        #rate
+          How many stars?
+        #submit-review
+          Submit review
+
 
 
 :javascript
+  $(function(){
+    $('input.star').rating();
+    $('.rating-cancel').remove();
+  });
+
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
   else _kmq.push([ 'record', 'Book Viewed', { 'name': "#{@book.pretty_title}" } ]);

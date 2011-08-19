@@ -6,6 +6,7 @@
     = include_stylesheets :common
     = stylesheet_link_tag "custom-theme/jquery-ui-1.8.14.custom.css"
     = yield :title
+
     = javascript_include_tag 'http://www.google.com/jsapi'
     = javascript_tag do
       var theme = "flick";
@@ -49,7 +50,7 @@
     s.parentNode.insertBefore(p, s);
     })();
     </script>
-    
+
     = yield :notifications
 
     #site-container

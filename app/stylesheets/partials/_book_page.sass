@@ -63,17 +63,12 @@
       :font-size #333333
       :font-size 14px
 
-    .share
-      :height 50px
-      +column(18, true)
+    #book-rating, #reviews-rating-count, #greeting, #review-box, #rate, #submit-review 
+      +column(12, true)
 
+    #reviews-rating-count
+      #counts
+        +column(8)
 
-    .download-highlight
-      +column(8, true)
-      :background #ffffd7
-      :border 1px solid #e2c822
-      :text-align center
-      :padding 10px
-      img, a
-        :margin 0 auto
-
+      #write-review
+        +column(4, true)
