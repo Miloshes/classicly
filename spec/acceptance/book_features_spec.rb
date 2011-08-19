@@ -24,7 +24,9 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # I should see a button to read it online
-      page.should have_css('.read a')
+      within('.cover-column .buttons') do
+        page.should have_content('Use our online reader')
+      end
     end
 
     scenario 'Going to read online page with a book that can not be read(does not have book pages)' do
@@ -70,7 +72,9 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # And I click the download mp3 button
-      find(:xpath, "//a[@class='download-as-mp3']").click
+      within('.cover-column .buttons') do
+        find(:xpath, ".//a[1]").click
+      end
 
       # then I should see the download link for the mp3 title
       within('#book-metadata h1') do

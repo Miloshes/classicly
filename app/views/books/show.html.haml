@@ -14,6 +14,11 @@
     #current-book.cover.medium
       = cover_image_link(@book, 2)
     .buttons
+      - if @book.is_rendered_for_online_reading
+        = link_to image_tag('read_online_new.png'), seo_url(@book.seo_slugs.read_online.first.slug)
+        %span.link_info
+          Use our online reader
+
       - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
         = link_to image_tag('new_download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) 
         %span.link_info
@@ -58,8 +63,6 @@
       %p= simple_format(@book.description)
 
 
-      .read
-        = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug) if @book.read_online?
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');

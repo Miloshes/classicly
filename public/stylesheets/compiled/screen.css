@@ -1189,11 +1189,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column .share {
   overflow-x: hidden;
 }
-/* line 70, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column .read {
-  margin-top: 5px;
-}
-/* line 74, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 71, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight {
   display: inline;
   float: left;
@@ -1208,7 +1204,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column .download-highlight {
   overflow-x: hidden;
 }
-/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 77, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight img, #book-page .book-column .download-highlight a {
   margin: 0 auto;
 }
