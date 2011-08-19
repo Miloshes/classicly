@@ -1085,18 +1085,20 @@ ul.ui-autocomplete {
 * html #book-page {
   overflow-x: hidden;
 }
-/* line 6, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 8, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
+  width: 150px;
+  padding-right: 40px;
+  color: #979797;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .cover-column {
   overflow-x: hidden;
 }
-/* line 8, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 13, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column h1 {
   font-size: 16px;
   font-weight: bold;
@@ -1105,14 +1107,27 @@ ul.ui-autocomplete {
   float: left;
   width: 100%;
 }
-/* line 15, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 20, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column h4 {
   font-size: 14px;
   color: #333333;
   font-size: 16px;
   font-weight: bold;
 }
-/* line 22, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 26, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #current-book {
+  margin-bottom: 0px;
+}
+/* line 30, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column .buttons span.link_info {
+  display: block;
+  color: #979797;
+}
+/* line 34, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column .buttons a, #book-page .cover-column .buttons span.link_info {
+  margin-bottom: 15px;
+}
+/* line 39, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column {
   display: inline;
   float: left;
@@ -1123,28 +1138,33 @@ ul.ui-autocomplete {
 * html #book-page .book-column {
   overflow-x: hidden;
 }
-/* line 24, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 42, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h1 {
   font-size: 22px;
   margin: 0;
   padding: 0;
 }
-/* line 28, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 47, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 {
   font-size: 14px;
   color: #333333;
+  margin-bottom: 20px;
 }
-/* line 31, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 52, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 a {
   text-decoration: none;
   color: #333333;
   background: #ffffd7;
 }
-/* line 35, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 56, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column h2 a:hover {
   background: #ffff66;
 }
-/* line 37, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 58, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column .like-send {
+  margin-top: 20px;
+}
+/* line 61, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p {
   display: inline;
   float: left;
@@ -1157,7 +1177,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column p {
   overflow-x: hidden;
 }
-/* line 41, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 66, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .share {
   height: 50px;
   display: inline;
@@ -1169,28 +1189,11 @@ ul.ui-autocomplete {
 * html #book-page .book-column .share {
   overflow-x: hidden;
 }
-/* line 46, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 70, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .read {
   margin-top: 5px;
 }
-/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column p.explanation {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 270px;
-  color: #999999;
-  font-size: 14px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column p.explanation {
-  overflow-x: hidden;
-}
-/* line 53, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column p.explanation.first {
-  margin-top: 10px;
-}
-/* line 56, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 74, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight {
   display: inline;
   float: left;
@@ -1205,7 +1208,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column .download-highlight {
   overflow-x: hidden;
 }
-/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight img, #book-page .book-column .download-highlight a {
   margin: 0 auto;
 }
