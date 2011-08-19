@@ -25,7 +25,7 @@
           Just Drag & Drop the file to your Kindle
 
       - if @book.has_audiobook
-        = link_to image_tag('new_download_mp3.png'), seo_url(@book.seo_slugs.mp3.first.slug)
+        = link_to image_tag('new_download_mp3.png'), seo_url(@book.audiobook_download_slug)
         %span.link_info
           Free MP3 audiobook, volunteer read
 
