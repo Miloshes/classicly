@@ -73,7 +73,11 @@
         #write-review
           = link_to 'Write a review', '#', :class => 'classicly-link' unless current_login
       #greeting
-        Welcome Colin!
+        .profile-pic
+          <fb:profile-pic uid="614094002" size="thumb" width="50" height="50" ></fb:profile-pic>
+        .text
+          %p
+            Welcome back, Nacho.
       #review-box
         = text_area_tag 'review'
       #rate
