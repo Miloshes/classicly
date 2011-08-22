@@ -246,10 +246,10 @@ class Book < ActiveRecord::Base
   end
 
   def set_average_rating
-    self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
+    self.avg_rating = self.ratings.blank? ? 0 : (self.ratings.sum('score').to_f / self.ratings.size.to_f).round
     self.save
   end
-  
+
   def update_seo_slugs
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['pdf', 'kindle', 'online'])

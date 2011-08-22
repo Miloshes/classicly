@@ -65,8 +65,8 @@
       .clear
 
       #book_rating
-        - 5.times do|i|
-          = radio_button_tag "book_rating", (i + 1), ( (i+1) == 5), :class => 'star'
+        = raw rate_book('book_rating', 'star', @book.avg_rating)
+
       #reviews-rating-count
         #counts
           3 Reviews, 22 Ratings
@@ -88,7 +88,7 @@
         .text
           How many stars?
         .stars
-          = raw rate_book(current_login, @book, 'book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 5)
+          = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 5)
 
       #submit-review
         = link_to 'Submit review', '#', :class => 'classicly-link'

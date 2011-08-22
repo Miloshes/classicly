@@ -216,7 +216,7 @@ end
 #==========================================================================================================================
 
   #stars helper
-  def rate_book(user, book, group_name, klass, default)
+  def rate_book(group_name, klass, default)
     html = ""
     0.upto(4) do|i|
       html += radio_button_tag(group_name, (i + 1) , ((i + 1) == default), :class => klass)
