@@ -22,26 +22,15 @@ $( function(){
 
 
     // REVIEWS
-    $( '#write-review a' ).click( function(){
+      $( '#write-review a' ).click( function(){
       writeReview();
       return false;
     });
 
 
     $( '#submit-review a' ).click( function(){
-      var content = $( '#review-box textarea' ).val();
-      var book_id = $( '#book-page' ).attr( 'name' );
-      var data = 'review[content]=' + content;
-
-      $.ajax({
-        type: 'POST',
-        url: '/books/' + book_id + '/reviews',
-        data: data,
-        success: function(){
-          // show the new review
-        }
-      });
-
+      $('#review-box form').submit();
+      return false;
     });
 
   });

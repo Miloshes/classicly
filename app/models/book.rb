@@ -210,15 +210,6 @@ class Book < ActiveRecord::Base
     (self.cached_slug =~ /--[\d]+/) != nil
   end
 
-  def on_download(user_id, mix_panel_object)
-    Book.update_counters self.id, :downloaded_count => 1
-    mix_panel_properties = {:book => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
-  end
-
   def optimal_friendly_id
     return self.pretty_title if self.pretty_title.length <= 75
     self.pretty_title[0, 75]

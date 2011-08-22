@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
   after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_for(login, reviewable, data)
-    review  = reviewable.reviews.build(:reviewer => login, :fb_connect_id => login.fb_connect_id, :content => data[:review][:content])
+    review  = reviewable.reviews.build(:reviewer => login, :fb_connect_id => login.fb_connect_id, :content => data[:review])
     review.save
     review
   end

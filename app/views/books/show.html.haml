@@ -69,7 +69,9 @@
 
       #reviews-rating-count
         #counts
-          3 Reviews, 22 Ratings
+          = pluralize(@book.reviews.count, 'review')
+          ,
+          = pluralize(@book.ratings.count, 'rating')
         #write-review
           = link_to 'Write a review', '#', :class => 'classicly-link' unless current_login
 
@@ -83,7 +85,8 @@
               <fb:name uid=#{current_login.fb_connect_id} capitalize="true" useyou="false"></fb:name>
 
       #review-box
-        = text_area_tag 'review'
+        = form_tag "/books/#{@book.id}/reviews" do|form|
+          = text_area_tag 'review'
       #rate
         .text
           How many stars?
