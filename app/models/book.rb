@@ -13,6 +13,7 @@ class Book < ActiveRecord::Base
   has_many :collections, :through => :collection_book_assignments
   has_many :download_formats
   has_and_belongs_to_many :genres
+  has_many :ratings, :as => :rateable
   has_many :reviews, :as => :reviewable
   has_many :anonymous_reviews, :as => :reviewable
   has_one :seo_info, :as => :infoable
@@ -220,15 +221,6 @@ class Book < ActiveRecord::Base
     (self.cached_slug =~ /--[\d]+/) != nil
   end
 
-  def on_download(user_id, mix_panel_object)
-    Book.update_counters self.id, :downloaded_count => 1
-    mix_panel_properties = {:book => self.pretty_title}
-    if user_id
-      mix_panel_properties.merge!({:id => user_id})
-    end
-    mix_panel_object.track_event("Download Book", mix_panel_properties) if Rails.env.production?
-  end
-
   def optimal_friendly_id
     return self.pretty_title if self.pretty_title.length <= 75
     self.pretty_title[0, 75]
@@ -245,16 +237,21 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
+  def rating_by_user(user)
+    rating = self.ratings.find_by_fb_connect_id(user.fb_connect_id)
+    rating.try(:score)
+  end
+
   # NOTE: we should remove this. It's shorter, but it's actually harder to figure out what it does
   def read_online?
     self.is_rendered_for_online_reading == true
   end
 
   def set_average_rating
-    self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
+    self.avg_rating = self.ratings.blank? ? 0 : (self.ratings.sum('score').to_f / self.ratings.size.to_f).round
     self.save
   end
-  
+
   def update_seo_slugs
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['pdf', 'kindle', 'online'])

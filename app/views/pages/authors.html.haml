@@ -52,3 +52,7 @@
           = "Page #{params[:page]}"
     = render 'collection_list', :collections => @collections
     = paginate @collections
+
+:javascript
+  if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
+  else _kmq.push([ 'record', 'Authors Page Viewed' ]);

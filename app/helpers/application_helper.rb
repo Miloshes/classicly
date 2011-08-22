@@ -214,15 +214,16 @@ def special_format_download_book_link(format)
   content_tag(:span, @format == 'azw' ? "Click to download for Kindle" : "Click to download as #{format.upcase}")
 end
 #==========================================================================================================================
-#stars helper
- def ratings_input_for_book(book)
-   html = ""
-   1.upto(5) do|rating|
-    html += book.radio_button('rating', rating, :class => 'star')
-   end
-   html
- end
- 
+
+  #stars helper
+  def rate_book(group_name, klass, default)
+    html = ""
+    0.upto(4) do|i|
+      html += radio_button_tag(group_name, (i + 1) , ((i + 1) == default), :class => klass)
+    end
+     html
+  end
+
  def show_review_rating_stars(rating)
    stars_on = rating || 1
    stars_off = 5 - stars_on

@@ -45,7 +45,7 @@ class Login < ActiveRecord::Base
     is_new_login = false
 
     unless login
-      city, country = user_profile['location']['name'].split(', ')
+      city, country = user_profile['location'] ? user_profile['location']['name'].split(',') : [ "", ""]
 
       login = Login.create(
           :fb_connect_id    => user_profile['id'],

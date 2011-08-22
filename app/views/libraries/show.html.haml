@@ -9,9 +9,19 @@
   - else
     = render :partial => 'library_with_content'
 
+
 - if @new_book_in_library
-  :javascript
-    $(document).ready(function() {
-      window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
-      if( _gaq ) _gaq.push(["_trackEvent", "books", "download", "id_#{@new_book_in_library.id}"]);
-    });
+  <script>
+  </script>
+
+  <script>
+  $(document).ready(function() {
+  if( _gaq ) _gaq.push(["_trackEvent", "books", "download", "id_#{@new_book_in_library.id}"]);
+  if( _kmq ) {
+  _kmq.push(["record", "User Activated"]);
+  _kmq.push(["record", 'Downloaded book', { "id" : "id_#{@new_book_in_library.id}"}]);
+  }
+
+  window.location.replace("#{serve_downloadable_file_url(@new_book_in_library, @download_format)}");
+  });
+  </script>

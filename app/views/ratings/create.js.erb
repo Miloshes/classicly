@@ -1,0 +1,1 @@
+$( '#reviews-rating-count #counts' ).html( "<%= pluralize(@rateable.reviews.count, 'review')%> , <%=pluralize( @rateable.ratings.count, 'rating' )%>" );

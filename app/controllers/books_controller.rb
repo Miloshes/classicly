@@ -72,12 +72,8 @@ class BooksController < ApplicationController
     session[:review] = nil
   end
 
-  def show_review_form
-    @review = Review.new
-    render :layout => false
-  end
 
-  private 
+  private
 
   def find_book_with_specific_author
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first

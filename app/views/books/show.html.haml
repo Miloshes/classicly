@@ -13,45 +13,77 @@
   .cover-column
     #current-book.cover.medium
       = cover_image_link(@book, 2)
-    - unless @related_books.empty?
-      %h4 Related
-      .cover.small.related
-        = cover_image_link_with_text(@related_books.first, 2)
-      - 1.upto(@related_books.count - 1) do|index|
-        .cover.tiny.related
-          = cover_image_link_with_text(@related_books[index], 2)
-  .book-column
-    #book-metadata.grid_5.omega
-      - cache :action => 'show', :action_suffix => 'book_details' do
-        %h1= @book.pretty_title
-        %h2 
-          by
-          %span.book-author
-            = book_author_link(@book)
+    .buttons
+      - if @book.is_rendered_for_online_reading
+        = link_to image_tag('read_online_new.png'), seo_url(@book.seo_slugs.read_online.first.slug)
+        %span.link_info
+          Use our online reader
 
-        -# Google AdSense. DO NOT MODIFY.
-        <script type="text/javascript"><!--
-        google_ad_client = "ca-pub-7773516323337861";
-        /* Book Page 250&#42;300 */
-        google_ad_slot = "6647913200";
-        google_ad_width = 300;
-        google_ad_height = 250;
-        //-->
-        </script>
-        <script type="text/javascript"
-        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
+      - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+        = link_to image_tag('new_download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) 
+        %span.link_info
+          Laptops & iPad
 
-        .like-send
-          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-        %p= simple_format(@book.description)
+      - if @book.available_in_format?('kindle') && @book.has_slug_for_format?('kindle')
+        = link_to image_tag('new_download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)
+        %span.link_info
+          Just Drag & Drop the file to your Kindle
 
+      - if @book.has_audiobook
+        = link_to image_tag('new_download_mp3.png'), seo_url(@book.audiobook_download_slug)
+        %span.link_info
+          Free MP3 audiobook, volunteer read
 
-      .download
-        = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
-        = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
-        = link_to image_tag('mp3-download_03.png'), seo_url(@book.audiobook_download_slug), :class => 'download-as-mp3' if @book.has_audiobook
-      .read
-        = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug) if @book.read_online?
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
       %p.explanation We don’t pay a cent, so neither do you.
+
+  .book-column
+    #book-metadata.grid_5.omega
+      %h1= @book.pretty_title
+      %h2
+        by
+        %span.book-author
+          = book_author_link(@book)
+
+      -# Google AdSense. DO NOT MODIFY.
+      <script type="text/javascript"><!--
+      google_ad_client = "ca-pub-7773516323337861";
+      /* Book Page 250&#42;300 */
+      google_ad_slot = "6647913200";
+      google_ad_width = 300;
+      google_ad_height = 250;
+      //-->
+      </script>
+      <script type="text/javascript"
+      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+      </script>
+
+      .like-send
+        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+      %p= simple_format(@book.description)
+
+      .clear
+      #book_rating
+        = raw rate_book('book_rating', 'star', @book.avg_rating)
+
+      #reviews-rating-count
+        #counts
+          = pluralize(@book.reviews.count, 'review')
+          ,
+          = pluralize(@book.ratings.count, 'rating')
+
+        #write-review
+          = link_to 'Write a review', '#', :class => 'classicly-link' unless current_login
+
+      = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
+
+      .clear
+      #reviews
+      = render :partial => 'books/review', :collection => @book.reviews
+
+
+= javascript_include_tag 'review-ratings'
+
+:javascript
+  if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
+  else _kmq.push([ 'record', 'Book Viewed', { 'name': "#{@book.pretty_title}" } ]);

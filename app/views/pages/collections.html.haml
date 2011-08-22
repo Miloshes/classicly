@@ -56,7 +56,9 @@
     = render 'collection_list', :collections => @collections
     = paginate @collections
 
-
+<script>
+if( _kmq ) _kmq.push([ 'record', 'Collections Page Viewed' ]);
+</script>
 
 :javascript
   $(function(){
@@ -74,3 +76,4 @@
       offset: [-25, 5]
     });
   });
+

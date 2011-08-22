@@ -1,0 +1,22 @@
+$("<%= escape_javascript(render :partial => 'books/review_form',
+:locals => {:book => @book, :login => @login}) %>").insertBefore('#reviews');
+
+$( 'input.dynamic-stars' ).rating({
+  callback: function(value, link){
+    var bookId =  $( '#book-page' ).attr( 'name' );
+    var data = 'book_id=' + bookId + '&rating=' + value;
+
+    // send the rating
+    $.ajax({
+      type: 'POST',
+      url: '/ratings',
+      data: data,
+      success: function(){
+      }
+    });
+
+  }// end callback
+});// end rating
+
+$( '.rating-cancel' ).remove();
+

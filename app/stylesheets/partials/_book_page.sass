@@ -1,10 +1,15 @@
 #book-page
   +column(18, true)
-  :margin
-    :top 30px
-  :text-align left
+
+  margin:
+    top: 30px
+  text-align: left
+
   .cover-column
-    +column(5)
+    +column(4)
+    +append(1)
+
+    color: #979797
     h1
       :font-size 16px
       :font-weight bold
@@ -18,47 +23,79 @@
       font-size: 16px
       font-weight: bold
 
+    #current-book
+      margin-bottom: 0px
+
+    .buttons
+      span.link_info
+        display: block
+        color: #979797
+
+      a, span.link_info
+        margin-bottom: 15px
+
+
 
   .book-column
     +column(12, true)
+
     h1
       :font-size 22px
       :margin 0
       :padding 0
+
     h2
       :font-size 14px
       :color #333333
+      margin-bottom: 20px
+
       a  
         :text-decoration none
         :color #333333
         :background #ffffd7
         &:hover
           :background #ffff66
+    .like-send
+      margin-top: 20px
+
     p
       +column(11)
       :font-size #333333
       :font-size 14px
-    .share
-      :height 50px
-      +column(18, true)
 
-    .download
-    .read
-      :margin
-        :top 5px
-    p.explanation
-      +column(7, true)
-      :color #999999
-      :font-size 14px
-      &.first
-        :margin
-          :top 10px
-    .download-highlight
-      +column(8, true)
-      :background #ffffd7
-      :border 1px solid #e2c822
-      :text-align center
-      :padding 10px
-      img, a
-        :margin 0 auto
+    #book-rating, #reviews-rating-count, #greeting, #review-box, #rate, #submit-review 
+      +column(12, true)
 
+    #reviews-rating-count
+      #counts
+        +column(8)
+
+      #write-review
+        +column(4, true)
+
+    #greeting
+      .profile-pic
+        +column(2)
+
+      .text
+        +column(10, true)
+        p
+          margin-top: 33px
+
+
+    #rate
+      .text
+        +column(3)
+
+      .stars
+        +column(9, true)
+
+
+    #review-box
+      textarea
+        background: url(/images/new_reviews_editor.png)
+        width: 400px
+        height: 89px
+        border: none
+        resize: none
+        padding: 7px 0px 0px 7px

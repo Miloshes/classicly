@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810145645) do
+ActiveRecord::Schema.define(:version => 20110822175128) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -79,13 +79,12 @@ ActiveRecord::Schema.define(:version => 20110810145645) do
 
   create_table "author_quotings", :force => true do |t|
     t.integer  "blog_post_id"
-    t.integer  "author_id"
     t.text     "quoted_text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "collection_id"
   end
 
-  add_index "author_quotings", ["author_id"], :name => "index_author_quotings_on_author_id"
   add_index "author_quotings", ["blog_post_id"], :name => "index_author_quotings_on_blog_post_id"
 
   create_table "authors", :force => true do |t|
@@ -280,12 +279,21 @@ ActiveRecord::Schema.define(:version => 20110810145645) do
     t.string   "ios_device_id"
   end
 
+  create_table "ratings", :force => true do |t|
+    t.string   "fb_connect_id"
+    t.integer  "login_id"
+    t.integer  "score"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "reviews", :force => true do |t|
     t.string   "fb_connect_id"
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
-    t.integer  "rating"
     t.datetime "created_at"
     t.integer  "login_id"
   end
