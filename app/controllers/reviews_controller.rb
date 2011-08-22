@@ -26,6 +26,11 @@ class ReviewsController < ApplicationController
     redirect_to author_book_url(@reviewable.author, @reviewable)  
   end
 
+  def show_form
+    @book = Book.find(params[:book_id])
+    @login = current_login
+  end
+
   private
   def find_reviewable
     params.each do |name, value|

@@ -1,23 +1,44 @@
-#form_box
-  .left
-    #profile-pic
-      = facebook_image(current_login.fb_connect_id)
-    .clear
-    #profile-name
-      %p
-        = current_login.first_name
-      %p
-        = current_login.last_name
-  .right
-    #review_label
-      Review: *
-    = form_for [book, review] do |f|
+-##form_box
+  -#.left
+    -##profile-pic
+      -#= facebook_image(current_login.fb_connect_id)
+    -#.clear
+    -##profile-name
+      -#%p
+        -#= current_login.first_name
+      -#%p
+        -#= current_login.last_name
+  -#.right
+    -##review_label
+      -#Review: *
+    -#= form_for [book, review] do |f|
       
-      = f.text_area :content
-      .clear
-      = render 'shared/error_messages', :target => review
-      #rating_label
-        Rating:
-      .ratings
-        = raw ratings_input_for_book(f)
-      = image_submit_tag 'review-submit-button.png', :id => 'review_submit'
+      -#= f.text_area :content
+      -#.clear
+      -#= render 'shared/error_messages', :target => review
+      -##rating_label
+        -#Rating:
+      -#.ratings
+        -#= raw ratings_input_for_book(f)
+      -#= image_submit_tag 'review-submit-button.png', :id => 'review_submit'
+
+- if current_login
+  #greeting
+    .profile-pic
+      = facebook_image(login.fb_connect_id)
+    .text
+      %p
+        Welcome back, #{login.first_name} #{login.last_name}
+
+  #review-box
+    = form_tag "/books/#{book.id}/reviews" do|form|
+      = text_area_tag 'review'
+  #rate
+    .text
+      How many stars?
+    .stars
+      = raw rate_book('book_rating_dynamic', 'dynamic-stars', book.rating_by_user(login) || 5)
+
+  #submit-review
+    = link_to 'Submit review', '#', :class => 'classicly-link'
+

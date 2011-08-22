@@ -4,7 +4,6 @@ class RatingsController < ApplicationController
     @rateable = find_rateable
     rating = @rateable.ratings.find_or_create_by_fb_connect_id(current_login.fb_connect_id)
     rating.update_attributes!(:score => params[:rating], :rater => current_login)
-    render :text => ''
   end
 
   private

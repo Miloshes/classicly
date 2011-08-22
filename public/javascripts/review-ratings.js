@@ -1,6 +1,7 @@
 $( function(){
     // RATINGS
     $( 'input.star' ).rating('readOnly', true);
+
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
         var bookId =  $( '#book-page' ).attr( 'name' );
@@ -28,13 +29,12 @@ $( function(){
     });
 
 
-    $( '#submit-review a' ).click( function(){
+    $( '#submit-review a' ).live( 'click', function(){
       $('#review-box form').submit();
       return false;
     });
 
   });
-
 
   // LOG THROUGH FACEBOOK
   function writeReview(){
@@ -62,8 +62,11 @@ $( function(){
                 else
                   _kmq.push(["record", "User Signed Up"]);
 
-                // notify the Library model about the new registration
-                $.ajax({ url: '#{library_handle_facebook_login_url}'});
+                var bookId = $( '#book-page' ).attr( 'name' );
+                $.ajax({ 
+                  url: '/show_review_form',
+                  data: 'book_id=' + bookId
+                });
               }
             });
           }

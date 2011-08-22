@@ -63,7 +63,6 @@
       %p= simple_format(@book.description)
 
       .clear
-
       #book_rating
         = raw rate_book('book_rating', 'star', @book.avg_rating)
 
@@ -72,29 +71,16 @@
           = pluralize(@book.reviews.count, 'review')
           ,
           = pluralize(@book.ratings.count, 'rating')
+
         #write-review
           = link_to 'Write a review', '#', :class => 'classicly-link' unless current_login
 
-      - if current_login
-        #greeting
-          .profile-pic
-            <fb:profile-pic uid=#{current_login.fb_connect_id} size='thumb' width='50' height='50'> </fb:profile-pic>
-          .text
-            %p
-              Welcome back,
-              <fb:name uid=#{current_login.fb_connect_id} capitalize="true" useyou="false"></fb:name>
+      = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
-      #review-box
-        = form_tag "/books/#{@book.id}/reviews" do|form|
-          = text_area_tag 'review'
-      #rate
-        .text
-          How many stars?
-        .stars
-          = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 5)
+      .clear
+      #reviews
+      = render :partial => 'books/review', :collection => @book.reviews
 
-      #submit-review
-        = link_to 'Submit review', '#', :class => 'classicly-link'
 
 = javascript_include_tag 'review-ratings'
 

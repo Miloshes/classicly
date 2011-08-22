@@ -63,6 +63,8 @@ Classicly::Application.routes.draw do
   match 'search' => 'search#show', :method => :post
   match 'search/autocomplete' => 'search#autocomplete'
 
+  match 'show_review_form' => 'reviews#show_form'
+
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
@@ -72,13 +74,10 @@ Classicly::Application.routes.draw do
   match '/inc_audiobook_downloaded_count/:id' => 'audiobooks#inc_downloaded_count'
 
   resources :books, :only => :index do
-    get :show_review_form, :on => :member
     resources :reviews
   end
 
-  resources :collections, :only => :show do
-    resources :reviews
-  end
+  resources :collections, :only => :show
 
   resources :ratings, :only => :create
 

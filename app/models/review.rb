@@ -4,7 +4,7 @@ class Review < ActiveRecord::Base
 
   validates_presence_of :content
 
-  after_create :deliver_review_created_notification_to_flowdock
+  #after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_for(login, reviewable, data)
     review  = reviewable.reviews.build(:reviewer => login, :fb_connect_id => login.fb_connect_id, :content => data[:review])
