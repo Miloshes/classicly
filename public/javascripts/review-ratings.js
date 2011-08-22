@@ -1,12 +1,32 @@
 $( function(){
+    // RATINGS
     $( 'input.star' ).rating('readOnly', true);
-    $( 'input.dynamic-stars' ).rating();
+    $( 'input.dynamic-stars' ).rating({
+      callback: function(value, link){
+        var bookId =  $( '#book-page' ).attr( 'name' );
+        var data = 'book_id=' + bookId + '&rating=' + value;
+
+        // send the rating
+        $.ajax({
+          type: 'POST',
+          url: '/ratings',
+          data: data,
+          success: function(){
+          }
+        });
+
+      }// end callback
+    });// end rating
+
     $( '.rating-cancel' ).remove();
 
+
+    // REVIEWS
     $( '#write-review a' ).click( function(){
       writeReview();
       return false;
     });
+
 
     $( '#submit-review a' ).click( function(){
       var content = $( '#review-box textarea' ).val();
@@ -22,20 +42,17 @@ $( function(){
         }
       });
 
-      alert( data );
-      return false;
     });
 
   });
 
+
+  // LOG THROUGH FACEBOOK
   function writeReview(){
     // check facebook status
     FB.getLoginStatus(function(response) {
       if (response.authResponse) {
         // logged in. This should not have been called.
-        FB.api('/me', function( response ) {
-           alert( response.name );
-        });
 
       }else{
         console.log("You are not logged in!");
@@ -65,4 +82,3 @@ $( function(){
       }
     });
   }
-

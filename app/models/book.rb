@@ -13,6 +13,7 @@ class Book < ActiveRecord::Base
   has_many :collections, :through => :collection_book_assignments
   has_many :download_formats
   has_and_belongs_to_many :genres
+  has_many :ratings, :as => :rateable
   has_many :reviews, :as => :reviewable
   has_many :anonymous_reviews, :as => :reviewable
   has_one :seo_info, :as => :infoable

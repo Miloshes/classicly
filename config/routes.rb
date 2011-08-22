@@ -1,4 +1,5 @@
 Classicly::Application.routes.draw do
+
   namespace 'admin' do
     root :to => "base#home"
     match 'admin_seo' => 'admin_seo#main'
@@ -78,6 +79,8 @@ Classicly::Application.routes.draw do
   resources :collections, :only => :show do
     resources :reviews
   end
+
+  resources :ratings, :only => :create
 
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
   match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 

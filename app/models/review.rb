@@ -2,13 +2,12 @@ class Review < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
   belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
 
-  validates :rating, :presence => true, :numericality => true
+  validates_presence_of :content
 
   after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_for(login, reviewable, data)
     review  = reviewable.reviews.build(:reviewer => login, :fb_connect_id => login.fb_connect_id, :content => data[:review][:content])
-    debugger
     review.save
     review
   end
