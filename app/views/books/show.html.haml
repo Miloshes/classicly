@@ -104,6 +104,24 @@
       return false;
     });
 
+    $( '#submit-review a' ).click( function(){
+      var content = $( '#review-box textarea' ).val();
+      var book_id = "#{@book.id}"
+      var data = 'review[content]=' + content;
+
+      $.ajax({
+        type: 'POST',
+        url: '/books/' + book_id + '/reviews',
+        data: data,
+        success: function(){
+          console.log('Hola!');
+        }
+      });
+
+      alert( data );
+      return false;
+    });
+
   });
 
   function writeReview(){

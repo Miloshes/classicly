@@ -6,6 +6,13 @@ class Review < ActiveRecord::Base
 
   after_create :deliver_review_created_notification_to_flowdock
 
+  def self.create_for(login, reviewable, data)
+    review  = reviewable.reviews.build(:reviewer => login, :fb_connect_id => login.fb_connect_id, :content => data[:review][:content])
+    debugger
+    review.save
+    review
+  end
+
   def self.create_or_update_from_ios_client_data(data)
     # == fetch the reviewable
     if data['book_id']
