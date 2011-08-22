@@ -95,7 +95,7 @@
 :javascript
   // we will move this to a separate file: rating-et-reviews.js
   $( function(){
-    $( 'input.star' ).rating();
+    $( 'input.star' ).rating('readOnly', true);
     $( 'input.dynamic-stars' ).rating();
     $( '.rating-cancel' ).remove();
 
