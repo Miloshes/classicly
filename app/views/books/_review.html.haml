@@ -1,10 +1,12 @@
-%div
+%div.individual_review
   .profile-pic
     <fb:profile-pic uid=#{review.reviewer.fb_connect_id} size='thumb' width='50' height='50'> </fb:profile-pic>
 
   .profile-name
     %p.name
       = review.reviewer.first_name
+      &nbsp;
+      = review.reviewer.last_name
     %p
       #{review.created_at.to_s :review_format}
 
