@@ -5,7 +5,8 @@ $( function(){
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
         var bookId =  $( '#book-page' ).attr( 'name' );
-        var data = 'book_id=' + bookId + '&rating=' + value;
+        var klass = $( '#book_rating' ).attr( 'name' );
+        var data = klass + '_id=' + bookId + '&rating=' + value;
 
         // send the rating
         $.ajax({

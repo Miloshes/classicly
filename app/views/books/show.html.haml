@@ -63,7 +63,7 @@
       %p= simple_format(@book.description)
 
       .clear
-      #book_rating
+      #book_rating{:name => 'book' }
         = raw rate_book('book_rating', 'star', @book.avg_rating)
 
       #reviews-rating-count
