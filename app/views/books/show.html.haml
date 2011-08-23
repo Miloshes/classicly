@@ -64,13 +64,22 @@
         .like-send
           <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
         %p= simple_format(@book.description)
-        
+
         <script>_kmq.push(["set", {"Download Buttons": "Left Side"}]);</script>
 
   - else
     .cover-column
       #current-book.cover.medium
         = cover_image_link(@book, 2)
+      - unless @related_books.empty?
+        %h4 Related
+        .cover.small.related
+          = cover_image_link_with_text(@related_books.first, 2)
+
+        - 1.upto(@related_books.count - 1) do|index|
+          .cover.tiny.related
+            = cover_image_link_with_text(@related_books[index], 2)
+
 
     .book-column
       #book-metadata.grid_5.omega
@@ -106,7 +115,7 @@
           = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug) if @book.read_online?
         %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
         %p.explanation We don’t pay a cent, so neither do you.
-        
+
         <script>_kmq.push(["set", {"Download Buttons": "Bottom"}]);</script>
 
 -#########################################################################################################################
