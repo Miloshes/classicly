@@ -31,7 +31,7 @@
         Welcome back, #{login.first_name}.
 
   #review-box
-    = form_tag "/books/#{book.id}/reviews" do|form|
+    = form_tag "/#{book.class.to_s.downcase.pluralize}/#{book.id}/reviews" do|form|
       = text_area_tag 'review'
   #rate
     .text

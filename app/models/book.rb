@@ -226,11 +226,6 @@ class Book < ActiveRecord::Base
     "read-#{str}online-free"
   end
 
-  def rating_by_user(user)
-    rating = self.ratings.find_by_fb_connect_id(user.fb_connect_id)
-    rating.try(:score)
-  end
-
   # NOTE: we should remove this. It's shorter, but it's actually harder to figure out what it does
   def read_online?
     self.is_rendered_for_online_reading == true
