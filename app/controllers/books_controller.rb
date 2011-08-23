@@ -14,11 +14,11 @@ class BooksController < ApplicationController
     @popular_books = Book.blessed.random 3
     @related_book = @book.find_fake_related(1).first
   end
-  
+
   def download_and_add_to_library
     session[:new_book_in_library] = params[:book_id]
     session[:download_format_for_the_new_book] = params[:download_format]
-    
+
     redirect_to library_url
   end
 
@@ -72,12 +72,8 @@ class BooksController < ApplicationController
     session[:review] = nil
   end
 
-  def show_review_form
-    @review = Review.new
-    render :layout => false
-  end
 
-  private 
+  private
 
   def find_book_with_specific_author
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first

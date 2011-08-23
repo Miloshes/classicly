@@ -1,5 +1,6 @@
 - content_for :title do
   %title= seo_front_end_title_helper(@book)
+
 - content_for :head do
   - if @book.needs_canonical_link?
     %link{:rel => "canonical", :href => "http://www.classicly.com/#{@book.author.cached_slug}/#{@book.canonical_slug}" }
@@ -8,62 +9,110 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
+-################################# TITLE AND HEAD #######################################################################################
 
 #book-page{:name => @book.id }
-  .cover-column
-    #current-book.cover.medium
-      = cover_image_link(@book, 2)
-    .buttons
-      - if @book.is_rendered_for_online_reading
-        = link_to image_tag('read_online_new.png'), seo_url(@book.seo_slugs.read_online.first.slug)
-        %span.link_info
-          Use our online reader
+  - if ab_test "download_buttons"
+    .cover-column
+      #current-book.cover.medium
+        = cover_image_link(@book, 2)
+      .buttons
+        - if @book.is_rendered_for_online_reading
+          = link_to image_tag('read_online_new.png'), seo_url(@book.seo_slugs.read_online.first.slug)
+          %span.link_info
+            Use our online reader
 
-      - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
-        = link_to image_tag('new_download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) 
-        %span.link_info
-          Laptops & iPad
+        - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+          = link_to image_tag('new_download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) 
+          %span.link_info
+            Laptops & iPad
 
-      - if @book.available_in_format?('kindle') && @book.has_slug_for_format?('kindle')
-        = link_to image_tag('new_download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)
-        %span.link_info
-          Just Drag & Drop the file to your Kindle
+        - if @book.available_in_format?('kindle') && @book.has_slug_for_format?('kindle')
+          = link_to image_tag('new_download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)
+          %span.link_info
+            Just Drag & Drop the file to your Kindle
 
-      - if @book.has_audiobook
-        = link_to image_tag('new_download_mp3.png'), seo_url(@book.audiobook_download_slug)
-        %span.link_info
-          Free MP3 audiobook, volunteer read
+        - if @book.has_audiobook
+          = link_to image_tag('new_download_mp3.png'), seo_url(@book.audiobook_download_slug)
+          %span.link_info
+            Free MP3 audiobook, volunteer read
 
-      %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
-      %p.explanation We don’t pay a cent, so neither do you.
+        %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
+        %p.explanation We don’t pay a cent, so neither do you.
 
-  .book-column
-    #book-metadata.grid_5.omega
-      %h1= @book.pretty_title
-      %h2
-        by
-        %span.book-author
-          = book_author_link(@book)
+    .book-column
+      #book-metadata.grid_5.omega
+        %h1= @book.pretty_title
+        %h2
+          by
+          %span.book-author
+            = book_author_link(@book)
 
-      -# Google AdSense. DO NOT MODIFY.
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Book Page 250&#42;300 */
-      google_ad_slot = "6647913200";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+        -# Google AdSense. DO NOT MODIFY.
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7773516323337861";
+        /* Book Page 250&#42;300 */
+        google_ad_slot = "6647913200";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
 
-      .like-send
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-      %p= simple_format(@book.description)
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        %p= simple_format(@book.description)
+        
+        <script>_kmq.push(["set", {"Download Buttons": "Left Side"}]);</script>
 
+  - else
+    .cover-column
+      #current-book.cover.medium
+        = cover_image_link(@book, 2)
 
+    .book-column
+      #book-metadata.grid_5.omega
+        %h1= @book.pretty_title
+        %h2
+          by
+          %span.book-author
+            = book_author_link(@book)
+
+        -# Google AdSense. DO NOT MODIFY.
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7773516323337861";
+        /* Book Page 250&#42;300 */
+        google_ad_slot = "6647913200";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
+
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+        %p= simple_format(@book.description)
+
+        .download
+          = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+          = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+          = link_to image_tag('mp3-download_03.png'), seo_url(@book.audiobook_download_slug), :class => 'download-as-mp3' if @book.has_audiobook
+
+        .read
+          = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug) if @book.read_online?
+        %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
+        %p.explanation We don’t pay a cent, so neither do you.
+        
+        <script>_kmq.push(["set", {"Download Buttons": "Bottom"}]);</script>
+
+-#########################################################################################################################
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
   else _kmq.push([ 'record', 'Book Viewed', { 'name': "#{@book.pretty_title}" } ]);
+
+-########################################################################################################################

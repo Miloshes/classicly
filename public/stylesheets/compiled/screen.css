@@ -1189,7 +1189,24 @@ ul.ui-autocomplete {
 * html #book-page .book-column .share {
   overflow-x: hidden;
 }
-/* line 71, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 70, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column p.explanation {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 270px;
+  color: #999999;
+  font-size: 14px;
+}
+/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #book-page .book-column p.explanation {
+  overflow-x: hidden;
+}
+/* line 75, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column p.explanation.first {
+  margin-top: 10px;
+}
+/* line 78, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight {
   display: inline;
   float: left;
@@ -1204,7 +1221,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column .download-highlight {
   overflow-x: hidden;
 }
-/* line 77, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 84, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .download-highlight img, #book-page .book-column .download-highlight a {
   margin: 0 auto;
 }
