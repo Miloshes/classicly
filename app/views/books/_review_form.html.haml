@@ -28,7 +28,7 @@
       = facebook_image(login.fb_connect_id)
     .text
       %p
-        Welcome back, #{login.first_name} #{login.last_name}
+        Welcome back, #{login.first_name}.
 
   #review-box
     = form_tag "/books/#{book.id}/reviews" do|form|

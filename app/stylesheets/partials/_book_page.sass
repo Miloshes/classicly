@@ -65,8 +65,13 @@
 
     #book-rating, #reviews-rating-count, #greeting, #review-box, #rate, #submit-review 
       +column(12, true)
+      font-size: 14px
+
+    #book_rating
+      margin-bottom: 25px
 
     #reviews-rating-count
+      margin-bottom: 10px
       #counts
         +column(8)
 
@@ -76,6 +81,9 @@
     #greeting
       .profile-pic
         +column(2)
+
+        img
+          border: 1px solid #333
 
       .text
         +column(10, true)
@@ -90,6 +98,8 @@
       .stars
         +column(9, true)
 
+    #submit-review
+      font-size: 16px
 
     #review-box
       textarea
@@ -99,3 +109,29 @@
         border: none
         resize: none
         padding: 7px 0px 0px 7px
+
+    #reviews
+      margin-top: 21px
+
+      .individual_review
+        +column(12, true)
+
+        .profile-pic
+          +column(2)
+
+          img
+            border: 1px solid #333
+
+        .profile-name
+          +column(10, true)
+          margin-left: -15px
+          padding-top: 21px
+
+          p
+            line-height: 1px
+
+            &.name
+              color: #333
+              font-weight: bold
+              font-size: 14px
+
