@@ -10,12 +10,13 @@ class Audiobook < ActiveRecord::Base
   
   has_many :chapters, :class_name => 'AudiobookChapter'
 
-  has_many :collection_audiobook_assignments
-  has_many :collections, :through => :collection_audiobook_assignments
-  has_many :reviews, :as => :reviewable
-  has_many :anonymous_reviews, :as => :reviewable
-  has_one :seo_info, :as => :infoable
-  has_many :seo_slugs, :as => :seoable
+  has_many  :collection_audiobook_assignments
+  has_many  :collections, :through => :collection_audiobook_assignments
+  has_many  :ratings, :as => :rateable 
+  has_many  :reviews, :as => :reviewable
+  has_many  :anonymous_reviews, :as => :reviewable
+  has_one   :seo_info, :as => :infoable
+  has_many  :seo_slugs, :as => :seoable
 
   validates :title, :presence => true
 

@@ -4,7 +4,7 @@
 - content_for :head do
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
-#book-page
+#book-page{:name => @book.id }
   .cover-column
     #current-audiobook.cover.medium
       = cover_image_link(@book, 2)
@@ -48,8 +48,31 @@
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
 
+      .clear
+
+      #book_rating{:name => 'audiobook'}
+        = raw rate_book('book_rating', 'star', @book.avg_rating)
+
+      #reviews-rating-count
+        #counts
+          = pluralize(@book.reviews.count, 'review')
+          ,
+          = pluralize(@book.ratings.count, 'rating')
+
+        #write-review
+          = link_to 'Write a review', '#', :class => 'classicly-link' unless current_login
+
+
+      = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
+
+      .clear
+      #reviews
+        = render :partial => 'books/review', :collection => @book.reviews
+
     .download
       - if @book.has_mp3_slug?
         = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
+
+= javascript_include_tag 'review-ratings'

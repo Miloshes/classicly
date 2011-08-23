@@ -17,6 +17,11 @@ module CommonBookMethods
     self.description[0..limit]
   end
 
+  def rating_by_user(user)
+    rating = self.ratings.find_by_fb_connect_id(user.fb_connect_id)
+    rating.try(:score)
+  end
+
   module CommonClassMethods
     def hashes_for_JSON(books)
       results = []
