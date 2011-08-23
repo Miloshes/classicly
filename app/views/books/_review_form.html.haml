@@ -37,7 +37,7 @@
     .text
       How many stars?
     .stars
-      = raw rate_book('book_rating_dynamic', 'dynamic-stars', book.rating_by_user(login) || 5)
+      = raw rate_book('book_rating_dynamic', 'dynamic-stars', book.rating_by_user(login) || 0)
 
   #submit-review
     = link_to 'Submit review', '#', :class => 'classicly-link'
