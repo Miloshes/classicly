@@ -12,7 +12,7 @@
     #review_label
       Review: *
     = form_for [book, review] do |f|
-      
+
       = f.text_area :content
       .clear
       = render 'shared/error_messages', :target => review

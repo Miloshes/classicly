@@ -59,9 +59,9 @@
           = content_tag(:span, "Download and add to your library")
 
         / = link_to special_format_download_book_link(@format), download_book_url(@book.author, @book, @format), :id => 'download-facebook-post', :class => 'button kiss green large kiss'
-
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
+
       - if @format == 'azw'
         = image_or_link_to_download_format @book, 'pdf'
       - else

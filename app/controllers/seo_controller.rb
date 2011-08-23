@@ -65,12 +65,14 @@ class SeoController < ApplicationController
         render 'audiobooks/download_special_format', :layout => 'audibly'
 
       elsif seo.is_for_type?('book')
+        bingo! "download_buttons"
 
         if @format == 'online'
           render 'books/read_online'
         else
           render 'books/download_special_format'
         end
+
       end
     end
   end
