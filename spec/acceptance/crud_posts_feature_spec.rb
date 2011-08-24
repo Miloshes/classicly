@@ -1,3 +1,6 @@
+# coding: utf-8
+# ^ Magic comment needed because of the UTF-8 chars in the example strings
+
 require 'acceptance/acceptance_helper'
 
 feature 'Crud posts feature: ', %q{

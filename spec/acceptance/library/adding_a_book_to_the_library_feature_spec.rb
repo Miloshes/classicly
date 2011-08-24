@@ -2,7 +2,7 @@ require 'acceptance/acceptance_helper'
 
 feature 'Adding a book to the library', %q{
   As a user of the site
-  I want to my downloaded book to be added to my library
+  I want my downloaded book to be added to my library
   So that I can easily access it later
 } do
 
