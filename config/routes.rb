@@ -38,7 +38,6 @@ Classicly::Application.routes.draw do
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors
-  match 'autocomplete_books_json' => 'books#autocomplete_json'
   match 'blog' => 'blog#index', :as => :blog
 
   match 'collections/autocomplete' => 'collections#autocomplete'
