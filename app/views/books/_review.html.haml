@@ -5,7 +5,6 @@
   .profile-name
     %p.name
       = review.reviewer.first_name
-      &nbsp;
       = review.reviewer.last_name
     %p
       #{review.created_at.to_s :review_format}
