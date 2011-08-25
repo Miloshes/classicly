@@ -6,6 +6,10 @@ module CommonBookMethods
     end
   end
 
+  def average_rating
+    self.ratings.blank? ? 0 : (self.ratings.sum('score').to_f / self.ratings.size.to_f).round
+  end
+
   def has_slug_for_format?(format)
     return false if self.seo_slugs.empty?
     self.seo_slugs.send(format).first.nil? ? false : true
