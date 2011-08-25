@@ -5,7 +5,7 @@ $( function(){
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
         var bookId =  $( '#book-page' ).attr( 'name' );
-        var klass = $( '#book_rating' ).attr( 'name' );
+        var klass = $( '#book-rating' ).attr( 'name' );
         var data = klass + '_id=' + bookId + '&rating=' + value;
 
         // send the rating
@@ -24,7 +24,7 @@ $( function(){
 
 
     // REVIEWS
-      $( '#write-review a' ).click( function(){
+      $( '#write-review a, #counts a.classicly-link' ).click( function(){
       writeReview();
       return false;
     });
@@ -34,6 +34,8 @@ $( function(){
       $('#review-box form').submit();
       return false;
     });
+
+    $("#reviews div:nth-child(odd).individual_review").addClass("striped");
 
   });
 

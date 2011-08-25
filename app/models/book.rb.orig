@@ -33,9 +33,6 @@ class Book < ActiveRecord::Base
   validates :title, :presence => true
 
   has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
-  
-  # instance variables to help rendering the book content
-  attr_accessor :book_content, :reader_engine
 
   def self.available_in_formats(formats)
     find_each do |book|
@@ -244,6 +241,8 @@ class Book < ActiveRecord::Base
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['pdf', 'kindle', 'online'])
   end
+<<<<<<< Updated upstream
+=======
 
   # === Methods related to online reading and rendering
 
@@ -278,4 +277,5 @@ class Book < ActiveRecord::Base
     self.update_attributes(:is_rendered_for_online_reading => false)
   end
   
+>>>>>>> Stashed changes
 end
