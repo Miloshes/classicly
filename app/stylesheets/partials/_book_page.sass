@@ -71,10 +71,11 @@
     #reviews-rating-count
       margin-bottom: 10px
       #counts
-        +column(8)
+        +column(4)
 
       #write-review
-        +column(4, true)
+        +column(8, true)
+        text-align: right
 
     #greeting
       .profile-pic
@@ -85,11 +86,15 @@
 
       .text
         +column(10, true)
-        p
-          margin-top: 33px
+        margin-left: -12px
+        padding-top: 10px
 
+    #review-box
+      margin-top: 8px
 
     #rate
+      margin-top: 7px
+
       .text
         +column(3)
 
@@ -97,6 +102,8 @@
         +column(9, true)
 
     #submit-review
+      margin-top: 14px
+
       font-size: 16px
 
     #review-box
@@ -113,6 +120,11 @@
 
       .individual_review
         +column(12, true)
+        padding: 10px 0px 0px 10px
+        margin-top: 10px
+
+        &.striped
+          background-color: #f2ede6
 
         .profile-pic
           +column(2)
@@ -123,7 +135,7 @@
         .profile-name
           +column(10, true)
           margin-left: -15px
-          padding-top: 7px
+          padding-top: 5px
 
           p
             line-height: 1px
@@ -133,6 +145,16 @@
               color: #333
               font-weight: bold
               font-size: 14px
+              margin-bottom: 20px
+
+            &.date
+              margin-bottom: 10px
+
+          .rating
+            margin-top: 2px
 
         .review-content
           margin-top: 10px
+
+          p
+            margin: 0px 0px 5px 0px
