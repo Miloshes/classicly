@@ -1,0 +1,2 @@
+$( '#reviews-rating-count #counts' ).html( "<%= pluralize(@reviewable.reviews.with_content.count, 'review')%> , <%=pluralize(@reviewable.reviews.count, 'rating' )%>" );
+$( '#book-rating' ).html( '<%= raw show_review_rating_stars(@reviewable.average_rating)%>');

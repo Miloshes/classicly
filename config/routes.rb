@@ -77,6 +77,8 @@ Classicly::Application.routes.draw do
 
   match '/audiobooks/:audiobook_id/reviews' => 'reviews#create'
 
+  match '/reviews/create_rating' => 'reviews#create_rating'
+
   resources :books, :only => :index do
     resources :reviews
   end

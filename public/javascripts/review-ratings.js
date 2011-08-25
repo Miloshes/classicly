@@ -1,7 +1,18 @@
 $( function(){
-    // RATINGS
-    $( 'input.star' ).rating('readOnly', true);
+   
+    $( '#write-review a' ).click( function(){
+      writeReview();
+      return false;
+    });
+    
+    $( '#submit-review a' ).live( 'click', function(){
+      $('#review-box form').submit();
+      return false;
+    });
 
+    $("#reviews div:nth-child(odd).individual_review").addClass("striped");
+    
+    // RATINGS
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
         var bookId =  $( '#book-page' ).attr( 'name' );
@@ -11,7 +22,7 @@ $( function(){
         // send the rating
         $.ajax({
           type: 'POST',
-          url: '/ratings',
+          url: '/reviews/create_rating',
           data: data,
           success: function(){
           }
@@ -22,32 +33,16 @@ $( function(){
 
     $( '.rating-cancel' ).remove();
 
-
-    // REVIEWS
-      $( '#write-review a, #counts a.classicly-link' ).click( function(){
-      writeReview();
-      return false;
-    });
-
-
-    $( '#submit-review a' ).live( 'click', function(){
-      $('#review-box form').submit();
-      return false;
-    });
-
-    $("#reviews div:nth-child(odd).individual_review").addClass("striped");
-
   });
 
   // LOG THROUGH FACEBOOK
   function writeReview(){
     // check facebook status
     FB.getLoginStatus(function(response) {
-      if (response.authResponse) {
+      if (response.status == 'connected') {
         // logged in. This should not have been called.
-
+          return false;
       }else{
-        console.log("You are not logged in!");
         // no user session available, someone you dont know
 
         FB.login( function( response ) {
@@ -68,7 +63,13 @@ $( function(){
                 var bookId = $( '#book-page' ).attr( 'name' );
                 $.ajax({ 
                   url: '/show_review_form',
-                  data: 'book_id=' + bookId
+                  data: 'book_id=' + bookId,
+                  success: function(){
+                    $( '#write-review a' ).unbind( 'click' );
+                    $( '#write-review a' ).click(function(){
+                      return false;
+                    });
+                  }
                 });
               }
             });

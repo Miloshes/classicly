@@ -63,28 +63,24 @@
       %p= simple_format(@book.description)
 
       .clear
+
       #book-rating{:name => 'book' }
         - if @book.average_rating > 0
           = raw show_review_rating_stars(@book.average_rating)
 
       #reviews-rating-count
         #counts
-          = pluralize(@book.reviews.count, 'review')
-          ,
-          = pluralize(@book.ratings.count, 'rating')
+          = show_review_counts @book
 
         #write-review
-          - if @book.reviews.count > 0
-            = link_to 'Write a review', '#', :class => 'classicly-link'
-          - else
-            No reviews yet!
-            = link_to 'Be the first to leave a review.', '#', :class => 'classicly-link'
+          = raw write_review_link(@book, current_login)
 
       = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
       .clear
+
       #reviews
-        = render :partial => 'books/review', :collection => @book.reviews
+        = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
 
 
 = javascript_include_tag 'review-ratings'
