@@ -1,7 +1,5 @@
 $( function(){
     // RATINGS
-    $( 'input.star' ).rating('readOnly', true);
-
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
         var bookId =  $( '#book-page' ).attr( 'name' );
@@ -11,7 +9,7 @@ $( function(){
         // send the rating
         $.ajax({
           type: 'POST',
-          url: '/ratings',
+          url: '/reviews/create_rating',
           data: data,
           success: function(){
           }

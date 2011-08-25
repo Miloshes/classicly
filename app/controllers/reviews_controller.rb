@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  
+
   # GET /books/:book_id/reviews
   def index
     @reviewable = find_reviewable
@@ -16,6 +16,12 @@ class ReviewsController < ApplicationController
     review = Review.create_for(current_login, @reviewable, params)
     session[:review] = review  if review.new_record?
     redirect_to author_book_url(@reviewable.author, @reviewable)
+  end
+
+  def create_rating
+    @reviewable = find_reviewable
+    review = @reviewable.reviews.find_or_create_by_fb_connect_id current_login.fb_connect_id
+    review.update_attributes! :rating => params[:rating]
   end
 
   def destroy

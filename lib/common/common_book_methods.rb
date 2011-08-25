@@ -7,7 +7,7 @@ module CommonBookMethods
   end
 
   def average_rating
-    self.ratings.blank? ? 0 : (self.ratings.sum('score').to_f / self.ratings.size.to_f).round
+    self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.ratings.size.to_f).round
   end
 
   def has_slug_for_format?(format)

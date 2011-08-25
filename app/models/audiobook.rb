@@ -12,7 +12,6 @@ class Audiobook < ActiveRecord::Base
 
   has_many  :collection_audiobook_assignments
   has_many  :collections, :through => :collection_audiobook_assignments
-  has_many  :ratings, :as => :rateable 
   has_many  :reviews, :as => :reviewable
   has_many  :anonymous_reviews, :as => :reviewable
   has_one   :seo_info, :as => :infoable
