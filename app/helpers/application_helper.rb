@@ -259,3 +259,23 @@ def render_listed_book_partial(books)
     render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audio_book
   end
 end
+
+def show_review_counts(book)
+  pluralize(book.reviews.with_content.count, 'review') + ", " + pluralize(book.reviews.count, 'rating')
+end
+
+def write_review_link(book, login)
+  no_reviews_yet = false
+  link_message = ''
+  
+  if book.reviews.count > 0 && book.has_been_reviewed_by_user?(login)
+    link_message = 'Edit your review.'
+  elsif book.reviews.count > 0
+    link_message = 'Write a review.'
+  else
+    link_message, no_reviews_yet = 'Be the first to leave a review.', true
+  end
+  
+  result = no_reviews_yet ? 'No reviews yet. ' : ''
+  result << link_to(link_message, '#', :class => 'classicly-link')
+end
