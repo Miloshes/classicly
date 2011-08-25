@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822175128) do
+ActiveRecord::Schema.define(:version => 20110824144633) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -296,6 +296,7 @@ ActiveRecord::Schema.define(:version => 20110822175128) do
     t.text     "content"
     t.datetime "created_at"
     t.integer  "login_id"
+    t.integer  "rating",          :default => 0
   end
 
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"

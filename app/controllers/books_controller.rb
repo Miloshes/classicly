@@ -3,46 +3,18 @@ class BooksController < ApplicationController
   before_filter :find_book_with_specific_author, :only => [:show, :kindle_format, :pdf_format]
   before_filter :find_format, :only => [:download, :serve_downloadable_file]
 
-  
-  def autocomplete_json
-    @books = Book.where(:pretty_title.matches =>"#{params[:term]}%").select('id, pretty_title').limit(25)
-    render :json => @books.to_json
-  end
-  
+
   # for invoking the download page
   def download
     @popular_books = Book.blessed.random 3
     @related_book = @book.find_fake_related(1).first
   end
-  
+
   def download_and_add_to_library
     session[:new_book_in_library] = params[:book_id]
     session[:download_format_for_the_new_book] = params[:download_format]
-    
+
     redirect_to library_url
-  end
-
-  def json_books
-    data = []
-    book_ids = params[:id].split( ',' )
-    book_ids.each do |id|
-      # find the book:
-      current = Book.where(:id => id).select('id, cached_slug, author_id').first
-      # create the books data to be converted in json:
-      author_slug = Author.where(:id => current.author_id).select('cached_slug').first.cached_slug
-      attrs = current.attributes.merge(:author_slug => author_slug)
-      # add the book id to the data to be sent:
-      data << {:attrs => attrs} 
-    end
-    render :json => data.to_json
-  end
-
-  def related_books_JSON
-    books = [ ]
-    @book = Book.find params[:id]
-    books << @book
-    books << @book.find_fake_related(params[:total_related].to_i,  ['books.id', 'author_id', 'cached_slug', 'pretty_title'] )
-    render :json => Book.hashes_for_JSON(books.flatten)
   end
 
   # for actually serving the downloadable file
