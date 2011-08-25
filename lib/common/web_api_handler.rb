@@ -4,6 +4,8 @@ class WebApiHandler
   
   # creates an IncomingData model object and processes it
   def handle_incoming_data(params)
+    return false if params[:json_data].blank?
+    
     incoming_data = IncomingData.create(:json_data => params[:json_data])
     
     if incoming_data
