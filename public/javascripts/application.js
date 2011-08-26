@@ -25,7 +25,7 @@ $(function(){
 
   // FUNCTIONS FOR THE DROPDOWN DRAWER
   $( "#fb_connect_notification a#fb_decline" ).click( function(){
-    $( "#fb_connect_notification" ).hide("blind", { direction: "vertical" }, 1000);
+    $( "#fb_connect_notification ").slideUp( "slow" );
     return false;
   });
 

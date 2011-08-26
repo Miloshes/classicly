@@ -48,7 +48,7 @@ $( function(){
           return false;
       else
         if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
-          $( "#fb_connect_notification" ).show("blind", { direction: "vertical" }, 1000);
+          $( "#fb_connect_notification ").slideDown( "slow" );
 
     });
   }
@@ -71,8 +71,7 @@ $( function(){
             success: function( data ) {
 
               if( $( "#fb_connect_notification" ).is( ":visible") )
-                $( "#fb_connect_notification" ).hide("blind", { direction: "vertical" }, 1000);
-
+                $( "#fb_connect_notification" ).slideUp( "slow" );
               if( data.is_new_login == false )
                 _kmq.push(["record", "User Signed In"]);
               else
