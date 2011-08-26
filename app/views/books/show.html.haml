@@ -8,6 +8,9 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
+= content_for :drawer do
+  = render :partial => '/shared/connect_with_facebook_bar'
+
 
 #book-page{:name => @book.id }
   .cover-column

@@ -1,5 +1,5 @@
 $("<%= escape_javascript(render :partial => 'books/review_form',
-:locals => {:book => @book, :login => @login}) %>").insertBefore('#reviews');
+:locals => {:book => @reviewable, :login => @login}) %>").insertBefore('#reviews');
 
 $( 'input.dynamic-stars' ).rating({
   callback: function(value, link){

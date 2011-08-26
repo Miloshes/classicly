@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   include LibrarySessionHandler
 
   layout 'new_design'
+
   protect_from_forgery
   helper_method :current_admin_user_session, :current_admin_user, :current_login
 
@@ -80,4 +81,5 @@ class ApplicationController < ActionController::Base
   def facebook_cookies
     @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
   end
+
 end

@@ -21,6 +21,16 @@
   = csrf_meta_tag
 %body.container_12
   = render :partial => '/shared/connect_with_facebook_bar'
+  <script type="text/javascript">
+  var _kmq = _kmq || [];
+  function _kms(u){
+  setTimeout(function(){
+  var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
+  s.src = u; f.parentNode.insertBefore(s, f);
+  }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/95fd99a5f08a7e3b66a3ec13482c021a3fe30872.1.js');
+  </script>
   #reader_box
     .loading_box
       .error_box An error has occured. Please try to reload page.
@@ -58,8 +68,13 @@
 
 
 :javascript
-
-  FACEBOOK_APP_ID = "#{Facebook::APP_ID}";
+  
+  FB.init({
+  appId  : '#{Facebook::APP_ID}',
+  status : true, // check login status
+  cookie : true, // enable cookies to allow the server to access the session
+  xfbml  : true  // parse XFBML
+  });
 
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";
@@ -108,15 +123,4 @@ s.src = '//static.getclicky.com/js';
 <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/66432025ns.gif" /></p></noscript>
 <script type="text/javascript">var _kiq = _kiq || [];</script>
 <script type="text/javascript" src="//s3.amazonaws.com/ki.js/3822/3dB.js" async="true"></script>
-
-<script type="text/javascript">
-var _kmq = _kmq || [];
-function _kms(u){
-setTimeout(function(){
-var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
-s.src = u; f.parentNode.insertBefore(s, f);
-}, 1);
-}
-_kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/95fd99a5f08a7e3b66a3ec13482c021a3fe30872.1.js');
-</script>
 

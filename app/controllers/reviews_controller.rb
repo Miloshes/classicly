@@ -34,7 +34,7 @@ class ReviewsController < ApplicationController
   end
 
   def show_form
-    @book = Book.find(params[:book_id])
+    @reviewable = find_reviewable
     @login = current_login
   end
 

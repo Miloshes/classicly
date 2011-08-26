@@ -77,10 +77,12 @@ $( function(){
               else
                 _kmq.push(["record", "User Signed Up"]);
 
-              var bookId = $( '#book-page' ).attr( 'name' );
+              var bookId  = $( '#book-page' ).attr( 'name' );
+              var klass   = $( '#book-rating' ).attr( 'name' );
+
               $.ajax({ 
                 url: '/show_review_form',
-                data: 'book_id=' + bookId,
+                data: klass +'_id=' + bookId,
                 success: function(){
                   $( '#write-review a' ).unbind( 'click' );
                   $( '#write-review a' ).click(function(){
