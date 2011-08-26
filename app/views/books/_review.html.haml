@@ -1,6 +1,6 @@
 %div.individual_review
   .profile-pic
-    <fb:profile-pic uid=#{review.reviewer.fb_connect_id} size='thumb' width='50' height='50'> </fb:profile-pic>
+    = facebook_image(review.reviewer.fb_connect_id)
 
   .profile-name
     %p.name
