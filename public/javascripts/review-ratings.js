@@ -1,17 +1,17 @@
 $( function(){
-   
+
     $( '#write-review a' ).click( function(){
-      writeReview();
+      dropLoginDrawer();
       return false;
     });
-    
+
     $( '#submit-review a' ).live( 'click', function(){
       $('#review-box form').submit();
       return false;
     });
 
     $("#reviews div:nth-child(odd).individual_review").addClass("striped");
-    
+
     // RATINGS
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
@@ -33,48 +33,65 @@ $( function(){
 
     $( '.rating-cancel' ).remove();
 
+    // LOG IN
+    $( "#fb_connect_notification a#fb_connect" ).click( function(){
+      writeReview();
+      return false;
+    });
+
   });
+
+  function dropLoginDrawer(){
+    FB.getLoginStatus(function(response) {
+      if (response.status == 'connected')
+        // logged in. This should not have been called.
+          return false;
+      else
+        if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
+          $( "#fb_connect_notification" ).show("blind", { direction: "vertical" }, 1000);
+
+    });
+  }
 
   // LOG THROUGH FACEBOOK
   function writeReview(){
     // check facebook status
-    FB.getLoginStatus(function(response) {
-      if (response.status == 'connected') {
-        // logged in. This should not have been called.
-          return false;
-      }else{
+    if ( isLoggedIn() ) {
+      return false;
+    }else{
         // no user session available, someone you dont know
-
-        FB.login( function( response ) {
+      FB.login( function( response ) {
           // the user successfully logs in, let's register him and notify the Library model afterwards
-          if (response.session) {
+        if (response.session) {
             // register the user via the Login model
-            $.ajax({
-              type: "POST",
-              url: "/logins",
-              dataType: "json",
-              success: function( data ) {
+          $.ajax({
+            type: "POST",
+            url: "/logins",
+            dataType: "json",
+            success: function( data ) {
 
-                if( data.is_new_login == false )
-                  _kmq.push(["record", "User Signed In"]);
-                else
-                  _kmq.push(["record", "User Signed Up"]);
+              if( $( "#fb_connect_notification" ).is( ":visible") )
+                $( "#fb_connect_notification" ).hide("blind", { direction: "vertical" }, 1000);
 
-                var bookId = $( '#book-page' ).attr( 'name' );
-                $.ajax({ 
-                  url: '/show_review_form',
-                  data: 'book_id=' + bookId,
-                  success: function(){
-                    $( '#write-review a' ).unbind( 'click' );
-                    $( '#write-review a' ).click(function(){
-                      return false;
-                    });
-                  }
-                });
-              }
-            });
-          }
-        });
-      }
-    });
+              if( data.is_new_login == false )
+                _kmq.push(["record", "User Signed In"]);
+              else
+                _kmq.push(["record", "User Signed Up"]);
+
+              var bookId = $( '#book-page' ).attr( 'name' );
+              $.ajax({ 
+                url: '/show_review_form',
+                data: 'book_id=' + bookId,
+                success: function(){
+                  $( '#write-review a' ).unbind( 'click' );
+                  $( '#write-review a' ).click(function(){
+                    return false;
+                  });
+                }
+              });
+            }
+          });
+        }
+      });
+    }
   }

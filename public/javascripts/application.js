@@ -23,7 +23,21 @@ $(function(){
     if( _gaq ) _gaq.push( ['_trackEvent', 'search_events', 'search', searchTerm] );
   });
 
+  // FUNCTIONS FOR THE DROPDOWN DRAWER
+  $( "#fb_connect_notification a#fb_decline" ).click( function(){
+    $( "#fb_connect_notification" ).hide("blind", { direction: "vertical" }, 1000);
+    return false;
+  });
+
 });
 
-// for the autocomplete list:
-$('ul.ui-autocomplete').css( 'margin-left', '-1pt' );
+function isLoggedIn(){
+  var logged = false;
+
+  FB.getLoginStatus( function( response ) {
+    if (response.status == 'connected')
+      logged = true;
+  });
+
+  return logged;
+}

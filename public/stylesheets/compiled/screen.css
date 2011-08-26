@@ -2109,8 +2109,9 @@ ul.ui-autocomplete {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: none;
+  position: fixed;
 }
-/* line 15, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 16, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box {
   display: inline-table;
   background-image: url(/images/Registration_slices/reg_box.png);
@@ -2119,17 +2120,17 @@ ul.ui-autocomplete {
   margin-top: 20px;
   margin-right: 16px;
 }
-/* line 24, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 25, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box img {
   margin-top: 11px;
 }
-/* line 28, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 29, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box p {
   width: 160px;
   margin: 0 auto;
   margin-top: 6px;
 }
-/* line 34, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 35, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect {
   width: 362px;
   display: block;
@@ -2137,26 +2138,26 @@ ul.ui-autocomplete {
   margin: 19px auto;
   text-decoration: none;
 }
-/* line 42, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 43, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect #facebook_connect {
   background-image: url(/images/Registration_slices/reg_btn_blue.png);
   width: 362px;
   height: 49px;
   padding-top: 1px;
 }
-/* line 49, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 50, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect:active #facebook_connect {
   background-image: url(/images/Registration_slices/reg_btn_blue.png);
   background-position: 0px -51px;
 }
-/* line 55, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 56, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #facebook_connect p {
   margin-top: 8px;
   font-size: 24px;
   text-decoration: none;
   color: white;
 }
-/* line 62, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 63, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline {
   display: block;
   width: 102px;
@@ -2164,19 +2165,19 @@ ul.ui-autocomplete {
   margin: 19px auto;
   text-decoration: none;
 }
-/* line 70, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 71, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline #facebook_decline {
   background-image: url(/images/Registration_slices/reg_btn_grey.png);
   width: 102px;
   height: 24px;
   padding-top: 1px;
 }
-/* line 77, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 78, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline:active #facebook_decline {
   background-image: url(/images/Registration_slices/reg_btn_grey.png);
   background-position: 0px -28px;
 }
-/* line 82, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 83, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #facebook_decline p {
   margin-top: 1px;
   color: white;
