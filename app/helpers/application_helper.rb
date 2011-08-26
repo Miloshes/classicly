@@ -261,7 +261,7 @@ def render_listed_book_partial(books)
 end
 
 def show_review_counts(book)
-  pluralize(book.reviews.with_content.count, 'review') + ", " + pluralize(book.reviews.count, 'rating')
+  pluralize(book.reviews.count, 'rating') + ", " + pluralize(book.reviews.with_content.count, 'review') 
 end
 
 def write_review_link(book, login)
