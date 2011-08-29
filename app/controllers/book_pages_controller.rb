@@ -10,7 +10,7 @@ class BookPagesController < ApplicationController
 
     # render the book if it's necessary
     if !book.is_rendered_for_online_reading?
-      book.render_book_content
+      book.render_book_for_online_reading!
     end
 
     @book_page = book.book_pages.where(:page_number => params[:page_number]).first()

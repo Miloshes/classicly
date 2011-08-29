@@ -257,7 +257,7 @@ class Book < ActiveRecord::Base
   # The whole content of the book in plain-text format, fetched from the S3 bucket.
   # NOTE: this is used by the rendering algorithms, and takes a couple of seconds on the first call
   def book_content
-    @book_content ||= reader_engine.get_book(self.id).current_book_content
+    @book_content ||= reader_engine.get_book(self.id)
   end
 
   def reader_engine
