@@ -24,8 +24,8 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # I should see a button to read it online
-      within('.cover-column .buttons') do
-        page.should have_content('Use our online reader')
+      within('.read') do
+        page.should have_xpath("//a[@class='read_online']")
       end
     end
 
@@ -72,7 +72,7 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # And I click the download mp3 button
-      within('.cover-column .buttons') do
+      within('.download') do
         find(:xpath, ".//a[1]").click
       end
 
@@ -123,7 +123,7 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(author, book)
 
       # And I click the download as PDF button
-      within('.cover-column .buttons') do
+      within('.download') do
         find(:xpath, ".//a[1]").click
       end
 
