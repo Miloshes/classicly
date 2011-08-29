@@ -53,15 +53,15 @@
       .share
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
-      - if @book.read_online?
-        #read_online_button_container
-          =image_tag 'read-online-arrow.png'
-          = read_online_link @book
-        .clear
-        .read_online_text
-          %p.explanation.first Reading on Classicly is completely free- these books are public domain. 
 
-          %p.explanation We don’t pay a  cent, so neither do you.
+      #read_online_button_container
+        =image_tag 'read-online-arrow.png'
+        = read_online_link @book
+      .clear
+      .read_online_text
+        %p.explanation.first Reading on Classicly is completely free- these books are public domain.
+
+        %p.explanation We don’t pay a  cent, so neither do you.
 
 
 :javascript
