@@ -4,14 +4,16 @@
 require 'spec_helper'
 
 describe BlogPost do
-  
+
   before :each do
-    @author = FactoryGirl.create(:author, :name => 'Kawama San')
+    @collection = FactoryGirl.create :collection, :name => 'Kawama San', :book_type => 'book', :collection_type => 'collection'
+
     content = "Il y a un lien secret entre la lenteur et la mémoire, entre la vitesse et l’oubli. Evoquons une situation on ne peut
-            plus banale : un homme marche dans la rue. Soudain, <featured author_id='#{@author.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
+            plus banale : un homme marche dans la rue. Soudain, <featured collection_id='#{@collection.id}'>il veut se rappeler quelque chose, mais le souvenir lui échappe.</featured>
             A ce moment, machinalement, il ralentit son pas. Par contre, quelqu’un essaie d’oublier un incident pénible qu’il
             vient de vivre accélère à son insu l’allure de sa marche comme s’il voulait vite s’éloigner de ce qui se trouve, 
             dans le temps, encore trop proche de lui."
+
     @blog_post = FactoryGirl.create(:blog_post, :content => content, :title => 'Kawaii Bo')
   end
 
