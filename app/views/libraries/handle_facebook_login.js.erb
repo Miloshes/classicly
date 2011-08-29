@@ -1,4 +1,8 @@
-$('#library-page').fadeOut( 1100, function() {
-  $('#library-page').html("<%= escape_javascript(render :partial => 'library_with_content') %>");
-  $('#library-page').fadeIn(1100);
-});
+//if ( $( "#fb_connect_notification" ).is( ":visible" ) ){
+  //$( "#fb_connect_notification ").slideUp( "slow", function(){
+    $('#library-page').fadeOut( 1100, function() {
+      $('#library-page').fadeIn(1100);
+      $('#library-page').html("<%= escape_javascript(render :partial => 'library_with_content') %>");
+    });
+  //});
+//}
