@@ -2,6 +2,8 @@ Classicly::Application.routes.draw do
 
   namespace 'admin' do
     root :to => "base#home"
+    match 'abingo' => "abingo_dashboard#index", :via => :get
+    match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
     match 'admin_seo' => 'admin_seo#main'
     match 'admin_seo/:type' => 'admin_seo#admin_infoable', :as => 'admin_infoable'
     match 'admin_seo/:type/:id' => 'admin_seo#edit_seo', :as => 'edit_seo'
@@ -33,8 +35,6 @@ Classicly::Application.routes.draw do
   match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
 
   match 'about' => 'pages#about'
-  match 'abingo' => "abingo_dashboard#index", :via => :get
-  match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors

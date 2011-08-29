@@ -47,6 +47,7 @@
 
       %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
       %p.explanation We don’t pay a cent, so neither do you.
+
       - if @format == 'azw'
         = image_or_link_to_download_format @book, 'pdf'
       - else
