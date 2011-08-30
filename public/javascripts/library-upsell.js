@@ -1,15 +1,14 @@
 
  $(function(){
-  // kiss metrics track
-  sendKissMetricsEvent( "Library Upsell Viewed")
-
   // react when the user clicks the button for the library upsell:
   $('a#register-button').click( function(){
       // push the upsell viewed event into kissmetrics
     if( _gaq ) _gaq.push([ '_trackEvent', 'registrations', 'add_library', 'reg_button_clicked' ]);
 
-    if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
+    if ( $( "#fb_connect_notification" ).is( ":hidden" ) ){
       $( "#fb_connect_notification ").slideDown( "slow" );
+      sendKissMetricsEvent( "Library Upsell Viewed");
+    }
 
     return false;
   });
