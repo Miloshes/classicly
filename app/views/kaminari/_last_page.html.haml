@@ -1,2 +1,2 @@
-%span.last
-  = link_to_unless current_page.last?, num_pages, url, {:remote => remote}
+%li.last
+  = link_to_unless current_page.last?, raw(t 'views.pagination.last'), url, {:remote => remote}

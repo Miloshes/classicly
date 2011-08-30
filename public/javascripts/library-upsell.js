@@ -7,7 +7,7 @@
 
     if ( $( "#fb_connect_notification" ).is( ":hidden" ) ){
       $( "#fb_connect_notification ").slideDown( "slow" );
-      sendKissMetricsEvent( "Library Upsell Viewed");
+      sendKissMetricsEvent( "Registration Dropdown Viewed");
     }
 
     return false;
@@ -29,6 +29,8 @@ function upsellLibrary(){
   FB.login( function( response ) {
   // the user successfully logs in, let's register him and notify the Library model afterwards
     if ( response.session ) {
+      sendKissMetricsEvent( "Registration Dropdown Clicked" );
+
       // register the user via the Login model
       $.ajax({
         type: "POST",

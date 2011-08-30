@@ -1,21 +1,14 @@
 = paginator.render do
-  %nav.pagination
-    - if current_page == 1
-      / how it has to look like: full-width 'More Books' button
-      = next_page_tag
-    - else
-      / how it has to look like: 'Previous Page' and 'More Books', equal width with spacing in between, page numbers below
-      = prev_page_tag
-      = next_page_tag
-      
-    #page_numbers
-      %span
-        or jump to page:
-      = first_page_tag unless current_page.first?
+  .pagination
+    %ul
+      =# first_page_tag unless current_page.first?
+      = prev_page_tag unless current_page.first?
       - each_page do |page|
-        - next if page.first? || page.last?
-        - if page.left_outer? || page.right_outer? || page.inside_window?
-          = page_tag page
-        - elsif !page.was_truncated?
-          = gap_tag
-      = last_page_tag unless current_page.last?
+        - unless page == current_page
+          - next if page.first? || page.last?
+          - if page.left_outer? || page.right_outer? || page.inside_window?
+            = page_tag page
+          - elsif !page.was_truncated?
+            = gap_tag
+      = next_page_tag unless current_page.last?
+      =# last_page_tag unless current_page.last?
