@@ -10,6 +10,7 @@ feature 'Collections list page feature: ', %q{
     @collection_names = %w{western romance pulp comedy drama historic epic action fantasy}
     @collection_names.each { |name| FactoryGirl.create(:collection, :collection_type => 'collection', :name => name, :book_type => 'book') }
 
+    Collection.first.update_attribute :description, "Lorem Ipsum Dolorem Sit Amet"
     # And Given I have a genre collection
     FactoryGirl.create(:collection, :collection_type => 'genre', :name => 'Genre Collection', :book_type => 'book')
 

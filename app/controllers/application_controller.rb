@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
   def collections_for_footer
-    @footer_collections_column_1 = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
-    @footer_collections_column_2 = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
-    @footer_author_collections_column_1 = Collection.find_author_book_collections.select('name,cached_slug').limit(14).order('name asc')
-    @footer_author_collections_column_2 = Collection.find_author_book_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
+    @footer_collections_column_1        = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
+    @footer_collections_column_2        = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
+    @footer_author_collections_column_1 = Collection.find_book_author_collections.select('name,cached_slug').limit(14).order('name asc')
+    @footer_author_collections_column_2 = Collection.find_book_author_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
  end
 
   def current_admin_user_session
