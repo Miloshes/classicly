@@ -1,2 +1,3 @@
 $( '#reviews-rating-count #counts' ).html( "<%= raw  show_review_counts(@reviewable)%>" );
 $( '#book-rating' ).html( '<%= raw show_review_rating_stars(@reviewable.average_rating)%>');
+sendKissMetricsEvent( "Rating Created", {'user_id': <%= current_login.id %>})

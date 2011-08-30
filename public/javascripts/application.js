@@ -42,6 +42,12 @@ function isLoggedIn(){
   return logged;
 }
 
-function sendKissMetricsEvent( event ){
-  if( _kmq ) _kmq.push( "record", event );
+function sendKissMetricsEvent( event, attributes ){
+  if( _kmq ){
+    if( attributes )
+      _kmq.push( ["record", event, attributes ] );
+    else
+      _kmq.push( ["record", event] );
+  }
+  
 }

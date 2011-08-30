@@ -6,6 +6,7 @@ $( function(){
     });
 
     $( '#submit-review a' ).live( 'click', function(){
+      sendKissMetricsEvent( "Review Submitted" );
       $('#review-box form').submit();
       return false;
     });
