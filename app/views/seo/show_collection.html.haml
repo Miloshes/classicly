@@ -49,11 +49,6 @@
       .cover.medium
         = cover_image_link(@collection.featured_book, 2)
 
-  - if @collection.is_author_collection? && @collection.has_author?
-    .author-quotations
-      - for quotation in @collection.author.author_quotings
-        %h5
-          = link_to quotation.quoted_text, quotation.blog_post.cached_slug
 
   .book-list
     %h3 All #{@collection.name} Books
@@ -68,11 +63,18 @@
         =# sort_books_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
-    .pagination
-      = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+    .clear
 
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
+    = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
+    .row
+      .span11.columns
+        .explanation
+          Downloads on Classicly are completely free- these books are public domain. 
+    .row
+      .span11.columns
+        .explanation
+          We don’t pay a cent, so neither do you.
 
 - if Rails.env.production?
   - if @collection.collection_type == 'author'

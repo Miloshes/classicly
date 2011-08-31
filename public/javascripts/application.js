@@ -3,6 +3,7 @@ $(function(){
 });
 
 $(function(){
+
   $('.audiobook-switcher a').tooltip({
     // use div.tooltip as our tooltip
     tip: '.tooltip',
@@ -29,6 +30,11 @@ $(function(){
     return false;
   });
 
+  // DISABLE CURRENT PAGE IN PAGINATOR
+  $( ".pagination ul li.active" ).live( "click", function(){
+    return false;
+  });
+
 });
 
 function isLoggedIn(){
@@ -49,5 +55,5 @@ function sendKissMetricsEvent( event, attributes ){
     else
       _kmq.push( ["record", event] );
   }
-  
+
 }
