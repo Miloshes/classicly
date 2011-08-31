@@ -23,6 +23,7 @@
         &:hover
           :background #ffff66
           :cursor pointer
+
     .quote
       .quote-text
         margin-bottom: 15px
@@ -99,39 +100,47 @@
 
   ul.book-list
     li
-      +column(16, true)
       &:hover
         :cursor pointer
         a.title
           :background #ffff66
-      .cover
-        +column(3)
+
       .book-info
-        +column(9)
+        margin-left: -35px
+        padding-top: 5px
+
         a
           :color #333333
+
         a.title
-          :font-size 25px
+          font-size: 18px
+          font-weight: bold
           :text-decoration none
           :float left
           :display block
-        span
-          :font-style italic
-          :font-size 16px
-          :text-decoration none
-          :float left
-          :display block
-          :width 100%
-          span
-          a.author
-            :font-style italic
-            :font-size 16px
-            :text-decoration none
+
         p
-          :color #999999
-          :font-style italic
+          font-size: 16px
+          font-style: italic
+          font-weight: lighter
+          color: black
+          float: left
+          display: block
+          width: 100%
+
+          &.avg-stars
+            margin-top: -25px
+
+          a.author
+            font-size: 16px
+            text-decoration: none
+
       .download-link
-        +column(4, true)
-        img
-          :margin
-            :top 125px
+        padding-top: 5px
+        a
+          text-decoration: none
+
+        .stars
+          margin-top: -15px
+        .view-this-book
+          margin-top: -8px
