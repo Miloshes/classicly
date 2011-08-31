@@ -30,8 +30,8 @@ $(function(){
     return false;
   });
 
-  // DISABLE CURRENT PAGE IN PAGINATOR
-  $( ".pagination ul li.active" ).live( "click", function(){
+  // DISABLE CURRENT PAGE AND GAP IN PAGINATOR
+  $( ".pagination ul li.active, .pagination ul li.gap" ).live( "click", function(){
     return false;
   });
 
