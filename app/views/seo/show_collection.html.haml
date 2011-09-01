@@ -114,11 +114,6 @@
         .explanation
           We don’t pay a cent, so neither do you.
 
-- if Rails.env.production?
-  - if @collection.collection_type == 'author'
-    = raw render_performable_script(:author)
-  - else
-    = raw render_performable_script(:collection)
 
 = javascript_include_tag 'ratings-book-list-view'
 

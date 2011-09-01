@@ -54,8 +54,10 @@
         =# sort_audiobooks_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list.audiobooks
       = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
+  
     .pagination
       = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
+= javascript_include_tag 'ratings-book-list-view'
