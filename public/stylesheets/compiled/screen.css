@@ -2498,14 +2498,15 @@ ul.ui-autocomplete {
 /* line 2, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page img {
   border: none;
+  margin: 0px 20px 10px 0px;
 }
-/* line 6, ../../../app/stylesheets/partials/_blog.sass */
+/* line 7, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page a.rss-feed {
   font-size: 16px;
   font-weight: bold;
   padding: 2px 5px;
 }
-/* line 10, ../../../app/stylesheets/partials/_blog.sass */
+/* line 11, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page a.highlight-link {
   background: none repeat scroll 0 0 #ffffd7;
   color: #333333;
@@ -2513,7 +2514,7 @@ ul.ui-autocomplete {
   margin-bottom: 6px;
   text-decoration: none;
 }
-/* line 16, ../../../app/stylesheets/partials/_blog.sass */
+/* line 17, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog {
   display: inline;
   float: left;
@@ -2524,7 +2525,7 @@ ul.ui-autocomplete {
 * html #blog-page .about-the-blog {
   overflow-x: hidden;
 }
-/* line 18, ../../../app/stylesheets/partials/_blog.sass */
+/* line 19, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog p {
   display: inline;
   float: left;
@@ -2537,7 +2538,7 @@ ul.ui-autocomplete {
 * html #blog-page .about-the-blog p {
   overflow-x: hidden;
 }
-/* line 22, ../../../app/stylesheets/partials/_blog.sass */
+/* line 23, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h1 {
   font-family: "museo-slab-1", "museo-slab-2", arial, serif;
   font-weight: normal;
@@ -2550,11 +2551,11 @@ ul.ui-autocomplete {
   display: block;
   float: left;
 }
-/* line 33, ../../../app/stylesheets/partials/_blog.sass */
+/* line 34, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog h4 {
   color: #444444;
 }
-/* line 35, ../../../app/stylesheets/partials/_blog.sass */
+/* line 36, ../../../app/stylesheets/partials/_blog.sass */
 #blog-page .about-the-blog iframe {
   margin-bottom: 20px;
 }

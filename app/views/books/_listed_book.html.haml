@@ -13,15 +13,17 @@
         = raw show_review_rating_stars(book.average_rating)
 
 
-    .download-link.span3.columns
-      <!-- le rating -->
-      .row
-        .span3.columns
-          My Rating:
-      .row.stars
-        .span3.columns
-          = raw rate_book("book_rating_dynamic_#{book.id}", 'dynamic-stars', book.rating_by_user(current_login) || 0)
-      <!-- le view this book -->
-      .row.view-this-book
-        .span3.columns
-          =link_to 'View this book', author_book_url(book.author, book), :class => 'btn primary'
+    - if current_login
+      .download-link.span3.columns
+        <!-- le rating -->
+        .row
+          .span3.columns
+            My Rating:
+        .row.stars
+          .span3.columns
+            = raw rate_book("book_rating_dynamic_#{book.id}", 'dynamic-stars', book.rating_by_user(current_login) || 0)
+
+        <!-- le view this book -->
+        .row.view-this-book
+          .span3.columns
+            =link_to 'View this book', author_book_url(book.author, book), :class => 'btn primary'

@@ -11,6 +11,8 @@
 
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
+  = content_for :drawer do
+    = render :partial => '/shared/connect_with_facebook_bar'
 
 #collection-page
   - if @collection.has_audiobook_counterpart?
@@ -118,25 +120,10 @@
   - else
     = raw render_performable_script(:collection)
 
+= javascript_include_tag 'ratings-book-list-view'
+
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
   else _kmq.push([ 'record', 'Collection Viewed', { 'name': "#{@collection.name}" } ]);
   
-  $( 'input.dynamic-stars' ).rating({callback: function(value, link ){
-    var domId = $( this ).attr( 'id' );
-    var domIdSplit = domId.split( '_' );
-    var bookId = domIdSplit[ domIdSplit.length - 2];
-    
-    var data = 'book_id=' + bookId + '&rating=' + value;
-
-    // send the rating
-    $.ajax({
-      type: 'POST',
-      url: '/reviews/create_rating',
-      data: data,
-      success: function(){
-      }
-    });
-  }});
-
-  $( '.rating-cancel' ).remove();
+  
