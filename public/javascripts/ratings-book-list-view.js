@@ -1,3 +1,18 @@
+$( function(){
+  if( !( isLoggedIn() ) )
+    $( 'input.dynamic-stars' ).rating('readOnly', true);
+  
+  $( "#fb_connect_notification a#fb_connect" ).click( function(){
+    FB.login(function( response ) {
+      if ( $( "#fb_connect_notification" ).is( ":visible" ) )
+        $( "#fb_connect_notification ").slideUp( "slow" );
+      $( 'input.dynamic-stars' ).rating('readOnly', false);
+    });
+    return false;
+  });
+
+});
+
 $( 'input.dynamic-stars' ).rating({callback: function(value, link ){
   var domId = $( this ).attr( 'id' );
   var domIdSplit = domId.split( '_' );
@@ -13,6 +28,7 @@ $( 'input.dynamic-stars' ).rating({callback: function(value, link ){
     success: function(){
     }
   });
+ 
 }});
 
 $( '.rating-cancel' ).remove();

@@ -9,7 +9,6 @@ javascripts:
     - public/javascripts/application.js
     - public/javascripts/global.js
     - public/javascripts/classicly-autocomplete.js
-    - public/javascripts/jquery.rating.js
     - public/javascripts/rails.js
     - public/javascripts/notifications.js
 stylesheets:

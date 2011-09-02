@@ -11,18 +11,17 @@
       %p.avg-stars
         = raw show_review_rating_stars(audiobook.average_rating)
 
-    -if current_login
-      .download-link.span3.columns
-        <!-- le rating -->
-        .row
-          .span3.columns
-            My Rating:
-        .row.stars
-          .span3.columns
-            = raw rate_book("book_rating_dynamic_#{audiobook.id}", 'dynamic-stars', audiobook.rating_by_user(current_login) || 0)
+    .download-link.span3.columns
+      <!-- le rating -->
+      .row
+        .span3.columns
+          My Rating:
+      .row.stars
+        .span3.columns
+          = raw rate_book("book_rating_dynamic_#{audiobook.id}", 'dynamic-stars', audiobook.rating_by_user(current_login) || 0)
 
-        <!-- le view this book -->
-        .row.view-this-book
-          .span3.columns
-            = link_to 'View this book', author_book_url(audiobook.author, audiobook), :class => 'btn primary'
+      <!-- le view this book -->
+      .row.view-this-book
+        .span3.columns
+          = link_to 'View this book', author_book_url(audiobook.author, audiobook), :class => 'btn primary'
 
