@@ -1589,7 +1589,11 @@ ul.ui-autocomplete {
 #collection-page ul.book-list li .download-link .stars {
   margin-top: -15px;
 }
-/* line 143, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 144, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page ul.book-list li .download-link .stars .blank-stars {
+  display: none;
+}
+/* line 148, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .view-this-book {
   margin-top: -8px;
 }
