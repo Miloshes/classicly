@@ -41,42 +41,9 @@
       src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
 
-      <!-- le Quote and Book buttons [only for author collections] -->
-      - if @collection.is_author_collection?
-        .row.author-buttons
-          .span8.columns
-            = link_to "#{@collection.name}'s Quotes", '#', :class => 'btn'
-            = link_to "#{@collection.name}'s Books", '#', :class => 'btn'
-
       <!-- Le content -->
       %p
         = simple_format(@collection.parsed_description)
-
-      <!-- Les Quotes -->
-      - if @collection.is_author_collection?
-        %h1= "#{@collection.name}'s Quotes"
-
-        .quote
-          .row.quote-text
-            .span8.columns
-              "Advertising is legalized lying."
-          .row.buttons
-            .span8.columns
-              = link_to 'Like', '#', :class => 'btn primary'
-
-          .row.quote-text
-            .span8.columns
-              "Cynicism is humor in ill health."
-          .row.buttons
-            .span8.columns
-              = link_to 'Like', '#', :class => 'btn primary'
-
-          .row.quote-text
-            .span8.columns
-              "Everytime I see an audit on a bycicle, I no longer despare for the future of human race."
-          .row.buttons
-            .span8.columns
-              = link_to 'Like', '#', :class => 'btn primary'
 
       .clear
       .share

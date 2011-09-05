@@ -2143,7 +2143,7 @@ ul.ui-autocomplete {
 }
 /* line 56, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #facebook_connect p {
-  margin-top: 8px;
+  margin-top: 14px;
   font-size: 24px;
   text-decoration: none;
   color: white;

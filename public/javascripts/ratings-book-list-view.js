@@ -8,7 +8,7 @@ $( function(){
         var bookId = $( 'ul.book-list' ).data( 'selectedBookId' );
         var rating = $( 'ul.book-list' ).data( 'selectedBookRating' );
         
-        sendRating( bookdId, rating );
+        sendRating( bookId, rating );
       }
       // hide the rtegistration dropdown:
       if ( $( "#fb_connect_notification" ).is( ":visible" ) )
