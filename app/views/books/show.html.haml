@@ -64,26 +64,27 @@
 
       .clear
 
-      - if ab_test('reviews')
-        #book-rating{:name => 'book' }
-          - if @book.average_rating > 0
-            = raw show_review_rating_stars(@book.average_rating)
+      <!-- le form -->  
+      #book-rating{:name => 'book' }
+        - if @book.average_rating > 0
+          = raw show_review_rating_stars(@book.average_rating)
 
-        #reviews-rating-count
-          #counts
-            = show_review_counts @book
+      #reviews-rating-count
+        #counts
+          = show_review_counts @book
 
-        #write-review
-          = raw write_review_link(@book, current_login)
+      #write-review
+        = raw write_review_link(@book, current_login)
 
-        = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
+      = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
-        .clear
+      .clear
 
-        #reviews
-          = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
+      #reviews
+        = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
 
-        = javascript_include_tag 'review-ratings'
+      <!-- les import -->
+      = javascript_include_tag 'review-ratings'
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');

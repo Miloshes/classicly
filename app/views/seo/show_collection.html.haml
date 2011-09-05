@@ -11,6 +11,8 @@
 
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
+  = content_for :drawer do
+    = render :partial => '/shared/connect_with_facebook_bar'
 
 #collection-page
   - if @collection.has_audiobook_counterpart?
@@ -39,9 +41,11 @@
       src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
       </script>
 
+      <!-- Le content -->
       %p
         = simple_format(@collection.parsed_description)
 
+      .clear
       .share
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
 
@@ -49,17 +53,12 @@
       .cover.medium
         = cover_image_link(@collection.featured_book, 2)
 
-  - if @collection.is_author_collection? && @collection.has_author?
-    .author-quotations
-      - for quotation in @collection.author.author_quotings
-        %h5
-          = link_to quotation.quoted_text, quotation.blog_post.cached_slug
 
   .book-list
     %h3 All #{@collection.name} Books
 
     .sorting
-      %span Sort Bya:
+      %span Sort By:
       = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
       = link_to_sorted 'Title', 'pretty_title', @collection, params
 
@@ -68,18 +67,24 @@
         =# sort_books_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list
       = render :partial => '/books/listed_book', :collection => @books, :as => :book
-    .pagination
-      = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
+    .clear
 
-- if Rails.env.production?
-  - if @collection.collection_type == 'author'
-    = raw render_performable_script(:author)
-  - else
-    = raw render_performable_script(:collection)
+    = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+
+    .row
+      .span11.columns
+        .explanation
+          Downloads on Classicly are completely free- these books are public domain. 
+    .row
+      .span11.columns
+        .explanation
+          We don’t pay a cent, so neither do you.
+
+
+= javascript_include_tag 'ratings-book-list-view'
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');
   else _kmq.push([ 'record', 'Collection Viewed', { 'name': "#{@collection.name}" } ]);
+

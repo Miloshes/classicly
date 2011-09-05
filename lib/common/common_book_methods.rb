@@ -28,6 +28,7 @@ module CommonBookMethods
   end
 
   def rating_by_user(user)
+    return nil if user.nil?
     rating = self.reviews.find_by_fb_connect_id(user.fb_connect_id)
     rating.try(:rating)
   end
