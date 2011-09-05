@@ -1551,18 +1551,26 @@ ul.ui-autocomplete {
   padding-top: 5px;
 }
 /* line 111, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page ul.book-list li .book-info .title-author {
+  max-height: 57px;
+  min-height: 57px;
+  display: block;
+  float: left;
+  width: 100%;
+}
+/* line 118, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a {
   color: #333333;
+  text-decoration: none;
 }
-/* line 114, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 122, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a.title {
   font-size: 18px;
   font-weight: bold;
-  text-decoration: none;
   float: left;
   display: block;
 }
-/* line 121, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 128, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info p {
   font-size: 16px;
   font-style: italic;
@@ -1572,32 +1580,33 @@ ul.ui-autocomplete {
   display: block;
   width: 100%;
 }
-/* line 130, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info p.avg-stars {
-  margin-top: -25px;
-}
-/* line 133, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 138, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info p a.author {
   font-size: 16px;
   text-decoration: none;
 }
-/* line 137, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 142, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page ul.book-list li .book-info .avg-stars {
+  position: relative;
+  top: 4px;
+}
+/* line 146, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link {
   padding-top: 5px;
 }
-/* line 139, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 148, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link a {
   text-decoration: none;
 }
-/* line 142, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 151, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .stars {
   margin-top: -15px;
 }
-/* line 145, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 154, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .stars .blank-stars {
   display: none;
 }
-/* line 149, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 158, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .view-this-book {
   margin-top: -8px;
 }

@@ -108,13 +108,20 @@
         margin-left: -35px
         padding-top: 5px
 
+        .title-author
+          max-height: 57px
+          min-height: 57px
+          display: block
+          float: left
+          width: 100%
+
         a
           :color #333333
+          text-decoration: none
 
         a.title
           font-size: 18px
           font-weight: bold
-          :text-decoration none
           :float left
           :display block
 
@@ -127,12 +134,14 @@
           display: block
           width: 100%
 
-          &.avg-stars
-            margin-top: -25px
 
           a.author
             font-size: 16px
             text-decoration: none
+
+        .avg-stars
+          position: relative
+          top: 4px
 
       .download-link
         padding-top: 5px

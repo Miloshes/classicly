@@ -4,11 +4,11 @@
       = cover_image_link(book, 2)
 
     .book-info.span6.columns
-      = link_to book.pretty_title, author_book_url(book.author, book), :class => "title"
-
-      %p
-        by
-        = link_to book.author.name, seo_url(book.author), :class => "author"
+      .title-author
+        = link_to shorten_text(book.pretty_title, 70), author_book_url(book.author, book), :class => "title"
+        %p
+          by
+          = link_to book.author.name, seo_url(book.author), :class => "author"
 
       .avg-stars= raw show_review_rating_stars(book.average_rating)
 
