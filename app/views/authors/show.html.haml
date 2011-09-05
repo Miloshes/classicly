@@ -10,9 +10,6 @@
     .like-send
       <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
   .author-quotations
-    - for quotation in @author.author_quotings
-      %h5
-        = link_to quotation.quoted_text, quotation.blog_post.cached_slug
   .book-list
     %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
     %p.explanation We don’t pay a cent, so neither do you.
@@ -21,4 +18,4 @@
       %span Sort By:
 
     %ul.book-list
-      = render :partial => '/books/listed_book', :collection => @books, :as => :book
+      = render :partial => '/books/listed_book', :locals => {:enable_rating => false}, :collection => @books, :as => :book

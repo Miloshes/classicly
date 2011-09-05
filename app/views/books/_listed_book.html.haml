@@ -11,19 +11,20 @@
           = link_to book.author.name, seo_url(book.author), :class => "author"
 
       .avg-stars= raw show_review_rating_stars(book.average_rating)
+      
+    - if enable_rating
+      .download-link.span3.columns
+        <!-- le rating -->
+        .row
+          .span3.columns.my-rating-text
+            My Rating:
+        .row.stars
+          .span3.columns.blank-stars
+            &nbsp;
+          .span3.columns.rating
+            = raw rate_book("book_rating_dynamic_#{book.id}", 'dynamic-stars', book.rating_by_user(current_login) || 0)
 
-    .download-link.span3.columns
-      <!-- le rating -->
-      .row
-        .span3.columns.my-rating-text
-          My Rating:
-      .row.stars
-        .span3.columns.blank-stars
-          &nbsp;
-        .span3.columns.rating
-          = raw rate_book("book_rating_dynamic_#{book.id}", 'dynamic-stars', book.rating_by_user(current_login) || 0)
-
-      <!-- le view this book -->
-      .row.view-this-book
-        .span3.columns
-          =link_to 'View this book', author_book_url(book.author, book), :class => 'btn primary'
+        <!-- le view this book -->
+        .row.view-this-book
+          .span3.columns
+            =link_to 'View this book', author_book_url(book.author, book), :class => 'btn primary'

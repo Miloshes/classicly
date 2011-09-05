@@ -12,7 +12,7 @@
   - else
     %h1 Search results for <strong>'#{@search}'</strong>
     %ul{:class => "#{ @audibly ? 'book-list audiobooks' : 'book-list' }"}
-      = render :partial => '/books/listed_book', :collection => @books, :as => :book
+      = render :partial => '/books/listed_book', :locals => {:enable_rating => false },:collection => @books, :as => :book
     .pagination
       = paginate @books
 

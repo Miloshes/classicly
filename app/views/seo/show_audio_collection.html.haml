@@ -53,7 +53,7 @@
       -# unless @collection.is_author_collection?
         =# sort_audiobooks_ajax_link @collection.id, 'Author', 'author' 
     %ul.book-list.audiobooks
-      = render :partial => '/audiobooks/listed_audio_book', :collection => @books, :as => :audiobook
+      = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true}, :collection => @books, :as => :audiobook
 
     = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 
