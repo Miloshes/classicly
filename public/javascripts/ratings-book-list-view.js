@@ -45,7 +45,11 @@ $( 'input.dynamic-stars' ).rating({callback: function(value, link ){
 $( '.rating-cancel' ).remove();
 
 function sendRating( bookId, rating ){
-  var data = 'book_id=' + bookId + '&rating=' + rating;
+  var klass = "book";
+  if( $( "ul.book-list" ).hasClass( "audiobooks" ) )
+    klass = 'audiobook';
+  
+  var data = klass + '_id=' + bookId + '&rating=' + rating;
   
   $.ajax({
     type: 'POST',

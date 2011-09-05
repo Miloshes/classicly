@@ -8,8 +8,7 @@
       %p
         by
         = link_to audiobook.author.name, seo_url(audiobook.author), :class => "author"
-      %p.avg-stars
-        = raw show_review_rating_stars(audiobook.average_rating)
+      .avg-stars= raw show_review_rating_stars(audiobook.average_rating)
 
     .download-link.span3.columns
       <!-- le rating -->

@@ -5,13 +5,12 @@
 
     .book-info.span6.columns
       = link_to book.pretty_title, author_book_url(book.author, book), :class => "title"
+
       %p
         by
         = link_to book.author.name, seo_url(book.author), :class => "author"
 
-      %p.avg-stars
-        = raw show_review_rating_stars(book.average_rating)
-
+      .avg-stars= raw show_review_rating_stars(book.average_rating)
 
     .download-link.span3.columns
       <!-- le rating -->
