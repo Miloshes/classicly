@@ -10,7 +10,7 @@
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
 = content_for :drawer do
-  = render :partial => '/shared/connect_with_facebook_bar'
+  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
 
 
 #book-page{:name => @book.id }
