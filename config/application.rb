@@ -41,7 +41,6 @@ module Classicly
 
     config.generators do |g|
       g.test_framework      :rspec, :fixture => true
-      g.fixture_replacement :fabrication
     end
 
     config.action_mailer.delivery_method = :smtp

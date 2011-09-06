@@ -111,7 +111,9 @@ group :development, :test do
 
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   #gem 'jasmine'
-  
+
+  gem 'fastercsv'
+
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   #gem 'machinist', '>= 2.0.0.beta1'
 
