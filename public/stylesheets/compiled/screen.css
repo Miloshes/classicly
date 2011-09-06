@@ -2109,6 +2109,9 @@ ul.ui-autocomplete {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: none;
+}
+/* line 13, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+#fb_connect_notification.fixed {
   position: fixed;
 }
 /* line 16, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
