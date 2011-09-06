@@ -1,52 +1,53 @@
 .quote-list-page
-  -# if @collection.has_audiobook_counterpart?
-  .row.audiobook-switcher
-    .span11.columns
-      %span
-        Books |&nbsp;
-      = link_to 'Audiobooks', '#' #seo_url(@collection.audiobook_collection_slug)
-      .tooltip
-        View this collection as audiobooks. Available as MP3 downloads.
+  .span12.columns
+    -# if @collection.has_audiobook_counterpart?
+    .row.audiobook-switcher
+      .span12.columns
+        %span
+          Books |&nbsp;
+        = link_to 'Audiobooks', '#' #seo_url(@collection.audiobook_collection_slug)
+        .tooltip
+          View this collection as audiobooks. Available as MP3 downloads.
 
-  <!-- le title -->
-  .row
-    .span11.columns
-      %h2="#{@collection.name} Quotes"
+    <!-- le title -->
+    .row
+      .span9.columns
+        %h1= "#{@collection.name} Quotes"
 
-  <!--le google adsense -->
-  .row
-    .span11.columns
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Collection Page 300&#42;250 */
-      google_ad_slot = "4482754705";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+    <!--le google adsense -->
+    .row
+      .span11.columns
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7773516323337861";
+        /* Collection Page 300&#42;250 */
+        google_ad_slot = "4482754705";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
 
-  <!-- le "Quotes" and "books" buttons-->
-  .row.quotes-and-books-buttons
-    .span10.columns
-      = link_to "#{@collection.name}'s Biography", '#', :class => 'btn'
-      = link_to "#{@collection.name}'s Books", '#', :class => 'btn'
+    <!-- le "Quotes" and "books" buttons-->
+    .row.quotes-and-books-buttons
+      .span10.columns
+        = link_to "#{@collection.name}'s Biography", '#', :class => 'btn'
+        = link_to "#{@collection.name}'s Books", '#', :class => 'btn'
 
-  .row.quote-section-title
-    .span11.columns
-      %h2= "#{@collection.name} Quotes"
+    .row.quote-section-title
+      .span11.columns
+        %h2= "#{@collection.name} Quotes"
 
-  .row
-    .span11.columns
-      - for quote in @quotes
-        .quote.row
-          .span11.columns
-            &quot;
-            = quote.content
-            &quot;
-        .row
-          .separator.span11.columns
+    .row
+      .span11.columns
+        - for quote in @quotes
+          .quote.row
+            .span11.columns
+              &quot;
+              = quote.content
+              &quot;
+          .row
+            .separator.span11.columns
 
-  = paginate @quotes
+    = paginate @quotes

@@ -2844,15 +2844,23 @@ a.btn {
   margin-top: 20px;
 }
 /* line 22, ../../../app/stylesheets/partials/_quotes.sass */
+#collection-page .quotes-in-author-page, .quote-list-page .quotes-in-author-page, .collection-book-list-page .quotes-in-author-page {
+  margin-bottom: 15px;
+}
+/* line 25, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quote, .quote-list-page .quote, .collection-book-list-page .quote {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 28, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 31, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
   border-bottom: 2px solid #cccccc;
+}
+/* line 34, ../../../app/stylesheets/partials/_quotes.sass */
+#collection-page .more-quotes-btn a, .quote-list-page .more-quotes-btn a, .collection-book-list-page .more-quotes-btn a {
+  margin-left: 8px;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_admin.sass */

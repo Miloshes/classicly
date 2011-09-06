@@ -71,7 +71,7 @@
             =@collection.name
             Quotes
 
-      .row
+      .row.quotes-in-author-page
         .span9.columns
           - for quote in @quotes
             .quote.row
@@ -81,6 +81,9 @@
                 &quot;
             .row
               .separator.span9.columns
+      .row.more-quotes-btn
+        .offset5.span4.columns
+          = link_to "More #{@collection.name}'s Quotes", '#', :class => 'btn primary'
 
     .row.book-list
       .span12.columns
