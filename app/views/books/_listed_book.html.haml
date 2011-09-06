@@ -1,15 +1,30 @@
 %li{:id => "book_#{book.id}"}
-  .cover.small
-    = cover_image_link(book, 2)
+  .row
+    .cover.tiny.span2.columns
+      = cover_image_link(book, 2)
 
-  .book-info
-    = link_to book.pretty_title, author_book_url(book.author, book), :class => "title"
-    %p
-      %span
-        by
-        = link_to book.author.name, seo_url(book.author), :class => "author"
-    .clear
-    = shorten_text simple_format(book.description), 300
+    .book-info.span6.columns
+      .title-author
+        = link_to shorten_text(book.pretty_title, 70), author_book_url(book.author, book), :class => "title"
+        %p
+          by
+          = link_to book.author.name, seo_url(book.author), :class => "author"
 
-  .download-link
-    =link_to image_tag('view-this-book.png'), author_book_url(book.author, book)
+      .avg-stars= raw show_review_rating_stars(book.average_rating)
+      
+    - if enable_rating
+      .download-link.span3.columns
+        <!-- le rating -->
+        .row
+          .span3.columns.my-rating-text
+            My Rating:
+        .row.stars
+          .span3.columns.blank-stars
+            &nbsp;
+          .span3.columns.rating
+            = raw rate_book("book_rating_dynamic_#{book.id}", 'dynamic-stars', book.rating_by_user(current_login) || 0)
+
+        <!-- le view this book -->
+        .row.view-this-book
+          .span3.columns
+            =link_to 'View this book', author_book_url(book.author, book), :class => 'btn primary'

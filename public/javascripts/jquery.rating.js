@@ -141,7 +141,16 @@
 			// readOnly?
 			if(control.readOnly)//{ //save a byte!
 				// Mark star as readOnly so user can customize display
-				star.addClass('star-rating-readonly');
+				
+				 // Attach mouse events
+					star.mouseover(function(){
+						$(this).rating('fill');
+						$(this).rating('focus');
+					})
+					.mouseout(function(){
+						$(this).rating('draw');
+						$(this).rating('blur');
+					});
 			//}  //save a byte!
 			else//{ //save a byte!
 			 // Enable hover css effects
@@ -224,7 +233,7 @@
 		fill: function(){ // fill to the current mouse position.
 			var control = this.data('rating'); if(!control) return this;
 			// do not execute when control is in read-only mode
-			if(control.readOnly) return;
+			//if(control.readOnly) return;
 			// Reset all stars and highlight them up to this element
 			this.rating('drain');
 			this.prevAll().andSelf().filter('.rater-'+ control.serial).addClass('star-rating-hover');
@@ -233,7 +242,7 @@
 		drain: function() { // drain all the stars.
 			var control = this.data('rating'); if(!control) return this;
 			// do not execute when control is in read-only mode
-			if(control.readOnly) return;
+			//if(control.readOnly) return;
 			// Reset all stars
 			control.rater.children().filter('.rater-'+ control.serial).removeClass('star-rating-on').removeClass('star-rating-hover');
 		},// $.fn.rating.drain
@@ -252,7 +261,7 @@
 			// Show/hide 'cancel' button
 			control.cancel[control.readOnly || control.required?'hide':'show']();
 			// Add/remove read-only classes to remove hand pointer
-			this.siblings()[control.readOnly?'addClass':'removeClass']('star-rating-readonly');
+			//this.siblings()[control.readOnly?'addClass':'removeClass']('star-rating-readonly');
 		},// $.fn.rating.draw
 		
 		
@@ -272,7 +281,13 @@
 			
 			var control = this.data('rating'); if(!control) return this;
 			// do not execute when control is in read-only mode
-			if(control.readOnly) return;
+			if(control.readOnly) {
+			  if( !( isLoggedIn() ) ){
+			    if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
+            $( "#fb_connect_notification ").slideDown( "slow" );
+		    }
+        return;
+			}
 			// clear selection
 			control.current = null;
 			// programmatically (based on user input)

@@ -15,7 +15,7 @@ class BlogPost < ActiveRecord::Base
   accepts_nested_attributes_for :custom_resources, :allow_destroy => true
   after_save :generate_seo_slug, :create_author_quotings
   has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
-  
+
   state_machine :state, :initial => :draft do
     event :publish do
       transition :draft => :published
@@ -44,9 +44,9 @@ class BlogPost < ActiveRecord::Base
     AuthorQuoting.where(:blog_post_id => self.id).delete_all
     doc = Nokogiri::HTML(self.content)
     doc.xpath("//featured").each do|quotation|
-      author_id = doc.xpath('//featured').first.attributes['author_id'].value
+      collection_id = doc.xpath('//featured').first.attributes['collection_id'].value
       text = doc.xpath('//featured').first.children.text
-      AuthorQuoting.create(:author_id => author_id, :blog_post_id => self.id, :quoted_text => text)
+      AuthorQuoting.create(:collection_id => collection_id, :blog_post_id => self.id, :quoted_text => text)
     end
   end
 

@@ -22,10 +22,10 @@ class ApplicationController < ActionController::Base
   end
 
   def collections_for_footer
-    @footer_collections_column_1 = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
-    @footer_collections_column_2 = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
-    @footer_author_collections_column_1 = Collection.find_author_book_collections.select('name,cached_slug').limit(14).order('name asc')
-    @footer_author_collections_column_2 = Collection.find_author_book_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
+    @footer_collections_column_1        = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
+    @footer_collections_column_2        = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
+    @footer_author_collections_column_1 = Collection.find_book_author_collections.select('name,cached_slug').limit(14).order('name asc')
+    @footer_author_collections_column_2 = Collection.find_book_author_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
  end
 
   def current_admin_user_session
@@ -70,8 +70,8 @@ class ApplicationController < ActionController::Base
   def set_abingo_identity
     if request.user_agent =~ /\b(Baidu|Gigabot|Googlebot|libwww-perl|lwp-trivial|msnbot|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)\b/i
       Abingo.identity = "robot"
-    elsif current_admin_user
-      Abingo.identity = @profile_id
+    elsif current_login
+      Abingo.identity = current_login.id
     else
       session[:abingo_identity] ||= rand(10 ** 10)
       Abingo.identity = session[:abingo_identity]

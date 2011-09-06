@@ -3,6 +3,7 @@ $(function(){
 });
 
 $(function(){
+
   $('.audiobook-switcher a').tooltip({
     // use div.tooltip as our tooltip
     tip: '.tooltip',
@@ -29,6 +30,11 @@ $(function(){
     return false;
   });
 
+  // DISABLE CURRENT PAGE AND GAP IN PAGINATOR
+  $( ".pagination ul li.active, .pagination ul li.gap" ).live( "click", function(){
+    return false;
+  });
+
 });
 
 function isLoggedIn(){
@@ -40,4 +46,14 @@ function isLoggedIn(){
   });
 
   return logged;
+}
+
+function sendKissMetricsEvent( event, attributes ){
+  if( _kmq ){
+    if( attributes )
+      _kmq.push( ["record", event, attributes ] );
+    else
+      _kmq.push( ["record", event] );
+  }
+
 }

@@ -9,6 +9,11 @@
     h1
       :font-size 22px
       :font-weight bold
+    .author-buttons
+      margin-top: 20px
+      a
+        text-decoration: none
+        margin-right: 30px
     p
       :font-size 14px
       a
@@ -18,6 +23,19 @@
         &:hover
           :background #ffff66
           :cursor pointer
+
+    .quote
+      .quote-text
+        margin-bottom: 15px
+        .columns
+          font-size: 18px
+
+      .buttons
+        .columns
+          border-bottom: 1px solid #ddd
+          padding: 0px 0px 15px 20px
+
+
     .share
       margin-bottom: 50px
 
@@ -35,13 +53,9 @@
       :margin 0
         :bottom 3px
 
-    p.explanation
-      +column(7, true)
+    .explanation
       :color #999999
       :font-size 14px
-      margin-top: -10px
-      &.first
-        width: 482px
 
   .sorting
     +column(18, true)
@@ -85,40 +99,61 @@
           cursor: normal
 
   ul.book-list
+    margin-bottom: 22px
     li
-      +column(16, true)
       &:hover
         :cursor pointer
-        a.title
-          :background #ffff66
-      .cover
-        +column(3)
+
       .book-info
-        +column(9)
+        margin-left: -35px
+        padding-top: 5px
+
+        .title-author
+          max-height: 57px
+          min-height: 57px
+          display: block
+          float: left
+          width: 100%
+
         a
           :color #333333
+          text-decoration: none
+
         a.title
-          :font-size 25px
-          :text-decoration none
+          font-size: 18px
+          font-weight: bold
           :float left
           :display block
-        span
-          :font-style italic
-          :font-size 16px
-          :text-decoration none
-          :float left
-          :display block
-          :width 100%
-          span
-          a.author
-            :font-style italic
-            :font-size 16px
-            :text-decoration none
+
         p
-          :color #999999
-          :font-style italic
+          font-size: 16px
+          font-style: italic
+          font-weight: lighter
+          color: black
+          float: left
+          display: block
+          width: 100%
+
+
+          a.author
+            font-size: 16px
+            text-decoration: none
+
+        .avg-stars
+          position: relative
+          top: 4px
+
       .download-link
-        +column(4, true)
-        img
-          :margin
-            :top 125px
+        padding-top: 5px
+        a
+          text-decoration: none
+
+        .stars
+          margin-top: -15px
+
+          .blank-stars
+            display: none
+
+
+        .view-this-book
+          margin-top: -8px

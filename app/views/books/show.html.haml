@@ -1,5 +1,6 @@
 - content_for :title do
   %title= seo_front_end_title_helper(@book)
+
 - content_for :head do
   - if @book.needs_canonical_link?
     %link{:rel => "canonical", :href => "http://www.classicly.com/#{@book.author.cached_slug}/#{@book.canonical_slug}" }
@@ -16,28 +17,14 @@
   .cover-column
     #current-book.cover.medium
       = cover_image_link(@book, 2)
-    .buttons
-      = link_to image_tag('read_online_new.png'), seo_url(@book.seo_slugs.read_online.first.slug)
-      %span.link_info
-        Use our online reader
+    - unless @related_books.empty?
+      %h4 Related
+      .cover.small.related
+        = cover_image_link_with_text(@related_books.first, 2)
 
-      - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
-        = link_to image_tag('new_download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) 
-        %span.link_info
-          Laptops & iPad
-
-      - if @book.available_in_format?('kindle') && @book.has_slug_for_format?('kindle')
-        = link_to image_tag('new_download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)
-        %span.link_info
-          Just Drag & Drop the file to your Kindle
-
-      - if @book.has_audiobook
-        = link_to image_tag('new_download_mp3.png'), seo_url(@book.audiobook_download_slug)
-        %span.link_info
-          Free MP3 audiobook, volunteer read
-
-      %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
-      %p.explanation We don’t pay a cent, so neither do you.
+      - 1.upto(@related_books.count - 1) do|index|
+        .cover.tiny.related
+          = cover_image_link_with_text(@related_books[index], 2)
 
   .book-column
     #book-metadata.grid_5.omega
@@ -64,8 +51,20 @@
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
 
+      .download
+        = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+        = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+        = link_to image_tag('mp3-download_03.png'), seo_url(@book.audiobook_download_slug), :class => 'download-as-mp3' if @book.has_audiobook
+
+      .read
+        = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug), :class => 'read_online' if @book.read_online?
+
+      %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
+      %p.explanation We don’t pay a cent, so neither do you.
+
       .clear
 
+      <!-- le form -->  
       #book-rating{:name => 'book' }
         - if @book.average_rating > 0
           = raw show_review_rating_stars(@book.average_rating)
@@ -74,8 +73,8 @@
         #counts
           = show_review_counts @book
 
-        #write-review
-          = raw write_review_link(@book, current_login)
+      #write-review
+        = raw write_review_link(@book, current_login)
 
       = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
@@ -84,8 +83,8 @@
       #reviews
         = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
 
-
-= javascript_include_tag 'review-ratings'
+      <!-- les import -->
+      = javascript_include_tag 'review-ratings'
 
 :javascript
   if( _kmq == undefined) console.log('Kiss Metrics Queue is Undefined.');

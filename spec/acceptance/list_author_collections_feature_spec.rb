@@ -10,6 +10,7 @@ feature 'List Author Collections feature: ', %q{
     collection_names = %w{Edgar-Poe Federico-Nietzsche Marcos-Twain Carlos-Dickens Carlota-Bronte}
     collection_names.each { |name| FactoryGirl.create(:collection, :collection_type => 'author', :name => name) }
 
+    Collection.first.update_attribute :description, 'Lorem Ipsum Dolorem Sit Amet'
     # Given I am on the author collections page:
     visit authors
   end

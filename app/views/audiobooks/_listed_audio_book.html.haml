@@ -1,15 +1,26 @@
 %li{:id => "audiobook_#{audiobook.id}"}
-  .cover.small
-    = cover_image_link(audiobook, 2)
-  .book-info
-    = link_to audiobook.title, author_book_url(audiobook.author, audiobook), :class => "title"
-    %p
-      %span
+  .row
+    .cover.tiny.span2.columns
+      = cover_image_link(audiobook, 2)
+
+    .book-info.span6.columns
+      = link_to audiobook.title, author_book_url(audiobook.author, audiobook), :class => "title"
+      %p
         by
         = link_to audiobook.author.name, seo_url(audiobook.author), :class => "author"
-    .clear
-    = shorten_text simple_format(audiobook.description), 300
+      .avg-stars= raw show_review_rating_stars(audiobook.average_rating)
 
-  .download-link
-    = link_to image_tag('view-this-book.png'), author_book_url(audiobook.author, audiobook)
-        
+    .download-link.span3.columns
+      <!-- le rating -->
+      .row
+        .span3.columns
+          My Rating:
+      .row.stars
+        .span3.columns
+          = raw rate_book("book_rating_dynamic_#{audiobook.id}", 'dynamic-stars', audiobook.rating_by_user(current_login) || 0)
+
+      <!-- le view this book -->
+      .row.view-this-book
+        .span3.columns
+          = link_to 'View this book', author_book_url(audiobook.author, audiobook), :class => 'btn primary'
+

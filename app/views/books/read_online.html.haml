@@ -54,10 +54,13 @@
         <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
       %p= simple_format(@book.description)
 
-      #read_online_button_container
-        =image_tag 'read-online-arrow.png'
-        = read_online_link @book
+      - if @book.is_rendered_for_online_reading
+        #read_online_button_container
+          =image_tag 'read-online-arrow.png'
+          = read_online_link @book
+
       .clear
+
       .read_online_text
         %p.explanation.first Reading on Classicly is completely free- these books are public domain.
 

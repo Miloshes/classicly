@@ -231,10 +231,10 @@ describe WebApiController, "(API calls - review related queries)" do
     # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
     
     parsed_response["books"].should have(2).elements
-    parsed_response["books"].first.keys.should == ["id", "rating"]
+    parsed_response["books"].first.keys.sort.should == ["id", "rating"]
     
     parsed_response["audiobooks"].should have(2).elements
-    parsed_response["audiobooks"].first.keys.should == ["id", "rating"]
+    parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
   end
   
   describe "getting the reviews for a book or audiobook, paginated" do
@@ -271,9 +271,9 @@ describe WebApiController, "(API calls - review related queries)" do
       # ]
 
       parsed_response.should have(2).elements
-      expected_keys = ["content", "rating", "created_at", "fb_connect_id", "fb_name", "fb_location_city", "fb_location_country"]
-      parsed_response.first.keys.should == expected_keys
-      parsed_response.second.keys.should == expected_keys
+      expected_keys = ["content", "created_at", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      parsed_response.first.keys.sort.should  == expected_keys
+      parsed_response.second.keys.sort.should == expected_keys
     end
     
     it "should work for audiobooks" do
@@ -292,10 +292,10 @@ describe WebApiController, "(API calls - review related queries)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
 
       parsed_response.should have(1).elements
-      expected_keys = ["content", "rating", "created_at", "fb_connect_id", "fb_name", "fb_location_city", "fb_location_country"]
-      parsed_response.first.keys.should == expected_keys
+      expected_keys = ["content", "created_at", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      parsed_response.first.keys.sort.should == expected_keys
     end
-    
+
     it "should be paginated correctly" do
       data = {
           "action"   => "get_reviews_for_book",
@@ -310,16 +310,16 @@ describe WebApiController, "(API calls - review related queries)" do
 
       parsed_response.should have(1).elements
     end
-    
+
   end # of "getting the reviews for a book or audiobook, paginated"
-  
+
   describe "getting the review stats" do
-    
+
     it "should work for a book" do
       book   = FactoryGirl.create(:book)
       login  = FactoryGirl.create(:login, :fb_connect_id => "123")
       review = FactoryGirl.create(:review, :reviewable => book, :reviewer => login, :rating => 1)
-      
+
       data = {
           'action'  => 'get_review_stats_for_book',
           'book_id' => book.id
@@ -331,9 +331,9 @@ describe WebApiController, "(API calls - review related queries)" do
       
       # We're expecting something like this:
       # {"book_rating_average"=>1.5, "book_review_count"=>2, "classicly_url"=>"http://www.classicly.com/john-doe/book_4_pretty_title"}
-      
+
       parsed_response.class.should == Hash
-      parsed_response.keys.should == ["book_rating_average", "book_review_count", "classicly_url"]
+      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "classicly_url"]
       parsed_response["book_review_count"].should == 1
     end
     
@@ -355,7 +355,7 @@ describe WebApiController, "(API calls - review related queries)" do
       # {"book_rating_average"=>1.5, "book_review_count"=>2, "classicly_url"=>"http://www.classicly.com/john-doe/book_4_pretty_title"}
       
       parsed_response.class.should == Hash
-      parsed_response.keys.should == ["book_rating_average", "book_review_count", "classicly_url"]
+      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "classicly_url"]
       parsed_response["book_review_count"].should == 1
     end
     
@@ -434,9 +434,9 @@ describe WebApiController, "(API calls - review related queries)" do
       
       # We're expecting something like this:
       # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
-      
+
       parsed_response.class.should == Hash
-      parsed_response.keys.should == ["content", "rating", "created_at"]
+      parsed_response.keys.sort.should == ["content", "created_at", "rating"]
     end
     
     it "should work for audiobooks" do
@@ -458,7 +458,7 @@ describe WebApiController, "(API calls - review related queries)" do
       # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
       
       parsed_response.class.should == Hash
-      parsed_response.keys.should == ["content", "rating", "created_at"]
+      parsed_response.keys.sort.should == ["content", "created_at", "rating"]
     end
     
   end
