@@ -1378,27 +1378,18 @@ ul.ui-autocomplete {
 
 /* line 1, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page, .collection-book-list-page, .quote-list-page {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 710px;
-  margin-top: 30px;
   text-align: left;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #collection-page, * html .collection-book-list-page, * html .quote-list-page {
-  overflow-x: hidden;
-}
-/* line 8, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 4, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page h1, .collection-book-list-page h1, .quote-list-page h1 {
   font-size: 22px;
   font-weight: bold;
 }
-/* line 12, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 8, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .audiobook-switcher, .collection-book-list-page .audiobook-switcher, .quote-list-page .audiobook-switcher {
   min-height: 30px;
 }
-/* line 14, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 10, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .audiobook-switcher span, .collection-book-list-page .audiobook-switcher span, .quote-list-page .audiobook-switcher span {
   display: block;
   float: left;
@@ -1407,7 +1398,7 @@ ul.ui-autocomplete {
   margin-top: 5px;
   margin-right: 5px;
 }
-/* line 22, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 18, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .audiobook-switcher a, .collection-book-list-page .audiobook-switcher a, .quote-list-page .audiobook-switcher a {
   background: #ffffd7;
   color: #333333;
@@ -1416,69 +1407,48 @@ ul.ui-autocomplete {
   float: left;
   margin-top: 5px;
 }
-/* line 30, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 26, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .audiobook-switcher a:hover, .collection-book-list-page .audiobook-switcher a:hover, .quote-list-page .audiobook-switcher a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 36, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .author-buttons, .collection-book-list-page .collection-info .author-buttons, .quote-list-page .collection-info .author-buttons {
-  margin-top: 20px;
+/* line 30, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page .collection-info, .collection-book-list-page .collection-info, .quote-list-page .collection-info {
+  margin-bottom: 45px;
 }
-/* line 39, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .author-buttons a, .collection-book-list-page .collection-info .author-buttons a, .quote-list-page .collection-info .author-buttons a {
-  text-decoration: none;
-  margin-right: 30px;
-}
-/* line 42, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 33, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p, .collection-book-list-page .collection-info p, .quote-list-page .collection-info p {
   font-size: 14px;
+  line-height: 2em;
 }
-/* line 45, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 37, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p a, .collection-book-list-page .collection-info p a, .quote-list-page .collection-info p a {
   color: #333333;
   text-decoration: none;
   background: #ffffd7;
 }
-/* line 49, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 41, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p a:hover, .collection-book-list-page .collection-info p a:hover, .quote-list-page .collection-info p a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 54, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .quote .quote-text, .collection-book-list-page .collection-info .quote .quote-text, .quote-list-page .collection-info .quote .quote-text {
-  margin-bottom: 15px;
-}
-/* line 56, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .quote .quote-text .columns, .collection-book-list-page .collection-info .quote .quote-text .columns, .quote-list-page .collection-info .quote .quote-text .columns {
-  font-size: 18px;
-}
-/* line 60, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .quote .buttons .columns, .collection-book-list-page .collection-info .quote .buttons .columns, .quote-list-page .collection-info .quote .buttons .columns {
-  border-bottom: 1px solid #dddddd;
-  padding: 0px 0px 15px 20px;
-}
-/* line 65, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info .share, .collection-book-list-page .collection-info .share, .quote-list-page .collection-info .share {
-  margin-bottom: 50px;
-}
-/* line 71, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 46, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list .explanation, .collection-book-list-page .book-list .explanation, .quote-list-page .book-list .explanation {
   color: #999999;
   font-size: 14px;
 }
-/* line 75, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 50, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting, .collection-book-list-page .sorting, .quote-list-page .sorting {
   margin-bottom: 25px;
 }
-/* line 79, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 54, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting span, .collection-book-list-page .sorting span, .quote-list-page .sorting span {
   display: block;
   font-size: 14px;
   font-weight: bold;
   float: left;
 }
-/* line 85, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 60, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a, .collection-book-list-page .sorting a, .quote-list-page .sorting a {
   text-decoration: none;
   color: #333333;
@@ -1489,45 +1459,45 @@ ul.ui-autocomplete {
   display: block;
   margin-left: 20px;
 }
-/* line 96, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 71, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.active, .collection-book-list-page .sorting a.active, .quote-list-page .sorting a.active {
   color: #cccccc;
   background: white;
 }
-/* line 100, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 75, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.active:hover, .collection-book-list-page .sorting a.active:hover, .quote-list-page .sorting a.active:hover {
   background: white;
   cursor: normal;
 }
-/* line 104, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 79, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a:hover, .collection-book-list-page .sorting a:hover, .quote-list-page .sorting a:hover {
   background: #ffff66;
   cursor: pointer;
 }
-/* line 108, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 83, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.selected, .collection-book-list-page .sorting a.selected, .quote-list-page .sorting a.selected {
   color: #333333;
   background: none;
   text-decoration: underline;
 }
-/* line 112, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 87, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting a.selected:hover, .collection-book-list-page .sorting a.selected:hover, .quote-list-page .sorting a.selected:hover {
   cursor: normal;
 }
-/* line 115, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 90, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list, .collection-book-list-page ul.book-list, .quote-list-page ul.book-list {
   margin-bottom: 22px;
 }
-/* line 118, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 93, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li:hover, .collection-book-list-page ul.book-list li:hover, .quote-list-page ul.book-list li:hover {
   cursor: pointer;
 }
-/* line 121, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 96, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info, .collection-book-list-page ul.book-list li .book-info, .quote-list-page ul.book-list li .book-info {
   margin-left: -35px;
   padding-top: 5px;
 }
-/* line 125, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 100, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info .title-author, .collection-book-list-page ul.book-list li .book-info .title-author, .quote-list-page ul.book-list li .book-info .title-author {
   max-height: 57px;
   min-height: 57px;
@@ -1535,19 +1505,19 @@ ul.ui-autocomplete {
   float: left;
   width: 100%;
 }
-/* line 132, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 107, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a, .collection-book-list-page ul.book-list li .book-info a, .quote-list-page ul.book-list li .book-info a {
   color: #333333;
   text-decoration: none;
 }
-/* line 136, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 111, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info a.title, .collection-book-list-page ul.book-list li .book-info a.title, .quote-list-page ul.book-list li .book-info a.title {
   font-size: 18px;
   font-weight: bold;
   float: left;
   display: block;
 }
-/* line 142, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 117, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info p, .collection-book-list-page ul.book-list li .book-info p, .quote-list-page ul.book-list li .book-info p {
   font-size: 16px;
   font-style: italic;
@@ -1557,33 +1527,33 @@ ul.ui-autocomplete {
   display: block;
   width: 100%;
 }
-/* line 152, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 127, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info p a.author, .collection-book-list-page ul.book-list li .book-info p a.author, .quote-list-page ul.book-list li .book-info p a.author {
   font-size: 16px;
   text-decoration: none;
 }
-/* line 156, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 131, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .book-info .avg-stars, .collection-book-list-page ul.book-list li .book-info .avg-stars, .quote-list-page ul.book-list li .book-info .avg-stars {
   position: relative;
   top: 4px;
 }
-/* line 160, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 135, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link, .collection-book-list-page ul.book-list li .download-link, .quote-list-page ul.book-list li .download-link {
   padding-top: 5px;
 }
-/* line 162, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 137, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link a, .collection-book-list-page ul.book-list li .download-link a, .quote-list-page ul.book-list li .download-link a {
   text-decoration: none;
 }
-/* line 165, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 140, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .stars, .collection-book-list-page ul.book-list li .download-link .stars, .quote-list-page ul.book-list li .download-link .stars {
   margin-top: -15px;
 }
-/* line 168, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 143, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .stars .blank-stars, .collection-book-list-page ul.book-list li .download-link .stars .blank-stars, .quote-list-page ul.book-list li .download-link .stars .blank-stars {
   display: none;
 }
-/* line 172, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 147, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page ul.book-list li .download-link .view-this-book, .collection-book-list-page ul.book-list li .download-link .view-this-book, .quote-list-page ul.book-list li .download-link .view-this-book {
   margin-top: -8px;
 }
@@ -2870,16 +2840,17 @@ a.btn {
 }
 /* line 18, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .row.quotes-and-books-buttons, .quote-list-page .row.quotes-and-books-buttons, .collection-book-list-page .row.quotes-and-books-buttons {
-  margin-bottom: 45px;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
-/* line 21, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 22, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quote, .quote-list-page .quote, .collection-book-list-page .quote {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 27, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 28, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
   border-bottom: 2px solid #cccccc;
 }

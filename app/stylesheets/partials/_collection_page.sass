@@ -1,9 +1,5 @@
 #collection-page, .collection-book-list-page, .quote-list-page
-  +column(18, true)
-  :margin
-    :top 30px
   :text-align left
-
 
   h1
     font-size: 22px
@@ -32,15 +28,11 @@
         :cursor pointer
 
   .collection-info
+    margin-bottom: 45px
 
-    .author-buttons
-      margin-top: 20px
-
-      a
-        text-decoration: none
-        margin-right: 30px
     p
       font-size: 14px
+      line-height: 2em
 
       a
         color: #333333
@@ -49,23 +41,6 @@
         &:hover
           :background #ffff66
           :cursor pointer
-
-    .quote
-      .quote-text
-        margin-bottom: 15px
-        .columns
-          font-size: 18px
-
-      .buttons
-        .columns
-          border-bottom: 1px solid #ddd
-          padding: 0px 0px 15px 20px
-
-
-    .share
-      margin-bottom: 50px
-
-
 
   .book-list
     .explanation
