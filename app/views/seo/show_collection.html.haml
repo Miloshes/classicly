@@ -14,63 +14,94 @@
   = content_for :drawer do
     = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
 
-#collection-page
-  - if @collection.has_audiobook_counterpart?
-    .audiobook-switcher
-      %span Books |&nbsp;
-      = link_to 'Audiobooks', seo_url(@collection.audiobook_collection_slug)
-      .tooltip
-        View this collection as audiobooks. Available as MP3 downloads.
+#collection-page.row
+  .span12.columns
+  
+    .row.audiobook-switcher
+      .span12.columns
+        - if @collection.has_audiobook_counterpart?
+          %span Books |&nbsp;
+          = link_to 'Audiobooks', '#'#seo_url(@collection.audiobook_collection_slug)
+          .tooltip
+            View this collection as audiobooks. Available as MP3 downloads.
 
-  - unless params[:page]
-    .collection-info
-      %h1
-        =@collection.name
-        Books
+    - unless params[:page]
+      .row.collection-info
+        .span9.columns
+          %h1
+            =@collection.name
+            Books
 
-      -# Google AdSense. DO NOT MODIFY.
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Collection Page 300&#42;250 */
-      google_ad_slot = "4482754705";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+          -# Google AdSense. DO NOT MODIFY.
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7773516323337861";
+          /* Collection Page 300&#42;250 */
+          google_ad_slot = "4482754705";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
 
-      <!-- Le content -->
-      %p
-        = simple_format(@collection.parsed_description)
+          - if @show_author_options
+            <!-- le "Quotes" and "books" buttons-->
+            .row.quotes-and-books-buttons
+              .span9.columns
+                = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
+                = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn'
 
-      .clear
-      .share
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+          <!-- Le content -->
+          = simple_format(@collection.parsed_description)
 
-    .featured-books.audiobooks
-      .cover.medium
-        = cover_image_link(@collection.featured_book, 2)
+          .share
+            <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+
+        .span3.columns
+          .featured-books.audiobooks
+            .cover.medium
+              = cover_image_link(@collection.featured_book, 2)
 
 
-  .book-list
-    %h3 All #{@collection.name} Books
+    - if @show_author_options
+      .row.quote-section-title
+        .span12.columns
+          %h1
+            =@collection.name
+            Quotes
 
-    .sorting
-      %span Sort By:
-      = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
-      = link_to_sorted 'Title', 'pretty_title', @collection, params
+      .row.quotes-in-author-page
+        .span9.columns
+          - for quote in @quotes
+            .quote.row
+              .span9.columns
+                &quot;
+                = quote.content
+                &quot;
+            .row
+              .separator.span9.columns
+      .row.more-quotes-btn
+        .offset5.span4.columns
+          = link_to "More #{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn primary'
 
-      -# sorting by author an author collection is pointless
-      -# unless @collection.is_author_collection?
-        =# sort_books_ajax_link @collection.id, 'Author', 'author' 
-    %ul.book-list
-      = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+    .row.book-list
+      .span12.columns
+        %h1 All #{@collection.name} Books
 
-    .clear
+        .sorting.row
+          .span11.columns
+            %span Sort By:
+            = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+            = link_to_sorted 'Title', 'pretty_title', @collection, params
 
-    = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+          -# sorting by author an author collection is pointless
+          -# unless @collection.is_author_collection?
+            =# sort_books_ajax_link @collection.id, 'Author', 'author' 
+        %ul.book-list
+          = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+
+        = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 
     .row
       .span11.columns

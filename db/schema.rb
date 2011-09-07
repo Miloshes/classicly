@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824144633) do
+ActiveRecord::Schema.define(:version => 20110905184327) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -279,6 +279,14 @@ ActiveRecord::Schema.define(:version => 20110824144633) do
     t.string   "ios_device_id"
   end
 
+  create_table "quotes", :force => true do |t|
+    t.integer  "collection_id"
+    t.text     "content"
+    t.integer  "author_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "ratings", :force => true do |t|
     t.string   "fb_connect_id"
     t.integer  "login_id"
@@ -294,9 +302,9 @@ ActiveRecord::Schema.define(:version => 20110824144633) do
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
+    t.integer  "rating"
     t.datetime "created_at"
     t.integer  "login_id"
-    t.integer  "rating",          :default => 0
   end
 
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"
