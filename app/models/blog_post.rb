@@ -36,6 +36,7 @@ class BlogPost < ActiveRecord::Base
     blog_post.update_attributes(params)
   end
 
+  # CLEANUP: seo related, should be extracted
   def blog_post_slug
     self.title.downcase.rstrip.gsub(' ', '-')
   end
@@ -50,6 +51,7 @@ class BlogPost < ActiveRecord::Base
     end
   end
 
+  # CLEANUP: seo related, should be extracted
   def generate_seo_slug
     SeoSlug.create(:seoable => self, :slug => self.friendly_id, :format => 'post')
   end
