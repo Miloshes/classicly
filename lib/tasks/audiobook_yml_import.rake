@@ -131,15 +131,15 @@ namespace :audiobook_yml_import do
     
     ActiveRecord::Base.establish_connection :scrape_db
     
-    first_id_to_import = 2948
+    first_id_to_import = 2947
     last_id_to_import  = Audiobook.last.id
     
-    audiobooks_to_import = BasicAudiobook.where(:id.gt => first_id_to_import).order("id ASC").all()
+    audiobooks_to_import = BasicAudiobook.where(:id.gt => first_id_to_import).order("id ASC").limit(1).all()
     authors = Author.all()
     tmp = authors.first.name + " " # hack to invoke the query, we're switching DBs
     utils = AudiobookMaintainerUtils.new
     
-    ActiveRecord::Base.establish_connection :development
+    ActiveRecord::Base.establish_connection :ios_audiobook_db
     
     audiobooks_to_import.each do |source_audiobook|
       attributes = source_audiobook.attributes.select { |key, value| !value.blank? }
@@ -149,6 +149,7 @@ namespace :audiobook_yml_import do
       
       attributes.delete("featured")
       attributes.delete("librivox_link")
+      attributes.delete("downloads_count")
       
       attributes["starting_letter_group"] = utils.starting_letter_group_for(attributes["title"])
       
@@ -173,7 +174,7 @@ namespace :audiobook_yml_import do
     last_id_to_import  = AudiobookChapter.last.id
     chapters_to_import = AudiobookChapter.where(:id.gt => first_id_to_import).order("id ASC").all()
     
-    ActiveRecord::Base.establish_connection :development
+    ActiveRecord::Base.establish_connection :ios_audiobook_db
     
     BasicAudiobookChapter.reset_column_information
     
@@ -202,7 +203,7 @@ namespace :audiobook_yml_import do
     last_id_to_import   = BasicAudiobookNarrator.last.id
     narrators_to_import = BasicAudiobookNarrator.where(:id.gt => first_id_to_import).order("id ASC").all()
     
-    ActiveRecord::Base.establish_connection :development
+    ActiveRecord::Base.establish_connection :ios_audiobook_db
     
     BasicAudiobookNarrator.reset_column_information
     
@@ -229,7 +230,7 @@ namespace :audiobook_yml_import do
     last_id_to_import   = BasicAuthor.last.id
     authors_to_import   = BasicAuthor.where(:id.gt => first_id_to_import).order("id ASC").all()
     
-    ActiveRecord::Base.establish_connection :development
+    ActiveRecord::Base.establish_connection :ios_audiobook_db
     
     BasicAuthor.reset_column_information
     
