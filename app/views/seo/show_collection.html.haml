@@ -49,8 +49,8 @@
             <!-- le "Quotes" and "books" buttons-->
             .row.quotes-and-books-buttons
               .span9.columns
-                = link_to "#{@collection.name}'s Books", '#', :class => 'btn'
-                = link_to "#{@collection.name}'s Quotes", '#', :class => 'btn'
+                = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
+                = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn'
 
           <!-- Le content -->
           = simple_format(@collection.parsed_description)
@@ -83,7 +83,7 @@
               .separator.span9.columns
       .row.more-quotes-btn
         .offset5.span4.columns
-          = link_to "More #{@collection.name}'s Quotes", '#', :class => 'btn primary'
+          = link_to "More #{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn primary'
 
     .row.book-list
       .span12.columns

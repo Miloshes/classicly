@@ -2861,6 +2861,7 @@ a.btn {
 /* line 34, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .more-quotes-btn a, .quote-list-page .more-quotes-btn a, .collection-book-list-page .more-quotes-btn a {
   margin-left: 8px;
+  color: white;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_admin.sass */

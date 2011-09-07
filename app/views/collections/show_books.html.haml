@@ -29,8 +29,8 @@
   <!-- le "Quotes" and "books" buttons-->
   .row.quotes-and-books-buttons
     .span10.columns
-      = link_to "#{@collection.name}'s Biography", '#', :class => 'btn'
-      = link_to "#{@collection.name}'s Quotes", '#', :class => 'btn'
+      = link_to "#{@collection.name}'s Biography", "/#{@collection.cached_slug}", :class => 'btn'
+      = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn'
 
   .row.quote-section-title
     .span11.columns
