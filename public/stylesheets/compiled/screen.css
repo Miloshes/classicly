@@ -1377,20 +1377,20 @@ ul.ui-autocomplete {
 }
 
 /* line 1, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page, .collection-book-list-page, .quote-list-page {
+#collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page {
   text-align: left;
 }
 /* line 4, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page h1, .collection-book-list-page h1, .quote-list-page h1 {
+#collection-page h1, .collection-book-list-page h1, .quote-list-page h1, #collection-list-page h1 {
   font-size: 22px;
   font-weight: bold;
 }
 /* line 8, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .audiobook-switcher, .collection-book-list-page .audiobook-switcher, .quote-list-page .audiobook-switcher {
+#collection-page .audiobook-switcher, .collection-book-list-page .audiobook-switcher, .quote-list-page .audiobook-switcher, #collection-list-page .audiobook-switcher {
   min-height: 30px;
 }
 /* line 10, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .audiobook-switcher span, .collection-book-list-page .audiobook-switcher span, .quote-list-page .audiobook-switcher span {
+#collection-page .audiobook-switcher span, .collection-book-list-page .audiobook-switcher span, .quote-list-page .audiobook-switcher span, #collection-list-page .audiobook-switcher span {
   display: block;
   float: left;
   color: #cccccc;
@@ -1399,7 +1399,7 @@ ul.ui-autocomplete {
   margin-right: 5px;
 }
 /* line 18, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .audiobook-switcher a, .collection-book-list-page .audiobook-switcher a, .quote-list-page .audiobook-switcher a {
+#collection-page .audiobook-switcher a, .collection-book-list-page .audiobook-switcher a, .quote-list-page .audiobook-switcher a, #collection-list-page .audiobook-switcher a {
   background: #ffffd7;
   color: #333333;
   text-decoration: none;
@@ -1408,48 +1408,48 @@ ul.ui-autocomplete {
   margin-top: 5px;
 }
 /* line 26, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .audiobook-switcher a:hover, .collection-book-list-page .audiobook-switcher a:hover, .quote-list-page .audiobook-switcher a:hover {
+#collection-page .audiobook-switcher a:hover, .collection-book-list-page .audiobook-switcher a:hover, .quote-list-page .audiobook-switcher a:hover, #collection-list-page .audiobook-switcher a:hover {
   background: #ffff66;
   cursor: pointer;
 }
 /* line 30, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info, .collection-book-list-page .collection-info, .quote-list-page .collection-info {
+#collection-page .collection-info, .collection-book-list-page .collection-info, .quote-list-page .collection-info, #collection-list-page .collection-info {
   margin-bottom: 45px;
 }
 /* line 33, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info p, .collection-book-list-page .collection-info p, .quote-list-page .collection-info p {
+#collection-page .collection-info p, .collection-book-list-page .collection-info p, .quote-list-page .collection-info p, #collection-list-page .collection-info p {
   font-size: 14px;
   line-height: 2em;
 }
 /* line 37, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info p a, .collection-book-list-page .collection-info p a, .quote-list-page .collection-info p a {
+#collection-page .collection-info p a, .collection-book-list-page .collection-info p a, .quote-list-page .collection-info p a, #collection-list-page .collection-info p a {
   color: #333333;
   text-decoration: none;
   background: #ffffd7;
 }
 /* line 41, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info p a:hover, .collection-book-list-page .collection-info p a:hover, .quote-list-page .collection-info p a:hover {
+#collection-page .collection-info p a:hover, .collection-book-list-page .collection-info p a:hover, .quote-list-page .collection-info p a:hover, #collection-list-page .collection-info p a:hover {
   background: #ffff66;
   cursor: pointer;
 }
 /* line 46, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .book-list .explanation, .collection-book-list-page .book-list .explanation, .quote-list-page .book-list .explanation {
+#collection-page .book-list .explanation, .collection-book-list-page .book-list .explanation, .quote-list-page .book-list .explanation, #collection-list-page .book-list .explanation {
   color: #999999;
   font-size: 14px;
 }
 /* line 50, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting, .collection-book-list-page .sorting, .quote-list-page .sorting {
+#collection-page .sorting, .collection-book-list-page .sorting, .quote-list-page .sorting, #collection-list-page .sorting {
   margin-bottom: 25px;
 }
 /* line 54, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting span, .collection-book-list-page .sorting span, .quote-list-page .sorting span {
+#collection-page .sorting span, .collection-book-list-page .sorting span, .quote-list-page .sorting span, #collection-list-page .sorting span {
   display: block;
   font-size: 14px;
   font-weight: bold;
   float: left;
 }
 /* line 60, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a, .collection-book-list-page .sorting a, .quote-list-page .sorting a {
+#collection-page .sorting a, .collection-book-list-page .sorting a, .quote-list-page .sorting a, #collection-list-page .sorting a {
   text-decoration: none;
   color: #333333;
   background: #ffffd7;
@@ -1460,45 +1460,45 @@ ul.ui-autocomplete {
   margin-left: 20px;
 }
 /* line 71, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a.active, .collection-book-list-page .sorting a.active, .quote-list-page .sorting a.active {
+#collection-page .sorting a.active, .collection-book-list-page .sorting a.active, .quote-list-page .sorting a.active, #collection-list-page .sorting a.active {
   color: #cccccc;
   background: white;
 }
 /* line 75, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a.active:hover, .collection-book-list-page .sorting a.active:hover, .quote-list-page .sorting a.active:hover {
+#collection-page .sorting a.active:hover, .collection-book-list-page .sorting a.active:hover, .quote-list-page .sorting a.active:hover, #collection-list-page .sorting a.active:hover {
   background: white;
   cursor: normal;
 }
 /* line 79, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a:hover, .collection-book-list-page .sorting a:hover, .quote-list-page .sorting a:hover {
+#collection-page .sorting a:hover, .collection-book-list-page .sorting a:hover, .quote-list-page .sorting a:hover, #collection-list-page .sorting a:hover {
   background: #ffff66;
   cursor: pointer;
 }
 /* line 83, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a.selected, .collection-book-list-page .sorting a.selected, .quote-list-page .sorting a.selected {
+#collection-page .sorting a.selected, .collection-book-list-page .sorting a.selected, .quote-list-page .sorting a.selected, #collection-list-page .sorting a.selected {
   color: #333333;
   background: none;
   text-decoration: underline;
 }
 /* line 87, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .sorting a.selected:hover, .collection-book-list-page .sorting a.selected:hover, .quote-list-page .sorting a.selected:hover {
+#collection-page .sorting a.selected:hover, .collection-book-list-page .sorting a.selected:hover, .quote-list-page .sorting a.selected:hover, #collection-list-page .sorting a.selected:hover {
   cursor: normal;
 }
 /* line 90, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list, .collection-book-list-page ul.book-list, .quote-list-page ul.book-list {
+#collection-page ul.book-list, .collection-book-list-page ul.book-list, .quote-list-page ul.book-list, #collection-list-page ul.book-list {
   margin-bottom: 22px;
 }
 /* line 93, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li:hover, .collection-book-list-page ul.book-list li:hover, .quote-list-page ul.book-list li:hover {
+#collection-page ul.book-list li:hover, .collection-book-list-page ul.book-list li:hover, .quote-list-page ul.book-list li:hover, #collection-list-page ul.book-list li:hover {
   cursor: pointer;
 }
 /* line 96, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info, .collection-book-list-page ul.book-list li .book-info, .quote-list-page ul.book-list li .book-info {
+#collection-page ul.book-list li .book-info, .collection-book-list-page ul.book-list li .book-info, .quote-list-page ul.book-list li .book-info, #collection-list-page ul.book-list li .book-info {
   margin-left: -35px;
   padding-top: 5px;
 }
 /* line 100, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info .title-author, .collection-book-list-page ul.book-list li .book-info .title-author, .quote-list-page ul.book-list li .book-info .title-author {
+#collection-page ul.book-list li .book-info .title-author, .collection-book-list-page ul.book-list li .book-info .title-author, .quote-list-page ul.book-list li .book-info .title-author, #collection-list-page ul.book-list li .book-info .title-author {
   max-height: 57px;
   min-height: 57px;
   display: block;
@@ -1506,19 +1506,19 @@ ul.ui-autocomplete {
   width: 100%;
 }
 /* line 107, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info a, .collection-book-list-page ul.book-list li .book-info a, .quote-list-page ul.book-list li .book-info a {
+#collection-page ul.book-list li .book-info a, .collection-book-list-page ul.book-list li .book-info a, .quote-list-page ul.book-list li .book-info a, #collection-list-page ul.book-list li .book-info a {
   color: #333333;
   text-decoration: none;
 }
 /* line 111, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info a.title, .collection-book-list-page ul.book-list li .book-info a.title, .quote-list-page ul.book-list li .book-info a.title {
+#collection-page ul.book-list li .book-info a.title, .collection-book-list-page ul.book-list li .book-info a.title, .quote-list-page ul.book-list li .book-info a.title, #collection-list-page ul.book-list li .book-info a.title {
   font-size: 18px;
   font-weight: bold;
   float: left;
   display: block;
 }
 /* line 117, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info p, .collection-book-list-page ul.book-list li .book-info p, .quote-list-page ul.book-list li .book-info p {
+#collection-page ul.book-list li .book-info p, .collection-book-list-page ul.book-list li .book-info p, .quote-list-page ul.book-list li .book-info p, #collection-list-page ul.book-list li .book-info p {
   font-size: 16px;
   font-style: italic;
   font-weight: lighter;
@@ -1528,34 +1528,38 @@ ul.ui-autocomplete {
   width: 100%;
 }
 /* line 127, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info p a.author, .collection-book-list-page ul.book-list li .book-info p a.author, .quote-list-page ul.book-list li .book-info p a.author {
+#collection-page ul.book-list li .book-info p a.author, .collection-book-list-page ul.book-list li .book-info p a.author, .quote-list-page ul.book-list li .book-info p a.author, #collection-list-page ul.book-list li .book-info p a.author {
   font-size: 16px;
   text-decoration: none;
 }
 /* line 131, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .book-info .avg-stars, .collection-book-list-page ul.book-list li .book-info .avg-stars, .quote-list-page ul.book-list li .book-info .avg-stars {
+#collection-page ul.book-list li .book-info .avg-stars, .collection-book-list-page ul.book-list li .book-info .avg-stars, .quote-list-page ul.book-list li .book-info .avg-stars, #collection-list-page ul.book-list li .book-info .avg-stars {
   position: relative;
   top: 4px;
 }
 /* line 135, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .download-link, .collection-book-list-page ul.book-list li .download-link, .quote-list-page ul.book-list li .download-link {
+#collection-page ul.book-list li .download-link, .collection-book-list-page ul.book-list li .download-link, .quote-list-page ul.book-list li .download-link, #collection-list-page ul.book-list li .download-link {
   padding-top: 5px;
 }
 /* line 137, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .download-link a, .collection-book-list-page ul.book-list li .download-link a, .quote-list-page ul.book-list li .download-link a {
+#collection-page ul.book-list li .download-link a, .collection-book-list-page ul.book-list li .download-link a, .quote-list-page ul.book-list li .download-link a, #collection-list-page ul.book-list li .download-link a {
   text-decoration: none;
 }
 /* line 140, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .download-link .stars, .collection-book-list-page ul.book-list li .download-link .stars, .quote-list-page ul.book-list li .download-link .stars {
+#collection-page ul.book-list li .download-link .stars, .collection-book-list-page ul.book-list li .download-link .stars, .quote-list-page ul.book-list li .download-link .stars, #collection-list-page ul.book-list li .download-link .stars {
   margin-top: -15px;
 }
 /* line 143, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .download-link .stars .blank-stars, .collection-book-list-page ul.book-list li .download-link .stars .blank-stars, .quote-list-page ul.book-list li .download-link .stars .blank-stars {
+#collection-page ul.book-list li .download-link .stars .blank-stars, .collection-book-list-page ul.book-list li .download-link .stars .blank-stars, .quote-list-page ul.book-list li .download-link .stars .blank-stars, #collection-list-page ul.book-list li .download-link .stars .blank-stars {
   display: none;
 }
 /* line 147, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page ul.book-list li .download-link .view-this-book, .collection-book-list-page ul.book-list li .download-link .view-this-book, .quote-list-page ul.book-list li .download-link .view-this-book {
+#collection-page ul.book-list li .download-link .view-this-book, .collection-book-list-page ul.book-list li .download-link .view-this-book, .quote-list-page ul.book-list li .download-link .view-this-book, #collection-list-page ul.book-list li .download-link .view-this-book {
   margin-top: -8px;
+}
+/* line 149, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page ul.book-list li .download-link .view-this-book a, .collection-book-list-page ul.book-list li .download-link .view-this-book a, .quote-list-page ul.book-list li .download-link .view-this-book a, #collection-list-page ul.book-list li .download-link .view-this-book a {
+  color: white;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_library_page.sass */
