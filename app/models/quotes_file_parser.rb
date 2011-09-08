@@ -1,5 +1,5 @@
 class QuotesFileParser
-  include Rake::DSL
+  #include Rake::DSL
 
   attr_accessor :text, :authors, :final_quotes
 
