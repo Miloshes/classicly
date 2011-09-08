@@ -22,7 +22,7 @@ class SeoController < ApplicationController
       render_seo @seo
     elsif @author = Author.find(params[:id]) rescue nil
       @type = params[:type] || 'book'
-      @books = Book.for_author(@author).page(params["page"]).per(8)
+      @books = @author.get_paginated_books(params)
       render 'authors/show'
     else
       render_search

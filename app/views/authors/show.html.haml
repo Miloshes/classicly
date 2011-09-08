@@ -9,14 +9,18 @@
     .span12.columns
       %h1 #{@author.name} Books
 
-      / .sorting.row
-      /         .span11.columns
-      /           %span Sort By:
-      /           = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
-      /           = link_to_sorted 'Title', 'pretty_title', @collection, params
+      .sorting.row
+        .span11.columns
+          %span Sort By:
+          = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+          = link_to_sorted 'Title', 'pretty_title', @collection, params
+    
+    %ul.book-list
+      = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
 
-      %ul.book-list
-        = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+    .author-page
+      = paginate @books, {:controller => 'seo', :action => 'show', :id => @author.cached_slug}
+    
   .row
     .span11.columns
       .explanation

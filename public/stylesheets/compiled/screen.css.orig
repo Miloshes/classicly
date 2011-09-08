@@ -1432,27 +1432,43 @@ ul.ui-autocomplete {
   background: #ffff66;
   cursor: pointer;
 }
+<<<<<<< HEAD
+/* line 46, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 110, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list .author-page .pagination, .collection-book-list-page .book-list .author-page .pagination, .quote-list-page .book-list .author-page .pagination, #collection-list-page .book-list .author-page .pagination {
   margin-left: 20px;
 }
 /* line 113, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .book-list .explanation, .collection-book-list-page .book-list .explanation, .quote-list-page .book-list .explanation, #collection-list-page .book-list .explanation {
   color: #999999;
   font-size: 14px;
 }
+<<<<<<< HEAD
+/* line 50, ../../../app/stylesheets/partials/_collection_page.sass */
+#collection-page .sorting, .collection-book-list-page .sorting, .quote-list-page .sorting, #collection-list-page .sorting {
+  margin-bottom: 25px;
+}
+/* line 54, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 117, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .sorting, .collection-book-list-page .sorting, .quote-list-page .sorting, #collection-list-page .sorting {
   margin-bottom: 25px;
 }
 /* line 121, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting span, .collection-book-list-page .sorting span, .quote-list-page .sorting span, #collection-list-page .sorting span {
   display: block;
   font-size: 14px;
   font-weight: bold;
   float: left;
 }
+<<<<<<< HEAD
+/* line 60, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 127, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a, .collection-book-list-page .sorting a, .quote-list-page .sorting a, #collection-list-page .sorting a {
   text-decoration: none;
   color: #333333;
@@ -1463,28 +1479,48 @@ ul.ui-autocomplete {
   display: block;
   margin-left: 20px;
 }
+<<<<<<< HEAD
+/* line 71, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 138, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a.active, .collection-book-list-page .sorting a.active, .quote-list-page .sorting a.active, #collection-list-page .sorting a.active {
   color: #cccccc;
   background: white;
 }
+<<<<<<< HEAD
+/* line 75, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 142, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a.active:hover, .collection-book-list-page .sorting a.active:hover, .quote-list-page .sorting a.active:hover, #collection-list-page .sorting a.active:hover {
   background: white;
   cursor: normal;
 }
+<<<<<<< HEAD
+/* line 79, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 146, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a:hover, .collection-book-list-page .sorting a:hover, .quote-list-page .sorting a:hover, #collection-list-page .sorting a:hover {
   background: #ffff66;
   cursor: pointer;
 }
+<<<<<<< HEAD
+/* line 83, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 150, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a.selected, .collection-book-list-page .sorting a.selected, .quote-list-page .sorting a.selected, #collection-list-page .sorting a.selected {
   color: #333333;
   background: none;
   text-decoration: underline;
 }
+<<<<<<< HEAD
+/* line 87, ../../../app/stylesheets/partials/_collection_page.sass */
+=======
 /* line 154, ../../../app/stylesheets/partials/_collection_page.sass */
+>>>>>>> 1fee277... fix problem for author book list
 #collection-page .sorting a.selected:hover, .collection-book-list-page .sorting a.selected:hover, .quote-list-page .sorting a.selected:hover, #collection-list-page .sorting a.selected:hover {
   cursor: normal;
 }
