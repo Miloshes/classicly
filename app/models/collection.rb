@@ -5,25 +5,26 @@ class Collection < ActiveRecord::Base
   include CommonSeoDefaultsMethods
 
   # books
-  has_many :audiobooks, :through => :collection_audiobook_assignments
-  has_many :books, :through => :collection_book_assignments
-  has_many :collection_audiobook_assignments
-  has_many :collection_book_assignments
-  has_many :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
+  has_many  :audiobooks, :through => :collection_audiobook_assignments
+  has_many  :books, :through => :collection_book_assignments
+  has_many  :collection_audiobook_assignments
+  has_many  :collection_book_assignments
+  has_many  :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
 
   # featured books
-  has_many :featured_collection_book_assignments,
+  has_many  :featured_collection_book_assignments,
             :class_name => 'CollectionBookAssignment',
             :conditions => {:featured => true}
 
-  has_many :featured_books, :through => :featured_collection_book_assignments, :source => :book
+  has_many  :featured_books, :through => :featured_collection_book_assignments, :source => :book
 
-  has_many :featured_collection_audiobook_assignments,
-           :class_name => 'CollectionAudiobookAssignment',
-           :conditions => {:featured => true}
+  has_many  :featured_collection_audiobook_assignments,
+            :class_name => 'CollectionAudiobookAssignment',
+            :conditions => {:featured => true}
 
-  has_many :seo_slugs, :as => :seoable
-  has_one :seo_info, :as => :infoable
+  has_many  :quotes
+  has_many  :seo_slugs, :as => :seoable
+  has_one   :seo_info, :as => :infoable
 
   belongs_to :genre
 
