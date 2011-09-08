@@ -5,32 +5,35 @@ class Collection < ActiveRecord::Base
   include CommonSeoDefaultsMethods
 
   # books
-  has_many  :audiobooks, :through => :collection_audiobook_assignments
-  has_many  :books, :through => :collection_book_assignments
-  has_many  :collection_audiobook_assignments
-  has_many  :collection_book_assignments
-  has_many  :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
+  has_many :audiobooks, :through => :collection_audiobook_assignments
+  has_many :books, :through => :collection_book_assignments
+  has_many :collection_audiobook_assignments
+  has_many :collection_book_assignments
+  has_many :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
 
   # featured books
-  has_many  :featured_collection_book_assignments,
+  has_many :featured_collection_book_assignments,
             :class_name => 'CollectionBookAssignment',
             :conditions => {:featured => true}
 
-  has_many  :featured_books, :through => :featured_collection_book_assignments, :source => :book
+  has_many :featured_books, :through => :featured_collection_book_assignments, :source => :book
 
-  has_many  :featured_collection_audiobook_assignments,
-            :class_name => 'CollectionAudiobookAssignment',
-            :conditions => {:featured => true}
-  has_many  :quotes
-  has_many  :seo_slugs, :as => :seoable
-  has_one   :seo_info, :as => :infoable
+  has_many :featured_collection_audiobook_assignments,
+           :class_name => 'CollectionAudiobookAssignment',
+           :conditions => {:featured => true}
+
+  has_many :seo_slugs, :as => :seoable
+  has_one :seo_info, :as => :infoable
 
   belongs_to :genre
+
+  scope :find_audiobook_collections_and_genres, where(:book_type => 'audiobook', :collection_type.in => ['collection', 'genre'])
+  scope :find_audiobook_author_collections, where(:book_type => 'audiobook', :collection_type => 'author')
   scope :find_book_collections_and_genres, where(:book_type => 'book', :collection_type.in => ['collection', 'genre'])
-  scope :find_author_book_collections, where(:book_type => 'book', :collection_type => 'author')
+  scope :find_book_author_collections, where(:book_type => 'book', :collection_type => 'author')
   scope :of_type, lambda {|type| where(:book_type => type)}
-  scope :collection_type, lambda {|type| type.is_a?(Array) ? where(:collection_type.in => type) : where(:collection_type => type)}
   scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  scope :with_description, where(:description.not_eq => '')
 
   before_save :set_parsed_description
 
@@ -255,4 +258,5 @@ class Collection < ActiveRecord::Base
       self.audiobooks[0..(n_books - 1)] - [self.featured_audiobook]
     end
   end
+  
 end
