@@ -1,64 +1,53 @@
-#collection-page
-  +column(18, true)
-  :margin
-    :top 30px
+#collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
+  h1
+    font-size: 22px
+    font-weight: bold
+
+  .audiobook-switcher
+    min-height: 30px
+    span
+      :display block
+      :float left
+      :color #ccc
+      :font-size 13px
+      :margin
+        :top 5px
+        :right 5px
+    a
+      :background #ffffd7
+      :color #333333
+      :text-decoration none
+      :font-size 13px
+      :float left
+      :margin
+        :top 5px
+      &:hover
+        :background #ffff66
+        :cursor pointer
+
   .collection-info
-    +column(13)
-    h1
-      :font-size 22px
-      :font-weight bold
-    .author-buttons
-      margin-top: 20px
-      a
-        text-decoration: none
-        margin-right: 30px
+    margin-bottom: 45px
+
     p
-      :font-size 14px
+      font-size: 14px
+      line-height: 2em
+
       a
-        :color #333333
-        :text-decoration none
-        :background #ffffd7
+        color: #333333
+        text-decoration: none
+        background: #ffffd7
         &:hover
           :background #ffff66
           :cursor pointer
 
-    .quote
-      .quote-text
-        margin-bottom: 15px
-        .columns
-          font-size: 18px
-
-      .buttons
-        .columns
-          border-bottom: 1px solid #ddd
-          padding: 0px 0px 15px 20px
-
-
-    .share
-      margin-bottom: 50px
-
-  .featured-books
-    +column(4, true)
-    +prepend(1)
-
-
   .book-list
-    +column(18, true)
-    h3
-      :font-size 22px
-      :color #333333
-      :font-weight bold
-      :margin 0
-        :bottom 3px
-
     .explanation
       :color #999999
       :font-size 14px
 
   .sorting
-    +column(18, true)
     :margin
       :bottom 25px
 
@@ -157,3 +146,5 @@
 
         .view-this-book
           margin-top: -8px
+          a
+            color: white

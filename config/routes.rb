@@ -93,6 +93,10 @@ Classicly::Application.routes.draw do
     downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
     downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
 
+  match "/:id/books/(:page)" => "collections#show_books"
+  match "/:id/quotes/(:page)" => "collections#show_quotes"
+  
+
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately
