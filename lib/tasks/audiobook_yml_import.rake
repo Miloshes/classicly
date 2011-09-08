@@ -105,7 +105,6 @@ namespace :audiobook_yml_import do
     #   - fill up starting letter groups (DONE)
     # - copy the new AudiobookChapters (from:scraping to:ios) (DONE)
     # - copy the new Narrators (from:scraping to:ios) (DONE)
-    # - copy the new Authors (from:scraping to:ios) (DONE)
     # - update the filesizes (from:yml to:ios)
     # - re-run the the book-audiobook matcher
     
@@ -134,18 +133,33 @@ namespace :audiobook_yml_import do
     first_id_to_import = 2947
     last_id_to_import  = Audiobook.last.id
     
-    audiobooks_to_import = BasicAudiobook.where(:id.gt => first_id_to_import).order("id ASC").limit(1).all()
+    audiobooks_to_import = BasicAudiobook.where(:id.gt => first_id_to_import).order("id ASC").all()
     authors = Author.all()
     tmp = authors.first.name + " " # hack to invoke the query, we're switching DBs
     utils = AudiobookMaintainerUtils.new
     
-    ActiveRecord::Base.establish_connection :ios_audiobook_db
+    ActiveRecord::Base.establish_connection :development
     
     audiobooks_to_import.each do |source_audiobook|
       attributes = source_audiobook.attributes.select { |key, value| !value.blank? }
+
+      # NOTE: Handling the authors differently based on which DB we're importing into. Uncomment the proper one.
       
-      author_id = attributes.delete("author_id")
-      attributes["author"] = authors.select { |author| author.id == author_id }.first.name
+      # == for updating the iOS DBs
+      # the iOS DB contains the author names as a text column of the audiobook record
+      # author_id = attributes.delete("author_id")
+      # attributes["author"] = authors.select { |author| author.id == author_id }.first.name
+      
+      # == for updating the non-iOS DBs (merged ones, where books and audiobooks are in the same DB)
+      # replace author ID which belongs to the audiobooks DB to one which belongs to a merged book-audiobook DB
+      # author_name = authors.select { |author| author.id == attributes["author_id"] }.first.name
+      # 
+      # author = BasicAuthor.where(:name => author_name).first()
+      # if author.blank?
+      #   author = BasicAuthor.create(:name => author_name)
+      # end
+      # 
+      # attributes["author_id"] = author.id
       
       attributes.delete("featured")
       attributes.delete("librivox_link")
@@ -174,7 +188,7 @@ namespace :audiobook_yml_import do
     last_id_to_import  = AudiobookChapter.last.id
     chapters_to_import = AudiobookChapter.where(:id.gt => first_id_to_import).order("id ASC").all()
     
-    ActiveRecord::Base.establish_connection :ios_audiobook_db
+    ActiveRecord::Base.establish_connection :development
     
     BasicAudiobookChapter.reset_column_information
     
@@ -203,7 +217,7 @@ namespace :audiobook_yml_import do
     last_id_to_import   = BasicAudiobookNarrator.last.id
     narrators_to_import = BasicAudiobookNarrator.where(:id.gt => first_id_to_import).order("id ASC").all()
     
-    ActiveRecord::Base.establish_connection :ios_audiobook_db
+    ActiveRecord::Base.establish_connection :development
     
     BasicAudiobookNarrator.reset_column_information
     
@@ -219,33 +233,6 @@ namespace :audiobook_yml_import do
       else
         attributes.delete("id")
         new_narrator.update_attributes(attributes)
-      end
-    end
-    
-    # == copy the new Authors (from:scraping to:ios)
-    
-    ActiveRecord::Base.establish_connection :scrape_db
-    
-    first_id_to_import  = 9113
-    last_id_to_import   = BasicAuthor.last.id
-    authors_to_import   = BasicAuthor.where(:id.gt => first_id_to_import).order("id ASC").all()
-    
-    ActiveRecord::Base.establish_connection :ios_audiobook_db
-    
-    BasicAuthor.reset_column_information
-    
-    authors_to_import.each do |source_author|
-      attributes = source_author.attributes.select { |key, value| !value.blank? }
-      new_author = BasicAuthor.find_by_id(source_author.id)
-      
-      if new_author.blank?
-        new_author    = BasicAuthor.new(attributes)
-        new_author.id = source_author.id
-    
-        new_author.save
-      else
-        attributes.delete("id")
-        new_author.update_attributes(attributes)
       end
     end
     
