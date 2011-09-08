@@ -20,7 +20,7 @@
 
   = csrf_meta_tag
 %body.container_12
-  = render :partial => '/shared/connect_with_facebook_bar'
+  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => false}
   <script type="text/javascript">
   var _kmq = _kmq || [];
   function _kms(u){
