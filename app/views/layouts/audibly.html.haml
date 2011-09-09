@@ -78,10 +78,18 @@
               .cover.mini
                 = cover_image_link(book, 1)
           = text_for_collection(collection)
+
         .links
-          = link_to 'See more popular books', '/best-of'
-          = link_to "Browse collections", '/collections'
-          = link_to "Browse authors", '/authors'
+          .row
+            .span4.columns
+              = link_to 'See more popular books', '/best-of', :class => 'classicly-link'
+          .row
+            .span4.columns
+              = link_to "Browse collections", '/collections', :class => 'classicly-link'
+          .row
+            .span4.columns
+              = link_to "Browse authors", '/authors', :class => 'classicly-link'
+
   #bottom-shadow
   = render :partial => 'shared/footer'
 #bottom-notification-bar{:style => 'display:none'}

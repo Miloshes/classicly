@@ -8,9 +8,9 @@
   .audiobook-switcher
     - if @collections.first.book_type == 'book'
       %span Books |&nbsp;
-      = link_to 'Audiobooks', '/audiobook-authors'
+      = link_to 'Audiobooks', '/audiobook-authors', :class => "classicly-link"
     - else
-      = link_to 'Books', '/authors'
+      = link_to 'Books', '/authors', :class => 'classicly-link'
       %span &nbsp;| Audiobooks
 
   - if @featured

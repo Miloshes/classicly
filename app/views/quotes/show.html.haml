@@ -36,6 +36,7 @@
     .span11.columns
       %h1.title All #{@quote.collection.name} Books
 
+  <!-- le sorter -->
   .row.sorting
     .span11.columns
       %span
@@ -43,6 +44,7 @@
       = link_to_sorted 'Most Downloaded', 'downloaded_count', @quote.collection, params
       = link_to_sorted 'Title', 'pretty_title', @quote.collection, params
 
+  <!-- le book list -->
   .row.book-list
     %ul.book-list
       = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book

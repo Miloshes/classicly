@@ -5,11 +5,11 @@
   .audiobook-switcher
     - if @collections.first.book_type == 'book'
       %span Books |&nbsp;
-      = link_to 'Audiobooks', '/audiobook-collections'
+      = link_to 'Audiobooks', '/audiobook-collections', :class => 'classicly-link'
       .tooltip
         Check also our great audiobook collections!
     - else
-      = link_to 'Books', '/collections'
+      = link_to 'Books', '/collections', :class => 'classicly-link'
       .tooltip
         View our book collections. Available for Kindle, PDF, and our HTML5 reader.
       %span &nbsp;| Audiobooks

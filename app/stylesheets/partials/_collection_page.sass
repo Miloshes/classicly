@@ -62,6 +62,47 @@ ul.book-list
         a
           color: white
 
+.sorting
+  :margin
+    :bottom 25px
+
+  span
+    display: block
+    font-size: 14px
+    font-weight: bold
+    float: left
+
+  a
+    text-decoration: none
+    color: #333333
+    background: #ffffd7
+    text-decoration: none
+    font-size: 14px
+    float: left
+    display: block
+    margin:
+      left: 20px
+
+    &.active
+      color: #ccc
+      background: #fff
+
+      &:hover
+        background: #fff
+        cursor: normal
+
+    &:hover
+      :background #ffff66
+      :cursor pointer
+
+    &.selected
+      color: #333333
+      background: none
+      text-decoration: underline
+      &:hover
+        cursor: normal
+
+
 #collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
@@ -80,16 +121,11 @@ ul.book-list
         :top 5px
         :right 5px
     a
-      :background #ffffd7
-      :color #333333
       :text-decoration none
       :font-size 13px
       :float left
       :margin
         :top 5px
-      &:hover
-        :background #ffff66
-        :cursor pointer
 
   .collection-info
     margin-bottom: 45px
@@ -113,45 +149,4 @@ ul.book-list
     .explanation
       :color #999999
       :font-size 14px
-
-  .sorting
-    :margin
-      :bottom 25px
-
-    span
-      display: block
-      font-size: 14px
-      font-weight: bold
-      float: left
-
-    a
-      text-decoration: none
-      color: #333333
-      background: #ffffd7
-      text-decoration: none
-      font-size: 14px
-      float: left
-      display: block
-      margin:
-        left: 20px
-
-      &.active
-        color: #ccc
-        background: #fff
-
-        &:hover
-          background: #fff
-          cursor: normal
-
-      &:hover
-        :background #ffff66
-        :cursor pointer
-
-      &.selected
-        color: #333333
-        background: none
-        text-decoration: underline
-        &:hover
-          cursor: normal
-
   
