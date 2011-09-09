@@ -4,6 +4,7 @@ class Book < ActiveRecord::Base
   include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
+  # CLEANUP: remove. We don't even have a model like that.
   belongs_to :custom_cover
 
   has_many :library_books
