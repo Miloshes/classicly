@@ -1,3 +1,5 @@
+# CLEANUP: extract seo slug related functionality
+
 class Collection < ActiveRecord::Base
   # we have to be able to handle URLs in the model
   include ActionDispatch::Routing::UrlFor
@@ -64,6 +66,7 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
 
+  # CLEANUP: just pretty it up a bit, don't use after the line comments for long lines
   def self.get_collection_books_in_json(collection_ids, type, total_books)
     data = []
     collection_ids.each do |id|
@@ -180,7 +183,7 @@ class Collection < ActiveRecord::Base
     self.collection_type == 'author'
   end
 
-  # NOTE: refactor!
+  # CLEANUP: needs refactoring, not even sure what it stands for
   def needs_canonical_link?(per_page)
     per_page < self.send(self.book_type.pluralize.to_sym).count 
   end
