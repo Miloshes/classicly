@@ -85,6 +85,8 @@ Classicly::Application.routes.draw do
 
   resources :collections, :only => :show
 
+  resources :quotes, :only => :show
+
   #match "/:id" => "seo#show", :as => 'seo', :via => :get
   match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 
     :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
@@ -95,7 +97,7 @@ Classicly::Application.routes.draw do
 
   match "/:id/books/(:page)" => "collections#show_books"
   match "/:id/quotes/(:page)" => "collections#show_quotes"
-  
+
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 

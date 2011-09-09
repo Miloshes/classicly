@@ -22,7 +22,7 @@ class SeoController < ApplicationController
       render_seo @seo
     elsif @author = Author.find(params[:id]) rescue nil
       @type = params[:type] || 'book'
-      @books = Book.for_author(@author).page(params["page"]).per(8)
+      @books = @author.get_paginated_books(params)
       render 'authors/show'
     else
       render_search
@@ -47,9 +47,9 @@ class SeoController < ApplicationController
 
       @collection = seo.seoable
       @books = seo.find_paginated_listed_books_for_collection(params)
-      
+
       @quotes, @show_author_options = [@collection.quotes.limit(3), true] if @collection.is_author_collection?
-      
+
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else

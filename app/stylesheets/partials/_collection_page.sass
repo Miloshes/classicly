@@ -1,3 +1,67 @@
+ul.book-list
+  margin-bottom: 22px
+  li
+    &:hover
+      :cursor pointer
+    .row
+      margin-left: 0px
+
+    .book-info
+      margin-left: -35px
+      padding-top: 5px
+
+      .title-author
+        max-height: 57px
+        min-height: 57px
+        display: block
+        float: left
+        width: 100%
+
+      a
+        :color #333333
+        text-decoration: none
+
+      a.title
+        font-size: 18px
+        font-weight: bold
+        :float left
+        :display block
+
+      p
+        font-size: 16px
+        font-style: italic
+        font-weight: lighter
+        color: black
+        float: left
+        display: block
+        width: 100%
+
+
+        a.author
+          font-size: 16px
+          text-decoration: none
+
+      .avg-stars
+        position: relative
+        top: 4px
+
+    .download-link
+      padding-top: 5px
+      a
+        text-decoration: none
+
+      .stars
+        margin-top: -15px
+
+        .blank-stars
+          display: none
+
+
+      .view-this-book
+        margin-top: -8px
+        a
+          color: white
+
 #collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
@@ -43,6 +107,9 @@
           :cursor pointer
 
   .book-list
+    .author-page .pagination
+      margin-left: 20px
+
     .explanation
       :color #999999
       :font-size 14px
@@ -87,64 +154,4 @@
         &:hover
           cursor: normal
 
-  ul.book-list
-    margin-bottom: 22px
-    li
-      &:hover
-        :cursor pointer
-
-      .book-info
-        margin-left: -35px
-        padding-top: 5px
-
-        .title-author
-          max-height: 57px
-          min-height: 57px
-          display: block
-          float: left
-          width: 100%
-
-        a
-          :color #333333
-          text-decoration: none
-
-        a.title
-          font-size: 18px
-          font-weight: bold
-          :float left
-          :display block
-
-        p
-          font-size: 16px
-          font-style: italic
-          font-weight: lighter
-          color: black
-          float: left
-          display: block
-          width: 100%
-
-
-          a.author
-            font-size: 16px
-            text-decoration: none
-
-        .avg-stars
-          position: relative
-          top: 4px
-
-      .download-link
-        padding-top: 5px
-        a
-          text-decoration: none
-
-        .stars
-          margin-top: -15px
-
-          .blank-stars
-            display: none
-
-
-        .view-this-book
-          margin-top: -8px
-          a
-            color: white
+  

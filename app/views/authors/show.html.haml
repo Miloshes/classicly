@@ -1,21 +1,33 @@
 - content_for :title do
   %title=@author.name
 
+= content_for :drawer do
+  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
+
 #collection-page.no-author-page
-  .collection-info
-    %h1
-      =@author.name
-      Books
+  .row.book-list
+    .span12.columns
+      %h1 #{@author.name} Books
 
-    .like-send
-      <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-  .author-quotations
-  .book-list
-    %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-    %p.explanation We don’t pay a cent, so neither do you.
-
-    .sorting
-      %span Sort By:
-
+      .sorting.row
+        .span11.columns
+          %span Sort By:
+          = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+          = link_to_sorted 'Title', 'pretty_title', @collection, params
+    
     %ul.book-list
-      = render :partial => '/books/listed_book', :locals => {:enable_rating => false}, :collection => @books, :as => :book
+      = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+
+    .author-page
+      = paginate @books, {:controller => 'seo', :action => 'show', :id => @author.cached_slug}
+    
+  .row
+    .span11.columns
+      .explanation
+        Downloads on Classicly are completely free- these books are public domain. 
+  .row
+    .span11.columns
+      .explanation
+        We don’t pay a cent, so neither do you.
+
+= javascript_include_tag 'ratings-book-list-view'

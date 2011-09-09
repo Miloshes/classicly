@@ -24,18 +24,18 @@ class SeoSlug < ActiveRecord::Base
   end
 
   def find_paginated_listed_books_for_collection(params)
-
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
-    method        = self.seoable.book_type.pluralize.to_sym
-
+    
+    method      = self.seoable.book_type.pluralize.to_sym # either calls the method 'books' or 'audiobooks'
     order_query = 'downloaded_count desc'
 
     if params[:sort]
       query_segments = params[:sort].split('_')
       field = query_segments[0..1].join('_')
-      order_query = ([field] + [query_segments.last]).join(' ')
+      order_query = ([field] + [query_segments.last]).join(' ') # has to be in the most_downloaded asc format
     end
 
+    # TODO: This calls a collection, so the best part to code this is the collection model  
     self.seoable.send(method).order(order_query).page(params[:page]).per(10)
 
   end

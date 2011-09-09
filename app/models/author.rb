@@ -21,6 +21,18 @@ class Author < ActiveRecord::Base
     type.classify.constantize.where(:author_id => self.id).first
   end
 
+  def get_paginated_books(parameters)
+    order_query = 'downloaded_count desc'
+    
+    if parameters[:sort]
+      query_segments  = parameters[:sort].split('_')
+      field           = query_segments[0..1].join('_')
+      order_query     = ([field] + [query_segments.last]).join(' ') # has to be in the most_downloaded asc format
+    end
+    
+    return Book.for_author(self).order(order_query).page(parameters[:page]).per(10)
+  end
+
   def has_audio_collection?
     Collection.exists?(['name LIKE ? AND book_type = ? ', "%#{self.name}%", 'audiobook'])
   end
