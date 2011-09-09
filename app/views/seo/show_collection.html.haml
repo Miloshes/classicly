@@ -21,7 +21,7 @@
       .span12.columns
         - if @collection.has_audiobook_counterpart?
           %span Books |&nbsp;
-          = link_to 'Audiobooks', '#'#seo_url(@collection.audiobook_collection_slug)
+          = link_to 'Audiobooks', '#', :class => 'classicly-link'#seo_url(@collection.audiobook_collection_slug)
           .tooltip
             View this collection as audiobooks. Available as MP3 downloads.
 
@@ -77,7 +77,7 @@
             .quote.row
               .span9.columns
                 &quot;
-                = quote.content
+                = link_to quote.content, quote_path(quote)
                 &quot;
             .row
               .separator.span9.columns
