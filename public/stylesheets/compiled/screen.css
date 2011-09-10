@@ -2864,24 +2864,21 @@ a.button.kiss span {
 /* line 19, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quote, .quote-list-page .quote, .collection-book-list-page .quote {
   margin-bottom: 15px;
-}
-/* line 21, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .quote a, .quote-list-page .quote a, .collection-book-list-page .quote a {
   color: #333333;
   font-size: 18px;
   line-height: 32px;
   font-family: "helvetica", verdana, serif;
 }
-/* line 27, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 26, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
   border-bottom: 2px solid #cccccc;
 }
-/* line 30, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 29, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .more-quotes-btn a, #collection-page .more-books-btn a, .quote-list-page .more-quotes-btn a, .quote-list-page .more-books-btn a, .collection-book-list-page .more-quotes-btn a, .collection-book-list-page .more-books-btn a {
   float: right;
   color: white;
 }
-/* line 34, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 33, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .more-books-btn.row, .quote-list-page .more-books-btn.row, .collection-book-list-page .more-books-btn.row {
   margin-left: -60px;
 }
