@@ -148,6 +148,19 @@ class Collection < ActiveRecord::Base
     self.audiobooks.select{|audiobook| audiobook.blessed}.first || self.audiobooks.first
   end
 
+  def get_paginated_books(parameters)
+    method      = self.book_type.pluralize.to_sym # either calls the method 'books' or 'audiobooks'
+    order_query = 'downloaded_count desc'
+
+    if parameters[:sort]
+      query_segments  = parameters[:sort].split('_')
+      field           = query_segments[0..1].join('_')
+      order_query     = ([field] + [query_segments.last]).join(' ') # has to be in the most_downloaded asc format
+    end
+
+    self.send(method).order(order_query).page(parameters[:page]).per(10)
+  end
+
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
@@ -160,15 +173,6 @@ class Collection < ActiveRecord::Base
   def has_book_counterpart?
     return false if self.book_type == 'book'
     Collection.exists?(:name => self.name , :book_type => 'book')
-  end
-
-  def ajax_paginated_audiobooks(params)
-    if params[:sort_by].nil?
-      self.audiobooks.page(params[:page]).per(10)
-    else
-      params[:sort_by] == 'author' ? self.audiobooks.order_by_author.page(params[:page]).per(10) : 
-        self.audiobooks.order(params[:sort_by]).page(params[:page]).per(10)
-    end
   end
 
   def is_audio_collection?

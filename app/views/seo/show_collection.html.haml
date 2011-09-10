@@ -29,8 +29,7 @@
       .row.collection-info
         .span9.columns
           %h1
-            =@collection.name
-            Books
+            ="#{@collection.name}'s Collection"
 
           -# Google AdSense. DO NOT MODIFY.
           <script type="text/javascript"><!--
@@ -45,12 +44,11 @@
           src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
           </script>
 
-          - if @show_author_options
-            <!-- le "Quotes" and "books" buttons-->
-            .row.quotes-and-books-buttons
-              .span9.columns
-                = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
-                = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn'
+          <!-- le "Quotes" and "books" buttons-->
+          .row.quotes-and-books-buttons
+            .span9.columns
+              = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
+              = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn' if @collection.is_author_collection?
 
           <!-- Le content -->
           = simple_format(@collection.parsed_description)
@@ -87,21 +85,16 @@
 
     .row.book-list
       .span12.columns
-        %h1 All #{@collection.name} Books
+        %h1 #{@collection.name} Books
 
-        .sorting.row
-          .span11.columns
-            %span Sort By:
-            = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
-            = link_to_sorted 'Title', 'pretty_title', @collection, params
-
-          -# sorting by author an author collection is pointless
-          -# unless @collection.is_author_collection?
-            =# sort_books_ajax_link @collection.id, 'Author', 'author' 
+    .row
+      .span12.columns
         %ul.book-list
           = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
 
-        = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+    .row.more-books-btn
+      .offset6.span4.columns
+        = link_to "More #{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn primary'
 
     .row
       .span11.columns

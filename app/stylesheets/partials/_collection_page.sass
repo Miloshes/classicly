@@ -3,8 +3,6 @@ ul.book-list
   li
     &:hover
       :cursor pointer
-    .row
-      margin-left: 0px
 
     .book-info
       margin-left: -35px
@@ -86,12 +84,14 @@ ul.book-list
     &.active
       color: #ccc
       background: #fff
+      color: #333333
 
       &:hover
         background: #fff
         cursor: normal
 
     &:hover
+      color: #333333
       :background #ffff66
       :cursor pointer
 
@@ -102,8 +102,10 @@ ul.book-list
       &:hover
         cursor: normal
 
+.quote-list-page
+  padding-top: 30px
 
-#collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
+#collection-page, #collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
   h1
@@ -132,4 +134,4 @@ ul.book-list
     .explanation
       :color #999999
       :font-size 14px
-  
+

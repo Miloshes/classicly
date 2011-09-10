@@ -10,9 +10,9 @@
             View this collection as audiobooks. Available as MP3 downloads.
 
     <!-- le title -->
-    .row.title
+    .row
       .span11.columns
-        %h1="#{@collection.name} Books"
+        %h1= "#{@collection.name} Books"
 
     <!--le google adsense -->
     .row
@@ -32,17 +32,24 @@
     <!-- le "Quotes" and "books" buttons-->
     .row.quotes-and-books-buttons
       .span10.columns
-        = link_to "#{@collection.name}'s Biography", "/#{@collection.cached_slug}", :class => 'btn'
-        = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn'
+        = link_to_collection_index_page(@collection)
+        = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn' if @collection.is_author_collection?
 
     .row.quote-section-title
       .span11.columns
-        %h2= "#{@collection.name} Books"
+        %h1= "#{@collection.name} Books"
+    
+    .sorting.row
+      .span11.columns
+        %span Sort By:
+        = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+        = link_to_sorted 'Title', 'pretty_title', @collection, params
 
-    %ul.book-list
-      = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+    .row
+      .span12.columns
+        %ul.book-list
+          = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
 
-    .clear
 
     = paginate @books
   

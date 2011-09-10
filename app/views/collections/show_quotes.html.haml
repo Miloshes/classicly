@@ -27,7 +27,7 @@
 
   .row.quote-section-title
     .span11.columns
-      %h2= "#{@collection.name} Quotes"
+      %h1= "#{@collection.name} Quotes"
 
   .row
     .span11.columns
@@ -40,4 +40,4 @@
         .row
           .separator.span11.columns
 
-    = paginate @quotes
+  = paginate @quotes

@@ -60,6 +60,11 @@ module ApplicationHelper
                       :class => klass, :alt => book.pretty_title ), author_book_url(book.author, book)
   end
   
+  def link_to_collection_index_page(collection)
+    text = @collection.is_author_collection? ? 'Biography' : 'Collection'
+    link_to "#{@collection.name}'s #{text}", "/#{@collection.cached_slug}", :class => 'btn'
+  end
+  
   def user_signed_in?
     @profile_id != nil && Login.exists?(:fb_connect_id => @profile_id)
   end
@@ -132,9 +137,9 @@ module ApplicationHelper
             end
 
     if sort == field
-      link_to text, seo_path(collection, :sort => field + order), :class => 'active'
+      link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
     else
-      link_to text, seo_path(collection, :sort => field + order )
+      link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order )
     end
   end
 
