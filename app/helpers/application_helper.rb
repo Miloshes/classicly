@@ -65,6 +65,11 @@ module ApplicationHelper
     link_to "#{@collection.name}'s #{text}", "/#{@collection.cached_slug}", :class => 'btn'
   end
   
+  def link_to_more_books(collection)
+    text = collection.is_author_collection? ? "More #{@collection.name}'s Books" : "More #{@collection.name} Books"
+    link_to text, "/#{@collection.cached_slug}/books", :class => 'btn primary'
+  end
+  
   def user_signed_in?
     @profile_id != nil && Login.exists?(:fb_connect_id => @profile_id)
   end

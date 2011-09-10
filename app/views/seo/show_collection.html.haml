@@ -74,9 +74,7 @@
           - for quote in @quotes
             .quote.row
               .span9.columns
-                &quot;
-                = quote.content
-                &quot;
+                = raw "&quot;#{quote.content}&quot"
             .row
               .separator.span9.columns
       .row.more-quotes-btn
@@ -94,7 +92,7 @@
 
     .row.more-books-btn
       .offset6.span4.columns
-        = link_to "More #{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn primary'
+        = link_to_more_books(@collection)
 
     .row
       .span11.columns
