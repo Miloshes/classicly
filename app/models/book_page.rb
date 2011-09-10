@@ -1,8 +1,10 @@
 class BookPage < ActiveRecord::Base
   belongs_to :book
   
+  validates :book, :presence => true
   validates :first_character, :presence => true
   validates :last_character, :presence => true
+  validates :page_number, :presence => true
   
   def render_page_content_from(book_content)
     # if the book is rendered, we shouldn't do anything

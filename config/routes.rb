@@ -85,17 +85,17 @@ Classicly::Application.routes.draw do
 
   resources :collections, :only => :show
 
-  #match "/:id" => "seo#show", :as => 'seo', :via => :get
-  match '/:id/(:page)/(:sort)' => 'seo#show', :as => :seo, :via => :get , :constraints => { :page => /\d+/, 
-    :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
-    downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
-    downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
-    downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
-    downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
+  resources :quotes, :only => :show
 
-  match "/:id/books/(:page)" => "collections#show_books"
-  match "/:id/quotes/(:page)" => "collections#show_quotes"
+  match "/:id/books/(:page)/(:sort)" => "collections#show_books", :as => :collection_books, :via => :get,   :constraints => { :page => /\d+/,
+      :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
+      downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
+      downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
+      downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
+      downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
   
+  match "/:id/quotes/(:page)" => "collections#show_quotes"
+
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
 
@@ -110,6 +110,8 @@ Classicly::Application.routes.draw do
   # for invoking the book reader
   match '/:id/page/:page_number' => "book_pages#show",
   :as => 'read_online', :via => :get
+  
+  match '/:id' => 'seo#show', :as => :seo, :via => :get
 
   root :to => 'pages#main'
 end

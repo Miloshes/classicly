@@ -7,7 +7,7 @@ class CollectionsController < ApplicationController
 
   def show_books
     @collection = Collection.find(params[:id])
-    @books     = @collection.books.page(params[:page]).per(10)
+    @books      = @collection.get_paginated_books params
   end
 
   def show_quotes

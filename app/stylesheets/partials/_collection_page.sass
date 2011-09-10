@@ -1,31 +1,116 @@
-#collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
+ul.book-list
+  margin-bottom: 22px
+  li
+    &:hover
+      :cursor pointer
+
+    .book-info
+      margin-left: -35px
+      padding-top: 5px
+
+      .title-author
+        max-height: 57px
+        min-height: 57px
+        display: block
+        float: left
+        width: 100%
+
+      a
+        :color #333333
+        text-decoration: none
+
+      a.title
+        font-size: 18px
+        font-weight: bold
+        :float left
+        :display block
+
+      p
+        font-size: 16px
+        font-style: italic
+        font-weight: lighter
+        color: black
+        float: left
+        display: block
+        width: 100%
+
+
+        a.author
+          font-size: 16px
+          text-decoration: none
+
+      .avg-stars
+        position: relative
+        top: 4px
+
+    .download-link
+      padding-top: 5px
+      a
+        text-decoration: none
+
+      .stars
+        margin-top: -15px
+
+        .blank-stars
+          display: none
+
+
+      .view-this-book
+        margin-top: -8px
+        a
+          color: white
+
+.sorting
+  :margin
+    :bottom 25px
+
+  span
+    display: block
+    font-size: 14px
+    font-weight: bold
+    float: left
+
+  a
+    text-decoration: none
+    color: #333333
+    background: #ffffd7
+    text-decoration: none
+    font-size: 14px
+    float: left
+    display: block
+    margin:
+      left: 20px
+
+    &.active
+      color: #ccc
+      background: #fff
+      color: #333333
+
+      &:hover
+        background: #fff
+        cursor: normal
+
+    &:hover
+      color: #333333
+      :background #ffff66
+      :cursor pointer
+
+    &.selected
+      color: #333333
+      background: none
+      text-decoration: underline
+      &:hover
+        cursor: normal
+
+.quote-list-page
+  padding-top: 30px
+
+#collection-page, #collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
   h1
     font-size: 22px
     font-weight: bold
-
-  .audiobook-switcher
-    min-height: 30px
-    span
-      :display block
-      :float left
-      :color #ccc
-      :font-size 13px
-      :margin
-        :top 5px
-        :right 5px
-    a
-      :background #ffffd7
-      :color #333333
-      :text-decoration none
-      :font-size 13px
-      :float left
-      :margin
-        :top 5px
-      &:hover
-        :background #ffff66
-        :cursor pointer
 
   .collection-info
     margin-bottom: 45px
@@ -50,104 +135,3 @@
       :color #999999
       :font-size 14px
 
-  .sorting
-    :margin
-      :bottom 25px
-
-    span
-      display: block
-      font-size: 14px
-      font-weight: bold
-      float: left
-
-    a
-      text-decoration: none
-      color: #333333
-      background: #ffffd7
-      text-decoration: none
-      font-size: 14px
-      float: left
-      display: block
-      margin:
-        left: 20px
-
-      &.active
-        color: #ccc
-        background: #fff
-
-        &:hover
-          background: #fff
-          cursor: normal
-
-      &:hover
-        :background #ffff66
-        :cursor pointer
-
-      &.selected
-        color: #333333
-        background: none
-        text-decoration: underline
-        &:hover
-          cursor: normal
-
-  ul.book-list
-    margin-bottom: 22px
-    li
-      &:hover
-        :cursor pointer
-
-      .book-info
-        margin-left: -35px
-        padding-top: 5px
-
-        .title-author
-          max-height: 57px
-          min-height: 57px
-          display: block
-          float: left
-          width: 100%
-
-        a
-          :color #333333
-          text-decoration: none
-
-        a.title
-          font-size: 18px
-          font-weight: bold
-          :float left
-          :display block
-
-        p
-          font-size: 16px
-          font-style: italic
-          font-weight: lighter
-          color: black
-          float: left
-          display: block
-          width: 100%
-
-
-          a.author
-            font-size: 16px
-            text-decoration: none
-
-        .avg-stars
-          position: relative
-          top: 4px
-
-      .download-link
-        padding-top: 5px
-        a
-          text-decoration: none
-
-        .stars
-          margin-top: -15px
-
-          .blank-stars
-            display: none
-
-
-        .view-this-book
-          margin-top: -8px
-          a
-            color: white

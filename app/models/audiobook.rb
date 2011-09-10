@@ -3,6 +3,7 @@ class Audiobook < ActiveRecord::Base
   include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
+  # CLEANUP: remove. We don't even have a model like that.
   belongs_to :custom_cover
 
   has_many :library_audiobooks
@@ -53,6 +54,7 @@ class Audiobook < ActiveRecord::Base
     true
   end
   
+  # CLEANUP: could be extracted
   def find_fake_related(number = 8, select = nil)
     # determine if we have a SELECT whitelist on the table. Rails uses a string.
     select_fields = select.join(',') if select
@@ -91,6 +93,7 @@ class Audiobook < ActiveRecord::Base
     return result
   end
 
+  # CLEANUP: seo related, could be extracted
   def generate_seo_slugs(formats)
     formats.each do|format|
       slug = optimal_url_for_download_page(format)
@@ -98,6 +101,7 @@ class Audiobook < ActiveRecord::Base
     end
   end
 
+  # CLEANUP: remove, never used. Or move it to a helper
   def html_title
     if [self.pretty_title ,' by ' , self.author.name].map(&:length).reduce(:+) <= 70
       "#{self.pretty_title} by #{self.author.name}"
@@ -108,6 +112,7 @@ class Audiobook < ActiveRecord::Base
     end
   end
   
+  # CLEANUP: extract, rating related
   def has_rating?
     self.avg_rating > 0
   end
@@ -118,12 +123,14 @@ class Audiobook < ActiveRecord::Base
 
     S3Object.exists? "audiobook_#{self.id}_chapters.zip", APP_CONFIG['buckets']['audiobook_chapters']
   end
-
+  
+  # CLEANUP: extract, rating related
   def set_average_rating
     self.avg_rating = self.reviews.blank? ? 0 : (self.reviews.sum('rating').to_f / self.reviews.size.to_f).round
     self.save
   end
   
+  # CLEANUP: extract, SEO related
   def update_seo_slugs
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['mp3'])
@@ -135,8 +142,10 @@ class Audiobook < ActiveRecord::Base
     s3_key = "audiobook_#{self.id}_chapters.zip"
     S3Object.value s3_key,  APP_CONFIG['buckets']['audiobook_chapters']
   end
+  
   private
-
+  
+  # CLEANUP: rename: shouldn't be plural
   def audio_book_slugs
     "#{pretty_title}-audiobook"
   end

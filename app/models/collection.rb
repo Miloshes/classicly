@@ -1,3 +1,5 @@
+# CLEANUP: extract seo slug related functionality
+
 class Collection < ActiveRecord::Base
   # we have to be able to handle URLs in the model
   include ActionDispatch::Routing::UrlFor
@@ -21,6 +23,7 @@ class Collection < ActiveRecord::Base
   has_many  :featured_collection_audiobook_assignments,
             :class_name => 'CollectionAudiobookAssignment',
             :conditions => {:featured => true}
+
   has_many  :quotes
   has_many  :seo_slugs, :as => :seoable
   has_one   :seo_info, :as => :infoable
@@ -63,6 +66,7 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
 
+  # CLEANUP: just pretty it up a bit, don't use after the line comments for long lines
   def self.get_collection_books_in_json(collection_ids, type, total_books)
     data = []
     collection_ids.each do |id|
@@ -144,6 +148,19 @@ class Collection < ActiveRecord::Base
     self.audiobooks.select{|audiobook| audiobook.blessed}.first || self.audiobooks.first
   end
 
+  def get_paginated_books(parameters)
+    method      = self.book_type.pluralize.to_sym # either calls the method 'books' or 'audiobooks'
+    order_query = 'downloaded_count desc'
+
+    if parameters[:sort]
+      query_segments  = parameters[:sort].split('_')
+      field           = query_segments[0..1].join('_')
+      order_query     = ([field] + [query_segments.last]).join(' ') # has to be in the most_downloaded asc format
+    end
+
+    self.send(method).order(order_query).page(parameters[:page]).per(10)
+  end
+
   def has_author_portrait?
     !self.author_portrait_updated_at.blank?
   end
@@ -158,15 +175,6 @@ class Collection < ActiveRecord::Base
     Collection.exists?(:name => self.name , :book_type => 'book')
   end
 
-  def ajax_paginated_audiobooks(params)
-    if params[:sort_by].nil?
-      self.audiobooks.page(params[:page]).per(10)
-    else
-      params[:sort_by] == 'author' ? self.audiobooks.order_by_author.page(params[:page]).per(10) : 
-        self.audiobooks.order(params[:sort_by]).page(params[:page]).per(10)
-    end
-  end
-
   def is_audio_collection?
     self.book_type == 'audiobook'
   end
@@ -179,7 +187,7 @@ class Collection < ActiveRecord::Base
     self.collection_type == 'author'
   end
 
-  # NOTE: refactor!
+  # CLEANUP: needs refactoring, not even sure what it stands for
   def needs_canonical_link?(per_page)
     per_page < self.send(self.book_type.pluralize.to_sym).count 
   end
@@ -258,4 +266,5 @@ class Collection < ActiveRecord::Base
       self.audiobooks[0..(n_books - 1)] - [self.featured_audiobook]
     end
   end
+  
 end

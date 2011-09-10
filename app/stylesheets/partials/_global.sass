@@ -1,0 +1,132 @@
+/* -----------------------------------*/
+/* ---------->>> GLOBAL <<<-----------*/
+/* -----------------------------------*/
+
+body
+  a
+    text-decoration: none !important
+
+  
+/* -----------------------------------*/
+/* ---------->>> MIXINS <<<-----------*/
+/* -----------------------------------*/
+@mixin highlight
+  &:hover
+    background-color: #ff6
+    color: #333
+    cursor: pointer
+    
+.audiobook-switcher
+  min-height: 30px
+  font-size: 13px
+  
+  span, a
+    float: left
+  span
+    :display block
+    color: #ccc
+    margin-right: 5px
+/* -----------------------------------------*/
+/* ---------->>> AUTOCOMPLETE <<<-----------*/
+/* -----------------------------------------*/
+ul.ui-autocomplete
+  min-width: 365px
+  max-width: 365px
+  cursor: pointer
+
+  li.ui-menu-item
+    padding-right: 10px
+    overflow: hidden
+    &.ui-state-active
+      color: #195596
+    a
+      span.type
+        padding-left: 5px
+        color: #9999ae
+
+      &:hover, &#ui-active-menuitem
+        color: #195596 !important
+        span.type
+          :color #538dc2
+
+    .with-cover
+      :height 39px
+      img.micro-cover
+        :width 23px
+        :height 37px
+        :float left
+        :margin-right 5px
+      .text
+        b
+          :text-decoration underline
+        :display inline-block
+        :float left
+        :width 84%
+/* ------------------------------------------------------------*/
+/* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<-----------*/
+/* ------------------------------------------------------------*/
+.row.quotes-and-books-buttons
+  margin-bottom: 20px
+  margin-top: 20px
+
+
+/* --------------------------------------------------*/
+/* ---------->>> INDIVIDUAL QUOTE PAGE <<<-----------*/
+/* --------------------------------------------------*/
+#individual-quote-page
+  a.btn.primary
+    color: white
+  .individual-quote
+    color: #333
+    font-family: 'Helvetica'
+    font-size: 36px
+    margin-top: 15px
+    line-height: 1.5em
+  .quote-author
+    margin-left: -10px
+    font-family: 'Helvetica'
+    font-size: 14px
+    color: #333
+  .quotes-and-books-buttons
+    margin-bottom: 60px
+
+/* ----------------------------------------*/
+/* ---------->>> LINK STYLES <<<-----------*/
+/* ----------------------------------------*/
+a.classicly-link, a.description-link
+  color: #333
+  text-decoration: none
+  background-color: #ffffd7
+  @include highlight
+    
+
+/* -----------------------------------*/
+/* ---------->>> RATINGS <<<-----------*/
+/* -----------------------------------*/
+.star-on, .star-off
+  float: left
+  width: 19px
+  height: 16px
+  text-indent: -999em
+  display: block
+  background: transparent
+  overflow: hidden
+  background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px
+
+.star-on
+  background-position: 0 -16px !important
+
+.star-off
+  background-position: 0 0px !important
+
+/* -----------------------------------*/
+/* ---------->>> TOOLTIP <<<-----------*/
+/* -----------------------------------*/
+.tooltip
+  display: none
+  background-color: #ffa
+  border: 1px solid #cc9
+  padding: 3px
+  font-size: 13px
+  -moz-box-shadow: 2px 2px 11px #666
+  -webkit-box-shadow: 2px 2px 11px #666

@@ -105,7 +105,6 @@ namespace :audiobook_yml_import do
     #   - fill up starting letter groups (DONE)
     # - copy the new AudiobookChapters (from:scraping to:ios) (DONE)
     # - copy the new Narrators (from:scraping to:ios) (DONE)
-    # - copy the new Authors (from:scraping to:ios) (DONE)
     # - update the filesizes (from:yml to:ios)
     # - re-run the the book-audiobook matcher
     
@@ -131,7 +130,7 @@ namespace :audiobook_yml_import do
     
     ActiveRecord::Base.establish_connection :scrape_db
     
-    first_id_to_import = 2948
+    first_id_to_import = 2947
     last_id_to_import  = Audiobook.last.id
     
     audiobooks_to_import = BasicAudiobook.where(:id.gt => first_id_to_import).order("id ASC").all()
@@ -143,12 +142,28 @@ namespace :audiobook_yml_import do
     
     audiobooks_to_import.each do |source_audiobook|
       attributes = source_audiobook.attributes.select { |key, value| !value.blank? }
+
+      # NOTE: Handling the authors differently based on which DB we're importing into. Uncomment the proper one.
       
-      author_id = attributes.delete("author_id")
-      attributes["author"] = authors.select { |author| author.id == author_id }.first.name
+      # == for updating the iOS DBs
+      # the iOS DB contains the author names as a text column of the audiobook record
+      # author_id = attributes.delete("author_id")
+      # attributes["author"] = authors.select { |author| author.id == author_id }.first.name
+      
+      # == for updating the non-iOS DBs (merged ones, where books and audiobooks are in the same DB)
+      # replace author ID which belongs to the audiobooks DB to one which belongs to a merged book-audiobook DB
+      # author_name = authors.select { |author| author.id == attributes["author_id"] }.first.name
+      # 
+      # author = BasicAuthor.where(:name => author_name).first()
+      # if author.blank?
+      #   author = BasicAuthor.create(:name => author_name)
+      # end
+      # 
+      # attributes["author_id"] = author.id
       
       attributes.delete("featured")
       attributes.delete("librivox_link")
+      attributes.delete("downloads_count")
       
       attributes["starting_letter_group"] = utils.starting_letter_group_for(attributes["title"])
       
@@ -218,33 +233,6 @@ namespace :audiobook_yml_import do
       else
         attributes.delete("id")
         new_narrator.update_attributes(attributes)
-      end
-    end
-    
-    # == copy the new Authors (from:scraping to:ios)
-    
-    ActiveRecord::Base.establish_connection :scrape_db
-    
-    first_id_to_import  = 9113
-    last_id_to_import   = BasicAuthor.last.id
-    authors_to_import   = BasicAuthor.where(:id.gt => first_id_to_import).order("id ASC").all()
-    
-    ActiveRecord::Base.establish_connection :development
-    
-    BasicAuthor.reset_column_information
-    
-    authors_to_import.each do |source_author|
-      attributes = source_author.attributes.select { |key, value| !value.blank? }
-      new_author = BasicAuthor.find_by_id(source_author.id)
-      
-      if new_author.blank?
-        new_author    = BasicAuthor.new(attributes)
-        new_author.id = source_author.id
-    
-        new_author.save
-      else
-        attributes.delete("id")
-        new_author.update_attributes(attributes)
       end
     end
     

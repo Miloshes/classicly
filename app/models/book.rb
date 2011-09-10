@@ -1,22 +1,34 @@
 include AWS::S3
 
+# CLEANUP: extract related book, rating and seo related methods, group and document the rest
+
 class Book < ActiveRecord::Base
   include Sluggable, SeoMethods, CommonBookMethods, CommonSeoDefaultsMethods
 
   belongs_to :author
+  # CLEANUP: remove. We don't even have a model like that.
   belongs_to :custom_cover
 
   has_many :library_books
   has_many :libraries, :through => :library_books
+  
+  # CLEANUP: rename to related_blog_posts
   has_and_belongs_to_many :blog_posts, :join_table => 'blog_posts_books'
+  
   has_many :collection_book_assignments
   has_many :collections, :through => :collection_book_assignments
+  
   has_many :download_formats
+  
+  # CLENAUP: can be removed. Obsolete model
   has_and_belongs_to_many :genres
+  
   has_many :reviews, :as => :reviewable
   has_many :anonymous_reviews, :as => :reviewable
+  
   has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
+  
   has_many :book_pages
 
   delegate :cached_slug, :name, :to => :author, :prefix =>  true
@@ -125,6 +137,7 @@ class Book < ActiveRecord::Base
     ['pdf', 'azw', 'rtf'] & self.all_downloadable_formats
   end
 
+  # CLEANUP: could be extracted
   def find_fake_related(num = 8, select = nil)
     # determine if we need to select certain fields from book's table and convert to string
     select_fields = select.join(',') if select
@@ -161,6 +174,7 @@ class Book < ActiveRecord::Base
     return result
   end
 
+  # CLEANUP: could be extracted
   # NOTE: in case the result set is empty, it should fall back to books from the same author, or just blessed books
   # NOTE: Due to lazy loading of associations the return result statements doesn't speed up the app, but they show the fallback structure
   def find_more_from_same_collection(num = 2)
@@ -235,7 +249,8 @@ class Book < ActiveRecord::Base
     str << "-" if str[-1, 1] != '-'
     "read-#{str}online-free"
   end
-
+  
+  # CLEANUP: REMOVE
   # NOTE: we should remove this. It's shorter, but it's actually harder to figure out what it does
   def read_online?
     self.is_rendered_for_online_reading == true

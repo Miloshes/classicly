@@ -11,7 +11,7 @@
           = link_to book.author.name, seo_url(book.author), :class => "author"
 
       .avg-stars= raw show_review_rating_stars(book.average_rating)
-      
+
     - if enable_rating
       .download-link.span3.columns
         <!-- le rating -->
