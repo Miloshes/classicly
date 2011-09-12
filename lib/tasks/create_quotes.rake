@@ -1,6 +1,7 @@
 desc 'creates quote objects from a file with authors and their quotes'
 
 namespace :quotes do
+
   task :create => :environment do
     Quote.delete_all
     file    = 'public/New_quote_list_2.rtf'
@@ -15,4 +16,5 @@ namespace :quotes do
       puts "Creating quote for author: #{row[0]} => Quote: #{row[1]}"
     end
   end
+
 end

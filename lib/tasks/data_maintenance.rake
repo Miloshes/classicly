@@ -39,6 +39,7 @@ class ImportRenderDataMigration < ActiveRecord::Migration
   
 end
 
+
 namespace :data_maintenance do
 
   task :encode_audio_book_chapter_titles => :environment do
@@ -91,9 +92,14 @@ namespace :data_maintenance do
   end
   
   task :update_audiobook_pretty_titles => :environment do
+    
+    class BasicAudiobook < ActiveRecord::Base
+      set_table_name "audiobooks"
+    end
+    
     converter = Iconv.new('UTF-8//IGNORE', 'UTF-8')
     
-    Audiobook.all.each do |audio_book|
+    BasicAudiobook.all.each do |audio_book|
       # fixing some issues with the titles
       fixed_title     = audio_book.title.gsub("\n\n", " - ")
       # setting up variables
@@ -118,5 +124,5 @@ namespace :data_maintenance do
       audio_book.save
     end
   end
-
+  
 end
