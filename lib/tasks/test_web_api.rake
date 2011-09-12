@@ -1,3 +1,5 @@
+# CLEANUP: we don't need this very much since we have a full test-suite for the web API, but it's good to keep it around
+
 require 'rest_client'
 
 namespace :test_web_api do

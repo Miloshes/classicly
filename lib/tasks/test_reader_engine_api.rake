@@ -1,3 +1,5 @@
+# CLEANUP: should be replaced by a full-suite test
+
 require 'rest_client'
 
 namespace :test_reader_engine_api do
