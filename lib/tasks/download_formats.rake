@@ -1,5 +1,9 @@
 include AWS::S3
 
+# This was a one-off script to update the download format database that we have. For each book it checks what format
+# it's available for download.
+# We can re-run it any time the book files on S3 changes.
+
 class DownloadFormatHandler
   
   def self.check_availability

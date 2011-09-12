@@ -1,5 +1,7 @@
 require 'iconv'
 
+# CLEANUP: add whitespaces, rake task name and namespace name doesn't even match, add documentation what's the script is good for, when to run it
+
 namespace :posts do
   desc 'Reads blog posts from yaml file and imports them to the local database'
   task :update => :environment do
