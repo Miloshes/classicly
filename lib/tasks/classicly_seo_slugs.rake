@@ -40,3 +40,11 @@ namespace :audiobooks_seo_slugs do
     end
   end
 end
+
+namespace :seo_slugs do
+  task :create_for_quotes => :environment do
+    Quote.find_each do|quote|
+      #SeoSlug.create!({:slug => .cached_slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
+    end
+  end
+end

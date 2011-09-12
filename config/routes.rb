@@ -85,8 +85,6 @@ Classicly::Application.routes.draw do
 
   resources :collections, :only => :show
 
-  resources :quotes, :only => :show
-
   match "/:id/books/(:page)/(:sort)" => "collections#show_books", :as => :collection_books, :via => :get,   :constraints => { :page => /\d+/,
       :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
       downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
@@ -98,6 +96,7 @@ Classicly::Application.routes.draw do
 
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
+  match '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote, :via => :get
 
   # == final download pages, the ones that starts downloading the file immediately
   match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
@@ -112,6 +111,5 @@ Classicly::Application.routes.draw do
   :as => 'read_online', :via => :get
   
   match '/:id' => 'seo#show', :as => :seo, :via => :get
-
   root :to => 'pages#main'
 end

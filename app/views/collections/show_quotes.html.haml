@@ -35,7 +35,7 @@
         .quote.row
           .span11.columns
             &quot;
-            = quote.content
+            = link_to quote.content, quote_path(@collection, :quote_slug => quote.cached_slug)
             &quot;
         .row
           .separator.span11.columns

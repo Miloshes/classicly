@@ -74,7 +74,9 @@
           - for quote in @quotes
             .quote.row
               .span9.columns
-                = raw "&quot;#{quote.content}&quot"
+                &quot;
+                = link_to quote.content, quote_path(@collection, :quote_slug => quote.cached_slug)
+                &quot;
             .row
               .separator.span9.columns
       .row.more-quotes-btn
