@@ -1,4 +1,4 @@
-# CLEANUP: needs big renaming and method extraction. Rename to DownloadPage or something. Also, belongs_to :downloadable_resource or something
+# CLEANUP: needs big renaming and method extraction. Rename to LandingPageSlug or something
 
 class SeoSlug < ActiveRecord::Base
   include CommonSeoDefaultsMethods
