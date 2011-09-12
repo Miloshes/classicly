@@ -1,3 +1,5 @@
+# CLEANUP: there's a lot of SEO realted methods left in the models. They should be brought here. With good naming, documentaion and testing
+
 module SeoMethods
   def download_format_page_title(format)
     format = (format == 'azw') ? 'Kindle' : format.upcase

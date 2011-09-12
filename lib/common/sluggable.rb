@@ -1,4 +1,7 @@
 require 'iconv'
+
+# CLEANUP: add whitespaces, clear documentation and testing
+
 module Sluggable
 
   def author_book_slug
