@@ -1,14 +1,19 @@
-#library-content
-  .user-column
+#library-content.row
+  
+  .user-column.span3.columns
     #user-profile
       = render :partial => 'fb_user_profile'
-  .book-column
+
+  .book-column.span9.columns
     - if current_library.last_read_book
-      %h3 Last Read
+      .row
+        .span9.columns
+          %h3 Last Read
       #last-read
         = render :partial => 'libraries/book', :object => current_library.last_read_book, :as => :book
-
-    %h3 My Library
+    .row
+      .span9.columns
+        %h3 My Library
     #book-list
       = render :partial => 'libraries/book', :collection => current_library.books, :as => :book
 

@@ -1,24 +1,28 @@
 .book{:id => "book_#{book.id}"}
-  .cover
-    %img{:src => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{book.id}_size2.jpg"}
-    .stable
-      .spinner
-  .info
-    %h4
-      = book.title
-    %h5
-      = book.author.name
-  .download
-  - if book.available_in_format?('azw')
-    = link_to download_book_url(book.author, book, :download_format => 'azw'), :class => 'classicly-link' do
-      Download for Kindle
-      <br />
+  .row
+    
+    .span2.columns
+      .cover.small
+        = cover_image_link(book, 2)
 
-  - if book.available_in_format?('pdf')
-    = link_to download_book_url(book.author, book, :download_format => 'pdf'), :class => 'classicly-link' do
-      Download as PDF
+    .span7.columns
+      .info
+        %h4
+          = book.title
+        %h5
+          = book.author.name
+          
+      - if book.available_in_format?('azw')
+        .download
+          = link_to download_book_url(book.author, book, :download_format => 'azw'), :class => 'classicly-link' do
+            Download for Kindle
 
-  - if book.is_rendered_for_online_reading?
-    .read
-      = link_to read_online_path(book.seo_slugs.read_online.first.slug, book.last_bookmarked_page(current_library) ), :class => 'classicly-link' do
-        <strong>Continue Reading</strong>
+      - if book.available_in_format?('pdf')
+        .download
+          = link_to download_book_url(book.author, book, :download_format => 'pdf'), :class => 'classicly-link' do
+            Download as PDF
+
+      - if book.is_rendered_for_online_reading?
+        .read
+          = link_to read_online_path(book.seo_slugs.read_online.first.slug, book.last_bookmarked_page(current_library) ), :class => 'classicly-link' do
+            <strong>Continue Reading</strong>

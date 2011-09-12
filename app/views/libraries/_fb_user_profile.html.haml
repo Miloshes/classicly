@@ -2,9 +2,7 @@
   %img{:src => "https://graph.facebook.com/#{current_login.fb_connect_id}/picture?type=normal"}
 .name
   %span
-    %strong
-      = "#{current_login.first_name} #{current_login.last_name}"
-      %br
+    = "#{current_login.first_name} #{current_login.last_name}"
   %span
     = "#{current_login.location_city}, #{current_login.location_country}" if current_login.location_city && current_login.location_country
 .stats
