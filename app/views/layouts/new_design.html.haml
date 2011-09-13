@@ -94,14 +94,15 @@
               Popular
             - for book in @popular_books
               .cover.small
-                = cover_image_link_with_text(book, 2)
-            -  for collection in @popular_collections
-              %a.collection_link{:href => "#{collection.cached_slug}"}
-                .collection-with-title-here
-                  - for book in collection.books.limit(6)
-                    .cover.mini
-                      = cover_tag book, 1
-                  = text_for_collection(collection)
+                = cover_image_link(book, 2)
+                = text_for_cover(book)
+            / -  for collection in @popular_collections
+            /               %a.collection_link{:href => "#{collection.cached_slug}"}
+            /                 .collection-with-title-here
+            /                   - for book in collection.books.limit(6)
+            /                     .cover.mini
+            /                       = cover_tag book, 1
+            /                   = text_for_collection(collection)
             .links
               .row
                 .span4.columns
