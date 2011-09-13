@@ -118,19 +118,24 @@ form.inline p {
 /* ---------->>> GLOBAL <<<----------- */
 /* ----------------------------------- */
 /* line 6, ../../../app/stylesheets/partials/_global.sass */
+body h1.collection-header {
+  font-size: 22px;
+  font-weight: bold;
+}
+/* line 10, ../../../app/stylesheets/partials/_global.sass */
 body * :focus {
   outline: 0;
 }
-/* line 8, ../../../app/stylesheets/partials/_global.sass */
+/* line 12, ../../../app/stylesheets/partials/_global.sass */
 body a {
   text-decoration: none !important;
 }
-/* line 10, ../../../app/stylesheets/partials/_global.sass */
+/* line 14, ../../../app/stylesheets/partials/_global.sass */
 body a:active {
   outline: 0 none;
   -moz-outline: 0 none;
 }
-/* line 13, ../../../app/stylesheets/partials/_global.sass */
+/* line 17, ../../../app/stylesheets/partials/_global.sass */
 body a:focus {
   outline: none;
   -moz-outline: 0 none;
@@ -139,16 +144,16 @@ body a:focus {
 /* ----------------------------------- */
 /* ---------->>> MIXINS <<<----------- */
 /* ----------------------------------- */
-/* line 27, ../../../app/stylesheets/partials/_global.sass */
+/* line 31, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher {
   min-height: 30px;
   font-size: 13px;
 }
-/* line 31, ../../../app/stylesheets/partials/_global.sass */
+/* line 35, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span, .audiobook-switcher a {
   float: left;
 }
-/* line 33, ../../../app/stylesheets/partials/_global.sass */
+/* line 37, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span {
   display: block;
   color: #cccccc;
@@ -158,52 +163,52 @@ body a:focus {
 /* ----------------------------------------- */
 /* ---------->>> AUTOCOMPLETE <<<----------- */
 /* ----------------------------------------- */
-/* line 40, ../../../app/stylesheets/partials/_global.sass */
+/* line 44, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 45, ../../../app/stylesheets/partials/_global.sass */
+/* line 49, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 48, ../../../app/stylesheets/partials/_global.sass */
+/* line 52, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 51, ../../../app/stylesheets/partials/_global.sass */
+/* line 55, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 55, ../../../app/stylesheets/partials/_global.sass */
+/* line 59, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 57, ../../../app/stylesheets/partials/_global.sass */
+/* line 61, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 60, ../../../app/stylesheets/partials/_global.sass */
+/* line 64, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 62, ../../../app/stylesheets/partials/_global.sass */
+/* line 66, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 67, ../../../app/stylesheets/partials/_global.sass */
+/* line 71, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 68, ../../../app/stylesheets/partials/_global.sass */
+/* line 72, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -211,7 +216,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 76, ../../../app/stylesheets/partials/_global.sass */
+/* line 80, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -220,11 +225,11 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 85, ../../../app/stylesheets/partials/_global.sass */
+/* line 89, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 87, ../../../app/stylesheets/partials/_global.sass */
+/* line 91, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
   font-family: "Helvetica";
@@ -232,14 +237,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 93, ../../../app/stylesheets/partials/_global.sass */
+/* line 97, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
   font-family: "Helvetica";
   font-size: 14px;
   color: #333333;
 }
-/* line 98, ../../../app/stylesheets/partials/_global.sass */
+/* line 102, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -247,13 +252,13 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 104, ../../../app/stylesheets/partials/_global.sass */
+/* line 108, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
   background-color: #ffffd7;
 }
-/* line 22, ../../../app/stylesheets/partials/_global.sass */
+/* line 26, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link:hover, a.description-link:hover {
   background-color: #ffff66;
   color: #333333;
@@ -263,7 +268,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 114, ../../../app/stylesheets/partials/_global.sass */
+/* line 118, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -275,12 +280,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 124, ../../../app/stylesheets/partials/_global.sass */
+/* line 128, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 127, ../../../app/stylesheets/partials/_global.sass */
+/* line 131, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -288,7 +293,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 133, ../../../app/stylesheets/partials/_global.sass */
+/* line 137, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -588,13 +593,13 @@ a.highlight:hover {
   color: #442507;
   display: block;
   width: 106px;
-  height: 26px;
+  height: 24px;
   float: left;
   text-decoration: none;
   background: url(/images/nav-bg.png);
   text-align: center;
   margin-right: 6px;
-  padding-top: 5px;
+  padding-top: 8px;
 }
 /* line 75, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a:hover {
@@ -874,41 +879,35 @@ a.highlight:hover {
   padding: 0;
 }
 /* line 279, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row {
-  text-align: left;
-  margin-bottom: 12px;
+#right-column .right-covers {
   color: #333333;
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 285, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row:hover {
+/* line 283, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers:hover {
   cursor: pointer;
 }
-/* line 287, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row img {
+/* line 285, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers img {
   margin-bottom: 0px;
 }
-/* line 289, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row span.kind {
+/* line 287, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers span.kind {
   font-size: 10px;
   color: #999999;
 }
-/* line 293, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row .links a {
-  margin-bottom: 6px;
-  float: left;
+/* line 291, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .links a {
+  cursor: pointer;
 }
-/* line 296, ../../../app/stylesheets/partials/_layout.sass */
+/* line 294, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
-  margin: 0;
-  padding: 0;
-  padding-bottom: 10px;
 }
 
-/* line 304, ../../../app/stylesheets/partials/_layout.sass */
+/* line 299, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -917,14 +916,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 311, ../../../app/stylesheets/partials/_layout.sass */
+/* line 306, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 317, ../../../app/stylesheets/partials/_layout.sass */
+/* line 312, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -936,14 +935,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 320, ../../../app/stylesheets/partials/_layout.sass */
+/* line 315, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 325, ../../../app/stylesheets/partials/_layout.sass */
+/* line 320, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -955,7 +954,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 328, ../../../app/stylesheets/partials/_layout.sass */
+/* line 323, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -964,7 +963,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 336, ../../../app/stylesheets/partials/_layout.sass */
+/* line 331, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -976,12 +975,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 339, ../../../app/stylesheets/partials/_layout.sass */
+/* line 334, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 343, ../../../app/stylesheets/partials/_layout.sass */
+/* line 338, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
@@ -2188,7 +2187,7 @@ ul.book-list li .download-link .view-this-book a {
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 22, ../../../app/stylesheets/partials/_global.sass */
+/* line 26, ../../../app/stylesheets/partials/_global.sass */
 #download-confirmation-page .download-info a:hover {
   background-color: #ffff66;
   color: #333333;
@@ -2729,46 +2728,48 @@ a.button.kiss span {
   margin-top: 10px;
 }
 
+/* line 1, ../../../app/stylesheets/partials/_quotes.sass */
+.more-quotes-btn a, .more-books-btn a {
+  float: right;
+  color: white;
+}
+
+/* line 5, ../../../app/stylesheets/partials/_quotes.sass */
+.more-books-btn.row {
+  margin-left: -60px;
+}
+
 /* These apply for all the collection listings of quotes and books */
-/* line 3, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 10, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .title, .quote-list-page .title, .collection-book-list-page .title {
   margin-bottom: 5px;
   margin-top: 75px;
 }
-/* line 7, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 14, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page a.title, .quote-list-page a.title, .collection-book-list-page a.title {
   margin-top: 0px;
 }
-/* line 10, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 17, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page a.title h1, .quote-list-page a.title h1, .collection-book-list-page a.title h1 {
   margin-bottom: 0px;
 }
-/* line 13, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 20, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .adsense, .quote-list-page .adsense, .collection-book-list-page .adsense {
   margin-bottom: 20px;
 }
-/* line 16, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 23, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quotes-in-author-page, .quote-list-page .quotes-in-author-page, .collection-book-list-page .quotes-in-author-page {
   margin-bottom: 15px;
 }
-/* line 20, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 27, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quote a, .quote-list-page .quote a, .collection-book-list-page .quote a {
   margin-bottom: 15px;
   color: #333333;
   font: normal 18px/32px "helvetica", verdana, serif;
 }
-/* line 25, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 32, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
   border-bottom: 2px solid #cccccc;
-}
-/* line 28, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .more-quotes-btn a, #collection-page .more-books-btn a, .quote-list-page .more-quotes-btn a, .quote-list-page .more-books-btn a, .collection-book-list-page .more-quotes-btn a, .collection-book-list-page .more-books-btn a {
-  float: right;
-  color: white;
-}
-/* line 32, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .more-books-btn.row, .quote-list-page .more-books-btn.row, .collection-book-list-page .more-books-btn.row {
-  margin-left: -60px;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_admin.sass */
