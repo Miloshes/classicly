@@ -42,7 +42,7 @@ a.highlight
       :width 960px
       :margin 0 auto
       :height 30px
-      #logo
+      #logo 
         :float left
         +column(5)
         img
@@ -59,10 +59,8 @@ a.highlight
             :float left
             :display inline
             a
+              font: bold 14px 'helvetica'
               :color #442507
-              :font-size 14px
-              :font-weight bold
-              :font-family 'helvetica'
               :display block
               :width 106px
               :height 26px
@@ -105,8 +103,7 @@ a.highlight
         border: 1px solid #ab9573
       input
         color: #d2d2d3
-        font-size: 12px
-        font-family: 'helvetica'
+        font: normal 12px 'helvetica'
         box-shadow: none
         :border 0
         :width 150px
@@ -123,8 +120,7 @@ a.highlight
         :background url(/images/search-button.png)
         :border 0
         :float right
-        :margin
-          :top 1px
+        margin-top: 1px
         &:hover
           :cursor pointer
    
@@ -139,13 +135,11 @@ a.highlight
   :padding 0
 
 #footer
-  :background #c9af87
-  :width 100%
-  :float left
-  :padding
-    :top 10px
-    :bottom 20px
-  :text-align center
+  background: $top-nav-bg
+  width: 100%
+  float: left
+  padding: 10px 0 20px 0
+  text-align: center
   .centering
     :margin 0 auto
     :width 980px
@@ -252,8 +246,6 @@ a.highlight
     :font-size 17px
       
 
-.ui-autocomplete
-
 #right-column
   :width 190px
   :float left
@@ -285,7 +277,6 @@ a.highlight
       :bottom 0
     :padding 0
   .row
-    :Width 100%
     text-align: left
     margin-bottom: 12px
     color: #333
