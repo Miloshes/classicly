@@ -3,8 +3,6 @@ ul.book-list
   li
     &:hover
       :cursor pointer
-    .row
-      margin-left: 0px
 
     .book-info
       margin-left: -35px
@@ -62,34 +60,57 @@ ul.book-list
         a
           color: white
 
-#collection-page, .collection-book-list-page, .quote-list-page, #collection-list-page
+.sorting
+  :margin
+    :bottom 25px
+
+  span
+    display: block
+    font-size: 14px
+    font-weight: bold
+    float: left
+
+  a
+    text-decoration: none
+    color: #333333
+    background: #ffffd7
+    text-decoration: none
+    font-size: 14px
+    float: left
+    display: block
+    margin:
+      left: 20px
+
+    &.active
+      color: #ccc
+      background: #fff
+      color: #333333
+
+      &:hover
+        background: #fff
+        cursor: normal
+
+    &:hover
+      color: #333333
+      :background #ffff66
+      :cursor pointer
+
+    &.selected
+      color: #333333
+      background: none
+      text-decoration: underline
+      &:hover
+        cursor: normal
+
+.quote-list-page
+  padding-top: 30px
+
+#collection-page, #collection-book-list-page, .quote-list-page, #collection-list-page
   :text-align left
 
   h1
     font-size: 22px
     font-weight: bold
-
-  .audiobook-switcher
-    min-height: 30px
-    span
-      :display block
-      :float left
-      :color #ccc
-      :font-size 13px
-      :margin
-        :top 5px
-        :right 5px
-    a
-      :background #ffffd7
-      :color #333333
-      :text-decoration none
-      :font-size 13px
-      :float left
-      :margin
-        :top 5px
-      &:hover
-        :background #ffff66
-        :cursor pointer
 
   .collection-info
     margin-bottom: 45px
@@ -114,44 +135,3 @@ ul.book-list
       :color #999999
       :font-size 14px
 
-  .sorting
-    :margin
-      :bottom 25px
-
-    span
-      display: block
-      font-size: 14px
-      font-weight: bold
-      float: left
-
-    a
-      text-decoration: none
-      color: #333333
-      background: #ffffd7
-      text-decoration: none
-      font-size: 14px
-      float: left
-      display: block
-      margin:
-        left: 20px
-
-      &.active
-        color: #ccc
-        background: #fff
-
-        &:hover
-          background: #fff
-          cursor: normal
-
-      &:hover
-        :background #ffff66
-        :cursor pointer
-
-      &.selected
-        color: #333333
-        background: none
-        text-decoration: underline
-        &:hover
-          cursor: normal
-
-  

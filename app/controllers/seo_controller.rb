@@ -46,7 +46,8 @@ class SeoController < ApplicationController
     elsif seo.is_for_type?('collection')
 
       @collection = seo.seoable
-      @books = seo.find_paginated_listed_books_for_collection(params)
+      method      = @collection.book_type.pluralize.to_sym
+      @books      = @collection.send(method).order('downloaded_count desc').limit(5)
 
       @quotes, @show_author_options = [@collection.quotes.limit(3), true] if @collection.is_author_collection?
 

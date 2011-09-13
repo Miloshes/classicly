@@ -1,3 +1,6 @@
+/* ----------------------------------------------------------*/
+/* ---------->>> COVERS MIXINS<<<----------------------------*/
+/* ----------------------------------------------------------*/
 @mixin cover
   :display block
   :float left
@@ -6,135 +9,109 @@
     :top 5px
     :bottom 25px
 
-@mixin mini
-  :width 25px
-  :height 37px
+@mixin highlight_book_title
+  &:hover
+    cursor: pointer
+    span.title
+      background: #ffff66
+
 $miniH: 37
+@mixin mini
+  width: 25px
+  height: $miniH + 0px
 
-@mixin tiny
-  :width 48px
-  :height 74px
+
 $tinyH: 74
+@mixin tiny
+  width: 48px
+  height: $tinyH + 0px
 
-@mixin small
-  :width 98px
-  :height 151px
 
 $smallH: 151
+@mixin small
+  width: 98px
+  height: $smallH + 0px
 
+$mediumH: 229
 @mixin medium
-  :width 148px
-  :height 229px
-$mediumH: 226
+  width: 148px
+  height: $mediumH + 0px
 
 @mixin large
   :width 198px
   :height 306px
 $largeH: 306
 
-@mixin huge
-  :width 248px
-  :height 383px
 $hugeH: 383
+@mixin huge
+  width: 248px
+  height: $hugeH + 0px
 
+@mixin book_or_collection_title
+  .text span.title
+    font-size: 14px
+    color: #333333
+    padding: 0
 
-a.no-underline
-  :text-decoration none !important
-  :cursor pointer
+@mixin cover_block_type
+  .text span.type
+    font-size: 10px
+    color: #999999
+    margin-left: 5px
 
-a.collection_link
-  text-decoration: none !important
+/* ----------------------------------------------------------*/
+/* ---------->>> COLLECTION COVERS IN RIGHT NAV<<<-----------*/
+/* ----------------------------------------------------------*/
+.collection-with-title-here
+  @include highlight_book_title
+  @include book_or_collection_title
+  @include cover_block_type
+  // assign some padding between each minicover
+  .cover
+    margin-right: 4px
+  .text
+    margin-top: -34px
 
-  .collection-here, .collection-with-title-here
-    &:hover
-      :cursor pointer
-      span.title
-        :background #ffff66
-
-    // assign some padding between each minicover
-    .cover
-      margin-right: 4px
-
-    .text
-      :float left
-      :width 100%
-      :margin-top -34px
-      :padding 0
-
-      span.title
-        :font-size 14px
-        :color #333333
-        :padding 0
-
-      span.type
-        :font-size 10px
-        :color #999999
-        :padding 0
-          :left 5px
-
-
+.collection-with-title-here, .cover
+  .text
+    float: left
+    width: 100%
+/* ---------------------------------------------------*/
+/* ---------->>> INDIVIDUAL BOOK COVERS <<<-----------*/
+/* ---------------------------------------------------*/
 .cover
-
   @include cover
-  &:hover
-    :cursor pointer
-    span.title
-      :background #ffff66
-
-
-  &.medium
-    :height $mediumH+20px
+  @include highlight_book_title
+  @include book_or_collection_title
+  @include cover_block_type
   img
-    @include medium
-    :float left
-    :border 1px solid #333333 
-
-  &.tiny
-    :height $tinyH+20px
-    img
-      @include tiny
-      :float left
+    float: left
+    border: 1px solid #333333
 
   &.mini
     :height $miniH+20px
     img
       @include mini
-      :float left
-      :border 1px solid #333333 
 
+  &.tiny
+    :height $tinyH+20px
+    img
+      @include tiny
+      
   &.small
     :height $smallH+20px
     img
       @include small
-      :float left
-      :border 1px solid #333333
-
+      
   &.medium
     :height $mediumH+20px
     img
       @include medium
-      :float left
-      :border 1px solid #333333
 
   &.huge
     :height $hugeH+20px
     img
       @include huge
-      :float left
-      :border 1px solid #333333
 
   .text
-    :float left
-    :width 100%
-    :margin 0
-    :padding 0
-    span.title
-      :font-size 14px
-      :color #333333
-      :padding 0
-    span.type
-      :font-size 10px
-      :color #999999
-      :padding 0
-      :margin
-        :left 5px
+    margin-top: 5px

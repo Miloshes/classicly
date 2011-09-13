@@ -1,34 +1,3 @@
-/*css for all pages with quotes and book listings*/
-h1.title
-  font-size: 22px
-  font-weight: bold
-
-a.btn
-  text-decoration: none
-  
-.row.quotes-and-books-buttons
-  margin-bottom: 20px
-  margin-top: 20px
-
-
-/* Individual quote page */
-#individual-quote-page
-  a.btn.primary
-    color: white
-  .individual-quote
-    color: #333 
-    font-family: 'Helvetica'
-    font-size: 28px
-    margin-top: 15px
-    line-height: 1.5em
-  .quote-author
-    margin-left: -10px
-  .quotes-and-books-buttons
-    margin-bottom: 60px
-  
-
-
-
 /* These apply for all the collection listings of quotes and books*/
 #collection-page, .quote-list-page, .collection-book-list-page
   .title
@@ -48,16 +17,20 @@ a.btn
     margin-bottom: 15px
 
   .quote
-    color: #333
-    font-weight: bold
-    font-size: 14px
-    margin-bottom: 15px
+    a
+      margin-bottom: 15px
+      color: #333
+      font: normal 18px/32px 'helvetica',verdana,serif
 
   .separator
     border-bottom: 2px solid #CCC
 
-  .more-quotes-btn a
-    margin-left: 8px
+  .more-quotes-btn a, .more-books-btn a
+    float: right
     color: white
+
+  .more-books-btn.row
+    margin-left: -60px
+
 
 

@@ -16,8 +16,7 @@ class SeoSlug < ActiveRecord::Base
     indextank = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
     documents = indextank.search "#{search_term} type:#{type}"
     docids = documents['results'].collect{|doc| doc['docid']}
-    bookids = docids.collect {|docid| docid.split('_').last.to_i}
-    bookids.compact!
+    bookids = docids.collect {|docid| docid.split('_').last.to_i}.compact!
     self.where(:seoable_id.in => bookids, :seoable_type => type.capitalize).page(current_page).per(per_page)
   end
   
@@ -26,23 +25,6 @@ class SeoSlug < ActiveRecord::Base
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
     self.seoable.book_type == 'audiobook' ? (self.seoable.audiobooks.blessed.first || self.seoable.audiobooks.first) :
         (self.seoable.books.blessed.first || self.seoable.books.first)
-  end
-
-  def find_paginated_listed_books_for_collection(params)
-    return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
-    
-    method      = self.seoable.book_type.pluralize.to_sym # either calls the method 'books' or 'audiobooks'
-    order_query = 'downloaded_count desc'
-
-    if params[:sort]
-      query_segments = params[:sort].split('_')
-      field = query_segments[0..1].join('_')
-      order_query = ([field] + [query_segments.last]).join(' ') # has to be in the most_downloaded asc format
-    end
-
-    # TODO: This calls a collection, so the best part to code this is the collection model  
-    self.seoable.send(method).order(order_query).page(params[:page]).per(10)
-
   end
 
   def is_for_type?(type)
