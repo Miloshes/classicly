@@ -8,55 +8,55 @@
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
 
-#collection-page
-  - if @collection.has_book_counterpart?
-    .audiobook-switcher
-      = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug)
-      .tooltip
-        View this collection as normal books. Available for Kindle, PDF, and our HTML5 reader.
-      %span  &nbsp;|&nbsp;Audiobooks
+#collection-page.row
+  .span12.columns
 
-  -unless params[:page]
-    .collection-info
-      %h1="#{@collection.name} Audiobooks"
+    .row.audiobook-switcher
+      .span12.columns
+        - if @collection.has_book_counterpart?
+          = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug), :class => 'classicly-link'
+          .tooltip
+            View this collection as normal books. Available for Kindle, PDF, and our HTML5 reader.
+          %span  &nbsp;|&nbsp;Audiobooks
 
-      -# Google AdSense. DO NOT MODIFY.
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Collection Page 300&#42;250 */
-      google_ad_slot = "4482754705";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+    - unless params[:page]
+      .row.collection-info
+        .span9.columns
+          %h1="#{@collection.name} Audiobooks"
+
+          -# Google AdSense. DO NOT MODIFY.
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7773516323337861";
+          /* Collection Page 300&#42;250 */
+          google_ad_slot = "4482754705";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
       
+          <!-- le content -->
+          %p=simple_format(@collection.parsed_description)
 
-      %p=simple_format(@collection.parsed_description)
+          .share
+            <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+      
+        .span3.columns
+          .featured-books.audiobooks
+            .cover.medium
+              = cover_image_link(@collection.featured_audiobook, 2)
 
-      .share
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+    .row.book-list
+      .span12.columns
+        %h3 All #{@collection.name} Audiobooks
+    .row
+      .span12.columns
+        %ul.book-list.audiobooks
+          = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true}, :collection => @books, :as => :audiobook
 
-    .featured-books.audiobooks
-      .cover.medium
-        = cover_image_link(@collection.featured_audiobook, 2)
-
-  .book-list
-    %h3 All #{@collection.name} Audiobooks
-
-    .sorting
-      %span Sort By:
-      = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
-      = link_to_sorted 'Title', 'pretty_title', @collection, params
-      -# sorting by author an author collection is pointless
-      -# unless @collection.is_author_collection?
-        =# sort_audiobooks_ajax_link @collection.id, 'Author', 'author' 
-    %ul.book-list.audiobooks
-      = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true}, :collection => @books, :as => :audiobook
-
-    = paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+      =# paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
 
     .row
       .span11.columns
