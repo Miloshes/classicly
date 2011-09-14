@@ -10,7 +10,7 @@ class SeoController < ApplicationController
       if @book.is_a?(Book)
         render 'books/show'
       else
-        render 'audiobooks/show', :layout => 'audibly'
+        render 'audiobooks/show'
       end
 
     end

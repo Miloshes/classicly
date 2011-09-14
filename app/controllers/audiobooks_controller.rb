@@ -1,6 +1,4 @@
 class AudiobooksController < ApplicationController
-  layout 'audibly'
-
   def download
     @audiobook = Audiobook.find params[:id]
     @popular_books = Audiobook.blessed.random 3

@@ -16,9 +16,9 @@ $( function(){
     // RATINGS
     $( 'input.dynamic-stars' ).rating({
       callback: function(value, link){
-        var bookId =  $( '#book-page' ).attr( 'name' );
-        var klass = $( '#book-rating' ).attr( 'name' );
-        var data = klass + '_id=' + bookId + '&rating=' + value;
+        var bookId  = $( "#book-page" ).data( "book_id" );
+        var klass   = $( "#book-rating" ).data( "book_type" );
+        var data    = klass + "_id=" + bookId + "&rating=" + value;
 
         // send the rating
         $.ajax({

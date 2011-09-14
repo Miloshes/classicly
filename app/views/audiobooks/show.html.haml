@@ -6,77 +6,94 @@
 
 = content_for :drawer do
   = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
-#book-page{:name => @book.id }
-  .cover-column
-    #current-audiobook.cover.medium
-      = cover_image_link(@book, 2)
-    - unless @related_books.empty?
-      %h4 Related
-      .cover.small.related
-        = cover_image_link(@related_books.first, 2)
-        .text
-          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
-          %span.type
-            Audiobook
-      - 1.upto(@related_books.count - 1) do|index|
-        .cover.tiny.related
-          = cover_image_link(@related_books[index], 2)
+
+#book-page
+  .span12.columns
+    .row
+      .cover-column.span3.columns
+        #current-audiobook.cover.medium
+          = cover_image_link(@book, 2)
+        #my-rating
+          #text
+            My Rating
+          #rating-stars
+            = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
+        .clear
+        
+        #download-as
           .text
-            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
-            %span.type
-              Audiobook
-  .book-column
-    #book-metadata.grid_5.omega
-      %h1= @book.pretty_title
-      %h2 
-        by
-        %span.book-author
-          = book_author_link(@book)
+            Download as
+          - if @book.has_mp3_slug?
+            #mp3.download-button
+              = link_to 'MP3', seo_url(@book.download_mp3_slug) , :class => 'btn primary'
+    
+      .book-column.span9.columns
+        #book-metadata
+          #book-title
+            %h1= @book.pretty_title
+          #book-author
+            %h2 
+              by
+              %span.book-author
+                = book_author_link(@book, 'classicly-link')
+          #book-rating
+            - if @book.average_rating > 0
+              = raw show_review_rating_stars(@book.average_rating)
+              %span#reviews-count
+                = show_review_counts @book
 
-      -# Google AdSense. DO NOT MODIFY.
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Book Page 250&#42;300 */
-      google_ad_slot = "6647913200";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+          -# Google AdSense. DO NOT MODIFY.
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7773516323337861";
+          /* Book Page 250&#42;300 */
+          google_ad_slot = "6647913200";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
 
-      .like-send
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-      %p= simple_format(@book.description)
+          .like-send
+            <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
 
-      .clear
+          %p= simple_format(@book.description)
 
-      .download
-        - if @book.has_mp3_slug?
-          = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
-      %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
-      %p.explanation We don’t pay a cent, so neither do you.
+          .clear
 
-      .clear
+          / .download
+          /             - if @book.has_mp3_slug?
+          /               = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
+          %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
+          %p.explanation We don’t pay a cent, so neither do you.
 
-      #book-rating{:name => 'audiobook'}
-        - if @book.average_rating > 0
-          = raw show_review_rating_stars(@book.average_rating)
+          .clear
 
-      #reviews-rating-count
-        #counts
-          = show_review_counts @book
+          #book-rating
+            - if @book.average_rating > 0
+              = raw show_review_rating_stars(@book.average_rating)
 
-        #write-review
-          = raw write_review_link(@book, current_login)
+          #reviews-rating-count
+            #counts
+              = show_review_counts @book
+
+            #write-review
+              = raw write_review_link(@book, current_login)
 
 
-      = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
+          = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
-      .clear
+          .clear
+  .row
+    .offset3.span9.columns
       #reviews
-        = render :partial => 'books/review', :collection => @book.reviews.most_recent
+        = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
 
 
 = javascript_include_tag 'review-ratings'
+:javascript
+  $(function(){
+    $( "#book-page" ).data( "book_id", "#{@book.id}" );
+    $( "#book-rating" ).data( "book_type", "audiobook")
+  });

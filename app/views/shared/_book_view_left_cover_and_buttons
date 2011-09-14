@@ -1,0 +1,23 @@
+#current-book.cover.medium
+  = cover_image_link(@book, 2)
+#my-rating
+  #text
+    My Rating
+  #rating-stars
+    = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
+.clear
+- if @book.read_online?
+  #read-online-btn
+    = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn'
+#download-as
+  .text
+    Download as
+  - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+    #pdf.download-button
+      = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
+  - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+    #kindle.download-button
+      = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
+  - if @book.has_audiobook
+    #audiobook.download-button
+      = link_to 'Audiobook', '#', :class => 'btn primary'
