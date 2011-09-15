@@ -24,6 +24,7 @@
       #my-rating
         #text
           My Rating
+        #blank-stars
         #rating-stars
           = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
       .clear
@@ -82,14 +83,12 @@
 
         .clear
 
-        <!-- le form -->  
-
-        #write-review
-          = raw write_review_link(@book, current_login)
-
+        .row
+          .offset6.span3.columns
+            #write-review
+              = raw write_review_link(@book, current_login)
+        <!-- le form -->
         = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
-
-        .clear
 
   .row
     .offset3.span9.columns

@@ -21,6 +21,9 @@
 
     #my-rating
       width: 100%
+      #blank-stars
+        height: 19px
+        display: none
       #rating-stars
         padding-left: 34px
     #read-online-btn
@@ -67,17 +70,9 @@
       :color #999999
       :font-size 14px
 
-    #reviews-rating-count
-      margin-bottom: 10px
-      margin-top: 5px
-      #counts
-        +column(4)
+    
 
-      #write-review
-        +column(8, true)
-        text-align: right
-        a:focus
-          color: #333
+    #write-review
 
     #greeting
       .profile-pic

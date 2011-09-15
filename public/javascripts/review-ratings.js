@@ -18,17 +18,18 @@ $( function(){
       callback: function(value, link){
         var bookId  = $( "#book-page" ).data( "book_id" );
         var klass   = $( "#book-rating" ).data( "book_type" );
-        var data    = klass + "_id=" + bookId + "&rating=" + value;
+        
+        if( isLoggedIn() ){ // send the rating.
+          sendRatingIndividualBookPage( bookId, value, klass );
+        }else{
+          // show the registration dropdown:
+          if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
+            $( "#fb_connect_notification ").slideDown( "slow" );
 
-        // send the rating
-        $.ajax({
-          type: 'POST',
-          url: '/reviews/create_rating',
-          data: data,
-          success: function(){
-          }
-        });
-
+          // store temporarily request's data. This because once the user logs in, this data will be send to create the rating:
+          $( '#book-rating' ).data( 'bookRating' , value );
+        }
+        
       }// end callback
     });// end rating
 
@@ -36,12 +37,59 @@ $( function(){
 
     // LOG IN
     $( "#fb_connect_notification a#fb_connect" ).click( function(){
-      writeReview();
+      performLoggedInChanges();
       return false;
     });
 
   });
 
+  function bookPageHideStarsOnRating(){
+    ratingTextDiv = $( ".cover-column #my-rating #text" );
+    ratingTextDiv.text( "Saving..." );
+
+    // traverse DOM:
+    myRating = ratingTextDiv.parents( '#my-rating' );
+
+    myRating.children( '#rating-stars' ).hide();
+    myRating.children( '#blank-stars' ).show();
+  }
+
+  function bookPageShowStarsOnRatingCompleted(){
+    ratingTextDiv = $( ".cover-column #my-rating #text" );
+    ratingTextDiv.text( "My Rating:" );
+
+    // traverse DOM:
+    myRating = ratingTextDiv.parents( '#my-rating' );
+
+    myRating.children( '#rating-stars' ).show();
+    myRating.children( '#blank-stars' ).hide();
+  }
+  
+  function sendRatingIndividualBookPage( bookId, rating, klass ){
+    var data = klass + '_id=' + bookId + '&rating=' + rating;
+
+    $.ajax({
+      type: 'POST',
+      url: '/reviews/create_rating',
+      data: data,
+      beforeSend: bookPageHideStarsOnRating(),
+      success: function(){
+        ratingTextDiv = $( ".cover-column #my-rating #text" );
+        ratingTextDiv.text( "Saved!" );
+        setTimeout( "bookPageShowStarsOnRatingCompleted()", 200 );
+      }
+    });
+  }
+
+  function rateIfRatingPresent(){
+    if( $( "#book-rating" ).data( "bookRating" ) != undefined ){
+      var bookId  = $( "#book-page" ).data( "book_id" );
+      var klass   = $( "#book-rating" ).data( "book_type" );
+      var value   = $( "#book-rating" ).data( "bookRating" );
+      sendRatingIndividualBookPage( bookId, value, klass ) ;
+    }
+  }
+  
   function dropLoginDrawer(){
     FB.getLoginStatus(function(response) {
       if (response.status == 'connected')
@@ -55,7 +103,7 @@ $( function(){
   }
 
   // LOG THROUGH FACEBOOK
-  function writeReview(){
+  function performLoggedInChanges(){
     // check facebook status
     if ( isLoggedIn() ) {
       return false;
@@ -78,15 +126,18 @@ $( function(){
               else
                 _kmq.push(["record", "User Signed Up"]);
 
-              var bookId  = $( '#book-page' ).attr( 'name' );
-              var klass   = $( '#book-rating' ).attr( 'name' );
-
+              var bookId  = $( "#book-page" ).data( "book_id" );
+              var klass   = $( "#book-rating" ).data( "book_type" );
+              
+              rateIfRatingPresent();
+              
               $.ajax({ 
-                url: '/show_review_form',
-                data: klass +'_id=' + bookId,
+                url: "/show_review_form",
+                data: klass +"_id=" + bookId,
                 success: function(){
-                  $( '#write-review a' ).unbind( 'click' );
-                  $( '#write-review a' ).click(function(){
+                  $( "#review-box textarea" ).css( "background", "url(/images/new_reviews_editor.png)").css( "width" , 400 ).css( "height", 89).css( "border" , "none").css("resize", "none").css( "padding", "7px 0px 0px 7px");
+                  $( "#write-review a" ).unbind( "click" );
+                  $( "#write-review a" ).click(function(){
                     return false;
                   });
                 }
