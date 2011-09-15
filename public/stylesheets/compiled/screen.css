@@ -140,20 +140,24 @@ body a:focus {
   outline: none;
   -moz-outline: 0 none;
 }
+/* line 20, ../../../app/stylesheets/partials/_global.sass */
+body a.btn.primary {
+  color: white !important;
+}
 
 /* ----------------------------------- */
 /* ---------->>> MIXINS <<<----------- */
 /* ----------------------------------- */
-/* line 31, ../../../app/stylesheets/partials/_global.sass */
+/* line 32, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher {
   min-height: 30px;
   font-size: 13px;
 }
-/* line 35, ../../../app/stylesheets/partials/_global.sass */
+/* line 36, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span, .audiobook-switcher a {
   float: left;
 }
-/* line 37, ../../../app/stylesheets/partials/_global.sass */
+/* line 38, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span {
   display: block;
   color: #cccccc;
@@ -163,52 +167,52 @@ body a:focus {
 /* ----------------------------------------- */
 /* ---------->>> AUTOCOMPLETE <<<----------- */
 /* ----------------------------------------- */
-/* line 44, ../../../app/stylesheets/partials/_global.sass */
+/* line 45, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 49, ../../../app/stylesheets/partials/_global.sass */
+/* line 50, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 52, ../../../app/stylesheets/partials/_global.sass */
+/* line 53, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 55, ../../../app/stylesheets/partials/_global.sass */
+/* line 56, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 59, ../../../app/stylesheets/partials/_global.sass */
+/* line 60, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 61, ../../../app/stylesheets/partials/_global.sass */
+/* line 62, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 64, ../../../app/stylesheets/partials/_global.sass */
+/* line 65, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 66, ../../../app/stylesheets/partials/_global.sass */
+/* line 67, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 71, ../../../app/stylesheets/partials/_global.sass */
+/* line 72, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 72, ../../../app/stylesheets/partials/_global.sass */
+/* line 73, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -216,7 +220,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 80, ../../../app/stylesheets/partials/_global.sass */
+/* line 81, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -225,11 +229,11 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 89, ../../../app/stylesheets/partials/_global.sass */
+/* line 90, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 91, ../../../app/stylesheets/partials/_global.sass */
+/* line 92, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
   font-family: "Helvetica";
@@ -237,14 +241,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 97, ../../../app/stylesheets/partials/_global.sass */
+/* line 98, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
   font-family: "Helvetica";
   font-size: 14px;
   color: #333333;
 }
-/* line 102, ../../../app/stylesheets/partials/_global.sass */
+/* line 103, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -252,13 +256,13 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 108, ../../../app/stylesheets/partials/_global.sass */
+/* line 109, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
   background-color: #ffffd7;
 }
-/* line 26, ../../../app/stylesheets/partials/_global.sass */
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link:hover, a.description-link:hover {
   background-color: #ffff66;
   color: #333333;
@@ -268,7 +272,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 118, ../../../app/stylesheets/partials/_global.sass */
+/* line 119, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -280,12 +284,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 128, ../../../app/stylesheets/partials/_global.sass */
+/* line 129, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 131, ../../../app/stylesheets/partials/_global.sass */
+/* line 132, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -293,7 +297,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 137, ../../../app/stylesheets/partials/_global.sass */
+/* line 138, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -1295,51 +1299,55 @@ ul.ui-autocomplete {
 }
 /* line 29, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #read-online-btn {
-  margin: 15px 0px;
+  margin-top: 15px;
 }
-/* line 32, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 31, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #download-as {
+  margin-top: 15px;
+}
+/* line 33, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #download-as .text {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
-/* line 34, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 35, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #download-as .download-button {
   margin-bottom: 6px;
 }
-/* line 37, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 38, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column {
   padding-top: 4px;
 }
-/* line 39, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 40, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-title {
   margin-bottom: -10px;
 }
-/* line 41, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 42, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-title h1 {
   font-size: 22px;
 }
-/* line 43, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 44, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-author {
   margin-bottom: 8px;
 }
-/* line 45, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 46, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-author h2 {
   font: normal 14px/14px "Helvetica";
   margin-bottom: 0;
 }
-/* line 48, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-rating {
   margin-bottom: 25px;
 }
-/* line 50, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 51, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-rating #reviews-count {
   display: inline-block;
   margin-left: 10px;
 }
-/* line 54, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 55, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .like-send {
   margin: 20px 0 30px 0;
 }
-/* line 57, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 58, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p {
   display: inline;
   float: left;
@@ -1351,11 +1359,11 @@ ul.ui-autocomplete {
 * html #book-page .book-column p {
   overflow-x: hidden;
 }
-/* line 61, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #read-online-button-container {
   margin-bottom: 20px;
 }
-/* line 65, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 66, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #reviews-rating-count, #book-page .book-column #greeting, #book-page .book-column #review-box, #book-page .book-column #rate, #book-page .book-column #submit-review {
   display: inline;
   float: left;
@@ -1367,12 +1375,16 @@ ul.ui-autocomplete {
 * html #book-page .book-column #reviews-rating-count, * html #book-page .book-column #greeting, * html #book-page .book-column #review-box, * html #book-page .book-column #rate, * html #book-page .book-column #submit-review {
   overflow-x: hidden;
 }
-/* line 69, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 70, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .explanation {
   color: #999999;
   font-size: 14px;
 }
-/* line 78, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 76, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #write-review {
+  text-align: right;
+}
+/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic {
   display: inline;
   float: left;
@@ -1383,11 +1395,11 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .profile-pic {
   overflow-x: hidden;
 }
-/* line 81, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 83, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 84, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 86, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text {
   display: inline;
   float: left;
@@ -1400,15 +1412,15 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .text {
   overflow-x: hidden;
 }
-/* line 89, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 91, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text p {
   margin-top: 36px;
 }
-/* line 93, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 95, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate {
   margin-top: 7px;
 }
-/* line 96, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .text {
   display: inline;
   float: left;
@@ -1419,7 +1431,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .text {
   overflow-x: hidden;
 }
-/* line 99, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 101, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .stars {
   display: inline;
   float: left;
@@ -1430,12 +1442,12 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .stars {
   overflow-x: hidden;
 }
-/* line 102, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 104, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #submit-review {
   margin-top: 14px;
   font-size: 16px;
 }
-/* line 108, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 110, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
   background: url(/images/new_reviews_editor.png);
   width: 400px;
@@ -1444,11 +1456,11 @@ ul.ui-autocomplete {
   resize: none;
   padding: 7px 0px 0px 7px;
 }
-/* line 116, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 118, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews {
   margin-top: 21px;
 }
-/* line 119, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 121, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review {
   display: inline;
   float: left;
@@ -1461,11 +1473,11 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review {
   overflow-x: hidden;
 }
-/* line 124, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 126, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review.striped {
   background-color: #f2ede6;
 }
-/* line 127, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 129, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic {
   display: inline;
   float: left;
@@ -1476,11 +1488,11 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review .profile-pic {
   overflow-x: hidden;
 }
-/* line 130, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 132, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 133, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 135, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name {
   display: inline;
   float: left;
@@ -1493,31 +1505,31 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review .profile-name {
   overflow-x: hidden;
 }
-/* line 138, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 140, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p {
   line-height: 1px;
   font-size: 12px;
 }
-/* line 142, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 144, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.name {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 148, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 150, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.date {
   margin-bottom: 15px;
 }
-/* line 151, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 153, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name .rating {
   margin-top: 2px;
 }
-/* line 154, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 156, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content {
   margin-top: 10px;
 }
-/* line 157, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 159, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content p {
   margin: 0px 0px 5px 0px;
 }
@@ -2164,7 +2176,7 @@ ul.book-list li .download-link .view-this-book a {
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 26, ../../../app/stylesheets/partials/_global.sass */
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
 #download-confirmation-page .download-info a:hover {
   background-color: #ffff66;
   color: #333333;
