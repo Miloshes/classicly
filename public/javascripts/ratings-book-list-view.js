@@ -25,7 +25,6 @@ $( 'input.dynamic-stars' ).rating({callback: function(value, link ){
   var domIdSplit = domId.split( '_' );
   var bookId = domIdSplit[ domIdSplit.length - 2];
   
-  var data = 'book_id=' + bookId + '&rating=' + value;
 
   // send the rating
   if( isLoggedIn() ){

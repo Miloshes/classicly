@@ -1,4 +1,7 @@
+# CLEANUP: pretty good. Needs some documentation, and might probably need to break up methods to different modules relating to their functionality (ratings, reviews)
+
 module CommonBookMethods
+
   def self.included(base)
     base.class_eval do
       base.extend CommonClassMethods
@@ -47,4 +50,5 @@ module CommonBookMethods
       results
     end
   end
+
 end

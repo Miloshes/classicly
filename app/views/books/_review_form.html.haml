@@ -36,13 +36,6 @@
     = form_tag "/#{book.class.to_s.downcase.pluralize}/#{book.id}/reviews" do
       = text_area_tag 'review', book.review_by_user(current_login)
 
-  #rate
-    .text
-      How many stars?
-
-    .stars
-      = raw rate_book('book_rating_dynamic', 'dynamic-stars', book.rating_by_user(login) || 0)
-
 
   #submit-review
     = link_to 'Submit review', '#', :class => 'classicly-link'

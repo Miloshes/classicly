@@ -42,7 +42,7 @@ a.highlight
       :width 960px
       :margin 0 auto
       :height 30px
-      #logo
+      #logo 
         :float left
         +column(5)
         img
@@ -59,13 +59,11 @@ a.highlight
             :float left
             :display inline
             a
+              font: bold 14px 'helvetica'
               :color #442507
-              :font-size 14px
-              :font-weight bold
-              :font-family 'helvetica'
               :display block
               :width 106px
-              :height 26px
+              :height 24px
               :float left
               :text-decoration none
               :background url(/images/nav-bg.png)
@@ -73,7 +71,7 @@ a.highlight
               :margin
                 :right 6px
               :padding
-                :top 5px
+                :top 8px
               &:hover
                 :cursor pointer
                 :opacity .8
@@ -104,18 +102,14 @@ a.highlight
         height: 22px
         border: 1px solid #ab9573
       input
-        margin-top: 2px
         color: #d2d2d3
-        font-size: 12px
-        font-family: 'helvetica'
+        font: normal 12px 'helvetica'
         box-shadow: none
         :border 0
         :width 150px
-        :height 12px
+        :height 18px
         :outline none
         :float left
-        :margin
-          :top 5px
         padding: 3px 0px 0px 3px
         &:focus
           :color #333333
@@ -126,8 +120,7 @@ a.highlight
         :background url(/images/search-button.png)
         :border 0
         :float right
-        :margin
-          :top 1px
+        margin-top: 1px
         &:hover
           :cursor pointer
    
@@ -142,13 +135,11 @@ a.highlight
   :padding 0
 
 #footer
-  :background #c9af87
-  :width 100%
-  :float left
-  :padding
-    :top 10px
-    :bottom 20px
-  :text-align center
+  background: $top-nav-bg
+  width: 100%
+  float: left
+  padding: 10px 0 20px 0
+  text-align: center
   .centering
     :margin 0 auto
     :width 980px
@@ -255,8 +246,6 @@ a.highlight
     :font-size 17px
       
 
-.ui-autocomplete
-
 #right-column
   :width 190px
   :float left
@@ -287,30 +276,30 @@ a.highlight
       :top 20px
       :bottom 0
     :padding 0
-  .row
-    :Width 100%
-    text-align: left
-    margin-bottom: 12px
+  .right-covers
     color: #333
     font-size: 14px
     font-family: Helvetica
     &:hover
       :cursor pointer
-    img
-      margin-bottom: 0px
-    span.kind
-      font-size: 10px
-      color: #999
+    .cover
+      float: none
+      height: auto
+      img
+        margin-bottom: 0px
+        float: none
+      .text
+        float: none
+        margin-top: 0px
+
     .links
+      margin-top: 50px
       a
-        margin-bottom: 6px
-        :float left
+        cursor: pointer
+        
   p.popular
     font-size: 16px
     font-weight: bold
-    :margin 0
-    :padding 0
-      :bottom 10px
 
 
 #bottom-notification-bar

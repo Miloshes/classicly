@@ -1,87 +1,80 @@
 #book-page
-  +column(18, true)
-
-  margin:
-    top: 30px
+  margin-top: 30px
   text-align: left
+  color: #333
 
   .cover-column
-    +column(4)
-    +append(1)
-
-    color: #979797
-    h1
-      :font-size 16px
-      :font-weight bold
-      :margin 0
-      :padding 0
-      :float left
-      :width 100%
-    h4
-      :font-size 14px
-      :color #333333
-      font-size: 16px
-      font-weight: bold
-
-    #current-book
+    text-align: center
+    a.btn
+      width: 70%
+      text-align: center
+      display: block
+      margin: 0 auto
+    .cover
       margin-bottom: 0px
-
-    .buttons
-      span.link_info
+      height: 239px
+      float: none
+      img
         display: block
-        color: #979797
+        float: none
+        margin: 0px auto
 
-      a, span.link_info
+    #my-rating
+      width: 100%
+      #blank-stars
+        height: 19px
+        display: none
+      #rating-stars
+        padding-left: 34px
+    #read-online-btn
+      margin-top: 15px
+    #download-as
+      margin-top: 15px
+      .text
         margin-bottom: 15px
-
-
+      .download-button
+        margin-bottom: 6px
 
   .book-column
-    +column(12, true)
+    padding-top: 4px
+    #book-title
+      margin-bottom: -10px
+      h1
+        font-size: 22px
+    #book-author
+      margin-bottom: 8px
+      h2
+        font: normal 14px/14px 'Helvetica'
+        margin-bottom: 0
+    #book-rating
+      margin-bottom: 25px
+      #reviews-count
+        display: inline-block
+        margin-left: 10px
 
-    h1
-      :font-size 22px
-      :margin 0
-      :padding 0
-
-    h2
-      :font-size 14px
-      :color #333333
-      margin-bottom: 20px
-
-      a
-        :text-decoration none
-        :color #333333
-        :background #ffffd7
-        &:hover
-          :background #ffff66
     .like-send
-      margin-top: 20px
+      margin: 20px 0 30px 0
 
     p
       +column(11)
-      :font-size #333333
-      :font-size 14px
+      font-size: 14px
 
-    #book-rating, #reviews-rating-count, #greeting, #review-box, #rate, #submit-review 
+    #read-online-button-container
+      margin-bottom: 20px
+      
+
+    #reviews-rating-count, #greeting, #review-box, #rate, #submit-review 
       +column(12, true)
       font-size: 14px
 
     .explanation
       :color #999999
-      :font-size 14pxa
+      :font-size 14px
 
-    #reviews-rating-count
-      margin-bottom: 10px
-      margin-top: 5px
-      #counts
-        +column(4)
+    
 
-      #write-review
-        +column(8, true)
-        text-align: right
-        a:focus
-          color: #333
+    #write-review
+      text-align: right
 
     #greeting
       .profile-pic
@@ -122,46 +115,46 @@
         resize: none
         padding: 7px 0px 0px 7px
 
-    #reviews
-      margin-top: 21px
+  #reviews
+    margin-top: 21px
 
-      .individual_review
-        +column(12, true)
-        padding: 10px 0px 0px 10px
+    .individual_review
+      +column(12, true)
+      padding: 10px 0px 0px 10px
+      margin-top: 10px
+
+      &.striped
+        background-color: #f2ede6
+
+      .profile-pic
+        +column(2)
+
+        img
+          border: 1px solid #333
+
+      .profile-name
+        +column(10, true)
+        margin-left: -15px
+        padding-top: 5px
+
+        p
+          line-height: 1px
+          font-size: 12px
+
+          &.name
+            color: #333
+            font-weight: bold
+            font-size: 14px
+            margin-bottom: 15px
+
+          &.date
+            margin-bottom: 15px
+
+        .rating
+          margin-top: 2px
+
+      .review-content
         margin-top: 10px
 
-        &.striped
-          background-color: #f2ede6
-
-        .profile-pic
-          +column(2)
-
-          img
-            border: 1px solid #333
-
-        .profile-name
-          +column(10, true)
-          margin-left: -15px
-          padding-top: 5px
-
-          p
-            line-height: 1px
-            font-size: 12px
-
-            &.name
-              color: #333
-              font-weight: bold
-              font-size: 14px
-              margin-bottom: 15px
-
-            &.date
-              margin-bottom: 15px
-
-          .rating
-            margin-top: 2px
-
-        .review-content
-          margin-top: 10px
-
-          p
-            margin: 0px 0px 5px 0px
+        p
+          margin: 0px 0px 5px 0px

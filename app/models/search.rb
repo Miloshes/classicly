@@ -1,4 +1,6 @@
+# CLEANUP: add some documentation, input / output description
 class Search
+  
   def self.json_for_autocomplete(docids)
     documents = docids.collect {|docid| docid.split('_')}
     objects = []

@@ -1,5 +1,6 @@
 class BlogPost < ActiveRecord::Base
   has_many :author_quotings
+  # CLEANUP: rename: has_many quoted_authors
   has_many :authors, :through => :author_quotings
   has_many :custom_resources
   has_one :seo_slug,  :as => :seoable

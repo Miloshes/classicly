@@ -1,88 +1,46 @@
 #library-page
-  +content-container
-  .user-column
-    +column(5, true)
-    #user-profile
-      :height 300px
-      div
-        :float left
-        :margin-top 15px
-        
-      .photo
-        :margin-top 0px
-        :width 112px
-        :background url('/images/profile-frame.png')
-        :display block
-        img
-          :width 100px
-          :margin 6px
-      span
-        :width 100%
-        :display block
-        :float left
-      .name
-        :margin
-          :top 5px
-
-  h3
-    :clear left
-
-  .book-column
-    +column(13, true)
+  margin-top: 30px
+  #library-preview
+    width: 654px
+    height: 748px
+    background: url(/images/library-preview.png)
     position: relative
-    .book
-      :clear left
-      :height 190px
-      .cover
-        +column(3, true)
-        :margin-top 0px
-        img
-          :width 100px
-          :height 155px
-      .info
-        +column(10, true)
-        h4
-          :font-size 22px
-          :color #333333
-          :font-weight normal
-          :padding 0
-          :margin 0
-        h5
-          :font-size 16px
-          :font-weight normal
-          :color #333333
-      .download
-        +column(10, true)
-      .read
-        +column(10, true)
+
+/* -------------------------------------------------------------------------*/
+/* ---------->>> LIBRARY WITH CONTENT<<<------------------------------------*/
+/* -------------------------------------------------------------------------*/
+
+  /* -------------------------------------------------------------------------*/
+  /* ---------->>> PROFILE IMAGE AND PROFILE DATA<<<--------------------------*/
+  /* -------------------------------------------------------------------------*/
+  #user-profile
+    .photo
+      :margin-top 0px
+      :width 112px
+      :background url('/images/profile-frame.png')
+      :display block
+      img
+        :width 100px
+        :margin 6px
+    .name
+      margin-top: 5px
+      font-weight: bold
+
+    span
+      :width 100%
+      :display block
+      :float left
+
         
-    #fb-login-dialog
-      :position absolute
-      :left 50%
-      :top 50px
-      :width 460px
-      :margin-left -230px
-      :height 150px
-      :z-index 1
-      :border 1px solid #866A47
-      :background-color #C9AF87
-      :padding 10px
-      #login-text
-        :text-align center
-        :margin 10px
-        :font-size 17px
-        :color white
-        :text-shadow 0 1px #555555
-      #login-button
-        :margin 20px
-        :text-align center
-        
+/* -------------------------------------------------------------------------*/
+/* ---------->>> LIBRARY WITH THE CONNECT WITH FACEBOOK BUTTON<<<-----------*/
+/* -------------------------------------------------------------------------*/
 #library-preview
-  :width 654px
-  :height 748px
-  :background url(/images/library-preview.png)
-  :position relative
-  
+  width: 654px
+  height: 748px
+  background: url(/images/library-preview.png)
+  position: relative
+
   #container
     :left 145px
     :top 258px
@@ -125,9 +83,7 @@
       :color #FFFFFF
       :cursor pointer
       :display inline-block
-      :font-family "lucida grande","lucida sans unicode",arial,sans-serif
-      :font-size 20px
-      :font-weight bold
+      font: bold 20px "lucida grande","lucida sans unicode",arial,sans-serif 
       :line-height 1
       :margin 0
       :overflow visible
@@ -145,3 +101,22 @@
         :background-color #991100
       &:active
         :top 1px
+        
+/* -------------------------------------------------------------------------*/
+/* ---------->>> EACH INDIVIDUAL BOOK STYLE <<<-----------------------------*/
+/* -------------------------------------------------------------------------*/
+.book
+  :clear left
+  :height 190px
+  h4
+    :font-size 22px
+    :color #333333
+    :font-weight normal
+    :padding 0
+    :margin 0
+  h5
+    :font-size 16px
+    :font-weight normal
+    :color #333333
+    
+

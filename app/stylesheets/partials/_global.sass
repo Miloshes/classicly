@@ -3,9 +3,22 @@
 /* -----------------------------------*/
 
 body
+  h1.collection-header
+    font-size: 22px
+    font-weight: bold
+
+  * :focus
+    outline: 0
   a
     text-decoration: none !important
-
+  a:active
+    outline: 0 none
+    -moz-outline: 0 none
+  a:focus
+    outline: none
+    -moz-outline: 0 none  
+  a.btn.primary
+    color: white !important
   
 /* -----------------------------------*/
 /* ---------->>> MIXINS <<<-----------*/

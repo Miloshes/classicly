@@ -19,47 +19,46 @@
   
     .row.audiobook-switcher
       .span12.columns
-        - if @collection.has_audiobook_counterpart?
+        - if @collection.has_audio_collection?
           %span Books |&nbsp;
-          = link_to 'Audiobooks', '#', :class => 'classicly-link'#seo_url(@collection.audiobook_collection_slug)
+          = link_to 'Audiobooks', seo_url(@collection.audio_collection.cached_slug), :class => 'classicly-link'
           .tooltip
             View this collection as audiobooks. Available as MP3 downloads.
+            
+    .row.collection-info
+      .span9.columns
+        %h1
+          ="#{@collection.name}'s Collection"
 
-    - unless params[:page]
-      .row.collection-info
-        .span9.columns
-          %h1
-            ="#{@collection.name}'s Collection"
+        -# Google AdSense. DO NOT MODIFY.
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7773516323337861";
+        /* Collection Page 300&#42;250 */
+        google_ad_slot = "4482754705";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
 
-          -# Google AdSense. DO NOT MODIFY.
-          <script type="text/javascript"><!--
-          google_ad_client = "ca-pub-7773516323337861";
-          /* Collection Page 300&#42;250 */
-          google_ad_slot = "4482754705";
-          google_ad_width = 300;
-          google_ad_height = 250;
-          //-->
-          </script>
-          <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-          </script>
+        <!-- le "Quotes" and "books" buttons-->
+        .row.quotes-and-books-buttons
+          .span9.columns
+            = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
+            = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn' if @collection.is_author_collection?
 
-          <!-- le "Quotes" and "books" buttons-->
-          .row.quotes-and-books-buttons
-            .span9.columns
-              = link_to "#{@collection.name}'s Books", "/#{@collection.cached_slug}/books", :class => 'btn'
-              = link_to "#{@collection.name}'s Quotes", "/#{@collection.cached_slug}/quotes", :class => 'btn' if @collection.is_author_collection?
+        <!-- Le content -->
+        = simple_format(@collection.parsed_description)
 
-          <!-- Le content -->
-          = simple_format(@collection.parsed_description)
+        .share
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
 
-          .share
-            <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-
-        .span3.columns
-          .featured-books.audiobooks
-            .cover.medium
-              = cover_image_link(@collection.featured_book, 2)
+      .span3.columns
+        .featured-books.audiobooks
+          .cover.medium
+            = cover_image_link(@collection.featured_book, 2)
 
 
     - if @show_author_options
@@ -74,7 +73,7 @@
           - for quote in @quotes
             .quote.row
               .span9.columns
-                = raw "&quot;#{quote.content}&quot"
+                = link_to  "\"#{quote.content}\"", quote_path(@collection, :quote_slug => quote.cached_slug)
             .row
               .separator.span9.columns
       .row.more-quotes-btn
@@ -92,7 +91,7 @@
 
     .row.more-books-btn
       .offset6.span4.columns
-        = link_to_more_books(@collection)
+        = link_to_more_books(@collection, 'book')
 
     .row
       .span11.columns

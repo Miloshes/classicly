@@ -1,3 +1,5 @@
+# CLEANUP: obsolete, the cron job does that already
+
 desc 'Update average rating for books '
 task :update_books_avg_rating => :environment do
   Book.find_each do |book|

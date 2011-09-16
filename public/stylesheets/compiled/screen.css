@@ -118,23 +118,46 @@ form.inline p {
 /* ---------->>> GLOBAL <<<----------- */
 /* ----------------------------------- */
 /* line 6, ../../../app/stylesheets/partials/_global.sass */
+body h1.collection-header {
+  font-size: 22px;
+  font-weight: bold;
+}
+/* line 10, ../../../app/stylesheets/partials/_global.sass */
+body * :focus {
+  outline: 0;
+}
+/* line 12, ../../../app/stylesheets/partials/_global.sass */
 body a {
   text-decoration: none !important;
+}
+/* line 14, ../../../app/stylesheets/partials/_global.sass */
+body a:active {
+  outline: 0 none;
+  -moz-outline: 0 none;
+}
+/* line 17, ../../../app/stylesheets/partials/_global.sass */
+body a:focus {
+  outline: none;
+  -moz-outline: 0 none;
+}
+/* line 20, ../../../app/stylesheets/partials/_global.sass */
+body a.btn.primary {
+  color: white !important;
 }
 
 /* ----------------------------------- */
 /* ---------->>> MIXINS <<<----------- */
 /* ----------------------------------- */
-/* line 19, ../../../app/stylesheets/partials/_global.sass */
+/* line 32, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher {
   min-height: 30px;
   font-size: 13px;
 }
-/* line 23, ../../../app/stylesheets/partials/_global.sass */
+/* line 36, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span, .audiobook-switcher a {
   float: left;
 }
-/* line 25, ../../../app/stylesheets/partials/_global.sass */
+/* line 38, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span {
   display: block;
   color: #cccccc;
@@ -144,52 +167,52 @@ body a {
 /* ----------------------------------------- */
 /* ---------->>> AUTOCOMPLETE <<<----------- */
 /* ----------------------------------------- */
-/* line 32, ../../../app/stylesheets/partials/_global.sass */
+/* line 45, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 37, ../../../app/stylesheets/partials/_global.sass */
+/* line 50, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 40, ../../../app/stylesheets/partials/_global.sass */
+/* line 53, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 43, ../../../app/stylesheets/partials/_global.sass */
+/* line 56, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 47, ../../../app/stylesheets/partials/_global.sass */
+/* line 60, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 49, ../../../app/stylesheets/partials/_global.sass */
+/* line 62, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 52, ../../../app/stylesheets/partials/_global.sass */
+/* line 65, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 54, ../../../app/stylesheets/partials/_global.sass */
+/* line 67, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 59, ../../../app/stylesheets/partials/_global.sass */
+/* line 72, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 60, ../../../app/stylesheets/partials/_global.sass */
+/* line 73, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -197,7 +220,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 68, ../../../app/stylesheets/partials/_global.sass */
+/* line 81, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -206,11 +229,11 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 77, ../../../app/stylesheets/partials/_global.sass */
+/* line 90, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 79, ../../../app/stylesheets/partials/_global.sass */
+/* line 92, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
   font-family: "Helvetica";
@@ -218,14 +241,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 85, ../../../app/stylesheets/partials/_global.sass */
+/* line 98, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
   font-family: "Helvetica";
   font-size: 14px;
   color: #333333;
 }
-/* line 90, ../../../app/stylesheets/partials/_global.sass */
+/* line 103, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -233,13 +256,13 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 96, ../../../app/stylesheets/partials/_global.sass */
+/* line 109, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
   background-color: #ffffd7;
 }
-/* line 14, ../../../app/stylesheets/partials/_global.sass */
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link:hover, a.description-link:hover {
   background-color: #ffff66;
   color: #333333;
@@ -249,7 +272,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 106, ../../../app/stylesheets/partials/_global.sass */
+/* line 119, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -261,12 +284,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 116, ../../../app/stylesheets/partials/_global.sass */
+/* line 129, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 119, ../../../app/stylesheets/partials/_global.sass */
+/* line 132, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -274,7 +297,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 125, ../../../app/stylesheets/partials/_global.sass */
+/* line 138, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -570,26 +593,24 @@ a.highlight:hover {
 }
 /* line 61, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a {
+  font: bold 14px "helvetica";
   color: #442507;
-  font-size: 14px;
-  font-weight: bold;
-  font-family: "helvetica";
   display: block;
   width: 106px;
-  height: 26px;
+  height: 24px;
   float: left;
   text-decoration: none;
   background: url(/images/nav-bg.png);
   text-align: center;
   margin-right: 6px;
-  padding-top: 5px;
+  padding-top: 8px;
 }
-/* line 77, ../../../app/stylesheets/partials/_layout.sass */
+/* line 75, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a:hover {
   cursor: pointer;
   opacity: 0.8;
 }
-/* line 81, ../../../app/stylesheets/partials/_layout.sass */
+/* line 79, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul .right {
   background: url("/images/header-nav-right.png");
   height: 35px;
@@ -597,7 +618,7 @@ a.highlight:hover {
   display: block;
   float: left;
 }
-/* line 88, ../../../app/stylesheets/partials/_layout.sass */
+/* line 86, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .bottom {
   float: left;
   display: block;
@@ -608,7 +629,7 @@ a.highlight:hover {
   margin-top: -7px;
   padding: 0;
 }
-/* line 97, ../../../app/stylesheets/partials/_layout.sass */
+/* line 95, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search {
   display: inline;
   float: left;
@@ -621,32 +642,29 @@ a.highlight:hover {
 * html #header .wrap #search {
   overflow-x: hidden;
 }
-/* line 102, ../../../app/stylesheets/partials/_layout.sass */
+/* line 100, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search form {
   background: white;
   height: 22px;
   border: 1px solid #ab9573;
 }
-/* line 106, ../../../app/stylesheets/partials/_layout.sass */
+/* line 104, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search input {
-  margin-top: 2px;
   color: #d2d2d3;
-  font-size: 12px;
-  font-family: "helvetica";
+  font: normal 12px "helvetica";
   box-shadow: none;
   border: 0;
   width: 150px;
-  height: 12px;
+  height: 18px;
   outline: none;
   float: left;
-  margin-top: 5px;
   padding: 3px 0px 0px 3px;
 }
-/* line 120, ../../../app/stylesheets/partials/_layout.sass */
+/* line 114, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search input:focus {
   color: #333333;
 }
-/* line 122, ../../../app/stylesheets/partials/_layout.sass */
+/* line 116, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search button {
   width: 25px;
   height: 16px;
@@ -656,12 +674,12 @@ a.highlight:hover {
   float: right;
   margin-top: 1px;
 }
-/* line 131, ../../../app/stylesheets/partials/_layout.sass */
+/* line 124, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search button:hover {
   cursor: pointer;
 }
 
-/* line 134, ../../../app/stylesheets/partials/_layout.sass */
+/* line 127, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -672,16 +690,15 @@ a.highlight:hover {
   padding: 0;
 }
 
-/* line 144, ../../../app/stylesheets/partials/_layout.sass */
+/* line 137, ../../../app/stylesheets/partials/_layout.sass */
 #footer {
   background: #c9af87;
   width: 100%;
   float: left;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding: 10px 0 20px 0;
   text-align: center;
 }
-/* line 152, ../../../app/stylesheets/partials/_layout.sass */
+/* line 143, ../../../app/stylesheets/partials/_layout.sass */
 #footer .centering {
   margin: 0 auto;
   width: 980px;
@@ -690,7 +707,7 @@ a.highlight:hover {
   border: 1px solid #bb9d79;
   background: #cab08b;
 }
-/* line 159, ../../../app/stylesheets/partials/_layout.sass */
+/* line 150, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list {
   margin: 0 auto;
   width: 800px;
@@ -700,11 +717,11 @@ a.highlight:hover {
   font-family: "helvetica";
   font-size: 17px;
 }
-/* line 167, ../../../app/stylesheets/partials/_layout.sass */
+/* line 158, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list img {
   float: left;
 }
-/* line 169, ../../../app/stylesheets/partials/_layout.sass */
+/* line 160, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list .collections {
   width: 830px;
   display: block;
@@ -713,12 +730,12 @@ a.highlight:hover {
   border-left: 1px solid #866a47;
   border-right: 1px solid #866a47;
 }
-/* line 178, ../../../app/stylesheets/partials/_layout.sass */
+/* line 169, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list .column {
   float: left;
   width: 190px;
 }
-/* line 181, ../../../app/stylesheets/partials/_layout.sass */
+/* line 172, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list a {
   color: white;
   text-decoration: none;
@@ -732,11 +749,11 @@ a.highlight:hover {
 * html #footer #collection-names-list a {
   overflow-x: hidden;
 }
-/* line 186, ../../../app/stylesheets/partials/_layout.sass */
+/* line 177, ../../../app/stylesheets/partials/_layout.sass */
 #footer #collection-names-list a:hover {
   text-shadow: 0 0 15px white;
 }
-/* line 188, ../../../app/stylesheets/partials/_layout.sass */
+/* line 179, ../../../app/stylesheets/partials/_layout.sass */
 #footer h4 {
   width: 201px;
   height: 24px;
@@ -749,39 +766,39 @@ a.highlight:hover {
   background: url("/images/footer-header-bg.png");
   font-family: "museo-slab-1", "museo-slab-2";
 }
-/* line 199, ../../../app/stylesheets/partials/_layout.sass */
+/* line 190, ../../../app/stylesheets/partials/_layout.sass */
 #footer #about {
   width: 340px;
   float: left;
   height: 100%;
 }
-/* line 203, ../../../app/stylesheets/partials/_layout.sass */
+/* line 194, ../../../app/stylesheets/partials/_layout.sass */
 #footer #about .bg {
   background: url("/images/footer-about-bg.png");
   width: 317px;
   height: 272px;
   display: block;
 }
-/* line 208, ../../../app/stylesheets/partials/_layout.sass */
+/* line 199, ../../../app/stylesheets/partials/_layout.sass */
 #footer #about .bg p {
   padding-left: 25px;
   padding-right: 25px;
   padding-top: 25px;
   text-align: left;
 }
-/* line 215, ../../../app/stylesheets/partials/_layout.sass */
+/* line 206, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications {
   width: 300px;
   height: 100%;
   float: left;
 }
-/* line 219, ../../../app/stylesheets/partials/_layout.sass */
+/* line 210, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications .app {
   text-align: left;
   float: left;
   width: 300px;
 }
-/* line 223, ../../../app/stylesheets/partials/_layout.sass */
+/* line 214, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications .app h5 {
   color: #43260f;
   font-size: 18px;
@@ -790,7 +807,7 @@ a.highlight:hover {
   padding: 0;
   text-indent: 5px;
 }
-/* line 230, ../../../app/stylesheets/partials/_layout.sass */
+/* line 221, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications .app span {
   color: #43260f;
   font-size: 12px;
@@ -798,66 +815,66 @@ a.highlight:hover {
   display: block;
   width: 100%;
 }
-/* line 236, ../../../app/stylesheets/partials/_layout.sass */
+/* line 227, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications .app img.link {
   margin-top: 5px;
 }
-/* line 239, ../../../app/stylesheets/partials/_layout.sass */
+/* line 230, ../../../app/stylesheets/partials/_layout.sass */
 #footer #applications .app img.icon {
   float: left;
   margin: 5px;
   margin-top: 17px;
 }
-/* line 243, ../../../app/stylesheets/partials/_layout.sass */
+/* line 234, ../../../app/stylesheets/partials/_layout.sass */
 #footer #connect {
   width: 320px;
   margin: 0;
   padding: 0;
   float: left;
 }
-/* line 250, ../../../app/stylesheets/partials/_layout.sass */
+/* line 241, ../../../app/stylesheets/partials/_layout.sass */
 #footer #connect a img:hover {
   opacity: 0.8;
 }
-/* line 252, ../../../app/stylesheets/partials/_layout.sass */
+/* line 243, ../../../app/stylesheets/partials/_layout.sass */
 #footer #copyright {
   clear: left;
   margin-top: 5px;
   font-size: 17px;
 }
 
-/* line 260, ../../../app/stylesheets/partials/_layout.sass */
+/* line 249, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 266, ../../../app/stylesheets/partials/_layout.sass */
+/* line 255, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
   text-align: left;
 }
-/* line 269, ../../../app/stylesheets/partials/_layout.sass */
+/* line 258, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
   float: left !important;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 274, ../../../app/stylesheets/partials/_layout.sass */
+/* line 263, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe {
   float: left;
 }
-/* line 276, ../../../app/stylesheets/partials/_layout.sass */
+/* line 265, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 279, ../../../app/stylesheets/partials/_layout.sass */
+/* line 268, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 283, ../../../app/stylesheets/partials/_layout.sass */
+/* line 272, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -865,43 +882,46 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 290, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row {
-  Width: 100%;
-  text-align: left;
-  margin-bottom: 12px;
+/* line 279, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers {
   color: #333333;
   font-size: 14px;
   font-family: Helvetica;
 }
-/* line 297, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row:hover {
+/* line 283, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers:hover {
   cursor: pointer;
 }
-/* line 299, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row img {
+/* line 285, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .cover {
+  float: none;
+  height: auto;
+}
+/* line 288, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .cover img {
   margin-bottom: 0px;
+  float: none;
 }
-/* line 301, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row span.kind {
-  font-size: 10px;
-  color: #999999;
+/* line 291, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .cover .text {
+  float: none;
+  margin-top: 0px;
 }
-/* line 305, ../../../app/stylesheets/partials/_layout.sass */
-#right-column .row .links a {
-  margin-bottom: 6px;
-  float: left;
+/* line 295, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .links {
+  margin-top: 50px;
 }
-/* line 308, ../../../app/stylesheets/partials/_layout.sass */
+/* line 297, ../../../app/stylesheets/partials/_layout.sass */
+#right-column .right-covers .links a {
+  cursor: pointer;
+}
+/* line 300, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
-  margin: 0;
-  padding: 0;
-  padding-bottom: 10px;
 }
 
-/* line 316, ../../../app/stylesheets/partials/_layout.sass */
+/* line 305, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -910,14 +930,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 323, ../../../app/stylesheets/partials/_layout.sass */
+/* line 312, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 329, ../../../app/stylesheets/partials/_layout.sass */
+/* line 318, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -929,14 +949,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 332, ../../../app/stylesheets/partials/_layout.sass */
+/* line 321, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 337, ../../../app/stylesheets/partials/_layout.sass */
+/* line 326, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -948,7 +968,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 340, ../../../app/stylesheets/partials/_layout.sass */
+/* line 329, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -957,7 +977,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 348, ../../../app/stylesheets/partials/_layout.sass */
+/* line 337, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -969,12 +989,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 351, ../../../app/stylesheets/partials/_layout.sass */
+/* line 340, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 355, ../../../app/stylesheets/partials/_layout.sass */
+/* line 344, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
@@ -1237,111 +1257,114 @@ ul.ui-autocomplete {
 
 /* line 1, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 710px;
   margin-top: 30px;
   text-align: left;
+  color: #333333;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page {
-  overflow-x: hidden;
+/* line 6, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column {
+  text-align: center;
 }
 /* line 8, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column {
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 150px;
-  padding-right: 40px;
-  color: #979797;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .cover-column {
-  overflow-x: hidden;
+#book-page .cover-column a.btn {
+  width: 70%;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
 }
 /* line 13, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column h1 {
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0;
-  padding: 0;
-  float: left;
+#book-page .cover-column .cover {
+  margin-bottom: 0px;
+  height: 239px;
+  float: none;
+}
+/* line 17, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column .cover img {
+  display: block;
+  float: none;
+  margin: 0px auto;
+}
+/* line 22, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #my-rating {
   width: 100%;
 }
-/* line 20, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column h4 {
-  font-size: 14px;
-  color: #333333;
-  font-size: 16px;
-  font-weight: bold;
+/* line 24, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #my-rating #blank-stars {
+  height: 19px;
+  display: none;
 }
-/* line 26, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column #current-book {
-  margin-bottom: 0px;
+/* line 27, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #my-rating #rating-stars {
+  padding-left: 34px;
 }
-/* line 30, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column .buttons span.link_info {
-  display: block;
-  color: #979797;
+/* line 29, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #read-online-btn {
+  margin-top: 15px;
 }
-/* line 34, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .cover-column .buttons a, #book-page .cover-column .buttons span.link_info {
+/* line 31, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #download-as {
+  margin-top: 15px;
+}
+/* line 33, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #download-as .text {
   margin-bottom: 15px;
 }
-/* line 39, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 470px;
+/* line 35, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .cover-column #download-as .download-button {
+  margin-bottom: 6px;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column {
-  overflow-x: hidden;
+/* line 38, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column {
+  padding-top: 4px;
+}
+/* line 40, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #book-title {
+  margin-bottom: -10px;
 }
 /* line 42, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column h1 {
+#book-page .book-column #book-title h1 {
   font-size: 22px;
-  margin: 0;
-  padding: 0;
 }
-/* line 47, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column h2 {
-  font-size: 14px;
-  color: #333333;
-  margin-bottom: 20px;
+/* line 44, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #book-author {
+  margin-bottom: 8px;
 }
-/* line 52, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column h2 a {
-  text-decoration: none;
-  color: #333333;
-  background: #ffffd7;
+/* line 46, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #book-author h2 {
+  font: normal 14px/14px "Helvetica";
+  margin-bottom: 0;
 }
-/* line 56, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column h2 a:hover {
-  background: #ffff66;
+/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #book-rating {
+  margin-bottom: 25px;
+}
+/* line 51, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #book-rating #reviews-count {
+  display: inline-block;
+  margin-left: 10px;
+}
+/* line 55, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column .like-send {
+  margin: 20px 0 30px 0;
 }
 /* line 58, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column .like-send {
-  margin-top: 20px;
-}
-/* line 61, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 430px;
-  font-size: #333333;
   font-size: 14px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column p {
   overflow-x: hidden;
 }
+/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #read-online-button-container {
+  margin-bottom: 20px;
+}
 /* line 66, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #book-rating, #book-page .book-column #reviews-rating-count, #book-page .book-column #greeting, #book-page .book-column #review-box, #book-page .book-column #rate, #book-page .book-column #submit-review {
+#book-page .book-column #reviews-rating-count, #book-page .book-column #greeting, #book-page .book-column #review-box, #book-page .book-column #rate, #book-page .book-column #submit-review {
   display: inline;
   float: left;
   margin-right: 0;
@@ -1349,47 +1372,19 @@ ul.ui-autocomplete {
   font-size: 14px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #book-rating, * html #book-page .book-column #reviews-rating-count, * html #book-page .book-column #greeting, * html #book-page .book-column #review-box, * html #book-page .book-column #rate, * html #book-page .book-column #submit-review {
+* html #book-page .book-column #reviews-rating-count, * html #book-page .book-column #greeting, * html #book-page .book-column #review-box, * html #book-page .book-column #rate, * html #book-page .book-column #submit-review {
   overflow-x: hidden;
 }
 /* line 70, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .explanation {
   color: #999999;
-  font-size: 14pxa;
+  font-size: 14px;
 }
-/* line 74, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews-rating-count {
-  margin-bottom: 10px;
-  margin-top: 5px;
-}
-/* line 77, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews-rating-count #counts {
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 150px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #reviews-rating-count #counts {
-  overflow-x: hidden;
-}
-/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews-rating-count #write-review {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 310px;
+/* line 76, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page .book-column #write-review {
   text-align: right;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #reviews-rating-count #write-review {
-  overflow-x: hidden;
-}
-/* line 83, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews-rating-count #write-review a:focus {
-  color: #333333;
-}
-/* line 87, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic {
   display: inline;
   float: left;
@@ -1400,11 +1395,11 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .profile-pic {
   overflow-x: hidden;
 }
-/* line 90, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 83, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 93, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 86, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text {
   display: inline;
   float: left;
@@ -1417,15 +1412,15 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .text {
   overflow-x: hidden;
 }
-/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 91, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text p {
   margin-top: 36px;
 }
-/* line 102, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 95, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate {
   margin-top: 7px;
 }
-/* line 105, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .text {
   display: inline;
   float: left;
@@ -1436,7 +1431,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .text {
   overflow-x: hidden;
 }
-/* line 108, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 101, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .stars {
   display: inline;
   float: left;
@@ -1447,12 +1442,12 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .stars {
   overflow-x: hidden;
 }
-/* line 111, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 104, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #submit-review {
   margin-top: 14px;
   font-size: 16px;
 }
-/* line 117, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 110, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
   background: url(/images/new_reviews_editor.png);
   width: 400px;
@@ -1461,12 +1456,12 @@ ul.ui-autocomplete {
   resize: none;
   padding: 7px 0px 0px 7px;
 }
-/* line 125, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews {
+/* line 118, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews {
   margin-top: 21px;
 }
-/* line 128, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review {
+/* line 121, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review {
   display: inline;
   float: left;
   margin-right: 0;
@@ -1475,30 +1470,30 @@ ul.ui-autocomplete {
   margin-top: 10px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #reviews .individual_review {
+* html #book-page #reviews .individual_review {
   overflow-x: hidden;
 }
-/* line 133, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review.striped {
+/* line 126, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review.striped {
   background-color: #f2ede6;
 }
-/* line 136, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-pic {
+/* line 129, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-pic {
   display: inline;
   float: left;
   margin-right: 10px;
   width: 70px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #reviews .individual_review .profile-pic {
+* html #book-page #reviews .individual_review .profile-pic {
   overflow-x: hidden;
 }
-/* line 139, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-pic img {
+/* line 132, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 142, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-name {
+/* line 135, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-name {
   display: inline;
   float: left;
   margin-right: 0;
@@ -1507,35 +1502,35 @@ ul.ui-autocomplete {
   padding-top: 5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #book-page .book-column #reviews .individual_review .profile-name {
+* html #book-page #reviews .individual_review .profile-name {
   overflow-x: hidden;
 }
-/* line 147, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-name p {
+/* line 140, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-name p {
   line-height: 1px;
   font-size: 12px;
 }
-/* line 151, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-name p.name {
+/* line 144, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-name p.name {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 157, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-name p.date {
+/* line 150, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-name p.date {
   margin-bottom: 15px;
 }
-/* line 160, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .profile-name .rating {
+/* line 153, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .profile-name .rating {
   margin-top: 2px;
 }
-/* line 163, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .review-content {
+/* line 156, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .review-content {
   margin-top: 10px;
 }
-/* line 166, ../../../app/stylesheets/partials/_book_page.sass */
-#book-page .book-column #reviews .individual_review .review-content p {
+/* line 159, ../../../app/stylesheets/partials/_book_page.sass */
+#book-page #reviews .individual_review .review-content p {
   margin: 0px 0px 5px 0px;
 }
 
@@ -1689,23 +1684,13 @@ ul.book-list li .download-link .view-this-book a {
 #collection-page .collection-info p, #collection-book-list-page .collection-info p, .quote-list-page .collection-info p, #collection-list-page .collection-info p {
   font-size: 14px;
   line-height: 2em;
-}
-/* line 122, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info p a, #collection-book-list-page .collection-info p a, .quote-list-page .collection-info p a, #collection-list-page .collection-info p a {
   color: #333333;
-  text-decoration: none;
-  background: #ffffd7;
 }
-/* line 126, ../../../app/stylesheets/partials/_collection_page.sass */
-#collection-page .collection-info p a:hover, #collection-book-list-page .collection-info p a:hover, .quote-list-page .collection-info p a:hover, #collection-list-page .collection-info p a:hover {
-  background: #ffff66;
-  cursor: pointer;
-}
-/* line 131, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 124, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list .author-page .pagination, #collection-book-list-page .book-list .author-page .pagination, .quote-list-page .book-list .author-page .pagination, #collection-list-page .book-list .author-page .pagination {
   margin-left: 20px;
 }
-/* line 134, ../../../app/stylesheets/partials/_collection_page.sass */
+/* line 127, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .book-list .explanation, #collection-book-list-page .book-list .explanation, .quote-list-page .book-list .explanation, #collection-list-page .book-list .explanation {
   color: #999999;
   font-size: 14px;
@@ -1713,179 +1698,51 @@ ul.book-list li .download-link .view-this-book a {
 
 /* line 1, ../../../app/stylesheets/partials/_library_page.sass */
 #library-page {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 710px;
   margin-top: 30px;
-  text-align: left;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page {
-  overflow-x: hidden;
 }
 /* line 3, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 190px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .user-column {
-  overflow-x: hidden;
-}
-/* line 5, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile {
-  height: 300px;
-}
-/* line 7, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile div {
-  float: left;
-  margin-top: 15px;
-}
-/* line 11, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile .photo {
-  margin-top: 0px;
-  width: 112px;
-  background: url("/images/profile-frame.png");
-  display: block;
-}
-/* line 16, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile .photo img {
-  width: 100px;
-  margin: 6px;
-}
-/* line 19, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile span {
-  width: 100%;
-  display: block;
-  float: left;
-}
-/* line 23, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .user-column #user-profile .name {
-  margin-top: 5px;
-}
-/* line 27, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page h3 {
-  clear: left;
-}
-/* line 30, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 510px;
+#library-page #library-preview {
+  width: 654px;
+  height: 748px;
+  background: url(/images/library-preview.png);
   position: relative;
 }
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .book-column {
-  overflow-x: hidden;
-}
-/* line 33, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book {
-  clear: left;
-  height: 190px;
-}
-/* line 36, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .cover {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 110px;
-  margin-top: 0px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .book-column .book .cover {
-  overflow-x: hidden;
-}
-/* line 39, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .cover img {
-  width: 100px;
-  height: 155px;
-}
-/* line 42, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .info {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 390px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .book-column .book .info {
-  overflow-x: hidden;
-}
-/* line 44, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .info h4 {
-  font-size: 22px;
-  color: #333333;
-  font-weight: normal;
-  padding: 0;
-  margin: 0;
-}
-/* line 50, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .info h5 {
-  font-size: 16px;
-  font-weight: normal;
-  color: #333333;
-}
-/* line 54, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .download {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 390px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .book-column .book .download {
-  overflow-x: hidden;
-}
-/* line 56, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column .book .read {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 390px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.8.7-p334@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #library-page .book-column .book .read {
-  overflow-x: hidden;
-}
-/* line 59, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column #fb-login-dialog {
-  position: absolute;
-  left: 50%;
-  top: 50px;
-  width: 460px;
-  margin-left: -230px;
-  height: 150px;
-  z-index: 1;
-  border: 1px solid #866a47;
-  background-color: #c9af87;
-  padding: 10px;
-}
-/* line 70, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column #fb-login-dialog #login-text {
-  text-align: center;
-  margin: 10px;
-  font-size: 17px;
-  color: white;
-  text-shadow: 0 1px #555555;
-}
-/* line 76, ../../../app/stylesheets/partials/_library_page.sass */
-#library-page .book-column #fb-login-dialog #login-button {
-  margin: 20px;
-  text-align: center;
-}
 
-/* line 80, ../../../app/stylesheets/partials/_library_page.sass */
+/* ------------------------------------------------------------------------- */
+/* ---------->>> LIBRARY WITH CONTENT<<<------------------------------------ */
+/* -------------------------------------------------------------------------*/
+ *
+ * /* -------------------------------------------------------------------------*/
+ * /* ---------->>> PROFILE IMAGE AND PROFILE DATA<<<--------------------------*/
+ * /* -------------------------------------------------------------------------*/
+ * #user-profile
+ *   .photo
+ *     :margin-top 0px
+ *     :width 112px
+ *     :background url('/images/profile-frame.png')
+ *     :display block
+ *     img
+ *       :width 100px
+ *       :margin 6px
+ *   .name
+ *     margin-top: 5px
+ *     font-weight: bold
+ *
+ *   span
+ *     :width 100%
+ *     :display block
+ *     :float left */
+/* ------------------------------------------------------------------------- */
+/* ---------->>> LIBRARY WITH THE CONNECT WITH FACEBOOK BUTTON<<<----------- */
+/* ------------------------------------------------------------------------- */
+/* line 38, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview {
   width: 654px;
   height: 748px;
   background: url(/images/library-preview.png);
   position: relative;
 }
-/* line 86, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 44, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container {
   left: 145px;
   top: 258px;
@@ -1894,7 +1751,7 @@ ul.book-list li .download-link .view-this-book a {
   width: 430px;
   text-align: center;
 }
-/* line 94, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 52, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container #copy {
   font-family: "Helvetica", "Arial", "Sans-serif";
   font-weight: bold;
@@ -1904,7 +1761,7 @@ ul.book-list li .download-link .view-this-book a {
   margin-bottom: 20px;
   line-height: 1.1em;
 }
-/* line 103, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 61, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container #browse {
   display: block;
   font-size: 9px;
@@ -1912,7 +1769,7 @@ ul.book-list li .download-link .view-this-book a {
   color: #88a6d6;
   text-decoration: none;
 }
-/* line 110, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 68, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container #register-button {
   background-color: #ff030d;
   -moz-border-radius: 0.4em 0.4em 0.4em 0.4em;
@@ -1928,9 +1785,7 @@ ul.book-list li .download-link .view-this-book a {
   color: white;
   cursor: pointer;
   display: inline-block;
-  font-family: "lucida grande", "lucida sans unicode", arial, sans-serif;
-  font-size: 20px;
-  font-weight: bold;
+  font: bold 20px "lucida grande", "lucida sans unicode", arial, sans-serif;
   line-height: 1;
   margin: 0;
   overflow: visible;
@@ -1941,16 +1796,39 @@ ul.book-list li .download-link .view-this-book a {
   *vertical-align: middle;
   width: auto;
 }
-/* line 141, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 97, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container #register-button:hover {
   -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   background-color: #991100;
 }
-/* line 146, ../../../app/stylesheets/partials/_library_page.sass */
+/* line 102, ../../../app/stylesheets/partials/_library_page.sass */
 #library-preview #container #register-button:active {
   top: 1px;
+}
+
+/* ------------------------------------------------------------------------- */
+/* ---------->>> EACH INDIVIDUAL BOOK STYLE <<<----------------------------- */
+/* ------------------------------------------------------------------------- */
+/* line 108, ../../../app/stylesheets/partials/_library_page.sass */
+.book {
+  clear: left;
+  height: 190px;
+}
+/* line 111, ../../../app/stylesheets/partials/_library_page.sass */
+.book h4 {
+  font-size: 22px;
+  color: #333333;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+/* line 117, ../../../app/stylesheets/partials/_library_page.sass */
+.book h5 {
+  font-size: 16px;
+  font-weight: normal;
+  color: #333333;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_collection_list.sass */
@@ -2298,7 +2176,7 @@ ul.book-list li .download-link .view-this-book a {
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 14, ../../../app/stylesheets/partials/_global.sass */
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
 #download-confirmation-page .download-info a:hover {
   background-color: #ffff66;
   color: #333333;
@@ -2839,48 +2717,48 @@ a.button.kiss span {
   margin-top: 10px;
 }
 
+/* line 1, ../../../app/stylesheets/partials/_quotes.sass */
+.more-quotes-btn a, .more-books-btn a {
+  float: right;
+  color: white;
+}
+
+/* line 5, ../../../app/stylesheets/partials/_quotes.sass */
+.more-books-btn.row {
+  margin-left: -60px;
+}
+
 /* These apply for all the collection listings of quotes and books */
-/* line 3, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 10, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .title, .quote-list-page .title, .collection-book-list-page .title {
   margin-bottom: 5px;
   margin-top: 75px;
 }
-/* line 7, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 14, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page a.title, .quote-list-page a.title, .collection-book-list-page a.title {
   margin-top: 0px;
 }
-/* line 10, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 17, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page a.title h1, .quote-list-page a.title h1, .collection-book-list-page a.title h1 {
   margin-bottom: 0px;
 }
-/* line 13, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 20, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .adsense, .quote-list-page .adsense, .collection-book-list-page .adsense {
   margin-bottom: 20px;
 }
-/* line 16, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 23, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .quotes-in-author-page, .quote-list-page .quotes-in-author-page, .collection-book-list-page .quotes-in-author-page {
   margin-bottom: 15px;
 }
-/* line 19, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .quote, .quote-list-page .quote, .collection-book-list-page .quote {
+/* line 27, ../../../app/stylesheets/partials/_quotes.sass */
+#collection-page .quote a, .quote-list-page .quote a, .collection-book-list-page .quote a {
   margin-bottom: 15px;
   color: #333333;
-  font-size: 18px;
-  line-height: 32px;
-  font-family: "helvetica", verdana, serif;
+  font: normal 18px/32px "helvetica", verdana, serif;
 }
-/* line 26, ../../../app/stylesheets/partials/_quotes.sass */
+/* line 32, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
   border-bottom: 2px solid #cccccc;
-}
-/* line 29, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .more-quotes-btn a, #collection-page .more-books-btn a, .quote-list-page .more-quotes-btn a, .quote-list-page .more-books-btn a, .collection-book-list-page .more-quotes-btn a, .collection-book-list-page .more-books-btn a {
-  float: right;
-  color: white;
-}
-/* line 33, ../../../app/stylesheets/partials/_quotes.sass */
-#collection-page .more-books-btn.row, .quote-list-page .more-books-btn.row, .collection-book-list-page .more-books-btn.row {
-  margin-left: -60px;
 }
 
 /* line 1, ../../../app/stylesheets/partials/_admin.sass */

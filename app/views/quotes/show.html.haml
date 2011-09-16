@@ -1,3 +1,6 @@
+= content_for :drawer do
+  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
+
 #individual-quote-page
 
   <!-- Le quote -->
@@ -9,7 +12,7 @@
     <!-- le quote author -->
     .offset1.span3.columns
       .quote-author
-        = @quote.collection.name
+        = "-  #{@quote.collection.name}"
 
   <!-- le Ad Sense-->
   .row
@@ -34,24 +37,17 @@
 
   .row
     .span11.columns
-      %h1.title All #{@quote.collection.name} Books
-
-  <!-- le sorter -->
-  .row.sorting
-    .span11.columns
-      %span
-        Sort By:
-      = link_to_sorted 'Most Downloaded', 'downloaded_count', @quote.collection, params
-      = link_to_sorted 'Title', 'pretty_title', @quote.collection, params
+      %h1.collection-header #{@quote.collection.name} Books
 
   <!-- le book list -->
-  .row.book-list
-    %ul.book-list
-      = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
-
   .row
+    .span12.columns
+      %ul.book-list
+        = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+
+  .row.more-books-btn
     .offset6.span4.columns
-      = link_to "More #{@quote.collection.name}'s Books", "/#{@quote.collection.cached_slug}/books", :class => 'btn primary'
+      = link_to_more_books(@quote.collection, 'book')
 
 
 = javascript_include_tag 'ratings-book-list-view'

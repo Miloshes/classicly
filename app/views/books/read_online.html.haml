@@ -9,61 +9,50 @@
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@seo)
 
 
-#book-page{:name => @book.id}
-  .cover-column
-    #current-book.cover.medium
-      = cover_image_link(@book, 2)
-    - unless @related_books.empty?
-      %h4 Related
-      .cover.small.related
-        = cover_image_link(@related_books.first, 2)
-        .text
-          = link_to content_tag(:span, @related_books.first.pretty_title, :class => 'title'), author_book_url(@related_books.first.author, @related_books.first),:class => 'no-underline'
-          %span.type
-            Book
-      - 1.upto(@related_books.count - 1) do|index|
-        .cover.tiny.related
-          = cover_image_link(@related_books[index], 2)
-          .text
-            = link_to content_tag(:span, @related_books[index].pretty_title, :class => 'title'), author_book_url(@related_books[index].author, @related_books[index]),:class => 'no-underline'
-            %span.type
-              Book
+#book-page
+  .span12.columns
 
-  .book-column
-    #book-metadata
-      %h1 Read #{@book.pretty_title} Online Free
-      %h2
-        by
-        %span.book-author
-          = book_author_link(@book)
+  .row
+    .cover-column.span3.columns
+      #current-book.cover.medium
+        = cover_image_link(@book, 2)
 
-      -# Google AdSense. DO NOT MODIFY.
-      <script type="text/javascript"><!--
-      google_ad_client = "ca-pub-7773516323337861";
-      /* Book Page 250&#42;300 */
-      google_ad_slot = "6647913200";
-      google_ad_width = 300;
-      google_ad_height = 250;
-      //-->
-      </script>
-      <script type="text/javascript"
-      src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-      </script>
+    .book-column.span9.columns
+      #book-metadata
+        #book-title
+          %h1 Read #{@book.pretty_title} Online Free
+        #book-author
+          %h2
+            by
+            %span.book-author
+              = book_author_link(@book, 'classicly-link')
 
-      .share
-        <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-      %p= simple_format(@book.description)
+        -# Google AdSense. DO NOT MODIFY.
+        <script type="text/javascript"><!--
+        google_ad_client = "ca-pub-7773516323337861";
+        /* Book Page 250&#42;300 */
+        google_ad_slot = "6647913200";
+        google_ad_width = 300;
+        google_ad_height = 250;
+        //-->
+        </script>
+        <script type="text/javascript"
+        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+        </script>
 
-      - if @book.is_rendered_for_online_reading
-        #read_online_button_container
-          =image_tag 'read-online-arrow.png'
-          = read_online_link @book
+        .like-send
+          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
 
-      .clear
+        = simple_format(@book.description)
+        .clear
 
-      .read_online_text
+        - if @book.is_rendered_for_online_reading
+          #read-online-button-container
+            = image_tag 'read-online-arrow.png'
+            = read_online_link @book
+
+
         %p.explanation.first Reading on Classicly is completely free- these books are public domain.
-
         %p.explanation We don’t pay a  cent, so neither do you.
 
 

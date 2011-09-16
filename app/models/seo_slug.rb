@@ -1,3 +1,5 @@
+# CLEANUP: needs big renaming and method extraction. Rename to LandingPageSlug or something
+
 class SeoSlug < ActiveRecord::Base
   include CommonSeoDefaultsMethods
   belongs_to :seoable, :polymorphic => true
@@ -6,8 +8,10 @@ class SeoSlug < ActiveRecord::Base
   scope :kindle, where(:format => 'kindle')
   scope :mp3, where(:format => 'mp3')
   scope :pdf, where(:format => 'pdf')
+  # CLEANUP: rename to readable_online or something
   scope :read_online, where(:format => 'online')
 
+  # CLEANUP: is this used anywhere? We have a search model now
   def self.search(search_term, current_page, per_page = 25, type='book')
     indextank = IndexTankInitializer::IndexTankService.get_index('classicly_staging')
     documents = indextank.search "#{search_term} type:#{type}"
@@ -15,7 +19,8 @@ class SeoSlug < ActiveRecord::Base
     bookids = docids.collect {|docid| docid.split('_').last.to_i}.compact!
     self.where(:seoable_id.in => bookids, :seoable_type => type.capitalize).page(current_page).per(per_page)
   end
-
+  
+  # CLEANUP: extract: these are collection related stuff
   def find_featured_book_for_collection
     return nil if self.seoable_type.nil? || self.seoable_type != 'Collection'
     self.seoable.book_type == 'audiobook' ? (self.seoable.audiobooks.blessed.first || self.seoable.audiobooks.first) :

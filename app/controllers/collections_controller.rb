@@ -5,6 +5,11 @@ class CollectionsController < ApplicationController
     render :json => @collections.to_json
   end
 
+  def show_audiobooks
+    @collection = Collection.find(params[:id])
+    @audiobooks = @collection.get_paginated_books params
+  end
+
   def show_books
     @collection = Collection.find(params[:id])
     @books      = @collection.get_paginated_books params

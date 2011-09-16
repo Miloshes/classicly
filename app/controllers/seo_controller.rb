@@ -10,7 +10,7 @@ class SeoController < ApplicationController
       if @book.is_a?(Book)
         render 'books/show'
       else
-        render 'audiobooks/show', :layout => 'audibly'
+        render 'audiobooks/show'
       end
 
     end
@@ -47,10 +47,10 @@ class SeoController < ApplicationController
 
       @collection = seo.seoable
       method      = @collection.book_type.pluralize.to_sym
-      @books      = @collection.send(method).order('downloaded_count desc').limit(5)
+      @books      = @collection.send(method).order('downloaded_count desc').limit(3)
 
       @quotes, @show_author_options = [@collection.quotes.limit(3), true] if @collection.is_author_collection?
-
+      
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else

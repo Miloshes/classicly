@@ -1,3 +1,4 @@
+# Safari is a LOT faster for rendering the pages
 require 'firewatir' if Rails.env.development?
 
 class ReaderScriptUtils

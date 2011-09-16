@@ -4,7 +4,7 @@ module ApplicationHelper
     if book.author.has_collection?
       link_to book.author.name, seo_path(book.author.collection.cached_slug), :class => klass
     else
-      link_to book.author.name, seo_path(book.author), :class => klass
+      book.author.name
     end
   end
 
@@ -45,14 +45,6 @@ module ApplicationHelper
     image_tag "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{type}_id#{book.id}_size#{size}.jpg", :class => klass
   end
 
-  def image_or_link_to_download_format(book, format)
-    image = (format == 'azw') ? 'download_kindle.png' : 'download_pdf.png' 
-    if book.available_in_format?(format)
-      link_to image_tag(image), download_book_url(book.author, book, :download_format => format)
-    else
-      image_tag image
-    end
-  end
 
   def link_cover_tag(book, size='2', klass='')
     type = book.class.to_s.downcase
@@ -65,9 +57,9 @@ module ApplicationHelper
     link_to "#{@collection.name}'s #{text}", "/#{@collection.cached_slug}", :class => 'btn'
   end
   
-  def link_to_more_books(collection)
-    text = collection.is_author_collection? ? "More #{@collection.name}'s Books" : "More #{@collection.name} Books"
-    link_to text, "/#{@collection.cached_slug}/books", :class => 'btn primary'
+  def link_to_more_books(collection, type)
+    text = collection.is_author_collection? ? "More #{@collection.name}'s #{type.pluralize.capitalize}" : "More #{@collection.name} #{type.pluralize.capitalize}"
+    link_to text, "/#{@collection.cached_slug}/#{type.pluralize}", :class => 'btn primary'
   end
   
   def user_signed_in?
@@ -141,10 +133,15 @@ module ApplicationHelper
               '_asc'
             end
 
-    if sort == field
+    
+    if sort == field && collection.book_type == 'book'
       link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
-    else
+    elsif sort == field && collection.book_type == 'audiobook'
+      link_to text, collection_audiobooks_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
+    elsif collection.book_type == 'book'
       link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order )
+    else
+      link_to text, collection_audiobooks_path(collection, :page => params[:page], :sort => field + order )
     end
   end
 
