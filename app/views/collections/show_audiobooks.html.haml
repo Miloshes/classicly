@@ -3,16 +3,11 @@
   
     .row.audiobook-switcher
       .span12.columns
-        - if @collection.has_audio_collection?
-          %span Books |&nbsp;
-          = link_to 'Audiobooks', seo_url(@collection.audio_collection.cached_slug), :class => 'classicly-link'
-          .tooltip
-            View this collection as audiobooks. Available as MP3 downloads.
 
     <!-- le title -->
     .row
       .span11.columns
-        %h1= "#{@collection.name} Books"
+        %h1= "#{@collection.name} Audiobooks"
 
     <!--le google adsense -->
     .row
@@ -37,7 +32,7 @@
 
     .row.quote-section-title
       .span11.columns
-        %h1= "#{@collection.name} Books"
+        %h1= "#{@collection.name} Audiobooks"
     
     .sorting.row
       .span11.columns
@@ -48,9 +43,9 @@
     .row
       .span12.columns
         %ul.book-list
-          = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
+          = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true},:collection => @audiobooks, :as => :audiobook
 
 
-    = paginate @books
+    = paginate @audiobooks
   
   = javascript_include_tag 'ratings-book-list-view'

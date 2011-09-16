@@ -85,6 +85,13 @@ Classicly::Application.routes.draw do
 
   resources :collections, :only => :show
 
+  match "/:id/audiobooks/(:page)/(:sort)" => "collections#show_audiobooks", :as => :collection_audiobooks, :via => :get,   :constraints => { :page => /\d+/,
+      :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
+      downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
+      downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
+      downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
+      downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
+
   match "/:id/books/(:page)/(:sort)" => "collections#show_books", :as => :collection_books, :via => :get,   :constraints => { :page => /\d+/,
       :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
       downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|

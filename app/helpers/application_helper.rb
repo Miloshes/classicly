@@ -57,9 +57,9 @@ module ApplicationHelper
     link_to "#{@collection.name}'s #{text}", "/#{@collection.cached_slug}", :class => 'btn'
   end
   
-  def link_to_more_books(collection)
-    text = collection.is_author_collection? ? "More #{@collection.name}'s Books" : "More #{@collection.name} Books"
-    link_to text, "/#{@collection.cached_slug}/books", :class => 'btn primary'
+  def link_to_more_books(collection, type)
+    text = collection.is_author_collection? ? "More #{@collection.name}'s #{type.pluralize.capitalize}" : "More #{@collection.name} #{type.pluralize.capitalize}"
+    link_to text, "/#{@collection.cached_slug}/#{type.pluralize}", :class => 'btn primary'
   end
   
   def user_signed_in?

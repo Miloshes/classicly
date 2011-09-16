@@ -13,8 +13,8 @@
 
     .row.audiobook-switcher
       .span12.columns
-        - if @collection.has_book_counterpart?
-          = link_to 'Books', seo_url(@collection.audiobook_collection_book_slug), :class => 'classicly-link'
+        - if @collection.belongs_to_book_collection?
+          = link_to 'Books', seo_url(@collection.book_collection.cached_slug), :class => 'classicly-link'
           .tooltip
             View this collection as normal books. Available for Kindle, PDF, and our HTML5 reader.
           %span  &nbsp;|&nbsp;Audiobooks

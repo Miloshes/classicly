@@ -9,7 +9,7 @@
     <!-- le quote author -->
     .offset1.span3.columns
       .quote-author
-        = @quote.collection.name
+        = "-  #{@quote.collection.name}"
 
   <!-- le Ad Sense-->
   .row
@@ -44,7 +44,7 @@
 
   .row.more-books-btn
     .offset6.span4.columns
-      = link_to_more_books(@quote.collection)
+      = link_to_more_books(@quote.collection, 'book')
 
 
 = javascript_include_tag 'ratings-book-list-view'

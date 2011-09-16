@@ -34,7 +34,7 @@
       - for quote in @quotes
         .quote.row
           .span11.columns
-            = link_to "\"" + quote.content + "\"", quote_path(@collection, :quote_slug => quote.cached_slug)
+            = link_to "\"#{quote.content}\"", quote_path(@collection, :quote_slug => quote.cached_slug)
         .row
           .separator.span11.columns
 

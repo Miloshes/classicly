@@ -27,9 +27,11 @@ class Collection < ActiveRecord::Base
   has_many  :quotes
   has_many  :seo_slugs, :as => :seoable
   has_one   :seo_info, :as => :infoable
-
+  has_one   :audio_collection, :class_name => 'Collection', :foreign_key => :audio_collection_id
+  
   belongs_to :genre
-
+  belongs_to :book_collection, :class_name => 'Collection', :foreign_key => :audio_collection_id
+  
   scope :find_audiobook_collections_and_genres, where(:book_type => 'audiobook', :collection_type.in => ['collection', 'genre'])
   scope :find_audiobook_author_collections, where(:book_type => 'audiobook', :collection_type => 'author')
   scope :find_book_collections_and_genres, where(:book_type => 'book', :collection_type.in => ['collection', 'genre'])
@@ -66,22 +68,6 @@ class Collection < ActiveRecord::Base
     :bucket => APP_CONFIG['buckets']['covers']['original_highres'],
     :path => ":id_:style.:extension"
 
-  # CLEANUP: just pretty it up a bit, don't use after the line comments for long lines
-  def self.get_collection_books_in_json(collection_ids, type, total_books)
-    data = []
-    collection_ids.each do |id|
-      current = Collection.find id # find the collection.
-      books = ( type == 'book' ) ? current.books.limit(total_books) : current.audiobooks.limit(total_books) # get 5 books (or audiobooks) to show.
-      # create the books data to be converted in json: 
-      books_hash_array = books.map do |book|
-        author_slug = Author.where(:id => book.author_id).select('cached_slug').first.cached_slug
-        { :id => book.id, :cached_slug => book.cached_slug, :author_slug => author_slug }
-      end
-      # add the collection id and name to the data to be sent:
-      data << {:collection_id => id, :books => books_hash_array}.merge!(:collection_name => current.name, :collection_slug => current.cached_slug) 
-    end
-    data
-  end
 
   def self.options_for_book_type
     ["book", "audiobook"].collect { |name|
@@ -107,9 +93,6 @@ class Collection < ActiveRecord::Base
       }
   end
 
-  def self.search(search_term, current_page, per_page = 25)
-    self.where(:name.matches => "%#{search_term}%").page(current_page).per(per_page)
-  end
 
   def self.update_cache_downloaded_count
     Collection.find_each do |collection|
@@ -122,15 +105,10 @@ class Collection < ActiveRecord::Base
     end
   end
 
-  def audiobook_collection_slug
-    return nil if !has_audiobook_counterpart?
-    self.cached_slug + "-audiobooks"
-  end
-
-  def audiobook_collection_book_slug
-    return nil if !has_book_counterpart?
-    Collection.where(:name => self.name, :book_type => 'book').select('cached_slug').first.cached_slug
-  end
+  # def audiobook_collection_book_slug
+  #     return nil if !has_book_counterpart?
+  #     Collection.where(:name => self.name, :book_type => 'book').select('cached_slug').first.cached_slug
+  #   end
 
   def author
     Author.where(:cached_slug => self.cached_slug).first
@@ -165,15 +143,20 @@ class Collection < ActiveRecord::Base
     !self.author_portrait_updated_at.blank?
   end
 
-  def has_audiobook_counterpart?
+  def has_audio_collection?
     return false if self.book_type == 'audiobook'
-    Collection.exists?(:name => self.name , :book_type => 'audiobook')
+    self.audio_collection != nil
+  end
+  
+  def belongs_to_book_collection?
+    return false if self.book_type == 'book'
+    self.book_collection != nil
   end
 
-  def has_book_counterpart?
-    return false if self.book_type == 'book'
-    Collection.exists?(:name => self.name , :book_type => 'book')
-  end
+  # def has_book_counterpart?
+  #     return false if self.book_type == 'book'
+  #     Collection.exists?(:name => self.name , :book_type => 'book')
+  #   end
 
   def is_audio_collection?
     self.book_type == 'audiobook'
@@ -221,13 +204,6 @@ class Collection < ActiveRecord::Base
 
   def generate_seo_slugs
     SeoSlug.create!({:slug => self.cached_slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => 'all'})
-    # for the moment we don't have these pages:
-    # formats -> pdfs, kindle-books(books), mp3s for audiobooks
-    # formats = (self.book_type == 'book') ? %w(pdfs kindle-books) : %w(mp3s)
-    #     formats.each do |format|
-    #       slug = "download-%s-%s" % [self.cached_slug, format]
-    #       SeoSlug.create!({:slug => slug, :seoable_id => self.id, :seoable_type => self.class.to_s, :format => format})
-    #     end
   end
 
   def limited_description(limit)
