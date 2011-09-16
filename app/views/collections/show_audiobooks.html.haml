@@ -42,7 +42,7 @@
 
     .row
       .span12.columns
-        %ul.book-list
+        %ul.book-list.audiobooks
           = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true},:collection => @audiobooks, :as => :audiobook
 
 
