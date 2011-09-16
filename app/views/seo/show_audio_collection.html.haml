@@ -56,7 +56,9 @@
         %ul.book-list.audiobooks
           = render :partial => '/audiobooks/listed_audio_book', :locals => {:enable_rating => true}, :collection => @books, :as => :audiobook
 
-      =# paginate @books, {:controller => 'seo', :action => 'show', :id => @seo.slug}
+    .row.more-books-btn
+      .offset6.span4.columns
+        = link_to_more_books(@collection, 'audiobook')
 
     .row
       .span11.columns

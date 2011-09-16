@@ -7,7 +7,7 @@ class CollectionsController < ApplicationController
 
   def show_audiobooks
     @collection = Collection.find(params[:id])
-    @audiobooks = @collection.audio_collection.get_paginated_books params
+    @audiobooks = @collection.get_paginated_books params
   end
 
   def show_books
