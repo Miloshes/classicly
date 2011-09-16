@@ -133,10 +133,15 @@ module ApplicationHelper
               '_asc'
             end
 
-    if sort == field
+    
+    if sort == field && collection.book_type == 'book'
       link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
-    else
+    elsif sort == field && collection.book_type == 'audiobook'
+      link_to text, collection_audiobooks_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
+    elsif collection.book_type == 'book'
       link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order )
+    else
+      link_to text, collection_audiobooks_path(collection, :page => params[:page], :sort => field + order )
     end
   end
 
