@@ -102,6 +102,8 @@ group :development, :test do
   gem 'hoe'
   
   # == Testing related
+  # improve tests performance
+  gem 'spork', '0.9.0.rc8'
   
   # Testing framework, a Cucumber replacement - http://rubygems.org/gems/steak
   gem 'steak'
