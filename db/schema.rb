@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110909221329) do
+ActiveRecord::Schema.define(:version => 20110915170737) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -189,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20110909221329) do
     t.string   "cached_slug"
     t.integer  "downloaded_count",             :default => 0
     t.text     "parsed_description"
+    t.integer  "audio_collection_id"
   end
 
   create_table "custom_resources", :force => true do |t|
