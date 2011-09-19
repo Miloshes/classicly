@@ -6,7 +6,7 @@ class SeoController < ApplicationController
     if @book
       @related_books = @book.find_fake_related(3)
       @related_books = @book.find_more_from_same_collection(2) if @related_books.empty?
-
+      
       if @book.is_a?(Book)
         render 'books/show'
       else

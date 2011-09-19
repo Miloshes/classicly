@@ -19,14 +19,14 @@
           #rating-stars
             = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
         .clear
-        - if ab_test 'left_positioned_buttons'
+        - if ab_test('left_positioned_buttons') || Rails.env.test?
           #download-as
             .text
               Download as
             - if @book.has_mp3_slug?
               #mp3.download-button
                 = link_to 'MP3', seo_url(@book.download_mp3_slug) , :class => 'btn primary'
-    
+
       .book-column.span9.columns
         #book-metadata
           #book-title

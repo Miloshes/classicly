@@ -85,6 +85,9 @@ gem 'rubyzip'
 gem 'dalli'
 
 group :development, :test do
+  # a different driver than selenium for acceptance tests
+  gem 'akephalos', "~> 0.2.5"
+  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
   

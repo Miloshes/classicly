@@ -24,8 +24,8 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # I should see a button to read it online
-      within('.read') do
-        page.should have_xpath("//a[@class='read_online']")
+      within('#read-online-btn') do
+        page.should have_xpath("//a")
       end
     end
 
@@ -72,8 +72,8 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(@author, @book)
 
       # And I click the download mp3 button
-      within('.download') do
-        find(:xpath, ".//a[1]").click
+      within('#download-as #audiobook.download-button') do
+        find(:xpath, ".//a").click
       end
 
       # then I should see the download link for the mp3 title
@@ -123,8 +123,8 @@ require 'acceptance/acceptance_helper'
       visit author_book_path(author, book)
 
       # And I click the download as PDF button
-      within('.download') do
-        find(:xpath, ".//a[1]").click
+      within('#download-as #pdf.download-button') do
+        find(:xpath, ".//a").click
       end
 
       # And I click the download button
@@ -134,7 +134,7 @@ require 'acceptance/acceptance_helper'
 
 
       # Then I should see that this book is being downloaded
-      find( ".notification-header" ).text.should include("Patula by Brammy Stokes is now downloading")
+      find( ".notification-header" ).text.should include("\n\nPatula\n\nby\nBrammy Stokes\nis now downloading...\n")
 
     end
   end
