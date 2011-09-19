@@ -58,6 +58,7 @@ class SeoController < ApplicationController
       end
 
     elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
+      bingo! 'left_positioned_buttons'
 
       @book = seo.seoable
       @related_books = @book.find_fake_related(3)
