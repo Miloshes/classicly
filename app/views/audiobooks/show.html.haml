@@ -19,13 +19,13 @@
           #rating-stars
             = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
         .clear
-        
-        #download-as
-          .text
-            Download as
-          - if @book.has_mp3_slug?
-            #mp3.download-button
-              = link_to 'MP3', seo_url(@book.download_mp3_slug) , :class => 'btn primary'
+        - if ab_test 'left_positioned_buttons'
+          #download-as
+            .text
+              Download as
+            - if @book.has_mp3_slug?
+              #mp3.download-button
+                = link_to 'MP3', seo_url(@book.download_mp3_slug) , :class => 'btn primary'
     
       .book-column.span9.columns
         #book-metadata
@@ -61,10 +61,13 @@
           %p= simple_format(@book.description)
 
           .clear
+          
+          - unless ab_test 'left_positioned_buttons'
+            .row
+              .span9.columns
+                - if @book.has_mp3_slug?
+                  = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug)
 
-          / .download
-          /             - if @book.has_mp3_slug?
-          /               = link_to image_tag('mp3-download_03.png'), seo_url(@book.download_mp3_slug) 
           %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
           %p.explanation We don’t pay a cent, so neither do you.
 
