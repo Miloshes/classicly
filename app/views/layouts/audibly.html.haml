@@ -73,12 +73,13 @@
           .cover.small
             = cover_image_link_with_text(book, 2)
         - for collection in @popular_collections
-          .collection-with-title-here
-            - for book in collection.books.limit(6)
-              .cover.mini
-                = cover_image_link(book, 1)
-          = text_for_collection(collection)
-
+          %a.collection_link{:href => "#{collection.cached_slug}"}
+            .collection-with-title-here
+              - for book in collection.books.limit(6)
+                .cover.mini
+                  = cover_image_link(book, 1)
+              = text_for_collection(collection)
+        .clear
         .links
           .row
             .span4.columns
