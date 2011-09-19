@@ -43,7 +43,7 @@
               = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
           - if @book.has_audiobook
             #audiobook.download-button
-              = link_to 'Audiobook', "#", :class => 'btn primary'
+              = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
 
     <!-- details column-->
     .book-column.span9.columns
