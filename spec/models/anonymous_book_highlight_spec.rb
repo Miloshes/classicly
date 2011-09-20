@@ -54,12 +54,7 @@ describe AnonymousBookHighlight do
       }
     end
     
-    context "" do
-      it "shouldn't create the highlight" do
-        AnonymousBookHighlight.create_or_update_from_ios_client_data()
-      end
-    end
-    
+    it "should create a new highlight if there's no highlight "
   end
   
 end
