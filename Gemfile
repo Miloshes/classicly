@@ -13,8 +13,8 @@ gem 'aws-s3', :require => 'aws/s3'
 gem "compass", ">= 0.10.5"
 
 # needed by mongrel to run on ruby 1.9.2
-gem 'cgi_multipart_eof_fix' 
-gem 'fastthread'
+gem "cgi_multipart_eof_fix"
+gem "fastthread"
 
 # template markup language - http://haml-lang.com/
 gem 'haml'
@@ -47,13 +47,13 @@ gem 'maruku'
 gem 'meta_where'
 
 # web server for local development
-gem 'mongrel', '1.2.0.pre2' 
+gem "mongrel", "1.2.0.pre2"
 
 # html/xml parser - http://rubygems.org/gems/nokogiri
-gem 'nokogiri'
+gem "nokogiri"
 
 # file upload management with S3 support - http://rubygems.org/gems/paperclip
-gem 'paperclip'
+gem "paperclip"
 
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem 'rest-client', :require => 'rest_client'
@@ -96,13 +96,7 @@ group :development, :test do
   # Can control the Firefox browser, used for book rendering - http://rubygems.org/gems/firewatir
   gem 'firewatir'
   
-  # rake extension for better deploys - http://rubygems.org/gems/hoe
-  gem 'hoe'
-  
   # == Testing related
-  # a different driver than selenium for acceptance tests
-  gem 'akephalos', "~> 0.2.5"
-
   # improve tests performance
   gem 'spork', '0.9.0.rc8'
   
@@ -111,9 +105,12 @@ group :development, :test do
 
   # integration testing - http://rubygems.org/gems/capybara
   gem 'capybara'
+  
+  # a different driver than selenium for acceptance tests
+  gem "akephalos", "~> 0.2.5"
 
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
-  gem 'database_cleaner'
+  gem "database_cleaner"
 
   # fixtures generator for tests
   gem 'factory_girl'
@@ -124,7 +121,7 @@ group :development, :test do
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   #gem 'machinist', '>= 2.0.0.beta1'
 
-  gem 'mysql2', '~> 0.2.7'
+  gem "mysql2", "~> 0.2.7"
 
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem 'ZenTest'
