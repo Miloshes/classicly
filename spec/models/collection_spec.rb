@@ -135,110 +135,63 @@ describe Collection do
 
   end
 
-  describe '#has_audiobook_counterpart?' do
+  describe 'if I ask a collection if it has an associated collection of type <audio>,' do
 
     before :each do
       @collection = FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
     end
 
-    context 'when there is an audiobook counterpart' do
+    context 'when it does,' do
 
-      it 'should return true' do
-        FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
-        @collection.has_audiobook_counterpart?.should be_true
+      it 'should tell us that yeah, it is true' do
+        @collection.audio_collection = FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
+        
+        @collection.has_audio_collection?.should be_true
       end
 
     end
 
-    context "when there isn't an audiobook counterpart" do
-      it 'should return false' do
-        @collection.has_audiobook_counterpart?.should be_false
+    context "when it does not," do
+      it 'should say no, it is false' do
+        @collection.has_audio_collection?.should be_false
       end
     end
 
-    context 'when calling the method in an audiobook collection' do
-      it 'should return false' do
+    context 'if the collection is already of type <audio>' do
+      it 'should say false, I am an audiocollection, duh' do
         @audiobook_collection = FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
-        @audiobook_collection.has_audiobook_counterpart?.should be_false
+        @audiobook_collection.has_audio_collection?.should be_false
       end
     end
 
   end
 
-  describe '#has_book_counterpart?' do
+  describe 'if I ask a collection if it has an associated collection of type <book>,' do
 
     before :each do
       @collection = FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
     end
 
-    context 'when there is a book counterpart' do
-      it 'should return true' do
-        FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection')
-        @collection.has_book_counterpart?.should be_true
+    context 'when  it does' do
+      it 'should tell us yeah, it is true' do
+        collection = FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection')
+        collection.audio_collection = @collection
+        @collection.belongs_to_book_collection?.should be_true
       end
     end
     
-    context "when there isn't a book counterpart" do
-      it 'should return false' do
-        @collection.has_book_counterpart?.should be_false
+    context "when it does not" do
+      it 'should say no, it is false' do
+        @collection.belongs_to_book_collection?.should be_false
       end
     end
 
-    context 'when calling the method in an book collection' do
-      it 'should return false' do
+    context 'if the collection is of book type' do
+      it 'should say false, I am a book type collection duh' do
         @book_collection = FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection')
-        @book_collection.has_book_counterpart?.should be_false
+        @book_collection.belongs_to_book_collection?.should be_false
       end
     end
 
   end
-  
-  describe '#audiobook_collection_slug' do
-
-    before :each do
-      @collection = FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
-    end
-
-    context 'when this collection does not have an audiobook counterpart' do
-      it 'should return nil' do
-        @collection.audiobook_collection_slug.should be_nil
-      end
-    end
-
-    context 'when there is a counterpart audiobook collection' do
-
-      it 'should return the audiobook collection slug' do
-        FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
-        @collection.audiobook_collection_slug.should == 'my-collection-audiobooks'
-      end
-
-    end
-
-  end
-  describe '#audiobook_collection_book_slug' do
-
-    before :each do
-      # Given we have an audiobook collection
-      @collection = FactoryGirl.create(:collection, :book_type => 'audiobook', :collection_type => 'collection', :name => 'My Collection', :cached_slug => 'my-collection-audiobooks')
-    end
-
-    context 'when this collection does not have a book counterpart' do
-      it 'should return nil' do
-        @collection.audiobook_collection_book_slug.should be_nil
-      end
-    end
-
-    context 'when there is a counterpart book collection' do
-
-      it 'should return the book collection slug' do
-        # And a book collection exists for that audiobook collection
-        FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection', :name => 'My Collection')
-
-        @collection.audiobook_collection_book_slug.should == 'my-collection'
-      end
-
-    end
-
-  end
-
 end

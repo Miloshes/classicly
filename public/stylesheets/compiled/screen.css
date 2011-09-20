@@ -2583,13 +2583,15 @@ a.button.kiss span {
 /* line 70, ../../../app/stylesheets/partials/_covers.sass */
 .collection-with-title-here .cover {
   margin-right: 4px;
+  display: inline;
+  float: left !important;
 }
-/* line 72, ../../../app/stylesheets/partials/_covers.sass */
+/* line 74, ../../../app/stylesheets/partials/_covers.sass */
 .collection-with-title-here .text {
-  margin-top: -34px;
+  margin-top: -20px;
 }
 
-/* line 76, ../../../app/stylesheets/partials/_covers.sass */
+/* line 78, ../../../app/stylesheets/partials/_covers.sass */
 .collection-with-title-here .text, .cover .text {
   float: left;
   width: 100%;
@@ -2598,7 +2600,7 @@ a.button.kiss span {
 /* --------------------------------------------------- */
 /* ---------->>> INDIVIDUAL BOOK COVERS <<<----------- */
 /* --------------------------------------------------- */
-/* line 82, ../../../app/stylesheets/partials/_covers.sass */
+/* line 84, ../../../app/stylesheets/partials/_covers.sass */
 .cover {
   display: block;
   float: left;
@@ -2627,57 +2629,57 @@ a.button.kiss span {
   color: #999999;
   margin-left: 5px;
 }
-/* line 87, ../../../app/stylesheets/partials/_covers.sass */
+/* line 89, ../../../app/stylesheets/partials/_covers.sass */
 .cover img {
   float: left;
   border: 1px solid #333333;
 }
-/* line 91, ../../../app/stylesheets/partials/_covers.sass */
+/* line 93, ../../../app/stylesheets/partials/_covers.sass */
 .cover.mini {
   height: 57px;
 }
-/* line 93, ../../../app/stylesheets/partials/_covers.sass */
+/* line 95, ../../../app/stylesheets/partials/_covers.sass */
 .cover.mini img {
   width: 25px;
   height: 37px;
 }
-/* line 96, ../../../app/stylesheets/partials/_covers.sass */
+/* line 98, ../../../app/stylesheets/partials/_covers.sass */
 .cover.tiny {
   height: 94px;
 }
-/* line 98, ../../../app/stylesheets/partials/_covers.sass */
+/* line 100, ../../../app/stylesheets/partials/_covers.sass */
 .cover.tiny img {
   width: 48px;
   height: 74px;
 }
-/* line 101, ../../../app/stylesheets/partials/_covers.sass */
+/* line 103, ../../../app/stylesheets/partials/_covers.sass */
 .cover.small {
   height: 171px;
 }
-/* line 103, ../../../app/stylesheets/partials/_covers.sass */
+/* line 105, ../../../app/stylesheets/partials/_covers.sass */
 .cover.small img {
   width: 98px;
   height: 151px;
 }
-/* line 106, ../../../app/stylesheets/partials/_covers.sass */
+/* line 108, ../../../app/stylesheets/partials/_covers.sass */
 .cover.medium {
   height: 249px;
 }
-/* line 108, ../../../app/stylesheets/partials/_covers.sass */
+/* line 110, ../../../app/stylesheets/partials/_covers.sass */
 .cover.medium img {
   width: 148px;
   height: 229px;
 }
-/* line 111, ../../../app/stylesheets/partials/_covers.sass */
+/* line 113, ../../../app/stylesheets/partials/_covers.sass */
 .cover.huge {
   height: 403px;
 }
-/* line 113, ../../../app/stylesheets/partials/_covers.sass */
+/* line 115, ../../../app/stylesheets/partials/_covers.sass */
 .cover.huge img {
   width: 248px;
   height: 383px;
 }
-/* line 116, ../../../app/stylesheets/partials/_covers.sass */
+/* line 118, ../../../app/stylesheets/partials/_covers.sass */
 .cover .text {
   margin-top: 5px;
 }

@@ -12,11 +12,17 @@ gem 'aws-s3', :require => 'aws/s3'
 # CSS Authoring Framework - http://rubygems.org/gems/compass
 gem "compass", ">= 0.10.5"
 
+#needed by mongrel to run on ruby 1.9.2
+gem 'cgi_multipart_eof_fix' 
+
 # template markup language - http://haml-lang.com/
 gem 'haml'
 
 # SEO slugs and permalinks - http://rubygems.org/gems/friendly_id
 gem "friendly_id", "~> 3.2.1"
+
+#needed by mongrel to run on ruby 1.9.2
+gem 'fastthread'
 
 # app error app - http://hoptoadapp.com/pages/home
 gem 'hoptoad_notifier'
@@ -43,7 +49,7 @@ gem 'maruku'
 gem 'meta_where'
 
 # web server for local development
-gem 'mongrel'
+gem 'mongrel', '1.2.0.pre2' 
 
 # html/xml parser - http://rubygems.org/gems/nokogiri
 gem 'nokogiri'
@@ -79,12 +85,15 @@ gem 'rubyzip'
 gem 'dalli'
 
 group :development, :test do
+  # a different driver than selenium for acceptance tests
+  gem 'akephalos', "~> 0.2.5"
+  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
   # NOTE: for Ruby v1.9 use ruby-debug19!
-  gem 'ruby-debug'
+  gem 'ruby-debug19'
   
   # Heroku database import/export - http://rubygems.org/gems/taps
   gem 'taps', '> 0.3.22'
@@ -96,6 +105,8 @@ group :development, :test do
   gem 'hoe'
   
   # == Testing related
+  # improve tests performance
+  gem 'spork', '0.9.0.rc8'
   
   # Testing framework, a Cucumber replacement - http://rubygems.org/gems/steak
   gem 'steak'
@@ -115,7 +126,7 @@ group :development, :test do
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   #gem 'machinist', '>= 2.0.0.beta1'
 
-  gem 'mysql2'
+  gem 'mysql2', '~> 0.2.7'
 
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem 'ZenTest'

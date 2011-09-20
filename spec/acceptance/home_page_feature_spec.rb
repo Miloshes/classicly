@@ -10,6 +10,7 @@ feature 'Home page feature: ', %q{
     # Given a set of collections exists
     1.upto(10) {|index| FactoryGirl.create(:book, :blessed => true) }
     1.upto(14) {|index| FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'collection') }
+    1.upto(14) {|index| FactoryGirl.create(:collection, :book_type => 'book', :collection_type => 'author') }
     # And I am on the home page
     visit homepage
   end
