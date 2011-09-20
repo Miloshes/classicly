@@ -509,3 +509,61 @@ describe WebApiController, "(API calls - classicly.com related)" do
   end
   
 end
+
+describe WebApiController, "(API calls - notes and highlights creation)" do
+  
+  before(:each) do
+    @book = mock_model(Book)
+    Book.stub!(:find).and_return(@book)
+    
+    @login = mock_model(Login, :fb_connect_id => "123")
+    Login.stub_chain(:where, :first).and_return(@login)
+  end
+  
+  it "should be able to register a highlight from a book for a user" do
+    # data = {
+    #     "user_fbconnect_id" => @login.fb_connect_id,
+    #     "device_id"         => "ASDASD",
+    #     "book_id"           => @book.id,
+    #     "action"            => "register_book_review",
+    #     "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+    #     "rating"            => 5,
+    #     "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+    #   }
+    # 
+    # post "create", :json_data => data.to_json
+    # 
+    # response.body.should == "SUCCESS"
+    # Review.should have(1).record
+    # AnonymousReview.should have(0).records
+  end
+  
+  it "should be able to update a highlight" do
+    # # We're creating a review in the DB to update it
+    # review = FactoryGirl.create(
+    #   :review,
+    #   :reviewable => @book, :reviewer => @login, :created_at => Time.now - 2.days
+    # )
+    # Review.stub_chain(:where, :first).and_return(review)
+    # 
+    # data = {
+    #     "user_fbconnect_id" => @login.fb_connect_id,
+    #     "device_id"         => "ASDASD",
+    #     "book_id"           => @book.id,
+    #     "action"            => "register_book_review",
+    #     "content"           => "new content",
+    #     "rating"            => 5,
+    #     "timestamp"         => Time.now
+    #   }
+    # 
+    # post "create", :json_data => data.to_json
+    # 
+    # review.rating.should  == 5
+    # review.content.should == "new content"
+  end
+  
+end
+
+describe WebApiController, "(API calls - notes and highlights related queries)" do
+  
+end

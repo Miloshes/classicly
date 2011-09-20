@@ -73,18 +73,19 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
     t.string  "cached_slug"
     t.text    "description"
     t.integer "avg_rating",        :default => 0,     :null => false
-    t.text    "librivox_zip_link"
     t.integer "downloaded_count",  :default => 0
+    t.text    "librivox_zip_link"
   end
 
   create_table "author_quotings", :force => true do |t|
     t.integer  "blog_post_id"
+    t.integer  "author_id"
     t.text     "quoted_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "collection_id"
   end
 
+  add_index "author_quotings", ["author_id"], :name => "index_author_quotings_on_author_id"
   add_index "author_quotings", ["blog_post_id"], :name => "index_author_quotings_on_blog_post_id"
 
   create_table "authors", :force => true do |t|
@@ -95,21 +96,30 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   add_index "authors", ["cached_slug"], :name => "index_authors_on_cached_slug", :unique => true
 
   create_table "blog_posts", :force => true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.string   "keywords"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "meta_description"
-    t.string   "cached_slug"
-    t.string   "state"
+    t.string    "title"
+    t.text      "content"
+    t.string    "keywords"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "cached_slug"
+    t.string    "meta_description"
+    t.string    "state"
   end
-
-  add_index "blog_posts", ["cached_slug"], :name => "index_blog_posts_on_cached_slug", :unique => true
 
   create_table "blog_posts_books", :id => false, :force => true do |t|
     t.integer "blog_post_id"
     t.integer "book_id"
+  end
+
+  create_table "book_highlights", :force => true do |t|
+    t.integer  "first_character"
+    t.integer  "last_character"
+    t.text     "content"
+    t.datetime "created_at"
+    t.integer  "login_id"
+    t.text     "note"
+    t.integer  "book_id"
+    t.string   "fb_connect_id"
   end
 
   create_table "book_pages", :force => true do |t|
@@ -119,8 +129,6 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
     t.integer "last_character"
     t.text    "content"
     t.boolean "first_line_indent", :default => false, :null => false
-    t.boolean "re_render_flag",    :default => false, :null => false
-    t.boolean "force_rerender",    :default => false, :null => false
   end
 
   add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
@@ -203,16 +211,16 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "delayed_jobs", :force => true do |t|
-    t.integer  "priority",   :default => 0
-    t.integer  "attempts",   :default => 0
-    t.text     "handler"
-    t.text     "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "priority",   :default => 0
+    t.integer   "attempts",   :default => 0
+    t.text      "handler"
+    t.text      "last_error"
+    t.timestamp "run_at"
+    t.timestamp "locked_at"
+    t.timestamp "failed_at"
+    t.string    "locked_by"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -225,10 +233,10 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "experiments", :force => true do |t|
-    t.string   "test_name"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "test_name"
+    t.string    "status"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "experiments", ["test_name"], :name => "index_experiments_on_test_name"
@@ -238,9 +246,9 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "incoming_data", :force => true do |t|
-    t.text     "json_data"
-    t.boolean  "processed",  :default => false, :null => false
-    t.datetime "created_at"
+    t.text      "json_data"
+    t.boolean   "processed",  :default => false, :null => false
+    t.timestamp "created_at"
   end
 
   create_table "libraries", :force => true do |t|
@@ -268,16 +276,16 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "logins", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "location_city"
-    t.string   "location_country"
-    t.string   "email"
-    t.string   "fb_connect_id"
-    t.boolean  "is_admin",         :default => false
-    t.string   "ios_device_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "location_city"
+    t.string    "location_country"
+    t.string    "email"
+    t.string    "fb_connect_id"
+    t.boolean   "is_admin",         :default => false
+    t.string    "ios_device_id"
   end
 
   create_table "quotes", :force => true do |t|
@@ -286,7 +294,6 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "cached_slug"
   end
 
   create_table "ratings", :force => true do |t|
@@ -304,9 +311,9 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
     t.integer  "reviewable_id"
     t.string   "reviewable_type"
     t.text     "content"
-    t.integer  "rating"
     t.datetime "created_at"
     t.integer  "login_id"
+    t.integer  "rating",          :default => 0
   end
 
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"
@@ -344,22 +351,29 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   add_index "seo_slugs", ["slug"], :name => "index_seo_slugs_on_slug"
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "session_id", :null => false
+    t.text      "data"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "slugs", :force => true do |t|
-    t.string   "name"
-    t.integer  "sluggable_id"
-    t.integer  "sequence",                     :default => 1, :null => false
-    t.string   "sluggable_type", :limit => 40
-    t.string   "scope"
+  create_table "shortened_urls", :force => true do |t|
+    t.text     "url"
     t.datetime "created_at"
+    t.datetime "last_hit"
+    t.integer  "hit_count",  :default => 0
+  end
+
+  create_table "slugs", :force => true do |t|
+    t.string    "name"
+    t.integer   "sluggable_id"
+    t.integer   "sequence",                     :default => 1, :null => false
+    t.string    "sluggable_type", :limit => 40
+    t.string    "scope"
+    t.timestamp "created_at"
   end
 
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
@@ -371,19 +385,19 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "email",                               :default => "", :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -12,17 +12,15 @@ gem 'aws-s3', :require => 'aws/s3'
 # CSS Authoring Framework - http://rubygems.org/gems/compass
 gem "compass", ">= 0.10.5"
 
-#needed by mongrel to run on ruby 1.9.2
+# needed by mongrel to run on ruby 1.9.2
 gem 'cgi_multipart_eof_fix' 
+gem 'fastthread'
 
 # template markup language - http://haml-lang.com/
 gem 'haml'
 
 # SEO slugs and permalinks - http://rubygems.org/gems/friendly_id
 gem "friendly_id", "~> 3.2.1"
-
-#needed by mongrel to run on ruby 1.9.2
-gem 'fastthread'
 
 # app error app - http://hoptoadapp.com/pages/home
 gem 'hoptoad_notifier'
@@ -85,9 +83,6 @@ gem 'rubyzip'
 gem 'dalli'
 
 group :development, :test do
-  # a different driver than selenium for acceptance tests
-  gem 'akephalos', "~> 0.2.5"
-  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem 'awesome_print'
   
@@ -105,6 +100,9 @@ group :development, :test do
   gem 'hoe'
   
   # == Testing related
+  # a different driver than selenium for acceptance tests
+  gem 'akephalos', "~> 0.2.5"
+
   # improve tests performance
   gem 'spork', '0.9.0.rc8'
   
