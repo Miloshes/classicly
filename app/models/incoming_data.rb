@@ -15,17 +15,24 @@ class IncomingData < ActiveRecord::Base
     end
 
     parsed_data.each do |record|
-      case record['action']
+      case record["action"]
       # stands for creating and updating
-      when 'register_book_review'
-        if record['user_fbconnect_id']
+      when "register_book_review"
+        if record["user_fbconnect_id"]
           Review.create_or_update_from_ios_client_data(record)
         else
           AnonymousReview.create_or_update_from_ios_client_data(record)
         end
-      when 'register_ios_user'
+      # stands for creating and updating the highlight
+      when "register_book_highlight"
+        if record["user_fbconnect_id"]
+          BookHighlight.create_or_update_from_ios_client_data(record)
+        else
+          AnonymousBookHighlight.create_or_update_from_ios_client_data(record)
+        end
+      when "register_ios_user"
         Login.register_from_ios_app(record)
-      when 'update_book_description'
+      when "update_book_description"
         Book.update_description_from_web_api(record)
       end
     end

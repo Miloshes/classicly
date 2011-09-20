@@ -6,7 +6,7 @@ class CreateAnonymousBookHighlights < ActiveRecord::Migration
       t.text :content
       t.string :ios_device_id
       t.datetime :created_at
-      t.text :note
+      t.text :origin_comment
       t.integer :book_id
     end
   end

@@ -6,7 +6,7 @@ class CreateBookHighlights < ActiveRecord::Migration
       t.text :content
       t.datetime :created_at
       t.integer :login_id
-      t.text :note
+      t.text :origin_comment
       t.integer :book_id
       t.string :fb_connect_id
     end

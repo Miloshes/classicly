@@ -9,14 +9,14 @@ class AnonymousBookHighlight < ActiveRecord::Base
   validates :ios_device_id, :presence => true
   
   def self.create_or_update_from_ios_client_data(data)
-    book = Book.find(data['book_id'].to_i)
+    book = Book.find(data["book_id"].to_i)
 
     return nil if book.blank?
     
     new_timestamp = Time.parse(data["timestamp"])
   
     highlight_conditions = {
-        :ios_device_id   => data['device_id'],
+        :ios_device_id   => data["device_id"],
         :book            => book,
         :content         => data["content"],
         :first_character => data["first_character"],
@@ -30,7 +30,7 @@ class AnonymousBookHighlight < ActiveRecord::Base
     highlight = self.where(highlight_conditions).first()
   
     if highlight
-      highlights.update_attributes(new_highlight_data) unless new_timestamp < review.created_at
+      highlight.update_attributes(new_highlight_data) unless new_timestamp < highlight.created_at
     else
       self.create(highlight_conditions.merge new_highlight_data)
     end
