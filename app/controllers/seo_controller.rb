@@ -50,7 +50,7 @@ class SeoController < ApplicationController
       @books      = @collection.send(method).order('downloaded_count desc').limit(3)
 
       @quotes, @show_author_options = [@collection.quotes.limit(3), true] if @collection.is_author_collection?
-      
+
       if seo.seoable.is_audio_collection?
         render 'show_audio_collection', :layout => 'audibly' and return
       else
@@ -58,8 +58,6 @@ class SeoController < ApplicationController
       end
 
     elsif seo.is_for_type?('book') || seo.is_for_type?('audiobook')
-      bingo! 'left_positioned_buttons'
-
       @book = seo.seoable
       @related_books = @book.find_fake_related(3)
       @format = seo.format
