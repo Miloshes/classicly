@@ -106,6 +106,14 @@ module ApplicationHelper
     doc.inner_html
   end
 
+  def top_nav_link(text, path)
+    css_class = (path == request.request_uri) ? 'active' : nil
+
+    content_tag :li, nil, :class => css_class do
+      link_to text, path, :class => css_class
+    end
+  end
+
   def links_for_downloading_special_formats(book)
     res = "Download As"
     already_one_found = false
