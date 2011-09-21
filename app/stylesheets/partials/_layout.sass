@@ -1,12 +1,12 @@
 #main-content
   padding-left: 15px
 
-$top-nav-bg: #c9af87
+$top-nav-bg: #22190e
 
 body
   +blueprint-typography(true)
   background-color: white
-  :font-family 'Helvetica', 'Arial', 'Sans-serif'
+  font-family: 'Scala', Georgia, sans-serif
 
 @mixin content-container
   +column(18, true)
@@ -35,7 +35,7 @@ a.highlight
   .wrap
     :width 100%
     :display block
-    :height 52px
+    :height 50px
     :text-align center
     background: $top-nav-bg
     .top
@@ -43,38 +43,33 @@ a.highlight
       :margin 0 auto
       :height 30px
       #logo 
-        :float left
-        +column(5)
+        float: left
+        +column(4)
+        margin: 0px 20px 0px 22px
         img
-          :margin
-            :top 7px
+          margin-top: 10px
       #nav
-        +column(12)
+        +column(13)
         text-align: left
-        :margin
-          :top 14px
+        margin-left: -5px
         ul
           list-style: none
           li
-            :float left
-            :display inline
+            float: left
+            display: inline
+            height: 50px
+            padding: 0px 20px
             a
-              font: bold 14px 'helvetica'
-              :color #442507
-              :display block
-              :width 106px
-              :height 24px
-              :float left
-              :text-decoration none
-              :background url(/images/nav-bg.png)
-              :text-align center
-              :margin
-                :right 6px
-              :padding
-                :top 8px
-              &:hover
-                :cursor pointer
-                :opacity .8
+              font: 18px 'Scala', Georgia, sans-serif
+              color: #fff
+              display: inline-block
+              text-align: center
+              margin-top: 18px
+
+          li.active
+            background-color: #fff
+            a
+              color: #333
 
           .right
             :background url('/images/header-nav-right.png')
@@ -82,16 +77,22 @@ a.highlight
             :width 12px
             :display block
             :float left
-
-    .bottom
-      :float left
-      :display block
-      :width 100%
-      :height 6px
-      :background url(/images/shadow-top.png) repeat-x
-      :margin 0
-        :top -7px
-      :padding 0
+    #signin
+      background-color: #052336
+      height: 32px
+      float: right
+      padding: 18px 50px 0px 50px
+      margin-right: 4px
+      a
+        font-color: white
+        font-size: 18px
+        text-align: center
+        color: #fff
+    #profile-pic
+      width: 50px
+      height: 50px
+      float: right
+      margin-right: 4px
     #search
       +column(5, true)
       :margin

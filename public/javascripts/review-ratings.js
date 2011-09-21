@@ -1,6 +1,12 @@
 $( function(){
 
-    $( '#write-review a' ).click( function(){
+    $('#signin a').click(function(){
+      if($("#fb_connect_notification").hasClass('fixed')){
+        $("#fb_connect_notification").removeClass('fixed');
+      }
+    });
+    
+    $( '#write-review a, #signin a' ).click( function(){
       dropLoginDrawer();
       return false;
     });

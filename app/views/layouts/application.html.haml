@@ -62,27 +62,23 @@
           .top
             #logo
               %a{:href => '/'}
-                = image_tag 'new_logo_classicly.png'
+                = image_tag 'logo.png'
             #nav
               %ul
-                %li.active
-                  = link_to "Home", "/"
+                %li
+                  %a{:href => '/collections'} Collections
                 %li
                   %a{:href => '/authors'} Authors
                 %li
-                  %a.blog{:href => '/collections'} Collections
-            - unless current_login
-              #signin
-                = link_to "Sign In", "#"
-            - else
-              #profile-pic
-                = link_to facebook_image(current_login.fb_connect_id), '/library'
-                
+                  %a.blog{:href => '/blog'} Blog
+                %li
+                  %a{:href => '/library'} Library
 
-            / #search
-            /               = form_tag search_url, :id => 'indexTankForm' do
-            /                 = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-            /                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+            #search
+              = form_tag search_url, :id => 'indexTankForm' do
+                = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+                %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+          .bottom
       #content
         #left-column
           = yield
@@ -118,7 +114,6 @@
               .row
                 .span4.columns
                   = link_to "Browse authors", '/authors', :class => 'classicly-link'
-        .clear
 
       #bottom-shadow
       = render :partial => 'shared/footer'
