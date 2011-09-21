@@ -3,6 +3,9 @@
 
 - content_for :head do
   = content_tag :meta, nil, :name => "description", :content => "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"
+  
+= content_for :drawer do
+  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
 #home-page-content
   #classicly-welcome-text
     %h1

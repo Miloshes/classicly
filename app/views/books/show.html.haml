@@ -27,22 +27,21 @@
           #rating-stars
             = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
         .clear
-        - if ab_test('left_positioned_buttons') || Rails.env.test?
-          - if @book.read_online?
-            #read-online-btn
-              = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
-          #download-as
-            .text
-              Download as
-            - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
-              #pdf.download-button
-                = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
-            - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
-              #kindle.download-button
-                = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
-            - if @book.has_audiobook
-              #audiobook.download-button
-                = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
+        - if @book.read_online?
+          #read-online-btn
+            = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
+        #download-as
+          .text
+            Download as
+          - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+            #pdf.download-button
+              = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
+          - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+            #kindle.download-button
+              = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
+          - if @book.has_audiobook
+            #audiobook.download-button
+              = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
 
       <!-- details column-->
       .book-column.span7.columns
@@ -76,29 +75,19 @@
           .like-send
             <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
           %p= simple_format(@book.description)
-        
-        - unless ab_test 'left_positioned_buttons'
-          .row
-            .span7.columns
-              = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug) if @book.available_in_format?('pdf')
-              = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug) if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
-              = link_to image_tag('mp3-download_03.png'), seo_url(@book.audiobook_download_slug), :class => 'download-as-mp3' if @book.has_audiobook
-          .row
-            .span7.columns
-              = link_to image_tag('read_online_big.png'), seo_url(@book.seo_slugs.read_online.first.slug), :class => 'read_online' if @book.read_online?
-        
-                
-          %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
-          %p.explanation We don’t pay a cent, so neither do you.
-        
-          .clear
-          .row
-            .span7.columns
-              #write-review
-                = raw write_review_link(@book, current_login)
+
+
+        %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
+        %p.explanation We don’t pay a cent, so neither do you.
+
+        .clear
+        .row
+          .span7.columns
+            #write-review
+              = raw write_review_link(@book, current_login)
           <!-- le form -->
-          = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
-        
+        = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
+
       .row
         .offset4.span7.columns
           #reviews

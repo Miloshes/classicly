@@ -658,7 +658,7 @@ a.highlight:hover {
   width: 50px;
   height: 50px;
   float: right;
-  margin-right: 4px;
+  margin-right: -64px;
 }
 /* line 96, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search {

@@ -6,6 +6,8 @@ embed_assets: on
 
 javascripts:
   main:
+    - public/javascripts/UIHandler.js
+    - public/javascripts/LoginsController.js
     - public/javascripts/application.js
     - public/javascripts/global.js
     - public/javascripts/classicly-autocomplete.js
