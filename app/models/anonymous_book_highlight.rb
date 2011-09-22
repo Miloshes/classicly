@@ -9,7 +9,7 @@ class AnonymousBookHighlight < ActiveRecord::Base
   # we tie anonymous highlights to device IDs, so we can attach them to the user when he registers
   validates :ios_device_id, :presence => true
   
-  # has_friendly_id :content, :use_slug => true, :strip_non_ascii => true
+  has_friendly_id :content, :use_slug => true, :strip_non_ascii => true
   
   scope :all_for_book_and_ios_device, lambda { |book, ios_device_id| where(:book => book, :ios_device_id => ios_device_id) }
   
