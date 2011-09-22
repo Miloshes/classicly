@@ -82,6 +82,8 @@
             /               = form_tag search_url, :id => 'indexTankForm' do
             /                 = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
             /                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+      .clear
+      
       #content
         #left-column
           = yield
@@ -118,13 +120,28 @@
                 .span4.columns
                   = link_to "Browse authors", '/authors', :class => 'classicly-link'
         .clear
-
-      #bottom-shadow
-      = render :partial => 'shared/footer'
-      #bottom-notification-bar{:style => 'display:none; width: 150px;'}
-
-      %div.clear
-
+      #footer
+        #center-container
+          .row
+            .span7.columns
+              %ul
+                %li
+                  = link_to 'Apps', '#', :class => 'apps'
+                %li
+                  = link_to 'About', '#'
+                %li
+                  = link_to 'Blog', '#'
+                %li
+                  = link_to 'Terms of Service', '#'
+                %li
+                  = link_to 'Privacy Policy', '#'
+            .offset4.span7.columns
+              #copyright
+                2010-2011 Spreadsong, Inc.
+          .row
+            .offset11.span7.columns
+              #spreadsong
+                Made in Boston & Budapest.
 :javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";

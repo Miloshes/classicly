@@ -28,21 +28,6 @@
 			= link_to image_tag('footer-support.png'), "http://getsatisfaction.com/spreadsong/products/spreadsong_classicly"
 			= link_to image_tag('footer-facebook.png'), "http://www.facebook.com/pages/Classicly/193128150712368"
 			= link_to image_tag('footer-twitter.png'), "http://twitter.com/#!/classiclyapp"
-	#collection-names-list
-		=image_tag 'footer-collections-top.png'
-		.collections
-			.column-1.column
-				- for collection in @footer_collections_column_1
-					= content_tag :span, link_to(collection.name, seo_path(collection))
-			.column-2.column
-				- for collection in @footer_collections_column_2
-					= content_tag :span, link_to(collection.name, seo_path(collection))
-			.column-3.column
-				- for collection in @footer_author_collections_column_1
-					= content_tag :span, link_to(collection.name, seo_path(collection))
-			.column-4.column
-				- for collection in @footer_author_collections_column_2
-					= content_tag :span, link_to(collection.name, seo_path(collection))
 		=image_tag 'footer-collections-bottom.png'
 		.clear
 
