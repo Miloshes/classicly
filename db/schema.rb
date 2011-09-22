@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110919145027) do
+ActiveRecord::Schema.define(:version => 20110922143008) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -51,7 +51,10 @@ ActiveRecord::Schema.define(:version => 20110919145027) do
     t.datetime "created_at"
     t.text     "origin_comment"
     t.integer  "book_id"
+    t.text     "cached_slug"
   end
+
+  add_index "anonymous_book_highlights", ["cached_slug"], :name => "index_anonymous_book_highlights_on_cached_slug", :unique => true
 
   create_table "anonymous_reviews", :force => true do |t|
     t.integer  "reviewable_id"
@@ -130,7 +133,10 @@ ActiveRecord::Schema.define(:version => 20110919145027) do
     t.text     "origin_comment"
     t.integer  "book_id"
     t.string   "fb_connect_id"
+    t.text     "cached_slug"
   end
+
+  add_index "book_highlights", ["cached_slug"], :name => "index_book_highlights_on_cached_slug", :unique => true
 
   create_table "book_pages", :force => true do |t|
     t.integer "book_id"

@@ -3,19 +3,21 @@ require 'spec_helper'
 describe BookHighlight do
   
   before(:each) do
-    @book  = mock_model(Book)
-    @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
+    @author = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
+    @book   = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
+    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
 
     Login.stub_chain(:where, :first).and_return(@login)
 
     @book_highlight = BookHighlight.new(
       :first_character => 0,
       :last_character  => 9,
-      :content         => "content123",
+      :content         => "content 12",
       :book            => @book,
       :user            => @login,
       :fb_connect_id   => @login.fb_connect_id,
-      :created_at      => Time.now
+      :created_at      => Time.now,
+      :cached_slug     => "content-12"
     )
   end
   

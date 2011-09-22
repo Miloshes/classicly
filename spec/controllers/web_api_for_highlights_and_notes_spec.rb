@@ -3,7 +3,10 @@ require "spec_helper"
 describe WebApiController, "(API calls - notes and highlights registration)" do
   
   before(:each) do
-    @book = mock_model(Book)
+    @author    = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
+    @book      = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
+    @highlight = mock_model(BookHighlight, :content => "gone away", :cached_slug => "gone-away")
+    
     Book.stub!(:find).and_return(@book)
     
     @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
@@ -29,18 +32,29 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       @anonymous_book_highlight = AnonymousBookHighlight.new(
         :first_character => 0,
         :last_character  => 9,
+        :content         => "content 12",
         :book            => @book,
         :ios_device_id   => @login.ios_device_id,
-        :created_at      => Time.now
+        :created_at      => Time.now,
+        :cached_slug     => "content-12"
       )
     end
     
     it "should be able to register one given the book and the device ID" do
       post "create", :json_data => @api_call_params.to_json
-
-      response.body.should == "SUCCESS"
+      
+      response.should be_success
       AnonymousBookHighlight.should have(1).record
       BookHighlight.should have(0).records
+    end
+    
+    it "should return the URL for the highlight's public page after registration" do
+      post "create", :json_data => @api_call_params.to_json
+      
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+      parsed_response.class.should == Hash
+      parsed_response.should have_key("public_highlight_url")
     end
     
     it "should be able to update it" do
@@ -76,7 +90,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
     it "should be able to register one given the book and the user's facebook ID" do
       post "create", :json_data => @api_call_params.to_json
 
-      response.body.should == "SUCCESS"
+      response.should be_success
       BookHighlight.should have(1).records
       AnonymousBookHighlight.should have(0).records
     end
@@ -87,9 +101,18 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       
       post "create", :json_data => @api_call_params.to_json
 
-      response.body.should == "SUCCESS"
+      response.should be_success
       BookHighlight.should have(0).records
       AnonymousBookHighlight.should have(1).record
+    end
+    
+    it "should return the URL for the highlight's public page after registration" do
+      post "create", :json_data => @api_call_params.to_json
+      
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+      parsed_response.class.should == Hash
+      parsed_response.should have_key("public_highlight_url")
     end
     
     it "should be able to update it" do

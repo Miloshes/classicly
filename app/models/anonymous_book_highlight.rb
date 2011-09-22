@@ -1,4 +1,9 @@
 class AnonymousBookHighlight < ActiveRecord::Base
+  # we have to be able to handle URLs in the model
+  include ActionDispatch::Routing::UrlFor
+  include Rails.application.routes.url_helpers
+  include CommonSeoDefaultsMethods
+  
   belongs_to :book
   
   validates :first_character, :presence => true
@@ -38,8 +43,29 @@ class AnonymousBookHighlight < ActiveRecord::Base
     if highlight
       highlight.update_attributes(new_highlight_data) unless new_timestamp < highlight.created_at
     else
-      self.create(highlight_conditions.merge new_highlight_data)
+      new_highlight = self.create(highlight_conditions.merge new_highlight_data)
     end
+    
+    # we created a new highlight, return it. Otherwise we just did a record update
+    if new_highlight
+      return new_highlight
+    else
+      return true
+    end
+  end
+  
+  def response_when_created_via_web_api
+    # our response to highlight creation Web API call
+    # - the URL for the highlight's landing page
+    # - the share text for Twitter
+    # - the share text for Facebook
+    
+    default_url_options[:host] = "www.classicly.com"
+    default_url_options[:host] = "classicly-staging.heroku.com" if Rails.env.staging?
+    
+    return {
+      :public_highlight_url => author_book_highlight_url(self.book.author.cached_slug, self.book.cached_slug, self.cached_slug)
+    }.to_json
   end
   
   def convert_to_normal_highlight
