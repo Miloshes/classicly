@@ -120,9 +120,7 @@ group :development, :test do
 
   # fixtures generator for testing - http://rubygems.org/gems/machinist
   #gem 'machinist', '>= 2.0.0.beta1'
-
-  gem "mysql2", "~> 0.2.7"
-
+  
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem 'ZenTest'
   
