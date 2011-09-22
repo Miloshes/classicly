@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110915170737) do
+ActiveRecord::Schema.define(:version => 20110919145027) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
 
   add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
   add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
+
+  create_table "anonymous_book_highlights", :force => true do |t|
+    t.integer  "first_character"
+    t.integer  "last_character"
+    t.text     "content"
+    t.string   "ios_device_id"
+    t.datetime "created_at"
+    t.text     "origin_comment"
+    t.integer  "book_id"
+  end
 
   create_table "anonymous_reviews", :force => true do |t|
     t.integer  "reviewable_id"
@@ -117,7 +127,7 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
     t.text     "content"
     t.datetime "created_at"
     t.integer  "login_id"
-    t.text     "note"
+    t.text     "origin_comment"
     t.integer  "book_id"
     t.string   "fb_connect_id"
   end
@@ -179,25 +189,25 @@ ActiveRecord::Schema.define(:version => 20110915170737) do
   end
 
   create_table "collections", :force => true do |t|
-    t.string   "name"
-    t.string   "book_type"
-    t.string   "collection_type"
-    t.string   "paperback_color"
-    t.string   "source_type"
-    t.text     "description"
-    t.text     "source"
-    t.boolean  "has_image",                    :default => false, :null => false
-    t.boolean  "featured",                     :default => false, :null => false
-    t.datetime "created_at"
-    t.string   "author_portrait_file_name"
-    t.string   "author_portrait_content_type"
-    t.integer  "author_portrait_file_size"
-    t.datetime "author_portrait_updated_at"
-    t.integer  "genre_id"
-    t.string   "cached_slug"
-    t.integer  "downloaded_count",             :default => 0
-    t.text     "parsed_description"
-    t.integer  "audio_collection_id"
+    t.string    "name"
+    t.string    "book_type"
+    t.string    "collection_type"
+    t.string    "paperback_color"
+    t.string    "source_type"
+    t.text      "description"
+    t.text      "source"
+    t.boolean   "has_image",                    :default => false, :null => false
+    t.boolean   "featured",                     :default => false, :null => false
+    t.timestamp "created_at"
+    t.string    "author_portrait_file_name"
+    t.string    "author_portrait_content_type"
+    t.integer   "author_portrait_file_size"
+    t.timestamp "author_portrait_updated_at"
+    t.integer   "genre_id"
+    t.string    "cached_slug"
+    t.integer   "downloaded_count",             :default => 0
+    t.text      "parsed_description"
+    t.integer   "audio_collection_id"
   end
 
   create_table "custom_resources", :force => true do |t|

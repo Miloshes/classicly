@@ -109,4 +109,27 @@ describe AnonymousBookHighlight do
     end
   end
   
+  describe "being converted into normal highlights" do
+    
+    before(:each) do
+      @book  = FactoryGirl.create(:book)
+      
+      @highlight  = FactoryGirl.create(:anonymous_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
+      @highlight2 = FactoryGirl.create(:anonymous_highlight_just_note, :book => @book, :ios_device_id => @login.ios_device_id)
+    end
+    
+    it "should convert all the highlights for the book and user" do
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device_id).each do |abh| abh.convert_to_normal_highlight end
+
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device_id).count.should == 0
+    end
+    
+    it "should correctly assign the new highlights to the user" do
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device_id).each do |abh| abh.convert_to_normal_highlight end
+      
+      BookHighlight.all_for_book_and_user(@book, @login).count.should == 2
+    end
+    
+  end
+  
 end

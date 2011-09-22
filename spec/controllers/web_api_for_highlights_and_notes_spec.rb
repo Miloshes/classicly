@@ -111,39 +111,54 @@ end
 describe WebApiController, "(API calls - notes and highlights related queries)" do
   
   before(:each) do
-    @book = mock_model(Book)
-    Book.stub!(:find).and_return(@book)
-    
-    @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
-    Login.stub_chain(:where, :first).and_return(@login)
+    @book  = FactoryGirl.create(:book)
+    @login = FactoryGirl.create(:login)
 
     # NOTES: documentation
     @api_call_params = {
-      "device_id"       => @login.ios_device_id,
-      "book_id"         => @book.id,
-      "action"          => "get_book_highlights_for_user_for_book",
-      "timestamp"       => (Time.now).to_s(:db)
+      "device_id"         => @login.ios_device_id,
+      "book_id"           => @book.id,
+      "action"            => "get_book_highlights_for_user_for_book",
+      "structure_version" => "1.2"
     }
   end
   
-  describe "getting the list of the highlights for a user for a book" do
+  describe "getting the list of the highlights for a user and a book" do
   
-    it "should work when the user hasn't registered and has anonymous highlights" do
-      highlight = FactoryGirl.create(:anonymous_highlight, :book => @book, :user => @login)
-      highlight2 = FactoryGirl.create(:anonymous_highlight, :book => @book, :user => @login, :fist_character => 50, :last_character => 50, :content => nil)
+    it "should work when the user hasn't registered and has only anonymous highlights" do
+      highlight  = FactoryGirl.create(:anonymous_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
+      highlight2 = FactoryGirl.create(:anonymous_highlight_just_note, :book => @book, :ios_device_id => @login.ios_device_id)
 
-      post "query", :json_data => data.to_json
+      post "query", :json_data => @api_call_params.to_json
       
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       # We're expecting something like this:
-      # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
-
-      # parsed_response.class.should == Hash
-      # parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+      # [
+      #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
+      #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
+      # ]
+      
+      parsed_response.class.should == Array
+      parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
     end
   
     it "should work when the user is registered" do
+      highlight  = FactoryGirl.create(:highlight_with_note, :book => @book, :user => @login)
+      highlight2 = FactoryGirl.create(:highlight_just_note, :book => @book, :user => @login)
+
+      post "query", :json_data => @api_call_params.to_json
+      
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+      # We're expecting something like this:
+      # [
+      #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
+      #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
+      # ]
+      
+      parsed_response.class.should == Array
+      parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
     end
   
   end

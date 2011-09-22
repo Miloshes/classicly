@@ -39,4 +39,33 @@ class AnonymousBookHighlight < ActiveRecord::Base
     end
   end
   
+  def convert_to_normal_highlight
+    login = Login.where(:ios_device_id => self.ios_device_id).first()
+    
+    highlight_conditions = {
+      :user            => login,
+      :book            => self.book,
+      :fb_connect_id   => login.fb_connect_id,
+      :first_character => self.first_character,
+      :last_character  => self.last_character,
+    }
+
+    existing_highlight = BookHighlight.where(highlight_conditions).first()
+    
+    highlight_data = {
+      :content        => self.content,
+      :origin_comment => self.origin_comment
+    }
+        
+    if existing_highlight
+      successful_update = existing_highlight.update_attributes(highlight_data)
+      
+      self.destroy if successful_update
+    else
+      new_highlight = BookHighlight.create(highlight_conditions.merge highlight_data)
+      
+      self.destroy if new_highlight.valid?
+    end
+  end
+  
 end
