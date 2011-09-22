@@ -1,9 +1,6 @@
 - content_for :title do
   %title=@author.name
 
-= content_for :drawer do
-  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
-
 #collection-page.no-author-page
   .row.book-list
     .span12.columns

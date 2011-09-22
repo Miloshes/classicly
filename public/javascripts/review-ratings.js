@@ -1,4 +1,6 @@
-var loginsController = new LoginsController();
+var uiHandler = new UIHandler();
+var loginsController = new LoginsController( uiHandler );
+var ratingsController = new RatingsController( loginsController, uiHandler );
 
 $( function(){
 
@@ -21,13 +23,12 @@ $( function(){
         var bookId  = $( "#book-page" ).data( "book_id" );
         var klass   = $( "#book-rating" ).data( "book_type" );
 
-        if( isLoggedIn() ){ // send the rating.
-          sendRatingIndividualBookPage( bookId, value, klass );
+        if( loginsController.userLoggedIn() ){ // send the rating.
+          ratingsController.sendRate( bookId, value, klass);
         }else{
           // show the registration dropdown:
-          if ( $( "#fb_connect_notification" ).is( ":hidden" ) )
-            $( "#fb_connect_notification ").slideDown( "slow" );
-
+          loginsController.dropLoginDrawer( true );
+          LoginsController.bind( 'afterLoggedIn', rateIfRatingPresent );
           // store temporarily request's data. This because once the user logs in, this data will be send to create the rating:
           $( '#book-rating' ).data( 'bookRating' , value );
         }
@@ -37,58 +38,14 @@ $( function(){
 
     $( '.rating-cancel' ).remove();
 
-    // LOG IN
-    $( "#fb_connect_notification a#fb_connect" ).click( function(){
-      performLoggedInChanges();
-      return false;
-    });
-
   });
-
-  function bookPageHideStarsOnRating(){
-    ratingTextDiv = $( ".cover-column #my-rating #text" );
-    ratingTextDiv.text( "Saving..." );
-
-    // traverse DOM:
-    myRating = ratingTextDiv.parents( '#my-rating' );
-
-    myRating.children( '#rating-stars' ).hide();
-    myRating.children( '#blank-stars' ).show();
-  }
-
-  function bookPageShowStarsOnRatingCompleted(){
-    ratingTextDiv = $( ".cover-column #my-rating #text" );
-    ratingTextDiv.text( "My Rating:" );
-
-    // traverse DOM:
-    myRating = ratingTextDiv.parents( '#my-rating' );
-
-    myRating.children( '#rating-stars' ).show();
-    myRating.children( '#blank-stars' ).hide();
-  }
-  
-  function sendRatingIndividualBookPage( bookId, rating, klass ){
-    var data = klass + '_id=' + bookId + '&rating=' + rating;
-
-    $.ajax({
-      type: 'POST',
-      url: '/reviews/create_rating',
-      data: data,
-      beforeSend: bookPageHideStarsOnRating(),
-      success: function(){
-        ratingTextDiv = $( ".cover-column #my-rating #text" );
-        ratingTextDiv.text( "Saved!" );
-        setTimeout( "bookPageShowStarsOnRatingCompleted()", 200 );
-      }
-    });
-  }
 
   function rateIfRatingPresent(){
     if( $( "#book-rating" ).data( "bookRating" ) != undefined ){
       var bookId  = $( "#book-page" ).data( "book_id" );
       var klass   = $( "#book-rating" ).data( "book_type" );
       var value   = $( "#book-rating" ).data( "bookRating" );
-      sendRatingIndividualBookPage( bookId, value, klass ) ;
+      ratingsController.sendRate( bookId, value, klass);
     }
   }
 
@@ -99,11 +56,8 @@ $( function(){
       return false;
     }else{
         // no user session available, someone you dont know
-      FB.login( function( response ) {
           // the user successfully logs in, let's register him and notify the Library model afterwards
-        if (response.session) {
             // register the user via the Login model
-            loginsController.logIn();
           // $.ajax({
           //             type: "POST",
           //             url: "/logins",
@@ -135,7 +89,5 @@ $( function(){
           //               });
           //             }
           //           });
-        }
-      });
     }
   }

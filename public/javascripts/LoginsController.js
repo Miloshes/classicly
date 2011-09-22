@@ -1,3 +1,7 @@
+Function.prototype.bind =  function( name, fn){
+  this.prototype[name] = fn;
+};
+
 var LoginsController = function(uiHandler){
   this.uiHandler = uiHandler;
 };
@@ -26,7 +30,7 @@ LoginsController.prototype = {
       drawer.slideUp( "slow" );
   },
 
-  logIn : function( fn ){
+  logIn : function(){
     var self = this;
 
     FB.login( function( response ){
@@ -39,8 +43,8 @@ LoginsController.prototype = {
           dataType: "json",
           success: function( data ){
             self.pushToKissmetrics( data );
-            if( fn != undefined )
-              fn();
+            if( self.afterLoggedIn != undefined )
+              self.afterLoggedIn();
 
             self.hideLoginDrawer();
             self.uiHandler.removeSigninMessage();
@@ -61,7 +65,7 @@ LoginsController.prototype = {
     else
       _kmq.push(["record", "User Signed Up"]);
   },
-
+  
   userLoggedIn: function(){
 
     var logged = false;
