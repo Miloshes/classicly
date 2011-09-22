@@ -53,11 +53,12 @@ describe BookHighlight do
       @api_call_params = {
         "device_id"         => @login.ios_device_id,
         "user_fbconnect_id" => @login.fb_connect_id,
-        "book_id"           => 30,
+        "book_id"           => @book.id,
         "action"            => "register_book_highlight",
         "first_character"   => 0,
         "last_character"    => 29,
         "content"           => "The rabbit went down the hole.",
+        "origin_comment"    => "here's my comment",
         "timestamp"         => (Time.now).to_s(:db)
       }
       
@@ -100,10 +101,12 @@ describe BookHighlight do
       # future timestamp, so the update actually happens
       new_timestamp = (Time.now + 10.minutes).to_s(:db)
       @api_call_params["timestamp"] = new_timestamp
+      # the change of data
+      @api_call_params["origin_comment"] = "changed comment"
       # the highlight exists
       BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
       # a call to update_attributes should be made
-      @book_highlight.should_receive(:update_attributes)
+      @book_highlight.should_receive(:update_attributes).with(hash_including(:origin_comment => "changed comment"))
       
       BookHighlight.create_or_update_from_ios_client_data(@api_call_params)
     end
@@ -114,6 +117,8 @@ describe BookHighlight do
       BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
       # the timestamp points to a past point
       @api_call_params["timestamp"] = (Time.now - 10.minutes).to_s(:db)
+      # the change of data
+      @api_call_params["origin_comment"] = "changed comment"
       # a call to update_attributes should NOT be made
       @book_highlight.should_not_receive(:update_attributes)
       

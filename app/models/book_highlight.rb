@@ -10,6 +10,8 @@ class BookHighlight < ActiveRecord::Base
   validates :user, :presence => true
   validates :fb_connect_id, :presence => true
   
+  scope :all_for_book_and_user, lambda { |book, user| where(:book => book, :user => user) }
+  
   def self.create_or_update_from_ios_client_data(data)
     book = Book.find(data["book_id"].to_i)
 
@@ -38,7 +40,8 @@ class BookHighlight < ActiveRecord::Base
       }
 
     new_highlight_data = {
-        :created_at      => new_timestamp
+        :created_at     => new_timestamp,
+        :origin_comment => data["origin_comment"]
       }
   
     highlight = self.where(highlight_conditions).first()
