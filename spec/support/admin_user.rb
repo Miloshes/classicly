@@ -5,11 +5,8 @@ Factory.define :admin_user do |f|
   f.password_confirmation 'mypassword'
 end
 
-
-
 FactoryGirl.define do
   sequence :email do |n|
     "person#{n}@example.com"
   end
 end
-

@@ -26,6 +26,9 @@ class Book < ActiveRecord::Base
   has_many :reviews, :as => :reviewable
   has_many :anonymous_reviews, :as => :reviewable
   
+  has_many :book_highlights
+  has_many :anonymous_book_highlights
+  
   has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
   
@@ -38,7 +41,7 @@ class Book < ActiveRecord::Base
   scope :for_author, lambda {|author| where(:author_id => author.id)}
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RAND()', :limit => limit }}
+  scope :random, lambda { |limit| {:order => (Rails.env.production? || Rails.env.staging?) ? 'RANDOM()': 'RANDOM()', :limit => limit }}
   scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
 
   validates :title, :presence => true
