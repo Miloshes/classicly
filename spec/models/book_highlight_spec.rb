@@ -11,6 +11,7 @@ describe BookHighlight do
     @book_highlight = BookHighlight.new(
       :first_character => 0,
       :last_character  => 9,
+      :content         => "content123",
       :book            => @book,
       :user            => @login,
       :fb_connect_id   => @login.fb_connect_id,
@@ -19,7 +20,7 @@ describe BookHighlight do
   end
   
   context "when getting created" do
-    it "should have the first_character and last_character attributes set" do
+    it "should have the first_character, last_character and content attributes set" do
       @book_highlight.should be_valid
       
       @book_highlight.first_character = nil
@@ -28,6 +29,11 @@ describe BookHighlight do
       @book_highlight.first_character = 1
       
       @book_highlight.last_character = nil
+      @book_highlight.should_not be_valid
+      
+      @book_highlight.last_character = 9
+      
+      @book_highlight.content = nil
       @book_highlight.should_not be_valid
     end
     
@@ -68,7 +74,7 @@ describe BookHighlight do
     it "should fail when one of the required parameters is missing from the API call parameters" do
       Book.stub(:find).and_return(nil)
       
-      %w{first_character last_character book_id device_id user_fbconnect_id}.each do |parameter_to_cut|
+      %w{first_character last_character book_id device_id user_fbconnect_id content}.each do |parameter_to_cut|
         api_params = @api_call_params.clone
         api_params.delete(parameter_to_cut)
         

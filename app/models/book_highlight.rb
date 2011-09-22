@@ -5,6 +5,7 @@ class BookHighlight < ActiveRecord::Base
   validates :first_character, :presence => true
   validates :last_character, :presence => true
   validates :book, :presence => true
+  validates :content, :presence => true
   
   # highlights are tied to registered users. Highlights from unregistered users are saved as AnonymousBookHighlight
   validates :user, :presence => true

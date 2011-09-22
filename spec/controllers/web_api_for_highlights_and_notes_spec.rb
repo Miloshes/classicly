@@ -126,8 +126,14 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
   describe "getting the list of the highlights for a user and a book" do
   
     it "should work when the user hasn't registered and has only anonymous highlights" do
-      highlight  = FactoryGirl.create(:anonymous_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
-      highlight2 = FactoryGirl.create(:anonymous_highlight_just_note, :book => @book, :ios_device_id => @login.ios_device_id)
+      highlight  = FactoryGirl.create(:anonymous_book_highlight,
+          :book            => @book,
+          :ios_device_id   => @login.ios_device_id,
+          :first_character => 0,
+          :last_character  => 6,
+          :content         => "content"
+        )
+      highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
 
       post "query", :json_data => @api_call_params.to_json
       
@@ -140,12 +146,13 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
       # ]
       
       parsed_response.class.should == Array
+      parsed_response.count.should == 2
       parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
     end
   
     it "should work when the user is registered" do
-      highlight  = FactoryGirl.create(:highlight_with_note, :book => @book, :user => @login)
-      highlight2 = FactoryGirl.create(:highlight_just_note, :book => @book, :user => @login)
+      highlight  = FactoryGirl.create(:book_highlight, :book => @book, :user => @login)
+      highlight2 = FactoryGirl.create(:book_highlight_with_note, :book => @book, :user => @login)
 
       post "query", :json_data => @api_call_params.to_json
       
@@ -158,6 +165,7 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
       # ]
       
       parsed_response.class.should == Array
+      parsed_response.count.should == 2
       parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
     end
   

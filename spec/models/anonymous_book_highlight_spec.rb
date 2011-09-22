@@ -11,6 +11,7 @@ describe AnonymousBookHighlight do
     @book_highlight = AnonymousBookHighlight.new(
       :first_character => 0,
       :last_character  => 9,
+      :content         => "content123",
       :book            => @book,
       :ios_device_id   => @login.ios_device_id,
       :created_at      => Time.now
@@ -27,6 +28,11 @@ describe AnonymousBookHighlight do
       @book_highlight.first_character = 1
       
       @book_highlight.last_character = nil
+      @book_highlight.should_not be_valid
+      
+      @book_highlight.last_character = 9
+
+      @book_highlight.content = nil
       @book_highlight.should_not be_valid
     end
     
@@ -114,8 +120,14 @@ describe AnonymousBookHighlight do
     before(:each) do
       @book  = FactoryGirl.create(:book)
       
-      @highlight  = FactoryGirl.create(:anonymous_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
-      @highlight2 = FactoryGirl.create(:anonymous_highlight_just_note, :book => @book, :ios_device_id => @login.ios_device_id)
+      @highlight  = FactoryGirl.create(:anonymous_book_highlight,
+          :book            => @book,
+          :ios_device_id   => @login.ios_device_id,
+          :first_character => 0,
+          :last_character  => 6,
+          :content         => "content"
+        )
+      @highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note, :book => @book, :ios_device_id => @login.ios_device_id)
     end
     
     it "should convert all the highlights for the book and user" do
