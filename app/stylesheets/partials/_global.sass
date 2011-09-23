@@ -2,7 +2,21 @@
 /* ---------->>> GLOBAL <<<-----------*/
 /* -----------------------------------*/
 
-body
+@font-face
+  font-family: 'Scala'
+  src: url('/fonts/scala-webfont.svg') format('svg'), url('/fonts/scala-webfont.woff') format('woff'), url('/fonts/scala-webfont.ttf')  format('truetype')
+  
+
+body.bp
+  background-color: #f2f1e6
+  font-family: 'Scala', Georgia, sans-serif
+
+  #content
+    +container  
+    overflow: visible !important
+    background-color: #fff
+    padding: 0px 0px 30px 30px
+
   h1.collection-header
     font-size: 22px
     font-weight: bold

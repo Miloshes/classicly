@@ -9,93 +9,87 @@
       :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book' }, @book.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@book)
 
-= content_for :drawer do
-  = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
-
 
 #book-page
   .span12.columns
+    .row
+      <!-- left column-->
+      .cover-column.offset1.span3.columns
+        #current-book.cover.medium
+          = cover_image_link(@book, 2)
+        #my-rating
+          #text
+            My Rating
+          #blank-stars
+          #rating-stars
+            = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
+        .clear
+        - if @book.read_online?
+          #read-online-btn
+            = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
+        #download-as
+          .text
+            Download as
+          - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+            #pdf.download-button
+              = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
+          - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+            #kindle.download-button
+              = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
+          - if @book.has_audiobook
+            #audiobook.download-button
+              = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
 
-  .row
-    <!-- left column-->
-    .cover-column.span3.columns
-      #current-book.cover.medium
-        = cover_image_link(@book, 2)
-      #my-rating
-        #text
-          My Rating
-        #blank-stars
-        #rating-stars
-          = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
-      .clear
+      <!-- details column-->
+      .book-column.span7.columns
+        #book-metadata
+          #book-title
+            %h1= @book.pretty_title
+          #book-author
+            %h2
+              by
+              %span.book-author
+                = book_author_link(@book, 'classicly-link')
+          #book-rating
+            - if @book.average_rating > 0
+              = raw show_review_rating_stars(@book.average_rating)
+              %span#reviews-count
+                = show_review_counts @book
 
-      - if @book.read_online?
-        #read-online-btn
-          = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
-      #download-as
-        .text
-          Download as
-        - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
-          #pdf.download-button
-            = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
-        - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
-          #kindle.download-button
-            = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
-        - if @book.has_audiobook
-          #audiobook.download-button
-            = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
+          -# Google AdSense. DO NOT MODIFY.
+          <script type="text/javascript"><!--
+          google_ad_client = "ca-pub-7773516323337861";
+          /* Book Page 250&#42;300 */
+          google_ad_slot = "6647913200";
+          google_ad_width = 300;
+          google_ad_height = 250;
+          //-->
+          </script>
+          <script type="text/javascript"
+          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+          </script>
 
-    <!-- details column-->
-    .book-column.span9.columns
-      #book-metadata
-        #book-title
-          %h1= @book.pretty_title
-        #book-author
-          %h2
-            by
-            %span.book-author
-              = book_author_link(@book, 'classicly-link')
-        #book-rating
-          - if @book.average_rating > 0
-            = raw show_review_rating_stars(@book.average_rating)
-            %span#reviews-count
-              = show_review_counts @book
-
-        -# Google AdSense. DO NOT MODIFY.
-        <script type="text/javascript"><!--
-        google_ad_client = "ca-pub-7773516323337861";
-        /* Book Page 250&#42;300 */
-        google_ad_slot = "6647913200";
-        google_ad_width = 300;
-        google_ad_height = 250;
-        //-->
-        </script>
-        <script type="text/javascript"
-        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-        </script>
-
-        .like-send
-          <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
-        %p= simple_format(@book.description)
+          .like-send
+            <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
+          %p= simple_format(@book.description)
 
         %p.explanation.first Downloads on Classicly are completely free- these books are public domain.
         %p.explanation We don’t pay a cent, so neither do you.
 
         .clear
         .row
-          .span8.columns
+          .span7.columns
             #write-review
               = raw write_review_link(@book, current_login)
-        <!-- le form -->
+          <!-- le form -->
         = render :partial => 'books/review_form', :locals => {:book => @book, :login => current_login}
 
-  .row
-    .offset3.span9.columns
-      #reviews
-        = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent
-
-        <!-- les import -->
-        = javascript_include_tag 'review-ratings'
+      .row
+        .offset4.span7.columns
+          #reviews
+            = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent                
+<!-- les import -->
+= javascript_include_tag 'review-ratings'
 
 :javascript
   $(function(){

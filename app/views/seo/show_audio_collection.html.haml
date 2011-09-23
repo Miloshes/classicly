@@ -7,9 +7,6 @@
       :title => @collection.name, :type => 'album' }, @collection.seo_info)
   = content_tag :meta, nil, :name => 'description', :content => seo_front_end_meta_description_text(@collection)
 
-  = content_for :drawer do
-    = render :partial => '/shared/connect_with_facebook_bar', :locals => {:fixed_bar => true}
-
 #collection-page.row
   .span12.columns
 
