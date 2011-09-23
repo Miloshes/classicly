@@ -269,6 +269,23 @@ class Book < ActiveRecord::Base
     SeoSlug.where(:seoable_id => self.id).delete_all
     generate_seo_slugs(['pdf', 'kindle', 'online'])
   end
+  
+  # Returns an array of file formats prettied up for public display (turns azw into Kindle, pdf into PDF).
+  # The book is available for download in all these formats.
+  def pretty_download_formats
+    return classicly_formats.collect { |format|
+      case format
+      when "azw"
+        "Kindle"
+      when "pdf"
+        "PDF"
+      when "rtf"
+        "Rtf"
+      else
+        format
+      end
+    }
+  end
 
   # === Methods related to online reading and rendering
 
