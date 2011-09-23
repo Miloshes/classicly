@@ -9,11 +9,9 @@ class WebApiController < ApplicationController
   before_filter :get_api_handler
   
   def create
-    if @handler.handle_incoming_data(params)
-      render :text => 'SUCCESS' and return
-    else
-      render :text => 'FAILURE' and return
-    end
+    response = @handler.handle_incoming_data(params)
+    
+    render :text => response
   end
   
   # POST review_api/query

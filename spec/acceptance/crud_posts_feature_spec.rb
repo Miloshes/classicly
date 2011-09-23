@@ -55,7 +55,7 @@ feature 'Crud posts feature: ', %q{
     find(:xpath, "id('blog_post_title')").value.should == 'The Blog Post'
   end
 
-  scenario 'Creating a blog post with a break tag to determine the amount of text to show on the frontend' do
+  scenario 'Creating a blog post with a break tag to determine the amount of text to show on the frontend', :js => true do
     # And given I have created a blog_post with a break tag
     title = 'Excellent blog post'
     text =  "You love to read great works of literature, but sometimes you just cant settle on a book to read.

@@ -4,38 +4,36 @@ class WebApiHandler
   
   # creates an IncomingData model object and processes it
   def handle_incoming_data(params)
-    return false if params[:json_data].blank?
+    return "FAILURE" if params[:json_data].blank?
     
     incoming_data = IncomingData.create(:json_data => params[:json_data])
-    
-    if incoming_data
-      incoming_data.process!
-      return true
-    else
-      return false
-    end
+    response      = incoming_data.process!
+
+    return response
   end
   
   def process_query(params)
     parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
 
-    response = ''
+    response = ""
 
-    case parsed_data['action']
-    when 'get_reviews_for_book'
+    case parsed_data["action"]
+    when "get_reviews_for_book"
       response = get_reviews_for_book(parsed_data)
-    when 'get_ratings_for_all_books'
+    when "get_ratings_for_all_books"
       response = get_ratings_for_all_books(parsed_data)
-    when 'get_review_for_book_by_user'
+    when "get_review_for_book_by_user"
       response = get_review_for_book_by_user(parsed_data)
-    when 'get_list_of_books_the_user_wrote_review_for'
+    when "get_list_of_books_the_user_wrote_review_for"
       response = get_list_of_books_the_user_wrote_review_for(parsed_data)
-    when 'get_review_stats_for_book'
+    when "get_review_stats_for_book"
       response = get_review_stats_for_book(parsed_data)
-    when 'get_classicly_url_for_book'
+    when "get_classicly_url_for_book"
       response = get_classicly_url_for_book(parsed_data)
-    when 'get_user_data'
+    when "get_user_data"
       response = get_user_data(parsed_data)
+    when "get_book_highlights_for_user_for_book"
+      response = get_book_highlights_for_user_for_book(parsed_data)
     end
     
     return response
@@ -182,6 +180,37 @@ class WebApiHandler
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
     return login.to_json(:except => [:id, :user_id])
+  end
+  
+  def get_book_highlights_for_user_for_book(params)
+    book  = Book.find(params["book_id"].to_i)
+
+    # We should get the same user nevertheless - this is for safety measures
+    if params["user_fbconnect_id"]
+      login = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
+    else
+      login = Login.where(:ios_device_id => params["device_id"].to_s).first()
+    end
+    
+    return nil.to_json if book.blank? || login.blank?
+    
+    anonymous_highlights = AnonymousBookHighlight.where(:book => book, :ios_device_id => login.ios_device_id).all()
+    highlights           = BookHighlight.where(:book => book, :user => login).all()
+    
+    # NOTE: thing is, one user should have either normal highlights or anonymous ones - this is for safety measures
+    all_highlights = anonymous_highlights + highlights
+    
+    result = all_highlights.collect { |highlight|
+        {
+          :first_character => highlight.first_character,
+          :last_character  => highlight.last_character,
+          :content         => highlight.content,
+          :created_at      => highlight.created_at,
+          :origin_comment  => highlight.origin_comment
+        }
+      }
+    
+    return result.to_json
   end
   
 end

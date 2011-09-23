@@ -132,7 +132,7 @@ class Audiobook < ActiveRecord::Base
   
   # CLEANUP: extract, SEO related
   def update_seo_slugs
-    SeoSlug.where(:seoable_id => self.id).delete_all
+    SeoSlug.where(:seoable_id => self.id, :seoable_type => 'Audiobook').delete_all
     generate_seo_slugs(['mp3'])
   end
   

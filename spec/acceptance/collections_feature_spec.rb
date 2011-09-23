@@ -15,7 +15,9 @@ feature 'Collections feature', %q{
     end
 
     @audiocollection = FactoryGirl.create(:collection, :book_type => 'audiobook', :name => 'Hummies')
-
+    @collection.audio_collection = @audiocollection
+    @collection.save
+    
     ['audiohummies-1', 'audiohummies-2'].each do|title|
       @audiocollection.audiobooks << FactoryGirl.create(:audiobook, :pretty_title => title)
     end
@@ -26,7 +28,7 @@ feature 'Collections feature', %q{
     # When I visit the collection
     visit seo_path(@collection) 
     # And I click audiobooks
-    within('.audiobook-switcher') do
+    within('.audiobook-switcher .columns') do
       click_on 'Audiobooks'
     end
     # Then I should see that I am on the Hummies audiobooks page

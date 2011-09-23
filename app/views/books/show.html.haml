@@ -44,6 +44,22 @@
           #audiobook.download-button
             = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
 
+      - if @book.read_online?
+        #read-online-btn
+          = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
+      #download-as
+        .text
+          Download as
+        - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+          #pdf.download-button
+            = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
+        - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+          #kindle.download-button
+            = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
+        - if @book.has_audiobook
+          #audiobook.download-button
+            = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
+
     <!-- details column-->
     .book-column.span9.columns
       #book-metadata

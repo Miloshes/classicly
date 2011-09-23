@@ -105,6 +105,9 @@ Classicly::Application.routes.draw do
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
   match '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote, :via => :get
 
+  # == Notes and Highlights
+  match "/:author_id/:book_id/highlights/:highlight_id" => "book_highlights#show", :as => :author_book_highlight, :via => :get
+
   # == final download pages, the ones that starts downloading the file immediately
   match '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
   match "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get

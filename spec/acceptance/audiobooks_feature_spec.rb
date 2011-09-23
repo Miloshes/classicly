@@ -37,9 +37,8 @@ require 'acceptance/acceptance_helper'
 
       # When I go to the audiobook page
       visit author_book_path(author, audiobook)
-
       # And I click to go to the mp3 download page
-      within('.download') do
+      within('#download-as #mp3') do
         find(:xpath, ".//a[1]").click
       end
 

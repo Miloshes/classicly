@@ -42,7 +42,7 @@ class PushDownloadURLsToLibraryAppJob
 
     Audiobook.find_each do |audiobook|
       url_to_call = "http://localhost:3000/audiobooks/#{audiobook.id}/update_classicly_download_url"
-      response = RestClient.put url_to_call, :download_url => 'http://' + default_url_options[:host] + audiobook.url_for_specific_format('mp3')
+      response = RestClient.put url_to_call, :download_url => 'http://' + default_url_options[:host] + audiobook.optimal_url_for_download_page('mp3')
     
       if response.body != 'SUCCESS'
         errors_while_pushing = true
@@ -114,7 +114,8 @@ namespace :seo_urls do
   # NOTE: this task uses Delayed Job, so make sure you have a worker available  
   task :push_download_urls_to_library_app => :environment do
     job = PushDownloadURLsToLibraryAppJob.new
-    job.delay.execute
+    # job.delay.execute
+    job.execute
   end
   
 end

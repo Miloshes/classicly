@@ -13,19 +13,35 @@ class IncomingData < ActiveRecord::Base
     if parsed_data.is_a? Hash
       parsed_data = [parsed_data]
     end
+    
+    # the sub-tasks can override it
+    response = "SUCCESS"
 
     parsed_data.each do |record|
-      case record['action']
+      case record["action"]
       # stands for creating and updating
-      when 'register_book_review'
-        if record['user_fbconnect_id']
+      when "register_book_review"
+        if record["user_fbconnect_id"]
           Review.create_or_update_from_ios_client_data(record)
         else
           AnonymousReview.create_or_update_from_ios_client_data(record)
         end
-      when 'register_ios_user'
+      # stands for creating and updating the highlight
+      when "register_book_highlight"
+        if record["user_fbconnect_id"]
+          result = BookHighlight.create_or_update_from_ios_client_data(record)
+        else
+          result = AnonymousBookHighlight.create_or_update_from_ios_client_data(record)
+        end
+        
+        # if we've created a new record, we return the associated Web API answer
+        if result.is_a?(BookHighlight) || result.is_a?(AnonymousBookHighlight)
+          Rails.logger.info("\n\n!!!!  #{result.inspect}\n\n")
+          response = result.response_when_created_via_web_api
+        end
+      when "register_ios_user"
         Login.register_from_ios_app(record)
-      when 'update_book_description'
+      when "update_book_description"
         Book.update_description_from_web_api(record)
       end
     end
@@ -34,6 +50,8 @@ class IncomingData < ActiveRecord::Base
     # self.update_attributes(:processed => true)
     # in production environment we don't want to keep an incoming data archive
     self.destroy
+    
+    return response
   end
   
 end

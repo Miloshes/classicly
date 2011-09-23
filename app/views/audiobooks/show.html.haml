@@ -19,7 +19,6 @@
           #rating-stars
             = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
         .clear
-
         #download-as
           .text
             Download as
