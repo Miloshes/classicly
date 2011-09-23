@@ -107,7 +107,7 @@ module ApplicationHelper
   end
 
   def top_nav_link(text, path)
-    css_class = (path == request.request_uri) ? 'active' : nil
+    css_class = (path == request.fullpath) ? 'active' : nil
 
     content_tag :li, nil, :class => css_class do
       link_to text, path, :class => css_class
