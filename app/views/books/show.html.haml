@@ -56,19 +56,6 @@
               %span#reviews-count
                 = show_review_counts @book
 
-          -# Google AdSense. DO NOT MODIFY.
-          <script type="text/javascript"><!--
-          google_ad_client = "ca-pub-7773516323337861";
-          /* Book Page 250&#42;300 */
-          google_ad_slot = "6647913200";
-          google_ad_width = 300;
-          google_ad_height = 250;
-          //-->
-          </script>
-          <script type="text/javascript"
-          src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-          </script>
-
           .like-send
             <fb:like show_faces="true" send="true" width="600" send="true" font="arial" action='recommend'></fb:like>
           %p= simple_format(@book.description)
