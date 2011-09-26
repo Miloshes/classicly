@@ -54,7 +54,7 @@ describe AnonymousBookHighlight do
     before(:each) do
       @api_call_params = {
         "device_id"       => @login.ios_device_id,
-        "book_id"         => 30,
+        "book_id"         => @book.id,
         "action"          => "register_book_highlight",
         "first_character" => 0,
         "last_character"  => 29,
@@ -114,6 +114,13 @@ describe AnonymousBookHighlight do
       @book_highlight.should_not_receive(:update_attributes)
       
       AnonymousBookHighlight.create_or_update_from_ios_client_data(@api_call_params)
+    end
+    
+    it "should have a public URL" do
+      new_highlight = AnonymousBookHighlight.create_or_update_from_ios_client_data(@api_call_params)
+      
+      new_highlight.should respond_to(:public_url)
+      new_highlight.public_url.should include("http://www.classicly.com/")
     end
   end
   
