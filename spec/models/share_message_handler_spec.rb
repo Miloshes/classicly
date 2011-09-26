@@ -1,5 +1,8 @@
 require "spec_helper"
 
+# TODO:
+# - test #replace_variables
+
 describe ShareMessageHandler do
   
   before(:each) do
@@ -10,8 +13,21 @@ describe ShareMessageHandler do
         :pretty_title => "Les miserables",
         :cached_slug => "les-miserables"
       )
-      
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
+      
+    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
+    Login.stub_chain(:where, :first).and_return(@login)
+      
+    @book_highlight = mock_model(AnonymousBookHighlight,
+      :first_character => 0,
+      :last_character  => 9,
+      :content         => "content 12",
+      :book            => @book,
+      :ios_device_id   => @login.ios_device_id,
+      :created_at      => Time.now,
+      :cached_slug     => "content-12"
+    )
+    @book_highlight.stub!(:public_url).and_return("http://www.classicly.com/victor-hugo/les-miserables/highlights/content-12")
     
     @share_message_handler = ShareMessageHandler.new
   end
@@ -40,14 +56,13 @@ describe ShareMessageHandler do
 
         # check for variable boundaries
         message.should_not include("{{")
-        puts "\n\nFinal message: #{message}\n\n"
       end
 
     end
     
     it "should take into account the type of the requested message" do
       message1 = @share_message_handler.get_message_for("twitter", "book share", :book => @book)
-      message2 = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book)
+      message2 = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book, :highlight => @book_highlight)
       
       message1.should_not == message2
     end
@@ -63,8 +78,7 @@ describe ShareMessageHandler do
       it "shouldn't exceed the character limit" do
         message = @share_message_handler.get_message_for("twitter", "book share", :book => @book, :twitter_without_url => true)
         
-        puts "\n\n Trying to short: #{message}\nlength: #{message.length}\n\n"
-        # t.co links are 20characters maximum  
+        # t.co links are 20characters maximum
         message.length.should < 120
       end
       
@@ -72,17 +86,50 @@ describe ShareMessageHandler do
     
     context "when responding to a text selection share request" do
       
-      it "should contain parts of the text selection, and a link to the highlight's public page"
+      it "should contain parts of the text selection, and a link to the book page" do
+        message = @share_message_handler.get_message_for("twitter", "selected text share", :book => @book, :selected_text => "la bourgeoisie locale")
+        
+        message.should include("la bourgeoisie locale")
+        # TODO: shouldn't be hardcoded
+        message.should include("http://www.classicly.com/victor-hugo/les-miserables")
+      end
       
-      it "shouldn't exceed the character limit"
+      it "shouldn't exceed the character limit" do
+        message = @share_message_handler.get_message_for(
+            "twitter",
+            "selected text share",
+            :book => @book,
+            :selected_text => "la bourgeoisie locale",
+            :twitter_without_url => true
+          )
+          
+        # t.co links are 20characters maximum
+        message.length.should < 120
+      end
       
     end
     
     context "when responding to a highlight & note share request" do
       
-      it "should contain parts of the text selection, and a link to the highlight's public page"
+      it "should contain parts of the text selection, and a link to the highlight's public page" do
+        message = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book, :highlight => @book_highlight)
+        
+        message.should include(@book_highlight.content)
+        message.should include(@book_highlight.public_url)
+      end
       
-      it "shouldn't exceed the character limit"
+      it "shouldn't exceed the character limit" do
+        message = @share_message_handler.get_message_for(
+            "twitter",
+            "highlight share",
+            :book => @book,
+            :highlight => @book_highlight,
+            :twitter_without_url => true
+          )
+        
+        # t.co links are 20characters maximum
+        message.length.should < 120
+      end
       
     end
     
