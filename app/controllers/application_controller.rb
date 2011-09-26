@@ -9,24 +9,15 @@ class ApplicationController < ActionController::Base
 
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
-  before_filter :collections_for_footer
   before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
-  caches_action :collections_for_footer
 
   def current_login
     return if !facebook_cookies
 
     @current_login ||= Login.where(:fb_connect_id => facebook_cookies['uid']).first
   end
-
-  def collections_for_footer
-    @footer_collections_column_1        = Collection.find_book_collections_and_genres.select('name,cached_slug').limit(14).order('name asc')
-    @footer_collections_column_2        = Collection.find_book_collections_and_genres.select('name,cached_slug').offset(14).limit(14).order('name asc')
-    @footer_author_collections_column_1 = Collection.find_book_author_collections.select('name,cached_slug').limit(14).order('name asc')
-    @footer_author_collections_column_2 = Collection.find_book_author_collections.select('name,cached_slug').offset(14).limit(14).order('name asc')
- end
 
   def current_admin_user_session
     return @current_admin_user_session if defined?(@current_admin_user_session)

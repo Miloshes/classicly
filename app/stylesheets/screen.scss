@@ -18,6 +18,7 @@
 // So that you can better control what pages use blueprint
 // when stylesheets are concatenated together.
 @include blueprint-scaffolding("body.bp");
+@import "compass/css3/font-face";
 
 @import "partials/global";
 @import "partials/layout";
@@ -51,10 +52,6 @@ body.bp {
 	a:visited {
 		color: #333333;
 	}
-  #content {
-    @include container;
-    overflow: visible !important;
-  }
 }
 
 
