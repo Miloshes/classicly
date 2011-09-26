@@ -126,8 +126,9 @@ form.inline p {
 body.bp {
   background-color: #f2f1e6;
   font-family: "Scala", Georgia, sans-serif;
+  font-size: 16px;
 }
-/* line 14, ../../../app/stylesheets/partials/_global.sass */
+/* line 15, ../../../app/stylesheets/partials/_global.sass */
 body.bp #content {
   width: 1060px;
   margin: 0 auto;
@@ -137,30 +138,30 @@ body.bp #content {
   background-color: white;
   padding: 0px 0px 30px 30px;
 }
-/* line 20, ../../../app/stylesheets/partials/_global.sass */
+/* line 21, ../../../app/stylesheets/partials/_global.sass */
 body.bp h1.collection-header {
   font-size: 22px;
   font-weight: bold;
 }
-/* line 24, ../../../app/stylesheets/partials/_global.sass */
+/* line 25, ../../../app/stylesheets/partials/_global.sass */
 body.bp * :focus {
   outline: 0;
 }
-/* line 26, ../../../app/stylesheets/partials/_global.sass */
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
 body.bp a {
   text-decoration: none !important;
 }
-/* line 28, ../../../app/stylesheets/partials/_global.sass */
+/* line 29, ../../../app/stylesheets/partials/_global.sass */
 body.bp a:active {
   outline: 0 none;
   -moz-outline: 0 none;
 }
-/* line 31, ../../../app/stylesheets/partials/_global.sass */
+/* line 32, ../../../app/stylesheets/partials/_global.sass */
 body.bp a:focus {
   outline: none;
   -moz-outline: 0 none;
 }
-/* line 34, ../../../app/stylesheets/partials/_global.sass */
+/* line 35, ../../../app/stylesheets/partials/_global.sass */
 body.bp a.btn.primary {
   color: white !important;
 }
@@ -168,16 +169,16 @@ body.bp a.btn.primary {
 /* ----------------------------------- */
 /* ---------->>> MIXINS <<<----------- */
 /* ----------------------------------- */
-/* line 46, ../../../app/stylesheets/partials/_global.sass */
+/* line 47, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher {
   min-height: 30px;
   font-size: 13px;
 }
-/* line 50, ../../../app/stylesheets/partials/_global.sass */
+/* line 51, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span, .audiobook-switcher a {
   float: left;
 }
-/* line 52, ../../../app/stylesheets/partials/_global.sass */
+/* line 53, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span {
   display: block;
   color: #cccccc;
@@ -187,52 +188,52 @@ body.bp a.btn.primary {
 /* ----------------------------------------- */
 /* ---------->>> AUTOCOMPLETE <<<----------- */
 /* ----------------------------------------- */
-/* line 59, ../../../app/stylesheets/partials/_global.sass */
+/* line 60, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 64, ../../../app/stylesheets/partials/_global.sass */
+/* line 65, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 67, ../../../app/stylesheets/partials/_global.sass */
+/* line 68, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 70, ../../../app/stylesheets/partials/_global.sass */
+/* line 71, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 74, ../../../app/stylesheets/partials/_global.sass */
+/* line 75, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 76, ../../../app/stylesheets/partials/_global.sass */
+/* line 77, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 79, ../../../app/stylesheets/partials/_global.sass */
+/* line 80, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 81, ../../../app/stylesheets/partials/_global.sass */
+/* line 82, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 86, ../../../app/stylesheets/partials/_global.sass */
+/* line 87, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 87, ../../../app/stylesheets/partials/_global.sass */
+/* line 88, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -240,7 +241,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 95, ../../../app/stylesheets/partials/_global.sass */
+/* line 96, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -249,11 +250,11 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 104, ../../../app/stylesheets/partials/_global.sass */
+/* line 105, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 106, ../../../app/stylesheets/partials/_global.sass */
+/* line 107, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
   font-family: "Scala", Georgia, sans-serif;
@@ -261,14 +262,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 112, ../../../app/stylesheets/partials/_global.sass */
+/* line 113, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
   font-family: "Scala", Georgia, sans-serif;
   font-size: 14px;
   color: #333333;
 }
-/* line 117, ../../../app/stylesheets/partials/_global.sass */
+/* line 118, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -276,13 +277,13 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 123, ../../../app/stylesheets/partials/_global.sass */
+/* line 124, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
   background-color: #ffffd7;
 }
-/* line 41, ../../../app/stylesheets/partials/_global.sass */
+/* line 42, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link:hover, a.description-link:hover {
   background-color: #ffff66;
   color: #333333;
@@ -292,7 +293,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 133, ../../../app/stylesheets/partials/_global.sass */
+/* line 134, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -304,12 +305,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 143, ../../../app/stylesheets/partials/_global.sass */
+/* line 144, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 146, ../../../app/stylesheets/partials/_global.sass */
+/* line 147, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -317,7 +318,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 152, ../../../app/stylesheets/partials/_global.sass */
+/* line 153, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -1292,7 +1293,7 @@ ul.ui-autocomplete {
   float: left;
   margin-right: 10px;
   width: 480.417px;
-  font-size: 14px;
+  font-size: 16px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column p {
@@ -1621,7 +1622,7 @@ ul.book-list li .download-link .view-this-book a {
 }
 /* line 118, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p, #collection-book-list-page .collection-info p, .quote-list-page .collection-info p, #collection-list-page .collection-info p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2em;
   color: #333333;
 }
@@ -1833,7 +1834,7 @@ ul.book-list li .download-link .view-this-book a {
 /* line 20, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #featured-collection .detail-column p, #author-list-page #featured-collection .detail-column p, #collection-page #featured-collection .detail-column p, #collection-book-list-page #featured-collection .detail-column p {
   color: #333333;
-  font-size: 14px;
+  font-size: 16px;
 }
 /* line 23, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #featured-collection .books-and-link, #author-list-page #featured-collection .books-and-link, #collection-page #featured-collection .books-and-link, #collection-book-list-page #featured-collection .books-and-link {
@@ -1921,14 +1922,14 @@ ul.book-list li .download-link .view-this-book a {
 #collection-list-page #collection-list ul.collection li .info h5 a, #author-list-page #collection-list ul.collection li .info h5 a, #collection-page #collection-list ul.collection li .info h5 a, #collection-book-list-page #collection-list ul.collection li .info h5 a {
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
   margin: 0;
   color: black;
 }
 /* line 66, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p, #collection-page #collection-list ul.collection li .info p, #collection-book-list-page #collection-list ul.collection li .info p {
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
   color: #999999;
   padding: 0;
@@ -2115,7 +2116,7 @@ ul.book-list li .download-link .view-this-book a {
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 41, ../../../app/stylesheets/partials/_global.sass */
+/* line 42, ../../../app/stylesheets/partials/_global.sass */
 #download-confirmation-page .download-info a:hover {
   background-color: #ffff66;
   color: #333333;
