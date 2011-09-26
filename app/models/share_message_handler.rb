@@ -36,6 +36,11 @@ class ShareMessageHandler
   end
 
   def get_message_for(target_platform = "twitter", message_type = "book share", params = {})
+    # differentiate sharing highlights from highlights WITH notes (this gets turned into note sharing)
+    if message_type == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
+      message_type = "note share"
+    end
+        
     raw_message = MESSAGE_STUBS[target_platform][message_type]
     
     return nil if raw_message.blank?
@@ -67,29 +72,23 @@ class ShareMessageHandler
       "book url"          => author_book_url(params[:book].author.cached_slug, params[:book].cached_slug),
       "book highlight"    => params[:highlight] ? params[:highlight].content : nil,
       "highlight url"     => params[:highlight] ? params[:highlight].public_url : nil,
+      "note"              => params[:highlight] ? params[:highlight].origin_comment : nil,
       "selected text"     => params[:selected_text] ? params[:selected_text] : nil
     }
     
     # do the variable replacement to get the share message
     result = replace_variables(raw_message, params_for_variable_replacement)
-    
-    # check the share message without the URL at the end, to determine if it's short enough
-    # NOTE: assumption here is that the URLs are at the end of the Twitter message
-    # if we want to omit the share URL for twitter
-    match_result = result.match /(.*)(?:http:\/\/.*)/
-    if match_result
-      message_without_url = match_result[1]
-    else
-      message_without_url = result
-    end
-    
+
+    result_without_url = message_without_url(result)
+
     # shorten if it's necessary
-    if message_without_url.length > 120
-      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result.length - 120})
+    if result_without_url.length > 120
+      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
+      result_without_url = message_without_url(result)
     end
 
     if params[:twitter_without_url]
-      return message_without_url
+      return result_without_url
     else
       return result
     end
@@ -102,7 +101,7 @@ class ShareMessageHandler
     if options[:shorten_by]
 
       # get the variable we can shorten. Starting array is sorted by importance in a descending order.
-      variable_to_short_by = ["selected text", "book highlight", "book title", "book author"].select { |variable|
+      variable_to_short_by = ["note", "selected text", "book highlight", "book title", "book author"].select { |variable|
         !params[variable].blank?
       }.first
 
@@ -122,6 +121,18 @@ class ShareMessageHandler
     end
     
     return result
+  end
+  
+  def message_without_url(full_message)
+    # check the share message without the URL at the end, to determine if it's short enough
+    # NOTE: assumption here is that the URLs are at the end of the Twitter message
+    # if we want to omit the share URL for twitter
+    match_result = full_message.match /(.*)(?:http:\/\/.*)/
+    if match_result
+      return match_result[1]
+    else
+      return full_message
+    end
   end
   
 end
