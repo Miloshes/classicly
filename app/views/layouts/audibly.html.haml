@@ -93,29 +93,7 @@
                 = link_to "Browse authors", '/authors', :class => 'classicly-link'
 
       .clear
-    #footer
-      #center-container
-        .row
-          .span7.columns
-            %ul
-              %li
-                = link_to 'Apps', '#', :class => 'apps'
-              %li
-                = link_to 'About', '#'
-              %li
-                = link_to 'Blog', '#'
-              %li
-                = link_to 'Terms of Service', '#'
-              %li
-                = link_to 'Privacy Policy', '#'
-          .offset4.span7.columns
-            #copyright
-              2010-2011 Spreadsong, Inc.
-        .row
-          .offset11.span7.columns
-            #spreadsong
-              Made in Boston & Budapest.
-
+    = render '/shared/footer'
 :javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";
