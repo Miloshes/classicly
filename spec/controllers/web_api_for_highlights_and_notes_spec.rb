@@ -110,13 +110,16 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       AnonymousBookHighlight.should have(1).record
     end
     
-    it "should return the URL for the highlight's public page after registration" do
+    it "should return the URL for the highlight's public page and the twitter and facebook share message after registration" do
       post "create", :json_data => @api_call_params.to_json
       
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       parsed_response.class.should == Hash
-      parsed_response.should have_key("public_highlight_url")
+      parsed_response["public_highlight_url"].should_not be_blank
+      parsed_response["twitter_message"].should_not be_blank
+      # TODO:
+      # parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do
