@@ -57,8 +57,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       parsed_response.class.should == Hash
       parsed_response["public_highlight_url"].should_not be_blank
       parsed_response["twitter_message"].should_not be_blank
-      # TODO:
-      # parsed_response["facebook_message"].should_not be_blank
+      parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do
@@ -118,8 +117,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       parsed_response.class.should == Hash
       parsed_response["public_highlight_url"].should_not be_blank
       parsed_response["twitter_message"].should_not be_blank
-      # TODO:
-      # parsed_response["facebook_message"].should_not be_blank
+      parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do

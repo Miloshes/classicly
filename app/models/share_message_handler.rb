@@ -22,10 +22,10 @@ class ShareMessageHandler
       "book share" => {
         "title"       => "I'm reading {{book title}} by {{book author}}",
         "link"        => "{{book url}}",
-        "description" => "I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in {{available formats}}. Here's my highlight:\n\n{{book highlight}}"
+        "description" => "This is a link to {{book title}}. Don't have Free Books for iPad? You can still download the book as {{available formats}} -- free."
       },
       "highlight share" => {
-        "title"       => "Found this in {{book title}}:",
+        "title"       => "Found this in {{book title}}",
         "link"        => "{{highlight url}}",
         "description" => "I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in {{available formats}}. Here's my highlight:\n\n{{book highlight}}"
       }
@@ -36,23 +36,74 @@ class ShareMessageHandler
   end
 
   def get_message_for(target_platform = "twitter", message_type = "book share", params = {})
-    # differentiate sharing highlights from highlights WITH notes (this gets turned into note sharing)
-    if message_type == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
-      message_type = "note share"
+    case target_platform
+    # == Twitter
+    when "twitter"
+      # differentiate sharing highlights from highlights WITH notes (this gets turned into note sharing)
+      if message_type == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
+        message_type = "note share"
+      end
+      
+      raw_message = MESSAGE_STUBS[target_platform][message_type]
+
+      return nil if raw_message.blank?
+      
+      assembled_message = assemble_message_for_twitter(raw_message, message_type, params)
+      
+      return assembled_message
+      
+    # == Facebook
+    when "facebook"
+      raw_messages_hash = MESSAGE_STUBS[target_platform][message_type]
+      assembled_message_hash = assemble_message_for_facebook(raw_messages_hash, message_type, params)
+      
+      return assembled_message_hash
+      
+    # == backup
+    else
+      return nil
     end
-        
-    raw_message = MESSAGE_STUBS[target_platform][message_type]
-    
-    return nil if raw_message.blank?
-    
-    assembled_message = assemble_message_for_twitter(raw_message, message_type, params)
-    
-    return assembled_message
   end
   
   private
   
   def assemble_message_for_twitter(raw_message, message_type, params)
+    params_for_variable_replacement = assemble_params_for_variable_replacement(params)
+    
+    # do the variable replacement to get the share message
+    result = replace_variables(raw_message, params_for_variable_replacement)
+
+    result_without_url = message_without_url(result)
+
+    # shorten if it's necessary
+    if result_without_url.length > 120
+      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
+      result_without_url = message_without_url(result)
+    end
+
+    if params[:twitter_without_url]
+      return result_without_url
+    else
+      return result
+    end
+  end
+  
+  def assemble_message_for_facebook(raw_messages_hash = {}, message_type, params)
+    params_for_variable_replacement = assemble_params_for_variable_replacement(params)
+    
+    result = {}
+    
+    # do the variable replacement for each field in the message
+    ["title", "link", "description"].each do |field|
+      result[field] = replace_variables(raw_messages_hash[field], params_for_variable_replacement)
+    end
+    
+    result["cover_url"] = Book.cover_url(params[:book].id, 3)
+
+    return result
+  end
+  
+  def assemble_params_for_variable_replacement(params)
     if params[:book] && params[:book].is_a?(Fixnum)
       params[:book] = Book.find(params[:book])
     end
@@ -76,22 +127,7 @@ class ShareMessageHandler
       "selected text"     => params[:selected_text] ? params[:selected_text] : nil
     }
     
-    # do the variable replacement to get the share message
-    result = replace_variables(raw_message, params_for_variable_replacement)
-
-    result_without_url = message_without_url(result)
-
-    # shorten if it's necessary
-    if result_without_url.length > 120
-      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
-      result_without_url = message_without_url(result)
-    end
-
-    if params[:twitter_without_url]
-      return result_without_url
-    else
-      return result
-    end
+    return params_for_variable_replacement
   end
   
   def replace_variables(starting_message, params, options = {})

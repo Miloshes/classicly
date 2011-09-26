@@ -35,9 +35,54 @@ describe ShareMessageHandler do
     
   describe "responding to a Facebook share message request" do
     
-    it "should take into account the type of the requested message"
+    before(:each) do
+      @necessary_fields_for_the_response = ["title", "link", "description", "cover_url"]
+    end
     
-    it "should respond with a title, a link, a description and a URL"
+    context "putting together the actual message" do
+
+      it "should replace all the variables put into the message" do
+        message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+
+        # check for variable boundaries
+        @necessary_fields_for_the_response.each do |field|
+          message[field].should_not include("{{")
+        end
+      end
+
+    end
+    
+    it "should respond with a title, a link, a description and a URL" do
+      message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+      
+      @necessary_fields_for_the_response.each do |field|
+        message[field].should_not be_blank
+      end
+    end
+    
+    it "should take into account the type of the requested message" do
+      message1 = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+      message2 = @share_message_handler.get_message_for("facebook", "highlight share", :book => @book, :highlight => @book_highlight)
+      
+      message1.should_not == message2
+    end
+    
+    context "when responding to book share request" do
+      it "should have a link to the book on classicly" do
+        message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+        
+        # TODO: shouldn't be hardcoded
+        message["link"].should include("http://www.classicly.com/victor-hugo/les-miserables")
+      end
+    end
+
+    context "when responding to highlight share request" do
+      it "should have a link to the highlight on classicly" do
+        message = @share_message_handler.get_message_for("facebook", "highlight share", :book => @book, :highlight => @book_highlight)
+        
+        message["link"].should include(@book_highlight.public_url)
+      end
+    end
     
   end
   
