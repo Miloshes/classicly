@@ -3,43 +3,44 @@ var RatingsController = function( loginsController, uiHandler ){
   this.loginsController = loginsController;
 };
 
-var showStarsOnRatingComplete = function(){
-  ratingTextDiv = $( ".cover-column #my-rating #text" );
+var showStarsOnRatingComplete = function( ratingTextDOM, ratingStarsDOM, blankStarsDOM ){
+  ratingTextDiv = $( ratingTextDOM );
   ratingTextDiv.text( "My Rating:" );
 
-  // traverse DOM:
-  myRating = ratingTextDiv.parents( '#my-rating' );
-
-  myRating.children( '#rating-stars' ).show();
-  myRating.children( '#blank-stars' ).hide();
+  $( ratingStarsDOM ).show();
+  $( blankStarsDOM ).hide();
 };
 
 RatingsController.prototype = {
 
   hideStarsOnRating: function(){
-    ratingTextDiv = $( ".cover-column #my-rating #text" );
+    ratingTextDiv = $( this.settings.ratingTextDOM );
     ratingTextDiv.text( "Saving..." );
 
-    // traverse DOM:
-    myRating = ratingTextDiv.parents( '#my-rating' );
-
-    myRating.children( '#rating-stars' ).hide();
-    myRating.children( '#blank-stars' ).show();
+    $( this.settings.ratingStarsDOM ).hide();
+    $( this.settings.blankStarsDOM ).show();
   },
 
-  sendRate: function( bookId, rating, klass){
+  sendRate: function( bookId, rating, klass, options){
     var data = klass + '_id=' + bookId + '&rating=' + rating;
     var url =  '/reviews/create_rating';
-
+    
+    var self = this;
+    self.settings = $.extend({
+      ratingTextDOM   : ".cover-column #my-rating #text",
+      ratingStarsDOM  : "#my-rating #rating-stars",
+      blankStarsDOM   : "#my-rating #blank-stars"
+    }, options || {});
+    
     $.ajax({
       type: 'POST',
       url: url,
       data: data,
       beforeSend: this.hideStarsOnRating(),
       success: function(){
-        ratingTextDiv = $( ".cover-column #my-rating #text" );
+        ratingTextDiv = $( self.settings.ratingTextDOM );
         ratingTextDiv.text( "Saved!" );
-        setTimeout( "showStarsOnRatingComplete()", 200 );
+        setTimeout( "showStarsOnRatingComplete('"+ self.settings.ratingTextDOM + "', '" + self.settings.ratingStarsDOM +"','" + self.settings.blankStarsDOM + "')", 200 );
       }
     });
   }
