@@ -32,7 +32,7 @@ describe ShareMessageHandler do
     
     @share_message_handler = ShareMessageHandler.new
   end
-    
+  
   describe "responding to a Facebook share message request" do
     
     before(:each) do
@@ -42,7 +42,7 @@ describe ShareMessageHandler do
     context "putting together the actual message" do
 
       it "should replace all the variables put into the message" do
-        message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+        message = @share_message_handler.get_message_for(:target_platform => "facebook", :message_type => "book share", :book => @book)
 
         # check for variable boundaries
         @necessary_fields_for_the_response.each do |field|
@@ -53,7 +53,7 @@ describe ShareMessageHandler do
     end
     
     it "should respond with a title, a link, a description and a URL" do
-      message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+      message = @share_message_handler.get_message_for(:target_platform => "facebook", :message_type => "book share", :book => @book)
       
       @necessary_fields_for_the_response.each do |field|
         message[field].should_not be_blank
@@ -61,26 +61,61 @@ describe ShareMessageHandler do
     end
     
     it "should take into account the type of the requested message" do
-      message1 = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
-      message2 = @share_message_handler.get_message_for("facebook", "highlight share", :book => @book, :highlight => @book_highlight)
+      message1 = @share_message_handler.get_message_for(:target_platform => "facebook", :message_type => "book share", :book => @book)
+      message2 = @share_message_handler.get_message_for(
+          :target_platform => "facebook",
+          :message_type    => "highlight share",
+          :book            => @book,
+          :highlight       => @book_highlight
+        )
       
       message1.should_not == message2
     end
     
     context "when responding to book share request" do
       it "should have a link to the book on classicly" do
-        message = @share_message_handler.get_message_for("facebook", "book share", :book => @book)
+        message = @share_message_handler.get_message_for(:target_platform => "facebook", :message_type => "book share", :book => @book)
         
         # TODO: shouldn't be hardcoded
         message["link"].should include("http://www.classicly.com/victor-hugo/les-miserables")
+      end
+      
+      it "should have UTM tracking on the link" do
+        message = @share_message_handler.get_message_for(:target_platform => "facebook", :message_type => "book share", :book => @book)
+        
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message["link"].should include(utm_keyword)
+        end
+        
+        message["link"].should include("utm_campaign=book")
       end
     end
 
     context "when responding to highlight share request" do
       it "should have a link to the highlight on classicly" do
-        message = @share_message_handler.get_message_for("facebook", "highlight share", :book => @book, :highlight => @book_highlight)
+        message = @share_message_handler.get_message_for(
+            :target_platform => "facebook",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
         
         message["link"].should include(@book_highlight.public_url)
+      end
+      
+      it "should have UTM tracking on the link" do
+        message = @share_message_handler.get_message_for(
+            :target_platform => "facebook",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
+        
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message["link"].should include(utm_keyword)
+        end
+        
+        message["link"].should include("utm_campaign=highlight")
       end
     end
     
@@ -88,17 +123,29 @@ describe ShareMessageHandler do
   
   describe "responding to a Twitter share message request" do
     
+    it "should take into account the type of the requested message" do
+      message1 = @share_message_handler.get_message_for(:target_platform => "twitter", :message_type => "book share", :book => @book)
+      message2 = @share_message_handler.get_message_for(
+          :target_platform => "twitter",
+          :message_type    => "highlight share",
+          :book            => @book,
+          :highlight       => @book_highlight
+        )
+      
+      message1.should_not == message2
+    end
+    
     context "putting together the actual message" do
 
       it "should find the raw message it has to start off with" do
-        message = @share_message_handler.get_message_for("twitter", "book share", :book => @book)
+        message = @share_message_handler.get_message_for(:target_platform => "twitter", :message_type => "book share", :book => @book)
 
         # NOTE: could have a better test than this
         message.should_not be_blank
       end
 
       it "should replace all the variables put into the message" do
-        message = @share_message_handler.get_message_for("twitter", "book share", :book => @book)
+        message = @share_message_handler.get_message_for(:target_platform => "twitter", :message_type => "book share", :book => @book)
 
         # check for variable boundaries
         message.should_not include("{{")
@@ -106,26 +153,34 @@ describe ShareMessageHandler do
 
     end
     
-    it "should take into account the type of the requested message" do
-      message1 = @share_message_handler.get_message_for("twitter", "book share", :book => @book)
-      message2 = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book, :highlight => @book_highlight)
-      
-      message1.should_not == message2
-    end
-    
     context "when responding to book share request" do
       
       it "should have a link to the book on classicly" do
-        message = @share_message_handler.get_message_for("twitter", "book share", :book => @book)
+        message = @share_message_handler.get_message_for(:target_platform => "twitter", :message_type => "book share", :book => @book)
         
         message.should include("http://www.classicly.com/")
       end
       
       it "shouldn't exceed the character limit" do
-        message = @share_message_handler.get_message_for("twitter", "book share", :book => @book, :twitter_without_url => true)
+        message = @share_message_handler.get_message_for(
+            :target_platform     => "twitter",
+            :message_type        => "book share",
+            :book                => @book,
+            :twitter_without_url => true
+          )
         
         # t.co links are 20characters maximum
         message.length.should <= 120
+      end
+      
+      it "should have UTM tracking on the book link" do
+        message = @share_message_handler.get_message_for(:target_platform => "twitter", :message_type => "book share", :book => @book)
+        
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message.should include(utm_keyword)
+        end
+        
+        message.should include("utm_campaign=book")
       end
       
     end
@@ -133,7 +188,12 @@ describe ShareMessageHandler do
     context "when responding to a text selection share request" do
       
       it "should contain parts of the text selection, and a link to the book page" do
-        message = @share_message_handler.get_message_for("twitter", "selected text share", :book => @book, :selected_text => "la bourgeoisie locale")
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "selected text share",
+            :book            => @book,
+            :selected_text   => "la bourgeoisie locale"
+          )
         
         message.should include("la bourgeoisie locale")
         # TODO: shouldn't be hardcoded
@@ -142,10 +202,10 @@ describe ShareMessageHandler do
       
       it "shouldn't exceed the character limit" do
         message = @share_message_handler.get_message_for(
-            "twitter",
-            "selected text share",
-            :book => @book,
-            :selected_text => "la bourgeoisie locale",
+            :target_platform     => "twitter",
+            :message_type        => "selected text share",
+            :book                => @book,
+            :selected_text       => "la bourgeoisie locale",
             :twitter_without_url => true
           )
           
@@ -153,12 +213,32 @@ describe ShareMessageHandler do
         message.length.should <= 120
       end
       
+      it "should have UTM tracking on the link" do
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "selected text share",
+            :book            => @book,
+            :selected_text   => "la bourgeoisie locale"
+          )
+          
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message.should include(utm_keyword)
+        end
+        
+        message.should include("utm_campaign=text")
+      end
+      
     end
     
     context "when responding to a highlight share request" do
       
       it "should contain parts of the text selection, and a link to the highlight's public page" do
-        message = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book, :highlight => @book_highlight)
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
         
         message.should include(@book_highlight.content)
         message.should include(@book_highlight.public_url)
@@ -166,15 +246,30 @@ describe ShareMessageHandler do
       
       it "shouldn't exceed the character limit" do
         message = @share_message_handler.get_message_for(
-            "twitter",
-            "highlight share",
-            :book => @book,
-            :highlight => @book_highlight,
+            :target_platform     => "twitter",
+            :message_type        => "highlight share",
+            :book                => @book,
+            :highlight           => @book_highlight,
             :twitter_without_url => true
           )
         
         # t.co links are 20characters maximum
         message.length.should <= 120
+      end
+      
+      it "should have UTM tracking on the link" do
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
+          
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message.should include(utm_keyword)
+        end
+
+        message.should include("utm_campaign=highlight")
       end
       
     end
@@ -186,7 +281,12 @@ describe ShareMessageHandler do
       end
       
       it "should contain parts of the note, and a link to the note's parent highlight's public page" do
-        message = @share_message_handler.get_message_for("twitter", "highlight share", :book => @book, :highlight => @book_highlight)
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
         
         message.should include(@book_highlight.origin_comment)
         message.should include(@book_highlight.public_url)
@@ -194,15 +294,30 @@ describe ShareMessageHandler do
       
       it "shouldn't exceed the character limit" do
         message = @share_message_handler.get_message_for(
-            "twitter",
-            "highlight share",
-            :book => @book,
-            :highlight => @book_highlight,
+            :target_platform     => "twitter",
+            :message_type        => "highlight share",
+            :book                => @book,
+            :highlight           => @book_highlight,
             :twitter_without_url => true
           )
         
         # t.co links are 20characters maximum
         message.length.should <= 120
+      end
+      
+      it "should have UTM tracking on the link" do
+        message = @share_message_handler.get_message_for(
+            :target_platform => "twitter",
+            :message_type    => "highlight share",
+            :book            => @book,
+            :highlight       => @book_highlight
+          )
+          
+        %w(utm_source utm_campaign utm_medium utm_content).each do |utm_keyword|
+          message.should include(utm_keyword)
+        end
+
+        message.should include("utm_campaign=highlight")
       end
       
     end

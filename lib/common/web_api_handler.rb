@@ -34,6 +34,8 @@ class WebApiHandler
       response = get_user_data(parsed_data)
     when "get_book_highlights_for_user_for_book"
       response = get_book_highlights_for_user_for_book(parsed_data)
+    when "get_tweet_and_facebook_share_texts"
+      response = get_tweet_and_facebook_share_texts(parsed_data)
     end
     
     return response
@@ -211,6 +213,25 @@ class WebApiHandler
       }
     
     return result.to_json
+  end
+  
+  def get_tweet_and_facebook_share_texts(call_params)
+    share_message_handler = ShareMessageHandler.new
+
+    params = {}
+
+    params[:target_platform] = call_params["platform"]
+    params[:message_type]    = call_params["message_type"]
+
+    if call_params["book_id"]
+      params[:book] = Book.find(call_params["book_id"].to_i)
+    else
+      params[:book] = Audiobook.find(call_params["audiobook_id"].to_i)
+    end
+    
+    response = share_message_handler.get_message_for(params)
+    
+    return response.to_json
   end
   
 end

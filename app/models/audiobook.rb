@@ -149,4 +149,12 @@ class Audiobook < ActiveRecord::Base
   def audio_book_slugs
     "#{pretty_title}-audiobook"
   end
+  
+  # NOTE: doesn't make that much sense for audiobooks, but it's still here for consistency
+  # Returns an array of file formats prettied up for public display (turns azw into Kindle, pdf into PDF).
+  # The book is available for download in all these formats.
+  def pretty_download_formats
+    return ["mp3"]
+  end
+  
 end

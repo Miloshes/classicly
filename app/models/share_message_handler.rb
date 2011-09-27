@@ -5,10 +5,6 @@ class ShareMessageHandler
   include CommonSeoDefaultsMethods
   
   attr_accessor :target_platform, :message_type
-
-  # Possible candidates for twitter book shares:
-  # "Reading {{book title}} in @classiclyapp on my iPad. Download the book as {{available formats}} (free!) here: {{book url}}",
-  # "Just started reading {{book title}} in @classiclyapp on my iPad. {{book url}}"
   
   MESSAGE_STUBS = {
     # NOTE: assumption here is that the URLs are at the end of the Twitter message
@@ -35,27 +31,31 @@ class ShareMessageHandler
   def initialize
   end
 
-  def get_message_for(target_platform = "twitter", message_type = "book share", params = {})
-    case target_platform
+  # important parameters are:
+  #  - :target_platform  "facebook" / "twitter"
+  #  - :message_type "book share" / "highlight share" / "note share" / "selected text share"
+  #  - :book, :highlight, :selected_text
+  def get_message_for(params = {})
+    case params[:target_platform]
     # == Twitter
     when "twitter"
       # differentiate sharing highlights from highlights WITH notes (this gets turned into note sharing)
-      if message_type == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
-        message_type = "note share"
+      if params[:message_type] == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
+        params[:message_type] = "note share"
       end
       
-      raw_message = MESSAGE_STUBS[target_platform][message_type]
+      raw_message = MESSAGE_STUBS[params[:target_platform]][params[:message_type]]
 
       return nil if raw_message.blank?
       
-      assembled_message = assemble_message_for_twitter(raw_message, message_type, params)
+      assembled_message = assemble_message_for_twitter(raw_message, params)
       
       return assembled_message
       
     # == Facebook
     when "facebook"
-      raw_messages_hash = MESSAGE_STUBS[target_platform][message_type]
-      assembled_message_hash = assemble_message_for_facebook(raw_messages_hash, message_type, params)
+      raw_messages_hash = MESSAGE_STUBS[params[:target_platform]][params[:message_type]]
+      assembled_message_hash = assemble_message_for_facebook(raw_messages_hash, params)
       
       return assembled_message_hash
       
@@ -67,9 +67,8 @@ class ShareMessageHandler
   
   private
   
-  def assemble_message_for_twitter(raw_message, message_type, params)
+  def assemble_message_for_twitter(raw_message, params)
     params_for_variable_replacement = assemble_params_for_variable_replacement(params)
-    
     # do the variable replacement to get the share message
     result = replace_variables(raw_message, params_for_variable_replacement)
 
@@ -88,7 +87,7 @@ class ShareMessageHandler
     end
   end
   
-  def assemble_message_for_facebook(raw_messages_hash = {}, message_type, params)
+  def assemble_message_for_facebook(raw_messages_hash = {}, params)
     params_for_variable_replacement = assemble_params_for_variable_replacement(params)
     
     result = {}
@@ -103,11 +102,7 @@ class ShareMessageHandler
     return result
   end
   
-  def assemble_params_for_variable_replacement(params)
-    if params[:book] && params[:book].is_a?(Fixnum)
-      params[:book] = Book.find(params[:book])
-    end
-    
+  def assemble_params_for_variable_replacement(params)    
     if params[:highlight] && params[:book].blank?
       params[:book] = params[:highlight].book
     end
@@ -116,13 +111,19 @@ class ShareMessageHandler
     default_url_options[:host] = "www.classicly.com"
     default_url_options[:host] = "classicly-staging.heroku.com" if Rails.env.staging?
     
+    book_url = author_book_url(params[:book].author.cached_slug, params[:book].cached_slug)
+    book_url = add_utm_parameters_to_link(book_url, params)
+    
+    highlight_url = params[:highlight] ? params[:highlight].public_url : nil
+    highlight_url = add_utm_parameters_to_link(highlight_url, params) if highlight_url
+    
     params_for_variable_replacement = {
       "book title"        => params[:book].title,
       "book author"       => params[:book].author.name,
       "available formats" => params[:book].pretty_download_formats.join("/"),
-      "book url"          => author_book_url(params[:book].author.cached_slug, params[:book].cached_slug),
+      "book url"          => book_url,
       "book highlight"    => params[:highlight] ? params[:highlight].content : nil,
-      "highlight url"     => params[:highlight] ? params[:highlight].public_url : nil,
+      "highlight url"     => highlight_url,
       "note"              => params[:highlight] ? params[:highlight].origin_comment : nil,
       "selected text"     => params[:selected_text] ? params[:selected_text] : nil
     }
@@ -150,7 +151,7 @@ class ShareMessageHandler
       end
 
     else
-      # Just do straight up variable replacement 
+      # Just do straight up variable replacement
       params.each_pair do |variable, value|
         result.gsub!("{{" + variable + "}}", value) if value
       end
@@ -169,6 +170,27 @@ class ShareMessageHandler
     else
       return full_message
     end
+  end
+  
+  # By adding UTM parameters to the links shared, we can actually track how well the various messages perform.
+  def add_utm_parameters_to_link(link, params)
+    utm_campaign_values = {
+      "book share" => "book", "highlight share" => "highlight", "note share" => "highlight", "selected text share" => "text"
+    }
+    utm_campaign = utm_campaign_values[params[:message_type]]
+
+    utm_medium_values = {"twitter" => "twitter", "facebook" => "fb-post"}
+    utm_medium        = utm_medium_values[params[:target_platform]]
+        
+    utm_source_values = {"364612911" => "fbipad", "379861611" => "clipad"}
+    utm_source        = params[:apple_id] ? utm_source_values[params[:apple_id]] : "unknown"
+    
+    # NOTE: this will be the test ID
+    utm_content = "1"
+    
+    utm_params = "?utm_campaign=#{utm_campaign}&utm_medium=#{utm_medium}&utm_source=#{utm_source}&utm_content=#{utm_content}"
+    
+    return link + utm_params
   end
   
 end

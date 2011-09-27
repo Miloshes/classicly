@@ -29,7 +29,20 @@ buckets:
   books: "spreadsong-kindleload-books"
   static_book_pages: "spreadsong-classicly-static-book-pages"
   downloadables: "spreadsong-downloadables-tmp"
+
 index_tank:
   private_api_url: http://:Kzub86diHBrEBf@6wfx.api.indextank.com
   public_api_url: http://6wfx.api.indextank.com
+
 yaml_exports_path: "db/yaml_exports"
+
+apple_ids:
+  "Free Books iPhone": "317776727"
+  "Free Books iPad": "364612911"
+  "Free Audiobooks iPhone": "352615816"
+  "Free Audiobooks iPad": "379861611"
+  "Classics iPhone": "368195233"
+  "Audibly iPhone": "432627811"
+  "Classicly iPhone": "461750567"
+  "Browser+ iPhone": "413939535"
+  "Browder+ HD iPad": "411446170"

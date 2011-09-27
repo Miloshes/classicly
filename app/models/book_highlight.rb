@@ -75,8 +75,18 @@ class BookHighlight < ActiveRecord::Base
     # - the share text for Facebook
     
     share_message_handler = ShareMessageHandler.new
-    twitter_message       = share_message_handler.get_message_for("twitter", "highlight share", :book => self.book, :highlight => self)
-    facebook_message      = share_message_handler.get_message_for("facebook", "highlight share", :book => self.book, :highlight => self)
+    twitter_message       = share_message_handler.get_message_for(
+        :target_platform => "twitter",
+        :message_type    => "highlight share",
+        :book            => self.book,
+        :highlight       => self
+      )
+    facebook_message      = share_message_handler.get_message_for(
+        :target_platform => "facebook",
+        :message_type    => "highlight share",
+        :book            => self.book,
+        :highlight       => self
+      )
     
     return {
       :public_highlight_url => self.public_url,
