@@ -87,6 +87,7 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
         "action"          => "get_tweet_and_facebook_share_texts",
         "platform"        => "twitter",
         "message_type"    => "selected text share",
+        "selected_text"   => "selected text comes here",
         "apple_id"        => "364612911"
       }
       

@@ -147,8 +147,7 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
     @api_call_params = {
       "device_id"         => @login.ios_device_id,
       "book_id"           => @book.id,
-      "action"            => "get_book_highlights_for_user_for_book",
-      "structure_version" => "1.2"
+      "action"            => "get_book_highlights_for_user_for_book"
     }
   end
   

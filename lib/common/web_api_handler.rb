@@ -230,6 +230,7 @@ class WebApiHandler
     end
     
     params[:apple_id] = call_params["apple_id"]
+    params[:selected_text] = call_params["selected_text"]
     
     response = share_message_handler.get_message_for(params)
     
