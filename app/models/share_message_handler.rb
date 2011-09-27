@@ -87,20 +87,20 @@ class ShareMessageHandler
     end
   end
   
-  def assemble_message_for_facebook(raw_messages_hash = {}, params)
-    params_for_variable_replacement = assemble_params_for_variable_replacement(params)
-    
-    result = {}
-    
-    # do the variable replacement for each field in the message
-    ["title", "link", "description"].each do |field|
-      result[field] = replace_variables(raw_messages_hash[field], params_for_variable_replacement)
-    end
-    
-    result["cover_url"] = Book.cover_url(params[:book].id, 3)
-
-    return result
-  end
+  # def assemble_message_for_facebook(raw_messages_hash = {}, params)
+  #     params_for_variable_replacement = assemble_params_for_variable_replacement(params)
+  #     
+  #     result = {}
+  #     
+  #     # do the variable replacement for each field in the message
+  #     ["title", "link", "description"].each do |field|
+  #       result[field] = replace_variables(raw_messages_hash[field], params_for_variable_replacement)
+  #     end
+  #     
+  #     result["cover_url"] = Book.cover_url(params[:book].id, 3)
+  # 
+  #     result
+  #   end
   
   def assemble_params_for_variable_replacement(params)    
     if params[:highlight] && params[:book].blank?
