@@ -22,7 +22,8 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       "first_character" => 0,
       "last_character"  => 29,
       "content"         => "The rabbit went down the hole.",
-      "timestamp"       => (Time.now).to_s(:db)
+      "timestamp"       => (Time.now).to_s(:db),
+      "apple_id"        => "364612911"
     }
   end
   
@@ -57,8 +58,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       parsed_response.class.should == Hash
       parsed_response["public_highlight_url"].should_not be_blank
       parsed_response["twitter_message"].should_not be_blank
-      # TODO:
-      # parsed_response["facebook_message"].should_not be_blank
+      parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do
@@ -118,8 +118,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       parsed_response.class.should == Hash
       parsed_response["public_highlight_url"].should_not be_blank
       parsed_response["twitter_message"].should_not be_blank
-      # TODO:
-      # parsed_response["facebook_message"].should_not be_blank
+      parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do
@@ -148,8 +147,7 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
     @api_call_params = {
       "device_id"         => @login.ios_device_id,
       "book_id"           => @book.id,
-      "action"            => "get_book_highlights_for_user_for_book",
-      "structure_version" => "1.2"
+      "action"            => "get_book_highlights_for_user_for_book"
     }
   end
   

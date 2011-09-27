@@ -36,7 +36,6 @@ class IncomingData < ActiveRecord::Base
         
         # if we've created a new record, we return the associated Web API answer
         if result.is_a?(BookHighlight) || result.is_a?(AnonymousBookHighlight)
-          Rails.logger.info("\n\n!!!!  #{result.inspect}\n\n")
           response = result.response_when_created_via_web_api
         end
       when "register_ios_user"

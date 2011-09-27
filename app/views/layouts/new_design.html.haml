@@ -63,11 +63,15 @@
             #logo
               %a{:href => '/'}
                 = image_tag 'new_logo_classicly.png'
+            #search
+              = form_tag search_url, :id => 'indexTankForm' do
+                = text_field_tag "term", nil, :placeholder => 'Search Books and Authors', :tabIndex => 1
+                %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
             #nav
               %ul
                 = top_nav_link 'Home', '/'
-                = top_nav_link 'Authors', '/authors'
-                = top_nav_link 'Collections', '/collections'
+                =# top_nav_link 'Authors', '/authors'
+                =# top_nav_link 'Collections', '/collections'
                 = top_nav_link 'Blog', '/blog'
 
             - unless current_login
@@ -77,11 +81,6 @@
               #profile-pic
                 = link_to facebook_image(current_login.fb_connect_id), '/library'
 
-
-            / #search
-            /               = form_tag search_url, :id => 'indexTankForm' do
-            /                 = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-            /                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
       .clear
       
       #content

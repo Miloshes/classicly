@@ -43,8 +43,6 @@ $(function(){
   $( ".pagination ul li.active, .pagination ul li.gap" ).live( "click", function(){
     return false;
   });
-
-  // SIGNIN
 });
 
 
