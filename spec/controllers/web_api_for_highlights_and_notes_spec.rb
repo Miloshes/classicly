@@ -22,7 +22,8 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       "first_character" => 0,
       "last_character"  => 29,
       "content"         => "The rabbit went down the hole.",
-      "timestamp"       => (Time.now).to_s(:db)
+      "timestamp"       => (Time.now).to_s(:db),
+      "apple_id"        => "364612911"
     }
   end
   
