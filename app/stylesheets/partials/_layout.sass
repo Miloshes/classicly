@@ -1,12 +1,12 @@
 #main-content
   padding-left: 15px
 
-$top-nav-bg: #c9af87
+$top-nav-bg: #22190e
 
 body
   +blueprint-typography(true)
   background-color: white
-  :font-family 'Helvetica', 'Arial', 'Sans-serif'
+  font-family: 'Scala', Georgia, sans-serif
 
 @mixin content-container
   +column(18, true)
@@ -35,7 +35,7 @@ a.highlight
   .wrap
     :width 100%
     :display block
-    :height 52px
+    :height 50px
     :text-align center
     background: $top-nav-bg
     .top
@@ -43,38 +43,37 @@ a.highlight
       :margin 0 auto
       :height 30px
       #logo 
-        :float left
-        +column(5)
+        float: left
+        +column(4)
+        margin: 0px 13px 0px -55px
         img
-          :margin
-            :top 7px
+          margin-top: 10px
       #nav
-        +column(12)
+        +column(13)
         text-align: left
-        :margin
-          :top 14px
+        margin-left: -5px
         ul
           list-style: none
           li
-            :float left
-            :display inline
+            float: left
+            display: inline
+            height: 50px
+            padding: 0px 20px
+            &:hover
+              background-color: #48423b
             a
-              font: bold 14px 'helvetica'
-              :color #442507
-              :display block
-              :width 106px
-              :height 24px
-              :float left
-              :text-decoration none
-              :background url(/images/nav-bg.png)
-              :text-align center
-              :margin
-                :right 6px
-              :padding
-                :top 8px
-              &:hover
-                :cursor pointer
-                :opacity .8
+              font: 18px 'Scala', Georgia, sans-serif
+              color: #fff
+              display: inline-block
+              text-align: center
+              margin-top: 18px
+
+          li.active
+            background-color: #fff
+            &:hover
+              background-color: #fff
+            a
+              color: #333
 
           .right
             :background url('/images/header-nav-right.png')
@@ -82,16 +81,22 @@ a.highlight
             :width 12px
             :display block
             :float left
-
-    .bottom
-      :float left
-      :display block
-      :width 100%
-      :height 6px
-      :background url(/images/shadow-top.png) repeat-x
-      :margin 0
-        :top -7px
-      :padding 0
+    #signin
+      background-color: #052336
+      height: 32px
+      float: right
+      padding: 18px 50px 0px 50px
+      margin-right: -64px
+      a
+        font-color: white
+        font-size: 18px
+        text-align: center
+        color: #fff
+    #profile-pic
+      width: 50px
+      height: 50px
+      float: right
+      margin-right: -64px
     #search
       +column(5, true)
       :margin
@@ -135,115 +140,38 @@ a.highlight
   :padding 0
 
 #footer
-  background: $top-nav-bg
   width: 100%
-  float: left
-  padding: 10px 0 20px 0
-  text-align: center
-  .centering
-    :margin 0 auto
-    :width 980px
-    :height 320px
-    :padding 10px
-    :border 1px solid #bb9d79
-    :background #cab08b
-  #collection-names-list
-    :margin 0 auto
-    :width 800px
-    :padding 10px
-      :bottom 0px
-    :background 1px solid #bb9d79
-    :font-family 'helvetica'
-    :font-size 17px
-    img
-      :float left
-    .collections
-      :width 830px
-      :display block
-      :float left
-      :padding
-        :left 50px
-      :border
-        :left 1px solid #866a47
-        :right 1px solid #866a47
-    .column
-      :float left
-      :width 190px
-    a
-      :color #FFF
-      :text-decoration none
-      +column(5)
-      :text-shadow 0px 1px #555
-      &:hover
-        :text-shadow 0 0 15px #ffffff
-  h4
-    :width 201px
-    :height 24px
-    :display block
-    :padding 0
-    :margin 0 auto
-    :color white
-    :font-weight bold
-    :text-align center
-    :background url('/images/footer-header-bg.png')
-    font-family: "museo-slab-1", "museo-slab-2"
-  #about
-    :width 340px
-    :float left
-    :height 100%
-    .bg
-      :background url('/images/footer-about-bg.png')
-      :width 317px
-      :height 272px
-      :display block
-      p
-        :padding
-          :left 25px
-          :right 25px
-          :top 25px
-
-        :text-align left
-  #applications
-    :width 300px
-    :height 100%
-    :float left
-    .app
-      :text-align left
-      :float left
-      :width 300px
-      h5
-        :color #43260f
-        :font-size 18px
-        :margin 0
-          :top 20px
-        :padding 0
-        :text-indent 5px
-      span
-        :color #43260f
-        :font-size 12px
-        :text-indent 5px
-        :display block
-        :width 100%
-      img.link
-        :margin
-          :top 5px
-      img.icon
-        :float left
-        :margin 5px
-          :top 17px
-  #connect
-    :width 320px
-    :margin 0
-    :padding 0
-    :float left
-    a
-      img
-        &:hover
-          :opacity .8
-  #copyright
-    :clear left
-    :margin-top 5px
-    :font-size 17px
+  background-color: #f2f1e6
+  height: 55px
+  
+  #center-container
+    +container
+    margin-top: 10px
+    .row
+      margin-bottom: 0px
+    ul
+      margin-bottom: 0px
+      li
+        display: inline
+        margin-right: 15px
+        a
+          font-size: 14px
+          color: #333
+          &.apps
+            font-weight: bold
+            font-size: 20px
+          
+          &:hover
+            text-decoration: underline !important
+    #copyright, #spreadsong
+      text-align: right
+      font-size: 18px
+      color: #a5a49e
+    #spreadsong
+      font-style: italic
+      
+      
+        
       
 
 #right-column
@@ -279,7 +207,6 @@ a.highlight
   .right-covers
     color: #333
     font-size: 14px
-    font-family: Helvetica
     &:hover
       :cursor pointer
     .cover

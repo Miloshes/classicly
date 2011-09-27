@@ -73,8 +73,8 @@ a img {
 
 /* line 45, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_scaffolding.scss */
 .colborder {
-  padding-right: 24px;
-  margin-right: 25px;
+  padding-right: 26px;
+  margin-right: 27px;
   border-right: 1px solid #dddddd;
 }
 
@@ -117,47 +117,68 @@ form.inline p {
 /* ----------------------------------- */
 /* ---------->>> GLOBAL <<<----------- */
 /* ----------------------------------- */
-/* line 6, ../../../app/stylesheets/partials/_global.sass */
-body h1.collection-header {
+@font-face {
+  font-family: "Scala";
+  src: url("/fonts/scala-webfont.svg") format("svg"), url("/fonts/scala-webfont.woff") format("woff"), url("/fonts/scala-webfont.ttf") format("truetype");
+}
+
+/* line 10, ../../../app/stylesheets/partials/_global.sass */
+body.bp {
+  background-color: #f2f1e6;
+  font-family: "Scala", Georgia, sans-serif;
+  font-size: 16px;
+}
+/* line 15, ../../../app/stylesheets/partials/_global.sass */
+body.bp #content {
+  width: 1060px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+  overflow: visible !important;
+  background-color: white;
+  padding: 0px 0px 30px 30px;
+}
+/* line 21, ../../../app/stylesheets/partials/_global.sass */
+body.bp h1.collection-header {
   font-size: 22px;
   font-weight: bold;
 }
-/* line 10, ../../../app/stylesheets/partials/_global.sass */
-body * :focus {
+/* line 25, ../../../app/stylesheets/partials/_global.sass */
+body.bp * :focus {
   outline: 0;
 }
-/* line 12, ../../../app/stylesheets/partials/_global.sass */
-body a {
+/* line 27, ../../../app/stylesheets/partials/_global.sass */
+body.bp a {
   text-decoration: none !important;
 }
-/* line 14, ../../../app/stylesheets/partials/_global.sass */
-body a:active {
+/* line 29, ../../../app/stylesheets/partials/_global.sass */
+body.bp a:active {
   outline: 0 none;
   -moz-outline: 0 none;
 }
-/* line 17, ../../../app/stylesheets/partials/_global.sass */
-body a:focus {
+/* line 32, ../../../app/stylesheets/partials/_global.sass */
+body.bp a:focus {
   outline: none;
   -moz-outline: 0 none;
 }
-/* line 20, ../../../app/stylesheets/partials/_global.sass */
-body a.btn.primary {
+/* line 35, ../../../app/stylesheets/partials/_global.sass */
+body.bp a.btn.primary {
   color: white !important;
 }
 
 /* ----------------------------------- */
 /* ---------->>> MIXINS <<<----------- */
 /* ----------------------------------- */
-/* line 32, ../../../app/stylesheets/partials/_global.sass */
+/* line 47, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher {
   min-height: 30px;
   font-size: 13px;
 }
-/* line 36, ../../../app/stylesheets/partials/_global.sass */
+/* line 51, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span, .audiobook-switcher a {
   float: left;
 }
-/* line 38, ../../../app/stylesheets/partials/_global.sass */
+/* line 53, ../../../app/stylesheets/partials/_global.sass */
 .audiobook-switcher span {
   display: block;
   color: #cccccc;
@@ -167,52 +188,52 @@ body a.btn.primary {
 /* ----------------------------------------- */
 /* ---------->>> AUTOCOMPLETE <<<----------- */
 /* ----------------------------------------- */
-/* line 45, ../../../app/stylesheets/partials/_global.sass */
+/* line 60, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
   min-width: 365px;
   max-width: 365px;
   cursor: pointer;
 }
-/* line 50, ../../../app/stylesheets/partials/_global.sass */
+/* line 65, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 53, ../../../app/stylesheets/partials/_global.sass */
+/* line 68, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 56, ../../../app/stylesheets/partials/_global.sass */
+/* line 71, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 60, ../../../app/stylesheets/partials/_global.sass */
+/* line 75, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 62, ../../../app/stylesheets/partials/_global.sass */
+/* line 77, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 65, ../../../app/stylesheets/partials/_global.sass */
+/* line 80, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 67, ../../../app/stylesheets/partials/_global.sass */
+/* line 82, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 72, ../../../app/stylesheets/partials/_global.sass */
+/* line 87, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 73, ../../../app/stylesheets/partials/_global.sass */
+/* line 88, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -220,7 +241,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 81, ../../../app/stylesheets/partials/_global.sass */
+/* line 96, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -229,26 +250,26 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 90, ../../../app/stylesheets/partials/_global.sass */
+/* line 105, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 92, ../../../app/stylesheets/partials/_global.sass */
+/* line 107, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
-  font-family: "Helvetica";
+  font-family: "Scala", Georgia, sans-serif;
   font-size: 36px;
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 98, ../../../app/stylesheets/partials/_global.sass */
+/* line 113, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
-  font-family: "Helvetica";
+  font-family: "Scala", Georgia, sans-serif;
   font-size: 14px;
   color: #333333;
 }
-/* line 103, ../../../app/stylesheets/partials/_global.sass */
+/* line 118, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -256,13 +277,13 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 109, ../../../app/stylesheets/partials/_global.sass */
+/* line 124, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
   background-color: #ffffd7;
 }
-/* line 27, ../../../app/stylesheets/partials/_global.sass */
+/* line 42, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link:hover, a.description-link:hover {
   background-color: #ffff66;
   color: #333333;
@@ -272,7 +293,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 119, ../../../app/stylesheets/partials/_global.sass */
+/* line 134, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -284,12 +305,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 129, ../../../app/stylesheets/partials/_global.sass */
+/* line 144, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 132, ../../../app/stylesheets/partials/_global.sass */
+/* line 147, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -297,7 +318,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 138, ../../../app/stylesheets/partials/_global.sass */
+/* line 153, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -320,7 +341,7 @@ body {
   color: #333333;
   font-size: 75%;
   background-color: white;
-  font-family: "Helvetica", "Arial", "Sans-serif";
+  font-family: "Scala", Georgia, sans-serif;
 }
 /* line 51, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_typography.scss */
 body h1, body h2, body h3, body h4, body h5, body h6 {
@@ -543,9 +564,9 @@ a.highlight:hover {
 #header .wrap {
   width: 100%;
   display: block;
-  height: 52px;
+  height: 50px;
   text-align: center;
-  background: #c9af87;
+  background: #22190e;
 }
 /* line 41, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top {
@@ -559,58 +580,66 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
+  width: 168.333px;
+  margin: 0px 13px 0px -55px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #logo {
   overflow-x: hidden;
 }
-/* line 48, ../../../app/stylesheets/partials/_layout.sass */
+/* line 49, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #logo img {
-  margin-top: 7px;
+  margin-top: 10px;
 }
 /* line 51, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 470px;
+  width: 569.583px;
   text-align: left;
-  margin-top: 14px;
+  margin-left: -5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #nav {
   overflow-x: hidden;
 }
-/* line 56, ../../../app/stylesheets/partials/_layout.sass */
+/* line 55, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul {
   list-style: none;
 }
-/* line 58, ../../../app/stylesheets/partials/_layout.sass */
+/* line 57, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li {
   float: left;
   display: inline;
+  height: 50px;
+  padding: 0px 20px;
 }
-/* line 61, ../../../app/stylesheets/partials/_layout.sass */
+/* line 62, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #nav ul li:hover {
+  background-color: #48423b;
+}
+/* line 64, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a {
-  font: bold 14px "helvetica";
-  color: #442507;
-  display: block;
-  width: 106px;
-  height: 24px;
-  float: left;
-  text-decoration: none;
-  background: url(/images/nav-bg.png);
+  font: 18px "Scala", Georgia, sans-serif;
+  color: white;
+  display: inline-block;
   text-align: center;
-  margin-right: 6px;
-  padding-top: 8px;
+  margin-top: 18px;
+}
+/* line 71, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #nav ul li.active {
+  background-color: white;
+}
+/* line 73, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #nav ul li.active:hover {
+  background-color: white;
 }
 /* line 75, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .top #nav ul li a:hover {
-  cursor: pointer;
-  opacity: 0.8;
+#header .wrap .top #nav ul li.active a {
+  color: #333333;
 }
-/* line 79, ../../../app/stylesheets/partials/_layout.sass */
+/* line 78, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul .right {
   background: url("/images/header-nav-right.png");
   height: 35px;
@@ -618,23 +647,34 @@ a.highlight:hover {
   display: block;
   float: left;
 }
-/* line 86, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap .bottom {
-  float: left;
-  display: block;
-  width: 100%;
-  height: 6px;
-  background: url(/images/shadow-top.png) repeat-x;
-  margin: 0;
-  margin-top: -7px;
-  padding: 0;
+/* line 84, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #signin {
+  background-color: #052336;
+  height: 32px;
+  float: right;
+  padding: 18px 50px 0px 50px;
+  margin-right: -64px;
+}
+/* line 90, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #signin a {
+  font-color: white;
+  font-size: 18px;
+  text-align: center;
+  color: white;
 }
 /* line 95, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap #profile-pic {
+  width: 50px;
+  height: 50px;
+  float: right;
+  margin-right: -64px;
+}
+/* line 100, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 190px;
+  width: 212.917px;
   margin-top: 17px;
   margin-left: 65px;
 }
@@ -642,13 +682,13 @@ a.highlight:hover {
 * html #header .wrap #search {
   overflow-x: hidden;
 }
-/* line 100, ../../../app/stylesheets/partials/_layout.sass */
+/* line 105, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search form {
   background: white;
   height: 22px;
   border: 1px solid #ab9573;
 }
-/* line 104, ../../../app/stylesheets/partials/_layout.sass */
+/* line 109, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search input {
   color: #d2d2d3;
   font: normal 12px "helvetica";
@@ -660,11 +700,11 @@ a.highlight:hover {
   float: left;
   padding: 3px 0px 0px 3px;
 }
-/* line 114, ../../../app/stylesheets/partials/_layout.sass */
+/* line 119, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search input:focus {
   color: #333333;
 }
-/* line 116, ../../../app/stylesheets/partials/_layout.sass */
+/* line 121, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search button {
   width: 25px;
   height: 16px;
@@ -674,12 +714,12 @@ a.highlight:hover {
   float: right;
   margin-top: 1px;
 }
-/* line 124, ../../../app/stylesheets/partials/_layout.sass */
+/* line 129, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #search button:hover {
   cursor: pointer;
 }
 
-/* line 127, ../../../app/stylesheets/partials/_layout.sass */
+/* line 132, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -690,191 +730,90 @@ a.highlight:hover {
   padding: 0;
 }
 
-/* line 137, ../../../app/stylesheets/partials/_layout.sass */
+/* line 142, ../../../app/stylesheets/partials/_layout.sass */
 #footer {
-  background: #c9af87;
   width: 100%;
-  float: left;
-  padding: 10px 0 20px 0;
-  text-align: center;
+  background-color: #f2f1e6;
+  height: 55px;
 }
-/* line 143, ../../../app/stylesheets/partials/_layout.sass */
-#footer .centering {
+/* line 147, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container {
+  width: 1060px;
   margin: 0 auto;
-  width: 980px;
-  height: 320px;
-  padding: 10px;
-  border: 1px solid #bb9d79;
-  background: #cab08b;
+  overflow: hidden;
+  *zoom: 1;
+  margin-top: 10px;
 }
 /* line 150, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list {
-  margin: 0 auto;
-  width: 800px;
-  padding: 10px;
-  padding-bottom: 0px;
-  background: 1px solid #bb9d79;
-  font-family: "helvetica";
-  font-size: 17px;
+#footer #center-container .row {
+  margin-bottom: 0px;
 }
-/* line 158, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list img {
-  float: left;
+/* line 152, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container ul {
+  margin-bottom: 0px;
+}
+/* line 154, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container ul li {
+  display: inline;
+  margin-right: 15px;
+}
+/* line 157, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container ul li a {
+  font-size: 14px;
+  color: #333333;
 }
 /* line 160, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list .collections {
-  width: 830px;
-  display: block;
-  float: left;
-  padding-left: 50px;
-  border-left: 1px solid #866a47;
-  border-right: 1px solid #866a47;
-}
-/* line 169, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list .column {
-  float: left;
-  width: 190px;
-}
-/* line 172, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list a {
-  color: white;
-  text-decoration: none;
-  display: inline;
-  float: left;
-  margin-right: 10px;
-  width: 190px;
-  text-shadow: 0px 1px #555555;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #footer #collection-names-list a {
-  overflow-x: hidden;
-}
-/* line 177, ../../../app/stylesheets/partials/_layout.sass */
-#footer #collection-names-list a:hover {
-  text-shadow: 0 0 15px white;
-}
-/* line 179, ../../../app/stylesheets/partials/_layout.sass */
-#footer h4 {
-  width: 201px;
-  height: 24px;
-  display: block;
-  padding: 0;
-  margin: 0 auto;
-  color: white;
+#footer #center-container ul li a.apps {
   font-weight: bold;
-  text-align: center;
-  background: url("/images/footer-header-bg.png");
-  font-family: "museo-slab-1", "museo-slab-2";
+  font-size: 20px;
 }
-/* line 190, ../../../app/stylesheets/partials/_layout.sass */
-#footer #about {
-  width: 340px;
-  float: left;
-  height: 100%;
+/* line 164, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container ul li a:hover {
+  text-decoration: underline !important;
 }
-/* line 194, ../../../app/stylesheets/partials/_layout.sass */
-#footer #about .bg {
-  background: url("/images/footer-about-bg.png");
-  width: 317px;
-  height: 272px;
-  display: block;
-}
-/* line 199, ../../../app/stylesheets/partials/_layout.sass */
-#footer #about .bg p {
-  padding-left: 25px;
-  padding-right: 25px;
-  padding-top: 25px;
-  text-align: left;
-}
-/* line 206, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications {
-  width: 300px;
-  height: 100%;
-  float: left;
-}
-/* line 210, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications .app {
-  text-align: left;
-  float: left;
-  width: 300px;
-}
-/* line 214, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications .app h5 {
-  color: #43260f;
+/* line 166, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container #copyright, #footer #center-container #spreadsong {
+  text-align: right;
   font-size: 18px;
-  margin: 0;
-  margin-top: 20px;
-  padding: 0;
-  text-indent: 5px;
+  color: #a5a49e;
 }
-/* line 221, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications .app span {
-  color: #43260f;
-  font-size: 12px;
-  text-indent: 5px;
-  display: block;
-  width: 100%;
-}
-/* line 227, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications .app img.link {
-  margin-top: 5px;
-}
-/* line 230, ../../../app/stylesheets/partials/_layout.sass */
-#footer #applications .app img.icon {
-  float: left;
-  margin: 5px;
-  margin-top: 17px;
-}
-/* line 234, ../../../app/stylesheets/partials/_layout.sass */
-#footer #connect {
-  width: 320px;
-  margin: 0;
-  padding: 0;
-  float: left;
-}
-/* line 241, ../../../app/stylesheets/partials/_layout.sass */
-#footer #connect a img:hover {
-  opacity: 0.8;
-}
-/* line 243, ../../../app/stylesheets/partials/_layout.sass */
-#footer #copyright {
-  clear: left;
-  margin-top: 5px;
-  font-size: 17px;
+/* line 170, ../../../app/stylesheets/partials/_layout.sass */
+#footer #center-container #spreadsong {
+  font-style: italic;
 }
 
-/* line 249, ../../../app/stylesheets/partials/_layout.sass */
+/* line 177, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 255, ../../../app/stylesheets/partials/_layout.sass */
+/* line 183, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
   text-align: left;
 }
-/* line 258, ../../../app/stylesheets/partials/_layout.sass */
+/* line 186, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
   float: left !important;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 263, ../../../app/stylesheets/partials/_layout.sass */
+/* line 191, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe {
   float: left;
 }
-/* line 265, ../../../app/stylesheets/partials/_layout.sass */
+/* line 193, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 268, ../../../app/stylesheets/partials/_layout.sass */
+/* line 196, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 272, ../../../app/stylesheets/partials/_layout.sass */
+/* line 200, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -882,46 +821,45 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 279, ../../../app/stylesheets/partials/_layout.sass */
+/* line 207, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers {
   color: #333333;
   font-size: 14px;
-  font-family: Helvetica;
 }
-/* line 283, ../../../app/stylesheets/partials/_layout.sass */
+/* line 210, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers:hover {
   cursor: pointer;
 }
-/* line 285, ../../../app/stylesheets/partials/_layout.sass */
+/* line 212, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover {
   float: none;
   height: auto;
 }
-/* line 288, ../../../app/stylesheets/partials/_layout.sass */
+/* line 215, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover img {
   margin-bottom: 0px;
   float: none;
 }
-/* line 291, ../../../app/stylesheets/partials/_layout.sass */
+/* line 218, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover .text {
   float: none;
   margin-top: 0px;
 }
-/* line 295, ../../../app/stylesheets/partials/_layout.sass */
+/* line 222, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links {
   margin-top: 50px;
 }
-/* line 297, ../../../app/stylesheets/partials/_layout.sass */
+/* line 224, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links a {
   cursor: pointer;
 }
-/* line 300, ../../../app/stylesheets/partials/_layout.sass */
+/* line 227, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
 }
 
-/* line 305, ../../../app/stylesheets/partials/_layout.sass */
+/* line 232, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -930,45 +868,45 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 312, ../../../app/stylesheets/partials/_layout.sass */
+/* line 239, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 318, ../../../app/stylesheets/partials/_layout.sass */
+/* line 245, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
-  padding-left: 80px;
+  width: 212.917px;
+  padding-left: 89.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 321, ../../../app/stylesheets/partials/_layout.sass */
+/* line 248, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 326, ../../../app/stylesheets/partials/_layout.sass */
+/* line 253, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
-  padding-left: 40px;
+  width: 212.917px;
+  padding-left: 44.583px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 329, ../../../app/stylesheets/partials/_layout.sass */
+/* line 256, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -977,29 +915,29 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 337, ../../../app/stylesheets/partials/_layout.sass */
+/* line 264, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 310px;
-  padding-left: 80px;
+  width: 346.667px;
+  padding-left: 89.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 340, ../../../app/stylesheets/partials/_layout.sass */
+/* line 267, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 344, ../../../app/stylesheets/partials/_layout.sass */
+/* line 271, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 550px;
+  width: 614.167px;
   height: 30px;
   display: block;
 }
@@ -1013,7 +951,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #left-column {
@@ -1029,7 +967,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 430px;
+  width: 480.417px;
   padding-top: 30px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -1056,7 +994,7 @@ a.highlight:hover {
 }
 /* line 23, ../../../app/stylesheets/partials/_home_page.sass */
 #home-page-content #classicly-welcome-text .info {
-  font-family: "Helvetica", arial, serif;
+  font-family: "Scala", Georgia, sans-serif;
   font-size: 16px;
   color: #999999;
   width: 100%;
@@ -1076,7 +1014,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 270px;
+  width: 302.083px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #home-page-content #classicly-featured-book {
@@ -1092,7 +1030,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   float: left;
   margin-top: 30px;
 }
@@ -1111,7 +1049,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   margin-top: 25px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -1123,7 +1061,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 230px;
+  width: 257.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-tiles .column {
@@ -1134,7 +1072,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 230px;
+  width: 257.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-tiles .column.last {
@@ -1264,147 +1202,149 @@ ul.ui-autocomplete {
 /* line 6, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column {
   text-align: center;
+  margin-left: 45px;
 }
-/* line 8, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 9, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column a.btn {
   width: 70%;
   text-align: center;
   display: block;
   margin: 0 auto;
 }
-/* line 13, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 14, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column .cover {
   margin-bottom: 0px;
   height: 239px;
   float: none;
 }
-/* line 17, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 18, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column .cover img {
   display: block;
   float: none;
   margin: 0px auto;
 }
-/* line 22, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 23, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #my-rating {
   width: 100%;
 }
-/* line 24, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 25, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #my-rating #blank-stars {
   height: 19px;
   display: none;
 }
-/* line 27, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 28, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #my-rating #rating-stars {
   padding-left: 34px;
 }
-/* line 29, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 30, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #read-online-btn {
   margin-top: 15px;
 }
-/* line 31, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 32, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #download-as {
   margin-top: 15px;
 }
-/* line 33, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 34, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #download-as .text {
   margin-bottom: 15px;
 }
-/* line 35, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 36, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .cover-column #download-as .download-button {
   margin-bottom: 6px;
 }
-/* line 38, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 39, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column {
   padding-top: 4px;
+  margin-left: 17px;
 }
-/* line 40, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 43, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-title {
   margin-bottom: -10px;
 }
-/* line 42, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 45, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-title h1 {
   font-size: 22px;
 }
-/* line 44, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 47, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-author {
   margin-bottom: 8px;
 }
-/* line 46, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-author h2 {
   font: normal 14px/14px "Helvetica";
   margin-bottom: 0;
 }
-/* line 49, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 52, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-rating {
   margin-bottom: 25px;
 }
-/* line 51, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 54, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #book-rating #reviews-count {
   display: inline-block;
   margin-left: 10px;
 }
-/* line 55, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 58, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .like-send {
   margin: 20px 0 30px 0;
 }
-/* line 58, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 61, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column p {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 430px;
-  font-size: 14px;
+  width: 480.417px;
+  font-size: 16px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column p {
   overflow-x: hidden;
 }
-/* line 62, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 65, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #read-online-button-container {
   margin-bottom: 20px;
 }
-/* line 66, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 69, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #reviews-rating-count, #book-page .book-column #greeting, #book-page .book-column #review-box, #book-page .book-column #rate, #book-page .book-column #submit-review {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 470px;
+  width: 525px;
   font-size: 14px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column #reviews-rating-count, * html #book-page .book-column #greeting, * html #book-page .book-column #review-box, * html #book-page .book-column #rate, * html #book-page .book-column #submit-review {
   overflow-x: hidden;
 }
-/* line 70, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 73, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .explanation {
   color: #999999;
   font-size: 14px;
 }
-/* line 76, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 79, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #write-review {
   text-align: right;
 }
-/* line 80, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 83, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 70px;
+  width: 79.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column #greeting .profile-pic {
   overflow-x: hidden;
 }
-/* line 83, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 86, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 86, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 89, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 390px;
+  width: 435.833px;
   margin-left: -12px;
   height: 56px;
 }
@@ -1412,42 +1352,42 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .text {
   overflow-x: hidden;
 }
-/* line 91, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 94, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text p {
   margin-top: 36px;
 }
-/* line 95, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate {
   margin-top: 7px;
 }
-/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 101, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .text {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 110px;
+  width: 123.75px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column #rate .text {
   overflow-x: hidden;
 }
-/* line 101, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 104, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .stars {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 350px;
+  width: 391.25px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page .book-column #rate .stars {
   overflow-x: hidden;
 }
-/* line 104, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 107, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #submit-review {
   margin-top: 14px;
   font-size: 16px;
 }
-/* line 110, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 113, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
   background: url(/images/new_reviews_editor.png);
   width: 400px;
@@ -1456,16 +1396,16 @@ ul.ui-autocomplete {
   resize: none;
   padding: 7px 0px 0px 7px;
 }
-/* line 118, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 121, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews {
   margin-top: 21px;
 }
-/* line 121, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 124, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 470px;
+  width: 525px;
   padding: 10px 0px 0px 10px;
   margin-top: 10px;
 }
@@ -1473,31 +1413,31 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review {
   overflow-x: hidden;
 }
-/* line 126, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 129, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review.striped {
   background-color: #f2ede6;
 }
-/* line 129, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 132, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 70px;
+  width: 79.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #book-page #reviews .individual_review .profile-pic {
   overflow-x: hidden;
 }
-/* line 132, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 135, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 135, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 138, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 390px;
+  width: 435.833px;
   margin-left: -15px;
   padding-top: 5px;
 }
@@ -1505,31 +1445,31 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review .profile-name {
   overflow-x: hidden;
 }
-/* line 140, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 143, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p {
   line-height: 1px;
   font-size: 12px;
 }
-/* line 144, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 147, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.name {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 150, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 153, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.date {
   margin-bottom: 15px;
 }
-/* line 153, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 156, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name .rating {
   margin-top: 2px;
 }
-/* line 156, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 159, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content {
   margin-top: 10px;
 }
-/* line 159, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 162, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content p {
   margin: 0px 0px 5px 0px;
 }
@@ -1682,7 +1622,7 @@ ul.book-list li .download-link .view-this-book a {
 }
 /* line 118, ../../../app/stylesheets/partials/_collection_page.sass */
 #collection-page .collection-info p, #collection-book-list-page .collection-info p, .quote-list-page .collection-info p, #collection-list-page .collection-info p {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 2em;
   color: #333333;
 }
@@ -1836,7 +1776,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   margin-top: 20px;
   text-align: left;
 }
@@ -1849,7 +1789,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #featured-collection, * html #author-list-page #featured-collection, * html #collection-page #featured-collection, * html #collection-book-list-page #featured-collection {
@@ -1860,7 +1800,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
+  width: 212.917px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #featured-collection .cover-column, * html #author-list-page #featured-collection .cover-column, * html #collection-page #featured-collection .cover-column, * html #collection-book-list-page #featured-collection .cover-column {
@@ -1871,7 +1811,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 510px;
+  width: 569.583px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #featured-collection .detail-column, * html #author-list-page #featured-collection .detail-column, * html #collection-page #featured-collection .detail-column, * html #collection-book-list-page #featured-collection .detail-column {
@@ -1894,15 +1834,15 @@ ul.book-list li .download-link .view-this-book a {
 /* line 20, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #featured-collection .detail-column p, #author-list-page #featured-collection .detail-column p, #collection-page #featured-collection .detail-column p, #collection-book-list-page #featured-collection .detail-column p {
   color: #333333;
-  font-size: 14px;
+  font-size: 16px;
 }
 /* line 23, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #featured-collection .books-and-link, #author-list-page #featured-collection .books-and-link, #collection-page #featured-collection .books-and-link, #collection-book-list-page #featured-collection .books-and-link {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 630px;
-  padding-right: 80px;
+  width: 703.333px;
+  padding-right: 89.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #featured-collection .books-and-link, * html #author-list-page #featured-collection .books-and-link, * html #collection-page #featured-collection .books-and-link, * html #collection-book-list-page #featured-collection .books-and-link {
@@ -1924,7 +1864,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #collection-list, * html #author-list-page #collection-list, * html #collection-page #collection-list, * html #collection-book-list-page #collection-list {
@@ -1948,7 +1888,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #collection-list ul.collection, * html #author-list-page #collection-list ul.collection, * html #collection-page #collection-list ul.collection, * html #collection-book-list-page #collection-list ul.collection {
@@ -1959,7 +1899,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #collection-list ul.collection li, * html #author-list-page #collection-list ul.collection li, * html #collection-page #collection-list ul.collection li, * html #collection-book-list-page #collection-list ul.collection li {
@@ -1970,7 +1910,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   display: table-cell;
   verticle-align: bottom;
 }
@@ -1982,14 +1922,14 @@ ul.book-list li .download-link .view-this-book a {
 #collection-list-page #collection-list ul.collection li .info h5 a, #author-list-page #collection-list ul.collection li .info h5 a, #collection-page #collection-list ul.collection li .info h5 a, #collection-book-list-page #collection-list ul.collection li .info h5 a {
   text-decoration: none;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 16px;
   padding: 0;
   margin: 0;
   color: black;
 }
 /* line 66, ../../../app/stylesheets/partials/_collection_list.sass */
 #collection-list-page #collection-list ul.collection li .info p, #author-list-page #collection-list ul.collection li .info p, #collection-page #collection-list ul.collection li .info p, #collection-book-list-page #collection-list ul.collection li .info p {
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
   color: #999999;
   padding: 0;
@@ -2000,7 +1940,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 350px;
+  width: 391.25px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #collection-list ul.collection li .covers, * html #author-list-page #collection-list ul.collection li .covers, * html #collection-page #collection-list ul.collection li .covers, * html #collection-book-list-page #collection-list ul.collection li .covers {
@@ -2016,8 +1956,8 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 270px;
-  padding-right: 80px;
+  width: 302.083px;
+  padding-right: 89.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #collection-list-page #collection-list ul.collection li .browse-this-collection, * html #author-list-page #collection-list ul.collection li .browse-this-collection, * html #collection-page #collection-list ul.collection li .browse-this-collection, * html #collection-book-list-page #collection-list ul.collection li .browse-this-collection {
@@ -2033,7 +1973,7 @@ ul.book-list li .download-link .view-this-book a {
 #fb_connect_notification {
   width: 100%;
   background-image: url(/images/Registration_slices/reg_bg.png);
-  height: 256px;
+  height: 254px;
   color: white;
   font-size: 14px;
   font-family: arial;
@@ -2123,7 +2063,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   margin-top: 30px;
   text-align: left;
 }
@@ -2137,7 +2077,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   margin-top: 30px;
   text-align: left;
 }
@@ -2150,7 +2090,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 190px;
+  width: 212.917px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .cover-column {
@@ -2170,13 +2110,13 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 470px;
+  width: 525px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #download-confirmation-page .download-info {
   overflow-x: hidden;
 }
-/* line 27, ../../../app/stylesheets/partials/_global.sass */
+/* line 42, ../../../app/stylesheets/partials/_global.sass */
 #download-confirmation-page .download-info a:hover {
   background-color: #ffff66;
   color: #333333;
@@ -2202,7 +2142,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 390px;
+  width: 435.833px;
   font-size: #333333;
   font-size: 14px;
 }
@@ -2219,7 +2159,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 470px;
+  width: 525px;
   margin-top: 30px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -2243,7 +2183,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
+  width: 614.167px;
   margin-top: 30px;
   text-align: left;
 }
@@ -2267,8 +2207,8 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 510px;
-  padding-right: 120px;
+  width: 569.583px;
+  padding-right: 133.75px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post {
@@ -2279,7 +2219,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 590px;
+  width: 658.75px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post .blog-title {
@@ -2332,7 +2272,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 590px;
+  width: 658.75px;
   margin-top: 20px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -2385,7 +2325,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 550px;
+  width: 614.167px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html .blog-shared .show-post .related {
@@ -2462,7 +2402,7 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #blog-page .about-the-blog {
@@ -2473,8 +2413,8 @@ ul.book-list li .download-link .view-this-book a {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 310px;
-  padding-right: 400px;
+  width: 346.667px;
+  padding-right: 445.833px;
   font-size: 12px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -2689,7 +2629,7 @@ a.button.kiss span {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 710px;
+  width: 792.5px;
   margin-top: 30px;
   text-align: left;
 }
@@ -2702,7 +2642,7 @@ a.button.kiss span {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 590px;
+  width: 658.75px;
   font-size: 16px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
@@ -2756,7 +2696,7 @@ a.button.kiss span {
 #collection-page .quote a, .quote-list-page .quote a, .collection-book-list-page .quote a {
   margin-bottom: 15px;
   color: #333333;
-  font: normal 18px/32px "helvetica", verdana, serif;
+  font: normal 18px/32px "scala", Georgia, sans-serif;
 }
 /* line 32, ../../../app/stylesheets/partials/_quotes.sass */
 #collection-page .separator, .quote-list-page .separator, .collection-book-list-page .separator {
@@ -2868,34 +2808,26 @@ body.bp .bottom {
 }
 /* line 25, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_debug.scss */
 body.bp .showgrid {
-  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(5%, rgba(0, 0, 0, 0.5)), color-stop(5%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 0% 50%, 960 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(100, 100, 225, 0.25)), color-stop(3.125%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(100, 100, 225, 0.25)), color-stop(7.292%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(100, 100, 225, 0.25)), color-stop(11.458%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(100, 100, 225, 0.25)), color-stop(15.625%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(100, 100, 225, 0.25)), color-stop(19.792%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(100, 100, 225, 0.25)), color-stop(23.958%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(100, 100, 225, 0.25)), color-stop(28.125%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(100, 100, 225, 0.25)), color-stop(32.292%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(100, 100, 225, 0.25)), color-stop(36.458%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(100, 100, 225, 0.25)), color-stop(40.625%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(100, 100, 225, 0.25)), color-stop(44.792%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(100, 100, 225, 0.25)), color-stop(48.958%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(100, 100, 225, 0.25)), color-stop(53.125%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(100, 100, 225, 0.25)), color-stop(57.292%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(100, 100, 225, 0.25)), color-stop(61.458%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(100, 100, 225, 0.25)), color-stop(65.625%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(100, 100, 225, 0.25)), color-stop(69.792%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(100, 100, 225, 0.25)), color-stop(73.958%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(100, 100, 225, 0.25)), color-stop(78.125%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(100, 100, 225, 0.25)), color-stop(82.292%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(100, 100, 225, 0.25)), color-stop(86.458%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(100, 100, 225, 0.25)), color-stop(90.625%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(100, 100, 225, 0.25)), color-stop(94.792%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(100, 100, 225, 0.25)), color-stop(98.958%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
-  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -o-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -ms-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
-  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 30px, rgba(0, 0, 0, 0) 30px, rgba(0, 0, 0, 0) 40px, rgba(100, 100, 225, 0.25) 40px, rgba(100, 100, 225, 0.25) 70px, rgba(0, 0, 0, 0) 70px, rgba(0, 0, 0, 0) 80px, rgba(100, 100, 225, 0.25) 80px, rgba(100, 100, 225, 0.25) 110px, rgba(0, 0, 0, 0) 110px, rgba(0, 0, 0, 0) 120px, rgba(100, 100, 225, 0.25) 120px, rgba(100, 100, 225, 0.25) 150px, rgba(0, 0, 0, 0) 150px, rgba(0, 0, 0, 0) 160px, rgba(100, 100, 225, 0.25) 160px, rgba(100, 100, 225, 0.25) 190px, rgba(0, 0, 0, 0) 190px, rgba(0, 0, 0, 0) 200px, rgba(100, 100, 225, 0.25) 200px, rgba(100, 100, 225, 0.25) 230px, rgba(0, 0, 0, 0) 230px, rgba(0, 0, 0, 0) 240px, rgba(100, 100, 225, 0.25) 240px, rgba(100, 100, 225, 0.25) 270px, rgba(0, 0, 0, 0) 270px, rgba(0, 0, 0, 0) 280px, rgba(100, 100, 225, 0.25) 280px, rgba(100, 100, 225, 0.25) 310px, rgba(0, 0, 0, 0) 310px, rgba(0, 0, 0, 0) 320px, rgba(100, 100, 225, 0.25) 320px, rgba(100, 100, 225, 0.25) 350px, rgba(0, 0, 0, 0) 350px, rgba(0, 0, 0, 0) 360px, rgba(100, 100, 225, 0.25) 360px, rgba(100, 100, 225, 0.25) 390px, rgba(0, 0, 0, 0) 390px, rgba(0, 0, 0, 0) 400px, rgba(100, 100, 225, 0.25) 400px, rgba(100, 100, 225, 0.25) 430px, rgba(0, 0, 0, 0) 430px, rgba(0, 0, 0, 0) 440px, rgba(100, 100, 225, 0.25) 440px, rgba(100, 100, 225, 0.25) 470px, rgba(0, 0, 0, 0) 470px, rgba(0, 0, 0, 0) 480px, rgba(100, 100, 225, 0.25) 480px, rgba(100, 100, 225, 0.25) 510px, rgba(0, 0, 0, 0) 510px, rgba(0, 0, 0, 0) 520px, rgba(100, 100, 225, 0.25) 520px, rgba(100, 100, 225, 0.25) 550px, rgba(0, 0, 0, 0) 550px, rgba(0, 0, 0, 0) 560px, rgba(100, 100, 225, 0.25) 560px, rgba(100, 100, 225, 0.25) 590px, rgba(0, 0, 0, 0) 590px, rgba(0, 0, 0, 0) 600px, rgba(100, 100, 225, 0.25) 600px, rgba(100, 100, 225, 0.25) 630px, rgba(0, 0, 0, 0) 630px, rgba(0, 0, 0, 0) 640px, rgba(100, 100, 225, 0.25) 640px, rgba(100, 100, 225, 0.25) 670px, rgba(0, 0, 0, 0) 670px, rgba(0, 0, 0, 0) 680px, rgba(100, 100, 225, 0.25) 680px, rgba(100, 100, 225, 0.25) 710px, rgba(0, 0, 0, 0) 710px, rgba(0, 0, 0, 0) 720px, rgba(100, 100, 225, 0.25) 720px, rgba(100, 100, 225, 0.25) 750px, rgba(0, 0, 0, 0) 750px, rgba(0, 0, 0, 0) 760px, rgba(100, 100, 225, 0.25) 760px, rgba(100, 100, 225, 0.25) 790px, rgba(0, 0, 0, 0) 790px, rgba(0, 0, 0, 0) 800px, rgba(100, 100, 225, 0.25) 800px, rgba(100, 100, 225, 0.25) 830px, rgba(0, 0, 0, 0) 830px, rgba(0, 0, 0, 0) 840px, rgba(100, 100, 225, 0.25) 840px, rgba(100, 100, 225, 0.25) 870px, rgba(0, 0, 0, 0) 870px, rgba(0, 0, 0, 0) 880px, rgba(100, 100, 225, 0.25) 880px, rgba(100, 100, 225, 0.25) 910px, rgba(0, 0, 0, 0) 910px, rgba(0, 0, 0, 0) 920px, rgba(100, 100, 225, 0.25) 920px, rgba(100, 100, 225, 0.25) 950px, rgba(0, 0, 0, 0) 950px, rgba(0, 0, 0, 0) 960px);
+  background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(5%, rgba(0, 0, 0, 0.5)), color-stop(5%, rgba(0, 0, 0, 0))), -webkit-gradient(linear, 0% 50%, 1070 50%, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(0%, rgba(100, 100, 225, 0.25)), color-stop(3.232%, rgba(100, 100, 225, 0.25)), color-stop(3.232%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(0, 0, 0, 0)), color-stop(4.167%, rgba(100, 100, 225, 0.25)), color-stop(7.399%, rgba(100, 100, 225, 0.25)), color-stop(7.399%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(0, 0, 0, 0)), color-stop(8.333%, rgba(100, 100, 225, 0.25)), color-stop(11.565%, rgba(100, 100, 225, 0.25)), color-stop(11.565%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(0, 0, 0, 0)), color-stop(12.5%, rgba(100, 100, 225, 0.25)), color-stop(15.732%, rgba(100, 100, 225, 0.25)), color-stop(15.732%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(0, 0, 0, 0)), color-stop(16.667%, rgba(100, 100, 225, 0.25)), color-stop(19.899%, rgba(100, 100, 225, 0.25)), color-stop(19.899%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(0, 0, 0, 0)), color-stop(20.833%, rgba(100, 100, 225, 0.25)), color-stop(24.065%, rgba(100, 100, 225, 0.25)), color-stop(24.065%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(0, 0, 0, 0)), color-stop(25%, rgba(100, 100, 225, 0.25)), color-stop(28.232%, rgba(100, 100, 225, 0.25)), color-stop(28.232%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(0, 0, 0, 0)), color-stop(29.167%, rgba(100, 100, 225, 0.25)), color-stop(32.399%, rgba(100, 100, 225, 0.25)), color-stop(32.399%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(0, 0, 0, 0)), color-stop(33.333%, rgba(100, 100, 225, 0.25)), color-stop(36.565%, rgba(100, 100, 225, 0.25)), color-stop(36.565%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(0, 0, 0, 0)), color-stop(37.5%, rgba(100, 100, 225, 0.25)), color-stop(40.732%, rgba(100, 100, 225, 0.25)), color-stop(40.732%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(0, 0, 0, 0)), color-stop(41.667%, rgba(100, 100, 225, 0.25)), color-stop(44.899%, rgba(100, 100, 225, 0.25)), color-stop(44.899%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(0, 0, 0, 0)), color-stop(45.833%, rgba(100, 100, 225, 0.25)), color-stop(49.065%, rgba(100, 100, 225, 0.25)), color-stop(49.065%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(0, 0, 0, 0)), color-stop(50%, rgba(100, 100, 225, 0.25)), color-stop(53.232%, rgba(100, 100, 225, 0.25)), color-stop(53.232%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(0, 0, 0, 0)), color-stop(54.167%, rgba(100, 100, 225, 0.25)), color-stop(57.399%, rgba(100, 100, 225, 0.25)), color-stop(57.399%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(0, 0, 0, 0)), color-stop(58.333%, rgba(100, 100, 225, 0.25)), color-stop(61.565%, rgba(100, 100, 225, 0.25)), color-stop(61.565%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(0, 0, 0, 0)), color-stop(62.5%, rgba(100, 100, 225, 0.25)), color-stop(65.732%, rgba(100, 100, 225, 0.25)), color-stop(65.732%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(0, 0, 0, 0)), color-stop(66.667%, rgba(100, 100, 225, 0.25)), color-stop(69.899%, rgba(100, 100, 225, 0.25)), color-stop(69.899%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(0, 0, 0, 0)), color-stop(70.833%, rgba(100, 100, 225, 0.25)), color-stop(74.065%, rgba(100, 100, 225, 0.25)), color-stop(74.065%, rgba(0, 0, 0, 0)), color-stop(75.0%, rgba(0, 0, 0, 0)), color-stop(75%, rgba(100, 100, 225, 0.25)), color-stop(78.232%, rgba(100, 100, 225, 0.25)), color-stop(78.232%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(0, 0, 0, 0)), color-stop(79.167%, rgba(100, 100, 225, 0.25)), color-stop(82.399%, rgba(100, 100, 225, 0.25)), color-stop(82.399%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(0, 0, 0, 0)), color-stop(83.333%, rgba(100, 100, 225, 0.25)), color-stop(86.565%, rgba(100, 100, 225, 0.25)), color-stop(86.565%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(0, 0, 0, 0)), color-stop(87.5%, rgba(100, 100, 225, 0.25)), color-stop(90.732%, rgba(100, 100, 225, 0.25)), color-stop(90.732%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(0, 0, 0, 0)), color-stop(91.667%, rgba(100, 100, 225, 0.25)), color-stop(94.899%, rgba(100, 100, 225, 0.25)), color-stop(94.899%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(0, 0, 0, 0)), color-stop(95.833%, rgba(100, 100, 225, 0.25)), color-stop(99.065%, rgba(100, 100, 225, 0.25)), color-stop(99.065%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 0)));
+  background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 34.583px, rgba(0, 0, 0, 0) 34.583px, rgba(0, 0, 0, 0) 44.583px, rgba(100, 100, 225, 0.25) 44.583px, rgba(100, 100, 225, 0.25) 79.167px, rgba(0, 0, 0, 0) 79.167px, rgba(0, 0, 0, 0) 89.167px, rgba(100, 100, 225, 0.25) 89.167px, rgba(100, 100, 225, 0.25) 123.75px, rgba(0, 0, 0, 0) 123.75px, rgba(0, 0, 0, 0) 133.75px, rgba(100, 100, 225, 0.25) 133.75px, rgba(100, 100, 225, 0.25) 168.333px, rgba(0, 0, 0, 0) 168.333px, rgba(0, 0, 0, 0) 178.333px, rgba(100, 100, 225, 0.25) 178.333px, rgba(100, 100, 225, 0.25) 212.917px, rgba(0, 0, 0, 0) 212.917px, rgba(0, 0, 0, 0) 222.917px, rgba(100, 100, 225, 0.25) 222.917px, rgba(100, 100, 225, 0.25) 257.5px, rgba(0, 0, 0, 0) 257.5px, rgba(0, 0, 0, 0) 267.5px, rgba(100, 100, 225, 0.25) 267.5px, rgba(100, 100, 225, 0.25) 302.083px, rgba(0, 0, 0, 0) 302.083px, rgba(0, 0, 0, 0) 312.083px, rgba(100, 100, 225, 0.25) 312.083px, rgba(100, 100, 225, 0.25) 346.667px, rgba(0, 0, 0, 0) 346.667px, rgba(0, 0, 0, 0) 356.667px, rgba(100, 100, 225, 0.25) 356.667px, rgba(100, 100, 225, 0.25) 391.25px, rgba(0, 0, 0, 0) 391.25px, rgba(0, 0, 0, 0) 401.25px, rgba(100, 100, 225, 0.25) 401.25px, rgba(100, 100, 225, 0.25) 435.833px, rgba(0, 0, 0, 0) 435.833px, rgba(0, 0, 0, 0) 445.833px, rgba(100, 100, 225, 0.25) 445.833px, rgba(100, 100, 225, 0.25) 480.417px, rgba(0, 0, 0, 0) 480.417px, rgba(0, 0, 0, 0) 490.417px, rgba(100, 100, 225, 0.25) 490.417px, rgba(100, 100, 225, 0.25) 525px, rgba(0, 0, 0, 0) 525px, rgba(0, 0, 0, 0) 535px, rgba(100, 100, 225, 0.25) 535px, rgba(100, 100, 225, 0.25) 569.583px, rgba(0, 0, 0, 0) 569.583px, rgba(0, 0, 0, 0) 579.583px, rgba(100, 100, 225, 0.25) 579.583px, rgba(100, 100, 225, 0.25) 614.167px, rgba(0, 0, 0, 0) 614.167px, rgba(0, 0, 0, 0) 624.167px, rgba(100, 100, 225, 0.25) 624.167px, rgba(100, 100, 225, 0.25) 658.75px, rgba(0, 0, 0, 0) 658.75px, rgba(0, 0, 0, 0) 668.75px, rgba(100, 100, 225, 0.25) 668.75px, rgba(100, 100, 225, 0.25) 703.333px, rgba(0, 0, 0, 0) 703.333px, rgba(0, 0, 0, 0) 713.333px, rgba(100, 100, 225, 0.25) 713.333px, rgba(100, 100, 225, 0.25) 747.917px, rgba(0, 0, 0, 0) 747.917px, rgba(0, 0, 0, 0) 757.917px, rgba(100, 100, 225, 0.25) 757.917px, rgba(100, 100, 225, 0.25) 792.5px, rgba(0, 0, 0, 0) 792.5px, rgba(0, 0, 0, 0) 802.5px, rgba(100, 100, 225, 0.25) 802.5px, rgba(100, 100, 225, 0.25) 837.083px, rgba(0, 0, 0, 0) 837.083px, rgba(0, 0, 0, 0) 847.083px, rgba(100, 100, 225, 0.25) 847.083px, rgba(100, 100, 225, 0.25) 881.667px, rgba(0, 0, 0, 0) 881.667px, rgba(0, 0, 0, 0) 891.667px, rgba(100, 100, 225, 0.25) 891.667px, rgba(100, 100, 225, 0.25) 926.25px, rgba(0, 0, 0, 0) 926.25px, rgba(0, 0, 0, 0) 936.25px, rgba(100, 100, 225, 0.25) 936.25px, rgba(100, 100, 225, 0.25) 970.833px, rgba(0, 0, 0, 0) 970.833px, rgba(0, 0, 0, 0) 980.833px, rgba(100, 100, 225, 0.25) 980.833px, rgba(100, 100, 225, 0.25) 1015.417px, rgba(0, 0, 0, 0) 1015.417px, rgba(0, 0, 0, 0) 1025.417px, rgba(100, 100, 225, 0.25) 1025.417px, rgba(100, 100, 225, 0.25) 1060px, rgba(0, 0, 0, 0) 1060px, rgba(0, 0, 0, 0) 1070px);
+  background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 34.583px, rgba(0, 0, 0, 0) 34.583px, rgba(0, 0, 0, 0) 44.583px, rgba(100, 100, 225, 0.25) 44.583px, rgba(100, 100, 225, 0.25) 79.167px, rgba(0, 0, 0, 0) 79.167px, rgba(0, 0, 0, 0) 89.167px, rgba(100, 100, 225, 0.25) 89.167px, rgba(100, 100, 225, 0.25) 123.75px, rgba(0, 0, 0, 0) 123.75px, rgba(0, 0, 0, 0) 133.75px, rgba(100, 100, 225, 0.25) 133.75px, rgba(100, 100, 225, 0.25) 168.333px, rgba(0, 0, 0, 0) 168.333px, rgba(0, 0, 0, 0) 178.333px, rgba(100, 100, 225, 0.25) 178.333px, rgba(100, 100, 225, 0.25) 212.917px, rgba(0, 0, 0, 0) 212.917px, rgba(0, 0, 0, 0) 222.917px, rgba(100, 100, 225, 0.25) 222.917px, rgba(100, 100, 225, 0.25) 257.5px, rgba(0, 0, 0, 0) 257.5px, rgba(0, 0, 0, 0) 267.5px, rgba(100, 100, 225, 0.25) 267.5px, rgba(100, 100, 225, 0.25) 302.083px, rgba(0, 0, 0, 0) 302.083px, rgba(0, 0, 0, 0) 312.083px, rgba(100, 100, 225, 0.25) 312.083px, rgba(100, 100, 225, 0.25) 346.667px, rgba(0, 0, 0, 0) 346.667px, rgba(0, 0, 0, 0) 356.667px, rgba(100, 100, 225, 0.25) 356.667px, rgba(100, 100, 225, 0.25) 391.25px, rgba(0, 0, 0, 0) 391.25px, rgba(0, 0, 0, 0) 401.25px, rgba(100, 100, 225, 0.25) 401.25px, rgba(100, 100, 225, 0.25) 435.833px, rgba(0, 0, 0, 0) 435.833px, rgba(0, 0, 0, 0) 445.833px, rgba(100, 100, 225, 0.25) 445.833px, rgba(100, 100, 225, 0.25) 480.417px, rgba(0, 0, 0, 0) 480.417px, rgba(0, 0, 0, 0) 490.417px, rgba(100, 100, 225, 0.25) 490.417px, rgba(100, 100, 225, 0.25) 525px, rgba(0, 0, 0, 0) 525px, rgba(0, 0, 0, 0) 535px, rgba(100, 100, 225, 0.25) 535px, rgba(100, 100, 225, 0.25) 569.583px, rgba(0, 0, 0, 0) 569.583px, rgba(0, 0, 0, 0) 579.583px, rgba(100, 100, 225, 0.25) 579.583px, rgba(100, 100, 225, 0.25) 614.167px, rgba(0, 0, 0, 0) 614.167px, rgba(0, 0, 0, 0) 624.167px, rgba(100, 100, 225, 0.25) 624.167px, rgba(100, 100, 225, 0.25) 658.75px, rgba(0, 0, 0, 0) 658.75px, rgba(0, 0, 0, 0) 668.75px, rgba(100, 100, 225, 0.25) 668.75px, rgba(100, 100, 225, 0.25) 703.333px, rgba(0, 0, 0, 0) 703.333px, rgba(0, 0, 0, 0) 713.333px, rgba(100, 100, 225, 0.25) 713.333px, rgba(100, 100, 225, 0.25) 747.917px, rgba(0, 0, 0, 0) 747.917px, rgba(0, 0, 0, 0) 757.917px, rgba(100, 100, 225, 0.25) 757.917px, rgba(100, 100, 225, 0.25) 792.5px, rgba(0, 0, 0, 0) 792.5px, rgba(0, 0, 0, 0) 802.5px, rgba(100, 100, 225, 0.25) 802.5px, rgba(100, 100, 225, 0.25) 837.083px, rgba(0, 0, 0, 0) 837.083px, rgba(0, 0, 0, 0) 847.083px, rgba(100, 100, 225, 0.25) 847.083px, rgba(100, 100, 225, 0.25) 881.667px, rgba(0, 0, 0, 0) 881.667px, rgba(0, 0, 0, 0) 891.667px, rgba(100, 100, 225, 0.25) 891.667px, rgba(100, 100, 225, 0.25) 926.25px, rgba(0, 0, 0, 0) 926.25px, rgba(0, 0, 0, 0) 936.25px, rgba(100, 100, 225, 0.25) 936.25px, rgba(100, 100, 225, 0.25) 970.833px, rgba(0, 0, 0, 0) 970.833px, rgba(0, 0, 0, 0) 980.833px, rgba(100, 100, 225, 0.25) 980.833px, rgba(100, 100, 225, 0.25) 1015.417px, rgba(0, 0, 0, 0) 1015.417px, rgba(0, 0, 0, 0) 1025.417px, rgba(100, 100, 225, 0.25) 1025.417px, rgba(100, 100, 225, 0.25) 1060px, rgba(0, 0, 0, 0) 1060px, rgba(0, 0, 0, 0) 1070px);
+  background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -o-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 34.583px, rgba(0, 0, 0, 0) 34.583px, rgba(0, 0, 0, 0) 44.583px, rgba(100, 100, 225, 0.25) 44.583px, rgba(100, 100, 225, 0.25) 79.167px, rgba(0, 0, 0, 0) 79.167px, rgba(0, 0, 0, 0) 89.167px, rgba(100, 100, 225, 0.25) 89.167px, rgba(100, 100, 225, 0.25) 123.75px, rgba(0, 0, 0, 0) 123.75px, rgba(0, 0, 0, 0) 133.75px, rgba(100, 100, 225, 0.25) 133.75px, rgba(100, 100, 225, 0.25) 168.333px, rgba(0, 0, 0, 0) 168.333px, rgba(0, 0, 0, 0) 178.333px, rgba(100, 100, 225, 0.25) 178.333px, rgba(100, 100, 225, 0.25) 212.917px, rgba(0, 0, 0, 0) 212.917px, rgba(0, 0, 0, 0) 222.917px, rgba(100, 100, 225, 0.25) 222.917px, rgba(100, 100, 225, 0.25) 257.5px, rgba(0, 0, 0, 0) 257.5px, rgba(0, 0, 0, 0) 267.5px, rgba(100, 100, 225, 0.25) 267.5px, rgba(100, 100, 225, 0.25) 302.083px, rgba(0, 0, 0, 0) 302.083px, rgba(0, 0, 0, 0) 312.083px, rgba(100, 100, 225, 0.25) 312.083px, rgba(100, 100, 225, 0.25) 346.667px, rgba(0, 0, 0, 0) 346.667px, rgba(0, 0, 0, 0) 356.667px, rgba(100, 100, 225, 0.25) 356.667px, rgba(100, 100, 225, 0.25) 391.25px, rgba(0, 0, 0, 0) 391.25px, rgba(0, 0, 0, 0) 401.25px, rgba(100, 100, 225, 0.25) 401.25px, rgba(100, 100, 225, 0.25) 435.833px, rgba(0, 0, 0, 0) 435.833px, rgba(0, 0, 0, 0) 445.833px, rgba(100, 100, 225, 0.25) 445.833px, rgba(100, 100, 225, 0.25) 480.417px, rgba(0, 0, 0, 0) 480.417px, rgba(0, 0, 0, 0) 490.417px, rgba(100, 100, 225, 0.25) 490.417px, rgba(100, 100, 225, 0.25) 525px, rgba(0, 0, 0, 0) 525px, rgba(0, 0, 0, 0) 535px, rgba(100, 100, 225, 0.25) 535px, rgba(100, 100, 225, 0.25) 569.583px, rgba(0, 0, 0, 0) 569.583px, rgba(0, 0, 0, 0) 579.583px, rgba(100, 100, 225, 0.25) 579.583px, rgba(100, 100, 225, 0.25) 614.167px, rgba(0, 0, 0, 0) 614.167px, rgba(0, 0, 0, 0) 624.167px, rgba(100, 100, 225, 0.25) 624.167px, rgba(100, 100, 225, 0.25) 658.75px, rgba(0, 0, 0, 0) 658.75px, rgba(0, 0, 0, 0) 668.75px, rgba(100, 100, 225, 0.25) 668.75px, rgba(100, 100, 225, 0.25) 703.333px, rgba(0, 0, 0, 0) 703.333px, rgba(0, 0, 0, 0) 713.333px, rgba(100, 100, 225, 0.25) 713.333px, rgba(100, 100, 225, 0.25) 747.917px, rgba(0, 0, 0, 0) 747.917px, rgba(0, 0, 0, 0) 757.917px, rgba(100, 100, 225, 0.25) 757.917px, rgba(100, 100, 225, 0.25) 792.5px, rgba(0, 0, 0, 0) 792.5px, rgba(0, 0, 0, 0) 802.5px, rgba(100, 100, 225, 0.25) 802.5px, rgba(100, 100, 225, 0.25) 837.083px, rgba(0, 0, 0, 0) 837.083px, rgba(0, 0, 0, 0) 847.083px, rgba(100, 100, 225, 0.25) 847.083px, rgba(100, 100, 225, 0.25) 881.667px, rgba(0, 0, 0, 0) 881.667px, rgba(0, 0, 0, 0) 891.667px, rgba(100, 100, 225, 0.25) 891.667px, rgba(100, 100, 225, 0.25) 926.25px, rgba(0, 0, 0, 0) 926.25px, rgba(0, 0, 0, 0) 936.25px, rgba(100, 100, 225, 0.25) 936.25px, rgba(100, 100, 225, 0.25) 970.833px, rgba(0, 0, 0, 0) 970.833px, rgba(0, 0, 0, 0) 980.833px, rgba(100, 100, 225, 0.25) 980.833px, rgba(100, 100, 225, 0.25) 1015.417px, rgba(0, 0, 0, 0) 1015.417px, rgba(0, 0, 0, 0) 1025.417px, rgba(100, 100, 225, 0.25) 1025.417px, rgba(100, 100, 225, 0.25) 1060px, rgba(0, 0, 0, 0) 1060px, rgba(0, 0, 0, 0) 1070px);
+  background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), -ms-linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 34.583px, rgba(0, 0, 0, 0) 34.583px, rgba(0, 0, 0, 0) 44.583px, rgba(100, 100, 225, 0.25) 44.583px, rgba(100, 100, 225, 0.25) 79.167px, rgba(0, 0, 0, 0) 79.167px, rgba(0, 0, 0, 0) 89.167px, rgba(100, 100, 225, 0.25) 89.167px, rgba(100, 100, 225, 0.25) 123.75px, rgba(0, 0, 0, 0) 123.75px, rgba(0, 0, 0, 0) 133.75px, rgba(100, 100, 225, 0.25) 133.75px, rgba(100, 100, 225, 0.25) 168.333px, rgba(0, 0, 0, 0) 168.333px, rgba(0, 0, 0, 0) 178.333px, rgba(100, 100, 225, 0.25) 178.333px, rgba(100, 100, 225, 0.25) 212.917px, rgba(0, 0, 0, 0) 212.917px, rgba(0, 0, 0, 0) 222.917px, rgba(100, 100, 225, 0.25) 222.917px, rgba(100, 100, 225, 0.25) 257.5px, rgba(0, 0, 0, 0) 257.5px, rgba(0, 0, 0, 0) 267.5px, rgba(100, 100, 225, 0.25) 267.5px, rgba(100, 100, 225, 0.25) 302.083px, rgba(0, 0, 0, 0) 302.083px, rgba(0, 0, 0, 0) 312.083px, rgba(100, 100, 225, 0.25) 312.083px, rgba(100, 100, 225, 0.25) 346.667px, rgba(0, 0, 0, 0) 346.667px, rgba(0, 0, 0, 0) 356.667px, rgba(100, 100, 225, 0.25) 356.667px, rgba(100, 100, 225, 0.25) 391.25px, rgba(0, 0, 0, 0) 391.25px, rgba(0, 0, 0, 0) 401.25px, rgba(100, 100, 225, 0.25) 401.25px, rgba(100, 100, 225, 0.25) 435.833px, rgba(0, 0, 0, 0) 435.833px, rgba(0, 0, 0, 0) 445.833px, rgba(100, 100, 225, 0.25) 445.833px, rgba(100, 100, 225, 0.25) 480.417px, rgba(0, 0, 0, 0) 480.417px, rgba(0, 0, 0, 0) 490.417px, rgba(100, 100, 225, 0.25) 490.417px, rgba(100, 100, 225, 0.25) 525px, rgba(0, 0, 0, 0) 525px, rgba(0, 0, 0, 0) 535px, rgba(100, 100, 225, 0.25) 535px, rgba(100, 100, 225, 0.25) 569.583px, rgba(0, 0, 0, 0) 569.583px, rgba(0, 0, 0, 0) 579.583px, rgba(100, 100, 225, 0.25) 579.583px, rgba(100, 100, 225, 0.25) 614.167px, rgba(0, 0, 0, 0) 614.167px, rgba(0, 0, 0, 0) 624.167px, rgba(100, 100, 225, 0.25) 624.167px, rgba(100, 100, 225, 0.25) 658.75px, rgba(0, 0, 0, 0) 658.75px, rgba(0, 0, 0, 0) 668.75px, rgba(100, 100, 225, 0.25) 668.75px, rgba(100, 100, 225, 0.25) 703.333px, rgba(0, 0, 0, 0) 703.333px, rgba(0, 0, 0, 0) 713.333px, rgba(100, 100, 225, 0.25) 713.333px, rgba(100, 100, 225, 0.25) 747.917px, rgba(0, 0, 0, 0) 747.917px, rgba(0, 0, 0, 0) 757.917px, rgba(100, 100, 225, 0.25) 757.917px, rgba(100, 100, 225, 0.25) 792.5px, rgba(0, 0, 0, 0) 792.5px, rgba(0, 0, 0, 0) 802.5px, rgba(100, 100, 225, 0.25) 802.5px, rgba(100, 100, 225, 0.25) 837.083px, rgba(0, 0, 0, 0) 837.083px, rgba(0, 0, 0, 0) 847.083px, rgba(100, 100, 225, 0.25) 847.083px, rgba(100, 100, 225, 0.25) 881.667px, rgba(0, 0, 0, 0) 881.667px, rgba(0, 0, 0, 0) 891.667px, rgba(100, 100, 225, 0.25) 891.667px, rgba(100, 100, 225, 0.25) 926.25px, rgba(0, 0, 0, 0) 926.25px, rgba(0, 0, 0, 0) 936.25px, rgba(100, 100, 225, 0.25) 936.25px, rgba(100, 100, 225, 0.25) 970.833px, rgba(0, 0, 0, 0) 970.833px, rgba(0, 0, 0, 0) 980.833px, rgba(100, 100, 225, 0.25) 980.833px, rgba(100, 100, 225, 0.25) 1015.417px, rgba(0, 0, 0, 0) 1015.417px, rgba(0, 0, 0, 0) 1025.417px, rgba(100, 100, 225, 0.25) 1025.417px, rgba(100, 100, 225, 0.25) 1060px, rgba(0, 0, 0, 0) 1060px, rgba(0, 0, 0, 0) 1070px);
+  background-image: linear-gradient(bottom, rgba(0, 0, 0, 0.5) 5%, rgba(0, 0, 0, 0) 5%), linear-gradient(left, rgba(0, 0, 0, 0) 0px, rgba(100, 100, 225, 0.25) 0px, rgba(100, 100, 225, 0.25) 34.583px, rgba(0, 0, 0, 0) 34.583px, rgba(0, 0, 0, 0) 44.583px, rgba(100, 100, 225, 0.25) 44.583px, rgba(100, 100, 225, 0.25) 79.167px, rgba(0, 0, 0, 0) 79.167px, rgba(0, 0, 0, 0) 89.167px, rgba(100, 100, 225, 0.25) 89.167px, rgba(100, 100, 225, 0.25) 123.75px, rgba(0, 0, 0, 0) 123.75px, rgba(0, 0, 0, 0) 133.75px, rgba(100, 100, 225, 0.25) 133.75px, rgba(100, 100, 225, 0.25) 168.333px, rgba(0, 0, 0, 0) 168.333px, rgba(0, 0, 0, 0) 178.333px, rgba(100, 100, 225, 0.25) 178.333px, rgba(100, 100, 225, 0.25) 212.917px, rgba(0, 0, 0, 0) 212.917px, rgba(0, 0, 0, 0) 222.917px, rgba(100, 100, 225, 0.25) 222.917px, rgba(100, 100, 225, 0.25) 257.5px, rgba(0, 0, 0, 0) 257.5px, rgba(0, 0, 0, 0) 267.5px, rgba(100, 100, 225, 0.25) 267.5px, rgba(100, 100, 225, 0.25) 302.083px, rgba(0, 0, 0, 0) 302.083px, rgba(0, 0, 0, 0) 312.083px, rgba(100, 100, 225, 0.25) 312.083px, rgba(100, 100, 225, 0.25) 346.667px, rgba(0, 0, 0, 0) 346.667px, rgba(0, 0, 0, 0) 356.667px, rgba(100, 100, 225, 0.25) 356.667px, rgba(100, 100, 225, 0.25) 391.25px, rgba(0, 0, 0, 0) 391.25px, rgba(0, 0, 0, 0) 401.25px, rgba(100, 100, 225, 0.25) 401.25px, rgba(100, 100, 225, 0.25) 435.833px, rgba(0, 0, 0, 0) 435.833px, rgba(0, 0, 0, 0) 445.833px, rgba(100, 100, 225, 0.25) 445.833px, rgba(100, 100, 225, 0.25) 480.417px, rgba(0, 0, 0, 0) 480.417px, rgba(0, 0, 0, 0) 490.417px, rgba(100, 100, 225, 0.25) 490.417px, rgba(100, 100, 225, 0.25) 525px, rgba(0, 0, 0, 0) 525px, rgba(0, 0, 0, 0) 535px, rgba(100, 100, 225, 0.25) 535px, rgba(100, 100, 225, 0.25) 569.583px, rgba(0, 0, 0, 0) 569.583px, rgba(0, 0, 0, 0) 579.583px, rgba(100, 100, 225, 0.25) 579.583px, rgba(100, 100, 225, 0.25) 614.167px, rgba(0, 0, 0, 0) 614.167px, rgba(0, 0, 0, 0) 624.167px, rgba(100, 100, 225, 0.25) 624.167px, rgba(100, 100, 225, 0.25) 658.75px, rgba(0, 0, 0, 0) 658.75px, rgba(0, 0, 0, 0) 668.75px, rgba(100, 100, 225, 0.25) 668.75px, rgba(100, 100, 225, 0.25) 703.333px, rgba(0, 0, 0, 0) 703.333px, rgba(0, 0, 0, 0) 713.333px, rgba(100, 100, 225, 0.25) 713.333px, rgba(100, 100, 225, 0.25) 747.917px, rgba(0, 0, 0, 0) 747.917px, rgba(0, 0, 0, 0) 757.917px, rgba(100, 100, 225, 0.25) 757.917px, rgba(100, 100, 225, 0.25) 792.5px, rgba(0, 0, 0, 0) 792.5px, rgba(0, 0, 0, 0) 802.5px, rgba(100, 100, 225, 0.25) 802.5px, rgba(100, 100, 225, 0.25) 837.083px, rgba(0, 0, 0, 0) 837.083px, rgba(0, 0, 0, 0) 847.083px, rgba(100, 100, 225, 0.25) 847.083px, rgba(100, 100, 225, 0.25) 881.667px, rgba(0, 0, 0, 0) 881.667px, rgba(0, 0, 0, 0) 891.667px, rgba(100, 100, 225, 0.25) 891.667px, rgba(100, 100, 225, 0.25) 926.25px, rgba(0, 0, 0, 0) 926.25px, rgba(0, 0, 0, 0) 936.25px, rgba(100, 100, 225, 0.25) 936.25px, rgba(100, 100, 225, 0.25) 970.833px, rgba(0, 0, 0, 0) 970.833px, rgba(0, 0, 0, 0) 980.833px, rgba(100, 100, 225, 0.25) 980.833px, rgba(100, 100, 225, 0.25) 1015.417px, rgba(0, 0, 0, 0) 1015.417px, rgba(0, 0, 0, 0) 1025.417px, rgba(100, 100, 225, 0.25) 1025.417px, rgba(100, 100, 225, 0.25) 1060px, rgba(0, 0, 0, 0) 1060px, rgba(0, 0, 0, 0) 1070px);
   -moz-background-size: 100% 18px, auto;
   -webkit-background-size: 100% 18px, auto;
   -o-background-size: 100% 18px, auto;
   background-size: 100% 18px, auto;
   background-position: left top;
 }
-/* line 47, ../../../app/stylesheets/screen.scss */
+/* line 48, ../../../app/stylesheets/screen.scss */
 body.bp ul {
   list-style: none;
   padding: 0;
 }
-/* line 51, ../../../app/stylesheets/screen.scss */
+/* line 52, ../../../app/stylesheets/screen.scss */
 body.bp a:visited {
   color: #333333;
-}
-/* line 54, ../../../app/stylesheets/screen.scss */
-body.bp #content {
-  width: 950px;
-  margin: 0 auto;
-  overflow: hidden;
-  *zoom: 1;
-  overflow: visible !important;
 }
 
 /* line 18, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_form.scss */
@@ -2962,41 +2894,41 @@ form.bp textarea {
   height: 250px;
 }
 
-/* line 67, ../../../app/stylesheets/screen.scss */
+/* line 64, ../../../app/stylesheets/screen.scss */
 body.two-col #container {
-  width: 950px;
+  width: 1060px;
   margin: 0 auto;
   overflow: hidden;
   *zoom: 1;
 }
-/* line 69, ../../../app/stylesheets/screen.scss */
+/* line 66, ../../../app/stylesheets/screen.scss */
 body.two-col #header, body.two-col #footer {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 950px;
+  width: 1060px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #header, * html body.two-col #footer {
   overflow-x: hidden;
 }
-/* line 71, ../../../app/stylesheets/screen.scss */
+/* line 68, ../../../app/stylesheets/screen.scss */
 body.two-col #sidebar {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 310px;
+  width: 346.667px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #sidebar {
   overflow-x: hidden;
 }
-/* line 75, ../../../app/stylesheets/screen.scss */
+/* line 72, ../../../app/stylesheets/screen.scss */
 body.two-col #content {
   display: inline;
   float: left;
   margin-right: 0;
-  width: 630px;
+  width: 703.333px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html body.two-col #content {

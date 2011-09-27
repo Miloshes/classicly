@@ -13,7 +13,7 @@
       google.load("jquery", "1.4.4");
       google.load("jqueryui", "1.8.14");
       -#google.loader.writeLoadTag("css", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/" + theme + "/jquery-ui.css");
-
+      
     = include_javascripts :main
     = javascript_include_tag "http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js"
     <meta property="fb:admins" content="24611995" />
@@ -30,7 +30,7 @@
     = yield :head
 
   %body.bp
-    = render :partial => '/shared/connect_with_facebook_bar'
+    = yield :drawer
     <script type="text/javascript">
     var _kmq = _kmq || [];
     function _kms(u){
@@ -62,28 +62,23 @@
           .top
             #logo
               %a{:href => '/'}
-                = image_tag 'new_logo_classicly.png'
+                = image_tag 'logo.png'
             #nav
               %ul
-                = top_nav_link 'Home', '/'
-                = top_nav_link 'Authors', '/authors'
-                = top_nav_link 'Collections', '/collections'
-                = top_nav_link 'Blog', '/blog'
+                %li
+                  %a{:href => '/collections'} Collections
+                %li
+                  %a{:href => '/authors'} Authors
+                %li
+                  %a.blog{:href => '/blog'} Blog
+                %li
+                  %a{:href => '/library'} Library
 
-            - unless current_login
-              #signin
-                = link_to "Sign In", "#"
-            - else
-              #profile-pic
-                = link_to facebook_image(current_login.fb_connect_id), '/library'
-
-
-            / #search
-            /               = form_tag search_url, :id => 'indexTankForm' do
-            /                 = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-            /                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-      .clear
-      
+            #search
+              = form_tag search_url, :id => 'indexTankForm' do
+                = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+                %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+          .bottom
       #content
         #left-column
           = yield
@@ -119,8 +114,13 @@
               .row
                 .span4.columns
                   = link_to "Browse authors", '/authors', :class => 'classicly-link'
-        .clear
-      = render '/shared/footer'
+
+      #bottom-shadow
+      = render :partial => 'shared/footer'
+      #bottom-notification-bar{:style => 'display:none; width: 150px;'}
+
+      %div.clear
+
 :javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";

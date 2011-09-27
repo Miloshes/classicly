@@ -2,7 +2,22 @@
 /* ---------->>> GLOBAL <<<-----------*/
 /* -----------------------------------*/
 
-body
+@font-face
+  font-family: 'Scala'
+  src: url('/fonts/scala-webfont.svg') format('svg'), url('/fonts/scala-webfont.woff') format('woff'), url('/fonts/scala-webfont.ttf')  format('truetype')
+  
+
+body.bp
+  background-color: #f2f1e6
+  font-family: 'Scala', Georgia, sans-serif
+  font-size: 16px
+
+  #content
+    +container  
+    overflow: visible !important
+    background-color: #fff
+    padding: 0px 0px 30px 30px
+
   h1.collection-header
     font-size: 22px
     font-weight: bold
@@ -91,13 +106,13 @@ ul.ui-autocomplete
     color: white
   .individual-quote
     color: #333
-    font-family: 'Helvetica'
+    font-family: 'Scala', Georgia, sans-serif
     font-size: 36px
     margin-top: 15px
     line-height: 1.5em
   .quote-author
     margin-left: -10px
-    font-family: 'Helvetica'
+    font-family: 'Scala', Georgia, sans-serif
     font-size: 14px
     color: #333
   .quotes-and-books-buttons

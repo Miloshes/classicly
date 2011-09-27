@@ -132,6 +132,13 @@ describe BookHighlight do
       
       BookHighlight.create_or_update_from_ios_client_data(@api_call_params)
     end
+    
+    it "should have a public URL" do
+      new_highlight = BookHighlight.create_or_update_from_ios_client_data(@api_call_params)
+      
+      new_highlight.should respond_to(:public_url)
+      new_highlight.public_url.should include("http://www.classicly.com/")
+    end
   end
   
 end

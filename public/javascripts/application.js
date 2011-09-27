@@ -1,8 +1,17 @@
-$(function(){
-  var _paq = _paq || [];
-});
+var uiHandler = new UIHandler();
+var loginsController = new LoginsController( uiHandler );
 
 $(function(){
+
+  $( "#signin a" ).click( function(){
+    loginsController.dropLoginDrawer( false );
+    return false;
+  });
+
+  $( "#fb_connect_notification a#fb_connect" ).click( function(){
+    loginsController.logIn();
+    return false;
+  });
 
   $('.audiobook-switcher a').tooltip({
     // use div.tooltip as our tooltip
@@ -26,7 +35,7 @@ $(function(){
 
   // FUNCTIONS FOR THE DROPDOWN DRAWER
   $( "#fb_connect_notification a#fb_decline" ).click( function(){
-    $( "#fb_connect_notification ").slideUp( "slow" );
+    loginsController.hideLoginDrawer();
     return false;
   });
 
@@ -35,18 +44,9 @@ $(function(){
     return false;
   });
 
+  // SIGNIN
 });
 
-function isLoggedIn(){
-  var logged = false;
-
-  FB.getLoginStatus( function( response ) {
-    if (response.status == 'connected')
-      logged = true;
-  });
-
-  return logged;
-}
 
 function sendKissMetricsEvent( event, attributes ){
   if( _kmq ){
@@ -57,3 +57,5 @@ function sendKissMetricsEvent( event, attributes ){
   }
 
 }
+
+

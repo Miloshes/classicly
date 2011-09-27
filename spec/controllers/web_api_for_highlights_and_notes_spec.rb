@@ -4,9 +4,10 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
   
   before(:each) do
     @author    = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
-    @book      = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
+    @book      = mock_model(Book, :author => @author, :title => "Les miserables", :pretty_title => "Les miserables", :cached_slug => "les-miserables")
     @highlight = mock_model(BookHighlight, :content => "gone away", :cached_slug => "gone-away")
     
+    @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Book.stub!(:find).and_return(@book)
     
     @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
@@ -48,13 +49,16 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       BookHighlight.should have(0).records
     end
     
-    it "should return the URL for the highlight's public page after registration" do
+    it "should return the URL for the highlight's public page and the twitter and facebook share message after registration" do
       post "create", :json_data => @api_call_params.to_json
       
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       parsed_response.class.should == Hash
-      parsed_response.should have_key("public_highlight_url")
+      parsed_response["public_highlight_url"].should_not be_blank
+      parsed_response["twitter_message"].should_not be_blank
+      # TODO:
+      # parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do
@@ -106,13 +110,16 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       AnonymousBookHighlight.should have(1).record
     end
     
-    it "should return the URL for the highlight's public page after registration" do
+    it "should return the URL for the highlight's public page and the twitter and facebook share message after registration" do
       post "create", :json_data => @api_call_params.to_json
       
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       parsed_response.class.should == Hash
-      parsed_response.should have_key("public_highlight_url")
+      parsed_response["public_highlight_url"].should_not be_blank
+      parsed_response["twitter_message"].should_not be_blank
+      # TODO:
+      # parsed_response["facebook_message"].should_not be_blank
     end
     
     it "should be able to update it" do

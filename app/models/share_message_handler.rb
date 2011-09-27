@@ -13,12 +13,10 @@ class ShareMessageHandler
   MESSAGE_STUBS = {
     # NOTE: assumption here is that the URLs are at the end of the Twitter message
     "twitter" => {
-      "book share" => 
-        "I'm reading {{book author}}'s {{book title}} right now in @classiclyapp. You can download it {{available formats}} at {{book url}}",
-      "highlight share" => 
-        "Highlighted {{book title}} in @classiclyapp: {{book highlight}} {{highlight url}}",
-      "note share" =>
-        "Took a note on {{book title}} in @classiclyapp: \"{{note}}\" {{highlight url}}"
+      "book share"          => "I'm reading {{book author}}'s {{book title}} right now in @classiclyapp. You can download it {{available formats}} at {{book url}}",
+      "highlight share"     => "Highlighted {{book title}} in @classiclyapp: {{book highlight}} {{highlight url}}",
+      "note share"          => "Took a note on {{book title}} in @classiclyapp: \"{{note}}\" {{highlight url}}",
+      "selected text share" => "Just read this via @classiclyapp: \"{{selected text}}\" {{book url}}"
     },
     "facebook" => {
       "book share" => {
@@ -38,6 +36,11 @@ class ShareMessageHandler
   end
 
   def get_message_for(target_platform = "twitter", message_type = "book share", params = {})
+    # differentiate sharing highlights from highlights WITH notes (this gets turned into note sharing)
+    if message_type == "highlight share" && params[:highlight] && !params[:highlight].origin_comment.blank?
+      message_type = "note share"
+    end
+        
     raw_message = MESSAGE_STUBS[target_platform][message_type]
     
     return nil if raw_message.blank?
@@ -58,6 +61,7 @@ class ShareMessageHandler
       params[:book] = params[:highlight].book
     end
     
+    # needed for the book URL
     default_url_options[:host] = "www.classicly.com"
     default_url_options[:host] = "classicly-staging.heroku.com" if Rails.env.staging?
     
@@ -66,23 +70,28 @@ class ShareMessageHandler
       "book author"       => params[:book].author.name,
       "available formats" => params[:book].pretty_download_formats.join("/"),
       "book url"          => author_book_url(params[:book].author.cached_slug, params[:book].cached_slug),
-      "book highlight"    => params[:highlight] ? params[:highlight].content : nil
+      "book highlight"    => params[:highlight] ? params[:highlight].content : nil,
+      "highlight url"     => params[:highlight] ? params[:highlight].public_url : nil,
+      "note"              => params[:highlight] ? params[:highlight].origin_comment : nil,
+      "selected text"     => params[:selected_text] ? params[:selected_text] : nil
     }
     
+    # do the variable replacement to get the share message
     result = replace_variables(raw_message, params_for_variable_replacement)
-    
-    if result.length > 120
-      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result.length - 120})
+
+    result_without_url = message_without_url(result)
+
+    # shorten if it's necessary
+    if result_without_url.length > 120
+      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
+      result_without_url = message_without_url(result)
     end
-    
-    # NOTE: assumption here is that the URLs are at the end of the Twitter message
-    # if we want to omit the share URL for twitter
+
     if params[:twitter_without_url]
-      match_result = result.match /(.*)(?:http:\/\/.*)/
-      result = match_result[1]
+      return result_without_url
+    else
+      return result
     end
-    
-    return result
   end
   
   def replace_variables(starting_message, params, options = {})
@@ -92,17 +101,16 @@ class ShareMessageHandler
     if options[:shorten_by]
 
       # get the variable we can shorten. Starting array is sorted by importance in a descending order.
-      variable_to_short_by = ["book highlight", "book title", "book author"].select { |variable|
+      variable_to_short_by = ["note", "selected text", "book highlight", "book title", "book author"].select { |variable|
         !params[variable].blank?
       }.first
 
       params.each_pair do |variable, value|
-        if variable == variable_to_short_by
-          value = value[0 ... -(options[:shorten_by] + 3)] + "..."
-        end
-        Rails.logger.info("!!! replacing: #{variable} with #{value} in #{result}")
+        # "..." the value if this is the variable that needs to be shortened
+        value = value[0 ... -(options[:shorten_by] + 3)] + "..." if variable == variable_to_short_by
+        
+        # replace variable with value
         result = result.gsub("{{" + variable + "}}", value) if value
-        Rails.logger.info("!!! after: #{result}")
       end
 
     else
@@ -113,6 +121,18 @@ class ShareMessageHandler
     end
     
     return result
+  end
+  
+  def message_without_url(full_message)
+    # check the share message without the URL at the end, to determine if it's short enough
+    # NOTE: assumption here is that the URLs are at the end of the Twitter message
+    # if we want to omit the share URL for twitter
+    match_result = full_message.match /(.*)(?:http:\/\/.*)/
+    if match_result
+      return match_result[1]
+    else
+      return full_message
+    end
   end
   
 end
