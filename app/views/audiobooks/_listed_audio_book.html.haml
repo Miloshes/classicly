@@ -13,10 +13,12 @@
     .download-link.span3.columns
       <!-- le rating -->
       .row
-        .span3.columns
+        .span3.columns.my-rating-text
           My Rating:
       .row.stars
-        .span3.columns
+        .span3.columns.blank-stars
+          &nbsp;
+        .span3.columns.rating
           = raw rate_book("book_rating_dynamic_#{audiobook.id}", 'dynamic-stars', audiobook.rating_by_user(current_login) || 0)
 
       <!-- le view this book -->

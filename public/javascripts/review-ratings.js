@@ -24,13 +24,13 @@ $( function(){
         var klass   = $( "#book-rating" ).data( "book_type" );
 
         if( loginsController.userLoggedIn() ){ // send the rating.
-          ratingsController.sendRate( bookId, value, klass);
+          ratingsController.sendRate( bookId, value, klass, {});
         }else{
+          $( '#book-rating' ).data( 'bookRating' , value );
           // show the registration dropdown:
           loginsController.dropLoginDrawer( true );
-          LoginsController.bind( 'afterLoggedIn', rateIfRatingPresent );
+          LoginsController.bind( 'afterLoggedIn', afterLoggedIndividualBookPage );
           // store temporarily request's data. This because once the user logs in, this data will be send to create the rating:
-          $( '#book-rating' ).data( 'bookRating' , value );
         }
 
       }// end callback
@@ -40,54 +40,30 @@ $( function(){
 
   });
 
-  function rateIfRatingPresent(){
+  function afterLoggedIndividualBookPage(){
+    var bookId  = $( "#book-page" ).data( "book_id" );
+    var klass   = $( "#book-rating" ).data( "book_type" );
+    rateIfRatingPresent( bookId, klass );
+    showForm( bookId, klass );
+  }
+  
+  function rateIfRatingPresent(bookId, klass){
     if( $( "#book-rating" ).data( "bookRating" ) != undefined ){
-      var bookId  = $( "#book-page" ).data( "book_id" );
-      var klass   = $( "#book-rating" ).data( "book_type" );
       var value   = $( "#book-rating" ).data( "bookRating" );
-      ratingsController.sendRate( bookId, value, klass);
+      ratingsController.sendRate( bookId, value, klass, {}); //we sent the rating and use the default options
     }
   }
-
-  // LOG THROUGH FACEBOOK
-  function performLoggedInChanges(){
-    // check facebook status
-    if ( loginsController.userLoggedIn() ) {
-      return false;
-    }else{
-        // no user session available, someone you dont know
-          // the user successfully logs in, let's register him and notify the Library model afterwards
-            // register the user via the Login model
-          // $.ajax({
-          //             type: "POST",
-          //             url: "/logins",
-          //             dataType: "json",
-          //             success: function( data ) {
-          // 
-          //               if( $( "#fb_connect_notification" ).is( ":visible") )
-          //                 $( "#fb_connect_notification" ).slideUp( "slow" );
-          //               if( data.is_new_login == false )
-          //                 _kmq.push(["record", "User Signed In"]);
-          //               else
-          //                 _kmq.push(["record", "User Signed Up"]);
-          // 
-          //               var bookId  = $( "#book-page" ).data( "book_id" );
-          //               var klass   = $( "#book-rating" ).data( "book_type" );
-          //             
-          //               rateIfRatingPresent();
-          //             
-          //               $.ajax({ 
-          //                 url: "/show_review_form",
-          //                 data: klass +"_id=" + bookId,
-          //                 success: function(){
-          //                   $( "#review-box textarea" ).css( "background", "url(/images/new_reviews_editor.png)").css( "width" , 400 ).css( "height", 89).css( "border" , "none").css("resize", "none").css( "padding", "7px 0px 0px 7px");
-          //                   $( "#write-review a" ).unbind( "click" );
-          //                   $( "#write-review a" ).click(function(){
-          //                     return false;
-          //                   });
-          //                 }
-          //               });
-          //             }
-          //           });
-    }
+  
+  function showForm(bookId, klass){
+    $.ajax({ 
+      url: "/show_review_form",
+      data: klass +"_id=" + bookId,
+      success: function(){
+        $( "#review-box textarea" ).css( "background", "url(/images/new_reviews_editor.png)").css( "width" , 400 ).css( "height", 89).css( "border" , "none").css("resize", "none").css( "padding", "7px 0px 0px 7px");
+        $( "#write-review a" ).unbind( "click" );
+        $( "#write-review a" ).click(function(){
+          return false;
+        });
+      }
+    });
   }
