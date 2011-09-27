@@ -31,7 +31,8 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
         "book_id"         => @book.id,
         "action"          => "get_tweet_and_facebook_share_texts",
         "platform"        => "twitter",
-        "message_type"    => "book share"
+        "message_type"    => "book share",
+        "apple_id"        => "379861611"
       }
       
       @share_message_handler = ShareMessageHandler.new
@@ -85,7 +86,8 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
         "book_id"         => @book.id,
         "action"          => "get_tweet_and_facebook_share_texts",
         "platform"        => "twitter",
-        "message_type"    => "selected text share"
+        "message_type"    => "selected text share",
+        "apple_id"        => "364612911"
       }
       
       @share_message_handler = ShareMessageHandler.new

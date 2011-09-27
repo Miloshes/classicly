@@ -229,6 +229,8 @@ class WebApiHandler
       params[:book] = Audiobook.find(call_params["audiobook_id"].to_i)
     end
     
+    params[:apple_id] = call_params["apple_id"]
+    
     response = share_message_handler.get_message_for(params)
     
     return response.to_json
