@@ -15,20 +15,6 @@ feature 'Home page feature: ', %q{
     visit homepage
   end
 
-  scenario 'Going to authors page from home page' do
-    within :xpath, "id('nav')//ul" do
-      find(:xpath, ".//li//a[text()='Authors']").click
-      current_path.should == '/authors'
-    end
-  end
-
-  scenario 'Going to collection page from home page' do
-    within :xpath, "id('nav')//ul" do
-      find(:xpath, ".//li//a[text()='Collections']").click
-      current_path.should == '/collections'
-    end
-  end
-
   scenario 'Going to blog page from home page' do
     within :xpath, "id('nav')//ul" do
       find(:xpath, ".//li//a[text()='Blog']").click
@@ -36,12 +22,4 @@ feature 'Home page feature: ', %q{
     end
   end
 
-  scenario 'Clicking on a collection in the footer' do
-    @slug = ''
-    within('#footer .collections span:first') do
-      @slug = collection_slug find('a')[:href]
-      find('a').click
-    end
-    current_path.should == "/#{@slug}"
-  end
 end
