@@ -29,10 +29,10 @@ class AnonymousBookHighlight < ActiveRecord::Base
   
     highlight_conditions = {
         :ios_device_ss_id => data["device_ss_id"],
-        :book                     => book,
-        :content                  => data["content"],
-        :first_character          => data["first_character"],
-        :last_character           => data["last_character"]
+        :book             => book,
+        :content          => data["content"],
+        :first_character  => data["first_character"],
+        :last_character   => data["last_character"]
       }
 
     new_highlight_data = {
