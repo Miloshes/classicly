@@ -23,7 +23,7 @@ class BookHighlight < ActiveRecord::Base
   def self.create_or_update_from_ios_client_data(data)
     book = Book.find(data["book_id"].to_i)
 
-    if book.blank? || data["user_fbconnect_id"].blank? || data["device_id"].blank?
+    if book.blank? || data["user_fbconnect_id"].blank? || data["device_ss_id"].blank?
       return nil
     end
     

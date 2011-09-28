@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :anonymous_book_highlight do
     ios_device_id "asd"
+    ios_device_ss_id "asd2"
     created_at Time.now
     book
     first_character 0

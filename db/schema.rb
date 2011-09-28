@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922143008) do
+ActiveRecord::Schema.define(:version => 20110928121707) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -51,10 +51,12 @@ ActiveRecord::Schema.define(:version => 20110922143008) do
     t.datetime "created_at"
     t.text     "origin_comment"
     t.integer  "book_id"
+    t.string   "ios_device_ss_id"
     t.text     "cached_slug"
   end
 
   add_index "anonymous_book_highlights", ["cached_slug"], :name => "index_anonymous_book_highlights_on_cached_slug", :unique => true
+  add_index "anonymous_book_highlights", ["ios_device_ss_id"], :name => "index_anonymous_book_highlights_on_ios_device_ss_id"
 
   create_table "anonymous_reviews", :force => true do |t|
     t.integer  "reviewable_id"
@@ -63,7 +65,10 @@ ActiveRecord::Schema.define(:version => 20110922143008) do
     t.integer  "rating"
     t.datetime "created_at"
     t.string   "ios_device_id"
+    t.string   "ios_device_ss_id"
   end
+
+  add_index "anonymous_reviews", ["ios_device_ss_id"], :name => "index_anonymous_reviews_on_ios_device_ss_id"
 
   create_table "audiobook_chapters", :force => true do |t|
     t.integer "audiobook_id"
@@ -292,16 +297,17 @@ ActiveRecord::Schema.define(:version => 20110922143008) do
   end
 
   create_table "logins", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "location_city"
-    t.string    "location_country"
-    t.string    "email"
-    t.string    "fb_connect_id"
-    t.boolean   "is_admin",         :default => false
-    t.string    "ios_device_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location_city"
+    t.string   "location_country"
+    t.string   "email"
+    t.string   "fb_connect_id"
+    t.boolean  "is_admin",         :default => false
+    t.string   "ios_device_id"
+    t.string   "ios_device_ss_id"
   end
 
   create_table "quotes", :force => true do |t|

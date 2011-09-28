@@ -5,7 +5,7 @@ describe BookHighlight do
   before(:each) do
     @author = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book   = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
-    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
+    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd", :ios_device_ss_id => "asd2")
 
     Login.stub_chain(:where, :first).and_return(@login)
 
@@ -59,7 +59,7 @@ describe BookHighlight do
     
     before(:each) do
       @api_call_params = {
-        "device_id"         => @login.ios_device_id,
+        "device_ss_id"      => @login.ios_device_ss_id,
         "user_fbconnect_id" => @login.fb_connect_id,
         "book_id"           => @book.id,
         "action"            => "register_book_highlight",
@@ -76,7 +76,7 @@ describe BookHighlight do
     it "should fail when one of the required parameters is missing from the API call parameters" do
       Book.stub(:find).and_return(nil)
       
-      %w{first_character last_character book_id device_id user_fbconnect_id content}.each do |parameter_to_cut|
+      %w{first_character last_character book_id device_ss_id user_fbconnect_id content}.each do |parameter_to_cut|
         api_params = @api_call_params.clone
         api_params.delete(parameter_to_cut)
         
