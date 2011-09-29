@@ -87,7 +87,7 @@ class ShareMessageHandler
     end
   end
   
-  def assemble_message_for_facebook(raw_messages_hash = {}, params)
+  def assemble_message_for_facebook(raw_messages_hash, params)
     params_for_variable_replacement = assemble_params_for_variable_replacement(params)
     
     result = {}
