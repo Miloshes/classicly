@@ -9,11 +9,11 @@ describe WebApiController, "(API calls - review creation)" do
     @login = mock_model(Login, :fb_connect_id => "123")
     Login.stub_chain(:where, :first).and_return(@login)
   end
-  
+    
   it "should be able to register a book review for a user" do
     data = {
         "user_fbconnect_id" => @login.fb_connect_id,
-        "device_id"         => "ASDASD",
+        "device_ss_id"      => "ASDASD",
         "book_id"           => @book.id,
         "action"            => "register_book_review",
         "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
@@ -38,7 +38,7 @@ describe WebApiController, "(API calls - review creation)" do
     
     data = {
         "user_fbconnect_id" => @login.fb_connect_id,
-        "device_id"         => "ASDASD",
+        "device_ss_id"      => "ASDASD",
         "book_id"           => @book.id,
         "action"            => "register_book_review",
         "content"           => "new content",
@@ -54,12 +54,12 @@ describe WebApiController, "(API calls - review creation)" do
 
   it "should be able to register an anonymous review" do
     data = {
-        "device_id" => "ASDASD",
-        "book_id"   => @book.id,
-        "action"    => "register_book_review",
-        "content"   => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
-        "rating"    => 5,
-        "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
+        "device_ss_id" => "ASDASD",
+        "book_id"      => @book.id,
+        "action"       => "register_book_review",
+        "content"      => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+        "rating"       => 5,
+        "timestamp"    => "Thu Feb 10 15:09:59 +0100 2011"
       }
 
     post "create", :json_data => data.to_json
@@ -73,17 +73,17 @@ describe WebApiController, "(API calls - review creation)" do
     # We're creating an anonymous review in the DB to update it
     anonymous_review = FactoryGirl.create(
       :anonymous_review,
-      :ios_device_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
+      :ios_device_ss_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
     )
     AnonymousReview.stub_chain(:where, :first).and_return(anonymous_review)
     
     data = {
-        "device_id" => "ASDASD",
-        "book_id"   => @book.id,
-        "action"    => "register_book_review",
-        "content"   => "new content",
-        "rating"    => 5,
-        "timestamp" => Time.now
+        "device_ss_id" => "ASDASD",
+        "book_id"      => @book.id,
+        "action"       => "register_book_review",
+        "content"      => "new content",
+        "rating"       => 5,
+        "timestamp"    => Time.now
       }
 
     post "create", :json_data => data.to_json
@@ -99,7 +99,7 @@ describe WebApiController, "(API calls - review creation)" do
     
     data = {
         "user_fbconnect_id" => @login.fb_connect_id,
-        "device_id"         => "ASDASD",
+        "device_ss_id"      => "ASDASD",
         "audiobook_id"      => audiobook.id,
         "action"            => "register_book_review",
         "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
@@ -117,6 +117,67 @@ describe WebApiController, "(API calls - review creation)" do
     Review.first.reviewable.class.should == Audiobook
   end
   
+  context "when using the legacy UDID" do
+    
+    it "should be able to create an anonymous review" do
+      data = {
+          "device_id" => "ASDASD",
+          "book_id"   => @book.id,
+          "action"    => "register_book_review",
+          "content"   => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"    => 5,
+          "timestamp" => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post "create", :json_data => data.to_json
+
+      response.body.should == "SUCCESS"
+      AnonymousReview.should have(1).record
+      Review.should have(0).records
+    end
+    
+    it "should be able to update the anonymous review" do
+      # We're creating an anonymous review in the DB to update it
+      anonymous_review = FactoryGirl.create(
+        :anonymous_review,
+        :ios_device_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
+      )
+      AnonymousReview.stub_chain(:where, :first).and_return(anonymous_review)
+
+      data = {
+          "device_id" => "ASDASD",
+          "book_id"   => @book.id,
+          "action"    => "register_book_review",
+          "content"   => "new content",
+          "rating"    => 5,
+          "timestamp" => Time.now
+        }
+
+      post "create", :json_data => data.to_json
+
+      anonymous_review.rating.should  == 5
+      anonymous_review.content.should == "new content"
+    end
+    
+    it "should save the new device_ss_id so we're actually moving away from using the legacy one" do
+      data = {
+          "device_id"    => "ASDASD",
+          "device_ss_id" => "ss_id",
+          "book_id"      => @book.id,
+          "action"       => "register_book_review",
+          "content"      => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"       => 5,
+          "timestamp"    => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post "create", :json_data => data.to_json
+
+      response.body.should == "SUCCESS"
+      AnonymousReview.first.ios_device_ss_id.should == "ss_id"
+    end
+    
+  end
+  
 end
 
 describe WebApiController, "(API calls - user related)" do
@@ -126,7 +187,7 @@ describe WebApiController, "(API calls - user related)" do
         'structure_version'     => '1.2',
         'action'                => 'register_ios_user',
         'user_fbconnect_id'     => '1232134',
-        'device_id'             => 'ASDASD',
+        'device_ss_id'          => 'ASDASD',
         'user_email'            => 'test@test.com',
         'user_first_name'       => 'Zsolt',
         'user_last_name'        => 'Maslanyi',
