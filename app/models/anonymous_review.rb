@@ -36,7 +36,11 @@ class AnonymousReview < ActiveRecord::Base
   end
   
   def convert_to_normal_review
-    login = Login.where(:ios_device_id => self.ios_device_id).first()
+    if self.ios_device_ss_id
+      login = Login.where(:ios_device_ss_id => self.ios_device_ss_id).first()
+    else
+      login = Login.where(:ios_device_id => self.ios_device_id).first()
+    end
     
     review_conditions = {
       :login_id      => login.id,

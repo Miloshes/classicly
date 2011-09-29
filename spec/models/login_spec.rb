@@ -24,7 +24,7 @@ describe Login do
       Login.stub_chain(:where, :first).and_return(@login)
     end
     
-    it "should fail when one of the required parameters is missing from the API call parameters" do      
+    it "should fail when one of the required parameters is missing from the API call parameters" do
       %w{action structure_version user_fbconnect_id}.each do |parameter_to_cut|
         api_params = @api_call_params.clone
         api_params.delete(parameter_to_cut)
