@@ -118,7 +118,7 @@ class ShareMessageHandler
     highlight_url = add_utm_parameters_to_link(highlight_url, params) if highlight_url
     
     params_for_variable_replacement = {
-      "book title"        => params[:book].title,
+      "book title"        => params[:book].pretty_title,
       "book author"       => params[:book].author.name,
       "available formats" => params[:book].pretty_download_formats.join("/"),
       "book url"          => book_url,
