@@ -3,6 +3,7 @@ var apiUrl =  "http://6wfx.api.indextank.com";
 var indexName = "ClassiclyAutocomplete";
 var source = apiUrl + "/v1/indexes/" + indexName + "/search";
 var searchResults;
+var uiHandler = new UIHandler();
 
 /* this allows us to pass in HTML tags to autocomplete. Without this, they get escaped */
 $[ "ui" ][ "autocomplete" ].prototype["_renderItem"] = function( ul, item) {
@@ -65,7 +66,13 @@ google.setOnLoadCallback(function() {
     $( elementId ).autocomplete( {
       source: sourceCallback,
       delay: 250,
-      select: selectCallback
+      select: selectCallback,
+      open: function(event, ui) {
+        uiHandler.slideDownContentContainer();
+      },
+      close: function(event, ui) {
+        uiHandler.slideUpContentContainer();
+      }
     });
   }); // $ fun
 }); // g callback

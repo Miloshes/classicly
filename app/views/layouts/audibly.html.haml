@@ -43,22 +43,24 @@
           #logo
             %a{:href => '/'}
               = image_tag 'new_logo_classicly.png'
+          #search
+            = form_tag search_url, :method => :get do
+              = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
+              %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+
           #nav
             %ul
-              %li
-                %a{:href => '/collections'} Collections
-              %li
-                %a{:href => '/authors'} Authors
               %li
                 %a.blog{:href => '/blog'} Blog
               %li
                 = link_to  'Library', '/library'
+          - unless current_login
+            #signin
+              = link_to "Sign In", "#"
+          - else
+            #profile-pic
+              = link_to facebook_image(current_login.fb_connect_id), '/library'
 
-          / #search
-          /           = form_tag search_url, :method => :get do
-          /             = text_field_tag "term", nil, :placeholder => 'Search', :tabIndex => 1
-          /             %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-          /     .bottom
     .clear
     #content
       #left-column

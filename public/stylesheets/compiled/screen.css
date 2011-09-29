@@ -190,50 +190,51 @@ body.bp a.btn.primary {
 /* ----------------------------------------- */
 /* line 60, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete {
-  min-width: 365px;
-  max-width: 365px;
+  min-width: 742px;
+  max-width: 742px;
+  top: 50px !important;
   cursor: pointer;
 }
-/* line 65, ../../../app/stylesheets/partials/_global.sass */
+/* line 66, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item {
   padding-right: 10px;
   overflow: hidden;
 }
-/* line 68, ../../../app/stylesheets/partials/_global.sass */
+/* line 69, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item.ui-state-active {
   color: #195596;
 }
-/* line 71, ../../../app/stylesheets/partials/_global.sass */
+/* line 72, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a span.type {
   padding-left: 5px;
   color: #9999ae;
 }
-/* line 75, ../../../app/stylesheets/partials/_global.sass */
+/* line 76, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem {
   color: #195596 !important;
 }
-/* line 77, ../../../app/stylesheets/partials/_global.sass */
+/* line 78, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item a:hover span.type, ul.ui-autocomplete li.ui-menu-item a#ui-active-menuitem span.type {
   color: #538dc2;
 }
-/* line 80, ../../../app/stylesheets/partials/_global.sass */
+/* line 81, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover {
   height: 39px;
 }
-/* line 82, ../../../app/stylesheets/partials/_global.sass */
+/* line 83, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover img.micro-cover {
   width: 23px;
   height: 37px;
   float: left;
   margin-right: 5px;
 }
-/* line 87, ../../../app/stylesheets/partials/_global.sass */
+/* line 88, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text {
   display: inline-block;
   float: left;
   width: 84%;
 }
-/* line 88, ../../../app/stylesheets/partials/_global.sass */
+/* line 89, ../../../app/stylesheets/partials/_global.sass */
 ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   text-decoration: underline;
 }
@@ -241,7 +242,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ------------------------------------------------------------ */
 /* ---------->>> AUTHOR COLLECTION LISTING PAGES <<<----------- */
 /* ------------------------------------------------------------ */
-/* line 96, ../../../app/stylesheets/partials/_global.sass */
+/* line 97, ../../../app/stylesheets/partials/_global.sass */
 .row.quotes-and-books-buttons {
   margin-bottom: 20px;
   margin-top: 20px;
@@ -250,11 +251,11 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* -------------------------------------------------- */
 /* ---------->>> INDIVIDUAL QUOTE PAGE <<<----------- */
 /* -------------------------------------------------- */
-/* line 105, ../../../app/stylesheets/partials/_global.sass */
+/* line 106, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page a.btn.primary {
   color: white;
 }
-/* line 107, ../../../app/stylesheets/partials/_global.sass */
+/* line 108, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .individual-quote {
   color: #333333;
   font-family: "Scala", Georgia, sans-serif;
@@ -262,14 +263,14 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
   margin-top: 15px;
   line-height: 1.5em;
 }
-/* line 113, ../../../app/stylesheets/partials/_global.sass */
+/* line 114, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quote-author {
   margin-left: -10px;
   font-family: "Scala", Georgia, sans-serif;
   font-size: 14px;
   color: #333333;
 }
-/* line 118, ../../../app/stylesheets/partials/_global.sass */
+/* line 119, ../../../app/stylesheets/partials/_global.sass */
 #individual-quote-page .quotes-and-books-buttons {
   margin-bottom: 60px;
 }
@@ -277,7 +278,7 @@ ul.ui-autocomplete li.ui-menu-item .with-cover .text b {
 /* ---------------------------------------- */
 /* ---------->>> LINK STYLES <<<----------- */
 /* ---------------------------------------- */
-/* line 124, ../../../app/stylesheets/partials/_global.sass */
+/* line 125, ../../../app/stylesheets/partials/_global.sass */
 a.classicly-link, a.description-link {
   color: #333333;
   text-decoration: none;
@@ -293,7 +294,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> RATINGS <<<----------- */
 /* ----------------------------------- */
-/* line 134, ../../../app/stylesheets/partials/_global.sass */
+/* line 135, ../../../app/stylesheets/partials/_global.sass */
 .star-on, .star-off {
   float: left;
   width: 19px;
@@ -305,12 +306,12 @@ a.classicly-link:hover, a.description-link:hover {
   background: url(/images/star-sprite-transparent.png) no-repeat 0 -16px;
 }
 
-/* line 144, ../../../app/stylesheets/partials/_global.sass */
+/* line 145, ../../../app/stylesheets/partials/_global.sass */
 .star-on {
   background-position: 0 -16px !important;
 }
 
-/* line 147, ../../../app/stylesheets/partials/_global.sass */
+/* line 148, ../../../app/stylesheets/partials/_global.sass */
 .star-off {
   background-position: 0 0px !important;
 }
@@ -318,7 +319,7 @@ a.classicly-link:hover, a.description-link:hover {
 /* ----------------------------------- */
 /* ---------->>> TOOLTIP <<<----------- */
 /* ----------------------------------- */
-/* line 153, ../../../app/stylesheets/partials/_global.sass */
+/* line 154, ../../../app/stylesheets/partials/_global.sass */
 .tooltip {
   display: none;
   background-color: #ffffaa;
@@ -581,7 +582,7 @@ a.highlight:hover {
   float: left;
   margin-right: 10px;
   width: 168.333px;
-  margin: 0px 13px 0px -55px;
+  margin-left: -55px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #logo {
@@ -592,34 +593,83 @@ a.highlight:hover {
   margin-top: 10px;
 }
 /* line 51, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search {
+  display: inline;
+  float: left;
+  margin-right: 10px;
+  width: 435.833px;
+  height: 50px;
+}
+/* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #header .wrap .top #search {
+  overflow-x: hidden;
+}
+/* line 54, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search form {
+  margin-top: 16px;
+  background: white;
+  height: 26px;
+  border: 1px solid #ab9573;
+}
+/* line 59, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search input {
+  color: #d2d2d3;
+  font: normal 16px "Scala", Georgia, sans-serif;
+  box-shadow: none;
+  border: 0;
+  width: 383px;
+  height: 18px;
+  outline: none;
+  float: left;
+  padding: 3px 0px 0px 3px;
+}
+/* line 69, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search input:focus {
+  color: #333333;
+}
+/* line 71, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search button {
+  width: 25px;
+  height: 16px;
+  display: block;
+  background: url(/images/search-button.png);
+  border: 0;
+  float: right;
+  margin-top: 4px;
+}
+/* line 79, ../../../app/stylesheets/partials/_layout.sass */
+#header .wrap .top #search button:hover {
+  cursor: pointer;
+}
+/* line 81, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 569.583px;
+  width: 212.917px;
   text-align: left;
-  margin-left: -5px;
+  margin-left: 2px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #nav {
   overflow-x: hidden;
 }
-/* line 55, ../../../app/stylesheets/partials/_layout.sass */
+/* line 85, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul {
   list-style: none;
 }
-/* line 57, ../../../app/stylesheets/partials/_layout.sass */
+/* line 87, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li {
   float: left;
   display: inline;
   height: 50px;
   padding: 0px 20px;
 }
-/* line 62, ../../../app/stylesheets/partials/_layout.sass */
+/* line 92, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li:hover {
   background-color: #48423b;
 }
-/* line 64, ../../../app/stylesheets/partials/_layout.sass */
+/* line 94, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li a {
   font: 18px "Scala", Georgia, sans-serif;
   color: white;
@@ -627,19 +677,19 @@ a.highlight:hover {
   text-align: center;
   margin-top: 18px;
 }
-/* line 71, ../../../app/stylesheets/partials/_layout.sass */
+/* line 101, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li.active {
   background-color: white;
 }
-/* line 73, ../../../app/stylesheets/partials/_layout.sass */
+/* line 103, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li.active:hover {
   background-color: white;
 }
-/* line 75, ../../../app/stylesheets/partials/_layout.sass */
+/* line 105, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul li.active a {
   color: #333333;
 }
-/* line 78, ../../../app/stylesheets/partials/_layout.sass */
+/* line 108, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top #nav ul .right {
   background: url("/images/header-nav-right.png");
   height: 35px;
@@ -647,7 +697,7 @@ a.highlight:hover {
   display: block;
   float: left;
 }
-/* line 84, ../../../app/stylesheets/partials/_layout.sass */
+/* line 114, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #signin {
   background-color: #052336;
   height: 32px;
@@ -655,68 +705,19 @@ a.highlight:hover {
   padding: 18px 50px 0px 50px;
   margin-right: -64px;
 }
-/* line 90, ../../../app/stylesheets/partials/_layout.sass */
+/* line 120, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #signin a {
   font-color: white;
   font-size: 18px;
   text-align: center;
   color: white;
 }
-/* line 95, ../../../app/stylesheets/partials/_layout.sass */
+/* line 125, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #profile-pic {
   width: 50px;
   height: 50px;
   float: right;
   margin-right: -64px;
-}
-/* line 100, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search {
-  display: inline;
-  float: left;
-  margin-right: 0;
-  width: 212.917px;
-  margin-top: 17px;
-  margin-left: 65px;
-}
-/* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
-* html #header .wrap #search {
-  overflow-x: hidden;
-}
-/* line 105, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search form {
-  background: white;
-  height: 22px;
-  border: 1px solid #ab9573;
-}
-/* line 109, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search input {
-  color: #d2d2d3;
-  font: normal 12px "helvetica";
-  box-shadow: none;
-  border: 0;
-  width: 150px;
-  height: 18px;
-  outline: none;
-  float: left;
-  padding: 3px 0px 0px 3px;
-}
-/* line 119, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search input:focus {
-  color: #333333;
-}
-/* line 121, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search button {
-  width: 25px;
-  height: 16px;
-  display: block;
-  background: url(/images/search-button.png);
-  border: 0;
-  float: right;
-  margin-top: 1px;
-}
-/* line 129, ../../../app/stylesheets/partials/_layout.sass */
-#header .wrap #search button:hover {
-  cursor: pointer;
 }
 
 /* line 132, ../../../app/stylesheets/partials/_layout.sass */
