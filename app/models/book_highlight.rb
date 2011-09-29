@@ -68,7 +68,7 @@ class BookHighlight < ActiveRecord::Base
     end
   end
   
-  def response_when_created_via_web_api
+  def response_when_created_via_web_api(params)
     # our response to highlight creation Web API call
     # - the URL for the highlight's landing page
     # - the share text for Twitter
@@ -79,13 +79,15 @@ class BookHighlight < ActiveRecord::Base
         :target_platform => "twitter",
         :message_type    => "highlight share",
         :book            => self.book,
-        :highlight       => self
+        :highlight       => self,
+        :apple_id        => params[:source_app]
       )
     facebook_message      = share_message_handler.get_message_for(
         :target_platform => "facebook",
         :message_type    => "highlight share",
         :book            => self.book,
-        :highlight       => self
+        :highlight       => self,
+        :apple_id        => params[:source_app]
       )
     
     return {

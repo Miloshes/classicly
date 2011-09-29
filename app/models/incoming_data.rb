@@ -36,7 +36,7 @@ class IncomingData < ActiveRecord::Base
         
         # if we've created a new record, we return the associated Web API answer
         if result.is_a?(BookHighlight) || result.is_a?(AnonymousBookHighlight)
-          response = result.response_when_created_via_web_api
+          response = result.response_when_created_via_web_api(:source_app => record["apple_id"])
         end
       when "register_ios_user"
         Login.register_from_ios_app(record)
