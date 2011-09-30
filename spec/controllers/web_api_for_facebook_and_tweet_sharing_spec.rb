@@ -64,8 +64,8 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["message"]
-      parsed_response["message"].should_not be_blank
+      parsed_response.keys.sort.should == ["twitter_message"]
+      parsed_response["twitter_message"].should_not be_blank
     end
     
     it "should have a proper response for Facebook" do
@@ -116,8 +116,8 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["message"]
-      parsed_response["message"].should_not be_blank
+      parsed_response.keys.sort.should == ["twitter_message"]
+      parsed_response["twitter_message"].should_not be_blank
     end
     
   end
