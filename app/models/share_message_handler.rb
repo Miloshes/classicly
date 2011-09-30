@@ -75,8 +75,8 @@ class ShareMessageHandler
     result_without_url = message_without_url(result)
 
     # shorten if it's necessary
-    if result_without_url.length > 120
-      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
+    if result_without_url.length > 118
+      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 118})
       result_without_url = message_without_url(result)
     end
 
