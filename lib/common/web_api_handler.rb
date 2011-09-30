@@ -234,6 +234,11 @@ class WebApiHandler
     
     response = share_message_handler.get_message_for(params)
     
+    # we're putting the twitter message into it's own Hash, so it's easier to parse on the client side
+    if params[:target_platform] == "twitter"
+      response = {:message => response}
+    end
+    
     return response.to_json
   end
   
