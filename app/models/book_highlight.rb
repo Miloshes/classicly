@@ -53,19 +53,20 @@ class BookHighlight < ActiveRecord::Base
       }
   
     highlight = self.where(highlight_conditions).first()
+    
+    result = false
   
     if highlight
       highlight.update_attributes(new_highlight_data) unless new_timestamp < highlight.created_at
+      
+      result = highlight
     else
       new_highlight = self.create(highlight_conditions.merge new_highlight_data)
+      
+      result = new_highlight if new_highlight.valid?
     end
     
-    # we created a new highlight, return it. Otherwise we just did a record update
-    if new_highlight
-      return new_highlight
-    else
-      return true
-    end
+    return result
   end
   
   def response_when_created_via_web_api(params)

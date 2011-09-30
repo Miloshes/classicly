@@ -29,48 +29,73 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
   
   context "working with anonymous highlights" do
     
-    before(:each) do
-      # a valid model - for checking the update
-      @anonymous_book_highlight = AnonymousBookHighlight.new(
-        :first_character  => 0,
-        :last_character   => 9,
-        :content          => "content 12",
-        :book             => @book,
-        :ios_device_ss_id => @login.ios_device_ss_id,
-        :created_at       => Time.now,
-        :cached_slug      => "content-12"
-      )
+    context "when doing registration" do
+    
+      it "should be able to register one given the book and the device ID" do
+        post "create", :json_data => @api_call_params.to_json
+      
+        response.should be_success
+        AnonymousBookHighlight.should have(1).record
+        BookHighlight.should have(0).records
+      end
+    
+      it "should return the URL for the highlight's public page and the twitter and facebook share message" do
+        post "create", :json_data => @api_call_params.to_json
+      
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+        parsed_response.class.should == Hash
+        parsed_response["public_highlight_url"].should_not be_blank
+        parsed_response["twitter_message"].should_not be_blank
+        parsed_response["facebook_message"].should_not be_blank
+      end
+    
     end
     
-    it "should be able to register one given the book and the device ID" do
-      post "create", :json_data => @api_call_params.to_json
+    context "when doing update to an existing one" do
       
-      response.should be_success
-      AnonymousBookHighlight.should have(1).record
-      BookHighlight.should have(0).records
-    end
+      before(:each) do
+        # a valid model - for checking the update
+        @anonymous_book_highlight = FactoryGirl.create(:anonymous_book_highlight,
+          :first_character  => 0,
+          :last_character   => 9,
+          :content          => "content 12",
+          :book             => @book,
+          :ios_device_ss_id => @login.ios_device_ss_id,
+          :created_at       => Time.now,
+          :cached_slug      => "content-12"
+        )
+      end
     
-    it "should return the URL for the highlight's public page and the twitter and facebook share message after registration" do
-      post "create", :json_data => @api_call_params.to_json
+      it "should be able to update it" do
+        # future timestamp, so the update actually happens
+        new_timestamp = (Time.now + 10.minutes).to_s(:db)
+        @api_call_params["timestamp"] = new_timestamp
       
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+        AnonymousBookHighlight.stub_chain(:where, :first).and_return(@anonymous_book_highlight)
       
-      parsed_response.class.should == Hash
-      parsed_response["public_highlight_url"].should_not be_blank
-      parsed_response["twitter_message"].should_not be_blank
-      parsed_response["facebook_message"].should_not be_blank
-    end
+        @anonymous_book_highlight.should_receive(:update_attributes)
+      
+        post "create", :json_data => @api_call_params.to_json
+      end
     
-    it "should be able to update it" do
-      # future timestamp, so the update actually happens
-      new_timestamp = (Time.now + 10.minutes).to_s(:db)
-      @api_call_params["timestamp"] = new_timestamp
+      it "should return the URL for the highlight's public page and the twitter and facebook share message after the update" do
+        # future timestamp, so the update actually happens
+        new_timestamp = (Time.now + 10.minutes).to_s(:db)
+        @api_call_params["timestamp"] = new_timestamp
       
-      AnonymousBookHighlight.stub_chain(:where, :first).and_return(@anonymous_book_highlight)
+        AnonymousBookHighlight.stub_chain(:where, :first).and_return(@anonymous_book_highlight)
+        
+        post "create", :json_data => @api_call_params.to_json
       
-      @anonymous_book_highlight.should_receive(:update_attributes)
+        parsed_response = ActiveSupport::JSON.decode(response.body)
       
-      post "create", :json_data => @api_call_params.to_json
+        parsed_response.class.should == Hash
+        parsed_response["public_highlight_url"].should_not be_blank
+        parsed_response["twitter_message"].should_not be_blank
+        parsed_response["facebook_message"].should_not be_blank
+      end
+      
     end
     
   end
@@ -79,58 +104,84 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
 
     before(:each) do
       @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
-      
-      # a valid model - for checking the update
-      @book_highlight = BookHighlight.new(
-        :first_character => 0,
-        :last_character  => 9,
-        :book            => @book,
-        :user            => @login,
-        :fb_connect_id   => @login.fb_connect_id,
-        :created_at      => Time.now
-      )
     end
     
-    it "should be able to register one given the book and the user's facebook ID" do
-      post "create", :json_data => @api_call_params.to_json
+    context "when doing registration" do
+      
+      it "should be able to register one given the book and the user's facebook ID" do
+        post "create", :json_data => @api_call_params.to_json
 
-      response.should be_success
-      BookHighlight.should have(1).records
-      AnonymousBookHighlight.should have(0).records
-    end
-    
-    it "should create an anonymous highlight instead if by some mistake the user is not registered yet" do
-      # faking that the user doesn't exist
-      Login.stub_chain(:where, :first).and_return(nil)
-      
-      post "create", :json_data => @api_call_params.to_json
+        response.should be_success
+        BookHighlight.should have(1).records
+        AnonymousBookHighlight.should have(0).records
+      end
 
-      response.should be_success
-      BookHighlight.should have(0).records
-      AnonymousBookHighlight.should have(1).record
+      it "should create an anonymous highlight instead if by some mistake the user is not registered yet" do
+        # faking that the user doesn't exist
+        Login.stub_chain(:where, :first).and_return(nil)
+
+        post "create", :json_data => @api_call_params.to_json
+
+        response.should be_success
+        BookHighlight.should have(0).records
+        AnonymousBookHighlight.should have(1).record
+      end
+      
+      it "should return the URL for the highlight's public page and the twitter and facebook share message" do
+        post "create", :json_data => @api_call_params.to_json
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        parsed_response.class.should == Hash
+        parsed_response["public_highlight_url"].should_not be_blank
+        parsed_response["twitter_message"].should_not be_blank
+        parsed_response["facebook_message"].should_not be_blank
+      end
+      
     end
     
-    it "should return the URL for the highlight's public page and the twitter and facebook share message after registration" do
-      post "create", :json_data => @api_call_params.to_json
+    context "when doing update to an existing one" do
       
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+      before(:each) do
+        @book_highlight = FactoryGirl.create(:book_highlight,
+          :first_character => 0,
+          :last_character  => 9,
+          :book            => @book,
+          :user            => @login,
+          :fb_connect_id   => @login.fb_connect_id,
+          :created_at      => Time.now
+        )
+      end
       
-      parsed_response.class.should == Hash
-      parsed_response["public_highlight_url"].should_not be_blank
-      parsed_response["twitter_message"].should_not be_blank
-      parsed_response["facebook_message"].should_not be_blank
-    end
-    
-    it "should be able to update it" do
-      # future timestamp, so the update actually happens
-      new_timestamp = (Time.now + 10.minutes).to_s(:db)
-      @api_call_params["timestamp"] = new_timestamp
+      it "should be able to update it" do
+        # future timestamp, so the update actually happens
+        new_timestamp = (Time.now + 10.minutes).to_s(:db)
+        @api_call_params["timestamp"] = new_timestamp
+
+        BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
+
+        @book_highlight.should_receive(:update_attributes)
+
+        post "create", :json_data => @api_call_params.to_json
+      end
+
+      it "should return the URL for the highlight's public page and the twitter and facebook share message after the update" do
+        # future timestamp, so the update actually happens
+        new_timestamp = (Time.now + 10.minutes).to_s(:db)
+        @api_call_params["timestamp"] = new_timestamp
+
+        BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
+
+        post "create", :json_data => @api_call_params.to_json
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        parsed_response.class.should == Hash
+        parsed_response["public_highlight_url"].should_not be_blank
+        parsed_response["twitter_message"].should_not be_blank
+        parsed_response["facebook_message"].should_not be_blank
+      end
       
-      BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
-      
-      @book_highlight.should_receive(:update_attributes)
-      
-      post "create", :json_data => @api_call_params.to_json
     end
 
   end 

@@ -7,6 +7,7 @@ describe AnonymousBookHighlight do
     @book   = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
     @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd", :ios_device_ss_id => "asd2")
 
+    @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Login.stub_chain(:where, :first).and_return(@login)
 
     @book_highlight = AnonymousBookHighlight.new(
