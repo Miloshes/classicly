@@ -69,10 +69,8 @@
                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
             #nav
               %ul
-                = top_nav_link 'Home', '/'
-                =# top_nav_link 'Authors', '/authors'
-                =# top_nav_link 'Collections', '/collections'
-                = top_nav_link 'Blog', '/blog'
+                = top_nav_link 'Authors', '/authors'
+                = top_nav_link 'Collections', '/collections'
 
             - unless current_login
               #signin
