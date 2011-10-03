@@ -119,7 +119,7 @@ describe WebApiController, "(API calls - review creation)" do
   
   context "when using the legacy UDID" do
     
-    it "should be able to create an anonymous review" do
+    it "should be able to create an anonymous review and also store the legacy UDID" do
       data = {
           "device_id" => "ASDASD",
           "book_id"   => @book.id,
@@ -134,6 +134,9 @@ describe WebApiController, "(API calls - review creation)" do
       response.body.should == "SUCCESS"
       AnonymousReview.should have(1).record
       Review.should have(0).records
+      
+      # check if we're actually saving the legacy UDID
+      AnonymousReview.first.ios_device_id.should_not be_blank
     end
     
     it "should be able to update the anonymous review" do

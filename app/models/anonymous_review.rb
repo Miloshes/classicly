@@ -39,9 +39,11 @@ class AnonymousReview < ActiveRecord::Base
     end
         
     new_review_data = {
-        :content    => data["content"],
-        :rating     => data["rating"],
-        :created_at => new_timestamp
+        :content       => data["content"],
+        :rating        => data["rating"],
+        :created_at    => new_timestamp,
+        # we're also storing the legacy UDID, just to make sure the old systems still work
+        :ios_device_id => data["device_id"]
       }
   
     if review
