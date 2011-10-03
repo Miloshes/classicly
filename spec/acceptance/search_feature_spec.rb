@@ -8,12 +8,20 @@ feature 'Search feature: ', %q{
 
   background do
     1.upto(10){ |index| FactoryGirl.create(:book, :blessed => true) }
-  end
-
-  scenario 'searching for book' do
-    @book = FactoryGirl.create(:book, :pretty_title => 'Dracula', :id => 5528) # the data must be the same we registered with indextank
+    FactoryGirl.create(:book, :pretty_title => 'Dracula', :id => 5528) # the data must be the same we registered with indextank
 
     visit homepage
+  end
+
+  scenario 'working with an autocomplete', :selenium => true do
+    # When I fill in any text in my search text field
+    fill_in 'term', :with => 'dracula'
+    # Then I should see the autocomplete list
+    page.should have_selector("ul.ui-autocomplete")
+  end
+
+
+  scenario 'searching for book' do
 
     fill_in 'term', :with => 'dracula'
 
@@ -22,8 +30,7 @@ feature 'Search feature: ', %q{
     end
 
     current_path.should == search_path
-    selector = "li#book_5528"
-    page.should have_css(selector)
+    page.should have_css('li#book_5528')
   end
 
 end
