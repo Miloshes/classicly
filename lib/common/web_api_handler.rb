@@ -191,12 +191,12 @@ class WebApiHandler
     if params["user_fbconnect_id"]
       login = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
     else
-      login = Login.where(:ios_device_id => params["device_id"].to_s).first()
+      login = Login.where(:ios_device_ss_id => params["device_ss_id"].to_s).first()
     end
     
     return nil.to_json if book.blank? || login.blank?
     
-    anonymous_highlights = AnonymousBookHighlight.where(:book => book, :ios_device_id => login.ios_device_id).all()
+    anonymous_highlights = AnonymousBookHighlight.where(:book => book, :ios_device_ss_id => login.ios_device_ss_id).all()
     highlights           = BookHighlight.where(:book => book, :user => login).all()
     
     # NOTE: thing is, one user should have either normal highlights or anonymous ones - this is for safety measures
@@ -233,6 +233,11 @@ class WebApiHandler
     params[:selected_text] = call_params["selected_text"]
     
     response = share_message_handler.get_message_for(params)
+    
+    # we're putting the twitter message into it's own Hash, so it's easier to parse on the client side
+    if params[:target_platform] == "twitter"
+      response = {:twitter_message => response}
+    end
     
     return response.to_json
   end

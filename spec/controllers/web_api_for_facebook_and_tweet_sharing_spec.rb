@@ -63,8 +63,9 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
     
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
-      parsed_response.class.should == String
-      parsed_response.should_not be_blank
+      parsed_response.class.should == Hash
+      parsed_response.keys.sort.should == ["twitter_message"]
+      parsed_response["twitter_message"].should_not be_blank
     end
     
     it "should have a proper response for Facebook" do
@@ -111,13 +112,14 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
     # TODO: could have a better test
     it "should have a proper response for Twitter" do
       post "query", :json_data => @api_call_params.to_json
-    
+      
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
-      parsed_response.class.should == String
-      parsed_response.should_not be_blank
+      parsed_response.class.should == Hash
+      parsed_response.keys.sort.should == ["twitter_message"]
+      parsed_response["twitter_message"].should_not be_blank
     end
     
-  end    
+  end
   
 end

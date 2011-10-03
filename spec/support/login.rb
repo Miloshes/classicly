@@ -13,6 +13,7 @@ FactoryGirl.define do
     fb_connect_id "123456"
     
     ios_device_id "asd"
+    ios_device_ss_id "asd2"
   end
   
 end

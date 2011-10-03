@@ -7,7 +7,7 @@ class Login < ActiveRecord::Base
     
     # required parameter
     return true if params['user_fbconnect_id'].blank?
-
+    
     existing_login = Login.where(:fb_connect_id => params['user_fbconnect_id']).first()
     
     # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)
@@ -17,10 +17,16 @@ class Login < ActiveRecord::Base
     
     if existing_login
       login = existing_login
+      
+      # migrate existing logins to the new device_ss_id
+      if params['device_ss_id'] && login.ios_device_ss_id.blank?
+        login.update_attributes(:ios_device_ss_id => params['device_ss_id'])
+      end
     else
       login = Login.create(
         :fb_connect_id    => params['user_fbconnect_id'],
         :ios_device_id    => params['device_id'],
+        :ios_device_ss_id => params['device_ss_id'],
         :email            => params['user_email'],
         :first_name       => params['user_first_name'],
         :last_name        => params['user_last_name'],
@@ -29,11 +35,10 @@ class Login < ActiveRecord::Base
       )
     end
     
-    # migrate the anonymous reviews as we have the facebook information now
+    # migrate the anonymous reviews and highlights as we have the facebook information now
     if params['structure_version'] == '1.2'
-      AnonymousReview.where(:ios_device_id => login.ios_device_id).each do |anonymous_review|
-        anonymous_review.convert_to_normal_review
-      end
+      login.convert_anonymous_reviews_into_normal_ones
+      login.convert_anonymous_book_highlights_into_normal_ones
     end
 
   end
@@ -74,5 +79,19 @@ class Login < ActiveRecord::Base
   
   def performable_log_session_opened
     Net::HTTP.get(URI.parse("http://analytics.performable.com/v1/event?_n=7DjavS9rK42m&_a=0HuiG9&_i=#{self.fb_connect_id}"))
+  end
+  
+  # == For converting anonymous resources belonging to the user, identified by the user's iOS device into normal ones
+  
+  def convert_anonymous_reviews_into_normal_ones
+    AnonymousReview.where(:ios_device_id => self.ios_device_id).all().each do |anonymous_review|
+      anonymous_review.convert_to_normal_review
+    end
+  end
+  
+  def convert_anonymous_book_highlights_into_normal_ones
+    AnonymousBookHighlight.where(:ios_device_ss_id => self.ios_device_ss_id).all().each do |anonymous_book_highlight|
+      anonymous_book_highlight.convert_to_normal_highlight
+    end
   end
 end

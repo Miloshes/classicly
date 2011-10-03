@@ -75,8 +75,8 @@ class ShareMessageHandler
     result_without_url = message_without_url(result)
 
     # shorten if it's necessary
-    if result_without_url.length > 120
-      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 120})
+    if result_without_url.length > 117
+      result = replace_variables(raw_message, params_for_variable_replacement, {:shorten_by => result_without_url.length - 117})
       result_without_url = message_without_url(result)
     end
 
@@ -87,20 +87,20 @@ class ShareMessageHandler
     end
   end
   
-  # def assemble_message_for_facebook(raw_messages_hash = {}, params)
-  #     params_for_variable_replacement = assemble_params_for_variable_replacement(params)
-  #     
-  #     result = {}
-  #     
-  #     # do the variable replacement for each field in the message
-  #     ["title", "link", "description"].each do |field|
-  #       result[field] = replace_variables(raw_messages_hash[field], params_for_variable_replacement)
-  #     end
-  #     
-  #     result["cover_url"] = Book.cover_url(params[:book].id, 3)
-  # 
-  #     result
-  #   end
+  def assemble_message_for_facebook(raw_messages_hash, params)
+    params_for_variable_replacement = assemble_params_for_variable_replacement(params)
+    
+    result = {}
+    
+    # do the variable replacement for each field in the message
+    ["title", "link", "description"].each do |field|
+      result[field] = replace_variables(raw_messages_hash[field], params_for_variable_replacement)
+    end
+    
+    result["cover_url"] = Book.cover_url(params[:book].id, 3)
+
+    return result
+  end
   
   def assemble_params_for_variable_replacement(params)    
     if params[:highlight] && params[:book].blank?
@@ -118,7 +118,7 @@ class ShareMessageHandler
     highlight_url = add_utm_parameters_to_link(highlight_url, params) if highlight_url
     
     params_for_variable_replacement = {
-      "book title"        => params[:book].title,
+      "book title"        => params[:book].pretty_title,
       "book author"       => params[:book].author.name,
       "available formats" => params[:book].pretty_download_formats.join("/"),
       "book url"          => book_url,

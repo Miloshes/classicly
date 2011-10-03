@@ -571,7 +571,7 @@ a.highlight:hover {
 }
 /* line 41, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap .top {
-  width: 960px;
+  width: 100%;
   margin: 0 auto;
   height: 30px;
 }
@@ -582,7 +582,7 @@ a.highlight:hover {
   float: left;
   margin-right: 10px;
   width: 168.333px;
-  margin-left: -55px;
+  margin-left: 90px;
 }
 /* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
 * html #header .wrap .top #logo {
@@ -646,7 +646,7 @@ a.highlight:hover {
   display: inline;
   float: left;
   margin-right: 10px;
-  width: 212.917px;
+  width: 257.5px;
   text-align: left;
   margin-left: 2px;
 }
@@ -703,16 +703,15 @@ a.highlight:hover {
   height: 32px;
   float: right;
   padding: 18px 50px 0px 50px;
-  margin-right: -64px;
 }
-/* line 120, ../../../app/stylesheets/partials/_layout.sass */
+/* line 119, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #signin a {
   font-color: white;
   font-size: 18px;
   text-align: center;
   color: white;
 }
-/* line 125, ../../../app/stylesheets/partials/_layout.sass */
+/* line 124, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #profile-pic {
   width: 50px;
   height: 50px;
@@ -720,7 +719,7 @@ a.highlight:hover {
   margin-right: -64px;
 }
 
-/* line 132, ../../../app/stylesheets/partials/_layout.sass */
+/* line 131, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -731,13 +730,13 @@ a.highlight:hover {
   padding: 0;
 }
 
-/* line 142, ../../../app/stylesheets/partials/_layout.sass */
+/* line 141, ../../../app/stylesheets/partials/_layout.sass */
 #footer {
   width: 100%;
   background-color: #f2f1e6;
   height: 55px;
 }
-/* line 147, ../../../app/stylesheets/partials/_layout.sass */
+/* line 146, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container {
   width: 1060px;
   margin: 0 auto;
@@ -745,76 +744,76 @@ a.highlight:hover {
   *zoom: 1;
   margin-top: 10px;
 }
-/* line 150, ../../../app/stylesheets/partials/_layout.sass */
+/* line 149, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container .row {
   margin-bottom: 0px;
 }
-/* line 152, ../../../app/stylesheets/partials/_layout.sass */
+/* line 151, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul {
   margin-bottom: 0px;
 }
-/* line 154, ../../../app/stylesheets/partials/_layout.sass */
+/* line 153, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li {
   display: inline;
   margin-right: 15px;
 }
-/* line 157, ../../../app/stylesheets/partials/_layout.sass */
+/* line 156, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a {
   font-size: 14px;
   color: #333333;
 }
-/* line 160, ../../../app/stylesheets/partials/_layout.sass */
+/* line 159, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a.apps {
   font-weight: bold;
   font-size: 20px;
 }
-/* line 164, ../../../app/stylesheets/partials/_layout.sass */
+/* line 163, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a:hover {
   text-decoration: underline !important;
 }
-/* line 166, ../../../app/stylesheets/partials/_layout.sass */
+/* line 165, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container #copyright, #footer #center-container #spreadsong {
   text-align: right;
   font-size: 18px;
   color: #a5a49e;
 }
-/* line 170, ../../../app/stylesheets/partials/_layout.sass */
+/* line 169, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container #spreadsong {
   font-style: italic;
 }
 
-/* line 177, ../../../app/stylesheets/partials/_layout.sass */
+/* line 176, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 183, ../../../app/stylesheets/partials/_layout.sass */
+/* line 182, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
   text-align: left;
 }
-/* line 186, ../../../app/stylesheets/partials/_layout.sass */
+/* line 185, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
   float: left !important;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 191, ../../../app/stylesheets/partials/_layout.sass */
+/* line 190, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe {
   float: left;
 }
-/* line 193, ../../../app/stylesheets/partials/_layout.sass */
+/* line 192, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 196, ../../../app/stylesheets/partials/_layout.sass */
+/* line 195, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 200, ../../../app/stylesheets/partials/_layout.sass */
+/* line 199, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -822,45 +821,45 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 207, ../../../app/stylesheets/partials/_layout.sass */
+/* line 206, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers {
   color: #333333;
   font-size: 14px;
 }
-/* line 210, ../../../app/stylesheets/partials/_layout.sass */
+/* line 209, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers:hover {
   cursor: pointer;
 }
-/* line 212, ../../../app/stylesheets/partials/_layout.sass */
+/* line 211, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover {
   float: none;
   height: auto;
 }
-/* line 215, ../../../app/stylesheets/partials/_layout.sass */
+/* line 214, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover img {
   margin-bottom: 0px;
   float: none;
 }
-/* line 218, ../../../app/stylesheets/partials/_layout.sass */
+/* line 217, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover .text {
   float: none;
   margin-top: 0px;
 }
-/* line 222, ../../../app/stylesheets/partials/_layout.sass */
+/* line 221, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links {
   margin-top: 50px;
 }
-/* line 224, ../../../app/stylesheets/partials/_layout.sass */
+/* line 223, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links a {
   cursor: pointer;
 }
-/* line 227, ../../../app/stylesheets/partials/_layout.sass */
+/* line 226, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
 }
 
-/* line 232, ../../../app/stylesheets/partials/_layout.sass */
+/* line 231, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -869,14 +868,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 239, ../../../app/stylesheets/partials/_layout.sass */
+/* line 238, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 245, ../../../app/stylesheets/partials/_layout.sass */
+/* line 244, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -888,14 +887,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 248, ../../../app/stylesheets/partials/_layout.sass */
+/* line 247, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 253, ../../../app/stylesheets/partials/_layout.sass */
+/* line 252, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -907,7 +906,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 256, ../../../app/stylesheets/partials/_layout.sass */
+/* line 255, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -916,7 +915,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 264, ../../../app/stylesheets/partials/_layout.sass */
+/* line 263, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -928,12 +927,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 267, ../../../app/stylesheets/partials/_layout.sass */
+/* line 266, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 271, ../../../app/stylesheets/partials/_layout.sass */
+/* line 270, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;

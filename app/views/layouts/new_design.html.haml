@@ -19,6 +19,8 @@
     <meta property="fb:admins" content="24611995" />
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js'
     = csrf_meta_tag
+    - if Rails.env.test?
+      = javascript_tag '$.ajaxSetup({async: false});'
     = typekit_include_helper
 
     %meta{"http-equiv" => 'content-type', :content => 'text/html;charset=utf-8'}
@@ -69,10 +71,8 @@
                 %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
             #nav
               %ul
-                = top_nav_link 'Home', '/'
-                =# top_nav_link 'Authors', '/authors'
-                =# top_nav_link 'Collections', '/collections'
-                = top_nav_link 'Blog', '/blog'
+                = top_nav_link 'Authors', '/authors'
+                = top_nav_link 'Collections', '/collections'
 
             - unless current_login
               #signin
