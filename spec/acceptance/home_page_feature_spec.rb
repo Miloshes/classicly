@@ -15,10 +15,17 @@ feature 'Home page feature: ', %q{
     visit homepage
   end
 
-  scenario 'Going to blog page from home page' do
+  scenario 'clicking on the collections nav tab' do
     within :xpath, "id('nav')//ul" do
-      find(:xpath, ".//li//a[text()='Blog']").click
-      current_path.should == '/blog'
+      find(:xpath, ".//li//a[text()='Collections']").click
+      current_path.should == '/collections'
+    end
+  end
+
+  scenario "clicking on the authors nav tab" do
+    within :xpath, "id('nav')//ul" do
+      find(:xpath, ".//li//a[text()='Authors']").click
+      current_path.should == '/authors'
     end
   end
 
