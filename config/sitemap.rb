@@ -41,15 +41,21 @@ SitemapGenerator::Sitemap.add_links do |sitemap|
   SeoSlug.find_each do|landing_page|
     sitemap.add seo_path(landing_page.slug) unless (landing_page.format == 'all' || landing_page.slug.nil?)
   end
-
-  # add each page from each online readable book to the sitemap
-  Book.where(:is_rendered_for_online_reading).each do |book|
-
-    id = book.seo_slugs.read_online.first.slug
-
-    1.upto(book.book_pages.count) do |page_number|
-      sitemap.add read_online_path(id, page_number)
+  
+  Collection.find_book_author_collections.each do|collection|
+    for quote in collection.quotes
+      sitemap.add quote_path(collection, quote)
     end
   end
+
+  # add each page from each online readable book to the sitemap
+  # Book.where(:is_rendered_for_online_reading).each do |book|
+  # 
+  #     id = book.seo_slugs.read_online.first.slug
+  # 
+  #     1.upto(book.book_pages.count) do |page_number|
+  #       sitemap.add read_online_path(id, page_number)
+  #     end
+  #   end
 
 end
