@@ -701,25 +701,91 @@ a.highlight:hover {
 #header .wrap #signin {
   background-color: #052336;
   height: 32px;
-  float: right;
+  float: left;
+  margin-left: 38px;
   padding: 18px 50px 0px 50px;
 }
-/* line 119, ../../../app/stylesheets/partials/_layout.sass */
+/* line 120, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #signin a {
   font-color: white;
   font-size: 18px;
   text-align: center;
   color: white;
 }
-/* line 124, ../../../app/stylesheets/partials/_layout.sass */
+/* line 125, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #profile-pic {
   width: 50px;
   height: 50px;
-  float: right;
-  margin-right: -64px;
+  float: left;
+  margin-left: 145px;
 }
 
-/* line 131, ../../../app/stylesheets/partials/_layout.sass */
+/* line 132, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store {
+  display: inline;
+  float: left;
+  margin-right: 0;
+  width: 1060px;
+}
+/* line 147, ../../../../../../../.rvm/gems/ruby-1.9.2-p180@classicly/gems/compass-0.11.5/frameworks/blueprint/stylesheets/blueprint/_grid.scss */
+* html #content #itunes_store {
+  overflow-x: hidden;
+}
+/* line 134, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store img {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 22px;
+}
+/* line 138, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner {
+  background-color: #f9f8da;
+  height: 38px;
+  margin-left: -30px;
+  font-family: "Scala", Georgia, sans-serif;
+}
+/* line 143, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner #message {
+  display: inline-block;
+  margin-left: 90px;
+  margin-top: 11px;
+  float: left;
+}
+/* line 148, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner #books {
+  margin: 7px 0px 0px 15px;
+  float: left;
+}
+/* line 152, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner #iphone, #content #itunes_store #text-banner #ipad {
+  float: left;
+}
+/* line 154, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner #iphone {
+  margin: 7px 0px 0px 80px;
+}
+/* line 156, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner #ipad {
+  margin: 7px 0px 0px 12px;
+}
+/* line 158, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner img {
+  float: left;
+  display: inline-block;
+  margin: 7px 0px 0px 12px;
+}
+/* line 162, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner .bigbold {
+  font-size: 20px;
+  font-weight: bold;
+}
+/* line 165, ../../../app/stylesheets/partials/_layout.sass */
+#content #itunes_store #text-banner .small {
+  font-size: 14px;
+  font-weight: regular;
+}
+
+/* line 169, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-shadow {
   float: left;
   display: block;
@@ -730,13 +796,13 @@ a.highlight:hover {
   padding: 0;
 }
 
-/* line 141, ../../../app/stylesheets/partials/_layout.sass */
+/* line 179, ../../../app/stylesheets/partials/_layout.sass */
 #footer {
   width: 100%;
   background-color: #f2f1e6;
   height: 55px;
 }
-/* line 146, ../../../app/stylesheets/partials/_layout.sass */
+/* line 184, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container {
   width: 1060px;
   margin: 0 auto;
@@ -744,76 +810,76 @@ a.highlight:hover {
   *zoom: 1;
   margin-top: 10px;
 }
-/* line 149, ../../../app/stylesheets/partials/_layout.sass */
+/* line 187, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container .row {
   margin-bottom: 0px;
 }
-/* line 151, ../../../app/stylesheets/partials/_layout.sass */
+/* line 189, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul {
   margin-bottom: 0px;
 }
-/* line 153, ../../../app/stylesheets/partials/_layout.sass */
+/* line 191, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li {
   display: inline;
   margin-right: 15px;
 }
-/* line 156, ../../../app/stylesheets/partials/_layout.sass */
+/* line 194, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a {
   font-size: 14px;
   color: #333333;
 }
-/* line 159, ../../../app/stylesheets/partials/_layout.sass */
+/* line 197, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a.apps {
   font-weight: bold;
   font-size: 20px;
 }
-/* line 163, ../../../app/stylesheets/partials/_layout.sass */
+/* line 201, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container ul li a:hover {
   text-decoration: underline !important;
 }
-/* line 165, ../../../app/stylesheets/partials/_layout.sass */
+/* line 203, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container #copyright, #footer #center-container #spreadsong {
   text-align: right;
   font-size: 18px;
   color: #a5a49e;
 }
-/* line 169, ../../../app/stylesheets/partials/_layout.sass */
+/* line 207, ../../../app/stylesheets/partials/_layout.sass */
 #footer #center-container #spreadsong {
   font-style: italic;
 }
 
-/* line 176, ../../../app/stylesheets/partials/_layout.sass */
+/* line 214, ../../../app/stylesheets/partials/_layout.sass */
 #right-column {
   width: 190px;
   float: left;
   padding-top: 20px;
   margin-left: 20px;
 }
-/* line 182, ../../../app/stylesheets/partials/_layout.sass */
+/* line 220, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social {
   text-align: left;
 }
-/* line 185, ../../../app/stylesheets/partials/_layout.sass */
+/* line 223, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social div {
   float: left !important;
   margin: 0;
   margin-bottom: 10px;
   padding: 0;
 }
-/* line 190, ../../../app/stylesheets/partials/_layout.sass */
+/* line 228, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe {
   float: left;
 }
-/* line 192, ../../../app/stylesheets/partials/_layout.sass */
+/* line 230, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.fb_ltr {
   margin-bottom: 10px;
 }
-/* line 195, ../../../app/stylesheets/partials/_layout.sass */
+/* line 233, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .social iframe.twitter-follow-button {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-/* line 199, ../../../app/stylesheets/partials/_layout.sass */
+/* line 237, ../../../app/stylesheets/partials/_layout.sass */
 #right-column h4 {
   font-size: 18px;
   font-weight: bold;
@@ -821,45 +887,45 @@ a.highlight:hover {
   margin-bottom: 0;
   padding: 0;
 }
-/* line 206, ../../../app/stylesheets/partials/_layout.sass */
+/* line 244, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers {
   color: #333333;
   font-size: 14px;
 }
-/* line 209, ../../../app/stylesheets/partials/_layout.sass */
+/* line 247, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers:hover {
   cursor: pointer;
 }
-/* line 211, ../../../app/stylesheets/partials/_layout.sass */
+/* line 249, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover {
   float: none;
   height: auto;
 }
-/* line 214, ../../../app/stylesheets/partials/_layout.sass */
+/* line 252, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover img {
   margin-bottom: 0px;
   float: none;
 }
-/* line 217, ../../../app/stylesheets/partials/_layout.sass */
+/* line 255, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .cover .text {
   float: none;
   margin-top: 0px;
 }
-/* line 221, ../../../app/stylesheets/partials/_layout.sass */
+/* line 259, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links {
   margin-top: 50px;
 }
-/* line 223, ../../../app/stylesheets/partials/_layout.sass */
+/* line 261, ../../../app/stylesheets/partials/_layout.sass */
 #right-column .right-covers .links a {
   cursor: pointer;
 }
-/* line 226, ../../../app/stylesheets/partials/_layout.sass */
+/* line 264, ../../../app/stylesheets/partials/_layout.sass */
 #right-column p.popular {
   font-size: 16px;
   font-weight: bold;
 }
 
-/* line 231, ../../../app/stylesheets/partials/_layout.sass */
+/* line 269, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar {
   width: 100%;
   height: 90px;
@@ -868,14 +934,14 @@ a.highlight:hover {
   bottom: 0;
   text-align: center;
 }
-/* line 238, ../../../app/stylesheets/partials/_layout.sass */
+/* line 276, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content {
   margin: 0 auto;
   width: 960px;
   text-align: left;
   padding-top: 15px;
 }
-/* line 244, ../../../app/stylesheets/partials/_layout.sass */
+/* line 282, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left {
   display: inline;
   float: left;
@@ -887,14 +953,14 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .left {
   overflow-x: hidden;
 }
-/* line 247, ../../../app/stylesheets/partials/_layout.sass */
+/* line 285, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .left span {
   width: 100%;
   display: block;
   color: white;
   font-size: 14px;
 }
-/* line 252, ../../../app/stylesheets/partials/_layout.sass */
+/* line 290, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center {
   display: inline;
   float: left;
@@ -906,7 +972,7 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .center {
   overflow-x: hidden;
 }
-/* line 255, ../../../app/stylesheets/partials/_layout.sass */
+/* line 293, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .center span {
   width: 100%;
   display: block;
@@ -915,7 +981,7 @@ a.highlight:hover {
   font-weight: bold;
   padding-top: 20px;
 }
-/* line 263, ../../../app/stylesheets/partials/_layout.sass */
+/* line 301, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right {
   display: inline;
   float: left;
@@ -927,12 +993,12 @@ a.highlight:hover {
 * html #bottom-notification-bar .content .right {
   overflow-x: hidden;
 }
-/* line 266, ../../../app/stylesheets/partials/_layout.sass */
+/* line 304, ../../../app/stylesheets/partials/_layout.sass */
 #bottom-notification-bar .content .right a {
   margin-top: 10px;
 }
 
-/* line 270, ../../../app/stylesheets/partials/_layout.sass */
+/* line 308, ../../../app/stylesheets/partials/_layout.sass */
 .like-send {
   display: inline;
   float: left;
