@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
+  
+  before_filter do
+    @show_right_nav = true
+  end
 
   def current_login
     return if !facebook_cookies

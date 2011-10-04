@@ -1,5 +1,5 @@
 module NavigationHelpers
-  # Put helper methods related to the paths in your application here.
+  # Put helper methods related to the paths in your application here.e
   def authors
     authors_path
   end
@@ -11,6 +11,7 @@ module NavigationHelpers
   def collections
     collections_path
   end
+  
 end
 
 RSpec.configuration.include NavigationHelpers, :type => :acceptance

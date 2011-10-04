@@ -1,3 +1,6 @@
+- content_for :upsell do
+  = render :partial => '/shared/app_upsell_itunes'
+
 #book-page
   .span12.columns
     .row
@@ -47,5 +50,7 @@
           
           #they-noted
             They noted:
+          #origin-comment
+            = @highlight.origin_comment
   
 = javascript_include_tag 'review-ratings'

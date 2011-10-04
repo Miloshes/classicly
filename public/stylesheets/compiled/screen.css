@@ -1384,12 +1384,13 @@ ul.ui-autocomplete {
 #book-page .book-column #they-noted {
   color: #999999;
   font-size: 14px;
+  margin-bottom: 12px;
 }
-/* line 77, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 78, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #read-online-button-container {
   margin-bottom: 20px;
 }
-/* line 81, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 82, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #reviews-rating-count, #book-page .book-column #greeting, #book-page .book-column #review-box, #book-page .book-column #rate, #book-page .book-column #submit-review {
   display: inline;
   float: left;
@@ -1401,16 +1402,16 @@ ul.ui-autocomplete {
 * html #book-page .book-column #reviews-rating-count, * html #book-page .book-column #greeting, * html #book-page .book-column #review-box, * html #book-page .book-column #rate, * html #book-page .book-column #submit-review {
   overflow-x: hidden;
 }
-/* line 85, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 86, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column .explanation {
   color: #999999;
   font-size: 14px;
 }
-/* line 91, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 92, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #write-review {
   text-align: right;
 }
-/* line 95, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 96, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic {
   display: inline;
   float: left;
@@ -1421,11 +1422,11 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .profile-pic {
   overflow-x: hidden;
 }
-/* line 98, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 99, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 101, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 102, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text {
   display: inline;
   float: left;
@@ -1438,15 +1439,15 @@ ul.ui-autocomplete {
 * html #book-page .book-column #greeting .text {
   overflow-x: hidden;
 }
-/* line 106, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 107, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #greeting .text p {
   margin-top: 36px;
 }
-/* line 110, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 111, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate {
   margin-top: 7px;
 }
-/* line 113, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 114, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .text {
   display: inline;
   float: left;
@@ -1457,7 +1458,7 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .text {
   overflow-x: hidden;
 }
-/* line 116, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 117, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #rate .stars {
   display: inline;
   float: left;
@@ -1468,12 +1469,12 @@ ul.ui-autocomplete {
 * html #book-page .book-column #rate .stars {
   overflow-x: hidden;
 }
-/* line 119, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 120, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #submit-review {
   margin-top: 14px;
   font-size: 16px;
 }
-/* line 125, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 126, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
   background: url(/images/new_reviews_editor.png);
   width: 400px;
@@ -1482,11 +1483,11 @@ ul.ui-autocomplete {
   resize: none;
   padding: 7px 0px 0px 7px;
 }
-/* line 133, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 134, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews {
   margin-top: 21px;
 }
-/* line 136, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 137, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review {
   display: inline;
   float: left;
@@ -1499,11 +1500,11 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review {
   overflow-x: hidden;
 }
-/* line 141, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 142, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review.striped {
   background-color: #f2ede6;
 }
-/* line 144, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 145, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic {
   display: inline;
   float: left;
@@ -1514,11 +1515,11 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review .profile-pic {
   overflow-x: hidden;
 }
-/* line 147, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 148, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-pic img {
   border: 1px solid #333333;
 }
-/* line 150, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 151, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name {
   display: inline;
   float: left;
@@ -1531,31 +1532,31 @@ ul.ui-autocomplete {
 * html #book-page #reviews .individual_review .profile-name {
   overflow-x: hidden;
 }
-/* line 155, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 156, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p {
   line-height: 1px;
   font-size: 12px;
 }
-/* line 159, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 160, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.name {
   color: #333333;
   font-weight: bold;
   font-size: 14px;
   margin-bottom: 15px;
 }
-/* line 165, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 166, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name p.date {
   margin-bottom: 15px;
 }
-/* line 168, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 169, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .profile-name .rating {
   margin-top: 2px;
 }
-/* line 171, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 172, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content {
   margin-top: 10px;
 }
-/* line 174, ../../../app/stylesheets/partials/_book_page.sass */
+/* line 175, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page #reviews .individual_review .review-content p {
   margin: 0px 0px 5px 0px;
 }
