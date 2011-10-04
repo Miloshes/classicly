@@ -33,6 +33,7 @@
 
   %body.bp
     = render :partial => '/shared/connect_with_facebook_bar'
+    
     <script type="text/javascript">
     var _kmq = _kmq || [];
     function _kms(u){
@@ -82,8 +83,8 @@
                 = link_to facebook_image(current_login.fb_connect_id), '/library'
 
       .clear
-      
       #content
+        = render :partial => '/shared/app_upsell_itunes'
         #left-column
           = yield
         <!-- le right column navigator -->
