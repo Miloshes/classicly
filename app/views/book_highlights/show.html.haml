@@ -54,3 +54,9 @@
             = @highlight.origin_comment
   
 = javascript_include_tag 'review-ratings'
+
+:javascript
+  $(function(){
+    $( "#book-page" ).data( "book_id", "#{@book.id}" );
+    $( "#book-rating" ).data( "book_type", "book")
+  });
