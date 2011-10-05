@@ -1,5 +1,5 @@
 - content_for :head do
-  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Check out this highhlight from the book &laquo;#{@book.pretty_title}\"&raquo; by #{@book.author.name} - \"#{@highlight.content}\"", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'highlight'})
+  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Check out this highhlight from the book &laquo;#{@book.pretty_title}&raquo; by #{@book.author.name} - \"#{@highlight.content}\"", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'highlight'})
 
 
 - content_for :upsell do
