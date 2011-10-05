@@ -1,4 +1,5 @@
-= fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Hi, I found this highhlight at Classicly.com #{@highlight.content}", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book'})
+- content_for :head do
+  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Hi, I found this highhlight at Classicly.com #{@highlight.content}", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book'})
     
 - content_for :upsell do
   = render :partial => '/shared/app_upsell_itunes'
