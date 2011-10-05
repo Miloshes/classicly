@@ -1,6 +1,7 @@
 - content_for :head do
-  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Hi, I found this highhlight at Classicly.com #{@highlight.content}", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'book'})
-    
+  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "Check out this highhlight from the book#{@book.pretty_title} by #{@book.author.name} - \"#{@highlight.content}\"", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'highlight'})
+
+
 - content_for :upsell do
   = render :partial => '/shared/app_upsell_itunes'
 
@@ -54,12 +55,15 @@
           #they-noted
             They noted:
           .row
-            .span3.columns
+            .span8.columns
               #origin-comment
                 = @highlight.origin_comment
-            .span7.columns
-              #twitter-fb-box
-                <fb:like width="600" font="arial" layout='box_count' send='true'></fb:like>
+            .span1.columns
+              .fb-box
+                <fb:like width="100" font="arial" layout='box_count' send='true'></fb:like>
+            / .span1.columns
+            /               .twitter-box
+            /                 <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
               
   
 = javascript_include_tag 'review-ratings'
