@@ -1386,7 +1386,7 @@ ul.ui-autocomplete {
 #book-page .book-column #they-noted {
   color: #999999;
   font-size: 14px;
-  margin-bottom: 12px;
+  margin: 22px 0px 9px 0px;
 }
 /* line 79, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #read-online-button-container {

@@ -12,12 +12,12 @@ module SeoHelper # Please don't put into application helper
   end
 
   def fb_open_graph_metadata(config={}, seo_info = nil)
-    content_tag(:meta, nil, {:property => "og:title", :content => seo_info.try(:og_title) || config[:title] || "Classicly"}) +
-    content_tag(:meta, nil, {:property => "og:type", :content => config[:type] || "website"}) +
-    content_tag(:meta, nil, {:property => "og:url", :content => config[:url] || "http://www.classicly.com"}) +
-    content_tag(:meta, nil, {:property => "og:image", :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
-    content_tag(:meta, nil, {:property => "og:site_name", :content => "Classicly"}) +
-    content_tag(:meta, nil, {:property => "fb:app_id", :content => Facebook::APP_ID}) +
+    content_tag(:meta, nil, {:property => "og:title",       :content => seo_info.try(:og_title) || config[:title] || "Classicly"}) +
+    content_tag(:meta, nil, {:property => "og:type",        :content => config[:type] || "website"}) +
+    content_tag(:meta, nil, {:property => "og:url",         :content => config[:url] || "http://www.classicly.com"}) +
+    content_tag(:meta, nil, {:property => "og:image",       :content => config[:image] || "http://www.classicly.com/images/logo.png"}) +
+    content_tag(:meta, nil, {:property => "og:site_name",   :content => "Classicly"}) +
+    content_tag(:meta, nil, {:property => "fb:app_id",      :content => Facebook::APP_ID}) +
     content_tag(:meta, nil, {:property => "og:description", :content => seo_info.try(:og_description) || config[:description] || "23,469 of the world's greatest free books, available for free in PDF,  Kindle, Sony Reader, iBooks, and more. You can also read online!"})
   end
 
