@@ -9,6 +9,8 @@ class BookHighlightsController < ApplicationController
     message_handler = ShareMessageHandler.new
     @message_for_twitter = message_handler.get_message_for({:target_platform => 'twitter', 
       :message_type => 'highlight share', :highlight => @highlight})
+    @message_for_facebook =   message_handler.get_message_for({:target_platform => 'facebook', 
+        :message_type => 'highlight share', :highlight => @highlight})
   end
 
 end
