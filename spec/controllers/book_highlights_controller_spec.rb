@@ -5,11 +5,11 @@ describe BookHighlightsController do
   before(:each) do
     @author    = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book      = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
-    @highlight = mock_model(BookHighlight, :content => "gone away", :cached_slug => "gone-away")
+    @highlight = stub_model(BookHighlight, :content => "gone away", :cached_slug => "gone-away")
     
     Book.stub(:find).and_return(@book)
-    BookHighlight.stub_chain(:where, :first).and_return(@highlight)
     
+    BookHighlight.stub(:find_by_cached_slug).with(@highlight.cached_slug).and_return(@highlight)
     @path_params = {:author_id => @author.cached_slug, :book_id => @book.cached_slug, :highlight_id => @highlight.cached_slug}
   end
   
@@ -40,18 +40,20 @@ describe BookHighlightsController do
     
     it "should work with the right highlight" do
       # should use the @highlight we've set up
+      BookHighlight.should_receive(:find_by_cached_slug).with(@highlight.cached_slug).and_return(@highlight)
+      
       get "show", @path_params
+      assigns[:highlight].should_not be_nil
       
-      assigns[:highlight].should == @highlight
-      
-      # should find the anonymous_highlight we're setting up
+      # # should find the anonymous_highlight we're setting up
       anonymous_highlight         = mock_model(AnonymousBookHighlight, :content => "anon gone away", :cached_slug => "anon-gone-away")
       @path_params[:highlight_id] = anonymous_highlight.cached_slug
-      AnonymousBookHighlight.stub_chain(:where, :first).and_return(anonymous_highlight)
+      AnonymousBookHighlight.stub(:find_by_cached_slug).with(anonymous_highlight.cached_slug).and_return(anonymous_highlight)
       
+      AnonymousBookHighlight.should_receive(:find_by_cached_slug).with(anonymous_highlight.cached_slug).and_return(anonymous_highlight)
       get "show", @path_params
       
-      assigns[:highlight].should == anonymous_highlight
+      assigns[:highlight].should_not be_nil
     end
     
   end

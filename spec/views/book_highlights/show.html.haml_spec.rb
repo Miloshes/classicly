@@ -1,7 +1,13 @@
+require "spec_helper"
+
 describe "/book_highlights/show.html.haml" do
+  
   before :each do
-    @highlight = stub_model(BookHighlight,
-      :content => 'Vlad Tepes, Dracula')
+    @author     = FactoryGirl.create(:author, :name => 'Bram Stoker')    
+    @book       = FactoryGirl.create(:book, :pretty_title => 'Dracula', :author => @author)
+    @highlight  = stub_model(BookHighlight, :content => 'Vlad Tepes, Dracula')
+    
+    view.stub(:current_login) { nil } 
   end
   
   it 'should render the content of the highlight' do
