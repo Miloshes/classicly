@@ -3,7 +3,7 @@ class LoginMailer < ActionMailer::Base
     @user = user
     mail  :to => @user.email,
           :from => "hello@spreadsong.com",
-          :subject => "Welcome to Classicly!",
+          :subject => "Welcome to Classicly -- and Free Books/Free Audiobooks!",
           :date => Time.now
   end
 end

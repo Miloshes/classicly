@@ -51,7 +51,7 @@ LoginsController.prototype = {
           }
         });
       }
-    });
+    }, { perms:'email'});
   },
 
   pushToKissmetrics: function( data ){

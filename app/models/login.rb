@@ -47,19 +47,19 @@ class Login < ActiveRecord::Base
 
   def self.register_from_classicly(user_profile = {})
     user_profile.stringify_keys!
-
     is_new_login  = !Login.exists?(:fb_connect_id => user_profile['id'])
     login         = Login.find_or_create_by_fb_connect_id(user_profile['id'])
     city, country = user_profile['location'] ? user_profile['location']['name'].split(',') : [ "", ""]
 
 
-    login.update_attributes! { :email => user_profile['email'],
+    login.attributes=  { :email => user_profile['email'],
       :first_name       => user_profile['first_name'],
       :last_name        => user_profile['last_name'],
       :location_city    => city,
       :location_country => country
     }
-
+    login.save
+    
     # send mail
     login.send_registration_notification
 
@@ -87,7 +87,7 @@ class Login < ActiveRecord::Base
 
 
   def send_registration_notification
-    LoginMailer.deliver_registration_notification(self)
+    LoginMailer.registration_notification(self).deliver
   end
 
 end
