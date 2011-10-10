@@ -129,6 +129,16 @@ ActiveRecord::Schema.define(:version => 20111012170612) do
     t.integer "book_id"
   end
 
+  create_table "book_delivery_packages", :force => true do |t|
+    t.string   "source_user"
+    t.string   "destination_user"
+    t.string   "deliverable_type"
+    t.integer  "deliverable_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "book_highlights", :force => true do |t|
     t.integer  "first_character"
     t.integer  "last_character"
@@ -413,6 +423,14 @@ ActiveRecord::Schema.define(:version => 20111012170612) do
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
   create_table "user_sessions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_uploaded_contents", :force => true do |t|
+    t.text     "original_filename"
+    t.string   "mime_type"
+    t.integer  "login_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

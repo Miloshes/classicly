@@ -31,6 +31,8 @@ class Book < ActiveRecord::Base
   
   has_one :seo_info, :as => :infoable
   has_many :seo_slugs, :as => :seoable
+
+  has_many :book_delivery_packages, :as => :deliverable
   
   has_many :book_pages
 
