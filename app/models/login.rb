@@ -61,7 +61,7 @@ class Login < ActiveRecord::Base
     }
 
     # send mail
-    send_registration_notification(login)
+    login.send_registration_notification
 
     return login, is_new_login
   end
@@ -87,8 +87,8 @@ class Login < ActiveRecord::Base
 
   private
 
-  def send_registration_notification(login)
-    LoginMailer.deliver_registration_notification(login)
+  def send_registration_notification
+    LoginMailer.deliver_registration_notification(self)
   end
 
 end
