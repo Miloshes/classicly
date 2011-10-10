@@ -7,10 +7,20 @@ class BookHighlightsController < ApplicationController
     @highlight = AnonymousBookHighlight.find_by_cached_slug(params[:highlight_id]) || BookHighlight.find_by_cached_slug(params[:highlight_id])
     
     message_handler = ShareMessageHandler.new
-    @message_for_twitter = message_handler.get_message_for({:target_platform => 'twitter', 
-      :message_type => 'highlight share', :highlight => @highlight})
-    @message_for_facebook =   message_handler.get_message_for({:target_platform => 'facebook', 
-        :message_type => 'highlight share', :highlight => @highlight})
+
+    @message_for_twitter = message_handler.get_message_for(
+        :target_platform => "twitter",
+        :message_type    => "highlight share",
+        :highlight       => @highlight,
+        :book            => @book
+      )
+    @message_for_facebook = message_handler.get_message_for(
+        :target_platform => "facebook",
+        :message_type    => "highlight share",
+        :highlight       => @highlight,
+        :book            => @book
+      )
+    
   end
 
 end
