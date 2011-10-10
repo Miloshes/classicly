@@ -79,6 +79,8 @@ Classicly::Application.routes.draw do
 
   match '/reviews/create_rating' => 'reviews#create_rating'
 
+  match '/unsubscribe/:id/(:confirm)' => 'logins#unsubscribe', :as => :unsubscribe
+  
   resources :books, :only => :index do
     resources :reviews
   end
@@ -98,13 +100,14 @@ Classicly::Application.routes.draw do
       downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
       downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
       downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
-  
+
   match "/:id/quotes/(:page)" => "collections#show_quotes"
 
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
   match '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote, :via => :get
 
+  
   # == Notes and Highlights
   match "/:author_id/:book_id/highlights/:highlight_id" => "book_highlights#show", :as => :author_book_highlight, :via => :get
 
