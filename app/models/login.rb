@@ -85,7 +85,6 @@ class Login < ActiveRecord::Base
     end
   end
 
-  private
 
   def send_registration_notification
     LoginMailer.deliver_registration_notification(self)
