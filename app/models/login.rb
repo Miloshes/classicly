@@ -53,7 +53,7 @@ class Login < ActiveRecord::Base
     city, country = user_profile['location'] ? user_profile['location']['name'].split(',') : [ "", ""]
 
 
-    login.attributes = { :email => user_profile['email'],
+    login.update_attributes! { :email => user_profile['email'],
       :first_name       => user_profile['first_name'],
       :last_name        => user_profile['last_name'],
       :location_city    => city,
