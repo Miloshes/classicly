@@ -10,13 +10,14 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Book.stub!(:find).and_return(@book)
     
-    @login = mock_model(Login, :fb_connect_id => "123")
+    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_id => "ss_id1")
+    @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device)
     Login.stub_chain(:where, :first).and_return(@login)
 
     # NOTE: device_id is a must parameter. It identifies users for storing anonymous highlights, and for normal highlights
     # it enables the model to fall back to creating an anonymous one if the user registartion failed
     @api_call_params = {
-      "device_ss_id"    => @login.ios_device_ss_id,
+      "device_ss_id"    => @login.ios_device.ss_id,
       "book_id"         => @book.id,
       "action"          => "register_book_highlight",
       "first_character" => 0,
@@ -61,7 +62,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
           :last_character   => 9,
           :content          => "content 12",
           :book             => @book,
-          :ios_device_ss_id => @login.ios_device_ss_id,
+          :ios_device_ss_id => @login.ios_device.ss_id,
           :created_at       => Time.now,
           :cached_slug      => "content-12"
         )

@@ -10,6 +10,9 @@ describe AnonymousBookHighlight do
 
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Login.stub_chain(:where, :first).and_return(@login)
+    @ios_device.stub!(:user).and_return(@login)
+    IosDevice.stub!(:find_by_ss_id).and_return(@ios_device)
+    IosDevice.stub!(:find_by_original_udid).and_return(@ios_device)
 
     @book_highlight = AnonymousBookHighlight.new(
       :first_character  => 0,

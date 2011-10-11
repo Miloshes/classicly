@@ -3,7 +3,7 @@ class Login < ActiveRecord::Base
   has_many :ios_devices, :foreign_key => "user_id"
   has_one :library
   
-  # Just an alias for ios_devices.first
+  # Just an alias for ios_devices.first. Makes total sense as most of our users will only have one device.
   def ios_device
     self.ios_devices.first
   end
