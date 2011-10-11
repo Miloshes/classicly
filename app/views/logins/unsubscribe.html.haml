@@ -1,0 +1,5 @@
+- if @added_to_blacklist == true
+  Ok, #{@login.first_name}, you have been removed from our mailing list
+- else
+  Hi #{@login.first_name}, you have requested to be pulled off from our mailing list, you can confirm by clicking the button below:
+  = button_to 'Remove me from mail list', unsubscribe_path(:id => @login.fb_connect_id, :confirm => 'yes'), :method => 'get'
