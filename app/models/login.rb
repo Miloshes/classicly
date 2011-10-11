@@ -58,10 +58,14 @@ class Login < ActiveRecord::Base
       :location_city    => city,
       :location_country => country
     }
+
+    # set the access token for the user, we will need it if the user wants to be removed from the mailing list
+    login.access_token = ActiveSupport::SecureRandom.base64(8).gsub("/","_").gsub(/=+$/,"") if login.access_token.nil?
+
     login.save
-    
+
     # send mail
-    login.send_registration_notification
+    login.send_registration_notification if is_new_login
 
     return login, is_new_login
   end

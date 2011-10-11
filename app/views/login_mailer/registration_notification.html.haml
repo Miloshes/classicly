@@ -19,5 +19,5 @@ CEO, Classicly
 %br
 %br
 [Not interested in getting newsletter messages from us? Click 
-= link_to 'here to unsubscribe.', unsubscribe_url(@user.fb_connect_id)
+= link_to 'here to unsubscribe.', unsubscribe_url(:address => @user.email, :token => @user.access_token)
 ]

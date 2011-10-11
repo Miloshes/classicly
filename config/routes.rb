@@ -79,7 +79,7 @@ Classicly::Application.routes.draw do
 
   match '/reviews/create_rating' => 'reviews#create_rating'
 
-  match '/unsubscribe/:id/(:confirm)' => 'logins#unsubscribe', :as => :unsubscribe
+  match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
   
   resources :books, :only => :index do
     resources :reviews

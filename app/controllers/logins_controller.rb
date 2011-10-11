@@ -4,15 +4,20 @@ class LoginsController < ApplicationController
     @current_login, is_new_login = Login.register_from_classicly(fetch_user_profile_from_fb)
     render :json => { :is_new_login => is_new_login }
   end
-  
+
   def unsubscribe
-    @login = Login.find_by_fb_connect_id params[:id]
-    redirect_to root_path if @login.mailing_enabled == false
-    
+    @login = Login.find_by_email params[:address]
+
+    # return if the user has already taken himself out of the mailing or if the token is not valid
+    if @login.mailing_enabled == false || params[:address].nil? || params[:token].nil? || @login.access_token != params[:token]
+      redirect_to root_path
+    end
+
     if params[:confirm] && params[:confirm] == 'yes'
-      @login.update_attribute :mailing_enabled, false
+      @login.update_attributes(:mailing_enabled => false, :access_token => nil)
       @added_to_blacklist = true
     end
+
   end
 
   private
