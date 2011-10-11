@@ -8,14 +8,14 @@ describe ShareMessageHandler do
   before(:each) do
     @author = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book   = mock_model(Book,
-        :author => @author,
-        :title => "Les miserables",
+        :author       => @author,
+        :title        => "Les miserables",
         :pretty_title => "Les miserables",
-        :cached_slug => "les-miserables"
+        :cached_slug  => "les-miserables"
       )
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
       
-    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
+    @login = mock_model(Login, :fb_connect_id => "123")
     Login.stub_chain(:where, :first).and_return(@login)
       
     @book_highlight = mock_model(AnonymousBookHighlight,

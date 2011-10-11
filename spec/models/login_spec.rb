@@ -17,7 +17,7 @@ describe Login do
           "user_location_country" => "Hungary"
         }
       
-      @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd", :ios_device_ss_id => "asd2")
+      @login = mock_model(Login, :fb_connect_id => "123")
       @login.stub!(:convert_anonymous_reviews_into_normal_ones)
       @login.stub!(:convert_anonymous_book_highlights_into_normal_ones)
       

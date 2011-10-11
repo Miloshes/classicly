@@ -5,7 +5,7 @@ describe BookHighlight do
   before(:each) do
     @author = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book   = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
-    @login  = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd", :ios_device_ss_id => "asd2")
+    @login  = mock_model(Login, :fb_connect_id => "123")
 
     Login.stub_chain(:where, :first).and_return(@login)
 

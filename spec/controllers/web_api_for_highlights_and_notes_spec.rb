@@ -10,7 +10,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Book.stub!(:find).and_return(@book)
     
-    @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd", :ios_device_ss_id => "asd2")
+    @login = mock_model(Login, :fb_connect_id => "123")
     Login.stub_chain(:where, :first).and_return(@login)
 
     # NOTE: device_id is a must parameter. It identifies users for storing anonymous highlights, and for normal highlights
@@ -191,12 +191,12 @@ end
 describe WebApiController, "(API calls - notes and highlights related queries)" do
   
   before(:each) do
-    @book  = FactoryGirl.create(:book)
-    @login = FactoryGirl.create(:login)
+    @book       = FactoryGirl.create(:book)
+    @login      = FactoryGirl.create(:login)
 
     # NOTES: documentation
     @api_call_params = {
-      "device_ss_id" => @login.ios_device_ss_id,
+      "device_ss_id" => @login.ios_device.ss_id,
       "book_id"      => @book.id,
       "action"       => "get_book_highlights_for_user_for_book"
     }
@@ -207,14 +207,14 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
     it "should work when the user hasn't registered and has only anonymous highlights" do
       highlight  = FactoryGirl.create(:anonymous_book_highlight,
           :book             => @book,
-          :ios_device_ss_id => @login.ios_device_ss_id,
+          :ios_device_ss_id => @login.ios_device.ss_id,
           :first_character  => 0,
           :last_character   => 6,
           :content          => "content"
         )
       highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note,
           :book             => @book,
-          :ios_device_ss_id => @login.ios_device_ss_id
+          :ios_device_ss_id => @login.ios_device.ss_id
         )
 
       post "query", :json_data => @api_call_params.to_json

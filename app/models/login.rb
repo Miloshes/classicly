@@ -3,6 +3,11 @@ class Login < ActiveRecord::Base
   has_many :ios_devices, :foreign_key => "user_id"
   has_one :library
   
+  # Just an alias for ios_devices.first
+  def ios_device
+    self.ios_devices.first
+  end
+  
   def self.register_from_ios_app(params)
     params.stringify_keys!
 

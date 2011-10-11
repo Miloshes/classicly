@@ -20,7 +20,7 @@ describe WebApiController, "(API calls - Facebook & Tweet sharing related)" do
     @audiobook.stub!(:pretty_download_formats).and_return(["mp3"])
     Audiobook.stub!(:find).and_return(@audiobook)
     
-    @login = mock_model(Login, :fb_connect_id => "123", :ios_device_id => "asd")
+    @login = mock_model(Login, :fb_connect_id => "123")
     Login.stub_chain(:where, :first).and_return(@login)
   end
   

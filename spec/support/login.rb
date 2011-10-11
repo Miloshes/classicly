@@ -12,8 +12,7 @@ FactoryGirl.define do
     location_country "Hungary"
     fb_connect_id "123456"
     
-    ios_device_id "asd"
-    ios_device_ss_id "asd2"
+    ios_devices { |ios_devices| [ios_devices.association(:ios_device), ios_devices.association(:ios_device)] }
   end
   
 end
