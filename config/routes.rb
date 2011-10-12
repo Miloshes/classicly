@@ -42,6 +42,9 @@ Classicly::Application.routes.draw do
 
   match 'collections/autocomplete' => 'collections#autocomplete'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
+  
+  match '/iphone' => 'pages#iphone'
+  match '/ipad' => 'pages#ipad'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get

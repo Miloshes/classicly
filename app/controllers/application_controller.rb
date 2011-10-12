@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     return @current_admin_user if defined?(@current_admin_user)
     @current_admin_user = current_admin_user_session && current_admin_user_session.admin_user
   end
-
+  
   def popular_audiobooks
     @popular_audiobooks = Audiobook.blessed.select("id, author_id, cached_slug, pretty_title").random(3)
   end
