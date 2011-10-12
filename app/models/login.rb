@@ -70,6 +70,10 @@ class Login < ActiveRecord::Base
     return login, is_new_login
   end
 
+  def name
+    self.first_name + " " + self.last_name
+  end
+  
   def not_registered_with_facebook?
     return self.fb_connect_id.null?
   end

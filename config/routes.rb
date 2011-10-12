@@ -81,6 +81,8 @@ Classicly::Application.routes.draw do
 
   match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
   
+  match '/pulse' => 'pulse#index', :as => :pulse
+  
   resources :books, :only => :index do
     resources :reviews
   end

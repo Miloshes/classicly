@@ -1,0 +1,40 @@
+#pulse-page.row
+  .span11.columns
+    %h1
+      Pulse
+    %p.pulse-motto
+      The latest from Classicly users the world over.
+
+    - for element in @pulse_elements 
+      .pulse-element
+        .row
+          .span2.columns
+            - if element.is_a?(Review)
+              .cover.small
+                = cover_image_link(element.reviewable, 2)
+            - else
+              .cover.small
+                = cover_image_link(element.book, 2)
+          .span8.columns.details
+            - if element.is_a?(Review)
+              %span.name
+                = element.reviewer.try(:name)
+              left a review
+              .stars
+                = raw show_review_rating_stars(element.rating)
+              .review-content
+                = element.content
+            - if element.is_a?(BookHighlight)
+              %span.name
+                = element.user.try(:name)
+              noted:
+              .note
+                = element.origin_comment
+              .highlight-msg
+                and highlighted:
+              .highlight
+                = element.content
+              %br
+              = link_to 'Read this highlight', author_book_highlight_path(element.book.author, element.book, element), :class => 'btn'
+
+  
