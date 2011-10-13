@@ -3,6 +3,7 @@ require "spec_helper"
 describe Login do
   
   describe "getting created via a Web API call" do
+    
     before(:each) do
       @api_call_params = {
           "structure_version"     => "1.2",
@@ -41,12 +42,6 @@ describe Login do
         Login.register_from_ios_app(@api_call_params)
       }.to change(Login, :count).by(1)
     end
-
-    it "should try to migrate to the new device UDID" do
-      @login.should_receive(:try_to_migrate_device_udids).with(@api_call_params["device_id"], @api_call_params["device_ss_id"])
-      
-      Login.register_from_ios_app(@api_call_params)
-    end
     
     it "should convert all the anonymous reviews of the user into normal ones" do
       @login.should_receive(:convert_anonymous_reviews_into_normal_ones)
@@ -60,13 +55,27 @@ describe Login do
       Login.register_from_ios_app(@api_call_params)
     end
     
+    describe "keeping track of the devices of the user" do
+      it "should make sure the device is registered and assigned to the right user" do
+        IosDevice.should_receive(:make_sure_its_registered_and_assigned_to_user)
+        
+        Login.register_from_ios_app(@api_call_params)
+      end
+
+      it "should migrate the device UDIDs" do
+        IosDevice.should_receive(:try_to_migrate_device_udids)
+
+        Login.register_from_ios_app(@api_call_params)
+      end
+    end
+    
     describe "getting turned into a full-blown Classicly account" do
 
       before(:each) do
         new_api_call_params = {
           "structure_version" => "1.3",
           "twitter_name"      => "zsolt_maslanyi",
-          "password"          => "pass123"
+          "password"          => "pass123",
           "terms_of_services" => "accepted"
         }
       end
@@ -77,57 +86,6 @@ describe Login do
 
       it "should have a twitter name attribute"
 
-    end
-    
-    
-  end
-    
-  describe "migrating device UDIDs" do
-    
-    before(:each) do
-      @login = Login.new
-    end
-    
-    context "when the old UDIDs is not available" do
-      it "shouldn't do anything" do
-        result = @login.try_to_migrate_device_udids(nil, "new_ss_id")
-        
-        result.should be_nil
-      end
-    end
-    
-    context "when the new UDID is not available" do
-      it "shouldn't do anything" do
-        result = @login.try_to_migrate_device_udids("original_udid", nil)
-        
-        result.should be_nil
-      end
-    end
-    
-    # NOTE: should figure out how to mock/stub the login.ios_devices.where.first call
-    # This is tied to implementation too much
-    context "when both UDIDs are available" do
-      
-      before(:each) do
-        @ios_devices = mock("ios_devices")
-        @login.should_receive(:ios_devices).and_return(@ios_devices)
-      end
-      
-      it "should find the right device" do
-        # should be something like IosDevice.should_receive(:where).with(hash_including(:original_udid)
-        @ios_devices.should_receive(:where).with(hash_including(:original_udid)).and_return([])
-        
-        @login.try_to_migrate_device_udids("original_udid", "new_ss_id")
-      end
-      
-      it "should store the new UDID" do
-        ios_device = mock("ios_device")
-        @ios_devices.stub_chain(:where, :first).and_return(ios_device)
-        
-        # should be something like IosDevice.any_instance.should_receive(:update_attributes).with(hash_including(:ss_udid))
-        ios_device.should_receive(:update_attributes).with(hash_including(:ss_udid))
-        @login.try_to_migrate_device_udids("original_udid", "new_ss_id")
-      end
     end
     
   end

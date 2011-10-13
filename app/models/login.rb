@@ -23,7 +23,8 @@ class Login < ActiveRecord::Base
 
     if existing_login
       login = existing_login
-      login.try_to_migrate_device_udids(params["device_id"], params["device_ss_id"])
+      
+      login.manage_associated_ios_devices(params)
     else
       login = Login.create(
         :fb_connect_id    => params['user_fbconnect_id'],
@@ -110,15 +111,9 @@ class Login < ActiveRecord::Base
     LoginMailer.registration_notification(self).deliver
   end
   
-  # Tries to migrate the iOS devices that belongs to this login to use the new UDID
-  def try_to_migrate_device_udids(original_udid, new_ss_udid)
-    return nil if (original_udid.blank? || new_ss_udid.blank?)
-
-    ios_device = self.ios_devices.where(:original_udid => original_udid).first()
-    
-    if ios_device
-      ios_device.update_attributes(:ss_udid => new_ss_udid)
-    end
+  def manage_associated_ios_devices(params)
+    IosDevice.make_sure_its_registered_and_assigned_to_user(params["device_id"], params["device_ss_id"], self)
+    IosDevice.try_to_migrate_device_udids(params["device_id"], params["device_ss_id"])
   end
   
 end
