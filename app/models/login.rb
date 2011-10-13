@@ -1,9 +1,8 @@
 class Login < ActiveRecord::Base
-  has_many  :reviews
-  has_many  :highlight_notes
-  has_one   :library
-
-
+  has_many :reviews
+  has_many :ios_devices, :foreign_key => "user_id"
+  has_one :library
+  
   def self.register_from_ios_app(params)
     params.stringify_keys!
 

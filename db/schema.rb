@@ -272,6 +272,13 @@ ActiveRecord::Schema.define(:version => 20111011164232) do
     t.datetime "created_at"
   end
 
+  create_table "ios_devices", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "ss_id"
+    t.string   "original_udid"
+    t.datetime "updated_at"
+  end
+
   create_table "libraries", :force => true do |t|
     t.integer  "login_id"
     t.integer  "total_pages_read", :default => 0,    :null => false
@@ -306,8 +313,6 @@ ActiveRecord::Schema.define(:version => 20111011164232) do
     t.string   "email"
     t.string   "fb_connect_id"
     t.boolean  "is_admin",         :default => false
-    t.string   "ios_device_id"
-    t.string   "ios_device_ss_id"
     t.boolean  "mailing_enabled",  :default => true
     t.string   "access_token"
   end
