@@ -5,13 +5,13 @@ describe AnonymousBookHighlight do
   before(:each) do
     @author     = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book       = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
-    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_id => "ss_id1")
+    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
     @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device)
 
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
     Login.stub_chain(:where, :first).and_return(@login)
     @ios_device.stub!(:user).and_return(@login)
-    IosDevice.stub!(:find_by_ss_id).and_return(@ios_device)
+    IosDevice.stub!(:find_by_ss_udid).and_return(@ios_device)
     IosDevice.stub!(:find_by_original_udid).and_return(@ios_device)
 
     @book_highlight = AnonymousBookHighlight.new(
@@ -20,7 +20,7 @@ describe AnonymousBookHighlight do
       :content          => "content 12",
       :book             => @book,
       :ios_device_id    => @login.ios_device.original_udid,
-      :ios_device_ss_id => @login.ios_device.ss_id,
+      :ios_device_ss_id => @login.ios_device.ss_udid,
       :created_at       => Time.now,
       :cached_slug      => "content-12"
     )
@@ -59,7 +59,7 @@ describe AnonymousBookHighlight do
     
     before(:each) do
       @api_call_params = {
-        "device_ss_id"    => @login.ios_device.ss_id,
+        "device_ss_id"    => @login.ios_device.ss_udid,
         "book_id"         => @book.id,
         "action"          => "register_book_highlight",
         "first_character" => 0,
@@ -130,10 +130,6 @@ describe AnonymousBookHighlight do
     end
   end
   
-  describe "getting created via a Web API call that has an ios_device_ss_id aside of the device's UDID" do
-    
-  end
-  
   describe "being converted into normal highlights" do
     
     before(:each) do
@@ -141,27 +137,27 @@ describe AnonymousBookHighlight do
       
       @highlight  = FactoryGirl.create(:anonymous_book_highlight,
           :book             => @book,
-          :ios_device_ss_id => @login.ios_device.ss_id,
+          :ios_device_ss_id => @login.ios_device.ss_udid,
           :first_character  => 0,
           :last_character   => 6,
           :content          => "content"
         )
       @highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note,
           :book => @book,
-          :ios_device_ss_id => @login.ios_device.ss_id
+          :ios_device_ss_id => @login.ios_device.ss_udid
         )
     end
     
     it "should convert all the highlights for the book and user" do
-      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_id).each do |abh|
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_udid).each do |abh|
         abh.convert_to_normal_highlight
       end
 
-      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_id).count.should == 0
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_udid).count.should == 0
     end
     
     it "should correctly assign the new highlights to the user" do
-      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_id).each do |abh|
+      AnonymousBookHighlight.all_for_book_and_ios_device(@book, @login.ios_device.ss_udid).each do |abh|
         abh.convert_to_normal_highlight
       end
       

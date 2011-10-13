@@ -5,7 +5,7 @@ describe BookHighlight do
   before(:each) do
     @author     = mock_model(Author, :name => "Victor Hugo", :cached_slug => "victor-hugo")
     @book       = mock_model(Book, :author => @author, :pretty_title => "Les miserables", :cached_slug => "les-miserables")
-    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_id => "ss_id1")
+    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
     @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device)
 
     Login.stub_chain(:where, :first).and_return(@login)
@@ -60,7 +60,7 @@ describe BookHighlight do
     
     before(:each) do
       @api_call_params = {
-        "device_ss_id"      => @login.ios_device.ss_id,
+        "device_ss_id"      => @login.ios_device.ss_udid,
         "user_fbconnect_id" => @login.fb_connect_id,
         "book_id"           => @book.id,
         "action"            => "register_book_highlight",

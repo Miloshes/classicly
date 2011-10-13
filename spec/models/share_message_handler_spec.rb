@@ -15,7 +15,7 @@ describe ShareMessageHandler do
       )
     @book.stub!(:pretty_download_formats).and_return(["PDF", "Kindle", "Rtf"])
       
-    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_id => "ss_id1")
+    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
     @login = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device)
     Login.stub_chain(:where, :first).and_return(@login)
       
@@ -24,7 +24,7 @@ describe ShareMessageHandler do
       :last_character  => 9,
       :content         => "content 12",
       :book            => @book,
-      :ios_device_id   => @login.ios_device.ss_id,
+      :ios_device_id   => @login.ios_device.ss_udid,
       :created_at      => Time.now,
       :cached_slug     => "content-12",
       :origin_comment  => nil

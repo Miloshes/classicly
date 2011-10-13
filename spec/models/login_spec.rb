@@ -17,9 +17,7 @@ describe Login do
           "user_location_country" => "Hungary"
         }
       
-      @login = mock_model(Login, :fb_connect_id => "123")
-      @login.stub!(:convert_anonymous_reviews_into_normal_ones)
-      @login.stub!(:convert_anonymous_book_highlights_into_normal_ones)
+      @login = stub_model(Login, :fb_connect_id => "123")
       
       Login.stub_chain(:where, :first).and_return(@login)
     end
@@ -43,11 +41,9 @@ describe Login do
         Login.register_from_ios_app(@api_call_params)
       }.to change(Login, :count).by(1)
     end
-    
-    it "should register the ss_device_id when the login exists but doesn't have it already" do
-      @login.stub!(:ios_device_ss_id).and_return(nil)
-      
-      @login.should_receive(:update_attributes).with(hash_including(:ios_device_ss_id => @api_call_params["device_ss_id"]))
+
+    it "should try to migrate to the new device UDID" do
+      @login.should_receive(:try_to_migrate_device_udids).with(@api_call_params["device_id"], @api_call_params["device_ss_id"])
       
       Login.register_from_ios_app(@api_call_params)
     end
@@ -62,6 +58,56 @@ describe Login do
       @login.should_receive(:convert_anonymous_book_highlights_into_normal_ones)
       
       Login.register_from_ios_app(@api_call_params)
+    end
+    
+  end
+  
+  describe "migrating device UDIDs" do
+    
+    before(:each) do
+      @login = Login.new
+    end
+    
+    context "when the old UDIDs is not available" do
+      it "shouldn't do anything" do
+        result = @login.try_to_migrate_device_udids(nil, "new_ss_id")
+        
+        result.should be_nil
+      end
+    end
+    
+    context "when the new UDID is not available" do
+      it "shouldn't do anything" do
+        result = @login.try_to_migrate_device_udids("original_udid", nil)
+        
+        result.should be_nil
+      end
+    end
+    
+    # NOTE: should figure out how to mock/stub the login.ios_devices.where.first call
+    # This is tied to implementation too much
+    context "when both UDIDs are available" do
+      
+      before(:each) do
+        @ios_devices = mock("ios_devices")
+        @login.should_receive(:ios_devices).and_return(@ios_devices)
+      end
+      
+      it "should find the right device" do
+        # should be something like IosDevice.should_receive(:where).with(hash_including(:original_udid)
+        @ios_devices.should_receive(:where).with(hash_including(:original_udid)).and_return([])
+        
+        @login.try_to_migrate_device_udids("original_udid", "new_ss_id")
+      end
+      
+      it "should store the new UDID" do
+        ios_device = mock("ios_device")
+        @ios_devices.stub_chain(:where, :first).and_return(ios_device)
+        
+        # should be something like IosDevice.any_instance.should_receive(:update_attributes).with(hash_including(:ss_udid))
+        ios_device.should_receive(:update_attributes).with(hash_including(:ss_udid))
+        @login.try_to_migrate_device_udids("original_udid", "new_ss_id")
+      end
     end
     
   end

@@ -94,11 +94,14 @@ class AnonymousBookHighlight < ActiveRecord::Base
   end
   
   def convert_to_normal_highlight
-    login = IosDevice.find_by_ss_id(self.ios_device_ss_id).user
     # NOTE: while we're migrating away from using the UDID as the device_id
-    if login.blank?
-      login = IosDevice.find_by_original_udid(self.ios_device_id).user
+    if self.ios_device_ss_id
+      ios_device = IosDevice.find_by_ss_udid(self.ios_device_ss_id)
+    else
+      ios_device = IosDevice.find_by_original_udid(self.ios_device_id)
     end
+    
+    login = ios_device.user
     
     highlight_conditions = {
       :user            => login,

@@ -274,7 +274,7 @@ ActiveRecord::Schema.define(:version => 20111011164232) do
 
   create_table "ios_devices", :force => true do |t|
     t.integer  "user_id"
-    t.string   "ss_id"
+    t.string   "ss_udid"
     t.string   "original_udid"
     t.datetime "updated_at"
   end

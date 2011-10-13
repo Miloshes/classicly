@@ -54,11 +54,14 @@ class AnonymousReview < ActiveRecord::Base
   end
   
   def convert_to_normal_review
+    # NOTE: while we're migrating away from using the UDID as the device_id
     if self.ios_device_ss_id
-      login = Login.where(:ios_device_ss_id => self.ios_device_ss_id).first()
+      ios_device = IosDevice.find_by_ss_udid(self.ios_device_ss_udid)
     else
-      login = Login.where(:ios_device_id => self.ios_device_id).first()
+      ios_device = IosDevice.find_by_original_udid(self.ios_device_id)
     end
+    
+    login = ios_device.user
     
     review_conditions = {
       :login_id      => login.id,

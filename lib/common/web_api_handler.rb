@@ -191,13 +191,13 @@ class WebApiHandler
     if params["user_fbconnect_id"]
       login = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
     else
-      login = IosDevice.find_by_ss_id(params["device_ss_id"].to_s).user
+      login = IosDevice.find_by_ss_udid(params["device_ss_id"].to_s).user
     end
     
     return nil.to_json if book.blank? || login.blank?
     
     anonymous_highlights = AnonymousBookHighlight.where(
-        "book_id = ? AND ios_device_ss_id IN (?)", book.id, login.ios_devices.collect(&:ss_id)
+        "book_id = ? AND ios_device_ss_id IN (?)", book.id, login.ios_devices.collect(&:ss_udid)
       ).all()
       
     highlights = BookHighlight.where(:book => book, :user => login).all()
