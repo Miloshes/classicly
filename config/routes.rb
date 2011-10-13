@@ -38,11 +38,12 @@ Classicly::Application.routes.draw do
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors
+  match '/apps' => 'pages#apps'
   match 'blog' => 'blog#index', :as => :blog
 
   match 'collections/autocomplete' => 'collections#autocomplete'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
-  
+  match '/dmca' => 'pages#dmca'
   match '/iphone' => 'pages#iphone'
   match '/ipad' => 'pages#ipad'
 
@@ -59,7 +60,7 @@ Classicly::Application.routes.draw do
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
-
+  match '/terms-of-service' => 'pages#terms_of_service'
   get "bingo_experiments/create"
 
   # NOTE: this is for the first version of the review API, will be deprecated soon

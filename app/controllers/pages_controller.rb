@@ -4,6 +4,10 @@ class PagesController < ApplicationController
   def about
   end
 
+  def apps
+    
+  end
+  
   def audiobook_authors
     @featured     = Collection.find_audiobook_author_collections.with_description.random(1).first if params[:page].nil?
     @collections  = Collection.find_audiobook_author_collections.order('name asc').page(params[:page]).per(12)
@@ -30,6 +34,10 @@ class PagesController < ApplicationController
     @collections  = @collections.where(:id.not_eq => @featured_collection.id) if @featured_collection
   end
   
+  def dmca
+    
+  end
+  
   def ipad
     KM.record("Redirected iPad request")
     redirect_to 'http://itunes.apple.com/us/app/free-books-23-469-classics/id364612911?mt=8'
@@ -48,11 +56,15 @@ class PagesController < ApplicationController
   def privacy
   end
   
+  def terms_of_service
+    
+  end
+  
   protected
   
   def km_init
     KM.init('95fd99a5f08a7e3b66a3ec13482c021a3fe30872', 
-            :log_dir => File.join(RAILS_ROOT, 'log', 'km'),
+            :log_dir => File.join(Rails.root.to_s, 'log', 'km'),
             :env => Rails.env)
 
     unless identity = cookies[:km_identity]

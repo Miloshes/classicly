@@ -7,7 +7,6 @@ class BookHighlight < ActiveRecord::Base
   belongs_to :book
   belongs_to :user, :class_name => 'Login', :foreign_key => 'login_id'
   
-  has_many :notes, :class_name => 'HighlightNote',  :as => :noteable
   
   validates :first_character, :presence => true
   validates :last_character, :presence => true
