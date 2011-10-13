@@ -60,8 +60,28 @@ describe Login do
       Login.register_from_ios_app(@api_call_params)
     end
     
+    describe "getting turned into a full-blown Classicly account" do
+
+      before(:each) do
+        new_api_call_params = {
+          "structure_version" => "1.3",
+          "twitter_name"      => "zsolt_maslanyi",
+          "password"          => "pass123"
+          "terms_of_services" => "accepted"
+        }
+      end
+
+      it "should have a password"
+
+      it "should have terms of services accepted"
+
+      it "should have a twitter name attribute"
+
+    end
+    
+    
   end
-  
+    
   describe "migrating device UDIDs" do
     
     before(:each) do
