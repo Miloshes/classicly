@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
+  
+  before_filter do
+    @show_right_nav = true
+  end
 
   def current_login
     return if !facebook_cookies
@@ -28,7 +32,7 @@ class ApplicationController < ActionController::Base
     return @current_admin_user if defined?(@current_admin_user)
     @current_admin_user = current_admin_user_session && current_admin_user_session.admin_user
   end
-
+  
   def popular_audiobooks
     @popular_audiobooks = Audiobook.blessed.select("id, author_id, cached_slug, pretty_title").random(3)
   end

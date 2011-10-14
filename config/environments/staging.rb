@@ -15,7 +15,7 @@ Classicly::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'classicly-staging.heroku.com' }
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger
@@ -24,8 +24,7 @@ Classicly::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'classicly-staging.heroku.com' }
   config.host = 'localhost:3000'
 
 end
-

@@ -1,2 +1,75 @@
-%h1
-  = @highlight.content
+- content_for :head do
+  = fb_open_graph_metadata({:url => author_book_highlight_url(@book.author, @book, @highlight), :description => "#{@message_for_facebook}", :image => "http://spreadsong-book-covers.s3.amazonaws.com/book_id#{@book.id}_size2.jpg", :title => "#{@book.author.name} - #{@book.pretty_title}", :type => 'highlight'})
+
+
+- content_for :upsell do
+  = render :partial => '/shared/app_upsell_itunes'
+
+#book-page
+  .span12.columns
+    .row
+      <!-- left column-->
+      .cover-column.offset1.span3.columns
+        #current-book.cover.medium
+          = cover_image_link(@book, 2)
+        #my-rating
+          #text
+            My Rating
+          #blank-stars
+          #rating-stars
+            = raw rate_book('book_rating_dynamic', 'dynamic-stars', @book.rating_by_user(current_login) || 0)
+        .clear
+        - if @book.read_online?
+          #read-online-btn
+            = link_to 'Read Online', seo_url(@book.seo_slugs.read_online.first.slug), :class => 'btn read-online'
+        #download-as
+          .text
+            Download as
+          - if @book.available_in_format?('pdf') && @book.has_slug_for_format?('pdf')
+            #pdf.download-button
+              = link_to 'PDF', seo_url(@book.seo_slugs.pdf.first.slug) , :class => 'btn primary'
+          - if @book.available_in_format?('azw') && @book.has_slug_for_format?('kindle')
+            #kindle.download-button
+              = link_to 'Kindle', seo_url(@book.seo_slugs.kindle.first.slug), :class => 'btn primary'
+          - if @book.has_audiobook
+            #audiobook.download-button
+              = link_to 'Audiobook', seo_url(@book.audiobook_download_slug), :class => 'btn primary'
+      <!-- details column-->
+      .book-column.span10.columns
+        #book-metadata
+          #book-title
+            %h1= @book.pretty_title
+          #book-author
+            %h2
+              by
+              %span.book-author
+                = book_author_link(@book, 'classicly-link')
+          #book-rating
+            - if @book.average_rating > 0
+              = raw show_review_rating_stars(@book.average_rating)
+              %span#reviews-count
+                = show_review_counts @book
+
+          %p.highlight=@highlight.content
+          
+          #they-noted
+            They noted:
+          .row
+            .span8.columns
+              #origin-comment
+                = @highlight.origin_comment
+            .span1.columns
+              .fb-box
+                <fb:like width="100" font="arial" layout='box_count'></fb:like>
+            .span1.columns
+              .twitter-box
+                <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-text="#{@message_for_twitter}">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script>
+              
+  
+= javascript_include_tag 'review-ratings'
+
+:javascript
+  $(function(){
+    $( "#book-page" ).data( "book_id", "#{@book.id}" );
+    $( "#book-rating" ).data( "book_type", "book")
+  });

@@ -40,6 +40,9 @@ gem 'kaminari'
 # Facebook SDK - https://rubygems.org/gems/koala
 gem 'koala'
 
+#Kissmetrics RubyApi
+gem 'km'
+
 # gem to parse Mardown markup to HTML
 gem 'maruku'
 
@@ -118,8 +121,7 @@ group :development, :test do
   # Javascript testing framework - http://rubygems.org/gems/jasmine
   #gem 'jasmine'
 
-  # fixtures generator for testing - http://rubygems.org/gems/machinist
-  #gem 'machinist', '>= 2.0.0.beta1'
+  #gem 'mysql2', '< 0.3'
   
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem 'ZenTest'

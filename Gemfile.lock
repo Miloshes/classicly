@@ -71,7 +71,7 @@ GEM
     cgi_multipart_eof_fix (2.5.0)
     childprocess (0.2.2)
       ffi (~> 1.0.6)
-    chunky_png (1.2.4)
+    chunky_png (1.2.5)
     cocaine (0.2.0)
     columnize (0.3.4)
     commonwatir (2.0.2)
@@ -125,6 +125,7 @@ GEM
     json_pure (1.6.1)
     kaminari (0.12.4)
       rails (>= 3.0.0)
+    km (1.1.1)
     koala (1.1.0)
       multi_json (~> 1.0)
       multipart-post (~> 1.0)
@@ -205,7 +206,7 @@ GEM
     s4t-utils (1.0.4)
       hoe (>= 1.3.0)
     sass (3.1.7)
-    selenium-webdriver (2.6.0)
+    selenium-webdriver (2.7.0)
       childprocess (>= 0.2.1)
       ffi (>= 1.0.7)
       json_pure
@@ -213,7 +214,7 @@ GEM
     sequel (3.20.0)
     sinatra (1.0)
       rack (>= 1.0)
-    sitemap_generator (2.1.1)
+    sitemap_generator (2.1.2)
     sorted (0.3.7)
     spork (0.9.0.rc8)
     sqlite3 (1.3.4)
@@ -274,6 +275,7 @@ DEPENDENCIES
   jammit
   jquery-rails
   kaminari
+  km
   koala
   launchy
   maruku

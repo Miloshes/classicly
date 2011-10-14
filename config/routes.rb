@@ -38,10 +38,14 @@ Classicly::Application.routes.draw do
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors
+  match '/apps' => 'pages#apps'
   match 'blog' => 'blog#index', :as => :blog
 
   match 'collections/autocomplete' => 'collections#autocomplete'
   match 'collections/(:page)' => 'pages#collections', :as => :collections
+  match '/dmca' => 'pages#dmca'
+  match '/iphone' => 'pages#iphone'
+  match '/ipad' => 'pages#ipad'
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
@@ -56,7 +60,7 @@ Classicly::Application.routes.draw do
   # the reader engine API
   match '/reader_engine_api' => "reader_engine_api#create", :via => :post
   match '/reader_engine_api/query' => "reader_engine_api#query", :via => :post  
-
+  match '/terms-of-service' => 'pages#terms_of_service'
   get "bingo_experiments/create"
 
   # NOTE: this is for the first version of the review API, will be deprecated soon
@@ -79,6 +83,10 @@ Classicly::Application.routes.draw do
 
   match '/reviews/create_rating' => 'reviews#create_rating'
 
+  match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
+  
+  match '/pulse' => 'pulse#index', :as => :pulse
+  
   resources :books, :only => :index do
     resources :reviews
   end
@@ -98,13 +106,14 @@ Classicly::Application.routes.draw do
       downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
       downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
       downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
-  
+
   match "/:id/quotes/(:page)" => "collections#show_quotes"
 
 
   match "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
   match '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote, :via => :get
 
+  
   # == Notes and Highlights
   match "/:author_id/:book_id/highlights/:highlight_id" => "book_highlights#show", :as => :author_book_highlight, :via => :get
 

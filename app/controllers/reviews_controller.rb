@@ -13,8 +13,8 @@ class ReviewsController < ApplicationController
 
   def create
     @reviewable = find_reviewable
-    review = @reviewable.reviews.find_or_create_by_fb_connect_id current_login.fb_connect_id
-    review.update_attributes! :login_id => current_login.id, :content => params[:review]
+    review      = @reviewable.reviews.find_or_create_by_fb_connect_id(current_login.fb_connect_id)
+    review.update_attributes!(:login_id => current_login.id, :content => params[:review])
     #session[:review] = review  if review.new_record?
     redirect_to author_book_url(@reviewable.author, @reviewable)
   end

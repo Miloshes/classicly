@@ -51,4 +51,8 @@ Classicly::Application.configure do
   config.cache_store = :dalli_store
   
   config.middleware.use 'WwwMiddleware'
+  
+  config.action_mailer.default_url_options = { :host => 'http://www.classicly.com' }
+  
+  config.host = 'www.classicly.com'
 end
