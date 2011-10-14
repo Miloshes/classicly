@@ -76,16 +76,52 @@ describe Login do
           "structure_version" => "1.3",
           "twitter_name"      => "zsolt_maslanyi",
           "password"          => "pass123",
-          "terms_of_services" => "accepted"
+          "terms_of_service"  => "accepted"
         }
+        
+        @api_call_params.merge!(new_api_call_params)
+        
+        # the login doesn't exists
+        Login.stub_chain(:where, :first).and_return(nil)
       end
 
-      it "should have a password"
+      it "should have a password" do
+        login = Login.register_from_ios_app(@api_call_params)
+        
+        login.password.should_not be_blank
+      end
 
-      it "should have terms of services accepted"
+      it "should have 'terms of service' accepted" do
+        login = Login.register_from_ios_app(@api_call_params)
+        
+        login.terms_of_service.should_not be_blank
+      end
 
-      it "should have a twitter name attribute"
-
+    end
+    
+  end
+  
+  describe "handling passwords" do
+    
+    it "should store the password hash and the salt in the database" do
+      login = Login.create(:password => "123")
+      
+      login.read_attribute("hashed_password").should_not be_blank
+      login.read_attribute("salt").should_not be_blank
+    end
+    
+    it "should update the hash and the salt on a password change" do
+      login = Login.new
+      
+      expect {
+        login.password = "new password"
+      }.to (change(login, :hashed_password) && change(login, :salt))
+    end
+    
+    it "can authenticate Users" do
+      login = Login.create(:email => "test@email.com", :password => "123")
+      
+      Login.authenticate("test@email.com", "123").should == login
     end
     
   end

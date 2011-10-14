@@ -27,14 +27,17 @@ class Login < ActiveRecord::Base
       login.manage_associated_ios_devices(params)
     else
       login = Login.create(
-        :fb_connect_id    => params['user_fbconnect_id'],
-        # :ios_device_id    => params['device_id'],
-        # :ios_device_ss_id => params['device_ss_id'],
-        :email            => params['user_email'],
-        :first_name       => params['user_first_name'],
-        :last_name        => params['user_last_name'],
-        :location_city    => params['user_location_city'],
-        :location_country => params['user_location_country']
+        :fb_connect_id    => params["user_fbconnect_id"],
+        :twitter_name     => params["twitter_name"],
+        :email            => params["user_email"],
+        :first_name       => params["user_first_name"],
+        :last_name        => params["user_last_name"],
+        
+        :location_city    => params["user_location_city"],
+        :location_country => params["user_location_country"],
+        
+        :terms_of_service => params["terms_of_service"] == "accepted",
+        :password         => params["password"]
       )
     end
 
@@ -43,19 +46,21 @@ class Login < ActiveRecord::Base
       login.convert_anonymous_reviews_into_normal_ones
       login.convert_anonymous_book_highlights_into_normal_ones
     end
-
+    
+    return login
   end
 
   def self.register_from_classicly(user_profile = {})
     user_profile.stringify_keys!
-    is_new_login  = !Login.exists?(:fb_connect_id => user_profile['id'])
-    login         = Login.find_or_create_by_fb_connect_id(user_profile['id'])
-    city, country = user_profile['location'] ? user_profile['location']['name'].split(',') : ["", ""]
+    is_new_login  = !Login.exists?(:fb_connect_id => user_profile["id"])
+    login         = Login.find_or_create_by_fb_connect_id(user_profile["id"])
+    city, country = user_profile["location"] ? user_profile["location"]["name"].split(",") : ["", ""]
 
 
-    login.attributes = { :email => user_profile['email'],
-      :first_name       => user_profile['first_name'],
-      :last_name        => user_profile['last_name'],
+    login.attributes = {
+      :email            => user_profile["email"],
+      :first_name       => user_profile["first_name"],
+      :last_name        => user_profile["last_name"],
       :location_city    => city,
       :location_country => country
     }
@@ -106,7 +111,42 @@ class Login < ActiveRecord::Base
       anonymous_book_highlight.convert_to_normal_highlight
     end
   end
-
+  
+  # == Security related methods
+  
+  def password
+    @password
+  end
+  
+  def password=(new_password)
+    return nil if new_password.blank?
+    
+    @password = new_password
+    create_new_salt
+    self.hashed_password = Login.encrypted_password(self.password, self.salt)
+  end
+  
+  def self.authenticate(email, password)
+    login = self.find_by_email(email)
+    if login
+      expected_password = Login.encrypted_password(password, login.salt)
+      login = nil if expected_password != login.hashed_password
+    end
+    login
+  end
+    
+  def self.encrypted_password(password, salt)
+    string_to_hash = password + "wibble-wobble-heres-the-trouble" + salt
+    Digest::SHA1.hexdigest(string_to_hash)
+  end
+  
+  def create_new_salt
+    self.salt = self.object_id.to_s + rand.to_s
+  end
+  private :create_new_salt
+  
+  # == Utility methods
+  
   def send_registration_notification
     LoginMailer.registration_notification(self).deliver
   end
