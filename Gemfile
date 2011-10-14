@@ -117,11 +117,6 @@ group :development, :test do
 
   # fixtures generator for tests
   gem 'factory_girl'
-
-  # Javascript testing framework - http://rubygems.org/gems/jasmine
-  #gem 'jasmine'
-
-  #gem 'mysql2', '< 0.3'
   
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem 'ZenTest'

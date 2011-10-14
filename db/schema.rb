@@ -312,11 +312,12 @@ ActiveRecord::Schema.define(:version => 20111012170612) do
     t.string   "location_country"
     t.string   "email"
     t.string   "fb_connect_id"
-    t.boolean  "is_admin",          :default => false
-    t.boolean  "mailing_enabled",   :default => true
+    t.boolean  "is_admin",         :default => false
+    t.boolean  "mailing_enabled",  :default => true
     t.string   "access_token"
-    t.boolean  "terms_of_services", :default => false
-    t.string   "password"
+    t.boolean  "terms_of_service", :default => false
+    t.string   "hashed_password"
+    t.string   "salt"
     t.string   "twitter_name"
   end
 
