@@ -4,6 +4,9 @@ amazon:
   access_key: "0MMK343NZCJ3D1CZ8NG2"
   secret_key: "DuArKmSc2MHk2aT976tQaD3Kvr9iyQwbX8DKMGWh"
 
+api_key: "f1R62hJp9ue00RaxSlK72E6fr"
+api_secret: "ifD9sfAch3a3dfnjz23ZxeIhre83s3I19pwU4"
+
 buckets:
   audiobook_chapters: "spreadsong-ifab-chapters"
   author_portraits: "spreadsong-author-portraits"
