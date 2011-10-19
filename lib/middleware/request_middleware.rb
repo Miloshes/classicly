@@ -9,7 +9,7 @@ class RequestMiddleware
     # web_api queries
     if request.request_method == "POST" && request.url.include?("web_api")
       
-      # force SSL      
+      # force SSL
       if env['HTTPS'] == 'on' || env['HTTP_X_FORWARDED_PROTO'] == 'https'
         @app.call(env)
       else
