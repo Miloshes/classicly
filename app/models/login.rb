@@ -11,10 +11,15 @@ class Login < ActiveRecord::Base
   def self.register_from_ios_app(params)
     params.stringify_keys!
 
-    # required parameter
-    return true if params['user_fbconnect_id'].blank?
+    # required parameters
+    return true if params["user_fbconnect_id"].blank? || params["structure_version"].blank?
 
-    existing_login = Login.where(:fb_connect_id => params['user_fbconnect_id']).first()
+    # upwards from API v1.3, we use the email as the main identification method
+    if params["structure_version"] == "1.3"
+      existing_login = Login.where(:email => params["user_email"]).first()
+    else
+      existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first()
+    end
 
     # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)
     if !["1.2", "1.3"].include?(params["structure_version"])
@@ -22,9 +27,19 @@ class Login < ActiveRecord::Base
     end
 
     if existing_login
-      login = existing_login
       
-      login.manage_associated_ios_devices(params)
+      if params["structure_version"] == "1.3"
+        # it's an existing half-account, migrate it into a full one
+        if existing_login.not_a_real_account
+          existing_login.turn_account_into_a_real_one(params)
+        else
+          # it's an existing full-account, have to respond with failure
+          # (shouldn't re-register previous accounts)
+          return nil
+        end
+      end
+      
+      login = existing_login
     else
       login = Login.create(
         :fb_connect_id    => params["user_fbconnect_id"],
@@ -40,6 +55,8 @@ class Login < ActiveRecord::Base
         :password         => params["password"]
       )
     end
+    
+    login.manage_associated_ios_devices(params)
 
     # migrate the anonymous reviews and highlights as we have the facebook information now
     if ["1.2", "1.3"].include?(params["structure_version"])
@@ -48,6 +65,20 @@ class Login < ActiveRecord::Base
     end
     
     return login
+  end
+  
+  def response_when_created_via_web_api(params)
+    # our response to register_from_ios_app Web API call
+    
+    # upwards from API v1.3, we care about the return value
+    return nil if !params["structure_version"] == "1.3"
+
+    response = {}
+    fields_to_return = %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
+        
+    fields_to_return.each { |field| response[field] = self.send(field) }
+    
+    return response.to_json
   end
 
   def self.register_from_classicly(user_profile = {})
@@ -154,6 +185,20 @@ class Login < ActiveRecord::Base
   def manage_associated_ios_devices(params)
     IosDevice.make_sure_its_registered_and_assigned_to_user(params["device_id"], params["device_ss_id"], self)
     IosDevice.try_to_migrate_device_udids(params["device_id"], params["device_ss_id"])
+  end
+  
+  # == Account related
+  
+  # marks when this Classicly account is still just a Facebook login without a password
+  def not_a_real_account
+    self.hashed_password.blank?
+  end
+
+  def turn_account_into_a_real_one(params)
+    self.update_attributes(
+      :terms_of_service => params["terms_of_service"] == "accepted",
+      :password         => params["password"]
+    )
   end
   
 end
