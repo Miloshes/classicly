@@ -4,6 +4,8 @@ class IncomingData < ActiveRecord::Base
 
   # Note:
   # Incoming data should have an action field to describe what to do with the data (easily extensible)
+  # Note #2:
+  # We're returning JSON answers most of the cases, except for the old versions of the API (before 1.2)
   def process!
     return true if self.processed
     
@@ -39,7 +41,25 @@ class IncomingData < ActiveRecord::Base
           response = result.response_when_created_via_web_api(:source_app => record["apple_id"])
         end
       when "register_ios_user"
-        Login.register_from_ios_app(record)
+        # upwards from API v1.3 we care about the response
+        if record["structure_version"] == "1.3"
+          new_login = Login.register_from_ios_app(record)
+          
+          if new_login
+            response = new_login.response_when_created_via_web_api(record)
+          else
+            # we were trying to re-register an existing full account
+            response = "FAILURE".to_json
+          end
+        else
+          Login.register_from_ios_app(record)
+        end
+      when "login_ios_user"
+        logged_in_user = Login.authenticate(record["user_email"], record["password"])
+        
+        response = "FAILURE" if logged_in_user.blank?
+        
+        response = response.to_json
       when "update_book_description"
         Book.update_description_from_web_api(record)
       end
