@@ -19,12 +19,10 @@ describe Login do
         }
       
       @login = stub_model(Login, :fb_connect_id => "123")
-      
-      Login.stub_chain(:where, :first).and_return(@login)
     end
     
     it "should fail when one of the required parameters is missing from the API call parameters" do
-      %w{action structure_version user_fbconnect_id}.each do |parameter_to_cut|
+      %w{structure_version user_fbconnect_id}.each do |parameter_to_cut|
         api_params = @api_call_params.clone
         api_params.delete(parameter_to_cut)
         
@@ -44,12 +42,14 @@ describe Login do
     end
     
     it "should convert all the anonymous reviews of the user into normal ones" do
+      Login.stub_chain(:where, :first).and_return(@login)
       @login.should_receive(:convert_anonymous_reviews_into_normal_ones)
       
       Login.register_from_ios_app(@api_call_params)
     end
     
     it "should convert all the anonymous book highlights & notes of the user into normal ones" do
+      Login.stub_chain(:where, :first).and_return(@login)
       @login.should_receive(:convert_anonymous_book_highlights_into_normal_ones)
       
       Login.register_from_ios_app(@api_call_params)
@@ -57,12 +57,14 @@ describe Login do
     
     describe "keeping track of the devices of the user" do
       it "should make sure the device is registered and assigned to the right user" do
+        Login.stub_chain(:where, :first).and_return(nil)
         IosDevice.should_receive(:make_sure_its_registered_and_assigned_to_user)
         
         Login.register_from_ios_app(@api_call_params)
       end
 
       it "should migrate the device UDIDs" do
+        Login.stub_chain(:where, :first).and_return(nil)
         IosDevice.should_receive(:try_to_migrate_device_udids)
 
         Login.register_from_ios_app(@api_call_params)
@@ -95,6 +97,12 @@ describe Login do
         login = Login.register_from_ios_app(@api_call_params)
         
         login.terms_of_service.should_not be_blank
+      end
+      
+      it "should be able to tell if it's a full account or not" do
+        new_login = Login.register_from_ios_app(@api_call_params)
+        
+        new_login.not_a_real_account.should == false
       end
 
     end
