@@ -6,5 +6,10 @@
     = seo_admin_element_name(element)
   %td
     = seo_admin_element_slug(element)
+
+  - if element.is_a?(Book) || element.is_a?(Audiobook)
+    %td
+      = element.author.cached_slug
   %td
     = link_to 'Edit', admin_edit_seo_path(element.class.to_s, element.id)
+  

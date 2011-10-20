@@ -19,8 +19,10 @@
         Title or name
       %th
         Slug
+      - if @elements.first.is_a?(Book) || @elements.first.is_a?(Audiobook)
+        %th
+          Author Slug
       %th
-        
   %tbody
     = render :partial =>'element', :collection => @elements
       

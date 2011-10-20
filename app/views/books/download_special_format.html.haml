@@ -9,18 +9,18 @@
 
 #book-page
   .span12.columns
-    
+
     .row
       .cover-column.span3.columns
         #current-book.cover.medium
           = cover_image_link(@book, 2)
-            
+
       .book-column.span9.columns
         #book-metadata
           #book-title
             %h1
               Download #{@book.pretty_title} as 
-              #{@format == 'azw' ? 'Kindle' : @format.upcase }
+              #{(@format == 'azw' || @format == 'kindle') ? 'Kindle' : @format.upcase }
           #book-author
             %h2
               by
@@ -32,9 +32,9 @@
 
           .download-highlight
             = link_to download_and_add_to_library_url(:book_id => @book.id, :download_format => @format), :id => 'download_button', :class => 'button kiss green large kiss' do
-              = content_tag(:span, "Download and add to your library")
+              = content_tag(:span, "Download as #{(@format == 'azw' || @format == 'kindle') ? 'Kindle' : @format.upcase }")
 
-          - if @format == 'kindle' && @book.available_in_format?("pdf")            
+          - if @format == 'kindle' && @book.available_in_format?("pdf")
             = link_to image_tag('download_pdf.png'), seo_url(@book.seo_slugs.pdf.first.slug)
           - elsif @format == "pdf" && @book.available_in_format?("azw")
             = link_to image_tag('download_kindle.png'), seo_url(@book.seo_slugs.kindle.first.slug)
@@ -44,4 +44,4 @@
 
           %p.explanation.first Downloads on Classicly are completely free- these books are public domain. 
           %p.explanation We don’t pay a cent, so neither do you.
-          
+
