@@ -34,8 +34,8 @@ class BookHighlight < ActiveRecord::Base
     # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous highlight
     if login.blank?
       # for this to work "device_id" is a must parameter for the call
-      AnonymousBookHighlight.create_or_update_from_ios_client_data(data)
-      return
+      result = AnonymousBookHighlight.create_or_update_from_ios_client_data(data)
+      return result
     end
     
     new_timestamp = Time.parse(data["timestamp"])
