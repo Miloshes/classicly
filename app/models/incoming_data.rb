@@ -46,7 +46,7 @@ class IncomingData < ActiveRecord::Base
           new_login = Login.register_from_ios_app(record)
           
           if new_login
-            response = new_login.response_when_created_via_web_api(record)
+            response = new_login.response_for_web_api(record)
           else
             # we were trying to re-register an existing full account
             response = "FAILURE".to_json
@@ -57,9 +57,11 @@ class IncomingData < ActiveRecord::Base
       when "login_ios_user"
         logged_in_user = Login.authenticate(record["user_email"], record["password"])
         
-        response = "FAILURE" if logged_in_user.blank?
-        
-        response = response.to_json
+        if logged_in_user
+          response = logged_in_user.response_for_web_api(record)
+        else
+          response = "FAILURE".to_json
+        end
       when "update_book_description"
         Book.update_description_from_web_api(record)
       end

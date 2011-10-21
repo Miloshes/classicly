@@ -67,8 +67,8 @@ class Login < ActiveRecord::Base
     return login
   end
   
-  def response_when_created_via_web_api(params)
-    # our response to register_from_ios_app Web API call
+  def response_for_web_api(params)
+    # our response to register_from_ios_app and login_ios_user Web API call
     
     # upwards from API v1.3, we care about the return value
     return nil if !params["structure_version"] == "1.3"

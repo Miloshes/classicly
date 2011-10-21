@@ -133,38 +133,49 @@ describe WebApiController, "(API calls - account handling related)" do
       
     end
     
-    it "should be able to do a password check for an iOS user" do
-      login = FactoryGirl.create(:login, :email => "test@test.com", :password => "pass123")
-      Login.stub_chain(:where, :first).and_return(login)
+    describe "doing authentication" do
       
-      data = {
-        "structure_version"     => "1.3",
-        "action"                => "login_ios_user",
-        "user_email"            => "test@test.com",
-        "password"              => "pass123"
-      }
+      before(:each) do
+        @login = FactoryGirl.create(:login, :email => "test@test.com", :password => "pass123")
+        Login.stub_chain(:where, :first).and_return(@login)
       
-      # Trying success
-      post("create",
-          :json_data     => data.to_json,
-          :api_key       => APP_CONFIG["api_key"],
-          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
-        )
+        @data = {
+          "structure_version"     => "1.3",
+          "action"                => "login_ios_user",
+          "user_email"            => "test@test.com",
+          "password"              => "pass123"
+        }
+      end
+    
+      it "should respond with the user data for a successfull login" do
+      
+        # Trying success
+        post("create",
+            :json_data     => @data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(@data.to_json + APP_CONFIG["api_secret"])
+          )
 
-      parsed_response = ActiveSupport::JSON.decode(response.body)
-      parsed_response.should == "SUCCESS"
-      
-      # Trying failure - bad password
-      data["password"] = "wrong password"
-
-      post("create",
-          :json_data     => data.to_json,
-          :api_key       => APP_CONFIG["api_key"],
-          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
-        )
+        parsed_response = ActiveSupport::JSON.decode(response.body)
         
-      parsed_response = ActiveSupport::JSON.decode(response.body)
-      parsed_response.should == "FAILURE"
+        parsed_response.class.should == Hash
+        parsed_response.keys.sort.should == %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
+      end
+    
+      it "should respond with failure for a login attempt with a bad password" do
+        # Trying failure - bad password
+        @data["password"] = "wrong password"
+
+        post("create",
+            :json_data     => @data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(@data.to_json + APP_CONFIG["api_secret"])
+          )
+        
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        parsed_response.should == "FAILURE"
+      end
+      
     end
     
     # TODO: later
