@@ -55,6 +55,9 @@ class WebApiHandler
     
     result = []
     reviews.each do |review|
+      # should never happen, but need a fallback for test cases
+      next if review.reviewer.blank?
+      
       result << {
         :content             => review.content || '',
         :rating              => review.rating,
