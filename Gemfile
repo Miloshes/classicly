@@ -49,9 +49,6 @@ gem "maruku"
 # extends ActiveRecord where conditions - http://metautonomo.us/projects/metawhere/
 gem "meta_where"
 
-# web server for local development
-gem "mongrel", "1.2.0.pre2"
-
 # html/xml parser - http://rubygems.org/gems/nokogiri
 gem "nokogiri"
 
@@ -86,6 +83,9 @@ gem "rubyzip"
 gem "dalli"
 
 group :development, :test do
+  # web server for local development
+  gem "mongrel", "1.2.0.pre2"
+  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem "awesome_print"
   
