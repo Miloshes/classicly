@@ -105,7 +105,7 @@ describe WebApiController, "(API calls - account handling related)" do
         
         parsed_response = ActiveSupport::JSON.decode(response.body)
         
-        parsed_response.should == "FAILURE"
+        parsed_response.should == {"general_response" => "FAILURE"}
       end
       
       it "should migrate half-accounts" do
@@ -173,7 +173,7 @@ describe WebApiController, "(API calls - account handling related)" do
           )
         
         parsed_response = ActiveSupport::JSON.decode(response.body)
-        parsed_response.should == "FAILURE"
+        parsed_response.should == {"general_response" => "FAILURE"}
       end
       
     end
