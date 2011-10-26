@@ -62,25 +62,24 @@
       #fb-root
       #header
         .wrap
-          .top
-            #logo
-              %a{:href => '/'}
-                = image_tag 'new_logo_classicly.png'
-            #search
-              = form_tag search_url, :id => 'indexTankForm' do
-                = text_field_tag "term", nil, :placeholder => 'Search Books and Authors', :tabIndex => 1
-                %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
-            #nav
-              %ul
-                = top_nav_link 'Authors', '/authors'
-                = top_nav_link 'Collections', '/collections'
+          #logo
+            %a{:href => '/'}
+              = image_tag 'new_logo_classicly.png'
+          #search
+            = form_tag search_url, :id => 'indexTankForm' do
+              = text_field_tag "term", nil, :placeholder => 'Search Books and Authors', :tabIndex => 1
+              %button{:name => 'commit', :type => 'submit', :value => 'search_submit'}
+          #nav
+            %ul
+              = top_nav_link 'Authors', '/authors'
+              = top_nav_link 'Collections', '/collections'
 
-            - unless current_login
-              #signin
-                = link_to "Sign In", "#"
-            - else
-              #profile-pic
-                = link_to facebook_image(current_login.fb_connect_id), '/library'
+          - unless current_login
+            #signin
+              = link_to "Sign In", "#"
+          - else
+            #profile-pic
+              = link_to facebook_image(current_login.fb_connect_id), '/library'
 
       .clear
       #content
