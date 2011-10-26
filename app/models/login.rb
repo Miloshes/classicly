@@ -12,7 +12,16 @@ class Login < ActiveRecord::Base
     params.stringify_keys!
 
     # required parameters
-    return nil if params["user_fbconnect_id"].blank? || params["structure_version"].blank?
+    
+    required_parameters = ["structure_version"]
+    # NOTE: API version < v1.3
+    if params["structure_version"] != "1.3"
+      required_parameters << "user_fbconnect_id"
+    end
+    
+    required_parameters.each do |param_to_check|
+      return nil if params[param_to_check].blank?
+    end
 
     # upwards from API v1.3, we use the email as the main identification method
     if params["structure_version"] == "1.3"
