@@ -1,24 +1,29 @@
 class Review < ActiveRecord::Base
 
   scope :with_content, where(:content.not_eq => "")
-  scope :most_recent, order('created_at DESC')
+  scope :most_recent, order("created_at DESC")
 
   belongs_to :reviewable, :polymorphic => true
-  belongs_to :reviewer, :class_name => 'Login', :foreign_key => 'login_id'
+  belongs_to :reviewer, :class_name => "Login", :foreign_key => "login_id"
 
   #after_create :deliver_review_created_notification_to_flowdock
 
   def self.create_or_update_from_ios_client_data(data)
     # == fetch the reviewable
-    if data['book_id']
-      reviewable = Book.find(data['book_id'].to_i)
+    if data["book_id"]
+      reviewable = Book.find(data["book_id"].to_i)
     else
-      reviewable = Audiobook.find(data['audiobook_id'].to_i)
+      reviewable = Audiobook.find(data["audiobook_id"].to_i)
     end
 
     return nil if reviewable.blank?
 
-    login = Login.where(:fb_connect_id => data['user_fbconnect_id'].to_s).first()
+    # We check by email first to get users with Classicly accounts, then we check with Facebook also
+    # to get the users who registered before we had proper account creation
+    login = Login.where(:email => data["user_email"]).first()
+    if login.blank?
+      login = Login.where(:fb_connect_id => data["user_fbconnect_id"].to_s).first()
+    end
 
     # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous reviews
     if login.blank?
@@ -26,7 +31,7 @@ class Review < ActiveRecord::Base
       return
     end
 
-    new_timestamp = Time.parse(data['timestamp'])
+    new_timestamp = Time.parse(data["timestamp"])
 
     review_conditions = {
         :login_id      => login.id,
@@ -35,8 +40,8 @@ class Review < ActiveRecord::Base
       }
 
     new_review_data = {
-        :content    => data['content'],
-        :rating     => data['rating'],
+        :content    => data["content"],
+        :rating     => data["rating"],
         :created_at => new_timestamp
       }
 

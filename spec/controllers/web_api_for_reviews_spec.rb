@@ -6,117 +6,288 @@ describe WebApiController, "(API calls - review creation)" do
     @book = mock_model(Book)
     Book.stub!(:find).and_return(@book)
     
-    @login = mock_model(Login, :fb_connect_id => "123")
+    @login = mock_model(Login, :fb_connect_id => "123", :email => "zsolt.maslanyi@gmail.com")
     Login.stub_chain(:where, :first).and_return(@login)
   end
-    
-  it "should be able to register a book review for a user" do
-    data = {
-        "user_fbconnect_id" => @login.fb_connect_id,
-        "device_ss_id"      => "ASDASD",
-        "book_id"           => @book.id,
-        "action"            => "register_book_review",
-        "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
-        "rating"            => 5,
-        "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
-      }
-
-    post "create", :json_data => data.to_json
-
-    response.body.should == "SUCCESS"
-    Review.should have(1).record
-    AnonymousReview.should have(0).records
-  end
   
-  it "should be able to update a review" do
-    # We're creating a review in the DB to update it
-    review = FactoryGirl.create(
-      :review,
-      :reviewable => @book, :reviewer => @login, :created_at => Time.now - 2.days
-    )
-    Review.stub_chain(:where, :first).and_return(review)
+  describe "keeping compatibility with the API version less than 1.2" do
     
-    data = {
-        "user_fbconnect_id" => @login.fb_connect_id,
-        "device_ss_id"      => "ASDASD",
-        "book_id"           => @book.id,
-        "action"            => "register_book_review",
-        "content"           => "new content",
-        "rating"            => 5,
-        "timestamp"         => Time.now
-      }
+    it "should be able to register a book review for a user with a Facebook ID" do
+      data = {
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
 
-    post "create", :json_data => data.to_json
+      post "create", :json_data => data.to_json
 
-    review.rating.should  == 5
-    review.content.should == "new content"
-  end
-
-  it "should be able to register an anonymous review" do
-    data = {
-        "device_ss_id" => "ASDASD",
-        "book_id"      => @book.id,
-        "action"       => "register_book_review",
-        "content"      => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
-        "rating"       => 5,
-        "timestamp"    => "Thu Feb 10 15:09:59 +0100 2011"
-      }
-
-    post "create", :json_data => data.to_json
-
-    response.body.should == "SUCCESS"
-    AnonymousReview.should have(1).record
-    Review.should have(0).records
-  end
+      response.body.should == "SUCCESS"
+      Review.should have(1).record
+      AnonymousReview.should have(0).records
+    end
   
-  it "should be able to update an anonymous review" do
-    # We're creating an anonymous review in the DB to update it
-    anonymous_review = FactoryGirl.create(
-      :anonymous_review,
-      :ios_device_ss_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
-    )
-    AnonymousReview.stub_chain(:where, :first).and_return(anonymous_review)
+    it "should be able to update a review" do
+      # We're creating a review in the DB to update it
+      review = FactoryGirl.create(
+        :review,
+        :reviewable => @book, :reviewer => @login, :created_at => Time.now - 2.days
+      )
+      Review.stub_chain(:where, :first).and_return(review)
     
-    data = {
-        "device_ss_id" => "ASDASD",
-        "book_id"      => @book.id,
-        "action"       => "register_book_review",
-        "content"      => "new content",
-        "rating"       => 5,
-        "timestamp"    => Time.now
-      }
+      data = {
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "new content",
+          "rating"            => 5,
+          "timestamp"         => Time.now
+        }
 
-    post "create", :json_data => data.to_json
+      post "create", :json_data => data.to_json
 
-    anonymous_review.rating.should  == 5
-    anonymous_review.content.should == "new content"
-  end
+      review.rating.should  == 5
+      review.content.should == "new content"
+    end
+
+    it "should be able to register an anonymous review" do
+      data = {
+          "device_ss_id" => "ASDASD",
+          "book_id"      => @book.id,
+          "action"       => "register_book_review",
+          "content"      => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"       => 5,
+          "timestamp"    => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post "create", :json_data => data.to_json
+
+      response.body.should == "SUCCESS"
+      AnonymousReview.should have(1).record
+      Review.should have(0).records
+    end
   
-  # We're only testing if the creation works with an audiobook_id parameter too, all variations have been tested before for books
-  it "should be able to register reviews for audiobooks too" do
-    audiobook = mock_model(Audiobook)
-    Audiobook.stub!(:find).and_return(audiobook)
+    it "should be able to update an anonymous review" do
+      # We're creating an anonymous review in the DB to update it
+      anonymous_review = FactoryGirl.create(
+        :anonymous_review,
+        :ios_device_ss_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
+      )
+      AnonymousReview.stub_chain(:where, :first).and_return(anonymous_review)
     
-    data = {
-        "user_fbconnect_id" => @login.fb_connect_id,
-        "device_ss_id"      => "ASDASD",
-        "audiobook_id"      => audiobook.id,
-        "action"            => "register_book_review",
-        "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
-        "rating"            => 5,
-        "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
-      }
+      data = {
+          "device_ss_id" => "ASDASD",
+          "book_id"      => @book.id,
+          "action"       => "register_book_review",
+          "content"      => "new content",
+          "rating"       => 5,
+          "timestamp"    => Time.now
+        }
 
-    post "create", :json_data => data.to_json
+      post "create", :json_data => data.to_json
 
-    response.body.should == "SUCCESS"
-    
-    Review.should have(1).record
-    AnonymousReview.should have(0).records
-    
-    Review.first.reviewable.class.should == Audiobook
-  end
+      anonymous_review.rating.should  == 5
+      anonymous_review.content.should == "new content"
+    end
   
+    # We're only testing if the creation works with an audiobook_id parameter too, all variations have been tested before for books
+    it "should be able to register reviews for audiobooks too" do
+      audiobook = mock_model(Audiobook)
+      Audiobook.stub!(:find).and_return(audiobook)
+    
+      data = {
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "audiobook_id"      => audiobook.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post "create", :json_data => data.to_json
+
+      response.body.should == "SUCCESS"
+    
+      Review.should have(1).record
+      AnonymousReview.should have(0).records
+    
+      Review.first.reviewable.class.should == Audiobook
+    end
+  
+  end
+
+  context "when using the newer API" do
+    
+    it "should be able to register a book review for a user with a Classicly account" do
+      data = {
+          "structure_version" => "1.3",
+          "user_email"        => @login.email,
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+  
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+  
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+  
+      parsed_response.should == {"general_response" => "SUCCESS"}
+      Review.should have(1).record
+      AnonymousReview.should have(0).records
+    end
+
+    it "should be able to register a book review for a user with a Facebook ID" do
+      data = {
+          "structure_version" => "1.3",
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+
+      parsed_response.should == {"general_response" => "SUCCESS"}
+      Review.should have(1).record
+      AnonymousReview.should have(0).records
+    end
+  
+    it "should be able to update a review" do
+      # We're creating a review in the DB to update it
+      review = FactoryGirl.create(
+        :review,
+        :reviewable => @book, :reviewer => @login, :created_at => Time.now - 2.days
+      )
+      Review.stub_chain(:where, :first).and_return(review)
+    
+      data = {
+          "structure_version" => "1.3",
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "new content",
+          "rating"            => 5,
+          "timestamp"         => Time.now
+        }
+
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+
+      review.rating.should  == 5
+      review.content.should == "new content"
+    end
+
+    it "should be able to register an anonymous review" do
+      data = {
+          "structure_version" => "1.3",
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+
+      parsed_response.should == {"general_response" => "SUCCESS"}
+      AnonymousReview.should have(1).record
+      Review.should have(0).records
+    end
+  
+    it "should be able to update an anonymous review" do
+      # We're creating an anonymous review in the DB to update it
+      anonymous_review = FactoryGirl.create(
+        :anonymous_review,
+        :ios_device_ss_id => "ASDASD", :reviewable => @book, :created_at => Time.now - 2.days
+      )
+      AnonymousReview.stub_chain(:where, :first).and_return(anonymous_review)
+    
+      data = {
+          "structure_version" => "1.3",
+          "device_ss_id"      => "ASDASD",
+          "book_id"           => @book.id,
+          "action"            => "register_book_review",
+          "content"           => "new content",
+          "rating"            => 5,
+          "timestamp"         => Time.now
+        }
+
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+
+      anonymous_review.rating.should  == 5
+      anonymous_review.content.should == "new content"
+    end
+  
+    # We're only testing if the creation works with an audiobook_id parameter too, all variations have been tested before for books
+    it "should be able to register reviews for audiobooks too" do
+      audiobook = mock_model(Audiobook)
+      Audiobook.stub!(:find).and_return(audiobook)
+    
+      data = {
+          "structure_version" => "1.3",
+          "user_fbconnect_id" => @login.fb_connect_id,
+          "device_ss_id"      => "ASDASD",
+          "audiobook_id"      => audiobook.id,
+          "action"            => "register_book_review",
+          "content"           => "I just can't put it down. Spent the last 2 weeks reading it, can't wait to finish and read the sequel.",
+          "rating"            => 5,
+          "timestamp"         => "Thu Feb 10 15:09:59 +0100 2011"
+        }
+
+      post("create",
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
+
+      parsed_response = ActiveSupport::JSON.decode(response.body)
+
+      parsed_response.should == {"general_response" => "SUCCESS"}
+    
+      Review.should have(1).record
+      AnonymousReview.should have(0).records
+    
+      Review.first.reviewable.class.should == Audiobook
+    end
+  
+  end
+
   context "when using the legacy UDID" do
     
     it "should be able to create an anonymous review and also store the legacy UDID" do

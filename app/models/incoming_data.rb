@@ -12,6 +12,7 @@ class IncomingData < ActiveRecord::Base
     parsed_data = ActiveSupport::JSON.decode(self.json_data)
 
     # setting the general response, the sub-tasks can override it
+    # TODO: API > 1.3
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
     if parsed_data["structure_version"] == "1.3"
       response = {"general_response" => "SUCCESS"}.to_json
@@ -28,7 +29,7 @@ class IncomingData < ActiveRecord::Base
       case record["action"]
       # stands for creating and updating
       when "register_book_review"
-        if record["user_fbconnect_id"]
+        if record["user_fbconnect_id"] || record["user_email"]
           Review.create_or_update_from_ios_client_data(record)
         else
           AnonymousReview.create_or_update_from_ios_client_data(record)

@@ -4,6 +4,9 @@ class WebApiHandler
   
   # creates an IncomingData model object and processes it
   def handle_incoming_data(params)
+    # TODO: 
+    # The problem is that the API structure version is inside the json_data, so we can't check against it.
+    # Originally we're returning "FAILURE", but for API v >= 1.3 the response should be json
     return "FAILURE" if params[:json_data].blank?
     
     incoming_data = IncomingData.create(:json_data => params[:json_data])

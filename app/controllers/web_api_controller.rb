@@ -35,6 +35,7 @@ class WebApiController < ApplicationController
   
   def authenticate_api_call
     # introducing authentication for API version 1.3 and above
+    # TODO: API > 1.3
     return true if @parsed_data["structure_version"] != "1.3"
     
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
