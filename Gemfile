@@ -12,10 +12,6 @@ gem "aws-s3", :require => "aws/s3"
 # CSS Authoring Framework - http://rubygems.org/gems/compass
 gem "compass", ">= 0.10.5"
 
-# needed by mongrel to run on ruby 1.9.2
-gem "cgi_multipart_eof_fix"
-gem "fastthread"
-
 # template markup language - http://haml-lang.com/
 gem "haml"
 
@@ -40,7 +36,7 @@ gem "kaminari"
 # Facebook SDK - https://rubygems.org/gems/koala
 gem "koala"
 
-#Kissmetrics RubyApi
+# Kissmetrics Api - http://rubygems.org/gems/kissmetrics
 gem "km"
 
 # gem to parse Mardown markup to HTML
@@ -86,11 +82,14 @@ group :development, :test do
   # web server for local development
   gem "mongrel", "1.2.0.pre2"
   
+  # needed by mongrel to run on ruby 1.9.2
+  gem "cgi_multipart_eof_fix"
+  gem "fastthread"
+  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem "awesome_print"
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
-  # NOTE: for Ruby v1.9 use ruby-debug19!
   gem "ruby-debug19"
   
   # Heroku database import/export - http://rubygems.org/gems/taps
