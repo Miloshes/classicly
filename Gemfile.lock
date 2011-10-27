@@ -57,6 +57,7 @@ GEM
       mime-types
       xml-simple
     babosa (0.3.5)
+    blockenspiel (0.4.3)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -241,6 +242,8 @@ GEM
       builder (>= 2.1.2)
       s4t-utils (>= 1.0.3)
       xml-simple (>= 1.0.11)
+    versionomy (0.4.1)
+      blockenspiel (>= 0.4.1)
     xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
@@ -296,3 +299,4 @@ DEPENDENCIES
   state_machine
   steak
   taps (> 0.3.22)
+  versionomy

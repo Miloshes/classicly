@@ -78,6 +78,9 @@ gem "rubyzip"
 # Heroku supported memcached client - http://rubygems.org/gems/dalli
 gem "dalli"
 
+# For handling the API version numbers nicely - https://github.com/dazuma/versionomy
+gem "versionomy"
+
 group :development, :test do
   # web server for local development
   gem "mongrel", "1.2.0.pre2"
