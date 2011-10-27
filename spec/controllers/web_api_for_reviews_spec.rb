@@ -297,8 +297,8 @@ describe WebApiController, "(API calls - review related queries)" do
       review = FactoryGirl.create(:review, :reviewable => book, :reviewer => login, :rating => 1)
 
       data = {
-          'action'  => 'get_review_stats_for_book',
-          'book_id' => book.id
+          "action"  => "get_review_stats_for_book",
+          "book_id" => book.id
         }
         
       post "query", :json_data => data.to_json

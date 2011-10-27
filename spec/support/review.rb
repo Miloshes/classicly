@@ -1,8 +1,14 @@
-Factory.define :review do |f|
-  f.fb_connect_id "123456"
-  f.reviewer
-  f.reviewable
-  f.created_at Time.now
-  f.content "Review text comes here"
-  f.rating 3
+FactoryGirl.define do
+  
+  factory :review do
+    association :reviewer, :factory => :login
+    association :reviewable, :factory => :book
+    
+    fb_connect_id { reviewer.fb_connect_id }
+    
+    created_at Time.now
+    content "Review text comes here"
+    rating 3
+  end
+  
 end
