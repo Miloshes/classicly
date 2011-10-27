@@ -14,6 +14,7 @@ class IncomingData < ActiveRecord::Base
     # setting the general response, the sub-tasks can override it
     # TODO: API > 1.3
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
+    # TODO: API >= 1.3
     if parsed_data["structure_version"] == "1.3"
       response = {"general_response" => "SUCCESS"}.to_json
     else
@@ -48,6 +49,7 @@ class IncomingData < ActiveRecord::Base
         end
       when "register_ios_user"
         # upwards from API v1.3 we care about the response
+        # TODO: API >= 1.3
         if record["structure_version"] == "1.3"
           new_login = Login.register_from_ios_app(record)
           
@@ -70,6 +72,8 @@ class IncomingData < ActiveRecord::Base
         end
       when "update_book_description"
         Book.update_description_from_web_api(record)
+      when "send_book_from_user_to_user"
+        response = BookDeliveryPackage.register_from_ios_app(record)
       end
     end
     
