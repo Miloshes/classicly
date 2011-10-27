@@ -47,13 +47,14 @@ describe Login do
       
       Login.register_from_ios_app(@api_call_params)
     end
-    
-    it "should convert all the anonymous book highlights & notes of the user into normal ones" do
-      Login.stub_chain(:where, :first).and_return(@login)
-      @login.should_receive(:convert_anonymous_book_highlights_into_normal_ones)
-      
-      Login.register_from_ios_app(@api_call_params)
-    end
+
+    # NOTE: we're disabling this until we have Terms of Service in place and such
+    # it "should convert all the anonymous book highlights & notes of the user into normal ones" do
+    #   Login.stub_chain(:where, :first).and_return(@login)
+    #   @login.should_receive(:convert_anonymous_book_highlights_into_normal_ones)
+    #   
+    #   Login.register_from_ios_app(@api_call_params)
+    # end
     
     describe "keeping track of the devices of the user" do
       it "should make sure the device is registered and assigned to the right user" do

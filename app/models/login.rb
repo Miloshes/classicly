@@ -70,7 +70,8 @@ class Login < ActiveRecord::Base
     # migrate the anonymous reviews and highlights as we have the facebook information now
     if ["1.2", "1.3"].include?(params["structure_version"])
       login.convert_anonymous_reviews_into_normal_ones
-      login.convert_anonymous_book_highlights_into_normal_ones
+      # NOTE: we're disabling this until we have Terms of Service and such
+      # login.convert_anonymous_book_highlights_into_normal_ones
     end
     
     return login
