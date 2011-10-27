@@ -117,8 +117,12 @@ group :development, :test do
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
   gem "database_cleaner"
 
-  # fixtures generator for tests
+  # fixtures generator for tests - https://github.com/thoughtbot/factory_girl
+  # docs: http://rubydoc.info/gems/factory_girl/2.2.0/frames
   gem "factory_girl"
+  
+  # Rails integration for Factory girl, doesn't do much just autoloads factory definitions - https://github.com/thoughtbot/factory_girl_rails
+  gem "factory_girl_rails"
   
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
   gem "ZenTest"
