@@ -107,5 +107,9 @@ describe BookDeliveryPackage do
     
   end
   
+  describe "getting accepted"
+  
+  describe "getting rejected"
+  
   
 end
