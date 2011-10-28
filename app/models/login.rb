@@ -85,8 +85,10 @@ class Login < ActiveRecord::Base
 
     response = {}
     fields_to_return = %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
-        
+    
     fields_to_return.each { |field| response[field] = self.send(field) }
+    
+    response["general_response"] = "SUCCESS"
     
     return response.to_json
   end
