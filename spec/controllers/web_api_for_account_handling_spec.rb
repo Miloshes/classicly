@@ -89,7 +89,7 @@ describe WebApiController, "(API calls - account handling related)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
         
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
+        parsed_response.keys.sort.should == %w(email fb_connect_id first_name general_response last_name location_city location_country twitter_name)
       end
       
       it "should respond with failure when trying to register an existing account" do
@@ -159,7 +159,7 @@ describe WebApiController, "(API calls - account handling related)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
         
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
+        parsed_response.keys.sort.should == %w(email fb_connect_id first_name general_response last_name location_city location_country twitter_name)
       end
     
       it "should respond with failure for a login attempt with a bad password" do
