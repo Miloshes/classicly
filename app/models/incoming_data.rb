@@ -12,7 +12,6 @@ class IncomingData < ActiveRecord::Base
     parsed_data = ActiveSupport::JSON.decode(self.json_data)
 
     # setting the general response, the sub-tasks can override it
-    # TODO: API > 1.3
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
     # TODO: API >= 1.3
     if parsed_data["structure_version"] == "1.3"
