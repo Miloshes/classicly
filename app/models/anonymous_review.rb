@@ -56,7 +56,7 @@ class AnonymousReview < ActiveRecord::Base
   def convert_to_normal_review
     # NOTE: while we're migrating away from using the UDID as the device_id
     if self.ios_device_ss_id
-      ios_device = IosDevice.find_by_ss_udid(self.ios_device_ss_udid)
+      ios_device = IosDevice.find_by_ss_udid(self.ios_device_ss_id)
     else
       ios_device = IosDevice.find_by_original_udid(self.ios_device_id)
     end
