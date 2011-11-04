@@ -9,10 +9,11 @@ describe WebApiController, "(API calls - book inbox related)" do
       @data = {
         "structure_version"      => "1.4",
         "source_user_email"      => @source_user.email,
-        "destination_user_email" => @destination_user.email 
+        "destination_user_email" => @destination_user.email,
         "action"                 => "send_book_from_user_to_user",
         "book_type"              => "classic",
         "book_id"                => @book.id,
+        "message"                => "You should read this",
         "book_data"              => nil,
         "timestamp"              => (Time.now).to_s(:db)
       }
