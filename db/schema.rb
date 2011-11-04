@@ -130,8 +130,10 @@ ActiveRecord::Schema.define(:version => 20111012170612) do
   end
 
   create_table "book_delivery_packages", :force => true do |t|
-    t.string   "source_user"
-    t.string   "destination_user"
+    t.integer  "source_user"
+    t.integer  "destination_user"
+    t.string   "destination_user_email"
+    t.string   "destination_user_fb_connect_id"
     t.string   "deliverable_type"
     t.integer  "deliverable_id"
     t.text     "message"
