@@ -14,7 +14,7 @@ class Login < ActiveRecord::Base
     # required parameters
     
     required_parameters = ["structure_version"]
-    # NOTE: API version < v1.3
+    # TODO: API version < v1.3
     if params["structure_version"] != "1.3"
       required_parameters << "user_fbconnect_id"
     end
@@ -24,6 +24,7 @@ class Login < ActiveRecord::Base
     end
 
     # upwards from API v1.3, we use the email as the main identification method
+    # TODO: API version >= v1.3
     if params["structure_version"] == "1.3"
       existing_login = Login.where(:email => params["user_email"]).first()
     else
@@ -37,6 +38,7 @@ class Login < ActiveRecord::Base
 
     if existing_login
       
+      # TODO: API version >= v1.3
       if params["structure_version"] == "1.3"
         # it's an existing half-account, migrate it into a full one
         if existing_login.not_a_real_account
@@ -68,6 +70,7 @@ class Login < ActiveRecord::Base
     login.manage_associated_ios_devices(params)
 
     # migrate the anonymous reviews and highlights as we have the facebook information now
+    # TODO: API >= 1.2
     if ["1.2", "1.3"].include?(params["structure_version"])
       login.convert_anonymous_reviews_into_normal_ones
       # NOTE: we're disabling this until we have Terms of Service and such
@@ -81,6 +84,7 @@ class Login < ActiveRecord::Base
     # our response to register_from_ios_app and login_ios_user Web API call
     
     # upwards from API v1.3, we care about the return value
+    # TODO: API >= 1.3
     return nil if !params["structure_version"] == "1.3"
 
     response = {}

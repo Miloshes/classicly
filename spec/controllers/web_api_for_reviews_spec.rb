@@ -6,7 +6,9 @@ describe WebApiController, "(API calls - review creation)" do
     @book = mock_model(Book)
     Book.stub!(:find).and_return(@book)
     
-    @login = mock_model(Login, :fb_connect_id => "123", :email => "zsolt.maslanyi@gmail.com")
+    @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
+    @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device, :email => "test@test.com")
+
     Login.stub_chain(:where, :first).and_return(@login)
   end
   
