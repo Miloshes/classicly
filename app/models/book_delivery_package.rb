@@ -8,21 +8,63 @@ class BookDeliveryPackage < ActiveRecord::Base
   validates :destination_user, :presence => true
   validates :deliverable, :presence => true
   
-  def create_from_web_api_call(data)
-    # book = Book.find(data["book_id"].to_i)
-    # 
-    # if book.blank? || data["user_fbconnect_id"].blank? || data["device_ss_id"].blank?
-    #   return nil
-    # end
-    # 
-    # login = Login.where(:fb_connect_id => data["user_fbconnect_id"].to_s).first()
-    # 
-    # # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous highlight
-    # if login.blank?
-    #   # for this to work "device_id" is a must parameter for the call
-    #   AnonymousBookHighlight.create_or_update_from_ios_client_data(data)
-    #   return
-    # end
+  def self.create_from_web_api_call(data)
+    # == check the required parameters
+    
+    required_parameters = ["structure_version", "book_type", "source_user_email", "destination_user_email"]
+    
+    case data["book_type"]
+    when "classic"
+      required_parameters << "book_id"
+    when "user_uploaded"
+      required_parameters << "book_data"
+    end
+    
+    required_parameters.each do |param_to_check|
+      return nil if data[param_to_check].blank?
+    end
+    
+    source_user      = Login.find_by_email(data["source_user_email"])
+    destination_user = Login.find_by_email(data["destination_user_email"])
+
+    return nil if source_user.blank? || destination_user.blank?
+    
+    case data["book_type"]
+    when "classic"
+      deliverable = Book.find_by_id(data["book_id"])
+    when "user_uploaded"
+      # TODO: pass the book_data!
+      deliverable = UserUploadedContent.create
+    end
+    
+    package_conditions = {
+      :source_user      => source_user,
+      :destination_user => destination_user,
+      :deliverable      => deliverable
+    }
+    
+    new_package_data = {
+      :message => data["message"]
+    }
+    
+    result = false
+    
+    book_delivery_package = self.where(package_conditions).first()
+    
+    if book_delivery_package
+      result = book_delivery_package
+    else
+      # puts "\nCalling it with: #{(package_conditions.merge new_package_data).inspect}\n"
+      
+      new_package = self.create(package_conditions.merge new_package_data)
+      
+      result = new_package if new_package.valid?
+    end
+    
+    puts "\n\nRESULT: #{result.reload.inspect}\n\n"
+    
+    return result
+
     # 
     # new_timestamp = Time.parse(data["timestamp"])
     # 
