@@ -30,6 +30,7 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
+    Rails.logger.info("\n-- params are: #{params["json_data"].inspect}\n")
     @parsed_data = params["json_data"].blank? ? {} : ActiveSupport::JSON.decode(params["json_data"]).stringify_keys
   end
   
