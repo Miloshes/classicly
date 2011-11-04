@@ -5,7 +5,7 @@ require "spec_helper"
 
 describe WebApiController do
 
-  context "serving an API call" do
+  describe "serving an API call" do
     
     it "should return nothing when called without parameters and data" do
       post "create"
@@ -21,10 +21,78 @@ describe WebApiController do
       
       post "create"
     end
-    
   end
   
-  context "answering queries" do
+  describe "authenticating an API call" do
+    
+    context "when the API version is less than 1.3" do
+      
+      it "is not needed" do
+        data = {"structure_version" => "1.2"}
+
+        post("create", :json_data => data.to_json)
+
+        response.should be_success
+      end
+      
+    end
+    
+    context "when the API version is greater or equal than 1.3" do
+      it "should have an api_key and api_signature in the parameters" do
+        data = {"structure_version" => "1.3"}
+        
+        required_params = ["api_key", "api_signature"]
+        
+        %w{api_key api_signature}.each do |parameter_to_cut|
+          api_params = data.clone
+          api_params.delete(parameter_to_cut)
+
+          post("create", :json_data => api_params.to_json)
+          
+          response.status.should == 401
+        end
+      end
+      
+      it "should return HTTP 401 (unauthorized) for a wrong API key" do
+        data = {"structure_version" => "1.3"}
+        
+        post("create",
+            :json_data     => data.to_json,
+            :api_key       => "wrong key",
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+        
+        response.status.should == 401
+      end
+      
+      it "should return HTTP 401 (unauthorized) for a wrong API signature" do
+        data = {"structure_version" => "1.3"}
+        
+        post("create",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => "wrong signature"
+          )
+          
+        response.status.should == 401
+      end
+      
+      it "should return HTTP 200 on success" do
+        data = {"structure_version" => "1.3"}
+        
+        post("create",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+        
+        response.should be_success
+      end
+    end
+    
+  end
+     
+  describe "answering queries" do
     it "should process the query using the WebApiHandler and return the results" do
       handler = mock(WebApiHandler)
 
@@ -37,7 +105,7 @@ describe WebApiController do
     end
   end
   
-  context "having a good routes setup" do
+  describe "having a good routes setup" do
     
     it "should map POST /web_api calls to the create action" do
       {:post => "web_api"}.should route_to(:controller => "web_api", :action => "create")

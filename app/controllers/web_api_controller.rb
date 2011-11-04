@@ -30,18 +30,31 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
-    @parsed_data = params["json_data"].blank? ? {} : ActiveSupport::JSON.decode(params["json_data"]).stringify_keys
+    if params["json_data"].blank?
+      @parsed_data = []
+    # check if json_data is a Hash without decoding it
+    elsif params["json_data"][0] == "{"
+      @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
+    else
+      @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
+    end
   end
   
   def authenticate_api_call
     # introducing authentication for API version 1.3 and above
-    # TODO: API > 1.3
-    return true if @parsed_data["structure_version"] != "1.3"
+    return true unless call_needs_authentication
     
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
     
     unless (params["api_key"] == APP_CONFIG["api_key"] && params["api_signature"] == correct_signature)
       render :nothing => true, :status => :unauthorized
+    end
+  end
+  
+  def call_needs_authentication
+    # TODO: API >= 1.3
+    @parsed_data.any? do |record|
+      record["structure_version"] == "1.3"
     end
   end
   

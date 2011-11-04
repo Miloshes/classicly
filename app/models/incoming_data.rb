@@ -14,7 +14,7 @@ class IncomingData < ActiveRecord::Base
     # setting the general response, the sub-tasks can override it
     # TODO: API > 1.3
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
-    if parsed_data["structure_version"] == "1.3"
+    if parsed_data.is_a?(Hash) && parsed_data["structure_version"] == "1.3"
       response = {"general_response" => "SUCCESS"}.to_json
     else
       response = "SUCCESS"
