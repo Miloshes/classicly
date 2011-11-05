@@ -261,7 +261,6 @@ DEPENDENCIES
   aws-s3
   capybara
   compass (>= 0.10.5)
-  daemons (= 1.1.0)
   dalli
   database_cleaner
   delayed_job
