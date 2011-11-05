@@ -3,6 +3,9 @@ source "http://gems.github.com"
 
 gem "rails", "3.0.7"
 
+# for resolving a Heroku problem
+gem "daemons", "1.1.0"
+
 # Authentication - http://rubygems.org/gems/authlogic
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 
@@ -82,13 +85,6 @@ gem "dalli"
 gem "versionomy"
 
 group :development, :test do
-  # web server for local development
-  gem "mongrel", "1.2.0.pre2"
-  
-  # needed by mongrel to run on ruby 1.9.2
-  gem "cgi_multipart_eof_fix"
-  gem "fastthread"
-  
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem "awesome_print"
   
