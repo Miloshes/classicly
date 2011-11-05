@@ -566,48 +566,100 @@ describe WebApiController, "(API calls - review related queries)" do
   
   describe "getting a review for a book / audiobook for a given user" do
     
-    it "should work for books" do
-      book   = FactoryGirl.create(:book)
-      login  = FactoryGirl.create(:login, :fb_connect_id => "123")
-      review = FactoryGirl.create(:review, :reviewable => book, :reviewer => login, :rating => 5)
+    context "when the user is identified by his Facebook ID" do
+    
+      it "should work for books" do
+        book   = FactoryGirl.create(:book)
+        login  = FactoryGirl.create(:login, :fb_connect_id => "123")
+        review = FactoryGirl.create(:review, :reviewable => book, :reviewer => login, :rating => 5)
       
-      data = {
-          "action"            => 'get_review_for_book_by_user',
-          "book_id"           => book.id,
-          "user_fbconnect_id" => "123"
-        }
+        data = {
+            "action"            => 'get_review_for_book_by_user',
+            "book_id"           => book.id,
+            "user_fbconnect_id" => "123"
+          }
       
-      post "query", :json_data => data.to_json
+        post "query", :json_data => data.to_json
       
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+        parsed_response = ActiveSupport::JSON.decode(response.body)
       
-      # We're expecting something like this:
-      # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # We're expecting something like this:
+        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
 
-      parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        parsed_response.class.should == Hash
+        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+      end
+    
+      it "should work for audiobooks" do
+        audiobook = FactoryGirl.create(:audiobook)
+        login     = FactoryGirl.create(:login, :fb_connect_id => "123")
+        review    = FactoryGirl.create(:review, :reviewable => audiobook, :reviewer => login, :rating => 5)
+      
+        data = {
+            "action"            => 'get_review_for_book_by_user',
+            "audiobook_id"      => audiobook.id,
+            "user_fbconnect_id" => "123"
+          }
+      
+        post "query", :json_data => data.to_json
+      
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+        # We're expecting something like this:
+        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+      
+        parsed_response.class.should == Hash
+        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+      end
+      
     end
     
-    it "should work for audiobooks" do
-      audiobook = FactoryGirl.create(:audiobook)
-      login     = FactoryGirl.create(:login, :fb_connect_id => "123")
-      review    = FactoryGirl.create(:review, :reviewable => audiobook, :reviewer => login, :rating => 5)
+    context "when the user is identified by his email address" do
+    
+      it "should work for books" do
+        book   = FactoryGirl.create(:book)
+        login  = FactoryGirl.create(:login)
+        review = FactoryGirl.create(:review, :reviewable => book, :reviewer => login, :rating => 5)
       
-      data = {
-          "action"            => 'get_review_for_book_by_user',
-          "audiobook_id"      => audiobook.id,
-          "user_fbconnect_id" => "123"
-        }
+        data = {
+            "action"     => 'get_review_for_book_by_user',
+            "book_id"    => book.id,
+            "user_email" => login.email
+          }
       
-      post "query", :json_data => data.to_json
+        post "query", :json_data => data.to_json
       
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+        parsed_response = ActiveSupport::JSON.decode(response.body)
       
-      # We're expecting something like this:
-      # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # We're expecting something like this:
+        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+
+        parsed_response.class.should == Hash
+        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+      end
+    
+      it "should work for audiobooks" do
+        audiobook = FactoryGirl.create(:audiobook)
+        login     = FactoryGirl.create(:login)
+        review    = FactoryGirl.create(:review, :reviewable => audiobook, :reviewer => login, :rating => 5)
       
-      parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        data = {
+            "action"       => 'get_review_for_book_by_user',
+            "audiobook_id" => audiobook.id,
+            "user_email"   => login.email
+          }
+      
+        post "query", :json_data => data.to_json
+      
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+      
+        # We're expecting something like this:
+        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+      
+        parsed_response.class.should == Hash
+        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+      end
+      
     end
     
   end
