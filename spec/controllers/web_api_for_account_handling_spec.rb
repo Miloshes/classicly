@@ -181,25 +181,51 @@ describe WebApiController, "(API calls - account handling related)" do
     # TODO: later
     # it "should have a reset password functionality"
     
-    it "should be able to give information about a user" do
-      login = FactoryGirl.create(:login, :fb_connect_id => "123", :first_name => "Zsolt", :email => "email_to_check@test.com")
+    describe "querying information about a user" do
     
-      data = {
-          "structure_version" => "1.3",
-          "action"            => "get_user_data",
-          "user_fbconnect_id" => "123"
-        }
+      it "should be able to give information about a user" do
+        login = FactoryGirl.create(:login, :fb_connect_id => "123", :first_name => "Zsolt", :email => "email_to_check@test.com")
     
-      post("query",
-          :json_data     => data.to_json,
-          :api_key       => APP_CONFIG["api_key"],
-          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
-        )
+        data = {
+            "structure_version" => "1.3",
+            "action"            => "get_user_data",
+            "user_fbconnect_id" => "123"
+          }
     
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+        post("query",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
     
-      parsed_response["email"].should == "email_to_check@test.com"
-      parsed_response["first_name"].should == "Zsolt"
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+    
+        parsed_response["email"].should == "email_to_check@test.com"
+        parsed_response["first_name"].should == "Zsolt"
+      end
+      
+      it "shouldn't give out sensitive information" do
+        login = FactoryGirl.create(:login, :fb_connect_id => "123", :first_name => "Zsolt", :email => "email_to_check@test.com")
+    
+        data = {
+            "structure_version" => "1.3",
+            "action"            => "get_user_data",
+            "user_fbconnect_id" => "123"
+          }
+    
+        post("query",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+    
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        ["hashed_password", "salt", "access_token", "is_admin", "mailing_enabled"].each do |prohibited_field|
+          parsed_response.should_not include(prohibited_field)
+        end
+      end
+
     end
     
   end

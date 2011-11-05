@@ -91,7 +91,6 @@ class WebApiHandler
     return result.to_json
   end
   
-  # TODO: check what's this for. Do we have to include anonymous reviews?
   def get_list_of_books_the_user_wrote_review_for(params)
     if params['user_fbconnect_id']
       login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
@@ -104,7 +103,8 @@ class WebApiHandler
     result = []
     
     case params['structure_version']
-    when '1.2'
+    # TODO: API version fix (this should be nicer)
+    when '1.2', '1.3', '1.4'
       result = {
         :books => login.reviews.where(:reviewable_type => 'Book').collect { |review|
           {:id => review.reviewable_id, :rating => review.rating}
@@ -157,27 +157,31 @@ class WebApiHandler
   end
   
   def get_review_for_book_by_user(params)
-    if params['book_id']
-      book = Book.find(params['book_id'].to_i)
+    if params["book_id"]
+      book = Book.find(params["book_id"].to_i)
     else
-      book = Audiobook.find(params['audiobook_id'].to_i)
+      book = Audiobook.find(params["audiobook_id"].to_i)
     end
     
     return nil.to_json if book.blank?
     
-    if params['user_fbconnect_id']
-      login  = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    if params["user_fbconnect_id"] || params["user_email"]
+      login = Login.where(:email => params["user_email"].to_s).first()
+      if login.blank?
+        login  = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
+      end
+      
       review = Review.where(:reviewable => book, :reviewer => login).first()
       
       return nil.to_json if login.blank? || review.blank?
       
       return {
-          :content    => review.content || '',
+          :content    => review.content || "",
           :rating     => review.rating,
           :created_at => review.created_at
         }.to_json
     else
-      review = AnonymousReview.where(:reviewable => book, :ios_device_id => params['device_id'].to_s).first()
+      review = AnonymousReview.where(:reviewable => book, :ios_device_id => params["device_id"].to_s).first()
       
       # for device_id only reviews, they don't have content so we're not sending it back
       return {:rating => review.rating, :created_at => review.created_at}.to_json
@@ -187,7 +191,7 @@ class WebApiHandler
   def get_user_data(params)
     login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
     
-    return login.to_json(:except => [:id, :user_id])
+    return login.to_json(:only => [:first_name, :last_name, :location_city, :location_country, :email, :fb_connect_id, :twitter_name])
   end
   
   def get_book_highlights_for_user_for_book(params)
