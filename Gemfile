@@ -3,9 +3,6 @@ source "http://gems.github.com"
 
 gem "rails", "3.0.7"
 
-# for resolving a Heroku problem
-gem "daemons", "1.1.0"
-
 # Authentication - http://rubygems.org/gems/authlogic
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 
