@@ -30,12 +30,17 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
+    
+    Rails.logger.info("\n\n -- got parameters: #{params["json_data"].inspect}\n\n")
+    
     if params["json_data"].blank?
       @parsed_data = []
     # check if json_data is a Hash without decoding it
     elsif params["json_data"][0] == "{"
+      Rails.logger.info(" - it's a Hash")
       @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
     else
+      Rails.logger.info(" - it's an Array")
       @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
     end
   end
