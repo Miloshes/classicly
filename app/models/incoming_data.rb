@@ -34,6 +34,13 @@ class IncomingData < ActiveRecord::Base
         else
           AnonymousReview.create_or_update_from_ios_client_data(record)
         end
+        
+        # TODO: API >= 1.3
+        if record["structure_version"] == "1.3"
+          response = {"general_response" => "SUCCESS"}.to_json
+        else
+          response = "SUCCESS"
+        end
       # stands for creating and updating the highlight
       when "register_book_highlight"
         if record["user_fbconnect_id"]
