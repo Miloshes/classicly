@@ -24,11 +24,16 @@ class BookHighlight < ActiveRecord::Base
   def self.create_or_update_from_ios_client_data(data)
     book = Book.find(data["book_id"].to_i)
 
-    if book.blank? || data["user_fbconnect_id"].blank? || data["device_ss_id"].blank?
+    if book.blank? || data["device_ss_id"].blank?
       return nil
     end
     
-    login = Login.where(:fb_connect_id => data["user_fbconnect_id"].to_s).first()
+    # We check by email first to get users with Classicly accounts, then we check with Facebook also
+    # to get the users who registered before we had proper account creation
+    login = Login.find_by_email(data["user_email"])
+    if login.blank?
+      login = Login.find_by_fb_connect_id(data["user_fbconnect_id"].to_s)
+    end
 
     # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous highlight
     if login.blank?
@@ -36,7 +41,7 @@ class BookHighlight < ActiveRecord::Base
       result = AnonymousBookHighlight.create_or_update_from_ios_client_data(data)
       return result
     end
-    
+
     new_timestamp = Time.parse(data["timestamp"])
     
     highlight_conditions = {

@@ -43,7 +43,7 @@ class IncomingData < ActiveRecord::Base
         end
       # stands for creating and updating the highlight
       when "register_book_highlight"
-        if record["user_fbconnect_id"]
+        if record["user_fbconnect_id"] || record["user_email"]
           result = BookHighlight.create_or_update_from_ios_client_data(record)
         else
           result = AnonymousBookHighlight.create_or_update_from_ios_client_data(record)

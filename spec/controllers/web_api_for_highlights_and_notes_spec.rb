@@ -11,8 +11,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
     Book.stub!(:find).and_return(@book)
     
     @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
-    @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device)
-    Login.stub_chain(:where, :first).and_return(@login)
+    @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device, :email => "test@test.com")
 
     # NOTE: device_id is a must parameter. It identifies users for storing anonymous highlights, and for normal highlights
     # it enables the model to fall back to creating an anonymous one if the user registartion failed
@@ -102,14 +101,26 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
   end
   
   context "working with regular (created by registered users) highlights" do
-
-    before(:each) do
-      @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
-    end
     
     context "when doing registration" do
       
       it "should be able to register one given the book and the user's facebook ID" do
+        @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
+        
+        Login.should_receive(:find_by_fb_connect_id).and_return(@login)
+        
+        post "create", :json_data => @api_call_params.to_json
+
+        response.should be_success
+        BookHighlight.should have(1).records
+        AnonymousBookHighlight.should have(0).records
+      end
+      
+      it "should be able to register one given the book and the user's facebook ID" do
+        @api_call_params["user_email"] = @login.email
+        
+        Login.should_receive(:find_by_email).and_return(@login)
+        
         post "create", :json_data => @api_call_params.to_json
 
         response.should be_success
@@ -118,8 +129,12 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       end
 
       it "should create an anonymous highlight instead if by some mistake the user is not registered yet" do
-        # faking that the user doesn't exist
-        Login.stub_chain(:where, :first).and_return(nil)
+        # faking that the user doesn't exist, despite the right parameters being sent
+        @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
+        @api_call_params["user_email"] = @login.email
+        
+        Login.stub!(:find_by_fb_connect_id).and_return(nil)
+        Login.stub!(:find_by_email).and_return(nil)
 
         post "create", :json_data => @api_call_params.to_json
 
@@ -129,6 +144,10 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
       end
       
       it "should return the URL for the highlight's public page and the twitter and facebook share message" do
+        @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
+        
+        Login.should_receive(:find_by_fb_connect_id).and_return(@login)
+        
         post "create", :json_data => @api_call_params.to_json
 
         parsed_response = ActiveSupport::JSON.decode(response.body)
@@ -152,6 +171,9 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
           :fb_connect_id   => @login.fb_connect_id,
           :created_at      => Time.now
         )
+        
+        @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
+        Login.stub!(:find_by_fb_connect_id).and_return(@login)
       end
       
       it "should be able to update it" do
@@ -162,7 +184,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
         BookHighlight.stub_chain(:where, :first).and_return(@book_highlight)
 
         @book_highlight.should_receive(:update_attributes)
-
+        
         post "create", :json_data => @api_call_params.to_json
       end
 
