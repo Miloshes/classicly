@@ -116,7 +116,7 @@ describe WebApiController, "(API calls - notes and highlights registration)" do
         AnonymousBookHighlight.should have(0).records
       end
       
-      it "should be able to register one given the book and the user's facebook ID" do
+      it "should be able to register one given the book and the user's email address" do
         @api_call_params["user_email"] = @login.email
         
         Login.should_receive(:find_by_email).and_return(@login)
@@ -215,7 +215,7 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
   
   before(:each) do
     @book       = FactoryGirl.create(:book)
-    @login      = FactoryGirl.create(:login)
+    @login      = FactoryGirl.create(:login, :fb_connect_id => "123")
 
     # NOTES: documentation
     @api_call_params = {
@@ -226,52 +226,91 @@ describe WebApiController, "(API calls - notes and highlights related queries)" 
   end
   
   describe "getting the list of the highlights for a user and a book" do
-  
-    it "should work when the user hasn't registered and has only anonymous highlights" do
-      highlight  = FactoryGirl.create(:anonymous_book_highlight,
-          :book             => @book,
-          :ios_device_ss_id => @login.ios_device.ss_udid,
-          :first_character  => 0,
-          :last_character   => 6,
-          :content          => "content"
-        )
-      highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note,
-          :book             => @book,
-          :ios_device_ss_id => @login.ios_device.ss_udid
-        )
 
-      post "query", :json_data => @api_call_params.to_json
-      
-      parsed_response = ActiveSupport::JSON.decode(response.body)
-      
-      # We're expecting something like this:
-      # [
-      #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
-      #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
-      # ]
-      
-      parsed_response.class.should == Array
-      parsed_response.count.should == 2
-      parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
+    context "when the user hasn't registered and has only anonymous highlights" do
+
+      it "should return the list of those" do
+        highlight  = FactoryGirl.create(:anonymous_book_highlight,
+            :book             => @book,
+            :ios_device_ss_id => @login.ios_device.ss_udid,
+            :first_character  => 0,
+            :last_character   => 6,
+            :content          => "content"
+          )
+        highlight2 = FactoryGirl.create(:anonymous_book_highlight_with_note,
+            :book             => @book,
+            :ios_device_ss_id => @login.ios_device.ss_udid
+          )
+
+        post "query", :json_data => @api_call_params.to_json
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        # We're expecting something like this:
+        # [
+        #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
+        #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
+        # ]
+
+        parsed_response.class.should == Array
+        parsed_response.count.should == 2
+        parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
+      end
+
     end
-  
-    it "should work when the user is registered" do
-      highlight  = FactoryGirl.create(:book_highlight, :book => @book, :user => @login)
-      highlight2 = FactoryGirl.create(:book_highlight_with_note, :book => @book, :user => @login)
+    
+    context "when the user is identified by his email address" do
+      
+      it "should return the list of those" do
+        # device ID is always there as a last resort, but we're removing it for the sake of the test
+        @api_call_params.delete("device_ss_id")
+        @api_call_params["user_email"] = @login.email
+        
+        highlight  = FactoryGirl.create(:book_highlight, :book => @book, :user => @login)
+        highlight2 = FactoryGirl.create(:book_highlight_with_note, :book => @book, :user => @login)
 
-      post "query", :json_data => @api_call_params.to_json
+        post "query", :json_data => @api_call_params.to_json
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        # We're expecting something like this:
+        # [
+        #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
+        #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
+        # ]
+
+        parsed_response.class.should == Array
+        parsed_response.count.should == 2
+        parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
+      end
       
-      parsed_response = ActiveSupport::JSON.decode(response.body)
+    end
+    
+    context "when the user is identified by his Facebook ID" do
       
-      # We're expecting something like this:
-      # [
-      #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
-      #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
-      # ]
+      it "should return the list of those" do
+        # device ID is always there as a last resort, but we're removing it for the sake of the test
+        @api_call_params.delete("device_ss_id")
+        @api_call_params["user_fbconnect_id"] = @login.fb_connect_id
+        
+        highlight  = FactoryGirl.create(:book_highlight, :book => @book, :user => @login)
+        highlight2 = FactoryGirl.create(:book_highlight_with_note, :book => @book, :user => @login)
+
+        post "query", :json_data => @api_call_params.to_json
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        # We're expecting something like this:
+        # [
+        #   {"first_character"=>0, "last_character"=>29, "content"=>"text", "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"},
+        #   {"first_character"=>1, "last_character"=>1, "content"=> nil, "created_at"=>"2011-09-21T12:52:13Z", "origin_comment"=>"text"}
+        # ]
+
+        parsed_response.class.should == Array
+        parsed_response.count.should == 2
+        parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
+      end
       
-      parsed_response.class.should == Array
-      parsed_response.count.should == 2
-      parsed_response.first.keys.sort.should == ["content", "created_at", "first_character", "last_character", "origin_comment"]
     end
   
   end

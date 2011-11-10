@@ -197,20 +197,26 @@ class WebApiHandler
   def get_book_highlights_for_user_for_book(params)
     book  = Book.find(params["book_id"].to_i)
 
-    # We should get the same user nevertheless - this is for safety measures
-    if params["user_fbconnect_id"]
-      login = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
+    # Look up user based on his Classicly accounts email address, fall back to Facebook ID, then fall back to device ID
+    # which would yield the same user nevertheless - this is for safety measures
+    if params["user_email"]
+      login = Login.find_by_email(params["user_email"])
+    elsif params["user_fbconnect_id"]
+      login = Login.find_by_fb_connect_id(params["user_fbconnect_id"].to_s)
     else
       login = IosDevice.find_by_ss_udid(params["device_ss_id"].to_s).user
     end
     
-    return nil.to_json if book.blank? || login.blank?
+    return nil.to_json if book.blank?
     
     anonymous_highlights = AnonymousBookHighlight.where(
         "book_id = ? AND ios_device_ss_id IN (?)", book.id, login.ios_devices.collect(&:ss_udid)
       ).all()
-      
-    highlights = BookHighlight.where(:book => book, :user => login).all()
+    
+    highlights = []
+    if !login.blank?
+      highlights = BookHighlight.where(:book => book, :user => login).all()
+    end
     
     # NOTE: thing is, one user should have either normal highlights or anonymous ones - this is for safety measures
     all_highlights = anonymous_highlights + highlights
