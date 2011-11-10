@@ -357,33 +357,77 @@ describe WebApiController, "(API calls - review creation)" do
 end
 
 describe WebApiController, "(API calls - review related queries)" do
+  
+  describe "getting the full list of ratings the user has" do
+    
+    context "when the user is identified by his Facebook ID" do
+      it "should return book ID - rating pairs" do
+        @login = FactoryGirl.create(:login, :fb_connect_id => "123")
 
-  it "should be able to give back the book ID - rating pairs for the books and audiobooks the user wrote a review for" do
-    @login = FactoryGirl.create(:login, :fb_connect_id => "123")
+        data = {
+            "action"            => "get_list_of_books_the_user_wrote_review_for",
+            "user_fbconnect_id" => "123",
+            "structure_version" => "1.3"
+          }
+
+        review1 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 1)
+        review2 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 5)
+        review3 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 1)
+        review4 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 5)
+
+        post("query",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        # We're expecting something like this:
+        # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
+
+        parsed_response["books"].should have(2).elements
+        parsed_response["books"].first.keys.sort.should == ["id", "rating"]
+
+        parsed_response["audiobooks"].should have(2).elements
+        parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
+      end
+    end
     
-    data = {
-        "action"            => "get_list_of_books_the_user_wrote_review_for",
-        "user_fbconnect_id" => "123",
-        "structure_version" => '1.2'
-      }
-    
-    review1 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 1)
-    review2 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 5)
-    review3 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 1)
-    review4 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 5)
-    
-    post "query", :json_data => data.to_json
-    
-    parsed_response = ActiveSupport::JSON.decode(response.body)
-    
-    # We're expecting something like this:
-    # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
-    
-    parsed_response["books"].should have(2).elements
-    parsed_response["books"].first.keys.sort.should == ["id", "rating"]
-    
-    parsed_response["audiobooks"].should have(2).elements
-    parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
+    context "when the user is identified by his email" do
+      it "should return book ID - rating pairs" do
+        @login = FactoryGirl.create(:login, :email => "test@test.com")
+
+        data = {
+            "action"            => "get_list_of_books_the_user_wrote_review_for",
+            "user_email"        => "test@test.com",
+            "structure_version" => "1.3"
+          }
+
+        review1 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 1)
+        review2 = FactoryGirl.create(:review, :reviewable => mock_model(Book), :reviewer => @login, :rating => 5)
+        review3 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 1)
+        review4 = FactoryGirl.create(:review, :reviewable => mock_model(Audiobook), :reviewer => @login, :rating => 5)
+
+        post("query",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+
+        # We're expecting something like this:
+        # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
+
+        parsed_response["books"].should have(2).elements
+        parsed_response["books"].first.keys.sort.should == ["id", "rating"]
+
+        parsed_response["audiobooks"].should have(2).elements
+        parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
+      end
+    end
+
   end
   
   describe "getting the reviews for a book or audiobook, paginated" do

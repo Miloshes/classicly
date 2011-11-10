@@ -92,10 +92,12 @@ class WebApiHandler
   end
   
   def get_list_of_books_the_user_wrote_review_for(params)
-    if params['user_fbconnect_id']
-      login = Login.where(:fb_connect_id => params['user_fbconnect_id'].to_s).first()
+    if params["user_email"]
+      login = Login.find_by_email(params["user_email"])
+    elsif params["user_fbconnect_id"]
+      login = Login.find_by_fb_connect_id(params["user_fbconnect_id"].to_s)
     else
-      login = Login.where(:ios_device_id => params['device_id'].to_s).first()
+      login = IosDevice.find_by_ss_udid(params["device_ss_id"].to_s).user
     end
     
     return [].to_json if login.blank?

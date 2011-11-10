@@ -61,7 +61,7 @@ class BookDeliveryPackage < ActiveRecord::Base
       result = new_package if new_package.valid?
     end
     
-    puts "\n\nRESULT: #{result.reload.inspect}\n\n"
+    # puts "\n\nRESULT: #{result.reload.inspect}\n\n"
     
     return result
 
