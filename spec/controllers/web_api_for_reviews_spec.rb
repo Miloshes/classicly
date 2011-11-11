@@ -464,7 +464,7 @@ describe WebApiController, "(API calls - review related queries)" do
       # ]
 
       parsed_response.should have(2).elements
-      expected_keys = ["content", "created_at", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      expected_keys = ["content", "created_at", "email", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
       parsed_response.first.keys.sort.should  == expected_keys
       parsed_response.second.keys.sort.should == expected_keys
     end
@@ -485,7 +485,7 @@ describe WebApiController, "(API calls - review related queries)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
 
       parsed_response.should have(1).elements
-      expected_keys = ["content", "created_at", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      expected_keys = ["content", "created_at", "email", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
       parsed_response.first.keys.sort.should == expected_keys
     end
 
