@@ -13,7 +13,14 @@ class Login < ActiveRecord::Base
 
     # required parameters
     
-    required_parameters = ["structure_version"]
+    required_parameters = []
+    
+    # NOTE: this is for backwards compatiblity with API v1.0, which sometimes doesn't sends structure_version
+    # otherwise structure_version is a required parameter
+    if !params["structure_version"].blank?
+      required_parameters << "structure_version"
+    end
+    
     # TODO: API version < v1.3
     if params["structure_version"] != "1.3"
       required_parameters << "user_fbconnect_id"
