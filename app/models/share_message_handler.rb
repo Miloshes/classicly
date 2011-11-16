@@ -9,21 +9,21 @@ class ShareMessageHandler
   MESSAGE_STUBS = {
     # NOTE: assumption here is that the URLs are at the end of the Twitter message
     "twitter" => {
-      "book share"          => "I'm reading {{book author}}'s {{book title}} right now in @classiclyapp. You can download it {{available formats}} at {{book url}}",
-      "highlight share"     => "Highlighted {{book title}} in @classiclyapp: {{book highlight}} {{highlight url}}",
+      "book share"          => "I'm reading {{book title}} in @classiclyapp! Download it as PDF or Kindle at {{book url}}",
+      "highlight share"     => "Just highlighted {{book title}} in @classiclyapp: {{book highlight}} {{highlight url}}",
       "note share"          => "Took a note on {{book title}} in @classiclyapp: \"{{note}}\" {{highlight url}}",
-      "selected text share" => "Just read this via @classiclyapp: \"{{selected text}}\" {{book url}}"
+      "selected text share" => "Just read this in @classiclyapp: \"{{selected text}}\" {{book url}}"
     },
     "facebook" => {
       "book share" => {
         "title"       => "I'm reading {{book title}} by {{book author}}",
         "link"        => "{{book url}}",
-        "description" => "This is a link to {{book title}}. Don't have Free Books for iPad? You can still download the book as {{available formats}} -- free."
+        "description" => "This is a link to {{book title}}. Don't have Free Books for iPad? You can still download the book as Kindle or PDF -- free."
       },
       "highlight share" => {
         "title"       => "Found this in {{book title}}",
         "link"        => "{{highlight url}}",
-        "description" => "I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in {{available formats}}. Here's my highlight:\n\n{{book highlight}}"
+        "description" => "I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in Kindle or PDF. Here's my highlight:\n\n{{book highlight}}"
       }
     }
   }
