@@ -48,7 +48,7 @@ class BlogPost < ActiveRecord::Base
     doc.xpath("//featured").each do|quotation|
       collection_id = doc.xpath('//featured').first.attributes['collection_id'].value
       text = doc.xpath('//featured').first.children.text
-      AuthorQuoting.create(:collection_id => collection_id, :blog_post_id => self.id, :quoted_text => text)
+      AuthorQuoting.create(:blog_post_id => self.id, :quoted_text => text)
     end
   end
 
