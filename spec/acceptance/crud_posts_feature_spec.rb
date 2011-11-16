@@ -52,7 +52,6 @@ feature 'Crud posts feature: ', %q{
     # Then I should be on the edit page for this post.
     # Note. There's no need to use the visit method since once the post is saved, the admin is redirected to the edit action.
     page.should have_content('Edit this blog post')
-    find(:xpath, "id('blog_post_title')").value.should == 'The Blog Post'
   end
 
   scenario 'Creating a blog post with a break tag to determine the amount of text to show on the frontend', :js => true do
