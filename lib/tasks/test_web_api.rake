@@ -123,14 +123,13 @@ namespace :test_web_api do
       
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
       puts "Response for BOOK was: #{response.body}"
-
-
+      
       data = {
           'action'       => 'get_review_stats_for_book',
           'audiobook_id' => 10
         }
 
-      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      response = RestClient.get('http://localhost:3000/web_api/query', :json_data => data.to_json)
       puts "Response for AUDIOBOOK was: #{response.body}"
   end
   

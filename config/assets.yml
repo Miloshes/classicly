@@ -22,4 +22,6 @@ stylesheets:
     - public/stylesheets/bootstrap-1.1.1.min.css
     - public/stylesheets/jquery.rating.css
     - public/stylesheets/notifications.css
+  terms_of_service:
+    - public/stylesheets/compiled/terms_of_service.css
 
