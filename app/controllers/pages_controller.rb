@@ -60,6 +60,10 @@ class PagesController < ApplicationController
     
   end
   
+  def terms_of_service_for_ipad
+    render :action => "terms_of_service", :layout => false
+  end
+  
   protected
   
   def km_init

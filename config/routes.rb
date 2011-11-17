@@ -34,7 +34,9 @@ Classicly::Application.routes.draw do
   match 'library/handle_facebook_login' => 'libraries#handle_facebook_login', :as => :library_handle_facebook_login
   match 'books/:book_id/download_and_add_to_library/:download_format' => 'books#download_and_add_to_library', :as => :download_and_add_to_library
 
-  match 'about' => 'pages#about'
+  # == Static-y Pages
+  match "about" => "pages#about"
+  match "terms-ipad" => "pages#terms_of_service_for_ipad"
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors
