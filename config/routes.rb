@@ -73,8 +73,6 @@ Classicly::Application.routes.draw do
   # current version of the web API
   match "/web_api" => "web_api#create", :via => :post
   match '/web_api/query' => "web_api#query", :via => :post
-  match "/web_api" => "web_api#create", :via => :get
-  match '/web_api/query' => "web_api#query", :via => :get
 
   match '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
 
