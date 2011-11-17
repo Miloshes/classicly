@@ -13,7 +13,14 @@ class RequestMiddleware
       if env['HTTPS'] == 'on' || env['HTTP_X_FORWARDED_PROTO'] == 'https'
         @app.call(env)
       else
-        req = Rack::Request.new(env)
+        req     = Rack::Request.new(env)
+        new_url = req.url.clone
+        
+        # change HTTP to HTTPS
+        new_url.gsub!(/^http:/, "https:")
+        # change //classicly.com to //secure.classicly.com
+        new_url.gsub!(/\/\/classicly\.com/, "//secure.classicly.com")
+        
         [301, { "Location" => req.url.gsub(/^http:/, "https:") }, []]
       end
 
