@@ -21,7 +21,7 @@ class RequestMiddleware
         # change //classicly.com to //secure.classicly.com
         new_url.gsub!(/\/\/classicly\.com/, "//secure.classicly.com")
         
-        [301, { "Location" => req.url.gsub(/^http:/, "https:") }, []]
+        [301, { "Location" => new_url }, []]
       end
 
     else
