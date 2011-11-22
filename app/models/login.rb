@@ -72,6 +72,8 @@ class Login < ActiveRecord::Base
         :terms_of_service => params["terms_of_service"] == "accepted",
         :password         => params["password"]
       )
+      
+      login.send_registration_notification_for "ios"
     end
     
     login.manage_associated_ios_devices(params)
@@ -121,11 +123,9 @@ class Login < ActiveRecord::Base
 
     # set the access token for the user, we will need it if the user wants to be removed from the mailing list
     login.access_token = ActiveSupport::SecureRandom.base64(8).gsub("/","_").gsub(/=+$/,"") if login.access_token.nil?
-
     login.save
 
-    # send mail
-    login.send_registration_notification if is_new_login
+    login.send_registration_notification_for("web") if is_new_login
 
     return login, is_new_login
   end
@@ -201,8 +201,16 @@ class Login < ActiveRecord::Base
   
   # == Utility methods
   
-  def send_registration_notification
-    LoginMailer.registration_notification(self).deliver
+  def send_registration_notification_for(platform = "web")
+    # safety net, but it should never happen
+    return if self.email.blank?
+    
+    case platform.downcase
+    when "web"
+      LoginMailer.registration_notification_for_web(self).deliver
+    when "ios"
+      LoginMailer.registration_notification_for_ios(self).deliver
+    end
   end
   
   def manage_associated_ios_devices(params)

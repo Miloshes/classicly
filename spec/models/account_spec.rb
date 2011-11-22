@@ -2,24 +2,30 @@ require "spec_helper"
 
 describe Login do
   
-  describe "getting created via a Web API call" do
-    
-    before(:each) do
-      @api_call_params = {
-          "structure_version"     => "1.2",
-          "action"                => "register_ios_user",
-          "user_fbconnect_id"     => "1232134",
-          "device_id"             => "asd",
-          "device_ss_id"          => "asd2",
-          "user_email"            => "test@test.com",
-          "user_first_name"       => "Zsolt",
-          "user_last_name"        => "Maslanyi",
-          "user_location_city"    => "Budapest",
-          "user_location_country" => "Hungary"
-        }
+  before(:each) do
+    @login = stub_model(
+        Login,
+        :fb_connect_id   => "123",
+        :email           => "test@test.com",
+        :user_first_name => "Zsolt",
+        :user_last_name  => "Maslanyi"
+      )
       
-      @login = stub_model(Login, :fb_connect_id => "123")
-    end
+    @api_call_params = {
+        "structure_version"     => "1.2",
+        "action"                => "register_ios_user",
+        "user_fbconnect_id"     => "1232134",
+        "device_id"             => "asd",
+        "device_ss_id"          => "asd2",
+        "user_email"            => "test@test.com",
+        "user_first_name"       => "Zsolt",
+        "user_last_name"        => "Maslanyi",
+        "user_location_city"    => "Budapest",
+        "user_location_country" => "Hungary"
+      }
+  end
+  
+  describe "getting created via a Web API call" do
     
     it "should fail when one of the required parameters is missing from the API call parameters" do
       # structure_version is not required as we want to support ancient versions of the API (1.0)
@@ -48,7 +54,7 @@ describe Login do
       
       Login.register_from_ios_app(@api_call_params)
     end
-
+    
     # NOTE: we're disabling this until we have Terms of Service in place and such
     # it "should convert all the anonymous book highlights & notes of the user into normal ones" do
     #   Login.stub_chain(:where, :first).and_return(@login)
@@ -135,5 +141,65 @@ describe Login do
     end
     
   end
+  
+  describe "sending out registration welcome emails" do
+    
+    context "when the user registers from an iOS app" do
+      
+      it "should send out a welcome email to a new user" do
+        Login.stub_chain(:where, :first).and_return(nil)
+        mail_to_send = mock("LoginMailer")
+        
+        LoginMailer.should_receive(:registration_notification_for_ios).and_return(mail_to_send)
+        mail_to_send.should_receive(:deliver)
+
+        Login.register_from_ios_app(@api_call_params)
+      end
+
+      it "shouldn't send an email to existing users" do
+        Login.stub_chain(:where, :first).and_return(@login)
+
+        LoginMailer.should_not_receive(:registration_notification_for_ios)
+
+        Login.register_from_ios_app(@api_call_params)
+      end
+      
+    end
+    
+    context "when the user registers through classicly.com" do
+      
+      before(:each) do
+        @user_profile_hash = {
+          "email"      => @login.email,
+          "first_name" => @login.first_name,
+          "last_name"  => @login.last_name,
+          "location"   => {}
+        }
+        
+        @user_profile_hash["location"]["name"] = "Budapest, Hungary"
+      end
+      
+      it "should send out a welcome email to a new user" do
+        Login.stub_chain(:where, :first).and_return(nil)
+        mail_to_send = mock("LoginMailer")
+      
+        LoginMailer.should_receive(:registration_notification_for_web).and_return(mail_to_send)
+        mail_to_send.should_receive(:deliver)
+
+        Login.register_from_classicly(@user_profile_hash)
+      end
+
+      it "shouldn't send an email to existing users" do
+        Login.stub(:exists?).and_return(true)
+      
+        LoginMailer.should_not_receive(:registration_notification_for_web)
+
+        Login.register_from_classicly(@user_profile_hash)
+      end
+      
+    end
+    
+  end
+  
   
 end
