@@ -1,3 +1,5 @@
+# TODO: access_token should be renamed to unsubscribe_access_token
+
 class Login < ActiveRecord::Base
   has_many :reviews
   has_many :ios_devices, :foreign_key => "user_id"
@@ -72,7 +74,7 @@ class Login < ActiveRecord::Base
         :terms_of_service => params["terms_of_service"] == "accepted",
         :password         => params["password"]
       )
-      
+      login.setup_access_token
       login.send_registration_notification_for "ios"
     end
     
@@ -122,7 +124,7 @@ class Login < ActiveRecord::Base
     }
 
     # set the access token for the user, we will need it if the user wants to be removed from the mailing list
-    login.access_token = ActiveSupport::SecureRandom.base64(8).gsub("/","_").gsub(/=+$/,"") if login.access_token.nil?
+    login.setup_access_token
     login.save
 
     login.send_registration_notification_for("web") if is_new_login
@@ -211,6 +213,12 @@ class Login < ActiveRecord::Base
     when "ios"
       LoginMailer.registration_notification_for_ios(self).deliver
     end
+  end
+  
+  def setup_access_token
+    return if !self.access_token.blank?
+    
+    self.update_attribute("access_token", ActiveSupport::SecureRandom.base64(8).gsub("/","_").gsub(/=+$/,""))
   end
   
   def manage_associated_ios_devices(params)

@@ -1,5 +1,7 @@
 require "spec_helper"
 
+# TODO: properly test registration through classicly.com
+
 describe Login do
   
   before(:each) do
@@ -46,6 +48,12 @@ describe Login do
       expect {
         Login.register_from_ios_app(@api_call_params)
       }.to change(Login, :count).by(1)
+    end
+    
+    it "should generate an unsubscribe access token" do
+      new_login = Login.register_from_ios_app(@api_call_params)
+      
+      new_login.access_token.should_not be_blank
     end
     
     it "should convert all the anonymous reviews of the user into normal ones" do
