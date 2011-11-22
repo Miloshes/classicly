@@ -1,23 +1,16 @@
-Hey #{@user.first_name}, thanks for signing up!
+Hey#{ if !@user.first_name.blank? ? @user.first_name + " " : ""}, thanks for signing up!
 %br
 %br
-We really appreciate you being an early adopter, and would love your feedback to help shape the future of the app.
+Classicly is the service powering Free Books and Free Audiobooks, and we massively appreciate you being an early adopter. We'd love your feedback to help shape the future of the app. 
 %br
 %br
-We're preparing to launch a whole bunch of great community features. Profiles, Top Reviews, the Classicly Leaderboard, and the Open Reader. You'll be able to read any book you have on your computer with Classicly - and share those books with a tap.
+We're preparing to launch a whole bunch of great community features.
 %br
-%br
-Which of these features are you most interested? Are there other things you'd like to see before them? We'd love your feedback on how how we can make Classicly the best reading experience on the planet.
-%br
-%br
-Cheers and all the best,
-%br
-%br
-Colin Plamondon
-%br
-CEO, Classicly
-%br
-%br
+Profiles, a newsfeed of what your friends are reading (The Bookfeed!), tons of new books, and Community Collections, where you can put together your own book collections and browse those of others. In addition, we're planning the Classicly Uploader. Install on your computer and add books to Free Books with a quick drag and drop.
+%br 
+%br 
+Our goal is for you to be able to read anywhere, on anything, and talk with your friends about it.
+
 [Not interested in getting newsletter messages from us? Click 
 = link_to 'here to unsubscribe.', unsubscribe_url(:address => @user.email, :token => @user.access_token)
 ]
