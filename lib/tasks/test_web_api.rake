@@ -53,14 +53,14 @@ namespace :test_web_api do
         'action'                => 'register_ios_user',
         'user_fbconnect_id'     => '1232134',
         'device_id'             => 'ASDASD',
-        'user_email'            => 'test@test.com',
-        'user_first_name'       => 'Zsolt',
+        'user_email'            => 'zsolt.maslanyi@gmail.com',
+        'user_first_name'       => nil,
         'user_last_name'        => 'Maslanyi',
         'user_location_city'    => 'Budapest',
         'user_location_country' => 'Hungary'
       }
       
-      response = RestClient.post('http://localhost:3000/web_api', :json_data => data.to_json)
+      response = RestClient.post('http://classicly-staging.heroku.com/web_api', :json_data => data.to_json)
       puts "Response was: #{response.body}"
   end
   
@@ -123,14 +123,13 @@ namespace :test_web_api do
       
       response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
       puts "Response for BOOK was: #{response.body}"
-
-
+      
       data = {
           'action'       => 'get_review_stats_for_book',
           'audiobook_id' => 10
         }
 
-      response = RestClient.post('http://localhost:3000/web_api/query', :json_data => data.to_json)
+      response = RestClient.get('http://localhost:3000/web_api/query', :json_data => data.to_json)
       puts "Response for AUDIOBOOK was: #{response.body}"
   end
   

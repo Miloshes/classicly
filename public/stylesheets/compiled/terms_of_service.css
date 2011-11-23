@@ -1,0 +1,10 @@
+/* line 1, ../../../app/stylesheets/terms_of_service.sass */
+body {
+  font-family: "Scala", Georgia, sans-serif;
+  text-align: justify;
+  font-size: 16px;
+}
+/* line 7, ../../../app/stylesheets/terms_of_service.sass */
+body ul li {
+  list-style-type: none;
+}
