@@ -3,32 +3,13 @@ class ShareMessageHandler
   include ActionDispatch::Routing::UrlFor
   include Rails.application.routes.url_helpers
   include CommonSeoDefaultsMethods
-  
+
+  attr_accessor :all_template_sets, :template_set
   attr_accessor :target_platform, :message_type
   
-  MESSAGE_STUBS = {
-    # NOTE: assumption here is that the URLs are at the end of the Twitter message
-    "twitter" => {
-      "book share"          => "I'm reading {{book author}}'s {{book title}} right now in @classiclyapp. You can download it {{available formats}} at {{book url}}",
-      "highlight share"     => "Highlighted {{book title}} in @classiclyapp: {{book highlight}} {{highlight url}}",
-      "note share"          => "Took a note on {{book title}} in @classiclyapp: \"{{note}}\" {{highlight url}}",
-      "selected text share" => "Just read this via @classiclyapp: \"{{selected text}}\" {{book url}}"
-    },
-    "facebook" => {
-      "book share" => {
-        "title"       => "I'm reading {{book title}} by {{book author}}",
-        "link"        => "{{book url}}",
-        "description" => "This is a link to {{book title}}. Don't have Free Books for iPad? You can still download the book as {{available formats}} -- free."
-      },
-      "highlight share" => {
-        "title"       => "Found this in {{book title}}",
-        "link"        => "{{highlight url}}",
-        "description" => "I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in {{available formats}}. Here's my highlight:\n\n{{book highlight}}"
-      }
-    }
-  }
-  
   def initialize
+    @all_template_sets = load_all_template_sets
+    @template_set      = select_template_set
   end
 
   # important parameters are:
@@ -44,7 +25,7 @@ class ShareMessageHandler
         params[:message_type] = "note share"
       end
       
-      raw_message = MESSAGE_STUBS[params[:target_platform]][params[:message_type]]
+      raw_message = @template_set[params[:target_platform]][params[:message_type]]
 
       return nil if raw_message.blank?
       
@@ -54,7 +35,7 @@ class ShareMessageHandler
       
     # == Facebook
     when "facebook"
-      raw_messages_hash = MESSAGE_STUBS[params[:target_platform]][params[:message_type]]
+      raw_messages_hash = @template_set[params[:target_platform]][params[:message_type]]
       assembled_message_hash = assemble_message_for_facebook(raw_messages_hash, params)
       
       return assembled_message_hash
@@ -161,12 +142,13 @@ class ShareMessageHandler
   end
   
   def message_without_url(full_message)
-    # check the share message without the URL at the end, to determine if it's short enough
-    # NOTE: assumption here is that the URLs are at the end of the Twitter message
-    # if we want to omit the share URL for twitter
-    match_result = full_message.match /(.*)(?:http:\/\/.*)/
+    # NOTE: assumption here is that there's only 1 URL in the message
+    # matching the URL so we can cut it from the message
+    match_result = full_message.match /.*(http:\/\/.*?)\s.*/
+    
     if match_result
-      return match_result[1]
+      # cut the URL and return
+      return full_message.gsub(match_result[1], "")
     else
       return full_message
     end
@@ -191,6 +173,22 @@ class ShareMessageHandler
     utm_params = "?utm_campaign=#{utm_campaign}&utm_medium=#{utm_medium}&utm_source=#{utm_source}&utm_content=#{utm_content}"
     
     return link + utm_params
+  end
+  
+  private
+  
+  def load_all_template_sets
+    @all_template_sets = YAML.load_file("db/share_message_template_sets.yaml")
+  end
+  
+  def select_template_set
+    twitter_templates  = @all_template_sets["twitter"]
+    facebook_templates = @all_template_sets["facebook"]
+    
+    @template_set = {
+      "twitter"  => twitter_templates[rand(twitter_templates.size)],
+      "facebook" => facebook_templates[rand(facebook_templates.size)]
+    }
   end
   
 end
