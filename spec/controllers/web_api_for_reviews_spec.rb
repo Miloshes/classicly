@@ -9,7 +9,7 @@ describe WebApiController, "(API calls - review creation)" do
     @ios_device = mock_model(IosDevice, :original_udid => "original_udid1", :ss_udid => "ss_udid1")
     @login      = mock_model(Login, :fb_connect_id => "123", :ios_device => @ios_device, :email => "test@test.com")
 
-    Login.stub_chain(:where, :first).and_return(@login)
+    Login.stub!(:find_by_fb_connect_id).and_return(@login)
   end
   
   describe "keeping compatibility with the API version less than 1.2" do
@@ -126,6 +126,8 @@ describe WebApiController, "(API calls - review creation)" do
   context "when using the newer API" do
     
     it "should be able to register a book review for a user with a Classicly account" do
+      Login.stub!(:find_by_email).and_return(@login)
+      
       data = {
           "structure_version" => "1.3",
           "user_email"        => @login.email,

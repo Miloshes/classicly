@@ -31,13 +31,15 @@ class Login < ActiveRecord::Base
     required_parameters.each do |param_to_check|
       return nil if params[param_to_check].blank?
     end
+    
+    existing_login = nil
 
     # upwards from API v1.3, we use the email as the main identification method
     # TODO: API version >= v1.3
     if params["structure_version"] == "1.3"
-      existing_login = Login.where(:email => params["user_email"]).first()
+      existing_login = Login.where(:email => params["user_email"]).first() if params["user_email"]
     else
-      existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first()
+      existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first() if params["user_fbconnect_id"]
     end
 
     # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)

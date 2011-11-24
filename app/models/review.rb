@@ -18,11 +18,16 @@ class Review < ActiveRecord::Base
 
     return nil if reviewable.blank?
 
+    login = nil
+    
     # We check by email first to get users with Classicly accounts, then we check with Facebook also
     # to get the users who registered before we had proper account creation
-    login = Login.where(:email => data["user_email"]).first()
-    if login.blank?
-      login = Login.where(:fb_connect_id => data["user_fbconnect_id"].to_s).first()
+    if data["user_email"]
+      login = Login.find_by_email(data["user_email"])
+    end
+    
+    if login.blank? && data["user_fbconnect_id"]
+      login = Login.find_by_fb_connect_id(data["user_fbconnect_id"].to_s)
     end
 
     # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous reviews

@@ -28,10 +28,15 @@ class BookHighlight < ActiveRecord::Base
       return nil
     end
     
+    login = nil
+    
     # We check by email first to get users with Classicly accounts, then we check with Facebook also
     # to get the users who registered before we had proper account creation
-    login = Login.find_by_email(data["user_email"])
-    if login.blank?
+    if data["user_email"]
+      login = Login.find_by_email(data["user_email"])
+    end
+    
+    if login.blank? && data["user_fbconnect_id"]
       login = Login.find_by_fb_connect_id(data["user_fbconnect_id"].to_s)
     end
 

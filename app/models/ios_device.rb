@@ -7,8 +7,13 @@ class IosDevice < ActiveRecord::Base
   def self.make_sure_its_registered_and_assigned_to_user(original_udid, new_ss_udid, user)
     return nil if (original_udid.blank? && new_ss_udid.blank?) || user.blank?
     
-    ios_device = IosDevice.where(:original_udid => original_udid).first()
-    if ios_device.blank?
+    ios_device = nil
+    
+    if original_udid
+      ios_device = IosDevice.where(:original_udid => original_udid).first()
+    end
+    
+    if ios_device.blank? && new_ss_udid
       ios_device = IosDevice.where(:ss_udid => new_ss_udid).first()
     end
     
@@ -35,7 +40,11 @@ class IosDevice < ActiveRecord::Base
   def self.try_to_migrate_device_udids(original_udid, new_ss_udid)
     return nil if (original_udid.blank? || new_ss_udid.blank?)
 
-    ios_device = IosDevice.where(:original_udid => original_udid).first()
+    ios_device = nil
+
+    if original_udid
+      ios_device = IosDevice.where(:original_udid => original_udid).first()
+    end
     
     if ios_device
       ios_device.update_attributes(:ss_udid => new_ss_udid)
