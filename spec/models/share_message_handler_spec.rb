@@ -34,6 +34,20 @@ describe ShareMessageHandler do
     @share_message_handler = ShareMessageHandler.new
   end
   
+  describe "selecting the base set of message templates" do
+    
+    it "should load the whole selection of template sets" do
+      @share_message_handler.all_template_sets.class.should == Hash
+      @share_message_handler.all_template_sets.keys.sort == ["facebook", "twitter"]
+    end
+    
+    it "should chose a template set based on some rule (right now it's random)" do
+      @share_message_handler.template_set.class.should == Hash
+      @share_message_handler.template_set.keys.sort == ["facebook", "twitter"]
+    end
+    
+  end
+  
   describe "responding to a Facebook share message request" do
     
     before(:each) do
