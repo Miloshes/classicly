@@ -251,12 +251,12 @@ class Login < ActiveRecord::Base
     end
     
     # we fall back to locating the user by facebook ID
-    if login.blank? && fbconnect_id.blank?
+    if login.blank? && !fbconnect_id.blank?
       login = Login.find_by_fb_connect_id(fbconnect_id.to_s)
     end
     
     # this is the last fallback, try to locate the user by it's device ID
-    if login.blank? && ss_device_id.blank?
+    if login.blank? && !ss_device_id.blank?
       login = IosDevice.find_by_ss_udid(ss_device_id.to_s).user
     end
     
