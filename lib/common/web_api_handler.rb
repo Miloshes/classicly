@@ -67,7 +67,7 @@ class WebApiHandler
         :created_at          => review.created_at,
         :email               => review.reviewer.email || "",
         :fb_connect_id       => review.reviewer.fb_connect_id || "",
-        :fb_name             => review.reviewer.first_name + " " + review.reviewer.last_name,
+        :fb_name             => (review.reviewer.first_name || "") + " " + (review.reviewer.last_name || ""),
         :fb_location_city    => review.reviewer.location_city || "",
         :fb_location_country => review.reviewer.location_country || "",
       } 
