@@ -2,7 +2,7 @@
 
 class Login < ActiveRecord::Base
   has_many :reviews
-  has_many :ios_devices, :foreign_key => "user_id"
+  has_many :ios_devices, :foreign_key => "user_id", :dependent => :destroy
   has_one :library
   
   # Just an alias for ios_devices.first. Makes total sense as most of our users will only have one device.
