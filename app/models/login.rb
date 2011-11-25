@@ -64,7 +64,7 @@ class Login < ActiveRecord::Base
       login = existing_login
     else
       login = Login.create(
-        :fb_connect_id    => params["user_fbconnect_id"],
+        :fb_connect_id    => params["user_fbconnect_id"].blank? ? nil : params["user_fbconnect_id"],
         :twitter_name     => params["twitter_name"],
         :email            => params["user_email"],
         :first_name       => params["user_first_name"],
