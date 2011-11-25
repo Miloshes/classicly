@@ -9,12 +9,12 @@ class IosDevice < ActiveRecord::Base
     
     ios_device = nil
     
-    if original_udid
-      ios_device = IosDevice.where(:original_udid => original_udid).first()
+    if new_ss_udid
+      ios_device = IosDevice.where(:ss_udid => new_ss_udid).first()
     end
     
-    if ios_device.blank? && new_ss_udid
-      ios_device = IosDevice.where(:ss_udid => new_ss_udid).first()
+    if ios_device.blank? && original_udid
+      ios_device = IosDevice.where(:original_udid => original_udid).first()
     end
     
     result = false
