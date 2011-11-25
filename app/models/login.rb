@@ -246,17 +246,17 @@ class Login < ActiveRecord::Base
     login = nil
     
     # check by email first to get users with real Classicly accounts
-    if email
+    if !email.blank?
       login = Login.find_by_email(email)
     end
     
     # we fall back to locating the user by facebook ID
-    if login.blank? && fbconnect_id
+    if login.blank? && fbconnect_id.blank?
       login = Login.find_by_fb_connect_id(fbconnect_id.to_s)
     end
     
     # this is the last fallback, try to locate the user by it's device ID
-    if login.blank? && ss_device_id
+    if login.blank? && ss_device_id.blank?
       login = IosDevice.find_by_ss_udid(ss_device_id.to_s).user
     end
     
