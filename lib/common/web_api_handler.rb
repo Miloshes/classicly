@@ -93,13 +93,7 @@ class WebApiHandler
   end
   
   def get_list_of_books_the_user_wrote_review_for(params)
-    if params["user_email"]
-      login = Login.find_by_email(params["user_email"])
-    elsif params["user_fbconnect_id"]
-      login = Login.find_by_fb_connect_id(params["user_fbconnect_id"].to_s)
-    else
-      login = IosDevice.find_by_ss_udid(params["device_ss_id"].to_s).user
-    end
+    login = Login.find_user(params["user_email"], params["user_fbconnect_id"], params["device_ss_id"])
     
     return [].to_json if login.blank?
     
@@ -169,10 +163,8 @@ class WebApiHandler
     return nil.to_json if book.blank?
     
     if params["user_fbconnect_id"] || params["user_email"]
-      login = Login.where(:email => params["user_email"].to_s).first()
-      if login.blank?
-        login  = Login.where(:fb_connect_id => params["user_fbconnect_id"].to_s).first()
-      end
+      
+      login = Login.find_user(params["user_email"], params["user_fbconnect_id"])
       
       review = Review.where(:reviewable => book, :reviewer => login).first()
       
@@ -202,14 +194,8 @@ class WebApiHandler
 
     # Look up user based on his Classicly accounts email address, fall back to Facebook ID, then fall back to device ID
     # which would yield the same user nevertheless - this is for safety measures
-    if params["user_email"]
-      login = Login.find_by_email(params["user_email"])
-    elsif params["user_fbconnect_id"]
-      login = Login.find_by_fb_connect_id(params["user_fbconnect_id"].to_s)
-    else
-      login = IosDevice.find_by_ss_udid(params["device_ss_id"].to_s).user
-    end
-    
+    login = Login.find_user(params["user_email"], params["user_fbconnect_id"], params["device_ss_id"])
+        
     return nil.to_json if book.blank?
     
     anonymous_highlights = AnonymousBookHighlight.where(
