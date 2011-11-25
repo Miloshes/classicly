@@ -3,7 +3,7 @@ twitter:
   highlight share: "\"{{book highlight}}\" {{highlight url}} via @classiclyapp"
   note share: "\"{{note}}\" {{highlight url}} via @classiclyapp"
   selected text share: "\"{{selected text}}\" {{book url}} via @classiclyapp"
-- book share: Now reading {{book title}} via @classiclyapp {{book url}}.
+- book share: Now reading {{book title}} via @classiclyapp {{book url}}
   highlight share: "Highlighted {{book title}}: \"{{book highlight}}\" {{highlight url}} via @classiclyapp"
   note share: "Noted {{book title}}: \"{{note}}\" {{highlight url}} via @classiclyapp"
   selected text share: "Highlighted {{book title}}: \"{{selected text}}\" {{book url}} via @classiclyapp"

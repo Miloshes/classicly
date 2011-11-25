@@ -144,7 +144,7 @@ class ShareMessageHandler
   def message_without_url(full_message)
     # NOTE: assumption here is that there's only 1 URL in the message
     # matching the URL so we can cut it from the message
-    match_result = full_message.match /.*(http:\/\/.*?)\s.*/
+    match_result = full_message.match /.*(http:\/\/.*?)(\.$|\s.*|$)/
     
     if match_result
       # cut the URL and return
