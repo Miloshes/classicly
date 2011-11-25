@@ -1,0 +1,26 @@
+# IMPORTANT NOTE: due to the limitations of the iOS implementation, URLs have to be at the end of the message string
+twitter: 
+- book share: Started reading {{book title}} by {{book author}} via @classiclyapp {{book url}}
+  highlight share: "\"{{book highlight}}\" via @classiclyapp {{highlight url}}"
+  note share: "\"{{note}}\" via @classiclyapp {{highlight url}}"
+  selected text share: "\"{{selected text}}\" via @classiclyapp {{book url}}"
+- book share: Now reading {{book title}} via @classiclyapp {{book url}}
+  highlight share: "Highlighted {{book title}}: \"{{book highlight}}\" via @classiclyapp {{highlight url}}"
+  note share: "Noted {{book title}}: \"{{note}}\" via @classiclyapp {{highlight url}}"
+  selected text share: "Highlighted {{book title}}: \"{{selected text}}\" via @classiclyapp {{book url}}"
+- book share: "Started reading {{book title}} by {{book author}} #readclassicly. {{book url}}"
+  highlight share: "\"{{book highlight}}\" #readclassicly {{highlight url}}"
+  note share: "\"{{note}}\" #readclassicly {{highlight url}}"
+  selected text share: "\"{{selected text}}\" #readclassicly {{book url}}"
+facebook: 
+- book share: 
+    title: I'm reading {{book title}} by {{book author}}
+    link: "{{book url}}"
+    description: This is a link to {{book title}}. Don't have Free Books for iPad? You can still download the book as {{available formats}} -- free.
+  highlight share: 
+    title: Found this in {{book title}}
+    link: "{{highlight url}}"
+    description: |-
+      I'm reading with Classicly- 23,469 books and it's 100% free. Click the link and you can download {{book title}} for free in {{available formats}}. Here's my highlight:
+      
+      {{book highlight}}

@@ -8,7 +8,8 @@ class AddNewColumnsToLogin < ActiveRecord::Migration
 
   def self.down
     remove_column :logins, :twitter_name
-    remove_column :logins, :password
+    remove_column :logins, :salt
+    remove_column :logins, :hashed_password
     remove_column :logins, :terms_of_service
   end
 end

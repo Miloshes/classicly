@@ -2,7 +2,7 @@
 
 class Login < ActiveRecord::Base
   has_many :reviews
-  has_many :ios_devices, :foreign_key => "user_id"
+  has_many :ios_devices, :foreign_key => "user_id", :dependent => :destroy
   has_one :library
   
   # Just an alias for ios_devices.first. Makes total sense as most of our users will only have one device.
@@ -31,13 +31,15 @@ class Login < ActiveRecord::Base
     required_parameters.each do |param_to_check|
       return nil if params[param_to_check].blank?
     end
+    
+    existing_login = nil
 
     # upwards from API v1.3, we use the email as the main identification method
     # TODO: API version >= v1.3
     if params["structure_version"] == "1.3"
-      existing_login = Login.where(:email => params["user_email"]).first()
+      existing_login = Login.where(:email => params["user_email"]).first() if params["user_email"]
     else
-      existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first()
+      existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first() if params["user_fbconnect_id"]
     end
 
     # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)
@@ -62,7 +64,7 @@ class Login < ActiveRecord::Base
       login = existing_login
     else
       login = Login.create(
-        :fb_connect_id    => params["user_fbconnect_id"],
+        :fb_connect_id    => params["user_fbconnect_id"].blank? ? nil : params["user_fbconnect_id"],
         :twitter_name     => params["twitter_name"],
         :email            => params["user_email"],
         :first_name       => params["user_first_name"],
@@ -238,6 +240,27 @@ class Login < ActiveRecord::Base
       :terms_of_service => params["terms_of_service"] == "accepted",
       :password         => params["password"]
     )
+  end
+  
+  def self.find_user(email, fbconnect_id, ss_device_id = nil)
+    login = nil
+    
+    # check by email first to get users with real Classicly accounts
+    if !email.blank?
+      login = Login.find_by_email(email)
+    end
+    
+    # we fall back to locating the user by facebook ID
+    if login.blank? && !fbconnect_id.blank?
+      login = Login.find_by_fb_connect_id(fbconnect_id.to_s)
+    end
+    
+    # this is the last fallback, try to locate the user by it's device ID
+    if login.blank? && !ss_device_id.blank?
+      login = IosDevice.find_by_ss_udid(ss_device_id.to_s).user
+    end
+    
+    return login
   end
   
 end
