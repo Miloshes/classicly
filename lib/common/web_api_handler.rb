@@ -166,9 +166,11 @@ class WebApiHandler
       
       login = Login.find_user(params["user_email"], params["user_fbconnect_id"])
       
+      return nil.to_json if login.blank?
+      
       review = Review.where(:reviewable => book, :reviewer => login).first()
       
-      return nil.to_json if login.blank? || review.blank?
+      return nil.to_json if review.blank?
       
       return {
           :content    => review.content || "",
