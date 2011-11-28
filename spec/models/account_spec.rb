@@ -209,5 +209,46 @@ describe Login do
     
   end
   
+  describe "looking up a user account" do
+    
+    it "should find an account based on the email address" do
+      user_to_find = FactoryGirl.create(:login, :email => "email@test.com")
+      
+      found_user = Login.find_user("email@test.com")
+      
+      found_user.should == user_to_find
+    end
+    
+    it "should find an account based on the Facebook ID" do
+      user_to_find = FactoryGirl.create(:login, :fb_connect_id => "123456")
+      
+      found_user = Login.find_user(nil, "123456")
+      
+      found_user.should == user_to_find
+    end
+    
+    it "should find an account based on the device ID" do
+      user_to_find = FactoryGirl.create(:login)
+      ios_device = FactoryGirl.create(:ios_device, :user => user_to_find)
+      
+      found_user = Login.find_user(nil, nil, ios_device.ss_udid)
+      
+      found_user.should == user_to_find
+    end
+    
+    it "should have a lookup order of email, Facebook ID, device ID" do
+      # set up the expectations, but no user in the system
+      Login.should_receive(:find_by_email).ordered
+      Login.should_receive(:find_by_fb_connect_id).ordered
+      Login.should_receive(:find_user_by_device).ordered
+      
+      user_to_find = Login.find_user("no_email_like_this", "no_fb_like_this", "no_device_like_this")
+      
+      # shouldn't find anyone
+      user_to_find.should be_nil
+    end
+    
+  end
+  
   
 end

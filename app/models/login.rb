@@ -242,7 +242,7 @@ class Login < ActiveRecord::Base
     )
   end
   
-  def self.find_user(email, fbconnect_id, ss_device_id = nil)
+  def self.find_user(email, fbconnect_id = nil, ss_device_id = nil)
     login = nil
     
     # check by email first to get users with real Classicly accounts
@@ -257,10 +257,26 @@ class Login < ActiveRecord::Base
     
     # this is the last fallback, try to locate the user by it's device ID
     if login.blank? && !ss_device_id.blank?
-      login = IosDevice.find_by_ss_udid(ss_device_id.to_s).user
+      login = Login.find_user_by_device(ss_device_id)
     end
     
     return login
+  end
+  
+  def self.find_user_by_device(ss_udid, original_udid = nil)
+    user = nil
+    
+    if !ss_udid.blank?
+      device = IosDevice.find_by_ss_udid(ss_udid.to_s)
+      user   = device.user if !device.blank?
+    end
+    
+    if user.blank? && !original_udid.blank?
+      device = IosDevice.find_by_ss_udid(ss_udid.to_s)
+      user   = device.user if !device.blank?
+    end
+    
+    return user
   end
   
 end
