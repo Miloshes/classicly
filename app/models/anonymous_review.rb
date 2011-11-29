@@ -34,7 +34,7 @@ class AnonymousReview < ActiveRecord::Base
       
       # we got the review, update to use the UDID replacement
       if review
-        review.update_attrbiutes(:ios_device_ss_id => data["device_ss_id"])
+        review.update_attributes(:ios_device_ss_id => data["device_ss_id"])
       end
     end
         
