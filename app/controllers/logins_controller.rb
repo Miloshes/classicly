@@ -13,7 +13,7 @@ class LoginsController < ApplicationController
       redirect_to root_path
     end
 
-    if params[:confirm] && params[:confirm] == 'yes'
+    if params[:confirm] && params[:confirm] == "yes"
       @login.update_attributes(:mailing_enabled => false, :access_token => nil)
       @added_to_blacklist = true
     end
@@ -23,8 +23,8 @@ class LoginsController < ApplicationController
   private
 
   def fetch_user_profile_from_fb
-    graph_api    = Koala::Facebook::GraphAPI.new(facebook_cookies['access_token'])
-    profile_info = graph_api.get_object('me')
+    graph_api    = Koala::Facebook::GraphAPI.new(facebook_cookies["access_token"])
+    profile_info = graph_api.get_object("me")
   end
 
 end
