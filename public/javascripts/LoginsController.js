@@ -34,8 +34,8 @@ LoginsController.prototype = {
     var self = this;
 
     FB.login( function( response ){
-      if( response.session ){
-        self.uiHandler.setuid( response.session.uid );
+      if( response.authResponse ){
+        self.uiHandler.setuid( response.authResponse.uid );
 
         $.ajax({
           type: "POST",
@@ -51,7 +51,7 @@ LoginsController.prototype = {
           }
         });
       }
-    }, { perms:'email'});
+    }, { scope: "email"});
   },
 
   pushToKissmetrics: function( data ){

@@ -5,7 +5,7 @@ $( function() {
   $( "a#fb_connect" ).live( "click", function(){
     FB.login( function( response ) {
       // the user successfully logs in, let's register him and notify the Library model afterwards
-      if ( response.session ) {
+      if ( response.authResponse ) {
         $.ajax({
           type: "POST",
           url: "/logins",

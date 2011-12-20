@@ -16,11 +16,11 @@ $(function(){
   
   $('#download-facebook-post.conversion-button.kiss.green.large.kiss').click(function(){
     FB.getLoginStatus(function(response) {
-      if (response.session) {
+      if (response.authResponse) {
         downloadPagePublishToFacebook();
       } else {
         FB.login(function(response) {
-          if (response.session) {
+          if (response.authResponse) {
             login(response);
             // show dialog with feed
             downloadPagePublishToFacebook();

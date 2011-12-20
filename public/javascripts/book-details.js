@@ -33,7 +33,7 @@ $(function(){
   // login to facebook from <Write a review> link
   $('#title-right a').click(function(){
     FB.getLoginStatus(function(response) {
-      if(!(response.session)) {
+      if(!(response.authResponse)) {
         $('a.fb_button').click();
       }
     });
@@ -61,7 +61,7 @@ $(function(){
 });
 
 function loginInBookDetails(response){
-  var query = FB.Data.query('select first_name, last_name, pic_small, hometown_location, email from user where uid={0}',response.session.uid);
+  var query = FB.Data.query('select first_name, last_name, pic_small, hometown_location, email from user where uid={0}',response.authResponse.uid);
 
       query.wait(function(rows) {
         country = rows[0].hometown_location.country;
