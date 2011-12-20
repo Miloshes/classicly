@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def current_login
     Rails.logger.info(" -- cookies: #{facebook_cookies.inspect}")
-    return if !facebook_cookies["user_id"].blank?
+    return if !facebook_cookies.blank?
 
     @current_login ||= Login.where(:fb_connect_id => facebook_cookies["user_id"]).first
   end
