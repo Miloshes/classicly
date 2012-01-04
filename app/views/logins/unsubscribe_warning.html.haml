@@ -1,0 +1,4 @@
+#unsubscribe-page
+  %h2
+    Hi #{@login.first_name}, do you really want to unsubscribe?
+  = link_to("Unsubscribe me from mailing list", unsubscribe_url(:address => @login.email, :token =>  @login.access_token, :confirm => "yes"), :class => "highlight")

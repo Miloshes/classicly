@@ -6,18 +6,26 @@ class LoginsController < ApplicationController
   end
 
   def unsubscribe
-    @login = Login.find_by_email params[:address]
-
-    # return if the user has already taken himself out of the mailing or if the token is not valid
-    if @login.mailing_enabled == false || params[:address].nil? || params[:token].nil? || @login.access_token != params[:token]
+    # fallback - missing required parameters
+    if params[:address].blank? || params[:token].blank?
       redirect_to root_path
+      return
+    end
+
+    @login = Login.where(:email => params[:address], :access_token => params[:token]).first()
+
+    # fallback - haven't found the user or the token wasn't right
+    if @login.blank?
+      redirect_to root_path
+      return
     end
 
     if params[:confirm] && params[:confirm] == "yes"
       @login.update_attributes(:mailing_enabled => false, :access_token => nil)
-      @added_to_blacklist = true
+      render :action => "confirmed_unsubscription"
+    else
+      render :action => "unsubscribe_warning"
     end
-
   end
 
   private
