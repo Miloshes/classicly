@@ -1,4 +1,5 @@
 class SeoController < ApplicationController
+  
   def show_book
     @book = Book.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
         Audiobook.joins(:author).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first

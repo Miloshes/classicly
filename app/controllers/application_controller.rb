@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_login
-    return if facebook_cookies.blank?
+    return nil if facebook_cookies.blank?
 
     @current_login ||= Login.where(:fb_connect_id => facebook_cookies["user_id"]).first
   end
