@@ -52,6 +52,5 @@ Classicly::Application.configure do
   config.middleware.use 'RequestMiddleware'
   
   config.action_mailer.default_url_options = { :host => 'http://www.classicly.com' }
-  
   config.host = 'www.classicly.com'
 end
