@@ -9,9 +9,10 @@ Classicly::Application.routes.draw do
     match 'admin_seo/:type/:id' => 'admin_seo#edit_seo', :as => 'edit_seo'
     match 'admin_seo/:type/:id/update_seo_info' => 'admin_seo#update_seo_info', :as => 'update_seo_info'
     match 'blog_posts/associate_book' => 'blog_posts#associate_book'
+
+    # == Admin user related
     match 'logout' => 'admin_user_sessions#destroy', :as => 'logout'
     match 'sign_in' => 'admin_user_sessions#new', :as => 'sign_in'
-
     resource :admin_user_session
 
     resources :blog_posts do
@@ -27,7 +28,11 @@ Classicly::Application.routes.draw do
 
   resources :bookmarks, :only => [:create, :destroy]
 
+  # == User related
   resource :logins, :only => [:create]
+  resources :password_resets
+  match 'reset_password' => "password_resets#new"
+  match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
 
   # == Library
   match 'library' => 'libraries#show', :as => :library
@@ -84,8 +89,6 @@ Classicly::Application.routes.draw do
   match '/audiobooks/:audiobook_id/reviews' => 'reviews#create'
 
   match '/reviews/create_rating' => 'reviews#create_rating'
-
-  match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
   
   match '/pulse' => 'pulse#index', :as => :pulse
   
