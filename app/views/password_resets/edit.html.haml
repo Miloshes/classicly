@@ -1,0 +1,23 @@
+#password-reset-container
+  %h2
+    Reset Password
+  = form_for @login, :url => password_reset_path(params[:id]) do |f|
+    - if @login.errors.any?
+      .error_messages
+        %ul
+          - for message in @login.errors.full_messages
+            %li
+              = message
+
+    .field
+      = f.label :password
+      = f.password_field :password
+
+    .field
+      = f.label :password_confirmation
+      = f.password_field :password_confirmation
+
+    = hidden_field_tag "login[password_reset]", true
+
+    .actions
+      = f.submit "Update Password"
