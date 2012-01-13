@@ -40,6 +40,7 @@
 @import "partials/admin";
 @import "partials/logins";
 @import "partials/pulse";
+@import "partials/password_reset";
 
 body.bp {
   @include blueprint-utilities;
