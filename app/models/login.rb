@@ -5,6 +5,16 @@ class Login < ActiveRecord::Base
   has_many :ios_devices, :foreign_key => "user_id", :dependent => :destroy
   has_one :library
   
+  with_options :if => :doing_a_password_reset? do |reset|
+    reset.validates :password, :presence => true
+    reset.validates :password_confirmation, :presence => true
+    reset.validates :password, :confirmation => true
+  end
+
+  validates :email, :uniqueness => {:case_sensitive => false}, :if => :email_present?
+
+  attr_accessor :password_confirmation, :password_reset
+  
   # Just an alias for ios_devices.first. Makes total sense as most of our users will only have one device.
   def ios_device
     self.ios_devices.first
@@ -177,8 +187,6 @@ class Login < ActiveRecord::Base
   end
   
   def password=(new_password)
-    return nil if new_password.blank?
-    
     @password = new_password
     create_new_salt
     self.hashed_password = Login.encrypted_password(self.password, self.salt)
@@ -216,16 +224,32 @@ class Login < ActiveRecord::Base
       LoginMailer.registration_notification_for_ios(self).deliver
     end
   end
+
+  def send_password_reset
+    self.password_reset_token   = ActiveSupport::SecureRandom.base64(12).gsub("/","_").gsub(/=+$/,"")
+    self.password_reset_sent_at = Time.zone.now
+    self.save
+
+    LoginMailer.password_reset(self).deliver
+  end
   
   def setup_access_token
     return if !self.access_token.blank?
     
-    self.update_attribute("access_token", ActiveSupport::SecureRandom.base64(8).gsub("/","_").gsub(/=+$/,""))
+    self.update_attribute("access_token", ActiveSupport::SecureRandom.base64(12).gsub("/","_").gsub(/=+$/,""))
   end
   
   def manage_associated_ios_devices(params)
     IosDevice.make_sure_its_registered_and_assigned_to_user(params["device_id"], params["device_ss_id"], self)
     IosDevice.try_to_migrate_device_udids(params["device_id"], params["device_ss_id"])
+  end
+
+  def doing_a_password_reset?
+    !password_reset.blank?
+  end
+
+  def email_present?
+    !self.email.blank?
   end
   
   # == Account related
