@@ -17,7 +17,6 @@ class PasswordResetsController < ApplicationController
 
   # step 3. template for updating the password
   def edit
-    debug(params.inspect)
     @login = Login.find_by_password_reset_token!(params[:id])
   end
 
