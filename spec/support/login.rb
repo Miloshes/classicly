@@ -3,7 +3,7 @@ FactoryGirl.define do
   factory :login, :aliases => [:user] do
     first_name "Zsolt"
     last_name "Maslanyi"
-    email { "#{first_name.downcase}@testemailacc.com" }
+    sequence(:email) { |n| "person#{n}@testemailacc.com" }
     is_admin false
     
     updated_at Time.now
