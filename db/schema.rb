@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111012170612) do
+ActiveRecord::Schema.define(:version => 20120112135352) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -324,21 +324,24 @@ ActiveRecord::Schema.define(:version => 20111012170612) do
     t.string   "location_country"
     t.string   "email"
     t.string   "fb_connect_id"
-    t.boolean  "is_admin",         :default => false
-    t.boolean  "mailing_enabled",  :default => true
+    t.boolean  "is_admin",               :default => false
+    t.boolean  "mailing_enabled",        :default => true
     t.string   "access_token"
-    t.boolean  "terms_of_service", :default => false
+    t.boolean  "terms_of_service",       :default => false
     t.string   "hashed_password"
     t.string   "salt"
     t.string   "twitter_name"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "quotes", :force => true do |t|
-    t.integer  "collection_id"
-    t.text     "content"
-    t.integer  "author_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer   "collection_id"
+    t.text      "content"
+    t.integer   "author_id"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "cached_slug"
   end
 
   create_table "ratings", :force => true do |t|
