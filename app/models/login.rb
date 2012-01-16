@@ -73,7 +73,7 @@ class Login < ActiveRecord::Base
       
       login = existing_login
     else
-      login = Login.create(
+      data_for_new_login = {
         :fb_connect_id    => params["user_fbconnect_id"].blank? ? nil : params["user_fbconnect_id"],
         :twitter_name     => params["twitter_name"],
         :email            => params["user_email"],
@@ -83,9 +83,13 @@ class Login < ActiveRecord::Base
         :location_city    => params["user_location_city"],
         :location_country => params["user_location_country"],
         
-        :terms_of_service => params["terms_of_service"] == "accepted",
-        :password         => params["password"]
-      )
+        :terms_of_service => params["terms_of_service"] == "accepted"
+      }
+
+      # trying to set the password to nil is not a good idea
+      data_for_new_login[:password] = params["password"] # unless params["password"].blank?
+
+      login = Login.create(data_for_new_login)
       login.setup_access_token
       login.send_registration_notification_for "ios"
     end
@@ -187,6 +191,8 @@ class Login < ActiveRecord::Base
   end
   
   def password=(new_password)
+    return nil if new_password.blank? && !doing_a_password_reset?
+
     @password = new_password
     create_new_salt
     self.hashed_password = Login.encrypted_password(self.password, self.salt)
