@@ -25,6 +25,6 @@ Classicly::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.action_mailer.default_url_options = { :host => 'classicly-staging.heroku.com' }
-  config.host = 'localhost:3000'
+  config.host = 'classicly-staging.heroku.com'
 
 end
