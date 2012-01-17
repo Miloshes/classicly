@@ -36,7 +36,7 @@ class LoginMailer < ActionMailer::Base
     mail(
         :to       => @user.email,
         :from     => "hello@classicly.com",
-        :reply_to => "colin@spreadsong.com",
+        :reply_to => "hello@classicly.com",
         :subject  => "Classicly -- trying to reset your password?",
         :date     => Time.now
       )
