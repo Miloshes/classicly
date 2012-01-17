@@ -129,7 +129,7 @@ describe Login do
     
     it "should store the password hash and the salt in the database" do
       login = Login.create(:password => "123")
-      
+
       login.read_attribute("hashed_password").should_not be_blank
       login.read_attribute("salt").should_not be_blank
     end
@@ -146,6 +146,26 @@ describe Login do
       login = Login.create(:email => "test@email.com", :password => "123")
       
       Login.authenticate("test@email.com", "123").should == login
+    end
+
+    context "when doing a password reset" do
+      it "should have a password reset token along with a timestamp to mark it's validity" do
+        login = Login.new
+
+        expect {
+          login.send_password_reset
+        }.to (change(login, :password_reset_token) && change(login, :password_reset_sent_at))
+      end
+
+      it "should send out a password reset email" do
+        login = Login.new
+
+        mail_to_send = mock("LoginMailer")
+        LoginMailer.should_receive(:password_reset).and_return(mail_to_send)
+        mail_to_send.should_receive(:deliver)
+
+        login.send_password_reset
+      end
     end
     
   end
