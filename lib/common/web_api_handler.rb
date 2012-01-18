@@ -145,12 +145,18 @@ class WebApiHandler
     else
       book = Audiobook.find(params['audiobook_id'].to_i)
     end
-    
+
+    # NOTE:
+    # book_review_count = count(reviews by users with a classicly account) - can be a written review or just a rating
+    # book_written_review_count = count(reviews that has content by users with a classicly account)
+    # comment: we're not adding anonymous_reviews to the written review counts, as by current definition anony reviews
+    # can't have content even if the model supports it
     return {
-        :book_rating_average => book.avg_rating,
-        :book_review_count   => book.reviews.count,
-        :classicly_url       => author_book_url(book.author, book)
-      }.to_json
+      :book_rating_average       => book.avg_rating,
+      :book_review_count         => book.reviews.count,
+      :book_written_review_count => book.reviews.where(:content.not_eq => nil).count,
+      :classicly_url             => author_book_url(book.author, book)
+    }.to_json
   end
   
   def get_review_for_book_by_user(params)

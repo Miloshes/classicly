@@ -528,7 +528,7 @@ describe WebApiController, "(API calls - review related queries)" do
       # {"book_rating_average"=>1.5, "book_review_count"=>2, "classicly_url"=>"http://www.classicly.com/john-doe/book_4_pretty_title"}
 
       parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "classicly_url"]
+      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "book_written_review_count", "classicly_url"]
       parsed_response["book_review_count"].should == 1
     end
     
@@ -547,10 +547,10 @@ describe WebApiController, "(API calls - review related queries)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
       
       # We're expecting something like this:
-      # {"book_rating_average"=>1.5, "book_review_count"=>2, "classicly_url"=>"http://www.classicly.com/john-doe/book_4_pretty_title"}
+      # {"book_rating_average"=>1.5, "book_review_count"=>2, "book_written_review_count" => 1, "classicly_url"=>"http://www.classicly.com/john-doe/book_4_pretty_title"}
       
       parsed_response.class.should == Hash
-      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "classicly_url"]
+      parsed_response.keys.sort.should == ["book_rating_average", "book_review_count", "book_written_review_count", "classicly_url"]
       parsed_response["book_review_count"].should == 1
     end
     
