@@ -1,3 +1,6 @@
+# NOTE:
+# This model is for storing reviews (either written or not) that are not associated to a Classicly account.
+# We associate it to the device ID instead and re-assign it to the user when he registers.
 class AnonymousReview < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
 
