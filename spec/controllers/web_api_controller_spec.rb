@@ -41,13 +41,17 @@ describe WebApiController do
       it "should have an api_key and api_signature in the parameters" do
         data = {"structure_version" => "1.3"}
         
-        required_params = ["api_key", "api_signature"]
+        base_api_params = {
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        }
         
         %w{api_key api_signature}.each do |parameter_to_cut|
-          api_params = data.clone
-          api_params.delete(parameter_to_cut)
+          api_params = base_api_params.clone
+          api_params.delete(parameter_to_cut.to_sym)
 
-          post("create", :json_data => api_params.to_json)
+          post("create", api_params)
           
           response.status.should == 401
         end
