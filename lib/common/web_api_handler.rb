@@ -16,8 +16,9 @@ class WebApiHandler
   end
   
   def process_query(params)
-    Rails.logger.info("\n - processing!\n")
+    Rails.logger.info("\n -- T3: process_query 1: #{Time.now.to_s(:db)}\n")
     parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
+    Rails.logger.info("\n -- T4: process_query 2: #{Time.now.to_s(:db)}\n")
 
     response = ""
 

@@ -26,10 +26,12 @@ class WebApiController < ApplicationController
   private
   
   def get_api_handler
+    Rails.logger.info("\n -- T1: get_api_handler: #{Time.now.to_s(:db)}\n")
     @handler = WebApiHandler.new
   end
   
   def fetch_api_params
+    Rails.logger.info("\n -- got params: #{params.inspect}\n")
 
     if params["json_data"].blank?
       @parsed_data = []
@@ -39,12 +41,14 @@ class WebApiController < ApplicationController
     else
       @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
     end
+
+    Rails.logger.info("\n -- T2: fetch_api_params: #{Time.now.to_s(:db)}\n")
   end
   
   def authenticate_api_call
     # introducing authentication for API version 1.3 and above
     return true unless call_needs_authentication
-
+    
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
     
     unless (params["api_key"] == APP_CONFIG["api_key"] && params["api_signature"] == correct_signature)
@@ -53,8 +57,6 @@ class WebApiController < ApplicationController
   end
   
   def call_needs_authentication
-    return false if !params["json_data"].include?("structure_version")
-    
     # TODO: API >= 1.3
     @parsed_data.any? do |record|
       record["structure_version"] == "1.3"
