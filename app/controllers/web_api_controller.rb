@@ -30,7 +30,8 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
-    Rails.logger.info("\n -- got parameters: #{params["json_data"].inspect}\n")
+    Rails.logger.info("\n -- got params: #{params.inspect}\n")
+    # Rails.logger.info("\n -- got parameters: #{params["json_data"].inspect}\n")
 
     if params["json_data"].blank?
       @parsed_data = []
