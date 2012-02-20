@@ -30,16 +30,16 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
-    Rails.logger.info("\n -- got params: #{params.inspect}\n")
-    # Rails.logger.info("\n -- got parameters: #{params["json_data"].inspect}\n")
 
     if params["json_data"].blank?
       @parsed_data = []
     # check if json_data is a Hash without decoding it
     elsif params["json_data"][0] == "{"
       @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
+      Rails.logger.info("\n - ARRAY: #{@parsed_data.inspect}\n")
     else
       @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
+      Rails.logger.info("\n - HASH: #{@parsed_data.inspect}\n")
     end
   end
   
@@ -47,6 +47,8 @@ class WebApiController < ApplicationController
     # introducing authentication for API version 1.3 and above
     return true unless call_needs_authentication
     
+    Rails.logger.info("\n - Has to authenticate!\n")
+
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
     
     unless (params["api_key"] == APP_CONFIG["api_key"] && params["api_signature"] == correct_signature)
