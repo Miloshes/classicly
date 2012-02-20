@@ -36,18 +36,14 @@ class WebApiController < ApplicationController
     # check if json_data is a Hash without decoding it
     elsif params["json_data"][0] == "{"
       @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
-      Rails.logger.info("\n - ARRAY: #{@parsed_data.inspect}\n")
     else
       @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
-      Rails.logger.info("\n - HASH: #{@parsed_data.inspect}\n")
     end
   end
   
   def authenticate_api_call
     # introducing authentication for API version 1.3 and above
     return true unless call_needs_authentication
-    
-    Rails.logger.info("\n - Has to authenticate!\n")
 
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
     
@@ -57,6 +53,8 @@ class WebApiController < ApplicationController
   end
   
   def call_needs_authentication
+    return false if !params["json_data"].include?("structure_version")
+    
     # TODO: API >= 1.3
     @parsed_data.any? do |record|
       record["structure_version"] == "1.3"
