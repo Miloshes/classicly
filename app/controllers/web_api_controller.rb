@@ -1,3 +1,5 @@
+require "benchmark"
+
 class WebApiController < ApplicationController
   
   skip_before_filter :verify_authenticity_token
@@ -18,7 +20,13 @@ class WebApiController < ApplicationController
   
   # POST review_api/query
   def query
-    response = @handler.process_query(params)
+    response = ""
+
+    benchmark_result = Benchmark.measure {
+      response = @handler.process_query(params)
+    }
+    
+    Rails.logger.info("\n - benchmark [WHOLE]: #{benchmark_result}\n")
     
     render :text => response
   end
@@ -26,23 +34,23 @@ class WebApiController < ApplicationController
   private
   
   def get_api_handler
-    Rails.logger.info("\n -- T1: get_api_handler: #{Time.now.to_s(:db)}\n")
     @handler = WebApiHandler.new
   end
   
   def fetch_api_params
-    Rails.logger.info("\n -- got params: #{params.inspect}\n")
 
-    if params["json_data"].blank?
-      @parsed_data = []
-    # check if json_data is a Hash without decoding it
-    elsif params["json_data"][0] == "{"
-      @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
-    else
-      @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
-    end
+    benchmark_result = Benchmark.measure {
+      if params["json_data"].blank?
+        @parsed_data = []
+      # check if json_data is a Hash without decoding it
+      elsif params["json_data"][0] == "{"
+        @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
+      else
+        @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
+      end
+    }
 
-    Rails.logger.info("\n -- T2: fetch_api_params: #{Time.now.to_s(:db)}\n")
+    Rails.logger.info("\n - benchmark [fetch_api_params]: #{benchmark_result}\n")
   end
   
   def authenticate_api_call
@@ -58,9 +66,18 @@ class WebApiController < ApplicationController
   
   def call_needs_authentication
     # TODO: API >= 1.3
-    @parsed_data.any? do |record|
-      record["structure_version"] == "1.3"
-    end
+
+    result = false
+
+    benchmark_result = Benchmark.measure {
+      result = @parsed_data.any? do |record|
+        record["structure_version"] == "1.3"
+      end
+    }
+
+    Rails.logger.info("\n - benchmark [call_needs_authentication]: #{benchmark_result}\n")
+
+    return result
   end
   
 end
