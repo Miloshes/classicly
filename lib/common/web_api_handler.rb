@@ -21,7 +21,7 @@ class WebApiHandler
 
     response = ""
 
-    benchmark_result = Benchmar.measure {
+    benchmark_result = Benchmark.measure {
       parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
 
       case parsed_data["action"]
