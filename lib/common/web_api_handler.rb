@@ -18,35 +18,30 @@ class WebApiHandler
   end
   
   def process_query(params)
+    parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
 
     response = ""
 
-    benchmark_result = Benchmark.measure {
-      parsed_data = ActiveSupport::JSON.decode(params[:json_data]).stringify_keys
-
-      case parsed_data["action"]
-      when "get_reviews_for_book"
-        response = get_reviews_for_book(parsed_data)
-      when "get_ratings_for_all_books"
-        response = get_ratings_for_all_books(parsed_data)
-      when "get_review_for_book_by_user"
-        response = get_review_for_book_by_user(parsed_data)
-      when "get_list_of_books_the_user_wrote_review_for"
-        response = get_list_of_books_the_user_wrote_review_for(parsed_data)
-      when "get_review_stats_for_book"
-        response = get_review_stats_for_book(parsed_data)
-      when "get_classicly_url_for_book"
-        response = get_classicly_url_for_book(parsed_data)
-      when "get_user_data"
-        response = get_user_data(parsed_data)
-      when "get_book_highlights_for_user_for_book"
-        response = get_book_highlights_for_user_for_book(parsed_data)
-      when "get_tweet_and_facebook_share_texts"
-        response = get_tweet_and_facebook_share_texts(parsed_data)
-      end
-    }
-
-    Rails.logger.info("\n - benchmark [process_query]: #{benchmark_result}\n")
+    case parsed_data["action"]
+    when "get_reviews_for_book"
+      response = get_reviews_for_book(parsed_data)
+    when "get_ratings_for_all_books"
+      response = get_ratings_for_all_books(parsed_data)
+    when "get_review_for_book_by_user"
+      response = get_review_for_book_by_user(parsed_data)
+    when "get_list_of_books_the_user_wrote_review_for"
+      response = get_list_of_books_the_user_wrote_review_for(parsed_data)
+    when "get_review_stats_for_book"
+      response = get_review_stats_for_book(parsed_data)
+    when "get_classicly_url_for_book"
+      response = get_classicly_url_for_book(parsed_data)
+    when "get_user_data"
+      response = get_user_data(parsed_data)
+    when "get_book_highlights_for_user_for_book"
+      response = get_book_highlights_for_user_for_book(parsed_data)
+    when "get_tweet_and_facebook_share_texts"
+      response = get_tweet_and_facebook_share_texts(parsed_data)
+    end
     
     return response
   end

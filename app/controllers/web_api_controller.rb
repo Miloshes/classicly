@@ -20,13 +20,7 @@ class WebApiController < ApplicationController
   
   # POST review_api/query
   def query
-    response = ""
-
-    benchmark_result = Benchmark.measure {
-      response = @handler.process_query(params)
-    }
-    
-    Rails.logger.info("\n - benchmark [WHOLE]: #{benchmark_result}\n")
+    response = @handler.process_query(params)
     
     render :text => response
   end
@@ -38,19 +32,18 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
+    Rails.logger.info("\n -- got params: #{params.inspect}\n")
 
-    benchmark_result = Benchmark.measure {
-      if params["json_data"].blank?
-        @parsed_data = []
-      # check if json_data is a Hash without decoding it
-      elsif params["json_data"][0] == "{"
-        @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
-      else
-        @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
-      end
-    }
+    if params["json_data"].blank?
+      @parsed_data = []
+    # check if json_data is a Hash without decoding it
+    elsif params["json_data"][0] == "{"
+      @parsed_data = [ActiveSupport::JSON.decode(params["json_data"]).stringify_keys]
+    else
+      @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
+    end
 
-    Rails.logger.info("\n - benchmark [fetch_api_params]: #{benchmark_result}\n")
+    Rails.logger.info("\n -- T2: fetch_api_params: #{Time.now.to_s(:db)}\n")
   end
   
   def authenticate_api_call
@@ -66,18 +59,9 @@ class WebApiController < ApplicationController
   
   def call_needs_authentication
     # TODO: API >= 1.3
-
-    result = false
-
-    benchmark_result = Benchmark.measure {
-      result = @parsed_data.any? do |record|
-        record["structure_version"] == "1.3"
-      end
-    }
-
-    Rails.logger.info("\n - benchmark [call_needs_authentication]: #{benchmark_result}\n")
-
-    return result
+    @parsed_data.any? do |record|
+      record["structure_version"] == "1.3"
+    end
   end
   
 end
