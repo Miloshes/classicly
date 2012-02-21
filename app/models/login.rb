@@ -1,7 +1,7 @@
 # TODO: access_token should be renamed to unsubscribe_access_token
 
 class Login < ActiveRecord::Base
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
   has_many :ios_devices, :foreign_key => "user_id", :dependent => :destroy
   has_one :library
   
