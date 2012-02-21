@@ -32,7 +32,7 @@ class WebApiController < ApplicationController
   end
   
   def fetch_api_params
-    Rails.logger.info("\n -- got params: #{params.inspect}\n")
+    Rails.logger.info("\n -- got params: #{params["json_data"].inspect}\n")
 
     if params["json_data"].blank?
       @parsed_data = []
@@ -42,8 +42,6 @@ class WebApiController < ApplicationController
     else
       @parsed_data = ActiveSupport::JSON.decode(params["json_data"]).map(&:stringify_keys)
     end
-
-    Rails.logger.info("\n -- T2: fetch_api_params: #{Time.now.to_s(:db)}\n")
   end
   
   def authenticate_api_call
