@@ -51,6 +51,12 @@ class WebApiController < ApplicationController
     correct_signature = Digest::MD5.hexdigest((params["json_data"] || "") + APP_CONFIG["api_secret"])
     
     unless (params["api_key"] == APP_CONFIG["api_key"] && params["api_signature"] == correct_signature)
+      Rails.logger.info("\n -- UNAUTHORIZED:\n" +
+        "got JSON data: #{params['json_data'].inspect}\n" +
+        "expected signature: #{correct_signature}\n" +
+        "got signature: #{params['api_signature']}"
+      )
+
       render :nothing => true, :status => :unauthorized
     end
   end
