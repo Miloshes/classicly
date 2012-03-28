@@ -49,7 +49,7 @@ gem "meta_where"
 gem "nokogiri"
 
 # file upload management with S3 support - http://rubygems.org/gems/paperclip
-gem "paperclip"
+gem "paperclip", "~> 2.3"
 
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem "rest-client", :require => "rest_client"
@@ -127,7 +127,7 @@ group :development, :test do
   gem "autotest-fsevent"
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
-  gem "rspec-rails"
+  gem "rspec-rails", "~> 2.9"
   
   # makes Capybara able to show the browser in the last state - http://rubygems.org/gems/launchy
   gem "launchy"
