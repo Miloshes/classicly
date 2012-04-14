@@ -1,5 +1,5 @@
 var elementId = "#term";
-var apiUrl =  "http://6wfx.api.indextank.com";
+var apiUrl =  "http://classicly.api.houndsleuth.com";
 var indexName = "ClassiclyAutocomplete";
 var source = apiUrl + "/v1/indexes/" + indexName + "/search";
 var searchResults;
