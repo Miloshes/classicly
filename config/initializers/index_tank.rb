@@ -16,7 +16,7 @@ module IndexTankInitializer
 
     def self.get_index(name)
       index = self.client.indexes name
-      index.add if index.exists?
+      index.add unless index.exists?
       sleep 0.5 while not index.running?
       index
     end
