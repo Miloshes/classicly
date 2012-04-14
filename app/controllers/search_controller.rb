@@ -16,6 +16,6 @@ class SearchController < ApplicationController
 
   private
   def initialize_indextank
-    @indextank ||= IndexTankInitializer::IndexTankService.get_index('classicly_staging')
+    @indextank ||= IndexTankInitializer::IndexTankService.get_index('ClassiclyAutocomplete')
   end
 end
