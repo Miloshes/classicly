@@ -35,7 +35,10 @@ google.setOnLoadCallback(function() {
           url: apiUrl + "/v1/indexes/" + indexName + "/autocomplete",
           dataType: "jsonp",
           data: { query: request.term, field: 'text' },
-          success: function( data ) { 
+          success: function( data ) {
+              if (data.suggestions.length == 0) {
+                data.suggestions[0] = data.query
+              } 
               $.ajax({
                 url: source,
                 dataType: "jsonp",
