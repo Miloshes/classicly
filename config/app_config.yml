@@ -34,8 +34,8 @@ buckets:
   downloadables: "spreadsong-downloadables-tmp"
 
 index_tank:
-  private_api_url: http://:Kzub86diHBrEBf@6wfx.api.indextank.com
-  public_api_url: http://6wfx.api.indextank.com
+  private_api_url: http://:Y6YL0ZF65Fdxd3T@classicly.api.houndsleuth.com
+  public_api_url: http://classicly.api.houndsleuth.com
 
 yaml_exports_path: "db/yaml_exports"
 

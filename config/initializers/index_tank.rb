@@ -15,14 +15,9 @@ module IndexTankInitializer
     end
 
     def self.get_index(name)
-      client = self.client
-      write_index = client.indexes[name].nil?
-      index = client.indexes name
-      index.add if write_index
-
-      while not index.running?
-          sleep 0.5
-      end
+      index = self.client.indexes name
+      index.add unless index.exists?
+      sleep 0.5 while not index.running?
       index
     end
   end
