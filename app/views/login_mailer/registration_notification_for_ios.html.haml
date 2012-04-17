@@ -1,3 +1,8 @@
+[Not interested in getting newsletter messages from us? Click 
+= link_to 'here to unsubscribe.', unsubscribe_url(:address => @user.email, :token => @user.access_token)
+]
+%br
+%br
 Hey #{ @user.first_name.blank? ? "" : " " + @user.first_name}, thanks for signing up!
 %br
 %br
@@ -21,8 +26,3 @@ Cheers and all the best,
 Colin Plamondon
 %br
 CEO, Classicly
-%br
-%br
-[Not interested in getting newsletter messages from us? Click 
-= link_to 'here to unsubscribe.', unsubscribe_url(:address => @user.email, :token => @user.access_token)
-]
