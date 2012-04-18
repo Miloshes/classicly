@@ -1,5 +1,6 @@
+.project
 .bundle
-db/*.sqlite3
+db/*.sqlite
 log/*.log
 tmp/**/*
 .DS_Store
@@ -10,6 +11,7 @@ db/yaml_exports
 db/descriptions
 db/collection_plists
 public/system
+public/assets
 ruby
 *.tmproj
 .#*
