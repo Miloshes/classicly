@@ -13,8 +13,10 @@ class SeoController < ApplicationController
       else
         render 'audiobooks/show'
       end
-
+    else
+      render 'books/_not_found', status: 404, layout: '404'
     end
+    
   end
 
   def show
