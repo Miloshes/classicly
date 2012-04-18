@@ -102,9 +102,9 @@
           #right-column
             .social
               %g:plusone
-              %a.twitter-follow-button{href: 'http://twitter.com/classiclyapp', data: {show: {count: false}}} Follow @classiclyapp
+              %a.twitter-follow-button{href: 'http://twitter.com/classiclyapp', data: {'show-count' => 'false'}} Follow @classiclyapp
               = javascript_include_tag 'http://platform.twitter.com/widgets.js'
-              %fb:like{href: 'http://www.facebook.com/pages/Classicly/193128150712368', send: true, layout: 'button_count', width: 200, show_faces: true, font: ''}              
+              %fb:like{href: 'http://www.facebook.com/pages/Classicly/193128150712368', send: 'true', layout: 'button_count', width: 200, show_faces: 'true', font: ''}              
             .right-covers
               %p.popular
                 Popular
