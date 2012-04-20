@@ -13,6 +13,7 @@ namespace :export do
     Bucket.find bucket_name
   rescue AWS::S3::NoSuchBucket
     Bucket.create bucket_name
+    retry
   end
 
   namespace :emails do
