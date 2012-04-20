@@ -27,13 +27,19 @@ namespace :export do
           csv << [u.email, u.first_name, u.last_name]
         end
       end
-      S3Object.store("email-export-#{Time.now.to_i}.csv", string, bucket_name, access: :public_read)
-      bucket.objects.each {|o| puts o.url(authenticated: false, expires_in: 3600 * 12) }
+      object = "email-export-#{Time.now.to_i}.csv"
+      S3Object.store(object, string, bucket_name, access: :public_read)
+      bucket[object].url(authenticated: false, expires_in: 3600 * 24)
     end
     
     desc 'Clean up exports'
     task clean: :environment do
       Bucket.delete bucket_name, force: true
+    end
+    
+    desc 'List exports'
+    task list: :environment do
+      bucket.objects.each {|o| puts o.url(authenticated: false) }
     end
   end
 
