@@ -17,7 +17,7 @@ namespace :export do
 
   namespace :emails do
 
-    desc 'Test generated sitemap'
+    desc 'Generate CSV'
     task :csv => :environment do
       string = CSV.generate do |csv|
         csv << ['Email Address', 'First Name', 'Last Name']  
@@ -26,8 +26,13 @@ namespace :export do
           csv << [u.email, u.first_name, u.last_name]
         end
       end
-      S3Object.store("email-export-#{RAILS_ENV}.csv", string, bucket_name, access: :public_read)
+      S3Object.store("email-export-#{Time.now.to_i}.csv", string, bucket_name, access: :public_read)
       bucket.objects.each {|o| puts o.url(authenticated: false, expires_in: 3600 * 12) }
+    end
+    
+    desc 'Clean up exports'
+    task clean: :environment do
+      Bucket.delete bucket_name, force: true
     end
   end
 
