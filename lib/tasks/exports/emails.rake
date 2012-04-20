@@ -20,8 +20,11 @@ namespace :export do
     desc 'Test generated sitemap'
     task :csv => :environment do
       string = CSV.generate do |csv|
-        csv << ['Email Address', 'First Name', 'Last Name']
-        Login.where(mailing_enabled: true).all.each {|u| csv << [u.email, u.first_name, u.last_name] }
+        csv << ['Email Address', 'First Name', 'Last Name']  
+        Login.where(mailing_enabled: true).all.each do |u|
+          # next unless u.email =~ /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+          csv << [u.email, u.first_name, u.last_name]
+        end
       end
       S3Object.store("email-export-#{RAILS_ENV}.csv", string, bucket_name, access: :public_read)
       bucket.objects.each {|o| puts o.url }
