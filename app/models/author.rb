@@ -21,7 +21,7 @@ class Author < ActiveRecord::Base
     type.classify.constantize.where(:author_id => self.id).first
   end
 
-  def get_paginated_books(parameters)
+  def get_paginated_books(parameters = {})
     order_query = 'downloaded_count desc'
     
     if parameters[:sort]
