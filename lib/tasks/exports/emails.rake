@@ -27,7 +27,7 @@ namespace :export do
         end
       end
       S3Object.store("email-export-#{RAILS_ENV}.csv", string, bucket_name, access: :public_read)
-      bucket.objects.each {|o| puts o.url }
+      bucket.objects.each {|o| puts o.url(authenticated: false, expires_in: 3600 * 12) }
     end
   end
 
