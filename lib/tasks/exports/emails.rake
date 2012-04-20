@@ -1,4 +1,4 @@
-require 'fastercsv'
+require 'csv'
 include AWS::S3
 
 namespace :export do
@@ -19,7 +19,7 @@ namespace :export do
 
     desc 'Test generated sitemap'
     task :csv => :environment do
-      string = FasterCSV.generate do |csv|
+      string = CSV.generate do |csv|
         csv << ['Email Address', 'First Name', 'Last Name']
         Login.where(mailing_enabled: true).all.each {|u| csv << [u.email, u.first_name, u.last_name] }
       end

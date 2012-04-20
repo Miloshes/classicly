@@ -99,7 +99,6 @@ GEM
       rack (~> 1.1)
     faraday-stack (0.1.5)
       faraday (>= 0.6, < 0.8)
-    fastercsv (1.5.4)
     ffi (1.0.11)
     firewatir (1.9.4)
       commonwatir (>= 1.9.2)
@@ -268,7 +267,6 @@ DEPENDENCIES
   delayed_job
   factory_girl
   factory_girl_rails
-  fastercsv
   firewatir
   friendly_id (~> 3.2.1)
   haml

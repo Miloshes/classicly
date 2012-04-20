@@ -80,7 +80,6 @@ gem "dalli"
 
 # For handling the API version numbers nicely - https://github.com/dazuma/versionomy
 gem "versionomy", "0.4.1"
-gem 'fastercsv'
 
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
