@@ -141,7 +141,6 @@ module ApplicationHelper
               '_asc'
             end
 
-    
     if sort == field && collection.book_type == 'book'
       link_to text, collection_books_path(collection, :page => params[:page], :sort => field + order), :class => 'active'
     elsif sort == field && collection.book_type == 'audiobook'

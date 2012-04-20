@@ -1,5 +1,5 @@
 - content_for :title do
-  %title=@author.name
+  %title= @author.name
 
 #collection-page.no-author-page
   .row.book-list
@@ -8,9 +8,10 @@
 
       .sorting.row
         .span11.columns
-          %span Sort By:
-          = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
-          = link_to_sorted 'Title', 'pretty_title', @collection, params
+          - unless @collection.nil?
+            %span Sort By:
+            = link_to_sorted 'Most Downloaded', 'downloaded_count', @collection, params
+            = link_to_sorted 'Title', 'pretty_title', @collection, params
     
     %ul.book-list
       = render :partial => '/books/listed_book', :locals => {:enable_rating => true},:collection => @books, :as => :book
