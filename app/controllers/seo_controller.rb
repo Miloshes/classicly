@@ -14,7 +14,7 @@ class SeoController < ApplicationController
         render 'audiobooks/show'
       end
     else
-      render 'shared/_not_found.html', status: 404, layout: '404'
+      render 'shared/_not_found.html', status: 404
     end
     
   end
