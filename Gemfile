@@ -81,6 +81,8 @@ gem "dalli"
 # For handling the API version numbers nicely - https://github.com/dazuma/versionomy
 gem "versionomy", "0.4.1"
 
+gem 'hominid'
+
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   gem "awesome_print"

@@ -108,6 +108,7 @@ GEM
     haml (3.1.4)
     hoe (3.0.1)
       rake (~> 0.8)
+    hominid (3.0.4)
     hoptoad_notifier (2.4.11)
       activesupport
       builder
@@ -270,6 +271,7 @@ DEPENDENCIES
   firewatir
   friendly_id (~> 3.2.1)
   haml
+  hominid
   hoptoad_notifier
   htmlentities
   indextank
