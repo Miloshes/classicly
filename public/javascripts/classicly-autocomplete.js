@@ -41,28 +41,29 @@ google.setOnLoadCallback(function() {
             data: {len: 10, q: "(" + data.suggestions[0] + ") OR full:"  + data.suggestions[0].replace(" ", "") + "^100000", snippet: 'text', fetch: "text,type,slug,cover_url"},
             success: function(data) {
               $.map(data.results, function(item) {
-                searchResults.push({label: item.snippet_text, value: item.text, type: item.type, slug: item.slug, cover_url: item.cover_url});
+                searchResults.push({label: item.snippet_text, value: $('<div />').html(item.text).text().trim(), type: item.type, slug: item.slug, cover_url: item.cover_url});
               });
               // finally add the searc for 'xyz' list item:
              searchResults.push({label: "search <b>" + request.term + "</b>", value: request.term});
-              responseCallback($.each(searchResults, function(index, result) {
-                return {label: result.label, value: result.value}
-              })); 
+             responseCallback($.each(searchResults, function(index, result) {
+              return {label: result.label, value: result.value}
+           	 })); 
             }
           });
         }
       });
     };
 
-    var selectCallback = function( event, ui ) {
+    var selectCallback = function(event, ui) {
       event.target.value = ui.item.value;
-      if( ui.item.slug != undefined )
+      if (ui.item.slug != undefined) {
         window.location = "http://www.classicly.com" + ui.item.slug;
-      else
+      } else {
         $(event.target.form).submit(); //wrap form into a jQuery object, so submit honors onsubmit.
+      }
     }
 
-    $( elementId ).autocomplete( {
+    $(elementId).autocomplete( {
       source: sourceCallback,
       delay: 250,
       select: selectCallback,
