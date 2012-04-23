@@ -34,6 +34,7 @@ Classicly::Application.routes.draw do
   match 'reset_password' => "password_resets#new"
   match "reset_password/token/:id" => "password_resets#edit", :as => :reset_password
   match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
+  post 'mailchimp_callback' => 'logins#mailchimp_callback'
 
   # == Library
   match 'library' => 'libraries#show', :as => :library
