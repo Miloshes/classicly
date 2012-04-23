@@ -27,6 +27,21 @@ class LoginsController < ApplicationController
       render :action => "unsubscribe_warning"
     end
   end
+  
+  def mailchimp_callback
+    status = if params[:secret] == APP_CONFIG['mailchimp']['callback_secret']
+      case params[:type]
+        when 'unsubscribe', 'cleaned'
+          user = Login.find_by_email(params[:data][:email])
+          user.update_attribute :mailing_enabled, false
+        
+      end
+      200
+    else
+      403
+    end
+    render nothing: true, status: status, layout: false
+  end  
 
   private
 
