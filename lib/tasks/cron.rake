@@ -18,5 +18,9 @@ task :cron => :environment do
   if Time.now.hour == 0 # run once a day
     OnlineReader.update_cache
   end
+
+  #if Time.now.hour == 2 and Time.now.day % 7 == 0
+  #  Rake::Task['mailchimp:sync'].invoke
+  #end
   
 end

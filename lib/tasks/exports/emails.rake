@@ -2,12 +2,9 @@ require 'csv'
 include AWS::S3
 
 namespace :export do
-  APP_CONFIG = {amazon: {
-    access_key_id: "0MMK343NZCJ3D1CZ8NG2",
-    secret_access_key: "DuArKmSc2MHk2aT976tQaD3Kvr9iyQwbX8DKMGWh",
-  }}
-
-  AWS::S3::Base.establish_connection! APP_CONFIG[:amazon]
+  APP_CONFIG = YAML.load_file("config/app_config.yml")
+  
+  AWS::S3::Base.establish_connection! access_key_id: APP_CONFIG['amazon']['access_key'], secret_access_key: APP_CONFIG['amazon']['secret_key']
   bucket_name = 'spreadsong-classicly-export'
   bucket = begin
     Bucket.find bucket_name
