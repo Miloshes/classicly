@@ -22,7 +22,11 @@ Classicly::Application.routes.draw do
       end
     end
 
-    resources :reviews, :only => [:index, :destroy]
+    resources :reviews, :only => [:index, :destroy] do
+      member do
+        put 'toggle_choice'
+      end
+    end
     resources :seo_defaults
   end
 

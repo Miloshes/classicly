@@ -1,4 +1,4 @@
-%tr
+%tr[review]
   %td
     = review.reviewable.pretty_title
   %td
@@ -7,6 +7,7 @@
     = review.content
   %td.rating
     = review.rating
+  %td.choice
+    = link_to( (review.editors_choice ? 'UnPick' : 'Pick'), toggle_choice_admin_review_path(review), method: :put, remote: true)
   %td
     = link_to 'Delete', admin_review_path(review), :confirm => 'Are you sure?', :method => :delete
-

@@ -33,7 +33,10 @@
           .link.sepia
             = link_to 'Abingo', admin_abingo_path
           .link.sepia
-            = link_to 'Admin Reviews', admin_reviews_path
+            = link_to 'Admin Reviews', '#'
+            .sub= link_to 'All', admin_reviews_path
+            .sub= link_to 'Picked', admin_reviews_path(editors_choice: 1)
+            .sub= link_to 'UnPicked', admin_reviews_path(editors_choice: 0)
           .link.sepia
             = link_to 'Admin Blog', admin_blog_posts_path
           .link.sepia
