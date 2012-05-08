@@ -4,21 +4,21 @@ class Admin::ReviewsController < Admin::BaseController
 
   def index
     @reviews = Review.includes(:reviewer, :reviewable).page(params[:page]).per(25)
-    @reviews = case params[:editors_choice]
+    @reviews = case params[:featured]
       when '1'
-        @reviews.where editors_choice: true
+        @reviews.featured
       when '0'
-        @reviews.where editors_choice: false
+        @reviews.where featured: false
       else
         @reviews
     end
   end
   
-  def toggle_choice
-    @review.toggle :editors_choice
+  def toggle_featured
+    @review.toggle :featured
     @review.save
     respond_to do |format|
-      format.js { render 'toggle_choice', layout: false }
+      format.js { render 'toggle_featured', layout: false }
     end
   end
 

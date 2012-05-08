@@ -24,7 +24,7 @@ Classicly::Application.routes.draw do
 
     resources :reviews, :only => [:index, :destroy] do
       member do
-        put 'toggle_choice'
+        put 'toggle_featured'
       end
     end
     resources :seo_defaults

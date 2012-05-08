@@ -360,7 +360,7 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
     t.datetime "created_at"
     t.integer  "login_id"
     t.integer  "rating",          :default => 0
-    t.boolean  "editors_choice",  :default => false, :null => false
+    t.boolean  "featured",        :default => false, :null => false
   end
 
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"
