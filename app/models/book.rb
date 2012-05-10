@@ -43,7 +43,10 @@ class Book < ActiveRecord::Base
   scope :for_author, lambda {|author| where(:author_id => author.id)}
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => "RANDOM()", :limit => limit } }
+  scope :random, lambda { |limit|
+    max = Book.select('MAX(id) AS id').first.id
+    where(id: Array.new(limit * 10) { 1 + rand(max) }).limit(limit)
+  }
   scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
 
   validates :title, :presence => true
