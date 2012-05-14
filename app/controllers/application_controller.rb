@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def popular_books
-    @popular_books = Book.blessed.select("books.id, author_id, cached_slug, pretty_title").random(3)
+    @popular_books = Book.blessed.select("books.id AS id, author_id, cached_slug, pretty_title").random(3)
   end
 
   def popular_collections

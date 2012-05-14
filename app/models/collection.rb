@@ -37,7 +37,7 @@ class Collection < ActiveRecord::Base
   scope :find_book_collections_and_genres, where(:book_type => 'book', :collection_type.in => ['collection', 'genre'])
   scope :find_book_author_collections, where(:book_type => 'book', :collection_type => 'author')
   scope :of_type, lambda {|type| where(:book_type => type)}
-  scope :random, lambda { |limit| {:order => "RANDOM()", :limit => limit} }
+  scope :random, lambda {|limit| order('RANDOM()').limit(limit) }
   scope :with_description, where(:description.not_eq => '')
 
   before_save :set_parsed_description
