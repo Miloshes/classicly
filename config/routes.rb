@@ -59,6 +59,7 @@ Classicly::Application.routes.draw do
   match '/dmca' => 'pages#dmca'
   match '/iphone' => 'pages#iphone'
   match '/ipad' => 'pages#ipad'
+  match 'sitemap.xml' => redirect('/sitemap_index.xml.gz')
 
   # for delivering audiobook file
   match '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
