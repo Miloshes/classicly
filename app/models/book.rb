@@ -103,9 +103,14 @@ class Book < ActiveRecord::Base
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
         :secret_access_key => APP_CONFIG['amazon']['secret_key']
       )
-
     object_key = "#{self.id}.#{format}"
-    S3Object.value(object_key, APP_CONFIG['buckets']['books'])
+    retried = 0
+    begin
+      S3Object.value(object_key, APP_CONFIG['buckets']['books'])
+    rescue
+      retry unless (retried+=1) > 3
+      raise 'Retrieving book in requested format from S3 have failed 3 times in a row!'
+    end
   end
 
   def last_bookmarked_page(library)

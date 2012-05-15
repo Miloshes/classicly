@@ -35,6 +35,8 @@ class BooksController < ApplicationController
         :disposition => 'attachment',
         :filename => "#{@book.pretty_title}.#{@format}"
       )
+  rescue AWS::S3::NoSuchKey
+    render 'shared/_not_found.html', status: 404
   end
 
   def show
