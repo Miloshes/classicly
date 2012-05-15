@@ -2,7 +2,7 @@ class SeoController < ApplicationController
   
   def show_book
     @book = Book.joins(:author).includes(:genres, :reviews, :author, :seo_slugs).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first  ||
-        Audiobook.joins(:author).includes(:genres, :reviews, :author, :seo_slugs).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
+        Audiobook.joins(:author).includes(:reviews, :author, :seo_slugs).where(:cached_slug => params[:id], :author => {:cached_slug => params[:author_id]}).first
 
     if @book
       @related_books = @book.find_fake_related(3)
