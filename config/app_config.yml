@@ -3,6 +3,7 @@ administrators: ["zsolt@spreadsong.com", "colin@spreadsong.com", "kenzie@spreads
 mailchimp:
   api_key: fedc521a34f081c69896e97d11edc8ea-us1
   callback_secret: aBohphi3shiequa1ooYe5deequooziol0miem0Jahwi1tohV
+  list_id: 391b37aa46
   
 amazon:
   access_key: "0MMK343NZCJ3D1CZ8NG2"

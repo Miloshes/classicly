@@ -66,6 +66,7 @@ class WebApiHandler
         :rating              => review.rating,
         :created_at          => review.created_at,
         :email               => review.reviewer.email || "",
+        :featured            => review.featured,
         :fb_connect_id       => review.reviewer.fb_connect_id || "",
         :fb_name             => (review.reviewer.first_name || "") + " " + (review.reviewer.last_name || ""),
         :fb_location_city    => review.reviewer.location_city || "",
@@ -104,10 +105,10 @@ class WebApiHandler
     when '1.2', '1.3', '1.4'
       result = {
         :books => login.reviews.where(:reviewable_type => 'Book').collect { |review|
-          {:id => review.reviewable_id, :rating => review.rating}
+          {:id => review.reviewable_id, :rating => review.rating, :featured => review.featured}
         },
         :audiobooks => login.reviews.where(:reviewable_type => 'Audiobook').collect { |review|
-          {:id => review.reviewable_id, :rating => review.rating}
+          {:id => review.reviewable_id, :rating => review.rating, :featured => review.featured}
         }
       }
     when '1.1'
@@ -180,6 +181,7 @@ class WebApiHandler
       
       return {
           :content    => review.content || "",
+          :featured   => review.featured,
           :rating     => review.rating,
           :created_at => review.created_at
         }.to_json

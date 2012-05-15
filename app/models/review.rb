@@ -2,6 +2,7 @@ class Review < ActiveRecord::Base
 
   scope :with_content, where(:content.not_eq => "")
   scope :most_recent, order("created_at DESC")
+  scope :featured, where(featured: true)
 
   belongs_to :reviewable, :polymorphic => true
   belongs_to :reviewer, :class_name => "Login", :foreign_key => "login_id"

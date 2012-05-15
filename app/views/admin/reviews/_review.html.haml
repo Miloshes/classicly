@@ -1,12 +1,14 @@
-%tr
+%tr[review]
   %td
     = review.reviewable.pretty_title
   %td
-    = "#{review.reviewer.first_name} #{review.reviewer.last_name}"
+    - unless review.reviewer.blank?
+      = "#{review.reviewer.first_name} #{review.reviewer.last_name}"
   %td.content
     = review.content
   %td.rating
     = review.rating
+  %td.choice
+    = link_to( (review.featured ? 'UnPick' : 'Pick'), toggle_featured_admin_review_path(review), method: :put, remote: true)
   %td
     = link_to 'Delete', admin_review_path(review), :confirm => 'Are you sure?', :method => :delete
-

@@ -25,7 +25,7 @@ class PasswordResetsController < ApplicationController
     @login = Login.find_by_password_reset_token!(params[:id])
 
     if @login.password_reset_sent_at < 3.hours.ago
-      redirecto_to new_password_reset_path, :notice => "Oops, we had to expire your password reset request for security reasons. Just issue a new one and make sure you click the new password link in the email whithin the next hour or so."
+      redirect_to new_password_reset_path, :notice => "Oops, we had to expire your password reset request for security reasons. Just issue a new one and make sure you click the new password link in the email whithin the next hour or so."
     elsif @login.update_attributes(params[:login])
       @message = "And boom, we saved your new password!"
       render "password_reset_status"

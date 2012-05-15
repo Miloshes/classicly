@@ -30,11 +30,15 @@ class BooksController < ApplicationController
     response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
     response.headers["Pragma"] = "no-cache"
     response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
-    send_data(
-        @book.file_data_for_format(@format),
-        :disposition => 'attachment',
-        :filename => "#{@book.pretty_title}.#{@format}"
-      )
+    retries = 0
+    begin
+      send_data @book.file_data_for_format(@format), disposition: 'attachment', filename: "#{@book.pretty_title}.#{@format}"
+    rescue AWS::S3::InternalError
+      retry if (retries+=1) < 4
+      raise 'We got AWS::S3::InternalError 4 times in a row'
+    rescue AWS::S3::NoSuchKey
+      render 'shared/_not_found.html', status: 404
+    end
   end
 
   def show

@@ -43,7 +43,7 @@ class Book < ActiveRecord::Base
   scope :for_author, lambda {|author| where(:author_id => author.id)}
   scope :order_by_author, joins(:author) & Author.order('name')
   scope :with_description, where('description is not null')
-  scope :random, lambda { |limit| {:order => "RANDOM()", :limit => limit } }
+  scope :random, lambda {|limit| order('RANDOM()').limit(limit) }
   scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
 
   validates :title, :presence => true
@@ -103,7 +103,6 @@ class Book < ActiveRecord::Base
         :access_key_id     => APP_CONFIG['amazon']['access_key'],
         :secret_access_key => APP_CONFIG['amazon']['secret_key']
       )
-
     object_key = "#{self.id}.#{format}"
     S3Object.value(object_key, APP_CONFIG['buckets']['books'])
   end
