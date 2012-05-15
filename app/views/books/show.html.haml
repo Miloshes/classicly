@@ -78,7 +78,7 @@
       .row
         .offset4.span7.columns
           #reviews
-            = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent.includes(:reviewer)
+            = render :partial => 'books/review', :collection => @book.reviews.with_content.most_recent.joins(:reviewer).includes(:reviewer)
 <!-- les import -->
 = javascript_include_tag 'review-ratings'
 
