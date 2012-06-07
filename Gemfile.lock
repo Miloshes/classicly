@@ -51,7 +51,6 @@ GEM
     autotest-fsevent (0.2.8)
       sys-uname
     autotest-growl (0.2.16)
-    awesome_print (1.0.2)
     aws-s3 (0.6.2)
       builder
       mime-types
@@ -259,7 +258,6 @@ DEPENDENCIES
   authlogic!
   autotest-fsevent
   autotest-growl (~> 0.2.9)
-  awesome_print
   aws-s3
   capybara
   compass (>= 0.10.5)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120502010123) do
+ActiveRecord::Schema.define(:version => 20120607220830) do
 
   create_table "admin_users", :force => true do |t|
     t.string    "name",                              :null => false
@@ -197,6 +197,14 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
     t.integer "genre_id"
   end
 
+  create_table "client_applications", :force => true do |t|
+    t.string   "application_id"
+    t.string   "platform"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "collection_audiobook_assignments", :force => true do |t|
     t.integer "audiobook_id"
     t.integer "collection_id"
@@ -331,7 +339,11 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
     t.string    "twitter_name"
     t.string    "password_reset_token"
     t.timestamp "password_reset_sent_at"
+    t.integer   "client_application_id"
+    t.boolean   "mailchimp_subscribed",   :default => false
   end
+
+  add_index "logins", ["client_application_id"], :name => "index_logins_on_client_application_id"
 
   create_table "quotes", :force => true do |t|
     t.integer   "collection_id"
