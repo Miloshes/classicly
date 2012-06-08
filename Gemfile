@@ -85,7 +85,7 @@ gem 'hominid'
 
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
-  gem "awesome_print"
+  #gem "awesome_print"
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
   gem "ruby-debug19"
