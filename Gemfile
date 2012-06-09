@@ -86,7 +86,7 @@ gem 'hominid'
 
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
-  #gem "awesome_print"
+  # gem "awesome_print"
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
   gem "ruby-debug19"
@@ -99,7 +99,7 @@ group :development, :test do
   
   # == Testing related
   # improve tests performance
-  gem "spork"
+  gem "spork", "0.9.2"
   
   # Testing framework, a Cucumber replacement - http://rubygems.org/gems/steak
   gem "steak"
@@ -121,10 +121,10 @@ group :development, :test do
   gem "factory_girl_rails"
   
   # Gem that has the autotest tool for automatically running the tests. http://rubygems.org/gems/ZenTest
-  gem "ZenTest"
+  # gem "ZenTest"
   
   # Gem for reporting passing and failing tests via Growl on OS X. https://rubygems.org/gems/autotest-growl
-  gem "autotest-growl", "~> 0.2.9"
+  # gem "autotest-growl", "~> 0.2.9"
   
   # Autotest will not poll the filesystem for changes, but uses OS X APIs instead (much faster) http://rubygems.org/gems/autotest-fsevent
   # NOTE: requires XCode to work. Disabling this until Ruby 1.9.3 and Xcode 4.3 plays along

@@ -1,2 +1,3 @@
-Factory.define :seo_info do|f|
+FactoryGirl.define do
+  factory :seo_info
 end

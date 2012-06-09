@@ -1,3 +1,5 @@
-Factory.define :author do |f|
-  f.name 'John Doe'
+FactoryGirl.define do
+  factory :author do |f|
+    f.name 'John Doe'
+  end
 end

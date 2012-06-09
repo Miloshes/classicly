@@ -29,18 +29,17 @@ class Login < ActiveRecord::Base
     # required parameters
     
     required_parameters = []
-    
-    # NOTE: this is for backwards compatiblity with API v1.0, which sometimes doesn't sends structure_version
-    # otherwise structure_version is a required parameter
-    if !params["structure_version"].blank?
-      required_parameters << "structure_version"
-    end
-    
+
+    # setting up versionomy instance and checking if structure_version exists in the same step
+    # if it is not, than set it to '1.0'
+    api_version = Versionomy.parse(params['structure_version'] || '1.0')
+
+    # Requirement: API version > 1.0
+    required_parameters << 'structure_version' if api_version > '1.0'
+
     # TODO: API version < v1.3
-    if params["structure_version"] != "1.3"
-      required_parameters << "user_fbconnect_id"
-    end
-    
+    required_parameters << "user_fbconnect_id" if api_version < '1.3'
+
     required_parameters.each do |param_to_check|
       return nil if params[param_to_check].blank?
     end
@@ -49,21 +48,20 @@ class Login < ActiveRecord::Base
 
     # upwards from API v1.3, we use the email as the main identification method
     # TODO: API version >= v1.3
-    if params["structure_version"] == "1.3"
+    if api_version >= '1.3'
       existing_login = Login.where(:email => params["user_email"]).first() if params["user_email"]
     else
       existing_login = Login.where(:fb_connect_id => params["user_fbconnect_id"]).first() if params["user_fbconnect_id"]
     end
 
     # avoid double registration for APIs older than 1.2 (user registration call happens before every register review call)
-    if !["1.2", "1.3"].include?(params["structure_version"])
+    if api_version < '1.2'
       return true if existing_login
     end
 
     if existing_login
-      
       # TODO: API version >= v1.3
-      if params["structure_version"] == "1.3"
+      if api_version >= '1.3'
         # it's an existing half-account, migrate it into a full one
         if existing_login.not_a_real_account
           existing_login.turn_account_into_a_real_one(params)
@@ -76,36 +74,34 @@ class Login < ActiveRecord::Base
       
       login = existing_login
     else
-      data_for_new_login = {
-        :fb_connect_id    => params["user_fbconnect_id"].blank? ? nil : params["user_fbconnect_id"],
-        :twitter_name     => params["twitter_name"],
-        :email            => params["user_email"],
-        :first_name       => params["user_first_name"],
-        :last_name        => params["user_last_name"],
+      login = Login.create(
+        :fb_connect_id    => params['user_fbconnect_id'].blank? ? nil : params['user_fbconnect_id'],
+        :twitter_name     => params['twitter_name'],
+        :email            => params['user_email'],
+        :password         => params['password'],
+        :first_name       => params['user_first_name'],
+        :last_name        => params['user_last_name'],
         
-        :location_city    => params["user_location_city"],
-        :location_country => params["user_location_country"],
+        :location_city    => params['user_location_city'],
+        :location_country => params['user_location_country'],
         
-        :terms_of_service => params["terms_of_service"] == "accepted"
-      }
-      # trying to set the password to nil is not a good idea
-      data_for_new_login[:password] = params["password"] # unless params["password"].blank?
+        :terms_of_service => params['terms_of_service'] == "accepted"
+      )
 
-      login = Login.create(data_for_new_login)
-      if params['structure_version'] >= '1.4'
+      if api_version >= '1.4'
         ca = ClientApplication.find_or_create_by_platform_and_application_id(params['platform'], params['application_id'])
         login.update_attribute :client_application_id, ca.id
       end
 
       login.setup_access_token
-      login.send_registration_notification_for "ios"
+      login.send_registration_notification_for 'ios'
     end
     
     login.manage_associated_ios_devices(params)
 
     # migrate the anonymous reviews and highlights as we have the facebook information now
     # TODO: API >= 1.2
-    if ["1.2", "1.3"].include?(params["structure_version"])
+    if api_version >= '1.2'
       login.convert_anonymous_reviews_into_normal_ones
       # NOTE: we're disabling this until we have Terms of Service and such
       # login.convert_anonymous_book_highlights_into_normal_ones
@@ -116,17 +112,19 @@ class Login < ActiveRecord::Base
   
   def response_for_web_api(params)
     # our response to register_from_ios_app and login_ios_user Web API call
+
+    api_version = Versionomy.parse(params['structure_version'] || '1.0')
     
     # upwards from API v1.3, we care about the return value
     # TODO: API >= 1.3
-    return nil if !params["structure_version"] == "1.3"
+    return nil if api_version < '1.3'
 
     response = {}
     fields_to_return = %w(email fb_connect_id first_name last_name location_city location_country twitter_name)
     
     fields_to_return.each { |field| response[field] = self.send(field) }
     
-    response["general_response"] = "SUCCESS"
+    response['general_response'] = 'SUCCESS'
     
     return response.to_json
   end
