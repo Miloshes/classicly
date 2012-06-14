@@ -1,5 +1,7 @@
 # CLEANUP: extract seo slug related functionality
 
+include AWS::S3
+
 class Collection < ActiveRecord::Base
   # we have to be able to handle URLs in the model
   include ActionDispatch::Routing::UrlFor

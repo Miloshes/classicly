@@ -1,5 +1,3 @@
-include AWS::S3
-
 class BookPagesController < ApplicationController
 
   # GET /bram-stoker/dracula/page/15

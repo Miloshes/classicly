@@ -8,6 +8,7 @@ gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 
 # Amazon S3 - http://amazon.rubyforge.org/
 gem "aws-s3", :require => "aws/s3"
+# gem "aws-sdk", :require => "aws/s3"
 
 # CSS Authoring Framework - http://rubygems.org/gems/compass
 gem "compass", ">= 0.10.5"
@@ -49,7 +50,7 @@ gem "meta_where"
 gem "nokogiri"
 
 # file upload management with S3 support - http://rubygems.org/gems/paperclip
-gem "paperclip", "~> 2.3"
+gem "paperclip", "~> 2.4.5"
 
 # HTTP REST client - http://rubygems.org/gems/rest-client
 gem "rest-client", :require => "rest_client"
@@ -94,11 +95,11 @@ group :development, :test do
   gem "taps", "> 0.3.22"
   
   # Can control the Firefox browser, used for book rendering - http://rubygems.org/gems/firewatir
-  gem "firewatir"
+  # gem "firewatir"
   
   # == Testing related
   # improve tests performance
-  gem "spork", "0.9.0.rc8"
+  gem "spork"
   
   # Testing framework, a Cucumber replacement - http://rubygems.org/gems/steak
   gem "steak"
@@ -126,7 +127,8 @@ group :development, :test do
   gem "autotest-growl", "~> 0.2.9"
   
   # Autotest will not poll the filesystem for changes, but uses OS X APIs instead (much faster) http://rubygems.org/gems/autotest-fsevent
-  gem "autotest-fsevent"
+  # NOTE: requires XCode to work. Disabling this until Ruby 1.9.3 and Xcode 4.3 plays along
+  # gem "autotest-fsevent"
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
   gem "rspec-rails", "~> 2.9"
