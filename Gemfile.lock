@@ -49,8 +49,7 @@ GEM
     archive-tar-minitar (0.5.2)
     arel (2.0.10)
     autotest-growl (0.2.16)
-    awesome_print (1.0.2)
-    aws-s3 (0.6.3)
+    aws-s3 (0.6.2)
       builder
       mime-types
       xml-simple
@@ -244,7 +243,6 @@ DEPENDENCIES
   akephalos (~> 0.2.5)
   authlogic!
   autotest-growl (~> 0.2.9)
-  awesome_print
   aws-s3
   capybara
   compass (>= 0.10.5)

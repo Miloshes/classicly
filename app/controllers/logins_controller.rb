@@ -29,12 +29,11 @@ class LoginsController < ApplicationController
   end
   
   def mailchimp_callback
-    status = if params[:secret] == APP_CONFIG['mailchimp']['callback_secret']
+    status = if params[:secret] == APP_CONFIG['mailchimp'][Rails.env]['callback_secret']
       case params[:type]
-        when 'unsubscribe', 'cleaned'
-          user = Login.find_by_email(params[:data][:email])
-          user.update_attribute :mailing_enabled, false
-        
+      when 'unsubscribe', 'cleaned'
+        user = Login.find_by_email(params[:data][:email])
+        user.update_attribute :mailing_enabled, false
       end
       200
     else

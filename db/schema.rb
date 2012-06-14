@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120502010123) do
+ActiveRecord::Schema.define(:version => 20120607220830) do
 
   create_table "admin_users", :force => true do |t|
     t.string   "name",                              :null => false
@@ -187,14 +187,11 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
     t.integer "genre_id"
   end
 
-  create_table "classicly_inbox_packages", :force => true do |t|
-    t.integer  "source_user_id"
-    t.integer  "destination_user_id"
-    t.string   "destination_user_email"
-    t.string   "destination_user_fb_connect_id"
-    t.string   "deliverable_type"
-    t.integer  "deliverable_id"
-    t.text     "message"
+
+  create_table "client_applications", :force => true do |t|
+    t.string   "application_id"
+    t.string   "platform"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -316,24 +313,28 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   end
 
   create_table "logins", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "location_city"
-    t.string   "location_country"
-    t.string   "email"
-    t.string   "fb_connect_id"
-    t.boolean  "is_admin",               :default => false
-    t.boolean  "mailing_enabled",        :default => true
-    t.string   "access_token"
-    t.boolean  "terms_of_service",       :default => false
-    t.string   "hashed_password"
-    t.string   "salt"
-    t.string   "twitter_name"
-    t.string   "password_reset_token"
-    t.datetime "password_reset_sent_at"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "first_name"
+    t.string    "last_name"
+    t.string    "location_city"
+    t.string    "location_country"
+    t.string    "email"
+    t.string    "fb_connect_id"
+    t.boolean   "is_admin",               :default => false
+    t.boolean   "mailing_enabled",        :default => true
+    t.string    "access_token"
+    t.boolean   "terms_of_service",       :default => false
+    t.string    "hashed_password"
+    t.string    "salt"
+    t.string    "twitter_name"
+    t.string    "password_reset_token"
+    t.timestamp "password_reset_sent_at"
+    t.integer   "client_application_id"
+    t.boolean   "mailchimp_subscribed",   :default => false
   end
+
+  add_index "logins", ["client_application_id"], :name => "index_logins_on_client_application_id"
 
   create_table "quotes", :force => true do |t|
     t.integer   "collection_id"
