@@ -13,20 +13,20 @@
 ActiveRecord::Schema.define(:version => 20120502010123) do
 
   create_table "admin_users", :force => true do |t|
-    t.string    "name",                              :null => false
-    t.string    "email",                             :null => false
-    t.string    "crypted_password",                  :null => false
-    t.string    "password_salt",                     :null => false
-    t.string    "persistence_token",                 :null => false
-    t.integer   "login_count",        :default => 0, :null => false
-    t.integer   "failed_login_count", :default => 0, :null => false
-    t.timestamp "last_request_at"
-    t.timestamp "current_login_at"
-    t.timestamp "last_login_at"
-    t.string    "current_login_ip"
-    t.string    "last_login_ip"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "name",                              :null => false
+    t.string   "email",                             :null => false
+    t.string   "crypted_password",                  :null => false
+    t.string   "password_salt",                     :null => false
+    t.string   "persistence_token",                 :null => false
+    t.integer  "login_count",        :default => 0, :null => false
+    t.integer  "failed_login_count", :default => 0, :null => false
+    t.datetime "last_request_at"
+    t.datetime "current_login_at"
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email"
@@ -44,28 +44,28 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
   create_table "anonymous_book_highlights", :force => true do |t|
-    t.integer   "first_character"
-    t.integer   "last_character"
-    t.text      "content"
-    t.string    "ios_device_id"
-    t.timestamp "created_at"
-    t.text      "origin_comment"
-    t.integer   "book_id"
-    t.text      "cached_slug"
-    t.string    "ios_device_ss_id"
+    t.integer  "first_character"
+    t.integer  "last_character"
+    t.text     "content"
+    t.string   "ios_device_id"
+    t.datetime "created_at"
+    t.text     "origin_comment"
+    t.integer  "book_id"
+    t.string   "ios_device_ss_id"
+    t.text     "cached_slug"
   end
 
   add_index "anonymous_book_highlights", ["cached_slug"], :name => "index_anonymous_book_highlights_on_cached_slug", :unique => true
   add_index "anonymous_book_highlights", ["ios_device_ss_id"], :name => "index_anonymous_book_highlights_on_ios_device_ss_id"
 
   create_table "anonymous_reviews", :force => true do |t|
-    t.integer   "reviewable_id"
-    t.string    "reviewable_type"
-    t.text      "content"
-    t.integer   "rating"
-    t.timestamp "created_at"
-    t.string    "ios_device_id"
-    t.string    "ios_device_ss_id"
+    t.integer  "reviewable_id"
+    t.string   "reviewable_type"
+    t.text     "content"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.string   "ios_device_id"
+    t.string   "ios_device_ss_id"
   end
 
   add_index "anonymous_reviews", ["ios_device_ss_id"], :name => "index_anonymous_reviews_on_ios_device_ss_id"
@@ -96,11 +96,11 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   end
 
   create_table "author_quotings", :force => true do |t|
-    t.integer   "blog_post_id"
-    t.integer   "author_id"
-    t.text      "quoted_text"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "blog_post_id"
+    t.integer  "author_id"
+    t.text     "quoted_text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "author_quotings", ["author_id"], :name => "index_author_quotings_on_author_id"
@@ -129,29 +129,19 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
     t.integer "book_id"
   end
 
-  create_table "book_delivery_packages", :force => true do |t|
-    t.integer   "source_user"
-    t.integer   "destination_user"
-    t.string    "destination_user_email"
-    t.string    "destination_user_fb_connect_id"
-    t.string    "deliverable_type"
-    t.integer   "deliverable_id"
-    t.text      "message"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+  create_table "book_highlights", :force => true do |t|
+    t.integer  "first_character"
+    t.integer  "last_character"
+    t.text     "content"
+    t.datetime "created_at"
+    t.integer  "login_id"
+    t.text     "origin_comment"
+    t.integer  "book_id"
+    t.string   "fb_connect_id"
+    t.text     "cached_slug"
   end
 
-  create_table "book_highlights", :force => true do |t|
-    t.integer   "first_character"
-    t.integer   "last_character"
-    t.text      "content"
-    t.timestamp "created_at"
-    t.integer   "login_id"
-    t.text      "origin_comment"
-    t.integer   "book_id"
-    t.string    "fb_connect_id"
-    t.text      "cached_slug"
-  end
+  add_index "book_highlights", ["cached_slug"], :name => "index_book_highlights_on_cached_slug", :unique => true
 
   create_table "book_pages", :force => true do |t|
     t.integer "book_id"
@@ -165,29 +155,29 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   add_index "book_pages", ["book_id", "page_number"], :name => "book_id_page_number_index_for_book_pages", :unique => true
 
   create_table "bookmarks", :force => true do |t|
-    t.integer   "library_book_id"
-    t.integer   "page_number"
-    t.text      "annotation"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.integer  "library_book_id"
+    t.integer  "page_number"
+    t.text     "annotation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "books", :force => true do |t|
-    t.text      "title"
-    t.integer   "author_id"
-    t.string    "language"
-    t.integer   "published"
-    t.boolean   "blessed",                        :default => false, :null => false
-    t.integer   "custom_cover_id"
-    t.text      "description"
-    t.string    "pretty_title"
-    t.boolean   "available",                      :default => true
-    t.string    "cached_slug"
-    t.integer   "avg_rating"
-    t.integer   "downloaded_count",               :default => 0
-    t.boolean   "is_rendered_for_online_reading", :default => false, :null => false
-    t.boolean   "has_audiobook",                  :default => false
-    t.timestamp "global_last_opened"
+    t.text     "title"
+    t.integer  "author_id"
+    t.string   "language"
+    t.integer  "published"
+    t.boolean  "blessed",                        :default => false, :null => false
+    t.integer  "custom_cover_id"
+    t.text     "description"
+    t.string   "pretty_title"
+    t.boolean  "available",                      :default => true
+    t.string   "cached_slug"
+    t.integer  "avg_rating"
+    t.integer  "downloaded_count",               :default => 0
+    t.boolean  "is_rendered_for_online_reading", :default => false, :null => false
+    t.boolean  "has_audiobook",                  :default => false
+    t.datetime "global_last_opened"
   end
 
   add_index "books", ["author_id"], :name => "index_books_on_author_id"
@@ -195,6 +185,18 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   create_table "books_genres", :id => false, :force => true do |t|
     t.integer "book_id"
     t.integer "genre_id"
+  end
+
+  create_table "classicly_inbox_packages", :force => true do |t|
+    t.integer  "source_user_id"
+    t.integer  "destination_user_id"
+    t.string   "destination_user_email"
+    t.string   "destination_user_fb_connect_id"
+    t.string   "deliverable_type"
+    t.integer  "deliverable_id"
+    t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "collection_audiobook_assignments", :force => true do |t|
@@ -232,13 +234,13 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   end
 
   create_table "custom_resources", :force => true do |t|
-    t.string    "image_file_name"
-    t.string    "image_content_type"
-    t.integer   "image_file_size"
-    t.timestamp "image_updated_at"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.integer   "blog_post_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "blog_post_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -283,54 +285,54 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   end
 
   create_table "ios_devices", :force => true do |t|
-    t.integer   "user_id"
-    t.string    "ss_udid"
-    t.string    "original_udid"
-    t.timestamp "updated_at"
+    t.integer  "user_id"
+    t.string   "ss_udid"
+    t.string   "original_udid"
+    t.datetime "updated_at"
   end
 
   create_table "libraries", :force => true do |t|
-    t.integer   "login_id"
-    t.integer   "total_pages_read", :default => 0,    :null => false
-    t.integer   "books_downloaded", :default => 0,    :null => false
-    t.boolean   "unregistered",     :default => true, :null => false
-    t.timestamp "last_accessed"
+    t.integer  "login_id"
+    t.integer  "total_pages_read", :default => 0,    :null => false
+    t.integer  "books_downloaded", :default => 0,    :null => false
+    t.boolean  "unregistered",     :default => true, :null => false
+    t.datetime "last_accessed"
   end
 
   create_table "library_audiobooks", :force => true do |t|
-    t.integer   "library_id"
-    t.integer   "audiobook_id"
-    t.timestamp "last_opened"
-    t.integer   "listening_position"
-    t.timestamp "created_at"
+    t.integer  "library_id"
+    t.integer  "audiobook_id"
+    t.datetime "last_opened"
+    t.integer  "listening_position"
+    t.datetime "created_at"
   end
 
   create_table "library_books", :force => true do |t|
-    t.integer   "library_id"
-    t.integer   "book_id"
-    t.timestamp "last_opened"
-    t.integer   "reading_position"
-    t.timestamp "created_at"
+    t.integer  "library_id"
+    t.integer  "book_id"
+    t.datetime "last_opened"
+    t.integer  "reading_position"
+    t.datetime "created_at"
   end
 
   create_table "logins", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "location_city"
-    t.string    "location_country"
-    t.string    "email"
-    t.string    "fb_connect_id"
-    t.boolean   "is_admin",               :default => false
-    t.boolean   "mailing_enabled",        :default => true
-    t.string    "access_token"
-    t.boolean   "terms_of_service",       :default => false
-    t.string    "hashed_password"
-    t.string    "salt"
-    t.string    "twitter_name"
-    t.string    "password_reset_token"
-    t.timestamp "password_reset_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location_city"
+    t.string   "location_country"
+    t.string   "email"
+    t.string   "fb_connect_id"
+    t.boolean  "is_admin",               :default => false
+    t.boolean  "mailing_enabled",        :default => true
+    t.string   "access_token"
+    t.boolean  "terms_of_service",       :default => false
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.string   "twitter_name"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "quotes", :force => true do |t|
@@ -343,13 +345,13 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   end
 
   create_table "ratings", :force => true do |t|
-    t.string    "fb_connect_id"
-    t.integer   "login_id"
-    t.integer   "score"
-    t.integer   "rateable_id"
-    t.string    "rateable_type"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.string   "fb_connect_id"
+    t.integer  "login_id"
+    t.integer  "score"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "reviews", :force => true do |t|
@@ -366,25 +368,25 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   add_index "reviews", ["reviewable_id", "reviewable_type"], :name => "reviewable_id_reviewable_type_index_for_reviews"
 
   create_table "seo_defaults", :force => true do |t|
-    t.string    "object_type"
-    t.string    "object_attribute"
-    t.string    "default_value"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "collection_type"
-    t.string    "format"
+    t.string   "object_type"
+    t.string   "object_attribute"
+    t.string   "default_value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "collection_type"
+    t.string   "format"
   end
 
   create_table "seo_infos", :force => true do |t|
-    t.integer   "infoable_id"
-    t.string    "meta_description"
-    t.string    "title"
-    t.string    "og_title"
-    t.string    "og_image"
-    t.string    "og_description"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "infoable_type"
+    t.integer  "infoable_id"
+    t.string   "meta_description"
+    t.string   "title"
+    t.string   "og_title"
+    t.string   "og_image"
+    t.string   "og_description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "infoable_type"
   end
 
   create_table "seo_slugs", :force => true do |t|
@@ -408,10 +410,10 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "shortened_urls", :force => true do |t|
-    t.text      "url"
-    t.timestamp "created_at"
-    t.timestamp "last_hit"
-    t.integer   "hit_count",  :default => 0
+    t.text     "url"
+    t.datetime "created_at"
+    t.datetime "last_hit"
+    t.integer  "hit_count",  :default => 0
   end
 
   create_table "slugs", :force => true do |t|
@@ -426,29 +428,21 @@ ActiveRecord::Schema.define(:version => 20120502010123) do
   add_index "slugs", ["name", "sluggable_type", "sequence", "scope"], :name => "index_slugs_on_n_s_s_and_s", :unique => true
   add_index "slugs", ["sluggable_id"], :name => "index_slugs_on_sluggable_id"
 
-  create_table "table_of_contents_chapters", :force => true do |t|
-    t.integer "book_id"
-    t.integer "volume_id"
-    t.string  "chapter_title"
-    t.integer "character_offset"
-    t.integer "book_page_id"
-  end
-
-  create_table "table_of_contents_volumes", :force => true do |t|
-    t.string "title"
-  end
-
   create_table "user_sessions", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_uploaded_contents", :force => true do |t|
-    t.text      "original_filename"
-    t.string    "mime_type"
-    t.integer   "login_id"
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
+    t.text     "original_filename"
+    t.string   "mime_type"
+    t.integer  "login_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "attached_file_file_name"
+    t.string   "attached_file_content_type"
+    t.integer  "attached_file_file_size"
+    t.datetime "attached_file_updated_at"
   end
 
   create_table "users", :force => true do |t|
