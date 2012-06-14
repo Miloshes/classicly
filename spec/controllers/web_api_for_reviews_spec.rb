@@ -386,13 +386,14 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
 
         # We're expecting something like this:
-        # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
+        # {"books" => [{"featured"=>false, id"=>1013, "rating"=>1}, {"featured"=>true, id"=>1014, "rating"=>5}], 
+        #  "audiobooks" => [{"featured"=>false, "id"=>1000, "rating"=>1}, {"featured"=>true, "id"=>1001, "rating"=>5}]}
 
         parsed_response["books"].should have(2).elements
-        parsed_response["books"].first.keys.sort.should == ["id", "rating"]
+        parsed_response["books"].first.keys.sort.should == ["featured", "id", "rating"]
 
         parsed_response["audiobooks"].should have(2).elements
-        parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
+        parsed_response["audiobooks"].first.keys.sort.should == ["featured", "id", "rating"]
       end
     end
     
@@ -420,13 +421,14 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
 
         # We're expecting something like this:
-        # {"books"=>[{"id"=>1013, "rating"=>1}, {"id"=>1014, "rating"=>5}], "audiobooks"=>[{"id"=>1000, "rating"=>1}, {"id"=>1001, "rating"=>5}]}
+        # {"books" => [{"featured"=>false, id"=>1013, "rating"=>1}, {"featured"=>true, id"=>1014, "rating"=>5}], 
+        #  "audiobooks" => [{"featured"=>false, "id"=>1000, "rating"=>1}, {"featured"=>true, "id"=>1001, "rating"=>5}]}
 
         parsed_response["books"].should have(2).elements
-        parsed_response["books"].first.keys.sort.should == ["id", "rating"]
+        parsed_response["books"].first.keys.sort.should == ["featured", "id", "rating"]
 
         parsed_response["audiobooks"].should have(2).elements
-        parsed_response["audiobooks"].first.keys.sort.should == ["id", "rating"]
+        parsed_response["audiobooks"].first.keys.sort.should == ["featured", "id", "rating"]
       end
     end
 
@@ -460,13 +462,16 @@ describe WebApiController, "(API calls - review related queries)" do
       # We're expecting something like this
       # [
       #   {
-      #     "content"=>"..", "rating"=>.., "created_at"=>"..", 
+      #     "content"=>"..", "rating"=>.., "created_at"=>"..", "featured" => "...",
       #     "fb_connect_id"=>"..", "fb_name"=>"..", "fb_location_city"=>"..", "fb_location_country"=>".."
       #   }, .....
       # ]
 
       parsed_response.should have(2).elements
-      expected_keys = ["content", "created_at", "email", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      expected_keys = [
+        "content", "created_at", "email", "fb_connect_id", "fb_location_city",
+        "fb_location_country", "fb_name", "featured", "rating"
+      ]
       parsed_response.first.keys.sort.should  == expected_keys
       parsed_response.second.keys.sort.should == expected_keys
     end
@@ -487,7 +492,10 @@ describe WebApiController, "(API calls - review related queries)" do
       parsed_response = ActiveSupport::JSON.decode(response.body)
 
       parsed_response.should have(1).elements
-      expected_keys = ["content", "created_at", "email", "fb_connect_id", "fb_location_city", "fb_location_country", "fb_name", "rating"]
+      expected_keys = [
+        "content", "created_at", "email", "fb_connect_id", "fb_location_city",
+        "fb_location_country", "fb_name", "featured", "rating"
+      ]
       parsed_response.first.keys.sort.should == expected_keys
     end
 
@@ -630,10 +638,10 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
       
         # We're expecting something like this:
-        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # {"content"=>"Review text comes here", "rating"=>5, "featured"=>false, created_at"=>"2011-08-25T18:26:37Z"}
 
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        parsed_response.keys.sort.should == ["content", "created_at", "featured", "rating"]
       end
     
       it "should work for audiobooks" do
@@ -652,10 +660,10 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
       
         # We're expecting something like this:
-        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # {"content"=>"Review text comes here", "rating"=>5, "featured"=>false, "created_at"=>"2011-08-25T18:26:37Z"}
       
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        parsed_response.keys.sort.should == ["content", "created_at", "featured", "rating"]
       end
       
     end
@@ -678,10 +686,10 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
       
         # We're expecting something like this:
-        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # {"content"=>"Review text comes here", "rating"=>5, "featured"=>false, "created_at"=>"2011-08-25T18:26:37Z"}
 
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        parsed_response.keys.sort.should == ["content", "created_at", "featured", "rating"]
       end
     
       it "should work for audiobooks" do
@@ -700,10 +708,10 @@ describe WebApiController, "(API calls - review related queries)" do
         parsed_response = ActiveSupport::JSON.decode(response.body)
       
         # We're expecting something like this:
-        # {"content"=>"Review text comes here", "rating"=>5, "created_at"=>"2011-08-25T18:26:37Z"}
+        # {"content"=>"Review text comes here", "rating"=>5, "featured"=>false, "created_at"=>"2011-08-25T18:26:37Z"}
       
         parsed_response.class.should == Hash
-        parsed_response.keys.sort.should == ["content", "created_at", "rating"]
+        parsed_response.keys.sort.should == ["content", "created_at", "featured", "rating"]
       end
       
     end
