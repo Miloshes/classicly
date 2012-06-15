@@ -312,25 +312,25 @@ ActiveRecord::Schema.define(:version => 20120607220830) do
   end
 
   create_table "logins", :force => true do |t|
-    t.timestamp "created_at"
-    t.timestamp "updated_at"
-    t.string    "first_name"
-    t.string    "last_name"
-    t.string    "location_city"
-    t.string    "location_country"
-    t.string    "email"
-    t.string    "fb_connect_id"
-    t.boolean   "is_admin",               :default => false
-    t.boolean   "mailing_enabled",        :default => true
-    t.string    "access_token"
-    t.boolean   "terms_of_service",       :default => false
-    t.string    "hashed_password"
-    t.string    "salt"
-    t.string    "twitter_name"
-    t.string    "password_reset_token"
-    t.timestamp "password_reset_sent_at"
-    t.integer   "client_application_id"
-    t.boolean   "mailchimp_subscribed",   :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "location_city"
+    t.string   "location_country"
+    t.string   "email"
+    t.string   "fb_connect_id"
+    t.boolean  "is_admin",               :default => false
+    t.boolean  "mailing_enabled",        :default => true
+    t.string   "access_token"
+    t.boolean  "terms_of_service",       :default => false
+    t.string   "hashed_password"
+    t.string   "salt"
+    t.string   "twitter_name"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.integer  "client_application_id"
+    t.boolean  "mailchimp_subscribed",   :default => false
   end
 
   add_index "logins", ["client_application_id"], :name => "index_logins_on_client_application_id"
@@ -431,18 +431,6 @@ ActiveRecord::Schema.define(:version => 20120607220830) do
   create_table "user_sessions", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "user_uploaded_contents", :force => true do |t|
-    t.text     "original_filename"
-    t.string   "mime_type"
-    t.integer  "login_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "attached_file_file_name"
-    t.string   "attached_file_content_type"
-    t.integer  "attached_file_file_size"
-    t.datetime "attached_file_updated_at"
   end
 
   create_table "users", :force => true do |t|
