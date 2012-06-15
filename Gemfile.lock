@@ -15,7 +15,6 @@ GEM
       open4
     Platform (0.4.0)
     ZenTest (4.8.1)
-redefined the operators we're using
     abstract (1.0.0)
     actionmailer (3.0.7)
       actionpack (= 3.0.7)
@@ -217,7 +216,6 @@ redefined the operators we're using
       rspec (>= 1.3)
     syntax (1.0.0)
     taps (0.3.24)
-redefined the operators we're using
       rack (>= 1.0.1)
       rest-client (>= 1.4.0, < 1.7.0)
       sequel (~> 3.20.0)
