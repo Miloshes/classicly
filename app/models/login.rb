@@ -89,7 +89,7 @@ class Login < ActiveRecord::Base
       )
 
       if api_version >= '1.4'
-        ca = ClientApplication.find_or_create_by_platform_and_application_id(params['user_registered_from_platform'], params['user_registered_from_app_id'])
+        ca = ClientApplication.find_or_create_by_platform_and_application_id(params['user_registered_from_platform'], params['user_registered_from_app_id'].to_s)
         login.update_attribute :client_application_id, ca.id
       end
 
@@ -100,7 +100,7 @@ class Login < ActiveRecord::Base
     login.manage_associated_ios_devices(params)
 
     # migrate the anonymous reviews and highlights as we have the facebook information now
-    # TODO: API >= 1.2
+    # NOTE: API >= 1.2
     if api_version >= '1.2'
       login.convert_anonymous_reviews_into_normal_ones
       # NOTE: we're disabling this until we have Terms of Service and such
@@ -115,8 +115,7 @@ class Login < ActiveRecord::Base
 
     api_version = Versionomy.parse(params['structure_version'] || '1.0')
     
-    # upwards from API v1.3, we care about the return value
-    # TODO: API >= 1.3
+    # NOTE: upwards from API v1.3, we care about the return value
     return nil if api_version < '1.3'
 
     response = {}
