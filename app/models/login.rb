@@ -89,7 +89,7 @@ class Login < ActiveRecord::Base
       )
 
       if api_version >= '1.4'
-        ca = ClientApplication.find_or_create_by_platform_and_application_id(params['platform'], params['application_id'])
+        ca = ClientApplication.find_or_create_by_platform_and_application_id(params['user_registered_from_platform'], params['user_registered_from_app_id'])
         login.update_attribute :client_application_id, ca.id
       end
 
