@@ -4,6 +4,9 @@ class Login < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy
   has_many :ios_devices, :foreign_key => "user_id", :dependent => :destroy
   has_one :library
+  belongs_to :client_application
+
+  accepts_nested_attributes_for :client_application
   
   with_options :if => :doing_a_password_reset? do |reset|
     reset.validates :password, :presence => true
@@ -85,11 +88,15 @@ class Login < ActiveRecord::Base
         
         :terms_of_service => params["terms_of_service"] == "accepted"
       }
-
       # trying to set the password to nil is not a good idea
       data_for_new_login[:password] = params["password"] # unless params["password"].blank?
 
       login = Login.create(data_for_new_login)
+      if params['structure_version'] >= '1.4'
+        ca = ClientApplication.find_or_create_by_platform_and_application_id(params['platform'], params['application_id'])
+        login.update_attribute :client_application_id, ca.id
+      end
+
       login.setup_access_token
       login.send_registration_notification_for "ios"
     end

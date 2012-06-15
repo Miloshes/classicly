@@ -57,7 +57,9 @@ namespace :test_web_api do
         'user_first_name'       => nil,
         'user_last_name'        => 'Maslanyi',
         'user_location_city'    => 'Budapest',
-        'user_location_country' => 'Hungary'
+        'user_location_country' => 'Hungary',
+        'platform'              => 'Android',
+        'application_id'        => '123'
       }
       
       response = RestClient.post('http://classicly-staging.heroku.com/web_api', :json_data => data.to_json)

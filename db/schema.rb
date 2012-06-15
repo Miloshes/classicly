@@ -187,7 +187,6 @@ ActiveRecord::Schema.define(:version => 20120607220830) do
     t.integer "genre_id"
   end
 
-
   create_table "client_applications", :force => true do |t|
     t.string   "application_id"
     t.string   "platform"
