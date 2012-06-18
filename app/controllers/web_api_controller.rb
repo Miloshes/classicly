@@ -62,9 +62,14 @@ class WebApiController < ApplicationController
   end
   
   def call_needs_authentication
-    # TODO: API >= 1.3
+    # NOTE: API >= 1.3
     @parsed_data.any? do |record|
-      record["structure_version"] == "1.3"
+      if record["structure_version"]
+        api_version = Versionomy.parse(record["structure_version"] || "1.0")
+        api_version >= "1.3"
+      else
+        false
+      end
     end
   end
   

@@ -39,7 +39,7 @@ describe WebApiController do
     
     context "when the API version is greater or equal than 1.3" do
       it "should have an api_key and api_signature in the parameters" do
-        data = {"structure_version" => "1.3"}
+        data = {"structure_version" => "1.4"}
         
         base_api_params = {
           :json_data     => data.to_json,
@@ -58,7 +58,7 @@ describe WebApiController do
       end
       
       it "should return HTTP 401 (unauthorized) for a wrong API key" do
-        data = {"structure_version" => "1.3"}
+        data = {"structure_version" => "1.4"}
         
         post("create",
             :json_data     => data.to_json,
@@ -70,7 +70,7 @@ describe WebApiController do
       end
       
       it "should return HTTP 401 (unauthorized) for a wrong API signature" do
-        data = {"structure_version" => "1.3"}
+        data = {"structure_version" => "1.4"}
         
         post("create",
             :json_data     => data.to_json,
@@ -82,7 +82,7 @@ describe WebApiController do
       end
       
       it "should return HTTP 200 on success" do
-        data = {"structure_version" => "1.3"}
+        data = {"structure_version" => "1.4"}
         
         post("create",
             :json_data     => data.to_json,
@@ -91,6 +91,20 @@ describe WebApiController do
           )
         
         response.should be_success
+      end
+
+      it "should return proper JSON that has a general_response field in it" do
+        data = {"structure_version" => "1.4"}
+        
+        post("create",
+            :json_data     => data.to_json,
+            :api_key       => APP_CONFIG["api_key"],
+            :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+          )
+        
+        parsed_response = ActiveSupport::JSON.decode(response.body)
+        
+        parsed_response["general_response"].should_not be_blank
       end
     end
     

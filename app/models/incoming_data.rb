@@ -10,11 +10,11 @@ class IncomingData < ActiveRecord::Base
     return true if self.processed
     
     parsed_data = ActiveSupport::JSON.decode(self.json_data)
+    api_version = Versionomy.parse(parsed_data.is_a?(Hash) ? (parsed_data["structure_version"] || "1.0"): "1.0")
 
     # setting the general response, the sub-tasks can override it
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
-    if parsed_data.is_a?(Hash) && parsed_data["structure_version"] == "1.3"
-    # TODO: API >= 1.3
+    if api_version >= "1.3"
       response = {"general_response" => "SUCCESS"}.to_json
     else
       response = "SUCCESS"
@@ -35,8 +35,8 @@ class IncomingData < ActiveRecord::Base
           AnonymousReview.create_or_update_from_ios_client_data(record)
         end
         
-        # TODO: API >= 1.3
-        if record["structure_version"] == "1.3"
+        # NOTE: API version >= 1.3
+        if api_version >= "1.3"
           response = {"general_response" => "SUCCESS"}.to_json
         else
           response = "SUCCESS"
@@ -54,9 +54,8 @@ class IncomingData < ActiveRecord::Base
           response = result.response_when_created_via_web_api(:source_app => record["apple_id"])
         end
       when "register_ios_user"
-        # upwards from API v1.3 we care about the response
-        # TODO: API >= 1.3
-        if record["structure_version"] == "1.3"
+        # NOTE: upwards from API v1.3 we care about the response
+        if api_version >= "1.3"
           new_login = Login.register_from_ios_app(record)
           
           if new_login

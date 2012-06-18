@@ -37,7 +37,7 @@ class Login < ActiveRecord::Base
     # Requirement: API version > 1.0
     required_parameters << 'structure_version' if api_version > '1.0'
 
-    # TODO: API version < v1.3
+    # NOTE: API version < v1.3
     required_parameters << "user_fbconnect_id" if api_version < '1.3'
 
     required_parameters.each do |param_to_check|
@@ -47,7 +47,7 @@ class Login < ActiveRecord::Base
     existing_login = nil
 
     # upwards from API v1.3, we use the email as the main identification method
-    # TODO: API version >= v1.3
+    # NOTE: API version >= v1.3
     if api_version >= '1.3'
       existing_login = Login.where(:email => params["user_email"]).first() if params["user_email"]
     else
@@ -60,7 +60,7 @@ class Login < ActiveRecord::Base
     end
 
     if existing_login
-      # TODO: API version >= v1.3
+      # NOTE: API version >= v1.3
       if api_version >= '1.3'
         # it's an existing half-account, migrate it into a full one
         if existing_login.not_a_real_account
