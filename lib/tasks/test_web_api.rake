@@ -47,7 +47,7 @@ namespace :test_web_api do
       puts "Response was: #{response.body}"
   end
   
-  task :register_ios_user => :environment do
+  task :register_ios_user_v12 => :environment do
     data = {
         'structure_version'     => '1.2',
         'action'                => 'register_ios_user',
@@ -57,12 +57,34 @@ namespace :test_web_api do
         'user_first_name'       => nil,
         'user_last_name'        => 'Maslanyi',
         'user_location_city'    => 'Budapest',
-        'user_location_country' => 'Hungary',
-        'platform'              => 'Android',
-        'application_id'        => '123'
+        'user_location_country' => 'Hungary'
       }
       
       response = RestClient.post('http://classicly-staging.heroku.com/web_api', :json_data => data.to_json)
+      puts "Response was: #{response.body}"
+  end
+
+    task :register_ios_user_v14 => :environment do
+    data = {
+        'structure_version'             => '1.4',
+        'action'                        => 'register_ios_user',
+        'user_fbconnect_id'             => '1232134',
+        'device_id'                     => 'ASDASD',
+        'user_email'                    => 'zsolt.maslanyi@gmail.com',
+        'user_first_name'               => nil,
+        'user_last_name'                => 'Maslanyi',
+        'user_location_city'            => 'Budapest',
+        'user_location_country'         => 'Hungary',
+        'user_registered_from_platform' => 'iOS',
+        'user_registered_from_app_id'   => '123'
+      }
+      
+      response = RestClient.post(
+          'http://localhost:3000/web_api',
+          :json_data     => data.to_json,
+          :api_key       => APP_CONFIG["api_key"],
+          :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
+        )
       puts "Response was: #{response.body}"
   end
   
