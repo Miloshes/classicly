@@ -10,7 +10,21 @@ class IncomingData < ActiveRecord::Base
     return true if self.processed
     
     parsed_data = ActiveSupport::JSON.decode(self.json_data)
-    api_version = Versionomy.parse(parsed_data.is_a?(Hash) ? (parsed_data["structure_version"] || "1.0"): "1.0")
+
+    # if we're dealing with 1 data record and not an array, convert to array
+    if parsed_data.is_a? Hash
+      parsed_data = [parsed_data]
+    end
+
+    api_version = Versionomy.parse("1.0")
+
+    # set api_version number to the first structure_version data we find
+    parsed_data.each do |record|
+      if record["structure_version"]
+        api_version = Versionomy.parse(record["structure_version"])
+        break
+      end
+    end
 
     # setting the general response, the sub-tasks can override it
     # NOTE: upwards from API v1.3, we're always sending back proper JSON as a response
@@ -18,11 +32,6 @@ class IncomingData < ActiveRecord::Base
       response = {"general_response" => "SUCCESS"}.to_json
     else
       response = "SUCCESS"
-    end
-
-    # if we're dealing with 1 data record and not an array, convert to array
-    if parsed_data.is_a? Hash
-      parsed_data = [parsed_data]
     end
     
     parsed_data.each do |record|
