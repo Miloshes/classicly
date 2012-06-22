@@ -14,6 +14,8 @@ class WebApiController < ApplicationController
   
   def create
     response = @handler.handle_incoming_data(params)
+
+    Rails.logger.info("\n -- response is: #{response.inspect}\n")
     
     render :text => response
   end
@@ -21,6 +23,8 @@ class WebApiController < ApplicationController
   # POST review_api/query
   def query
     response = @handler.process_query(params)
+
+    Rails.logger.info("\n -- response is: #{response.inspect}\n")
     
     render :text => response
   end
