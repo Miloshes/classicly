@@ -65,7 +65,7 @@ google.setOnLoadCallback(function() {
 
     $(elementId).autocomplete( {
       source: sourceCallback,
-      delay: 250,
+      delay: 500,
       select: selectCallback,
       open: function(event, ui) {
         uiHandler.slideDownContentContainer();
