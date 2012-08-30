@@ -30,7 +30,7 @@ class BookHighlight < ActiveRecord::Base
     
     login = Login.find_user(data["user_email"], data["user_fbconnect_id"])
     
-    # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous highlight
+    # a fallback - we only have the device ID but the user is not in the database yet, we're storing stuff as anonymous highlight
     if login.blank?
       # for this to work "device_id" is a must parameter for the call
       result = AnonymousBookHighlight.create_or_update_from_ios_client_data(data)
