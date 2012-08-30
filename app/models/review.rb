@@ -1,5 +1,4 @@
 class Review < ActiveRecord::Base
-
   scope :with_content, where(:content.not_eq => "")
   scope :most_recent, order("created_at DESC")
   scope :featured, where(featured: true)
@@ -7,7 +6,11 @@ class Review < ActiveRecord::Base
   belongs_to :reviewable, :polymorphic => true
   belongs_to :reviewer, :class_name => "Login", :foreign_key => "login_id"
 
-  #after_create :deliver_review_created_notification_to_flowdock
+  validates :reviewer, :presence => true
+  validates :reviewable, :presence => true
+  validates :rating, :presence => true, :numericality => { :only_integer => true, :greater_than_or_equal_to => 1, :less_than_or_equal_to => 5 }
+
+  before_validation :sanitize_rating
 
   def self.create_or_update_from_ios_client_data(data)
     # == fetch the reviewable
@@ -21,7 +24,7 @@ class Review < ActiveRecord::Base
 
     login = Login.find_user(data["user_email"], data["user_fbconnect_id"])
 
-    # a fallback - we have facebook data but the user login hasn't been created, we're storing stuff as anonymous reviews
+    # a fallback - we only have the device ID but the user is not in the database yet, we're storing stuff as anonymous review
     if login.blank?
       AnonymousReview.create_or_update_from_ios_client_data(data)
       return
@@ -30,7 +33,7 @@ class Review < ActiveRecord::Base
     new_timestamp = Time.parse(data["timestamp"])
 
     review_conditions = {
-        :login_id      => login.id,
+        :reviewer      => login,
         :reviewable    => reviewable,
         :fb_connect_id => login.fb_connect_id
       }
@@ -51,6 +54,12 @@ class Review < ActiveRecord::Base
 
   end
 
+  def sanitize_rating
+    self.rating = 1 if self.rating.to_i < 1
+    self.rating = 5 if self.rating.to_i > 5
+  end
+
+  # NOTE: unused right now
   def deliver_review_created_notification_to_flowdock
     ReviewMailer.deliver_notification_on_flowdock self
   end
