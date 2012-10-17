@@ -48,6 +48,7 @@ Classicly::Application.routes.draw do
   # == Static-y Pages
   match "about" => "pages#about"
   match "terms-ipad" => "pages#terms_of_service_for_ipad"
+  match "privacy-win8" => "pages#privacy_plain_text"
   match 'audiobook-collections' => 'pages#audio_collections'
   match 'audiobook-authors' => 'pages#audiobook_authors'
   match 'authors/(:page)' => 'pages#authors', :as => :authors

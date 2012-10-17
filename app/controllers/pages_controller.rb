@@ -61,7 +61,11 @@ class PagesController < ApplicationController
   end
   
   def terms_of_service_for_ipad
-    render :action => "terms_of_service", :layout => "terms_of_service"
+    render :action => "terms_of_service", :layout => "plain_text"
+  end
+
+  def privacy_plain_text
+    render :action => "privacy", :layout => "plain_text"
   end
   
   protected
