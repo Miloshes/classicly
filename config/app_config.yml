@@ -1,5 +1,9 @@
 administrators: ["zsolt@spreadsong.com", "colin@spreadsong.com", "kenzie@spreadsong.com", "tyler@spreadsong.com", "ignacio@spreadsong.com"]
 
+airbrake_io:
+  api_key: 5ae585e91631c1d5808eee4629d0d361
+  auth_token: ad8f08e5b259a7b59cb09d5aafa48679c1b81b76
+
 mailchimp:
   staging:
     api_key: fedc521a34f081c69896e97d11edc8ea-us1
@@ -26,6 +30,7 @@ buckets:
   author_portraits: "spreadsong-author-portraits"
   books: "spreadsong-kindleload-books"
   blog_images: "classicly-blog-images"
+  staging_to_production_migration: "spreadsong-classicly-staging-to-production-migration-data"
   covers:
     original_highres: "spreadsong-original-highres-covers"
     iphone:
