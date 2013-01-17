@@ -1,9 +1,6 @@
 class IosDevice < ActiveRecord::Base
   belongs_to :user, :class_name => "Login"
   
-  # our spreadsong id for the device, generated from the original UDID which we can't use anymore
-  validates :ss_udid, :presence => true
-  
   def self.make_sure_its_registered_and_assigned_to_user(original_udid, new_ss_udid, user)
     return nil if (original_udid.blank? && new_ss_udid.blank?) || user.blank?
     
