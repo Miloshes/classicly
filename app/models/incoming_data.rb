@@ -88,6 +88,9 @@ class IncomingData < ActiveRecord::Base
         Book.update_description_from_web_api(record)
       when "send_book_from_user_to_user"
         response = BookDeliveryPackage.register_from_ios_app(record)
+      when "import_user_data_from_staging_server"
+        migrator = StagingToProductionMigrator.new
+        migrator.import_user_content
       end
     end
     
