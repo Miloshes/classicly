@@ -12,9 +12,4 @@ namespace :staging_server do
     migrator.setup_for_first_run
   end
 
-  task :test => :environment do
-    migrator = StagingToProductionMigrator.new
-    migrator.notify_production_server
-  end
-
 end
