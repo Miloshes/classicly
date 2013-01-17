@@ -14,6 +14,11 @@ task :cron => :environment do
   if Time.now.hour % 12 == 0 # run every 12 hours
     Library.clean_up_not_claimed_libraries
   end
+
+  if Time.now.hour % 12 == 0 # run every 12 hours
+    migrator = StagingToProductionMigrator.new
+    migrator.export_and_upload_user_content
+  end
   
   if Time.now.hour == 0 # run once a day
     OnlineReader.update_cache
