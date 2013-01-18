@@ -74,7 +74,7 @@ class StagingToProductionMigrator
     }
 
     response = RestClient.post(
-        "http://classicly.com/web_api",
+        "https://secure.classicly.com/web_api",
         :json_data     => data.to_json,
         :api_key       => APP_CONFIG["api_key"],
         :api_signature => Digest::MD5.hexdigest(data.to_json + APP_CONFIG["api_secret"])
