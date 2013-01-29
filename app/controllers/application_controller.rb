@@ -74,7 +74,11 @@ class ApplicationController < ActionController::Base
   end
 
   def facebook_cookies
-    @facebook_cookies ||= Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
+    if session[:facebook_cookies].blank?
+      session[:facebook_cookies] = Koala::Facebook::OAuth.new(Facebook::APP_ID, Facebook::SECRET).get_user_info_from_cookies(cookies)
+    end
+
+    return session[:facebook_cookies]
   end
 
 end
