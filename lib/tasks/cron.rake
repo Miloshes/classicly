@@ -1,7 +1,7 @@
 desc "This task is called by the Heroku cron add-on"
 task :cron => :environment do
   
-  if Time.now.hour % 4 == 0 # run every 2 hours
+  if Time.now.hour == 10
     Book.find_each do |book|
       book.set_average_rating
     end
@@ -11,16 +11,16 @@ task :cron => :environment do
     end
   end
   
-  if Time.now.hour % 12 == 0 # run every 12 hours
+  if Time.now.hour == 12
     Library.clean_up_not_claimed_libraries
   end
 
-  if Time.now.hour % 12 == 0 # run every 12 hours
+  if Time.now.hour == 6
     migrator = StagingToProductionMigrator.new
     migrator.export_and_upload_user_content
   end
   
-  if Time.now.hour == 0 # run once a day
+  if Time.now.hour == 2 # run once a day
     OnlineReader.update_cache
   end
 
