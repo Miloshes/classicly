@@ -84,8 +84,6 @@ gem "versionomy", "0.4.1"
 
 gem 'hominid'
 
-gem 'hominid'
-
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   # gem "awesome_print"
