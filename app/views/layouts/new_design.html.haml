@@ -47,17 +47,22 @@
     = yield :head
 
   %body.bp
-    = render 'shared/connect_with_facebook_bar'
-    
+    - if Rails.env.development? || Rails.env.staging?
+      :javascript
+        var kissMetricsApiKey = '94092b7dc9c6ee16df89aecd633f2ac103e83920';
+    - else
+      :javascript
+        var kissMetricsApiKey = '95fd99a5f08a7e3b66a3ec13482c021a3fe30872';
     :javascript
       var _kmq = _kmq || [];
+
       function _kms(u){
         setTimeout(function(){
           var s = document.createElement('script'); var f = document.getElementsByTagName('script')[0]; s.type = 'text/javascript'; s.async = true;
           s.src = u; f.parentNode.insertBefore(s, f);
         }, 1);
       }
-      _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/95fd99a5f08a7e3b66a3ec13482c021a3fe30872.1.js');
+      _kms('//i.kissmetrics.com/i.js');_kms('//doug1izaerwt3.cloudfront.net/' + kissMetricsApiKey + '.1.js');
 
       (function() {
         var p = document.createElement('script');
@@ -66,6 +71,9 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(p, s);
       })();
+
+    = render 'shared/mobile_app_upsell_banner'
+    = render 'shared/connect_with_facebook_bar'
 
     = yield :notifications
 
