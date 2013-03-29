@@ -8,9 +8,9 @@ project_type = :rails
 http_path = "/"
 
 if Compass::AppIntegration::Rails.env == "development"
-  css_dir = "tmp/stylesheets"
-else
   css_dir = "public/stylesheets/compiled"
+else
+  css_dir = "tmp/stylesheets"
 end
 
 sass_dir = "app/stylesheets"
