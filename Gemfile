@@ -1,7 +1,8 @@
-source :rubygems
+source "https://rubygems.org"
 source "http://gems.github.com"
 
 gem "rails", "3.0.7"
+gem "rake", "0.9.2.2"
 
 # Authentication - http://rubygems.org/gems/authlogic
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
@@ -11,7 +12,7 @@ gem "aws-s3", :require => "aws/s3"
 # gem "aws-sdk", :require => "aws/s3"
 
 # CSS Authoring Framework - http://rubygems.org/gems/compass
-gem "compass", ">= 0.10.5"
+gem "compass", "~> 0.11.7"
 
 # template markup language - http://haml-lang.com/
 gem "haml"
@@ -59,7 +60,7 @@ gem "rest-client", :require => "rest_client"
 gem "sitemap_generator"
 
 # SQLite3 driver - http://rubygems.org/gems/sqlite3
-gem "sqlite3-ruby"
+gem "sqlite3"
 
 # gem to allow sort and pagination using regular HTML and avoid showing the params in the URL
 gem "sorted"
