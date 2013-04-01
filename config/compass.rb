@@ -7,7 +7,7 @@
 project_type = :rails
 http_path = "/"
 
-if Compass::AppIntegration::Rails.env == "development"
+if Compass::AppIntegration::Rails.env == :development
   css_dir = "public/stylesheets/compiled"
 else
   css_dir = "tmp/stylesheets"
