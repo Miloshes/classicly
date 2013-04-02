@@ -2924,24 +2924,24 @@ table tr a {
   padding-left: 165px;
 }
 
-/* line 22, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 1, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner {
   background-color: #006fad;
   text-align: center;
   padding: 10px 0px 10px 0px;
 }
-/* line 26, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 5, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area {
   display: block;
   margin: 0 auto;
-  width: 470px;
+  width: 580px;
 }
-/* line 30, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 9, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area #upsell-app-logo {
   float: left;
   height: 72px;
 }
-/* line 33, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 12, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area #upsell-text {
   float: right;
   vertical-align: middle;
