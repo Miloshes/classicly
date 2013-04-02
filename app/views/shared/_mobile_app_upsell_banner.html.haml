@@ -1,26 +1,15 @@
--# Version 1
--#
-  #mobile-app-upsell-banner
-    %a#upsell-banner-click-area{:href => "https://itunes.apple.com/us/app/free-audiobooks-4-728-classic/id352615816?mt=8"}
-      #upsell-app-logo
-        = image_tag 'banner-free-audiobboks.png'
-      #upsell-text
-        Get 4,727 audiobooks on your iPhone for $0.99!
-      .clear
-
 #mobile-app-upsell-banner
   %a#upsell-banner-click-area{:href => "https://itunes.apple.com/us/app/free-audiobooks-4-728-classic/id352615816?mt=8"}
     #upsell-app-logo
       = image_tag 'banner-free-audiobboks.png'
     #upsell-text
-      Get 4,727 audiobooks on your iPhone
+      Get 4,727 audiobooks on your iPhone for $0.99!
     .clear
 
-
 :javascript
-  sendKissMetricsEvent("Mobile app upsell banner shown", {"banner_version": 2});
+  sendKissMetricsEvent("Mobile app upsell banner shown", {"banner_version": 1});
   $(function(){
     $('a#upsell-banner-click-area').click( function(){
-        sendKissMetricsEvent("Mobile app upsell banner clicked", {"banner_version": 2});
+        sendKissMetricsEvent("Mobile app upsell banner clicked", {"banner_version": 1});
     });
   });
