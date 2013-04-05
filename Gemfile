@@ -85,6 +85,9 @@ gem "versionomy", "0.4.1"
 
 gem 'hominid'
 
+# A/B testing framework
+gem 'split', :require => 'split/dashboard'
+
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   # gem "awesome_print"
@@ -93,7 +96,8 @@ group :development, :test do
   gem "ruby-debug19"
   
   # Heroku database import/export - http://rubygems.org/gems/taps
-  gem "taps", "> 0.3.22"
+  # NOTE: only enable when used, has a gem version conflict with the "split" gem
+  # gem "taps"
   
   # Can control the Firefox browser, used for book rendering - http://rubygems.org/gems/firewatir
   # gem "firewatir"
