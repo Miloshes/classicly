@@ -35,6 +35,9 @@ Classicly::Application.routes.draw do
   # == User related
   resource :logins, :only => [:create]
   resources :password_resets
+
+  resources :mobile_app_upsell_redirects, :only => [:index]
+
   match 'reset_password' => "password_resets#new"
   match "reset_password/token/:id" => "password_resets#edit", :as => :reset_password
   match '/unsubscribe' => 'logins#unsubscribe', :as => :unsubscribe
