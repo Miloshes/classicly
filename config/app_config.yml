@@ -58,6 +58,9 @@ index_tank:
 
 yaml_exports_path: "db/yaml_exports"
 
+mobile_app_upsell_redirect_urls:
+  free_audiobooks_upsell_banner: https://itunes.apple.com/us/app/free-audiobooks-4-728-classic/id352615816?mt=8
+
 apple_ids:
   "Free Books iPhone": "317776727"
   "Free Books iPad": "364612911"
