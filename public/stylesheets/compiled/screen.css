@@ -192,7 +192,7 @@ body.bp a.btn.primary {
 ul.ui-autocomplete {
   min-width: 742px;
   max-width: 742px;
-  top: 50px !important;
+  top: 135px !important;
   cursor: pointer;
 }
 /* line 66, ../../../app/stylesheets/partials/_global.sass */
@@ -2064,12 +2064,13 @@ ul.book-list li .download-link .view-this-book a {
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
   z-index: 2;
   display: none;
+  position: absolute;
 }
-/* line 13, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 14, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification.fixed {
   position: fixed;
 }
-/* line 16, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 17, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box {
   display: inline-table;
   background-image: url(/images/Registration_slices/reg_box.png);
@@ -2078,17 +2079,17 @@ ul.book-list li .download-link .view-this-book a {
   margin-top: 20px;
   margin-right: 16px;
 }
-/* line 25, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 26, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box img {
   margin-top: 11px;
 }
-/* line 29, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 30, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box p {
   width: 160px;
   margin: 0 auto;
   margin-top: 6px;
 }
-/* line 35, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 36, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect {
   width: 362px;
   display: block;
@@ -2096,26 +2097,26 @@ ul.book-list li .download-link .view-this-book a {
   margin: 19px auto;
   text-decoration: none;
 }
-/* line 43, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 44, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect #facebook_connect {
   background-image: url(/images/Registration_slices/reg_btn_blue.png);
   width: 362px;
   height: 49px;
   padding-top: 1px;
 }
-/* line 50, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 51, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect:active #facebook_connect {
   background-image: url(/images/Registration_slices/reg_btn_blue.png);
   background-position: 0px -51px;
 }
-/* line 56, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 57, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #facebook_connect p {
   margin-top: 14px;
   font-size: 24px;
   text-decoration: none;
   color: white;
 }
-/* line 63, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 64, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline {
   display: block;
   width: 102px;
@@ -2123,19 +2124,19 @@ ul.book-list li .download-link .view-this-book a {
   margin: 19px auto;
   text-decoration: none;
 }
-/* line 71, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 72, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline #facebook_decline {
   background-image: url(/images/Registration_slices/reg_btn_grey.png);
   width: 102px;
   height: 24px;
   padding-top: 1px;
 }
-/* line 78, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 79, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline:active #facebook_decline {
   background-image: url(/images/Registration_slices/reg_btn_grey.png);
   background-position: 0px -28px;
 }
-/* line 83, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
+/* line 84, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #facebook_decline p {
   margin-top: 1px;
   color: white;
@@ -2925,24 +2926,68 @@ table tr a {
 }
 
 /* line 1, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#site-container {
+  top: 92px;
+}
+
+/* line 4, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner {
   background-color: #006fad;
   text-align: center;
   padding: 10px 0px 10px 0px;
+  width: 100%;
+  position: absolute;
+  top: 0px;
 }
-/* line 5, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 11, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area {
   display: block;
   margin: 0 auto;
   width: 580px;
 }
-/* line 9, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 15, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area #upsell-app-logo {
   float: left;
   height: 72px;
 }
-/* line 12, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+/* line 18, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #mobile-app-upsell-banner #upsell-banner-click-area #upsell-text {
+  float: right;
+  vertical-align: middle;
+  line-height: 72px;
+  color: white;
+  font-size: 24px;
+}
+
+/* line 25, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#mobile-app-upsell-banner-hover-wrapper {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 5000;
+  width: 100%;
+}
+/* line 31, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#mobile-app-upsell-banner-hover-wrapper #mobile-app-upsell-banner-hover {
+  background-color: #006fad;
+  text-align: center;
+  padding: 10px 0px 10px 0px;
+  position: relative;
+  z-index: 1000;
+}
+/* line 37, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#mobile-app-upsell-banner-hover-wrapper #mobile-app-upsell-banner-hover #upsell-banner-click-area {
+  display: block;
+  margin: 0 auto;
+  width: 580px;
+}
+/* line 41, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#mobile-app-upsell-banner-hover-wrapper #mobile-app-upsell-banner-hover #upsell-banner-click-area #upsell-app-logo {
+  float: left;
+  height: 72px;
+}
+/* line 44, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
+#mobile-app-upsell-banner-hover-wrapper #mobile-app-upsell-banner-hover #upsell-banner-click-area #upsell-text {
   float: right;
   vertical-align: middle;
   line-height: 72px;
