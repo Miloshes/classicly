@@ -1,10 +1,21 @@
-#mobile-app-upsell-banner
-  %a#upsell-banner-click-area{:href => "https://itunes.apple.com/us/app/free-audiobooks-4-728-classic/id352615816?mt=8"}
-    #upsell-app-logo
-      = image_tag 'banner-free-audiobboks.png'
-    #upsell-text
-      Get 4,727 audiobooks on your iPhone for $0.99!
-    .clear
+- ab_test("mobile-app-upsell-banner", "Base hovering", "Base") do |banner_version|
+  - if banner_version == "Base hovering"
+    #mobile-app-upsell-banner
+      = link_to( mobile_app_upsell_redirects_path(:experiment => "mobile_app_upsell_banner", :source => "free_audiobooks_upsell_banner"), {:id => "upsell-banner-click-area", :target => "new"} ) do
+        #upsell-app-logo
+          = image_tag 'banner-free-audiobboks.png'
+        #upsell-text
+          Get 4,727 audiobooks on your iPhone for $0.99!
+        .clear
+  - elsif banner_version == "Base"
+    #mobile-app-upsell-banner-hover-wrapper
+      #mobile-app-upsell-banner-hover
+        = link_to( mobile_app_upsell_redirects_path(:experiment => "mobile_app_upsell_banner", :source => "free_audiobooks_upsell_banner"), {:id => "upsell-banner-click-area", :target => "new"} ) do
+          #upsell-app-logo
+            = image_tag 'banner-free-audiobboks.png'
+          #upsell-text
+            Get 4,727 audiobooks on your iPhone for $0.99!
+          .clear
 
 :javascript
   sendKissMetricsEvent("Mobile app upsell banner shown", {"banner_version": 1});

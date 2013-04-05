@@ -1,7 +1,13 @@
+#site-container
+  top: 92px
+
 #mobile-app-upsell-banner
   background-color: #006FAD
   text-align: center
   padding: 10px 0px 10px 0px
+  width: 100%
+  position: absolute
+  top: 0px
   #upsell-banner-click-area
     display: block
     margin: 0 auto
@@ -15,3 +21,29 @@
       line-height: 72px
       color: white
       font-size: 24px
+
+#mobile-app-upsell-banner-hover-wrapper
+  position: fixed
+  top: 0px
+  left: 0px
+  z-index: 5000
+  width: 100%
+  #mobile-app-upsell-banner-hover
+    background-color: #006FAD
+    text-align: center
+    padding: 10px 0px 10px 0px
+    position: relative
+    z-index: 1000
+    #upsell-banner-click-area
+      display: block
+      margin: 0 auto
+      width: 580px
+      #upsell-app-logo
+        float: left
+        height: 72px
+      #upsell-text
+        float: right
+        vertical-align: middle
+        line-height: 72px
+        color: white
+        font-size: 24px
