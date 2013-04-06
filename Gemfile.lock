@@ -52,7 +52,7 @@ GEM
       mime-types
       xml-simple
     babosa (0.3.8)
-    backports (3.1.1)
+    backports (3.3.0)
     blockenspiel (0.4.5)
     builder (2.1.2)
     capybara (0.4.1.2)
@@ -149,7 +149,7 @@ GEM
       cocaine (>= 0.0.2)
       mime-types
     polyglot (0.3.3)
-    rack (1.2.7)
+    rack (1.2.8)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -213,7 +213,7 @@ GEM
     sitemap_generator (3.4)
       builder
     sorted (0.4.3)
-    split (0.5.0)
+    split (0.6.0)
       redis (>= 2.1)
       redis-namespace (>= 1.1.0)
       simple-random
