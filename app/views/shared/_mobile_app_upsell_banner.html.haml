@@ -1,9 +1,7 @@
-- ab_test("mobile-app-upsell-banner", "Base", "Base hovering") do |banner_version|
-  #mobile-app-upsell-banner-hover-wrapper
-    #mobile-app-upsell-banner-hover
-      = link_to( mobile_app_upsell_redirects_path(:experiment => "mobile-app-upsell-banner", :source => "free_audiobooks_upsell_banner"), {:id => "upsell-banner-click-area", :target => "new"} ) do
-        #upsell-app-logo
-          = image_tag 'banner-free-audiobboks.png'
-        #upsell-text
-          Get 4,727 audiobooks on your iPhone for $0.99!
-        .clear
+#mobile-app-upsell-banner
+  = link_to( mobile_app_upsell_redirects_path(:experiment => "mobile-app-upsell-banner", :source => "free_audiobooks_upsell_banner"), {:id => "upsell-banner-click-area", :target => "new"} ) do
+    #upsell-app-logo
+      = image_tag 'banner-free-audiobboks.png'
+    #upsell-text
+      Get 4,727 audiobooks on your iPhone for $0.99!
+    .clear
