@@ -86,7 +86,7 @@ gem "versionomy", "0.4.1"
 gem 'hominid'
 
 # A/B testing framework
-gem 'split', :require => 'split/dashboard'
+gem 'split', :require => 'split'
 
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
