@@ -1,4 +1,4 @@
-- ab_test("mobile-app-upsell-banner", "Base", "Base hovering") do
+- ab_test("mobile-app-upsell-banner", "Base", "Base hovering") do |banner_version|
   #mobile-app-upsell-banner
     = link_to( mobile_app_upsell_redirects_path(:experiment => "mobile-app-upsell-banner", :source => "free_audiobooks_upsell_banner"), {:id => "upsell-banner-click-area", :target => "new"} ) do
       #upsell-app-logo

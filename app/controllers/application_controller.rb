@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
 
   # IMPORTANT NOTE: we have an iOS API, so web related before filters should be skipped in web_api_controller.
   # Update it's skip_before_filter list when adding stuff here.
-  before_filter :set_abingo_identity
   before_filter :popular_books
   before_filter :popular_collections
   
@@ -59,17 +58,6 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "You must be logged out to access this page"
       redirect_to root_path
       return false
-    end
-  end
-
-  def set_abingo_identity
-    if request.user_agent =~ /\b(Baidu|Gigabot|Googlebot|libwww-perl|lwp-trivial|msnbot|SiteUptime|Slurp|WordPress|ZIBB|ZyBorg)\b/i
-      Abingo.identity = "robot"
-    elsif current_login
-      Abingo.identity = current_login.id
-    else
-      session[:abingo_identity] ||= rand(10 ** 10)
-      Abingo.identity = session[:abingo_identity]
     end
   end
 
