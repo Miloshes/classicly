@@ -2,8 +2,6 @@ Classicly::Application.routes.draw do
 
   namespace 'admin' do
     root :to => "base#home"
-    match 'abingo' => "abingo_dashboard#index", :via => :get
-    match 'abingo/end_experiment/:id' => "abingo_dashboard#end_experiment", :via => :post
     match 'admin_seo' => 'admin_seo#main'
     match 'admin_seo/:type' => 'admin_seo#admin_infoable', :as => 'admin_infoable'
     match 'admin_seo/:type/:id' => 'admin_seo#edit_seo', :as => 'edit_seo'

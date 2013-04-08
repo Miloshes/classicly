@@ -31,8 +31,6 @@
       #right-column
         - if current_admin_user
           .link.sepia
-            = link_to 'Abingo', admin_abingo_path
-          .link.sepia
             = link_to 'Admin Reviews', '#'
             .sub= link_to 'All', admin_reviews_path
             .sub= link_to 'Picked', admin_reviews_path(featured: 1)

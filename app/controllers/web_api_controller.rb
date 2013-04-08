@@ -5,7 +5,6 @@ class WebApiController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   skip_before_filter :collections_for_footer
-  skip_before_filter :set_abingo_identity
   skip_before_filter :popular_collections
   skip_before_filter :popular_books
   
