@@ -1,4 +1,6 @@
-require "split/dashboard"
+require 'split'
+require 'split/dashboard'
+include Split::Helper
 
 Split.configure do |config|
   config.db_failover = true # handle redis errors gracefully
