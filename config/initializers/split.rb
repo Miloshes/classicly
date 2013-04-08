@@ -1,4 +1,3 @@
-require 'split'
 require 'split/dashboard'
 include Split::Helper
 
