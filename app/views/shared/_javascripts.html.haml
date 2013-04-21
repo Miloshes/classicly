@@ -1,4 +1,11 @@
 :javascript
+  // JQuery Lazy Loading of Images - see: http://www.appelsiini.net/projects/lazyload
+  $("img.lazy").lazyload({
+    effect : "fadeIn",
+    failure_limit : 100
+  });
+
+:javascript
   // initialize the environment for JS
   RAILS_ENV = "#{Rails.env}";
   // initialize Facebook

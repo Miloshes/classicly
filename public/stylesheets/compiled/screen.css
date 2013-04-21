@@ -2927,7 +2927,7 @@ table tr a {
 
 /* line 1, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */
 #site-container {
-  top: 92px;
+  margin-top: 92px;
 }
 
 /* line 4, ../../../app/stylesheets/partials/_mobile_app_upsell_banner.sass */

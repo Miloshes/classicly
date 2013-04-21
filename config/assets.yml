@@ -15,6 +15,7 @@ javascripts:
     - public/javascripts/jquery.rating.js
     - public/javascripts/rails.js
     - public/javascripts/notifications.js
+    - public/javascripts/jquery.lazyload.min.js
 stylesheets:
   common:
     - public/stylesheets/compiled/screen.css
