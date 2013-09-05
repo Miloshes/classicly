@@ -1,4 +1,4 @@
-administrators: ["zsolt@spreadsong.com", "colin@spreadsong.com", "kenzie@spreadsong.com", "tyler@spreadsong.com", "ignacio@spreadsong.com"]
+administrators: ["pvegh@digitalpresspublishing.com", "tyler@spreadsong.com"]
 
 airbrake_io:
   api_key: 5ae585e91631c1d5808eee4629d0d361
