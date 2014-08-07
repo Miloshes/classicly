@@ -77,6 +77,8 @@ gem "delayed_job"
 # read and write zip files - http://rubygems.org/gems/rubyzip
 gem "rubyzip"
 
+# Heroku supported memcached client - http://rubygems.org/gems/dalli
+gem "dalli"
 
 # For handling the API version numbers nicely - https://github.com/dazuma/versionomy
 gem "versionomy", "0.4.1"
