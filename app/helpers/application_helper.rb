@@ -31,8 +31,10 @@ module ApplicationHelper
   def cover_image_link(cover, size, html_class=nil)
     type = cover.class.to_s.downcase
     bucket = "#{type}_id"
-    link_to image_tag("spacer.gif", "data-original" => "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg",
-                      :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => "#{html_class}, lazy"), author_book_url(cover.author, cover)
+    #link_to image_tag("spacer.gif", "data-original" => "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg",
+    #                  :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => "#{html_class}, lazy"), author_book_url(cover.author, cover)
+
+    link_to image_tag("http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg", :class => "#{html_class}, lazy", :alt => "#{cover.pretty_title} by #{cover.author.name}"), author_book_url(cover.author, cover)
   end
 
   def cover_image_link_with_text(book, size, html_class=nil)
