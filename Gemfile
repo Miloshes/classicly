@@ -61,7 +61,7 @@ gem "maruku"
 #gem "meta_where"
 
 # html/xml parser - http://rubygems.org/gems/nokogiri
-gem "nokogiri"
+gem "nokogiri", '~> 1.6.3.1'
 
 # file upload management with S3 support - http://rubygems.org/gems/paperclip
 gem "paperclip", "~> 2.4.5"
