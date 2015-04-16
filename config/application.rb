@@ -4,7 +4,7 @@ require 'rails/all'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(:default, Rails.env) if defined?(Bundler)
+Bundler.require(*Rails.groups)
 
 module Classicly
   class Application < Rails::Application
@@ -46,5 +46,14 @@ module Classicly
     config.action_mailer.delivery_method = :smtp
 
     config.action_mailer.raise_delivery_errors = true
-  end
+
+    if defined?(Bundler)
+      Bundler.require *Rails.groups(:assets => %w(development test))
+    end
+     
+    config.assets.precompile << /(^[^_]|\/[^_])[^\/]*/
+     
+    # if you prefer `.sass` over `.scss`.
+    #config.sass.preferred_syntax = :sass
+    end           
 end

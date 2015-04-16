@@ -3,18 +3,17 @@
 %html{:xmlns => "http://www.w3.org/1999/html", "xmlns:og" => "http://ogp.me/ns#", "xmlns:fb" => "http://www.facebook.com/2008/fbml", "xml:lang" => "en", :lang => "en"}
 
   %head
-    = include_stylesheets :common
-    = stylesheet_link_tag "custom-theme/jquery-ui-1.8.14.custom.css"
+    = stylesheet_link_tag "application"
     = yield :title
 
-    = javascript_include_tag 'http://www.google.com/jsapi'
+    = javascript_include_tag 'application'
     :javascript
       var theme = "flick";
       google.load("jquery", "1.4.4");
       google.load("jqueryui", "1.8.14");      
 
     = javascript_include_tag 'http://connect.facebook.net/en_US/all.js', 'http://cdn.jquerytools.org/1.2.5/tiny/jquery.tools.min.js', 'https://apis.google.com/js/plusone.js', 'http://cdn.optimizely.com/js/8407410.js' 
-    = include_javascripts :main
+    =# include_javascripts :main
     %meta{property: 'fb:admins', content: 24611995} 
     = csrf_meta_tag
     - if Rails.env.test?

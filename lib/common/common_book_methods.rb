@@ -5,7 +5,7 @@ module CommonBookMethods
   def self.included(base)
     base.class_eval do
       base.extend CommonClassMethods
-      scope :no_squat_image, where(:id.not_in => ClassiclyImages::SQUAT_IDS[base.to_s.downcase.pluralize.to_sym])
+      scope :no_squat_image, -> { where.not(:id => ClassiclyImages::SQUAT_IDS[base.to_s.downcase.pluralize.to_sym]) }
     end
   end
 

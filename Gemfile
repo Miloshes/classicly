@@ -1,33 +1,46 @@
 source "https://rubygems.org"
 source "http://gems.github.com"
 
-gem "rails", "3.0.7"
-gem "rake", "0.9.2.2"
+ruby '2.2.0'
+gem "rails", "4.2.1"
+gem "protected_attributes"
+gem "pg"
+gem "iconv"
+gem "activerecord-session_store"
+gem "jquery-ui-rails"
+
+group :assets do 
+  gem 'coffee-rails'
+  gem 'sass-rails'
+  gem 'uglifier'
+  gem "compass-rails", github: "Compass/compass-rails", branch: "master"
+  gem 'compass-blueprint'
+end
 
 # Authentication - http://rubygems.org/gems/authlogic
 gem "authlogic", :git => "git://github.com/binarylogic/authlogic.git"
 
 # Amazon S3 - http://amazon.rubyforge.org/
-gem "aws-s3", :require => "aws/s3"
+gem "aws-s3", :require => "aws/s3", :git => 'https://github.com/bartoszkopinski/aws-s3'
 # gem "aws-sdk", :require => "aws/s3"
 
 # CSS Authoring Framework - http://rubygems.org/gems/compass
-gem "compass", "~> 0.11.7"
+#gem "compass", "1.0.3"
 
 # template markup language - http://haml-lang.com/
 gem "haml"
 
 # SEO slugs and permalinks - http://rubygems.org/gems/friendly_id
-gem "friendly_id", "~> 3.2.1"
+gem "friendly_id", '~> 5.0.0'
 
 # app error app - http://hoptoadapp.com/pages/home
-gem "hoptoad_notifier"
+gem "airbrake"
 
 # hosted search - http://indextank.com/
 gem "indextank"
 
 # asset packaging - http://documentcloud.github.com/jammit/
-gem "jammit"
+#gem "jammit"
 
 # JQuery for Rails - https://github.com/indirect/jquery-rails
 gem "jquery-rails"
@@ -45,7 +58,7 @@ gem "km"
 gem "maruku"
 
 # extends ActiveRecord where conditions - http://metautonomo.us/projects/metawhere/
-gem "meta_where"
+#gem "meta_where"
 
 # html/xml parser - http://rubygems.org/gems/nokogiri
 gem "nokogiri"
@@ -60,7 +73,7 @@ gem "rest-client", :require => "rest_client"
 gem "sitemap_generator"
 
 # SQLite3 driver - http://rubygems.org/gems/sqlite3
-gem "sqlite3"
+#gem "sqlite3"
 
 # gem to allow sort and pagination using regular HTML and avoid showing the params in the URL
 gem "sorted"
@@ -88,12 +101,17 @@ gem 'hominid'
 # A/B testing framework
 gem 'split', :require => 'split'
 
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
+
 group :development, :test do
   # nicer output for console debugging - http://rubygems.org/gems/awesome_print
   # gem "awesome_print"
   
   # Ruby debugger console - http://rubygems.org/gems/ruby-debug
-  gem "ruby-debug19"
+  #gem "ruby-debug19"
   
   # Heroku database import/export - http://rubygems.org/gems/taps
   # NOTE: only enable when used, has a gem version conflict with the "split" gem
@@ -113,7 +131,7 @@ group :development, :test do
   gem "capybara"
   
   # a different driver than selenium for acceptance tests
-  gem "akephalos", "~> 0.2.5"
+  #gem "akephalos", "~> 0.2.5"
 
   # for cleaning the DB for tests - http://rubygems.org/gems/database_cleaner
   gem "database_cleaner"
@@ -136,7 +154,7 @@ group :development, :test do
   # gem "autotest-fsevent"
   
   # RSpec BDD testing framework - http://rubygems.org/gems/rspec
-  gem "rspec-rails", "~> 2.9"
+  gem "rspec-rails"
   
   # makes Capybara able to show the browser in the last state - http://rubygems.org/gems/launchy
   gem "launchy"

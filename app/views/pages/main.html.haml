@@ -40,15 +40,15 @@
     .column
       - 1.upto(3) do
         .cover.medium
-          = cover_image_link_with_text(@column_books.pop, 2)
+          = cover_image_link_with_text(@column_books.last, 2)
     .column
       - 1.upto(3) do
         .cover.medium
-          = cover_image_link_with_text(@column_books.pop, 2)
+          = cover_image_link_with_text(@column_books.last, 2)
     .column.last
       - 1.upto(3) do
         .cover.medium
-          = cover_image_link_with_text(@column_books.pop, 2)
+          = cover_image_link_with_text(@column_books.last, 2)
   #links
     %a.button.kiss.large.green{:href => '/collections'}
       %span

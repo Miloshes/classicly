@@ -2,7 +2,7 @@
   .show-post
     .blog-title
       %h2 
-        = link_to post.title, seo_path(post)
+        = link_to post.title, seo_path(post.cached_slug)
         %span by
         %span.author Tyler
         %span on
@@ -11,7 +11,7 @@
       %p
         = raw show_only_until_break_tag(post)
     .comments
-      = link_to post.title, "#{seo_path(post)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
+      = link_to post.title, "#{seo_path(post.cached_slug)}#disqus_thread", :data_disqus_identifier => "blog_post_#{post.id}"
   / - unless post.related_books.empty?
   /     .related
   /       %h5 Related Books
