@@ -157,7 +157,7 @@ class WebApiHandler
     return {
       :book_rating_average       => book.avg_rating,
       :book_review_count         => book.reviews.count,
-      :book_written_review_count => book.reviews.where(:content.not_eq => nil).count,
+      :book_written_review_count => book.reviews.where.not(:content => nil).count,
       :classicly_url             => author_book_url(book.author, book)
     }.to_json
   end

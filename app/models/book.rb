@@ -38,17 +38,19 @@ class Book < ActiveRecord::Base
 
   delegate :cached_slug, :name, :to => :author, :prefix =>  true
 
-  scope :available, where({:available => true})
-  scope :blessed, where({:blessed => true})
-  scope :for_author, lambda {|author| where(:author_id => author.id)}
-  scope :order_by_author, joins(:author) & Author.order('name')
-  scope :with_description, where('description is not null')
-  scope :random, lambda {|limit| order('RANDOM()').limit(limit) }
-  scope :search_in_ids, lambda {|ids| where(:id.in => ids) }
+  scope :available, -> { where({:available => true}) }
+  scope :blessed, -> { where({:blessed => true}) }
+  scope :for_author, -> (author) { where(:author_id => author.id) }
+  scope :order_by_author, -> { joins(:author) & Author.order('name') }
+  scope :with_description, -> { where('description is not null') }
+  scope :random, -> (limit) { order('RANDOM()').limit(limit) }
+  scope :search_in_ids, -> (ids) { where(:id.in => ids) }
 
   validates :title, :presence => true
 
-  has_friendly_id :optimal_friendly_id, :use_slug => true, :strip_non_ascii => true
+  extend FriendlyId
+  friendly_id :optimal_friendly_id, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :optimal_friendly_id, :use_slug => true
   
   # instance variables to help rendering the book content
   attr_accessor :book_content, :reader_engine
@@ -149,8 +151,11 @@ class Book < ActiveRecord::Base
     # Two sources for related books:
 
     # Other books of the author, with the same language:
-    books_from_same_author = select ? self.author.books.where( :language => self.language, :id.not_eq => self.id ).select( select_fields ) :
-      self.author.books.where( :language => self.language, :id.not_eq => self.id )
+    if select
+      books_from_same_author = self.author.books.where( :language => self.language).where.not( :id => self.id ).select( select_fields )
+    else
+      books_from_same_author = self.author.books.where( :language => self.language).where.not( :id => self.id )
+    end
     
     # for 8 books requested we get 2 from the same author, for 2 we get 1:
     num_of_books_to_get_from_same_author = ( num < 4 ) ? 1 :  ( num / 4.0 ).ceil 
@@ -158,14 +163,17 @@ class Book < ActiveRecord::Base
     1.upto num_of_books_to_get_from_same_author do
       break if books_from_same_author.blank? #  break if the array has been emptied
       position = rand( books_from_same_author.size )
-      result << books_from_same_author.delete_at( position )
+      result << books_from_same_author.to_a.delete_at( position )
     end
 
     # Popular books from the same genres (and same language):
     books_from_same_genre = []
     self.genres.each do |genre|
-      books_from_same_genre += select ? genre.books.where( :language => self.language, :id.not_eq =>  self.id ).select( select_fields ).limit( 25 ) : 
-        genre.books.where(:language => self.language, :id.not_eq => self.id).limit( 25 )
+      if select
+        books_from_same_genre += genre.books.where( :language => self.language).where.not( :id =>  self.id ).select( select_fields ).limit( 25 )
+      else
+        books_from_same_genre += genre.books.where(:language => self.language).where.not( :id => self.id ).limit( 25 )
+      end
     end
 
 

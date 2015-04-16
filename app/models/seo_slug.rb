@@ -5,11 +5,11 @@ class SeoSlug < ActiveRecord::Base
   belongs_to :seoable, :polymorphic => true
   has_one :seo_info, :as => :infoable
 
-  scope :kindle, where(:format => 'kindle')
-  scope :mp3, where(:format => 'mp3')
-  scope :pdf, where(:format => 'pdf')
+  scope :kindle, -> { where(:format => 'kindle') }
+  scope :mp3, -> { where(:format => 'mp3') }
+  scope :pdf, -> { where(:format => 'pdf') }
   # CLEANUP: rename to readable_online or something
-  scope :read_online, where(:format => 'online')
+  scope :read_online, -> { where(:format => 'online') }
 
   # CLEANUP: is this used anywhere? We have a search model now
   def self.search(search_term, current_page, per_page = 25, type='book')

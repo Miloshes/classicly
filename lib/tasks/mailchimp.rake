@@ -10,11 +10,12 @@ namespace :mailchimp do
     mc.batch(:subscribe) do
     	Login.where(
         :mailing_enabled      => true,
-        :mailchimp_subscribed => false,
-        :email.not_eq         => nil,
-        :first_name.not_eq    => nil,
-        :last_name.not_eq     => nil
-    	)
+        :mailchimp_subscribed => false
+    	).where.not(
+        :email        => nil,
+        :first_name    => nil,
+        :last_name    => nil
+        )
     end
     
   end   

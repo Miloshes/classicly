@@ -15,7 +15,10 @@ class BlogPost < ActiveRecord::Base
   validates_presence_of :meta_description
   accepts_nested_attributes_for :custom_resources, :allow_destroy => true
   after_save :generate_seo_slug, :create_author_quotings
-  has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
+  
+  extend FriendlyId
+  friendly_id :blog_post_slug, use: :slugged, slug_column: "cached_slug"
+  # has_friendly_id :blog_post_slug, :use_slug => true, :strip_non_ascii => true
 
   state_machine :state, :initial => :draft do
     event :publish do

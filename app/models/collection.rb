@@ -16,15 +16,13 @@ class Collection < ActiveRecord::Base
   has_many  :featured_audiobooks, :through => :featured_collection_audiobook_assignments, :source => :audiobook
 
   # featured books
-  has_many  :featured_collection_book_assignments,
-            :class_name => 'CollectionBookAssignment',
-            :conditions => {:featured => true}
+  has_many  :featured_collection_book_assignments, -> { where(:featured => true) },
+            :class_name => 'CollectionBookAssignment'
 
   has_many  :featured_books, :through => :featured_collection_book_assignments, :source => :book
 
-  has_many  :featured_collection_audiobook_assignments,
-            :class_name => 'CollectionAudiobookAssignment',
-            :conditions => {:featured => true}
+  has_many  :featured_collection_audiobook_assignments, -> { where(:featured => true) },
+            :class_name => 'CollectionAudiobookAssignment'
 
   has_many  :quotes
   has_many  :seo_slugs, :as => :seoable
@@ -34,13 +32,13 @@ class Collection < ActiveRecord::Base
   belongs_to :genre
   belongs_to :book_collection, :class_name => 'Collection', :foreign_key => :audio_collection_id
   
-  scope :find_audiobook_collections_and_genres, where(:book_type => 'audiobook', :collection_type.in => ['collection', 'genre'])
-  scope :find_audiobook_author_collections, where(:book_type => 'audiobook', :collection_type => 'author')
-  scope :find_book_collections_and_genres, where(:book_type => 'book', :collection_type.in => ['collection', 'genre'])
-  scope :find_book_author_collections, where(:book_type => 'book', :collection_type => 'author')
-  scope :of_type, lambda {|type| where(:book_type => type)}
-  scope :random, lambda {|limit| order('RANDOM()').limit(limit) }
-  scope :with_description, where(:description.not_eq => '')
+  scope :find_audiobook_collections_and_genres, -> { where(:book_type => 'audiobook', :collection_type.in => ['collection', 'genre']) }
+  scope :find_audiobook_author_collections, -> { where(:book_type => 'audiobook', :collection_type => 'author') }
+  scope :find_book_collections_and_genres, -> { where(:book_type => 'book', :collection_type.in => ['collection', 'genre']) }
+  scope :find_book_author_collections, -> { where(:book_type => 'book', :collection_type => 'author') }
+  scope :of_type, -> (type) { where(:book_type => type)}
+  scope :random, -> (limit) { order('RANDOM()').limit(limit) }
+  scope :with_description, -> { where.not(:description => '') }
 
   before_save :set_parsed_description
 
@@ -50,7 +48,9 @@ class Collection < ActiveRecord::Base
   validates :source_type, :presence => true
   validates :source, :presence => true
 
-  has_friendly_id :collection_slug, :use_slug => true
+  extend FriendlyId
+  friendly_id :collection_slug, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :collection_slug, :use_slug => true
 
   has_attached_file :author_portrait, 
     :styles => {

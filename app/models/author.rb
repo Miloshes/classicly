@@ -5,16 +5,19 @@ class Author < ActiveRecord::Base
   # CLEANUP: rename to related_blog_posts, totally misleading
   has_many :blog_posts, :through => :author_quotings
   has_many :reviews, :as => :reviewable
-  has_friendly_id :name, :use_slug => true
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :name, :use_slug => true
   
   # CLEANUP: could use instance variables to cache collection and audio_collection, and has_collection? methods could return !collection.blank?
   
   def audio_collection
-    Collection.where(:name.matches => "%#{self.name}%", :book_type => 'audiobook').first
+    Collection.where(Collection.arel_table[:name].matches "%#{self.name}%", :book_type => 'audiobook').first
   end
 
   def collection
-    Collection.where(:name.matches => "%#{self.name}%", :book_type => 'book').first
+    Collection.where(Collection.arel_table[:name].matches "%#{self.name}%", :book_type => 'book').first
   end
 
   def featured_book(type='book')

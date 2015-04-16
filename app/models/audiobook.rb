@@ -21,11 +21,13 @@ class Audiobook < ActiveRecord::Base
   validates :title, :presence => true
 
   delegate :name, :cached_slug, :to => :author, :prefix => true
-  scope :blessed, where({:blessed => true})
-  scope :order_by_author, joins(:author) & Author.order('name')
-  scope :random, lambda { |limit| {:order => "RANDOM()", :limit => limit} }
+  scope :blessed, -> { where(:blessed => true) }
+  scope :order_by_author, -> { joins(:author) & Author.order('name') }
+  scope :random, -> (limit) {  {:order => "RANDOM()", :limit => limit} }
 
-  has_friendly_id :audio_book_slugs, :use_slug => true
+  extend FriendlyId
+  friendly_id :audio_book_slug, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :audio_book_slugs, :use_slug => true
 
   def self.search(search_term, current_page, per_page = 25)
     self.where(:pretty_title.matches => "%#{search_term}%").page(current_page).per(per_page)

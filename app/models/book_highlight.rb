@@ -17,9 +17,11 @@ class BookHighlight < ActiveRecord::Base
   validates :user, :presence => true
   validates :fb_connect_id, :presence => true
   
-  has_friendly_id :content, :use_slug => true, :strip_non_ascii => true
+  extend FriendlyId
+  friendly_id :content, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :content, :use_slug => true, :strip_non_ascii => true
   
-  scope :all_for_book_and_user, lambda { |book, user| where(:book => book, :user => user) }
+  scope :all_for_book_and_user, -> (book, user) { where(:book => book, :user => user) }
   
   def self.create_or_update_from_ios_client_data(data)
     book = Book.find(data["book_id"].to_i)

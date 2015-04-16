@@ -3,7 +3,9 @@ class Quote < ActiveRecord::Base
   belongs_to  :collection
   has_many  :seo_slugs, :as => :seoable
   #extensions
-  has_friendly_id :quote_slug, :use_slug => true
+  extend FriendlyId
+  friendly_id :quote_slug, use: :slugged, slug_column: "cached_slug"
+  #has_friendly_id :quote_slug, :use_slug => true
   
   def quote_slug
     keywords = self.content

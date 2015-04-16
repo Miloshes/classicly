@@ -64,10 +64,10 @@ Classicly::Application.routes.draw do
   get 'sitemap.xml' => redirect('/sitemap_index.xml.gz')
 
   # for delivering audiobook file
-  get '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile', :via => :get
+  get '/download_audiobook/:id' => 'audiobooks#serve_audiofile', :as => 'serve_audiofile'
 
   # TODO: remove, this is only here for testing
-  get '/reader/:id/:page_number' => "book_pages#show", :via => :get
+  get '/reader/:id/:page_number' => "book_pages#show"
   # NOTE: this is for the first version of the review API, will be deprecated soon
   get "incoming_data" => "incoming_datas#create", :method => :post
 
@@ -90,7 +90,7 @@ Classicly::Application.routes.draw do
   get "/web_api" => "web_api#create", :via => :post
   get '/web_api/query' => "web_api#query", :via => :post
 
-  get '/render_book_for_the_reader/:book_id' => "book_pages#render_book", :via => :get
+  get '/render_book_for_the_reader/:book_id' => "book_pages#render_book"
 
   get '/inc_audiobook_downloaded_count/:id' => 'audiobooks#inc_downloaded_count'
 
@@ -107,14 +107,14 @@ Classicly::Application.routes.draw do
 
   resources :collections, :only => :show
 
-  get "/:id/audiobooks/(:page)/(:sort)" => "collections#show_audiobooks", :as => :collection_audiobooks, :via => :get,   :constraints => { :page => /\d+/,
+  get "/:id/audiobooks/(:page)/(:sort)" => "collections#show_audiobooks", :as => :collection_audiobooks, :constraints => { :page => /\d+/,
       :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
       downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
       downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
       downloaded_count_desc!pretty_title_asc|pretty_title_desc!downloaded_count_asc|
       downloaded_count_asc!pretty_title_desc|pretty_title_asc!downloaded_count_desc/ }
 
-  get "/:id/books/(:page)/(:sort)" => "collections#show_books", :as => :collection_books, :via => :get,   :constraints => { :page => /\d+/,
+  get "/:id/books/(:page)/(:sort)" => "collections#show_books", :as => :collection_books, :constraints => { :page => /\d+/,
       :sort => /downloaded_count_asc|pretty_title_asc|downloaded_count_desc|pretty_title_desc|
       downloaded_count_asc!pretty_title_asc|pretty_title_asc!downloaded_count_asc|
       downloaded_count_desc!pretty_title_desc|pretty_title_desc!downloaded_count_desc|
@@ -124,25 +124,23 @@ Classicly::Application.routes.draw do
   get "/:id/quotes/(:page)" => "collections#show_quotes"
 
 
-  get "/:author_id/:id" => "seo#show_book", :as => :author_book, :via => :get
-  get '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote, :via => :get
+  get "/:author_id/:id" => "seo#show_book", :as => :author_book
+  get '/:id/quote/:quote_slug' => 'quotes#show', :as => :quote
 
   
   # == Notes and Highlights
-  get "/:author_id/:book_id/highlights/:highlight_id" => "book_highlights#show", :as => :author_book_highlight, :via => :get
+  get "/:author_id/:book_id/highlights/:highlight_id" => "book_highlights#show", :as => :author_book_highlight
 
   # == final download pages, the ones that starts downloading the file immediately
-  get '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook', :via => :get
-  get "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book', :via => :get
+  get '/:author_id/:id/download-mp3' => "audiobooks#download", :as => 'download_audiobook'
+  get "/:author_id/:id/download/:download_format" => "books#download", :as => 'download_book'
 
   # for delivering the book file (automatic file downloading)
-  get "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file",
-        :as => 'serve_downloadable_file', :via => :get
+  get "/books/:id/download_in_format/:download_format" => "books#serve_downloadable_file", :as => 'serve_downloadable_file'
 
   # for invoking the book reader
-  get '/:id/page/:page_number' => "book_pages#show",
-  :as => 'read_online', :via => :get
+  get '/:id/page/:page_number' => "book_pages#show", :as => 'read_online'
   
-  get '/:id' => 'seo#show', :as => :seo, :via => :get
+  get '/:id' => 'seo#show', :as => :seo
   root :to => 'pages#main'
 end

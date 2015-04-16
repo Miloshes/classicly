@@ -32,8 +32,7 @@ module ApplicationHelper
     type = cover.class.to_s.downcase
     bucket = "#{type}_id"
     link_to image_tag("spacer.gif", "data-original" => "http://spreadsong-#{type}-covers.s3.amazonaws.com/#{bucket}#{cover.id}_size#{size}.jpg",
-                      :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => "#{html_class}, lazy"),
-                      author_book_url(cover.author, cover)
+                      :alt => "#{cover.pretty_title} by #{cover.author.name}", :class => "#{html_class}, lazy"), author_book_url(cover.author, cover)
   end
 
   def cover_image_link_with_text(book, size, html_class=nil)
@@ -97,7 +96,7 @@ module ApplicationHelper
     paragraph = doc.at_css('p:last')
     return text if paragraph.nil?
     link = Nokogiri::XML::Node.new 'a', doc
-    link['href'] = seo_path(post)
+    link['href'] = seo_path(post.cached_slug)
     link['class'] = 'blue'
     link_span = Nokogiri::XML::Node.new 'span', doc
     link_span.content = ' [Click to continue...]'
@@ -183,7 +182,7 @@ module ApplicationHelper
   def text_for_cover(book)
     book_type = book.is_a?(Book) ? 'Book' : 'Audiobook'
     content_tag(:div, nil, :class => 'text') do
-      link_to(content_tag(:span, book.pretty_title, :class => 'title'), author_book_url(book.author, book),:class => 'no-underline') + content_tag(:span, book_type, :class => 'type')
+      link_to(content_tag(:span, book.pretty_title, :class => 'title'), author_book_url(book.author, book), :class => 'no-underline') + content_tag(:span, book_type, :class => 'type')
     end
   end
 
