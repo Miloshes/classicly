@@ -34,9 +34,9 @@ a {
     #header a#logo:hover, #header a#audibly-logo:hover {
       cursor: pointer; }
   #header a#logo {
-    background: url("/images/logo.png"); }
+    background: url("logo.png"); }
   #header a#audibly-logo {
-    background: url("/images/audibly-logo_03.png");
+    background: url("audibly-logo_03.png");
     width: 169px; }
   #header h2 {
     color: white;
@@ -54,7 +54,7 @@ a {
   #header div.search-bg {
     width: 402px;
     height: 40px;
-    background: url("/images/search.png");
+    background: url("search.png");
     margin-top: 25px; }
     #header div.search-bg input {
       font-size: 22px;
@@ -109,7 +109,7 @@ a {
   width: 100%; }
 
 #cover-bar {
-  background: url("/images/cover-bar-bg.png");
+  background: url("cover-bar-bg.png");
   display: block;
   width: 1024px;
   height: 240px;
@@ -678,10 +678,10 @@ ul.featured-book-list li {
     color: white;
     font-weight: normal;
     text-align: center;
-    background: url("/images/footer-header-bg.png");
+    background: url("footer-header-bg.png");
     font-family: "museo-slab-1", "museo-slab-2"; }
   #footer .about .bg {
-    background: url("/images/footer-about-bg.png");
+    background: url("footer-about-bg.png");
     width: 317px;
     height: 272px;
     display: block; }
@@ -842,7 +842,7 @@ span.condense_control {
   display: block;
   background: transparent;
   overflow: hidden;
-  background: url(../images/star-sprite.png) no-repeat 0 0px; }
+  background: url(star-sprite.png) no-repeat 0 0px; }
 
 .star-on {
   background-position: 0 0px !important; }

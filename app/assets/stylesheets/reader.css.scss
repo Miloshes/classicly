@@ -6,7 +6,7 @@ body {
 
 #fb_connect_notification{
   width: 100%;
-  background-image: url(../images/Registration_slices/reg_bg.png);
+  background-image: url(Registration_slices/reg_bg.png);
   /*background-color: #61B832;
   background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 75%, transparent 75%, transparent);
   background-size: 40px 40px;*/
@@ -23,7 +23,7 @@ body {
 
 #fb_connect_notification #registration .registration_box{
   display: inline-table;
-  background-image: url(../images/Registration_slices/reg_box.png);
+  background-image: url(Registration_slices/reg_box.png);
   width: 220px;
   height: 102px;
   margin-top: 20px;
@@ -49,7 +49,7 @@ body {
 }
 
 #fb_connect_notification a#fb_connect #facebook_connect{
-  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  background-image: url(Registration_slices/reg_btn_blue.png);
   width: 362px;
   height: 49px;
   padding-top: 1px;
@@ -57,7 +57,7 @@ body {
 
 
 #fb_connect_notification a#fb_connect:active #facebook_connect{
-  background-image: url(../images/Registration_slices/reg_btn_blue.png);
+  background-image: url(Registration_slices/reg_btn_blue.png);
   background-position: 0px -51px;
 }
 
@@ -78,14 +78,14 @@ body {
 }
 
 #fb_connect_notification a#fb_decline #facebook_decline{
-  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  background-image: url(Registration_slices/reg_btn_grey.png);
   width: 102px;
   height: 24px;
   padding-top: 1px;
 }
 
 #fb_connect_notification a#fb_decline:active #facebook_decline{
-  background-image: url(../images/Registration_slices/reg_btn_grey.png);
+  background-image: url(Registration_slices/reg_btn_grey.png);
   background-position: 0px -28px;
 }
 
@@ -124,7 +124,7 @@ body {
   #reader_box #library_button .button .left {
     display: block;
     float: left;
-    background: url(../images/reader_btn_left.png) no-repeat;
+    background: url(reader_btn_left.png) no-repeat;
     width: 4px;
     height: 30px;
   }
@@ -134,7 +134,7 @@ body {
     display: block;
     float: left;
     padding: 5px 4px 0px 4px;
-    background: url(../images/reader_btn_middle.png) repeat-x;
+    background: url(reader_btn_middle.png) repeat-x;
     background-position: 5px 0px;
     height: 30px;
   }
@@ -147,7 +147,7 @@ body {
   {
     display: block;
     float: left;
-    background: url(../images/reader_btn_right.png) no-repeat;
+    background: url(reader_btn_right.png) no-repeat;
     width: 4px;
     height: 30px;
   }
@@ -178,7 +178,7 @@ body {
     width: 150px;
     line-height: 1.5em;
     color: #fff;
-    background-image: url(../images/Registration_slices/reg_bg.png);
+    background-image: url(Registration_slices/reg_bg.png);
     padding: 5px 0px 5px 10px;
     border-radius: 2px;
     -webkit-border-radius: 5px;
@@ -234,7 +234,7 @@ body {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
     opacity: 0.6;
-    background-image: url("../images/html-reader/loader.gif");
+    background-image: url("html-reader/loader.gif");
     background-position: center center;
     background-repeat: no-repeat;
     border: 1px solid #666666;
@@ -313,7 +313,7 @@ body {
     cursor: pointer; }
   #reader_box .navigation .slider_wrap {
     display: none;
-    background: url("../images/html-reader/scroller-dots.png") repeat-x;
+    background: url("html-reader/scroller-dots.png") repeat-x;
     position: absolute;
     top: 14px;
     bottom: 13px;
@@ -327,7 +327,7 @@ body {
     right: 0; }
 
 .slider_cursor {
-  background: url("../images/html-reader/scroller-mid.png");
+  background: url("html-reader/scroller-mid.png");
   position: absolute;
   top: -10px;
   height: 25px;
@@ -339,14 +339,14 @@ body {
     width: 5px;
     top: 0;
     bottom: 0;
-    background: url("../images/html-reader/scroller-left.png"); }
+    background: url("html-reader/scroller-left.png"); }
   .slider_cursor .after_scroller_num {
     position: absolute;
     right: 0;
     width: 5px;
     top: 0;
     bottom: 0;
-    background: url("../images/html-reader/scroller-right.png"); }
+    background: url("html-reader/scroller-right.png"); }
   .slider_cursor .page_num {
     color: #fff;
     font-size: 11px;

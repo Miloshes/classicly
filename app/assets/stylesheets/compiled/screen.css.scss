@@ -685,7 +685,7 @@ a.highlight:hover {
 }
 /* line 104, ../../../app/stylesheets/partials/_layout.sass */
 #header .wrap #nav ul .right {
-  background: url("/images/header-nav-right.png");
+  background: url("header-nav-right.png");
   height: 35px;
   width: 12px;
   display: block;
@@ -785,7 +785,7 @@ a.highlight:hover {
   display: block;
   width: 100%;
   height: 9px;
-  background: url(/images/shadow-bottom.png) repeat-x;
+  background: url(shadow-bottom.png) repeat-x;
   margin-top: 20px;
   padding: 0;
 }
@@ -1472,7 +1472,7 @@ ul.ui-autocomplete {
 }
 /* line 128, ../../../app/stylesheets/partials/_book_page.sass */
 #book-page .book-column #review-box textarea {
-  background: url(/images/new_reviews_editor.png);
+  background: url(new_reviews_editor.png);
   width: 400px;
   height: 89px;
   border: none;
@@ -1727,17 +1727,15 @@ ul.book-list li .download-link .view-this-book a {
 #library-page #library-preview {
   width: 654px;
   height: 748px;
-  background: url(/images/library-preview.png);
+  background: url(library-preview.png);
   position: relative;
 }
 
 /* ------------------------------------------------------------------------- */
 /* ---------->>> LIBRARY WITH CONTENT<<<------------------------------------ */
 /* -------------------------------------------------------------------------*/
- *
- * /* -------------------------------------------------------------------------*/
- * /* ---------->>> PROFILE IMAGE AND PROFILE DATA<<<--------------------------*/
- * /* -------------------------------------------------------------------------*/
+/* ---------->>> PROFILE IMAGE AND PROFILE DATA<<<--------------------------*/
+/* -------------------------------------------------------------------------
  * #user-profile
  *   .photo
  *     :margin-top 0px
@@ -1754,8 +1752,8 @@ ul.book-list li .download-link .view-this-book a {
  *   span
  *     :width 100%
  *     :display block
- *     :float left */
-/* ------------------------------------------------------------------------- */
+ *     :float left
+------------------------------------------------------------------------- */
 /* ---------->>> LIBRARY WITH THE CONNECT WITH FACEBOOK BUTTON<<<----------- */
 /* ------------------------------------------------------------------------- */
 /* line 38, ../../../app/stylesheets/partials/_library_page.sass */
@@ -1802,7 +1800,7 @@ ul.book-list li .download-link .view-this-book a {
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.75);
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.3);
-  background: url(/images/conversion-button-shadow.png) repeat-x scroll 0 0 #222222;
+  background: url(conversion-button-shadow.png) repeat-x scroll 0 0 #222222;
   background-color: #cc1100;
   border: none;
   color: white;
@@ -2055,7 +2053,7 @@ ul.book-list li .download-link .view-this-book a {
 /* line 1, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification {
   width: 100%;
-  background-image: url(/images/Registration_slices/reg_bg.png);
+  background-image: url(Registration_slices/reg_bg.png);
   height: 254px;
   color: white;
   font-size: 14px;
@@ -2073,7 +2071,7 @@ ul.book-list li .download-link .view-this-book a {
 /* line 17, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification #registration .registration_box {
   display: inline-table;
-  background-image: url(/images/Registration_slices/reg_box.png);
+  background-image: url(Registration_slices/reg_box.png);
   width: 220px;
   height: 102px;
   margin-top: 20px;
@@ -2099,14 +2097,14 @@ ul.book-list li .download-link .view-this-book a {
 }
 /* line 44, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect #facebook_connect {
-  background-image: url(/images/Registration_slices/reg_btn_blue.png);
+  background-image: url(Registration_slices/reg_btn_blue.png);
   width: 362px;
   height: 49px;
   padding-top: 1px;
 }
 /* line 51, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_connect:active #facebook_connect {
-  background-image: url(/images/Registration_slices/reg_btn_blue.png);
+  background-image: url(Registration_slices/reg_btn_blue.png);
   background-position: 0px -51px;
 }
 /* line 57, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
@@ -2126,14 +2124,14 @@ ul.book-list li .download-link .view-this-book a {
 }
 /* line 72, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline #facebook_decline {
-  background-image: url(/images/Registration_slices/reg_btn_grey.png);
+  background-image: url(Registration_slices/reg_btn_grey.png);
   width: 102px;
   height: 24px;
   padding-top: 1px;
 }
 /* line 79, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
 #fb_connect_notification a#fb_decline:active #facebook_decline {
-  background-image: url(/images/Registration_slices/reg_btn_grey.png);
+  background-image: url(Registration_slices/reg_btn_grey.png);
   background-position: 0px -28px;
 }
 /* line 84, ../../../app/stylesheets/partials/_connect_with_facebook_notification.sass */
