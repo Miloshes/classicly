@@ -11,10 +11,11 @@ gem "jquery-ui-rails"
 
 group :assets do 
   gem 'coffee-rails'
-  gem 'sass-rails'
+  #gem 'sass-rails'
   gem 'uglifier'
-  gem "compass-rails", github: "Compass/compass-rails", branch: "master"
-  gem 'compass-blueprint'
+  gem 'sass', '~> 3.2.7'
+  gem "compass", '~> 0.11.7'
+  #gem 'compass-blueprint'
 end
 
 # Authentication - http://rubygems.org/gems/authlogic
