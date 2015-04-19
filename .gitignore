@@ -27,4 +27,5 @@
 
 # Ignore uploaded files
 public/uploads/
+public/assets
 public/sampleimages
