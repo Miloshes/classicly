@@ -13,6 +13,7 @@
 // To generate css equivalent to the blueprint css but with your
 // configuration applied, uncomment:
 // @include blueprint
+@import "blueprint/grid";
 
 // But Compass recommends that you scope your blueprint styles
 // So that you can better control what pages use blueprint

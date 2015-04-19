@@ -1,7 +1,14 @@
 @import "compass";
 @import "blueprint";
+@import "blueprint/reset";
 
-@import "bootstrap-1.1.1.min";
+@import "partials/base";
+
+@import "blueprint/scaffolding";
+
+@import "blueprint/grid";
+
+@import "bootstrap";
 
 @import "screen";
 @import "grid";
